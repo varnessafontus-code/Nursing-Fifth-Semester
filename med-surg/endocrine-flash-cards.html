@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Endocrine flash cards</title>
+<style>
+:root {
+  --bg: #EDF2F4;
+  --surface: #FFFFFF;
+  --ink: #15242C;
+  --muted: #4F626C;
+  --line: #C6D3D9;
+  --brand: #0D6A7E;
+  --brand-deep: #084453;
+  --brand-tint: #DCF0F4;
+  --ok: #17693F;
+  --ok-tint: #E0F2E8;
+  --bad: #A3251B;
+  --bad-tint: #FBE6E3;
+  --warn: #8E5300;
+  --warn-tint: #FFF0D2;
+  --focus: #0B57D0;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1A20; --surface: #17262E; --ink: #E6EEF1; --muted: #A4B6BF; --line: #2C424D;
+    --brand: #55C1D6; --brand-deep: #9BE0EE; --brand-tint: #183A45;
+    --ok: #6FD39D; --ok-tint: #123523; --bad: #FF9A8F; --bad-tint: #4A1F1B;
+    --warn: #F3B45B; --warn-tint: #3E2B0B; --focus: #8AB4F8;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F1A20; --surface: #17262E; --ink: #E6EEF1; --muted: #A4B6BF; --line: #2C424D;
+  --brand: #55C1D6; --brand-deep: #9BE0EE; --brand-tint: #183A45;
+  --ok: #6FD39D; --ok-tint: #123523; --bad: #FF9A8F; --bad-tint: #4A1F1B;
+  --warn: #F3B45B; --warn-tint: #3E2B0B; --focus: #8AB4F8;
+}
+html { scroll-padding-top: env(safe-area-inset-top, 0px); height: 100%; }
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0; min-height: 100%;
+  background: var(--bg); color: var(--ink);
+  font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+.wrap { max-width: 720px; margin: 0 auto; padding: 16px 16px 48px; }
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+[hidden] { display: none !important; }
+
+/* start screen */
+.start h1 { font: 700 2rem/1.15 Charter, "Iowan Old Style", Georgia, serif; margin: 24px 0 8px; letter-spacing: -0.01em; }
+.start p { color: var(--muted); margin: 0 0 16px; max-width: 46ch; }
+.facts { list-style: none; padding: 0; margin: 20px 0 28px; display: grid; gap: 10px; }
+.facts li { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+.facts b { display: block; font-size: 1.05rem; }
+.facts span { color: var(--muted); font-size: 0.93rem; }
+.btn { border: 0; border-radius: 10px; padding: 14px 20px; min-height: 48px; font-weight: 650; }
+.btn.primary { background: var(--brand); color: #fff; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn.primary { color: #062028; } }
+:root[data-theme="dark"] .btn.primary { color: #062028; }
+.btn.ghost { background: transparent; border: 1.5px solid var(--line); color: var(--ink); }
+.btn.small { min-height: 40px; padding: 8px 14px; font-size: 0.92rem; }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+/* quiz header */
+.bar { background: var(--bg); padding: 10px 0 8px; }
+.bar-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.qmeta { min-width: 0; }
+.qmeta .n { font-weight: 700; font-size: 1.05rem; }
+.qmeta .t { color: var(--muted); font-size: 0.9rem; }
+.timer { display: flex; align-items: center; gap: 10px; }
+.ring { position: relative; width: 56px; height: 56px; flex: none; }
+.ring svg { transform: rotate(-90deg); display: block; }
+.ring .track { stroke: var(--line); }
+.ring .prog { stroke: var(--brand); transition: stroke 0.3s; }
+.ring.warn .prog { stroke: var(--warn); }
+.ring.bad .prog { stroke: var(--bad); }
+.ring .txt { position: absolute; inset: 0; display: grid; place-items: center; font-weight: 700; font-size: 0.82rem; font-variant-numeric: tabular-nums; }
+.ring.off .prog, .ring.off .track { opacity: 0.35; }
+.tools { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+.pal { display: grid; grid-template-columns: repeat(6, 1fr); gap: 5px; margin-top: 10px; }
+@media (min-width: 560px) { .pal { grid-template-columns: repeat(12, 1fr); } }
+.pal button { position: relative; min-height: 38px; padding: 0; border: 1.5px solid var(--line); border-radius: 6px; background: var(--surface); font-size: 0.78rem; font-weight: 650; color: var(--muted); }
+.pal button.done { background: var(--brand-tint); border-color: var(--brand); color: var(--brand-deep); }
+.pal button.ok { background: var(--ok-tint); border-color: var(--ok); color: var(--ok); }
+.pal button.part { background: var(--warn-tint); border-color: var(--warn); color: var(--warn); }
+.pal button.bad { background: var(--bad-tint); border-color: var(--bad); color: var(--bad); }
+.pal button.cur { border-width: 3px; border-color: var(--ink); color: var(--ink); }
+.pal button.flag::after { content: ""; position: absolute; top: 0; right: 0; border-style: solid; border-width: 0 10px 10px 0; border-color: transparent var(--warn) transparent transparent; border-top-right-radius: 4px; }
+
+/* question card */
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px 16px; margin-top: 12px; }
+.instr { display: inline-block; font-size: 0.85rem; font-weight: 650; color: var(--brand-deep); background: var(--brand-tint); border-radius: 999px; padding: 3px 12px; margin-bottom: 12px; }
+.stem { font: 1.1rem/1.6 Charter, "Iowan Old Style", Georgia, serif; margin: 0 0 16px; }
+.stem p { margin: 0 0 10px; }
+.stem ul { margin: 0 0 10px; padding-left: 20px; }
+.opts { display: grid; gap: 8px; border: 0; padding: 0; margin: 0; min-width: 0; }
+.opt { display: flex; gap: 12px; align-items: flex-start; border: 1.5px solid var(--line); border-radius: 10px; padding: 12px 12px; min-height: 52px; cursor: pointer; background: var(--surface); }
+.opt input { margin-top: 4px; width: 20px; height: 20px; flex: none; accent-color: var(--brand); }
+.opt .l { font-weight: 700; color: var(--muted); width: 1.2em; flex: none; }
+.opt.sel { border-color: var(--brand); background: var(--brand-tint); }
+.opt.dis { opacity: 0.5; cursor: not-allowed; }
+
+.row { border: 1.5px solid var(--line); border-radius: 10px; padding: 12px; margin-bottom: 10px; }
+.row .rt { margin: 0 0 10px; font-weight: 600; }
+.seg { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.seg label { border: 1.5px solid var(--line); border-radius: 8px; padding: 10px 10px; text-align: center; font-size: 0.92rem; cursor: pointer; min-height: 48px; display: grid; place-items: center; }
+.seg input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.seg label.sel { border-color: var(--brand); background: var(--brand-tint); font-weight: 650; }
+.seg label:focus-within { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+.cloze { font: 1.1rem/2.4 Charter, "Iowan Old Style", Georgia, serif; }
+.cloze select { font: 1rem system-ui, sans-serif; margin: 0 4px; padding: 8px 10px; min-height: 44px; border: 1.5px solid var(--brand); border-radius: 8px; background: var(--surface); color: var(--ink); max-width: 100%; }
+
+.bt { display: grid; gap: 14px; }
+.bt fieldset { border: 1.5px solid var(--line); border-radius: 12px; padding: 12px; margin: 0; min-width: 0; }
+.bt legend { font-weight: 700; padding: 0 6px; }
+.bt .hint { color: var(--muted); font-size: 0.88rem; margin: 0 0 8px; }
+@media (min-width: 680px) {
+  .bt { grid-template-columns: 1fr 1fr 1fr; align-items: start; }
+  .bt .center { order: 2; } .bt .left { order: 1; } .bt .right { order: 3; }
+}
+
+.nav { display: flex; justify-content: space-between; gap: 10px; margin-top: 16px; }
+.nav .grow { flex: 1; }
+.flagbtn[aria-pressed="true"] { background: var(--warn-tint); border-color: var(--warn); color: var(--warn); }
+
+/* overlays */
+.overlay { position: fixed; inset: 0; background: rgba(8, 20, 26, 0.72); display: grid; place-items: center; padding: 20px; z-index: 20; }
+.overlay.opaque { background: var(--bg); }
+.dialog { background: var(--surface); color: var(--ink); border-radius: 14px; padding: 22px 20px; max-width: 420px; width: 100%; }
+.dialog h2 { margin: 0 0 8px; font-size: 1.25rem; }
+.dialog p { color: var(--muted); margin: 0 0 18px; }
+.dialog .acts { display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* results */
+.score { text-align: left; padding: 8px 0 4px; }
+.score .big { font: 700 3rem/1 Charter, "Iowan Old Style", Georgia, serif; }
+.score .sub { color: var(--muted); }
+.topics { list-style: none; padding: 0; margin: 14px 0 0; display: grid; gap: 8px; }
+.topics li { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: center; }
+.topics .meter { grid-column: 1 / -1; height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; }
+.topics .meter i { display: block; height: 100%; background: var(--brand); }
+.filters { display: flex; gap: 8px; margin: 18px 0 8px; }
+.filters button[aria-pressed="true"] { background: var(--brand-tint); border-color: var(--brand); color: var(--brand-deep); font-weight: 650; }
+details.rev { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; margin-bottom: 10px; }
+details.rev > summary { list-style: none; cursor: pointer; padding: 14px; display: flex; gap: 10px; align-items: center; min-height: 52px; }
+details.rev > summary::-webkit-details-marker { display: none; }
+.chip { font-size: 0.8rem; font-weight: 700; border-radius: 999px; padding: 2px 10px; white-space: nowrap; }
+.chip.ok { background: var(--ok-tint); color: var(--ok); }
+.chip.part { background: var(--warn-tint); color: var(--warn); }
+.chip.bad { background: var(--bad-tint); color: var(--bad); }
+.chip.none { background: var(--line); color: var(--muted); }
+.rev .body { padding: 0 14px 16px; }
+.rev .stem { font-size: 1rem; }
+.ritem { border: 1.5px solid var(--line); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; }
+.ritem.ok { border-color: var(--ok); background: var(--ok-tint); }
+.ritem.bad { border-color: var(--bad); background: var(--bad-tint); }
+.ritem .tag { font-size: 0.82rem; font-weight: 700; margin-bottom: 2px; }
+.ritem.ok .tag { color: var(--ok); } .ritem.bad .tag { color: var(--bad); }
+.ritem .why { color: var(--muted); font-size: 0.93rem; margin: 4px 0 0; }
+.sum { border-left: 4px solid var(--brand); padding: 6px 0 6px 12px; margin: 14px 0 0; }
+.src { color: var(--muted); font-size: 0.85rem; margin-top: 8px; }
+h2.sec { font-size: 1.15rem; margin: 24px 0 4px; }
+
+/* flash card back side */
+.fb { outline: none; }
+.fb .body { padding: 0; }
+.fbhead { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+.chip.big { font-size: 0.95rem; padding: 5px 14px; }
+.pts { color: var(--muted); font-size: 0.92rem; }
+.fb.reveal { animation: flipin 0.22s ease-out; }
+@keyframes flipin { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<div id="live" class="sr" aria-live="polite"></div>
+<div id="modal" hidden></div>
+
+<script>
+"use strict";
+
+/* ------------------------------------------------------------------
+   Question bank. Every option is verifiable in Iggy, Chapters 53-55
+   (and Chapter 13 for the sodium and potassium cross-references).
+------------------------------------------------------------------- */
+var TOTAL_SECONDS = 15 * 60; /* pace guide only */
+
+var Q = [
+  {
+    topic: "Adrenal", type: "mc",
+    instr: "Choose one answer",
+    stem: "<p>A client had a bilateral adrenalectomy 2 years ago and has been unable to fill the replacement hormone prescriptions for the past 3 days. The client is now lethargic and confused.</p><ul><li>Blood pressure 82/46 mm Hg</li><li>Serum sodium 126 mEq/L</li><li>Serum potassium 6.4 mEq/L</li><li>Blood glucose 54 mg/dL</li></ul><p>Which prescription would the nurse question?</p>",
+    options: [
+      "Rapid infusion of dextrose 5% in normal saline",
+      "Hydrocortisone given as an intravenous bolus",
+      "Spironolactone given orally",
+      "Intravenous calcium"
+    ],
+    correct: 2,
+    why: [
+      "Appropriate. Volume replacement treats the hypotension, and the dextrose treats the glucose of 54 mg/dL. Box 54.7 lists normal saline or dextrose 5% in normal saline.",
+      "Appropriate. This replaces the cortisol the client has been missing. Box 54.7 lists an initial intravenous bolus of hydrocortisone.",
+      "Question this order. Spironolactone is a potassium-sparing diuretic, and Box 54.7 says to avoid potassium-sparing diuretics during hyperkalemia management. It would push a potassium of 6.4 mEq/L higher.",
+      "Appropriate. Intravenous calcium stabilizes cardiac cell membranes while the potassium is lowered (Box 54.7)."
+    ],
+    summary: "The cues are hypotension, hyponatremia, hyperkalemia, hypoglycemia, and confusion after missing lifelong replacement. That is acute adrenal insufficiency (adrenal crisis). After a bilateral adrenalectomy the client has no adrenal source of glucocorticoid or mineralocorticoid, so stopping replacement for even a day or two can trigger a crisis. Treat volume, cortisol, hyperkalemia, and glucose, and never give a drug that retains potassium.",
+    src: "Chapter 54: Acute adrenal insufficiency, Box 54.7, and Care Coordination after bilateral adrenalectomy."
+  },
+  {
+    topic: "Adrenal", type: "sata",
+    instr: "Select all that apply",
+    stem: "<p>A client has a round face, thin skin with reddish-purple striae on the abdomen, and truncal weight gain. The client has taken prednisone daily for 3 years for another illness.</p><p>Which findings does the nurse expect?</p>",
+    options: [
+      { t: "Serum sodium 148 mEq/L", c: true, why: "Expected. Excess cortisol causes sodium and water retention, so serum sodium rises." },
+      { t: "Serum potassium 5.8 mEq/L", c: false, why: "Not expected. Hypercortisolism is associated with a low potassium. A high potassium is the adrenal hypofunction pattern (Table 54.2)." },
+      { t: "Fasting blood glucose 168 mg/dL", c: true, why: "Expected. The liver releases glucose and insulin receptors become less sensitive." },
+      { t: "Decreased lymphocyte count", c: true, why: "Expected. Excess cortisol lowers circulating lymphocytes and reduces immunity." },
+      { t: "Serum calcium 11.4 mg/dL", c: false, why: "Not expected. Hypercortisolism lowers serum calcium and thins bone. A high calcium belongs to adrenal hypofunction (Table 54.2)." },
+      { t: "Infected wound with mild redness and only a low-grade fever", c: true, why: "Expected. Cortisol suppresses inflammation, so a serious infection can appear with little redness, no pus, and only a low-grade fever." }
+    ],
+    summary: "These cues describe hypercortisolism from long-term glucocorticoid therapy. Think of cortisol as a hormone that keeps sodium and water, pushes out potassium and calcium, raises glucose, and mutes the immune system. Anything that matches that pattern is expected; the opposite pattern belongs to adrenal insufficiency.",
+    src: "Chapter 54: Cushing syndrome, laboratory assessment, Box 54.9, and Table 54.2."
+  },
+  {
+    topic: "Pituitary", type: "mc",
+    instr: "Choose one answer",
+    stem: "<p>Twenty-four hours after a transsphenoidal hypophysectomy, a client reports intense thirst.</p><ul><li>Urine output 350 mL/hr for the last 3 hours</li><li>Urine specific gravity 1.002</li><li>Serum sodium 150 mEq/L</li></ul><p>Which prescription does the nurse anticipate?</p>",
+    options: [
+      "Desmopressin",
+      "Fluid restriction to 1000 mL in 24 hours",
+      "Tolvaptan",
+      "Hypertonic (3%) sodium chloride"
+    ],
+    correct: 0,
+    why: [
+      "Correct. Desmopressin is synthetic vasopressin and replaces the missing antidiuretic hormone. Monitor serum sodium, because it can cause hyponatremia, and weigh the client daily.",
+      "This treats the syndrome of inappropriate antidiuretic hormone secretion. Restricting fluid in a client who is already losing large volumes of dilute urine would cause severe dehydration.",
+      "Vasopressin receptor antagonists such as tolvaptan and conivaptan promote water excretion. They treat water retention, not water loss.",
+      "Hypertonic saline is reserved for a very low serum sodium in the syndrome of inappropriate antidiuretic hormone secretion. This client has a high sodium."
+    ],
+    summary: "Massive dilute urine, a specific gravity below 1.005, thirst, and a rising sodium after pituitary surgery point to diabetes insipidus (arginine vasopressin deficiency), which is often transient after this surgery. The kidneys cannot reabsorb water, so the plasma becomes concentrated. Never deprive a client with suspected diabetes insipidus of fluids for more than 4 hours.",
+    src: "Chapter 54: Hypophysectomy postoperative care and Arginine Vasopressin Deficiency/Diabetes Insipidus."
+  },
+  {
+    topic: "Pituitary", type: "matrix",
+    instr: "Choose one column for each row",
+    stem: "<p>For each finding, decide which condition it best matches.</p>",
+    cols: ["Diabetes insipidus", "Syndrome of inappropriate antidiuretic hormone secretion"],
+    rows: [
+      { t: "Serum sodium 126 mEq/L", c: 1, why: "Water retention dilutes the sodium (dilutional hyponatremia)." },
+      { t: "Urine specific gravity 1.002", c: 0, why: "The kidneys cannot concentrate urine, so it is very dilute (below 1.005)." },
+      { t: "Full, bounding pulse without dependent edema", c: 1, why: "Free water is retained, which increases blood volume. Dependent edema is not usually present." },
+      { t: "Urine output of 6 L in 24 hours that does not fall when fluid intake is reduced", c: 0, why: "Output that stays high despite less intake is a hallmark of diabetes insipidus." },
+      { t: "Serum sodium 152 mEq/L", c: 0, why: "Water loss concentrates the plasma and raises the sodium." },
+      { t: "Conivaptan is prescribed", c: 1, why: "Vasopressin receptor antagonists promote water excretion without sodium loss. Diabetes insipidus is treated with desmopressin instead." }
+    ],
+    summary: "Diabetes insipidus is too little antidiuretic hormone effect, so water is lost and the sodium rises. The syndrome of inappropriate antidiuretic hormone secretion is too much, so water is kept and the sodium falls. Sort every finding by which direction the water is moving.",
+    src: "Chapter 54: Diabetes insipidus and Syndrome of Inappropriate Antidiuretic Hormone."
+  },
+  {
+    topic: "Adrenal", type: "cloze",
+    instr: "Choose an option in each drop-down",
+    parts: [
+      "A client with primary adrenal insufficiency is expected to have a serum sodium level that is ",
+      { o: ["low", "normal", "high"], c: 0, name: "sodium" },
+      ", a serum potassium level that is ",
+      { o: ["low", "normal", "high"], c: 2, name: "potassium" },
+      ", and an adrenocorticotropic hormone level that is ",
+      { o: ["normal", "elevated", "decreased"], c: 1, name: "adrenocorticotropic hormone" },
+      ". In secondary adrenal insufficiency, skin pigmentation is ",
+      { o: ["darker", "lighter", "unchanged"], c: 2, name: "pigmentation" },
+      "."
+    ],
+    why: [
+      "Low sodium. Aldosterone is lost, so sodium and water are wasted and hypotension follows.",
+      "High potassium. Without aldosterone the kidneys hold potassium, which threatens the heart.",
+      "Elevated. In primary disease the failing adrenal gland cannot make cortisol, so the pituitary keeps sending more adrenocorticotropic hormone. Melanocyte-stimulating hormone rises with it and darkens the skin.",
+      "Unchanged. In secondary disease the pituitary or hypothalamus is the problem, so adrenocorticotropic hormone and melanocyte-stimulating hormone are low and pigmentation does not change. Mineralocorticoid function is also preserved."
+    ],
+    summary: "Ask where the failure is. If the adrenal gland fails, the pituitary shouts louder (high adrenocorticotropic hormone and darker skin). If the pituitary fails, there is no shouting at all.",
+    src: "Chapter 54: Adrenal insufficiency, Recognize Cues and Diagnostic Assessment."
+  },
+  {
+    topic: "Thyroid", type: "mc",
+    instr: "Choose one answer",
+    stem: "<p>A client is 10 hours after a subtotal thyroidectomy for hyperthyroidism. The client is restless and vomiting.</p><ul><li>Temperature 102.6°F (39.2°C)</li><li>Heart rate 148 beats/min</li><li>Blood pressure 150/58 mm Hg</li></ul><p>The provider prescribes several drugs. Which prescription would the nurse question?</p>",
+    options: [
+      "Propranolol given orally",
+      "Iodide solution",
+      "Methimazole given orally",
+      "Aspirin for the fever"
+    ],
+    correct: 3,
+    why: [
+      "Appropriate. Propranolol controls the heart rate in thyroid storm (Box 55.6).",
+      "Appropriate. Iodide solution is listed for thyroid storm in Box 55.6.",
+      "Appropriate. Oral antithyroid drugs, methimazole or propylthiouracil, are listed first in Box 55.6.",
+      "Question this order. Box 55.6 calls for nonsalicylate antipyretic drugs. Aspirin is a salicylate."
+    ],
+    summary: "Fever, severe tachycardia, restlessness, and vomiting after thyroid surgery signal thyroid storm, a life-threatening surge of thyroid hormone that dramatically raises the metabolic rate. Treatment protects the airway, blocks new hormone, controls the heart rate, cools the client, and replaces fluid. A temperature rise of even 1°F (1.8°C) should be reported immediately.",
+    src: "Chapter 55: Thyroid storm, Box 55.6, and the Critical Rescue on temperature."
+  },
+  {
+    topic: "Thyroid", type: "sata",
+    instr: "Select all that apply",
+    stem: "<p>The nurse is caring for a client 6 hours after a total thyroidectomy.</p><p>Which findings require immediate action by the nurse?</p>",
+    options: [
+      { t: "Stridor when the client breathes", c: true, why: "Requires immediate action. Stridor signals acute airway obstruction from swelling, hemorrhage, or spasm. Activate the Rapid Response Team and keep emergency tracheostomy equipment at hand." },
+      { t: "Moderate serosanguineous drainage in the neck drain", c: false, why: "Expected. A moderate amount of serosanguineous drainage is normal. Frank bleeding or a saturated dressing would not be." },
+      { t: "Tingling around the mouth and in the fingertips", c: true, why: "Requires action. This is early hypocalcemia from injured parathyroid glands, which can progress to tetany. Have intravenous calcium gluconate available and notify the provider." },
+      { t: "Temperature 98.6°F (37°C)", c: false, why: "Expected. A normal temperature is reassuring. A rise of even 1°F (1.8°C) is what would raise concern for thyroid storm." },
+      { t: "Drooling and inability to swallow", c: true, why: "Requires immediate action. Inability to swallow and drooling are listed as signs of obstruction after thyroid surgery." },
+      { t: "Oxygen saturation falling from 97% to 91%", c: true, why: "Requires immediate action. A falling oxygen saturation with airway swelling or spasm is a listed sign of poor gas exchange." }
+    ],
+    summary: "After thyroid surgery keep two things in mind: the airway (hemorrhage, swelling, laryngeal spasm, nerve injury) and the calcium (parathyroid injury). Stridor, dyspnea, falling oxygen saturation, inability to swallow, and drooling all trigger the Rapid Response Team. Perioral or fingertip tingling means calcium.",
+    src: "Chapter 55: Thyroidectomy postoperative care and Critical Rescue."
+  },
+  {
+    topic: "Thyroid", type: "mc",
+    instr: "Choose one answer",
+    stem: "<p>A client newly diagnosed with hypothyroidism has been prescribed levothyroxine. Which statement by the client indicates the need for further teaching?</p>",
+    options: [
+      "\u201CI will take it with water on an empty stomach before breakfast.\u201D",
+      "\u201CI will take it with my calcium supplement so I remember both.\u201D",
+      "\u201CIf I start sleeping more and become constipated, my dose may need to be checked.\u201D",
+      "\u201CI will report chest pain right away.\u201D"
+    ],
+    correct: 1,
+    why: [
+      "Correct teaching. Levothyroxine should be taken with water on an empty stomach, 30 to 60 minutes before the morning meal.",
+      "Needs further teaching. Iron, calcium supplements, and antacids reduce absorption and must be taken at least 4 hours apart from levothyroxine.",
+      "Correct teaching. More sleep and constipation suggest hypothyroidism is not controlled, so the level may need to be checked. Trouble sleeping and more bowel movements suggest the dose may be too high.",
+      "Correct teaching. Too high a dose or too rapid an increase can cause dysrhythmias, heart failure, and myocardial infarction, so chest pain must be reported."
+    ],
+    summary: "Absorption is the teaching priority for levothyroxine. Empty stomach, water only, and keep calcium, iron, and antacids at least 4 hours away.",
+    src: "Chapter 55: Hypothyroidism drug therapy and Self-Management Education."
+  },
+  {
+    topic: "Thyroid", type: "bowtie",
+    instr: "Complete all three parts of the bow-tie",
+    stem: "<p>A 70-year-old client stopped taking levothyroxine 3 weeks ago. The client now responds only to painful stimuli.</p><ul><li>Temperature 94.1°F (34.5°C)</li><li>Heart rate 46 beats/min</li><li>Blood pressure 86/50 mm Hg</li><li>Respiratory rate 8 breaths/min and shallow</li><li>Blood glucose 52 mg/dL</li><li>Serum sodium 128 mEq/L</li></ul>",
+    condTitle: "Condition the client is most likely experiencing (select 1)",
+    conditions: [
+      { t: "Myxedema coma", c: true, why: "Correct. Lack of thyroid replacement plus hypothermia, bradycardia, hypotension, hypoventilation, hypoglycemia, hyponatremia, and a greatly reduced level of consciousness is the pattern of myxedema coma." },
+      { t: "Thyroid storm", c: false, why: "Thyroid storm is the opposite picture: high fever, tachycardia, and agitation." },
+      { t: "Acute adrenal insufficiency", c: false, why: "It shares hypotension, hyponatremia, and hypoglycemia, but the stopped levothyroxine, hypothermia, bradycardia, and hypoventilation point to the thyroid." },
+      { t: "Diabetic ketoacidosis", c: false, why: "This would show hyperglycemia and Kussmaul respirations, not glucose of 52 mg/dL and shallow slow breathing." }
+    ],
+    actTitle: "Actions to take (select 2)",
+    actions: [
+      { t: "Administer levothyroxine intravenously", c: true, why: "Correct. Gastrointestinal absorption is severely reduced, so replacement is given intravenously (Box 55.3)." },
+      { t: "Apply a cooling blanket", c: false, why: "This is used in thyroid storm. This client is hypothermic and needs warming." },
+      { t: "Administer propranolol to control heart rate", c: false, why: "This is used in thyroid storm. The client is already bradycardic." },
+      { t: "Administer intravenous glucose", c: true, why: "Correct. Intravenous glucose is listed in Box 55.3, and the glucose is 52 mg/dL." },
+      { t: "Give a sedative to promote rest", c: false, why: "Sedating a client with hypothyroidism worsens gas exchange and should be avoided." }
+    ],
+    parTitle: "Parameters to monitor (select 2)",
+    params: [
+      { t: "Blood pressure", c: true, why: "Correct. Box 55.3 calls for hourly blood pressure." },
+      { t: "Serum calcium level", c: false, why: "Important in parathyroid disorders, but it is not the priority monitoring parameter for this emergency." },
+      { t: "Temperature", c: true, why: "Correct. Box 55.3 calls for hourly temperature checks." },
+      { t: "Urine ketones", c: false, why: "This would be relevant to diabetic ketoacidosis, not this condition." }
+    ],
+    summary: "Also monitor mental status and turn the client every 2 hours with aspiration precautions (Box 55.3). Respiratory failure is the most common cause of death in myxedema coma, so keep the airway patent.",
+    src: "Chapter 55: Hypothyroidism, Preventing Myxedema Coma, and Box 55.3."
+  },
+  {
+    topic: "Parathyroid", type: "mc",
+    instr: "Choose one answer",
+    stem: "<p>Twelve hours after a total thyroidectomy, a client reports tingling around the mouth. The nurse observes muscle twitching in the hands and a positive Trousseau sign.</p><p>Which laboratory pattern does the nurse expect?</p>",
+    options: [
+      "Calcium 12.1 mg/dL, phosphorus 2.2 mg/dL, parathyroid hormone 95 pg/mL",
+      "Calcium 7.4 mg/dL, phosphorus 2.2 mg/dL, parathyroid hormone 95 pg/mL",
+      "Calcium 7.4 mg/dL, phosphorus 5.8 mg/dL, parathyroid hormone 6 pg/mL",
+      "Calcium 12.1 mg/dL, phosphorus 5.8 mg/dL, parathyroid hormone 6 pg/mL"
+    ],
+    correct: 2,
+    why: [
+      "This is the pattern of hyperparathyroidism: high calcium, low phosphorus, high parathyroid hormone.",
+      "The low calcium fits, but the phosphorus and parathyroid hormone are wrong. Damaged parathyroid glands cannot make a high level of hormone.",
+      "Correct. Injury to the parathyroid glands lowers parathyroid hormone, which lowers calcium and raises phosphorus (Table 55.3).",
+      "The high calcium does not match the tingling and a positive Trousseau sign, which signal low calcium."
+    ],
+    summary: "Parathyroid hormone raises calcium and lowers phosphorus. When the glands are injured during thyroid surgery the hormone falls, calcium drops, phosphorus climbs, and the client develops tingling, spasm, and possible tetany. Acute severe hypocalcemia is treated with intravenous calcium gluconate.",
+    src: "Chapter 55: Hypoparathyroidism, Table 55.3, and thyroidectomy complications."
+  },
+  {
+    topic: "Pituitary", type: "mc",
+    instr: "Choose one answer",
+    stem: "<p>One day after a transsphenoidal hypophysectomy, a client reports frequent swallowing and a severe headache. The nasal drip pad shows clear drainage with a yellow ring at its edge.</p><p>What is the nurse\u2019s best interpretation and action?</p>",
+    options: [
+      "Cerebrospinal fluid leak; keep the head of the bed elevated and report to the surgeon",
+      "Expected nasal drainage; reinforce the pad and continue routine assessment",
+      "Diabetes insipidus; measure urine specific gravity and encourage oral fluids",
+      "Bleeding behind the packing; remove the nasal packing and apply pressure"
+    ],
+    correct: 0,
+    why: [
+      "Correct. Increased swallowing and postnasal drip can indicate leakage, and the yellow ring at the edge of clear drainage is the halo sign of cerebrospinal fluid. Keep the head of the bed elevated and report it.",
+      "Drainage is expected, but the halo sign, headache, and constant swallowing make this abnormal.",
+      "These cues do not match diabetes insipidus, which presents with large volumes of dilute urine, thirst, and a rising sodium.",
+      "The drainage is clear with a halo, not bloody, and the packing should not be removed by the nurse."
+    ],
+    summary: "After transsphenoidal surgery, watch for a cerebrospinal fluid leak, infection such as meningitis, increased intracranial pressure, and transient diabetes insipidus. Teach the client not to cough, sneeze, blow the nose, bend at the waist, or strain, and to avoid toothbrushing for about 2 weeks.",
+    src: "Chapter 54: Hypophysectomy postoperative care and Box 54.3."
+  },
+  {
+    topic: "Diagnostic studies", type: "mc",
+    instr: "Choose one answer",
+    stem: "<p>A client with suspected excess cortisol production has an overnight dexamethasone suppression test. Which result indicates hyperfunction?</p>",
+    options: [
+      "The 8 a.m. plasma cortisol falls to a low level after dexamethasone",
+      "Growth hormone falls below 5 ng/mL after an oral glucose dose",
+      "Plasma cortisol rises after intravenous adrenocorticotropic hormone",
+      "The 8 a.m. plasma cortisol remains high despite dexamethasone"
+    ],
+    correct: 3,
+    why: [
+      "This is a normal response. When cortisol is suppressed by dexamethasone, Cushing disease is not present.",
+      "This is a normal suppression response in the growth hormone test. Levels that fail to fall below 5 ng/mL suggest hyperpituitarism.",
+      "This is a normal response to a provocative test. In adrenal hypofunction the cortisol response is absent or decreased.",
+      "Correct. A suppression test is used when hormone levels are high. Failure of the hormone to suppress indicates hyperfunction."
+    ],
+    summary: "Use two rules. A provocative (stimulation) test pushes a gland to work, and failure to rise means hypofunction. A suppression test tries to shut a gland down, and failure to suppress means hyperfunction. For a 24-hour urine collection, the client empties the bladder, discards that specimen, and starts the timing then.",
+    src: "Chapter 53: Provocative/Suppression Tests and Chapter 54: Laboratory Assessment for hypercortisolism."
+  }
+];
+
+var TOPICS = ["Adrenal", "Pituitary", "Thyroid", "Parathyroid", "Diagnostic studies"];
+
+/* ------------------------------------------------------------------ */
+var state;
+var app = document.getElementById("app");
+var live = document.getElementById("live");
+var modal = document.getElementById("modal");
+var tick = null;
+
+function el(tag, attrs) {
+  var n = document.createElement(tag);
+  if (attrs) Object.keys(attrs).forEach(function (k) {
+    if (k === "class") n.className = attrs[k];
+    else if (k === "html") n.innerHTML = attrs[k];
+    else if (k === "text") n.textContent = attrs[k];
+    else if (k.slice(0, 2) === "on") n.addEventListener(k.slice(2), attrs[k]);
+    else n.setAttribute(k, attrs[k]);
+  });
+  for (var i = 2; i < arguments.length; i++) {
+    var c = arguments[i];
+    if (c == null) continue;
+    n.appendChild(typeof c === "string" ? document.createTextNode(c) : c);
+  }
+  return n;
+}
+
+function blankAnswer(q) {
+  switch (q.type) {
+    case "mc": return null;
+    case "sata": return [];
+    case "matrix": return q.rows.map(function () { return null; });
+    case "cloze": return q.parts.filter(function (p) { return typeof p !== "string"; }).map(function () { return null; });
+    case "bowtie": return { cond: null, act: [], par: [] };
+  }
+}
+
+function freshState() {
+  return {
+    deck: Q.map(function (_, i) { return i; }),
+    pos: 0, idx: 0,
+    flags: {}, elapsed: 0, paused: false, hideTimer: false,
+    lastTick: 0, announced: {}, finished: false,
+    answers: Q.map(blankAnswer),
+    checked: Q.map(function () { return false; })
+  };
+}
+
+/* ---------- scoring ---------- */
+function isAnswered(q, a) {
+  switch (q.type) {
+    case "mc": return a !== null;
+    case "sata": return a.length > 0;
+    case "matrix": return a.some(function (v) { return v !== null; });
+    case "cloze": return a.some(function (v) { return v !== null; });
+    case "bowtie": return a.cond !== null || a.act.length > 0 || a.par.length > 0;
+  }
+}
+function groupPoints(list, picked) {
+  var good = 0, bad = 0;
+  picked.forEach(function (i) { if (list[i].c) good++; else bad++; });
+  return Math.max(0, good - bad);
+}
+function score(q, a) {
+  switch (q.type) {
+    case "mc": return a === q.correct ? 1 : 0;
+    case "sata":
+      var need = q.options.filter(function (o) { return o.c; }).length;
+      return groupPoints(q.options, a) / need;
+    case "matrix":
+      return a.reduce(function (s, v, i) { return s + (v === q.rows[i].c ? 1 : 0); }, 0) / q.rows.length;
+    case "cloze":
+      var sel = q.parts.filter(function (p) { return typeof p !== "string"; });
+      return a.reduce(function (s, v, i) { return s + (v === sel[i].c ? 1 : 0); }, 0) / sel.length;
+    case "bowtie":
+      var c = a.cond !== null && q.conditions[a.cond].c ? 1 : 0;
+      return (c + groupPoints(q.actions, a.act) + groupPoints(q.params, a.par)) / 5;
+  }
+}
+function statusOf(q, a) {
+  if (!isAnswered(q, a)) return "none";
+  var s = score(q, a);
+  if (s >= 0.999) return "ok";
+  if (s > 0) return "part";
+  return "bad";
+}
+var STATUS_LABEL = { ok: "Correct", part: "Partial credit", bad: "Incorrect", none: "Not answered" };
+var MARK = { ok: "\u2713", part: "~", bad: "\u2717", none: "" };
+
+function cardStatus(i) { return state.checked[i] ? statusOf(Q[i], state.answers[i]) : "none"; }
+function cardScore(i) { return state.checked[i] && isAnswered(Q[i], state.answers[i]) ? score(Q[i], state.answers[i]) : 0; }
+
+/* ---------- pace timer (guide only, never ends the session) ---------- */
+function fmt(s) {
+  s = Math.max(0, Math.ceil(s));
+  return String(Math.floor(s / 60)).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0");
+}
+function startTimer() {
+  state.lastTick = Date.now();
+  clearInterval(tick);
+  tick = setInterval(onTick, 250);
+}
+function onTick() {
+  var now = Date.now();
+  if (!state.paused && !state.finished) {
+    state.elapsed += (now - state.lastTick) / 1000;
+    var rem = TOTAL_SECONDS - state.elapsed;
+    if (rem <= 300 && !state.announced.five) { state.announced.five = true; live.textContent = "Five minutes left on the pace guide."; }
+    if (rem <= 0 && !state.announced.over) { state.announced.over = true; live.textContent = "You have passed the 15 minute pace guide. Keep going at your own pace."; }
+  }
+  state.lastTick = now;
+  paintTimer();
+}
+function paintTimer() {
+  var ring = document.getElementById("ring");
+  if (!ring) return;
+  var C = 2 * Math.PI * 22;
+  var rem = TOTAL_SECONDS - state.elapsed;
+  var prog = ring.querySelector(".prog");
+  prog.setAttribute("stroke-dashoffset", String(C * (1 - Math.max(0, rem) / TOTAL_SECONDS)));
+  ring.classList.toggle("warn", rem <= 300 && rem > 0);
+  ring.classList.toggle("bad", rem <= 0);
+  ring.classList.toggle("off", state.hideTimer);
+  ring.querySelector(".txt").textContent = state.hideTimer ? "--:--" : (rem > 0 ? fmt(rem) : "+" + fmt(-rem));
+}
+
+/* ---------- start ---------- */
+function showStart() {
+  clearInterval(tick);
+  state = freshState();
+  app.innerHTML = "";
+  var facts = el("ul", { class: "facts" },
+    el("li", null, el("b", { text: "One card at a time" }), el("span", { text: "Pick your answer, press Check answer, and the rationale appears right away." })),
+    el("li", null, el("b", { text: "12 cards, about 15 minutes" }), el("span", { text: "The timer is a pace guide only. It never ends the session, so you can take longer." })),
+    el("li", null, el("b", { text: "Five card formats" }), el("span", { text: "Multiple choice, select all that apply, matrix, drop-down, and bow-tie." })),
+    el("li", null, el("b", { text: "Missed cards come back" }), el("span", { text: "When you finish, retry only the cards you missed. Pause or hide the timer any time." }))
+  );
+  app.appendChild(el("main", { class: "start" },
+    el("h1", { text: "Endocrine flash cards" }),
+    el("p", { text: "Advanced questions on the adrenal, pituitary, thyroid, and parathyroid glands, plus the diagnostic tests that go with them." }),
+    facts,
+    el("button", { class: "btn primary", id: "go", text: "Start cards", onclick: function () { go(0); startTimer(); } })
+  ));
+}
+
+function go(pos) {
+  state.pos = pos;
+  state.idx = state.deck[pos];
+  renderQuiz(false);
+  window.scrollTo(0, 0);
+}
+
+/* ---------- card view ---------- */
+function liveScore() {
+  var n = 0, s = 0;
+  state.deck.forEach(function (i) { if (state.checked[i]) { n++; s += cardScore(i); } });
+  return n ? "Score so far: " + s.toFixed(1) + " of " + n : "No cards checked yet";
+}
+
+function renderQuiz(afterCheck) {
+  app.innerHTML = "";
+  var qi = state.idx, q = Q[qi], checked = state.checked[qi];
+  var C = 2 * Math.PI * 22;
+
+  var ring = el("div", { class: "ring", id: "ring", role: "timer", "aria-label": "Pace guide timer" });
+  ring.innerHTML = '<svg width="56" height="56" viewBox="0 0 56 56" aria-hidden="true"><circle class="track" cx="28" cy="28" r="22" fill="none" stroke-width="5"/><circle class="prog" cx="28" cy="28" r="22" fill="none" stroke-width="5" stroke-linecap="round" stroke-dasharray="' + C + '" stroke-dashoffset="0"/></svg><div class="txt"></div>';
+
+  var pal = el("div", { class: "pal", role: "group", "aria-label": "Card navigator" });
+  state.deck.forEach(function (i, p) {
+    var st = cardStatus(i);
+    var b = el("button", { type: "button", text: String(p + 1) + MARK[st], "aria-label": "Card " + (p + 1) + (st !== "none" ? ", " + STATUS_LABEL[st] : (isAnswered(Q[i], state.answers[i]) ? ", answered, not checked" : ", not answered")) + (state.flags[i] ? ", flagged" : "") });
+    if (st !== "none") b.classList.add(st);
+    else if (isAnswered(Q[i], state.answers[i])) b.classList.add("done");
+    if (state.flags[i]) b.classList.add("flag");
+    if (p === state.pos) { b.classList.add("cur"); b.setAttribute("aria-current", "true"); }
+    b.addEventListener("click", function () { go(p); });
+    pal.appendChild(b);
+  });
+
+  var bar = el("div", { class: "bar" },
+    el("div", { class: "bar-top" },
+      el("div", { class: "qmeta" },
+        el("div", { class: "n", text: "Card " + (state.pos + 1) + " of " + state.deck.length }),
+        el("div", { class: "t", text: q.topic }),
+        el("div", { class: "t", id: "livescore", text: liveScore() })
+      ),
+      el("div", { class: "timer" }, ring)
+    ),
+    el("div", { class: "tools" },
+      el("button", { class: "btn ghost small", type: "button", id: "hide", "aria-pressed": String(state.hideTimer), text: state.hideTimer ? "Show timer" : "Hide timer", onclick: function () { state.hideTimer = !state.hideTimer; paintTimer(); this.textContent = state.hideTimer ? "Show timer" : "Hide timer"; this.setAttribute("aria-pressed", String(state.hideTimer)); } }),
+      el("button", { class: "btn ghost small", type: "button", id: "pause", text: "Pause", onclick: pauseQuiz }),
+      el("button", { class: "btn ghost small", type: "button", id: "end", text: "End and see results", onclick: askFinish })
+    ),
+    pal
+  );
+
+  var card = el("section", { class: "card", "aria-labelledby": "stem" });
+  var fb = null;
+  if (!checked) {
+    card.appendChild(el("span", { class: "instr", text: q.instr }));
+    card.appendChild(el("div", { class: "stem", id: "stem", html: q.stem || "" }));
+    if (q.type === "mc") card.appendChild(renderMC(q));
+    if (q.type === "sata") card.appendChild(renderSATA(q));
+    if (q.type === "matrix") card.appendChild(renderMatrix(q));
+    if (q.type === "cloze") card.appendChild(renderCloze(q));
+    if (q.type === "bowtie") card.appendChild(renderBow(q));
+  } else {
+    var st = statusOf(q, state.answers[qi]);
+    var sc = isAnswered(q, state.answers[qi]) ? score(q, state.answers[qi]) : 0;
+    fb = el("div", { class: "fb", tabindex: "-1", id: "fb" });
+    fb.appendChild(el("div", { class: "fbhead" },
+      el("span", { class: "chip big " + st, text: (MARK[st] ? MARK[st] + " " : "") + STATUS_LABEL[st] }),
+      el("span", { class: "pts", text: sc.toFixed(sc === Math.round(sc) ? 0 : 2) + " of 1 point" })
+    ));
+    fb.appendChild(reviewBody(q, qi, "stem"));
+    card.appendChild(fb);
+  }
+
+  var last = state.pos === state.deck.length - 1;
+  var primary;
+  if (!checked) {
+    primary = el("button", { class: "btn primary grow", type: "button", id: "check", text: "Check answer", onclick: checkAnswer });
+    primary.disabled = !isAnswered(q, state.answers[qi]);
+  } else if (last) {
+    primary = el("button", { class: "btn primary grow", type: "button", id: "finish", text: "See results", onclick: function () { finish(); } });
+  } else {
+    primary = el("button", { class: "btn primary grow", type: "button", id: "next", text: "Next card", onclick: function () { go(state.pos + 1); } });
+  }
+  var nav = el("div", { class: "nav" },
+    el("button", { class: "btn ghost", type: "button", id: "prev", text: "Previous", onclick: function () { go(state.pos - 1); } }),
+    checked ? null : el("button", { class: "btn ghost flagbtn", type: "button", "aria-pressed": String(!!state.flags[qi]), text: state.flags[qi] ? "Flagged" : "Flag", onclick: function () { state.flags[qi] = !state.flags[qi]; renderQuiz(false); } }),
+    primary
+  );
+  if (state.pos === 0) nav.querySelector("#prev").disabled = true;
+
+  app.appendChild(el("main", null, bar, card, nav));
+  paintTimer();
+  if (afterCheck && fb) {
+    fb.classList.add("reveal");
+    if (fb.scrollIntoView) fb.scrollIntoView({ block: "start" });
+    fb.focus({ preventScroll: true });
+  }
+}
+
+function checkAnswer() {
+  var qi = state.idx;
+  if (!isAnswered(Q[qi], state.answers[qi])) return;
+  state.checked[qi] = true;
+  renderQuiz(true);
+}
+
+function refreshPalette() {
+  var btns = document.querySelectorAll(".pal button");
+  state.deck.forEach(function (i, p) {
+    if (!btns[p]) return;
+    if (!state.checked[i]) btns[p].classList.toggle("done", isAnswered(Q[i], state.answers[i]));
+  });
+  var chk = document.getElementById("check");
+  if (chk) chk.disabled = !isAnswered(Q[state.idx], state.answers[state.idx]);
+}
+
+function renderMC(q) {
+  var fs = el("fieldset", { class: "opts" }, el("legend", { class: "sr", text: "Answer options" }));
+  q.options.forEach(function (t, i) {
+    var inp = el("input", { type: "radio", name: "mc", value: String(i) });
+    if (state.answers[state.idx] === i) inp.checked = true;
+    var lab = el("label", { class: "opt" + (inp.checked ? " sel" : "") }, inp, el("span", { class: "l", text: "ABCD"[i] }), el("span", { text: t }));
+    inp.addEventListener("change", function () {
+      state.answers[state.idx] = i;
+      fs.querySelectorAll(".opt").forEach(function (o, j) { o.classList.toggle("sel", j === i); });
+      refreshPalette();
+    });
+    fs.appendChild(lab);
+  });
+  return fs;
+}
+
+function renderSATA(q) {
+  var fs = el("fieldset", { class: "opts" }, el("legend", { class: "sr", text: "Select all that apply" }));
+  q.options.forEach(function (o, i) {
+    var inp = el("input", { type: "checkbox", value: String(i) });
+    if (state.answers[state.idx].indexOf(i) > -1) inp.checked = true;
+    var lab = el("label", { class: "opt" + (inp.checked ? " sel" : "") }, inp, el("span", { class: "l", text: "ABCDEF"[i] }), el("span", { text: o.t }));
+    inp.addEventListener("change", function () {
+      var a = state.answers[state.idx];
+      var pos = a.indexOf(i);
+      if (inp.checked && pos === -1) a.push(i);
+      if (!inp.checked && pos > -1) a.splice(pos, 1);
+      lab.classList.toggle("sel", inp.checked);
+      refreshPalette();
+    });
+    fs.appendChild(lab);
+  });
+  return fs;
+}
+
+function renderMatrix(q) {
+  var box = el("div");
+  q.rows.forEach(function (r, ri) {
+    var name = "row" + ri;
+    var seg = el("div", { class: "seg" });
+    q.cols.forEach(function (c, ci) {
+      var inp = el("input", { type: "radio", name: name, value: String(ci) });
+      if (state.answers[state.idx][ri] === ci) inp.checked = true;
+      var lab = el("label", { class: inp.checked ? "sel" : "" }, inp, el("span", { text: c }));
+      inp.addEventListener("change", function () {
+        state.answers[state.idx][ri] = ci;
+        seg.querySelectorAll("label").forEach(function (l, j) { l.classList.toggle("sel", j === ci); });
+        refreshPalette();
+      });
+      seg.appendChild(lab);
+    });
+    box.appendChild(el("fieldset", { class: "row", style: "min-width:0;margin:0 0 10px" }, el("legend", { class: "sr", text: r.t }), el("p", { class: "rt", text: r.t }), seg));
+  });
+  return box;
+}
+
+function renderCloze(q) {
+  var p = el("div", { class: "cloze" });
+  var n = 0;
+  q.parts.forEach(function (part) {
+    if (typeof part === "string") { p.appendChild(document.createTextNode(part)); return; }
+    var k = n++;
+    var sel = el("select", { "aria-label": "Choose " + part.name });
+    sel.appendChild(el("option", { value: "", text: "Select" }));
+    part.o.forEach(function (o, i) { sel.appendChild(el("option", { value: String(i), text: o })); });
+    var cur = state.answers[state.idx][k];
+    if (cur !== null) sel.value = String(cur);
+    sel.addEventListener("change", function () {
+      state.answers[state.idx][k] = sel.value === "" ? null : parseInt(sel.value, 10);
+      refreshPalette();
+    });
+    p.appendChild(sel);
+  });
+  return p;
+}
+
+function renderBow(q) {
+  var a = state.answers[state.idx];
+  var wrap = el("div", { class: "bt" });
+  function group(cls, title, hint, list, max, isRadio) {
+    var fs = el("fieldset", { class: cls }, el("legend", { text: title }), el("p", { class: "hint", text: hint }));
+    var inputs = [];
+    function sync() {
+      var picked = isRadio ? (a.cond === null ? [] : [a.cond]) : (cls === "left" ? a.act : a.par);
+      inputs.forEach(function (x, i) {
+        var on = picked.indexOf(i) > -1;
+        x.lab.classList.toggle("sel", on);
+        var block = !isRadio && !on && picked.length >= max;
+        x.inp.disabled = block;
+        x.lab.classList.toggle("dis", block);
+      });
+    }
+    list.forEach(function (o, i) {
+      var inp = el("input", { type: isRadio ? "radio" : "checkbox", name: cls, value: String(i) });
+      var lab = el("label", { class: "opt" }, inp, el("span", { text: o.t }));
+      inputs.push({ inp: inp, lab: lab });
+      var picked0 = isRadio ? (a.cond === i) : ((cls === "left" ? a.act : a.par).indexOf(i) > -1);
+      if (picked0) inp.checked = true;
+      inp.addEventListener("change", function () {
+        if (isRadio) { a.cond = i; }
+        else {
+          var arr = cls === "left" ? a.act : a.par;
+          var pos = arr.indexOf(i);
+          if (inp.checked && pos === -1 && arr.length < max) arr.push(i);
+          if (!inp.checked && pos > -1) arr.splice(pos, 1);
+        }
+        sync(); refreshPalette();
+      });
+      fs.appendChild(lab);
+    });
+    sync();
+    return fs;
+  }
+  wrap.appendChild(group("left", q.actTitle, "Choose exactly 2.", q.actions, 2, false));
+  wrap.appendChild(group("center", q.condTitle, "Choose 1.", q.conditions, 1, true));
+  wrap.appendChild(group("right", q.parTitle, "Choose exactly 2.", q.params, 2, false));
+  return wrap;
+}
+
+/* ---------- pause / finish ---------- */
+function openModal(node, opaque) {
+  modal.innerHTML = "";
+  modal.appendChild(el("div", { class: "overlay" + (opaque ? " opaque" : ""), role: "dialog", "aria-modal": "true" }, node));
+  modal.hidden = false;
+  var f = modal.querySelector("button");
+  if (f) f.focus();
+}
+function closeModal() { modal.hidden = true; modal.innerHTML = ""; }
+
+function pauseQuiz() {
+  state.paused = true;
+  openModal(el("div", { class: "dialog" },
+    el("h2", { text: "Paused" }),
+    el("p", { text: "The timer is stopped and the card is hidden. Take the break you need, then resume." }),
+    el("div", { class: "acts" }, el("button", { class: "btn primary", type: "button", id: "resume", text: "Resume", onclick: function () { state.paused = false; state.lastTick = Date.now(); closeModal(); } }))
+  ), true);
+}
+
+function askFinish() {
+  var left = state.deck.filter(function (i) { return !state.checked[i] && !isAnswered(Q[i], state.answers[i]); }).length;
+  var pending = state.deck.filter(function (i) { return !state.checked[i] && isAnswered(Q[i], state.answers[i]); }).length;
+  var msg = [];
+  if (left) msg.push(left + " card" + (left === 1 ? "" : "s") + " not answered");
+  if (pending) msg.push(pending + " answered but not checked (they will be scored)");
+  openModal(el("div", { class: "dialog" },
+    el("h2", { text: "End this session?" }),
+    el("p", { text: msg.length ? msg.join(" and ") + "." : "All cards are checked." }),
+    el("div", { class: "acts" },
+      el("button", { class: "btn ghost", type: "button", text: "Keep going", onclick: closeModal }),
+      el("button", { class: "btn primary", type: "button", id: "confirm", text: "See results", onclick: function () { closeModal(); finish(); } })
+    )
+  ));
+}
+
+function finish() {
+  clearInterval(tick);
+  state.finished = true;
+  state.deck.forEach(function (i) { if (isAnswered(Q[i], state.answers[i])) state.checked[i] = true; });
+  closeModal();
+  renderResults();
+  window.scrollTo(0, 0);
+}
+
+function retryMissed() {
+  var missed = Q.map(function (_, i) { return i; }).filter(function (i) { return statusOf(Q[i], state.answers[i]) !== "ok" || !state.checked[i]; });
+  if (!missed.length) return;
+  missed.forEach(function (i) { state.answers[i] = blankAnswer(Q[i]); state.checked[i] = false; state.flags[i] = false; });
+  state.deck = missed;
+  state.finished = false;
+  state.elapsed = 0; state.announced = {}; state.paused = false;
+  go(0);
+  startTimer();
+}
+
+/* ---------- results ---------- */
+function renderResults() {
+  app.innerHTML = "";
+  var scores = Q.map(function (q, i) { return cardScore(i); });
+  var total = scores.reduce(function (a, b) { return a + b; }, 0);
+  var pct = Math.round((total / Q.length) * 100);
+
+  var head = el("section", { class: "score" },
+    el("div", { class: "big", text: pct + "%" }),
+    el("div", { class: "sub", text: total.toFixed(1) + " of " + Q.length + " points. Time on this run: " + fmt(state.elapsed) + "." })
+  );
+
+  var tl = el("ul", { class: "topics" });
+  TOPICS.forEach(function (t) {
+    var idxs = []; Q.forEach(function (q, i) { if (q.topic === t) idxs.push(i); });
+    if (!idxs.length) return;
+    var s = idxs.reduce(function (a, i) { return a + scores[i]; }, 0);
+    var p = Math.round((s / idxs.length) * 100);
+    tl.appendChild(el("li", null,
+      el("span", { text: t + " (" + idxs.length + (idxs.length === 1 ? " card)" : " cards)") }),
+      el("b", { text: p + "%" }),
+      el("div", { class: "meter" }, el("i", { style: "width:" + p + "%" }))
+    ));
+  });
+
+  var missedCount = Q.filter(function (q, i) { return statusOf(q, state.answers[i]) !== "ok"; }).length;
+  var listBox = el("div", { id: "reviews" });
+  var showAll = true;
+  function drawList() {
+    listBox.innerHTML = "";
+    Q.forEach(function (q, i) {
+      var st = statusOf(q, state.answers[i]);
+      if (!showAll && st === "ok") return;
+      listBox.appendChild(reviewItem(q, i, st, !showAll));
+    });
+    if (!listBox.children.length) listBox.appendChild(el("p", { text: "Every card was answered correctly." }));
+  }
+  var bAll = el("button", { class: "btn ghost small", type: "button", "aria-pressed": "true", text: "All cards" });
+  var bMiss = el("button", { class: "btn ghost small", type: "button", "aria-pressed": "false", text: "Missed or partial only" });
+  bAll.addEventListener("click", function () { showAll = true; bAll.setAttribute("aria-pressed", "true"); bMiss.setAttribute("aria-pressed", "false"); drawList(); });
+  bMiss.addEventListener("click", function () { showAll = false; bMiss.setAttribute("aria-pressed", "true"); bAll.setAttribute("aria-pressed", "false"); drawList(); });
+  drawList();
+
+  var acts = el("div", { class: "acts", style: "display:flex;gap:10px;flex-wrap:wrap;margin-top:20px" });
+  if (missedCount) acts.appendChild(el("button", { class: "btn primary", type: "button", id: "retry", text: "Retry " + missedCount + " missed or partial card" + (missedCount === 1 ? "" : "s"), onclick: retryMissed }));
+  acts.appendChild(el("button", { class: "btn ghost", type: "button", id: "restart", text: "Start over with all cards", onclick: showStart }));
+
+  app.appendChild(el("main", null,
+    el("h1", { style: "margin:16px 0 0;font:700 1.4rem Charter,Georgia,serif", text: "Endocrine flash cards: results" }),
+    head, acts,
+    el("h2", { class: "sec", text: "By topic" }), tl,
+    el("h2", { class: "sec", text: "Review with rationales" }),
+    el("div", { class: "filters" }, bAll, bMiss),
+    listBox
+  ));
+}
+
+function tagRow(cls, tag, text, why) {
+  return el("div", { class: "ritem " + cls },
+    tag ? el("div", { class: "tag", text: tag }) : null,
+    el("div", { text: text }),
+    why ? el("p", { class: "why", text: why }) : null
+  );
+}
+
+/* Shared by the flip-side of a card and by the results review. */
+function reviewBody(q, i, stemId) {
+  var a = state.answers[i];
+  var body = el("div", { class: "body" });
+  var stemEl = el("div", { class: "stem", html: q.stem || "" });
+  if (stemId) stemEl.id = stemId;
+  body.appendChild(stemEl);
+
+  if (q.type === "mc") {
+    q.options.forEach(function (t, k) {
+      var isC = k === q.correct, isSel = a === k;
+      var tag = isC ? (isSel ? "\u2713 Your answer, correct" : "\u2713 Correct answer") : (isSel ? "\u2717 Your answer" : "");
+      body.appendChild(tagRow(isC ? "ok" : (isSel ? "bad" : ""), tag, "ABCD"[k] + ". " + t, q.why[k]));
+    });
+  }
+  if (q.type === "sata") {
+    q.options.forEach(function (o, k) {
+      var sel = a.indexOf(k) > -1, tag, cls;
+      if (o.c && sel) { tag = "\u2713 Selected, correct"; cls = "ok"; }
+      else if (o.c && !sel) { tag = "\u2717 Missed. This should be selected"; cls = "bad"; }
+      else if (!o.c && sel) { tag = "\u2717 Selected, incorrect"; cls = "bad"; }
+      else { tag = "\u2713 Correctly left blank"; cls = ""; }
+      body.appendChild(tagRow(cls, tag, "ABCDEF"[k] + ". " + o.t, o.why));
+    });
+  }
+  if (q.type === "matrix") {
+    q.rows.forEach(function (r, k) {
+      var mine = a[k], ok = mine === r.c;
+      var tag = mine === null ? "\u2717 Not answered. Correct: " + q.cols[r.c] : (ok ? "\u2713 " + q.cols[mine] : "\u2717 You chose " + q.cols[mine] + ". Correct: " + q.cols[r.c]);
+      body.appendChild(tagRow(ok ? "ok" : "bad", tag, r.t, r.why));
+    });
+  }
+  if (q.type === "cloze") {
+    var sel = q.parts.filter(function (p) { return typeof p !== "string"; });
+    var sent = q.parts.map(function (p) { return typeof p === "string" ? p : "[" + p.o[p.c] + "]"; }).join("");
+    body.appendChild(el("p", { class: "src", text: "Completed sentence: " + sent }));
+    sel.forEach(function (p, k) {
+      var mine = a[k], ok = mine === p.c;
+      var tag = mine === null ? "\u2717 Not answered. Correct: " + p.o[p.c] : (ok ? "\u2713 " + p.o[mine] : "\u2717 You chose " + p.o[mine] + ". Correct: " + p.o[p.c]);
+      body.appendChild(tagRow(ok ? "ok" : "bad", tag, p.name.charAt(0).toUpperCase() + p.name.slice(1), q.why[k]));
+    });
+  }
+  if (q.type === "bowtie") {
+    var groups = [
+      { title: "Condition", list: q.conditions, picked: a.cond === null ? [] : [a.cond] },
+      { title: "Actions to take", list: q.actions, picked: a.act },
+      { title: "Parameters to monitor", list: q.params, picked: a.par }
+    ];
+    groups.forEach(function (g) {
+      body.appendChild(el("h3", { style: "margin:14px 0 6px;font-size:1rem", text: g.title }));
+      g.list.forEach(function (o, idx) {
+        var sel2 = g.picked.indexOf(idx) > -1, tag, cls;
+        if (o.c && sel2) { tag = "\u2713 Selected, correct"; cls = "ok"; }
+        else if (o.c && !sel2) { tag = "\u2717 Missed"; cls = "bad"; }
+        else if (!o.c && sel2) { tag = "\u2717 Selected, incorrect"; cls = "bad"; }
+        else { tag = "Not selected, correctly"; cls = ""; }
+        body.appendChild(tagRow(cls, tag, o.t, o.why));
+      });
+    });
+  }
+  body.appendChild(el("p", { class: "sum", text: q.summary }));
+  body.appendChild(el("p", { class: "src", text: "Source: Iggy, " + q.src }));
+  return body;
+}
+
+function reviewItem(q, i, st, open) {
+  var d = el("details", { class: "rev" });
+  if (open) d.setAttribute("open", "");
+  d.appendChild(el("summary", null,
+    el("b", { text: "Card " + (i + 1) }),
+    el("span", { class: "chip " + st, text: (MARK[st] ? MARK[st] + " " : "") + STATUS_LABEL[st] }),
+    el("span", { style: "color:var(--muted);font-size:.9rem", text: q.topic })
+  ));
+  d.appendChild(reviewBody(q, i, null));
+  return d;
+}
+
+showStart();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,1114 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NUR206 Trends review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EEF2F5; --card:#FFFFFF; --ink:#1C2A3A; --muted:#566676; --rule:#CAD4DD;
+  --accent:#2B5C8A; --accent-soft:#DCE7F1; --hl:#F3DF4B; --hl-ink:#1C2A3A;
+  --ok:#2E7D4F; --ok-soft:#DFF0E5; --bad:#B42318; --bad-soft:#F8E1DE;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#111921; --card:#1A2530; --ink:#E4EBF1; --muted:#9AAAB8; --rule:#2E3C49;
+    --accent:#7FB0DE; --accent-soft:#223649; --hl:#E8D240; --hl-ink:#15202A;
+    --ok:#6CC592; --ok-soft:#18342A; --bad:#F08A7E; --bad-soft:#3A1F1C;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#111921; --card:#1A2530; --ink:#E4EBF1; --muted:#9AAAB8; --rule:#2E3C49;
+  --accent:#7FB0DE; --accent-soft:#223649; --hl:#E8D240; --hl-ink:#15202A;
+  --ok:#6CC592; --ok-soft:#18342A; --bad:#F08A7E; --bad-soft:#3A1F1C;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px;line-height:1.5}
+.wrap{max-width:680px;margin:0 auto;padding:20px 16px 48px}
+header h1{font-family:"Source Serif 4",Georgia,serif;font-weight:600;font-size:1.75rem;line-height:1.15;margin:4px 0 6px}
+header p{margin:0;color:var(--muted);font-size:.95rem}
+.controls{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;margin:20px 0 16px}
+label.lab{display:block;font-size:.85rem;color:var(--muted);margin-bottom:4px}
+select{width:100%;font:inherit;font-size:1rem;padding:10px 12px;border:1px solid var(--rule);border-radius:8px;background:var(--card);color:var(--ink)}
+.ladder-filter{display:flex;flex-wrap:wrap;align-items:flex-end;gap:4px;padding-bottom:2px;min-width:0}
+.ladder-filter button{flex:1 1 auto;min-width:0;font:inherit;font-size:.78rem;border:1px solid var(--rule);background:var(--card);color:var(--ink);border-radius:6px 6px 0 0;padding:6px 6px;cursor:pointer;text-align:center}
+.ladder-filter button[aria-pressed="true"]{background:var(--accent);color:var(--card);border-color:var(--accent)}
+.ladder-filter button:nth-child(2){padding-top:10px}.ladder-filter button:nth-child(3){padding-top:14px}
+.ladder-filter button:nth-child(4){padding-top:18px}.ladder-filter button:nth-child(5){padding-top:22px}
+.ladder-filter button:nth-child(6){padding-top:26px}.ladder-filter button:nth-child(7){padding-top:30px}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.toggle{display:flex;align-items:center;gap:6px;font-size:.92rem;color:var(--muted)}
+.toggle input{width:18px;height:18px;accent-color:var(--accent)}
+.stats{font-size:.9rem;color:var(--muted);margin-left:auto}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:18px 16px 16px}
+.meta{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:12px}
+.chap{font-size:.85rem;color:var(--muted)}
+.chap b{color:var(--ink)}
+.bloom{display:flex;align-items:flex-end;gap:3px}
+.bloom span{display:block;width:9px;background:var(--rule);border-radius:2px 2px 0 0}
+.bloom span.on{background:var(--accent)}
+.bloom-name{font-size:.8rem;color:var(--accent);margin-left:6px;font-weight:700;align-self:center}
+.stem{font-family:"Source Serif 4",Georgia,serif;font-size:1.12rem;line-height:1.6;margin:0 0 14px}
+.type{font-size:.82rem;color:var(--muted);margin:-6px 0 12px}
+.opts{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.opt{display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;font:inherit;font-size:1rem;color:var(--ink);background:transparent;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;cursor:pointer}
+.opt .mark{flex:0 0 22px;height:22px;border:2px solid var(--muted);border-radius:50%;margin-top:1px}
+.sata .opt .mark{border-radius:4px}
+.opt[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.opt[aria-pressed="true"] .mark{border-color:var(--accent);background:var(--accent)}
+.opt.right{border-color:var(--ok);background:var(--ok-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt:disabled{cursor:default}
+textarea{width:100%;min-height:120px;font:inherit;font-size:1rem;padding:10px 12px;border:1px solid var(--rule);border-radius:8px;background:transparent;color:var(--ink);resize:vertical}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.btn{font:inherit;font-size:.95rem;padding:10px 14px;border-radius:8px;border:1px solid var(--rule);background:var(--card);color:var(--ink);cursor:pointer}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--card);font-weight:700}
+.btn:disabled{opacity:.45;cursor:default}
+.hint{margin-top:14px;font-size:.95rem}
+.hint mark{background:var(--hl);color:var(--hl-ink);padding:2px 4px;border-radius:2px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.simple{margin-top:14px;padding:12px 14px;border-radius:8px;border:1px dashed var(--accent);background:var(--accent-soft)}
+.simple strong{display:block;margin-bottom:4px;color:var(--accent)}
+.simple p{margin:0}
+.verdict{margin-top:14px;padding:12px 14px;border-radius:8px;border-left:4px solid var(--ok);background:var(--ok-soft)}
+.verdict.no{border-left-color:var(--bad);background:var(--bad-soft)}
+.verdict strong{display:block;margin-bottom:4px}
+.verdict p{margin:0}
+.verdict ul{margin:6px 0 0;padding-left:20px}
+.verdict li{margin:4px 0}
+nav.pager{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px}
+.count{font-size:.9rem;color:var(--muted)}
+.empty{padding:28px 16px;text-align:center;color:var(--muted)}
+.foot{margin-top:24px;font-size:.85rem;color:var(--muted)}
+button:focus-visible,select:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+@media (min-width:560px){.controls{grid-template-columns:minmax(0,1fr) minmax(0,1.4fr)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>NUR206 Trends review</h1>
+  <p>Hurst (acid-base, fluid and electrolytes, oncology, burns) and Trends Chapters 5, 8, 10, 25, 26 and 28, leveled by Bloom's taxonomy. Hurst hints point to your What &amp; Why guides, your Iggy-based Burns/Shock/Oncology guide, and LaCharity files. Every question has a simple "Explain like I'm 10" version. Pick "Legal focus" to drill Chapter 8. Try each question before you tap "Where to look", and check the slide before you check the answer.</p>
+</header>
+
+<div class="controls">
+  <div>
+    <label class="lab" for="chapter">Chapter</label>
+    <select id="chapter"></select>
+  </div>
+  <div>
+    <span class="lab" id="bloomlab">Bloom's level</span>
+    <div class="ladder-filter" id="ladder" role="group" aria-labelledby="bloomlab"></div>
+  </div>
+</div>
+<div class="row" style="margin-bottom:12px">
+  <label class="toggle"><input type="checkbox" id="missed"> Missed only</label>
+  <label class="toggle"><input type="checkbox" id="shuffle"> Shuffle</label>
+  <span class="stats" id="stats"></span>
+</div>
+
+<main id="stage"></main>
+<nav class="pager">
+  <button class="btn" id="prev">Previous</button>
+  <span class="count" id="count"></span>
+  <button class="btn" id="next">Next</button>
+</nav>
+<div class="foot">
+  <button class="btn" id="reset">Reset my progress</button>
+  <p>Note: Chapter 28's CJMM slide says "Picturize hypotheses." The NCSBN term is "Prioritize hypotheses," and that's the wording you'll see on the exam.</p>
+</div>
+</div>
+
+<script>
+const CH = {
+  "5":"Ch 5 Theories of nursing practice","8":"Ch 8 Legal issues","10":"Ch 10 Cultural competency and social issues",
+  "20":"Ch 20 Delegation (not on exam list)","25":"Ch 25 Student to professional nurse","26":"Ch 26 Managing time",
+  "28":"Ch 28 The NCLEX-RN","X":"Cross-chapter synthesis",
+  "AB":"Hurst: Acid-base","FE":"Hurst: Fluid and electrolytes","ON":"Hurst: Oncology","BU":"Hurst: Burns"
+};
+const SIMPLE={
+n1:"The test is like an eye exam. It stops as soon as it's sure about you, good or bad. Stopping early just means it's sure.",
+n2:"If you're right on the line, the test asks every question it can, then looks at your whole performance.",
+n3:"Getting hard questions right counts more than getting lots of easy ones right. Like jumping tall fences vs. tiny ones.",
+n4:"Notice the clues, connect them, then pick which explanation is most dangerous. Picking the scariest likely one = prioritize hypotheses.",
+n5:"You gave a fix; now you check if it worked. Like checking if the plant grew after you watered it.",
+n6:"Safe and effective care environment = keeping the hospital safe (managing care, stopping germs). Meds and risk checks live in the body-care group.",
+t1:"Orem: help only with what the person can't do yet, like training wheels.",
+t2:"Mishel: waiting and not knowing is scary all by itself.",
+t3:"Nightingale: fresh air, quiet, light, clean sheets. Fix the room so the body can heal.",
+t4:"Neuman = stressors and prevention, like layers of armor. Newman (with a w) = finding meaning.",
+t5:"Newman: even if you can't get better, you can still grow and find meaning.",
+t6:"Roy: change what's around the person so they can adjust, like moving furniture for someone on crutches.",
+t7:"Peplau: the relationship is the medicine. Feelings matter for healing.",
+t8:"The four big nursing words: nurse, person, health, environment.",
+t9:"Grand theory explains a lot of life. Middle-range zooms in on one group or problem.",
+t10:"Guess, plan, collect, see results, judge. Same order as a science fair.",
+t11:"Leininger: care has to fit the person's culture.",
+t12:"Rogers: people are energy fields always touching the world around them.",
+l1:"To win a negligence case you need all four pieces: a duty, breaking it, someone got hurt, and your mistake caused it. No hurt, no case.",
+l2:"Negligence = anyone being careless. Malpractice = a trained professional being careless.",
+l3:"The surgeon explains the surgery, not the nurse. If the patient doesn't understand, call the surgeon.",
+l4:"Res ipsa loquitur means 'the thing speaks for itself.' A sponge left inside is obviously wrong; no expert needed.",
+l5:"Write what happened, just the facts. Don't mention the report in the chart and don't copy it.",
+l6:"EMTALA: ERs must help anyone in an emergency, even without insurance, and can't ship unstable people away.",
+l7:"Good Samaritan laws protect you when you help off the clock, like at a car crash.",
+l8:"You're always responsible for your own actions. The hospital being responsible too doesn't erase yours.",
+l9:"Tying someone down without a good reason is like locking them in a room. That's false imprisonment.",
+l10:"Assault = the threat. Battery = the touching without permission.",
+l11:"The nursing board can scold you, put you on probation, fine you, or take your license. Only a court can send you to jail.",
+l12:"Gross negligence = you knew it was dangerous and did it anyway. Courts punish that with extra money.",
+l13:"The person the patient picked on paper (DPOA) makes the call, not whoever is oldest or loudest.",
+l14:"Affirmative duty: if an order could hurt the patient, speak up. Don't just follow it.",
+l15:"Say yes to floating, but be honest about what you can't do, and ask for a buddy who knows that unit.",
+l16:"Everyone in the chain can be blamed: the new nurse, the teacher, and the boss who set it up badly.",
+l17:"Tell the patient the scary results before he leaves. Don't trap him, and write it all down.",
+l18:"Trapping someone who's allowed to leave (tying, hiding clothes, guards, drugs) is false imprisonment.",
+l19:"Touching someone after they said no is battery, even if they didn't get hurt.",
+l20:"Never post patient pictures online, not even a 'mystery' body part.",
+l21:"Don't hand out charts. Send the request to the people in charge of the rules.",
+l22:"You must report child abuse, elder abuse, and certain diseases. It's the law.",
+l23:"You report when you suspect, not when you're sure. The law protects you for reporting honestly.",
+l24:"Hiding a mistake stops the clock from running out, so the patient can still sue later.",
+l25:"Telling the truth about mistakes is required and usually makes things better, not worse.",
+l26:"In a real emergency at work, doing your best to save a life is a defense.",
+l27:"Once you stop to help, you're that person's nurse. Do what a careful nurse would do.",
+l28:"Working at a government (federal or state) hospital can protect you personally.",
+l29:"Common law = rules made by judges deciding cases.",
+l30:"Your state's nurse practice act is the rulebook for what you're allowed to do.",
+l31:"Lying to Medicare for money breaks the False Claims Act, and reporting it is protected.",
+l32:"The PSDA says hospitals must tell you about your right to make an advance directive.",
+l33:"The ADA makes sure a deaf patient gets an interpreter.",
+l34:"So careless that someone died, and the state charges you with a crime = criminal negligence.",
+l35:"Most common lawsuits: not keeping patients safe, not watching and reporting, med mistakes, not following the rules.",
+l36:"Saying a hurtful lie out loud about someone = slander. Writing it = libel.",
+l37:"Before surgery the patient must know what it is, the good, the bad, other choices, and what happens if they say no.",
+l38:"A legal DNR must be followed, even if the family begs.",
+l39:"A grown-up who understands can say no to treatment. Forcing it is battery.",
+l40:"Nurses buy their own insurance because the job keeps getting bigger and hospitals don't always defend them.",
+l41:"More nurses per patient means fewer patients die or get missed.",
+ld1:"If an order could hurt someone, don't give it. Go up the chain and write down who you talked to.",
+ld2:"If a coworker might be stealing drugs or is impaired, tell your manager with facts. Patient safety first.",
+ld3:"He's allowed to leave, but make sure he knows the danger, call the provider, and chart everything.",
+ld4:"Give hard patients to experienced nurses, or give the new nurse a clear helper, and tell the bosses if it's unsafe.",
+c1:"'Balance' is the clue word. She thinks being sick means her body is out of balance.",
+c2:"Some people live for today. If you don't feel sick today, why go to the doctor?",
+c3:"Always use a trained interpreter. Kids and strangers might translate wrong or hear private things.",
+c4:"Looking inside yourself at your own feelings and biases = awareness.",
+c5:"Social organization = who's who in the family and who makes the decisions.",
+c6:"Hospitals must help people who speak other languages: interpreters, translated signs, bilingual staff. Not family as interpreters.",
+c7:"The biggest injury danger for young women is often their partner. That's why we screen everyone.",
+d1:"Helpers can do simple, steady tasks like vital signs. Thinking jobs like assessing and teaching stay with the RN.",
+d2:"'Keep an eye on him' doesn't say what to look for. Always give clear instructions and when to report back.",
+d3:"Risky delegating = the wrong job, to someone untrained, and not checking afterward.",
+d4:"Two RNs working together are teammates, not boss and helper. Each is responsible for their own work.",
+d5:"State law beats hospital rules.",
+d6:"Delegating is like lending your car: someone else drives, but it's still your car.",
+d7:"You're not done until you go back and check the patient yourself.",
+d8:"The Joint Commission (the hospital inspector) wants proof on paper that staff can do their jobs.",
+d9:"Proof beats 'trust me.' Pick the helper with documented skills.",
+p1:"Shock phase: 'This isn't how school said it would be!' and it feels scary.",
+p2:"Native: copying everyone to fit in, even the bad habits.",
+p3:"New nurses start at stage 2, advanced beginner: you know the basics and are starting to use experience.",
+p4:"Biculturalism: bringing a good idea from school and mixing it into work.",
+p5:"A gut feeling means look closer. Check the patient, then act on what you find.",
+p6:"A preceptor is your one-on-one work buddy while you learn the job.",
+p7:"Compassion fatigue: your caring tank runs empty from seeing so much pain.",
+p8:"Recovery: things start making sense and you feel less nervous.",
+m1:"She doesn't want to rock the boat.",
+m2:"She takes care of everyone else first, and her own work never gets done.",
+m3:"Internal distractions come from you: putting things off, saying yes to everything, doing too much at once.",
+m4:"Calming yourself before you react = managing emotional energy.",
+m5:"Food, movement, and rest = physical energy, your body's battery.",
+m6:"Plan first, like reading a recipe before cooking.",
+m7:"No detourism: finish one thing before starting the next. No zig-zagging.",
+s1:"You gave the job, so you should have given clear rules and checked. You're still responsible for the patient.",
+s2:"Get a real interpreter and ask the patient himself what he wants.",
+s3:"Expect the scary phase, pick your support people, and take care of your body and brain.",
+s4:"Bloom's is a ladder: remember, understand, use it, break it apart, judge it, build something new.",
+s5:"Pick the theory that best matches the patient's main problem, and explain why the other one fits worse."
+};
+
+const BL = ["Remember","Understand","Apply","Analyze","Evaluate","Create"];
+
+const Q = [
+/* ---------- CH 28 ---------- */
+{id:"n1",ch:"28",b:1,t:"mc",q:"A classmate's NCLEX shut off at 85 questions and she's convinced she failed. Which response is most accurate?",
+o:["Stopping at the minimum usually means a fail; most passing candidates go to 150.","Stopping at 85 means the computer was 95% certain her ability was clearly above or clearly below the passing standard. The number alone doesn't say which.","Stopping at 85 means she answered at least 85% of items correctly.","Everyone gets exactly 85 questions; the length never changes."],a:[1],
+h:"Ch 28, 'Length of the Exam'",
+w:"The 95% confidence interval rule can end the exam in either direction. Think of an eye exam: the optometrist stops flipping lenses once they're confident about your prescription, whether your vision is sharp or poor. Length reflects certainty, not outcome."},
+{id:"n2",ch:"28",b:2,t:"mc",q:"A candidate reaches question 150 because her ability estimate has hovered right at the passing line the whole exam. How is her result decided?",
+o:["Only the last 60 items are scored against the 95% confidence rule","Her overall percentage of correct items decides it","The exam keeps going until the computer reaches 95% confidence","The computer uses her final ability estimate from all completed items"],a:[3],
+h:"Ch 28, 'Length of the Exam', maximum-length examination rule",
+w:"At the maximum length, the computer drops the 95% confidence rule and looks only at the final ability estimate. The exam cannot run past 150."},
+{id:"n3",ch:"28",b:1,t:"mc",q:"Computerized adaptive testing decides competency mainly on the basis of:",
+o:["The total number of questions answered correctly","The difficulty level of the questions answered correctly","Average time spent per question","How many alternate-format items were answered"],a:[1],
+h:"Ch 28, 'Characteristics of the NGN-RN' and 'Length of the Exam'",
+w:"This line appears on two slides for a reason. Two people can both get 50% right; the one getting harder items right has the higher ability estimate."},
+{id:"n4",ch:"28",b:3,t:"mc",q:"A post-op client has HR 122, BP 90/54, and new restlessness. The nurse weighs whether these point to hemorrhage, uncontrolled pain, or fluid deficit from NPO status, and decides hemorrhage is the most urgent explanation. Which CJMM step is this?",
+o:["Recognize cues","Analyze cues","Prioritize hypotheses","Generate solutions"],a:[2],
+h:"Ch 28, 'Clinical Judgment Measurement Model'",
+w:"Recognizing = picking out HR, BP, restlessness. Analyzing = connecting them. Prioritizing = ranking competing explanations by urgency, which is what happened here. Nothing has been planned yet, so it isn't Generate solutions."},
+{id:"n5",ch:"28",b:2,t:"mc",q:"After a fluid bolus, the nurse rechecks the blood pressure and compares it with the goal written in the plan of care. Which CJMM step?",
+o:["Evaluate outcomes","Take action","Generate solutions","Analyze cues"],a:[0],
+h:"Ch 28, 'Clinical Judgment Measurement Model'",
+w:"Comparing observed outcomes with expected outcomes is the definition of Evaluate outcomes."},
+{id:"n6",ch:"28",b:0,t:"sata",q:"Which subcategories fall under the Safe and Effective Care Environment client need? Select all that apply.",
+o:["Management of patient care","Patient safety and infection control","Reduction of risk potential","Pharmacologic and parenteral therapies","Psychosocial integrity"],a:[0,1],
+h:"Ch 28, 'NGN-RN Test Plan'",
+w:"Reduction of risk potential and pharmacologic therapies belong under Physiologic integrity. Psychosocial integrity is its own category."},
+
+/* ---------- CH 5 ---------- */
+{id:"t1",ch:"5",b:2,t:"mc",q:"A post-stroke client can wash his face and brush his teeth but can't manage lower-body dressing. The nurse assists only with what he can't do and teaches adaptive techniques for the rest. Whose theory is guiding care?",
+o:["Peplau","Watson","Orem","Rogers"],a:[2],
+h:"Ch 5, Orem (1971) slide",
+w:"Orem measures the gap between self-care needs and self-care ability, then matches the level of nursing support to that gap. Like training wheels sized to how much balance the rider is missing."},
+{id:"t2",ch:"5",b:2,t:"mc",q:"A client awaiting biopsy results says, 'Not knowing is the worst part. I can't sleep.' Which theory best explains this distress?",
+o:["Neuman's systems model","Mishel's uncertainty in illness","Newman's health as expanding consciousness","Roy's adaptation model"],a:[1],
+h:"Ch 5, Mishel (1981, revised 1997) slide",
+w:"Mishel: uncertainty about a diagnosis is itself stress-producing and can drive negative physical and psychological outcomes."},
+{id:"t3",ch:"5",b:2,t:"mc",q:"The nurse adjusts room temperature, reduces hallway noise, brings clean linens, and opens the blinds. These interventions most directly reflect:",
+o:["Nightingale's canons of nursing","Leininger's culture care theory","Roy's adaptation model","Peplau's interpersonal relations"],a:[0],
+h:"Ch 5, 'Canons of Nursing'",
+w:"Ventilation and warming, noise, light, and cleanliness are all on Nightingale's list."},
+{id:"t4",ch:"5",b:3,t:"mc",q:"For a client with COPD, the nurse organizes care around primary, secondary, and tertiary prevention against environmental stressors to keep the client system stable. Which theorist?",
+o:["Newman","Rogers","Roy","Neuman"],a:[3],
+h:"Ch 5, Betty Neuman (1970) slide",
+w:"Stressors plus levels of prevention = Neuman. Newman (with a 'w') is health as expanding consciousness. The one-letter difference is a classic trap."},
+{id:"t5",ch:"5",b:3,t:"mc",q:"A client with advanced ALS will not recover. The nurse focuses on recognizing his unique pattern of life and helping him reach his own goals within it. Which theory fits best?",
+o:["Orem's self-care deficit","Newman's health as expanding consciousness","Neuman's systems model","Watson's human caring"],a:[1],
+h:"Ch 5, Newman (1979, revised 1986) slide",
+w:"Newman's theory was built for people for whom health as absence of disease isn't possible. Watson is a reasonable distractor (caring matters here too), but the 'pattern of life' language is Newman's."},
+{id:"t6",ch:"5",b:2,t:"mc",q:"A client with a new colostomy is overwhelmed. The nurse rearranges supplies within reach, reduces environmental stressors, and acts as change agent so the client can adjust. Which model?",
+o:["Watson","Leininger","Roy","Mishel"],a:[2],
+h:"Ch 5, Roy (1974) slide",
+w:"Roy: the nurse modifies external stimuli so the biopsychosocial client can adapt."},
+{id:"t7",ch:"5",b:1,t:"mc",q:"During early sessions with a client on a psychiatric unit, the nurse prioritizes building the nurse-client relationship, recognizing the client's feelings as a predictor of outcomes. Which theorist?",
+o:["Peplau","Rogers","Orem","Nightingale"],a:[0],
+h:"Ch 5, Peplau (1952) slide",
+w:"Peplau explored the interpersonal relationship between nurse and client and named the client's feelings as a predictor of positive outcomes."},
+{id:"t8",ch:"5",b:0,t:"sata",q:"Which four concepts are considered basic to nursing conceptual models? Select all that apply.",
+o:["Nursing","Disease","Person","Health","Environment","Physician"],a:[0,2,3,4],
+h:"Ch 5, 'Theories, Models, and Frameworks (Cont.)'",
+w:"Nursing, person, health, environment: the nursing metaparadigm."},
+{id:"t9",ch:"5",b:1,t:"mc",q:"A theory describing pain management specifically in older adults after hip surgery is best classified as a:",
+o:["Grand theory","Conceptual model","Middle-range theory","Philosophy"],a:[2],
+h:"Ch 5, 'Levels of Theory'",
+w:"Smaller scope and a specific population = middle-range. Grand theories explain a large segment of the human experience."},
+{id:"t10",ch:"5",b:0,t:"mc",q:"Which sequence correctly lists the five aspects of scientific inquiry?",
+o:["Hypothesis, method, data collection, results, evaluation","Method, hypothesis, data collection, evaluation, results","Hypothesis, data collection, method, evaluation, results","Data collection, hypothesis, method, results, evaluation"],a:[0],
+h:"Ch 5, 'Science and Theory'",
+w:"You can't collect data before you've chosen a method, and you can't evaluate results you don't have yet."},
+{id:"t11",ch:"5",b:2,t:"mc",q:"Before planning a postpartum diet, the nurse asks the family which foods they consider 'hot' and 'cold.' This approach reflects:",
+o:["Watson","Orem","Nightingale","Leininger"],a:[3],
+h:"Ch 5, Leininger (1977) slide",
+w:"Culture care diversity and universality: care is shaped by the client's worldview and ethnohistory."},
+{id:"t12",ch:"5",b:0,t:"mc",q:"Which theorist describes humans as energy fields in constant interaction with the environment, with the nurse promoting synchronicity between them?",
+o:["Watson","Rogers","Newman","Roy"],a:[1],
+h:"Ch 5, Rogers (1970) slide",
+w:"Science of unitary human beings: energy fields, openness, pattern, organization."},
+
+/* ---------- CH 8 ---------- */
+{id:"l1",ch:"8",b:3,t:"mc",q:"Against policy, a nurse leaves the bed rails down for a sedated client. The client is found on the floor, fully assessed, with no injury of any kind. A negligence claim would most likely fail because which element is missing?",
+o:["Duty","Breach of duty","Proximate cause","Actual harm or damage"],a:[3],
+h:"Ch 8, 'Civil Law (Cont.)', elements to prove negligence",
+w:"All four elements are required, like the four legs of a table. There was a duty and a breach, but with no harm there is nothing to compensate. The nurse still files an incident report."},
+{id:"l2",ch:"8",b:1,t:"mc",q:"Which statement best distinguishes malpractice from negligence?",
+o:["Malpractice is intentional; negligence is accidental","Malpractice is negligence by a professional with specialized education, judged against that profession's standard","Negligence applies only in criminal court","The terms mean the same thing"],a:[1],
+h:"Ch 8, 'Civil Law', negligence and malpractice",
+w:"Malpractice is a special type of negligence. Intentional acts fall under intentional torts, not malpractice."},
+{id:"l3",ch:"8",b:2,t:"mc",q:"An hour before surgery the client says, 'I signed it, but I don't really understand what they're removing.' What should the nurse do?",
+o:["Explain the procedure and its risks so surgery isn't delayed","Proceed, since the signature makes the consent valid","Have the client sign again in front of a witness","Hold the preop process and notify the surgeon"],a:[3],
+h:"Ch 8, 'The Law and Patient Rights (Cont.)', informed consent",
+w:"The provider can't delegate the duty to obtain informed consent, and the nurse should never try to convey that information. If the nurse believes consent isn't informed, the provider is notified immediately."},
+{id:"l4",ch:"8",b:2,t:"mc",q:"An x-ray after abdominal surgery shows a retained sponge. The plaintiff's attorney says no expert nurse witness is needed. Which doctrine applies?",
+o:["Vicarious liability","Res ipsa loquitur","Good Samaritan immunity","Affirmative duty"],a:[1],
+h:"Ch 8, 'Civil Law (Cont.)', res ipsa loquitur",
+w:"'The thing speaks for itself.' A jury can recognize this as negligence from common knowledge."},
+{id:"l5",ch:"8",b:2,t:"sata",q:"A client slips in the bathroom. Which actions by the nurse are appropriate regarding the incident report? Select all that apply.",
+o:["Describe the event objectively, without opinions","Write 'incident report filed' in the nurses' notes","Keep a photocopy of the report for personal records","File the report even though the client wasn't injured","Chart the objective facts of the fall and the assessment in the medical record"],a:[0,3,4],
+h:"Ch 8, 'Reducing Legal Liability (Cont.)'",
+w:"Never reference the incident report in the chart and never photocopy it. Report every unusual occurrence. The facts of what happened to the client still belong in the record; only the report itself stays out."},
+{id:"l6",ch:"8",b:2,t:"mc",q:"An uninsured woman in active labor arrives at the ED. An administrator suggests transferring her to the county hospital. Which law prohibits this?",
+o:["HIPAA","Americans with Disabilities Act","EMTALA","Patient Self-Determination Act"],a:[2],
+h:"Ch 8, 'Statutory Law', EMTALA",
+w:"EMTALA bars refusing care to uninsured or indigent patients and bars transferring unstable patients, including women in active labor."},
+{id:"l7",ch:"8",b:2,t:"mc",q:"An off-duty nurse stops at a car crash and gives first aid within her training. Which protection applies?",
+o:["Good Samaritan immunity","Governmental immunity","Statute of limitations","Res ipsa loquitur"],a:[0],
+h:"Ch 8, 'Criminal Law (Cont.)', defenses",
+w:"Good Samaritan immunity covers emergency help outside the employment setting. Governmental immunity is for workers in federal or state facilities."},
+{id:"l8",ch:"8",b:4,t:"mc",q:"Which statement by a new nurse needs correction?",
+o:["'If an order seems unsafe, saying I followed the physician's order won't protect me.'","'The board can suspend or revoke my license for violating the nurse practice act.'","'Because of vicarious liability, my employer is sued instead of me.'","'I'm legally required to report suspected dependent elder abuse.'"],a:[2],
+h:"Ch 8, 'Liability' and 'Liability (Cont.)'",
+w:"Personal liability can't be transferred to anyone else. Vicarious (employer) liability exists in addition to the nurse's own liability, and damages can reach current assets and future earnings."},
+{id:"l9",ch:"8",b:2,t:"mc",q:"A nurse applies wrist restraints to a confused client with no order and no attempt at alternatives because 'he keeps bothering staff.' This is:",
+o:["Assault","Battery","Defamation","False imprisonment"],a:[3],
+h:"Ch 8, 'Intentional Torts in Nursing Practice'",
+w:"Unjustified restraint of movement is false imprisonment. As an intentional tort, the plaintiff doesn't have to prove a breached duty."},
+{id:"l10",ch:"8",b:1,t:"mc",q:"A nurse tells a refusing client, 'Take this pill or I'll give it to you as a shot,' but doesn't touch him. This is:",
+o:["Battery","Assault","Invasion of privacy","Intentional infliction of emotional distress"],a:[1],
+h:"Ch 8, 'Intentional Torts', assault and battery (see textbook for definitions)",
+w:"Assault is the threat; battery is the unconsented touching. Carrying out the threat would add battery."},
+{id:"l11",ch:"8",b:0,t:"sata",q:"Which penalties can a board of nursing impose for violating the nurse practice act? Select all that apply.",
+o:["Formal reprimand","Probation","Fines","Limiting, suspending, or revoking the license","Imprisonment"],a:[0,1,2,3],
+h:"Ch 8, 'Statutory Law (Cont.)', violations",
+w:"Imprisonment comes from a criminal court, not a licensing board."},
+{id:"l12",ch:"8",b:3,t:"mc",q:"A nurse knowingly gives a medication the client is documented as severely allergic to because pharmacy was slow sending the alternative. The client is harmed, and the court awards damages meant to punish. This conduct is best described as:",
+o:["Ordinary negligence","Res ipsa loquitur","Gross negligence","Assault"],a:[2],
+h:"Ch 8, 'Civil Law (Cont.)', gross negligence",
+w:"Conscious disregard for the patient's welfare is gross negligence, and punitive damages are its signature. If the act is reckless enough to cause death or serious injury, it can cross into criminal negligence."},
+{id:"l13",ch:"8",b:2,t:"mc",q:"A client with advanced dementia named her daughter as durable power of attorney for health care. Her son disagrees with the daughter's decision to follow the client's known wish for a DNR. Whose decision stands?",
+o:["The son's, as the oldest child","The physician's alone","The daughter's, as the named agent acting on the client's wishes","The nurse's, as patient advocate"],a:[2],
+h:"Ch 8, 'The Law and Patient Rights (Cont.)'",
+w:"The DPOA document authorizes the named person to make decisions once the client is decisionally incompetent. Family seniority doesn't override it."},
+{id:"l14",ch:"8",b:1,t:"mc",q:"Case law established nurses' 'affirmative duty.' Which action demonstrates it?",
+o:["Carrying out an order exactly as written","Questioning and escalating an order the nurse believes will harm the client","Documenting only what the physician states","Deferring all judgment to the charge nurse"],a:[1],
+h:"Ch 8, 'Common Law (Cont.)'",
+w:"Affirmative duty = using independent judgment to prevent harm. It's the flip side of 'following orders' never being a defense."},
+
+/* ---------- CH 10 ---------- */
+{id:"c1",ch:"10",b:3,t:"mc",q:"A client stopped her antihypertensive and now drinks herbal teas, saying, 'Pills only hide the problem. My body has to come back into balance.' Which view of environmental control does this reflect?",
+o:["Mastery over nature","Subject to nature","Harmony with nature","Future time orientation"],a:[2],
+h:"Ch 10, both 'Environmental Control' slides",
+w:"Both 'subject to' and 'harmony with' nature can lead to natural remedies and seeing meds as symptom-only. The discriminator is 'balance': illness as disharmony is the harmony view. Next step: explore her beliefs and check herb-drug interactions rather than dismiss her."},
+{id:"c2",ch:"10",b:3,t:"mc",q:"A client routinely skips screenings and follow-ups but always comes in when acutely ill. Which cultural phenomenon should the nurse assess first?",
+o:["Space","Time orientation","Biological variation","Communication"],a:[1],
+h:"Ch 10, 'Space and Time'",
+w:"A present-oriented person focuses on today's problem; prevention asks them to act for a future that may not feel real."},
+{id:"c3",ch:"10",b:2,t:"mc",q:"A Spanish-speaking client needs preop teaching. His 14-year-old son speaks English and offers to translate. What should the nurse do?",
+o:["Accept; family involvement builds trust","Rely on gestures and a translated pamphlet","Use a qualified medical interpreter","Ask a bilingual visitor in the waiting room"],a:[2],
+h:"Ch 10, CLAS standards (both slides)",
+w:"CLAS requires appropriate interpreter services and informing clients of that right. A minor child and a stranger both compromise accuracy and confidentiality."},
+{id:"c4",ch:"10",b:1,t:"mc",q:"A nurse notices she gets irritated when large families crowd a room and reflects on where that reaction comes from before her next shift. Which component of culturally competent care is she using?",
+o:["Awareness","Knowledge","Skills","Attitude"],a:[0],
+h:"Ch 10, 'Components of Culturally Competent Care' and 'Cultural Assessment'",
+w:"Examining your own reactions and biases is cultural self-assessment, the awareness piece. Knowledge would be learning about the family's cultural norms."},
+{id:"c5",ch:"10",b:2,t:"mc",q:"An older client defers every health question to his eldest son, who expects to make the decisions. Which cultural phenomenon is most relevant?",
+o:["Communication","Space","Environmental control","Social organization"],a:[3],
+h:"Ch 10, 'Social Organization and Communication'",
+w:"Family structure and roles (nuclear, extended, who decides) fall under social organization. Confirm with the client himself that this is his preference."},
+{id:"c6",ch:"10",b:0,t:"sata",q:"Which are among the CLAS standards for health care organizations? Select all that apply.",
+o:["Provide clients access to bilingual staff","Inform clients of their right to interpreter services","Translate patient education materials and signage","Rely on family members as the primary interpreters","Conduct ongoing self-assessment of cultural competence"],a:[0,1,2,4],
+h:"Ch 10, CLAS standards (both slides)",
+w:"Family-as-interpreter is the opposite of what CLAS aims for."},
+{id:"c7",ch:"10",b:0,t:"mc",q:"Across all ethnic, racial, socioeconomic, and educational groups, the greatest cause of injury in women 15 to 24 is:",
+o:["Motor vehicle crashes","Intimate partner violence","Falls","Sports injuries"],a:[1],
+h:"Ch 10, 'Violence'",
+w:"This is why IPV screening is routine rather than reserved for clients who 'seem' at risk."},
+
+/* ---------- CH 20 ---------- */
+{id:"d1",ch:"20",b:2,t:"mc",q:"Which task can the RN appropriately delegate to assistive personnel (AP)?",
+o:["Measuring vital signs on a stable client, post-op day 3","Teaching a newly diagnosed client insulin self-injection","Completing an admission assessment","Evaluating a client's response to IV morphine"],a:[0],
+h:"Ch 20, 'Activities the RN Cannot Delegate'",
+w:"Assessment, teaching, and evaluation require nursing judgment and stay with the RN. Stable client plus routine task = delegable."},
+{id:"d2",ch:"20",b:3,t:"mc",q:"The RN tells an AP, 'Keep an eye on the guy in 12.' The AP doesn't report a respiratory rate of 30 because no parameters were given. Which right of delegation was violated?",
+o:["Right task","Right person","Right direction and communication","Right circumstances"],a:[2],
+h:"Ch 20, 'Five Rights of Delegation'",
+w:"Direction must be clear about the task, expected outcomes, and when to report back. 'Keep an eye on' gives none of those."},
+{id:"d3",ch:"20",b:4,t:"sata",q:"Which situations are characteristic of high-risk delegation? Select all that apply.",
+o:["Delegating a task that only an RN may legally perform","Delegating to an AP who hasn't been trained on the task","Not reassessing the client after the delegated task","Delegating vital signs on a stable client to a competent AP","Providing no supervision of the delegated task"],a:[0,1,2,4],
+h:"Ch 20, 'Characteristics of High-Risk Delegation'",
+w:"The stable-client vitals scenario is textbook safe delegation."},
+{id:"d4",ch:"20",b:2,t:"mc",q:"A charge nurse pairs two RNs to care for laboring clients as a team. What is the supervision relationship between the two RNs?",
+o:["The more experienced RN supervises the other","Each RN supervises the other","The charge nurse continuously supervises both","Neither supervises the other; each is accountable for her own practice"],a:[3],
+h:"Ch 20, 'Levels of Supervision'",
+w:"RN with RN in a collegial relationship is the 'unsupervised' level."},
+{id:"d5",ch:"20",b:1,t:"mc",q:"A hospital job description lets AP perform a task that your state's nurse practice act says AP can't do. What governs?",
+o:["The job description","The state nurse practice act","The charge nurse's judgment","Whichever is more permissive"],a:[1],
+h:"Ch 20, 'Job Descriptions'",
+w:"Legal requirements related to delegation supersede any organizational policy or job description."},
+{id:"d6",ch:"20",b:1,t:"mc",q:"An RN delegates ambulation to a competent AP, who ignores the instructions, and the client falls. Who is accountable for the overall nursing care?",
+o:["The AP alone","The nurse manager","The RN retains accountability for the overall outcome; the AP is responsible for her own performance","The hospital alone, through vicarious liability"],a:[2],
+h:"Ch 20, 'Delegation' definition",
+w:"Delegation transfers responsibility for doing the task, not accountability for the outcome. Like lending your car: the friend drives, but it's still registered to you."},
+{id:"d7",ch:"20",b:1,t:"mc",q:"The delegation process is complete when:",
+o:["The RN reassesses the client and adjusts the plan as needed","The AP documents the task","The AP reports the task is done","The shift ends without an incident"],a:[0],
+h:"Ch 20, 'Provide Feedback and Follow-Up'",
+w:"Evaluation is a nondelegable RN function, so the loop only closes with the RN's reassessment."},
+{id:"d8",ch:"20",b:0,t:"mc",q:"Written documentation of staff competencies is required by:",
+o:["The American Nurses Association","The Joint Commission","The American Association of Critical-Care Nurses","Medicaid"],a:[1],
+h:"Ch 20, 'Competencies'",
+w:"Accrediting agencies such as TJC require it. ANA is a professional organization, not a licensing or accrediting body."},
+{id:"d9",ch:"20",b:3,t:"mc",q:"Two AP are available for a task. One has done it many times but has no documented competency. The other passed competency validation last month but has done it only twice. Whom should the RN choose?",
+o:["The AP who has done it many times","The AP with documented competency validation","Whoever volunteers first","Whoever has the lighter workload"],a:[1],
+h:"Ch 20, 'Competencies' and 'Five Rights' (right person)",
+w:"Experience without verification is an assumption. Documented competency confirms demonstrated knowledge and skill, which is what 'right person' requires. Workload matters too, but only after competence."},
+
+/* ---------- CH 25 ---------- */
+{id:"p1",ch:"25",b:2,t:"mc",q:"Three months in, a new graduate says, 'Nothing here is how we learned it. Half the staff skip steps and there's no instructor to ask.' She's anxious and starting to avoid coworkers. Which phase of reality shock?",
+o:["Honeymoon","Shock or rejection","Recovery","Resolution"],a:[1],
+h:"Ch 25, 'Shock (Rejection) Phase'",
+w:"Conflicting viewpoints, different ways of performing skills, and no expert safety net are the defining triggers of this phase."},
+{id:"p2",ch:"25",b:3,t:"mc",q:"To fit in, a new nurse starts skipping the same steps her coworkers skip. Which inappropriate coping approach is this?",
+o:["Loner","Rutter","Native","Runaway"],a:[2],
+h:"Ch 25, 'Inappropriate Approaches for Dealing with the Shock Phase'",
+w:"The native takes the path of least resistance and mimics other nurses. The loner keeps her head down but doesn't necessarily copy anyone."},
+{id:"p3",ch:"25",b:1,t:"mc",q:"According to the Benner stages on the slides, a new graduate entering the workforce is at:",
+o:["Stage 1, novice: skills learned by rote","Stage 2, advanced beginner: some judgment calls based on experience","Stage 3, competent: able to foresee long-range goals","Stage 4, proficient: sees whole situations"],a:[1],
+h:"Ch 25, 'From Novice to Expert'",
+w:"Stage 1 is tied to completing nursing education; stage 2 is tied to entry into the workforce."},
+{id:"p4",ch:"25",b:2,t:"mc",q:"A new nurse notices shift report happens at the desk. She proposes bedside handoff, which she learned in school, and the unit adopts it. This represents:",
+o:["Role modeling","Mentoring","Self-mentoring","Biculturalism"],a:[3],
+h:"Ch 25, 'Strategies to Ease Transition'",
+w:"Biculturalism joins school values with workplace values: the new nurse brings an idea in and integrates it."},
+{id:"p5",ch:"25",b:4,t:"mc",q:"An experienced nurse says, 'Something's off with Mr. J,' though his vital signs are unchanged from 2 hours ago. What is the best response from the new nurse working with her?",
+o:["Disregard it; the data are stable","Document the other nurse's concern and move on","Do a focused reassessment together and escalate if findings support the concern","Call a rapid response now based on the feeling"],a:[2],
+h:"Ch 25, 'Intuition'",
+w:"Intuition should be used in combination with knowledge and skills. It's a reason to look harder, not a replacement for looking."},
+{id:"p6",ch:"25",b:1,t:"mc",q:"Which describes a preceptorship?",
+o:["A long-term career relationship with a guide you choose","A one-to-one relationship with an experienced nurse during the final semester or orientation, working through everyday practice","A support group of new graduates","Developing your own problem-solving skills and asking questions"],a:[1],
+h:"Ch 25, 'Strategies to Ease Transition (Cont.)'",
+w:"The last option describes self-mentoring; the first is closer to mentoring."},
+{id:"p7",ch:"25",b:3,t:"mc",q:"A trauma ICU nurse notices that after years of caring for badly injured clients, she feels numb and less able to empathize with families. This is best described as:",
+o:["Rutter","Burned out","Loner","Compassion fatigue"],a:[3],
+h:"Ch 25, 'Inappropriate Approaches for Dealing with the Shock Phase'",
+w:"Compassion fatigue is a decline in compassion from repeated exposure to traumatized patients. Burnout on the slide is bottled-up conflict with fatigue, depression, and anger."},
+{id:"p8",ch:"25",b:2,t:"mc",q:"Six months in, a new nurse starts to understand how the unit works, feels less anxious, and can laugh about her early mistakes. Which phase?",
+o:["Honeymoon","Shock or rejection","Resolution","Recovery"],a:[3],
+h:"Ch 25, 'Recovery Phase' and 'Resolution Phase'",
+w:"Understanding the culture and decreasing anxiety = recovery. Resolution adds meeting expectations more easily and being able to elicit change."},
+
+/* ---------- CH 26 ---------- */
+{id:"m1",ch:"26",b:2,t:"mc",q:"A nurse withdraws her application for a charge nurse role because her team would have to adjust and she likes how things are now. Which obstacle?",
+o:["Fear of failure","Need for perfection","Fear of disrupting the status quo","Fear of completion"],a:[2],
+h:"Ch 26, 'Psychological Obstacles to Productive Work Habits'",
+w:"The concern is about changing the current arrangement, not about doing the job badly."},
+{id:"m2",ch:"26",b:2,t:"mc",q:"A nurse keeps taking on coworkers' tasks and leaves her own charting unfinished. Which obstacle is most likely?",
+o:["Need to be a caretaker","Fear of success","Constantly in chaos","Fear of downtime"],a:[0],
+h:"Ch 26, 'Psychological Obstacles to Productive Work Habits'",
+w:"Pairs with the internal distraction 'inability to say no.'"},
+{id:"m3",ch:"26",b:1,t:"sata",q:"Which are internal time and energy distractions? Select all that apply.",
+o:["Procrastination","Visitors dropping in","Inability to say no","Attempting too much at once","Confusing lines of authority"],a:[0,2,3],
+h:"Ch 26, 'External' and 'Internal Time & Energy Distractions'",
+w:"Internal = generated by you. Visitors and unclear authority come from the environment."},
+{id:"m4",ch:"26",b:2,t:"mc",q:"Before responding to an angry family member, the nurse pauses, names her own frustration, and answers calmly. Which energy source is she managing?",
+o:["Physical","Mental","Spiritual","Emotional"],a:[3],
+h:"Ch 26, 'Four Sources of Energy'",
+w:"Managing emotions skillfully = emotional energy. Spiritual energy is reflecting on purpose and direction."},
+{id:"m5",ch:"26",b:2,t:"mc",q:"A nurse packs a balanced lunch and takes a 10-minute walk during every 12-hour shift. Which energy source is this?",
+o:["Physical","Mental","Spiritual","Emotional"],a:[0],
+h:"Ch 26, 'Four Sources of Energy'",
+w:"Physical energy is named as the first component of a productive work life."},
+{id:"m6",ch:"26",b:0,t:"mc",q:"The most important step in time management is:",
+o:["Organizing","Planning","Delegating","Rewarding yourself"],a:[1],
+h:"Ch 26, 'Time Management Strategies' (planning)",
+w:"Planning comes before beginning any task, project, or day."},
+{id:"m7",ch:"26",b:2,t:"mc",q:"A nurse finishes one client's medication pass completely before starting any charting, instead of bouncing between tasks. This is:",
+o:["The Pareto principle","The ABC approach","No detourism","The continuum approach"],a:[2],
+h:"Ch 26, 'Time Management Strategies' (organizing)",
+w:"No detourism: concentrate on one activity until it is accomplished. The other three are priority-setting approaches."},
+
+/* ---------- CH 8 LEGAL (expanded) ---------- */
+{id:"l15",ch:"8",b:2,t:"mc",q:"A critical care nurse is floated to an orthopedic unit and has never managed a client in skeletal traction. What is the most appropriate response?",
+o:["Refuse to float and clock out","Accept, and perform every task on the assignment as given","Accept, tell the charge nurse which tasks she can't safely perform, and request a resource nurse competent in orthopedic care","Accept only after the supervisor agrees to a pay differential"],a:[2],
+h:"Ch 8, 'Liability (Cont.)', floating and cross-training; textbook: project file 4.pdf, 'Personal liability with floating and cross-training'",
+w:"The nurse has a legal duty to refuse specific tasks she can't do competently, but refusing to float at all can cost her the job (the textbook cites a court upholding a termination). Negotiate the assignment, get a named resource nurse, and document who is co-managing care."},
+{id:"l16",ch:"8",b:3,t:"sata",q:"A charge nurse assigns a nurse with 7 months of experience to precept a graduate nurse who isn't licensed yet, without saying how closely to supervise. The graduate gives five times the ordered digoxin dose. Who could be found negligent? Select all that apply.",
+o:["The graduate nurse","The preceptor","The charge nurse","No individual nurse; only the hospital"],a:[0,1,2],
+h:"Ch 8, 'Liability (Cont.)', team leaders and delegation; textbook: project file 4.pdf, 'Personal liability in delegation and supervision of team members'",
+w:"This is the Mobile Infirmary v. Hodgen case in your textbook: all three nurses were found negligent. The charge nurse was faulted for choosing a novice preceptor and giving no supervision directions; the preceptor for not supervising. Employer liability sits on top of theirs, not in place of it."},
+{id:"l17",ch:"8",b:3,t:"mc",q:"A client insists on leaving against medical advice. A critical lab value has just resulted. What should the nurse do?",
+o:["Have the unit secretary finish the discharge paperwork","Stand in the doorway so he can't leave until the provider arrives","Notify the provider, make sure the client is told the result and the risks of leaving, and document thoroughly","Keep his clothes so he'll stay until morning"],a:[2],
+h:"Ch 8, 'The Law and Patient Rights (Cont.)', leaving AMA; textbook: project file 4.pdf, AMA and false imprisonment discussion",
+w:"The textbook describes an ED nurse found negligent for letting a client leave AMA without warning him about critical labs; he died 3 days later. Blocking the door or withholding clothes swings to the other extreme and invites a false imprisonment claim. The AMA form only helps if the charting is solid."},
+{id:"l18",ch:"8",b:3,t:"sata",q:"A competent client wants to leave. Which nursing actions could support a claim of false imprisonment? Select all that apply.",
+o:["Applying restraints without clinical justification","Refusing to return his clothes","Posting a security guard at his door to intimidate him","Sedating him against his will","Explaining the risks of leaving and asking him to sign the AMA form"],a:[0,1,2,3],
+h:"Textbook: project file 4.pdf, section on leaving AMA and false imprisonment",
+w:"All four are listed in the textbook as actions that lead to false imprisonment claims, usually from well-meaning nurses trying to keep a client safe. Informing and documenting is the legally appropriate path."},
+{id:"l19",ch:"8",b:2,t:"mc",q:"A groggy post-op client clearly refuses a blood draw. The nurse draws it anyway, and there is no bruising or injury. Which statement is accurate?",
+o:["It isn't battery because there was no harm","It is battery; proof of harm isn't required","It's assault only, since he was groggy","It's ordinary negligence"],a:[1],
+h:"Ch 8, 'Intentional Torts'; textbook: project file 4.pdf, 'Assault and battery'",
+w:"Battery is unauthorized touching, and the textbook states outright that it doesn't require proof of harm. Consenting to hospitalization doesn't mean surrendering the right to decide who touches you."},
+{id:"l20",ch:"8",b:4,t:"mc",q:"A nurse posts a photo of an unusual wound to a nursing forum. No face, name, or room number is visible. Evaluate this action.",
+o:["Acceptable, because the body part can't be identified","Acceptable if the account is set to private","A privacy violation that breaks HIPAA and the ANA Code of Ethics and can lead to board discipline","Acceptable because the purpose is educational"],a:[2],
+h:"Ch 8, 'Statutory Law (Cont.)', HIPAA; textbook: project file 4.pdf, social media section",
+w:"The textbook says posting photos of patients, even ostensibly unidentifiable body parts, is expressly forbidden. Consequences can include fines, imprisonment under HIPAA, and license suspension or revocation."},
+{id:"l21",ch:"8",b:2,t:"mc",q:"A police officer at the nurses' station asks for a copy of a client's chart. What should the nurse do?",
+o:["Print the chart, since police have legal authority","Read the relevant sections aloud instead of giving copies","Refer the request to the agency administrator or risk manager","Tell the officer to ask the client's family"],a:[2],
+h:"Textbook: project file 4.pdf, invasion of privacy section (requests for information)",
+w:"The nurse should never personally divulge information or hand over copies of the record. The request goes to the administrator or risk manager, who determines what the law permits."},
+{id:"l22",ch:"8",b:1,t:"sata",q:"Under reporting statutes, which must health professionals report, under penalty of fine or imprisonment for failing to? Select all that apply.",
+o:["Suspected infant or child abuse","Suspected dependent elder abuse","Specified communicable diseases","A competent client's decision to leave AMA"],a:[0,1,2],
+h:"Ch 8, 'Statutory Law (Cont.)', reporting statutes",
+w:"Leaving AMA is a documentation issue, not a reportable event to authorities."},
+{id:"l23",ch:"8",b:2,t:"mc",q:"A nurse suspects a child is being abused but hesitates: 'What if I'm wrong and the parents sue me?' Which response is accurate?",
+o:["She should wait until she's certain","Most reporting laws grant immunity for reports made within the mandatory reporting statute, and not reporting carries penalties","Only the physician is legally required to report","She should confront the parents first"],a:[1],
+h:"Ch 8, 'Statutory Law (Cont.)', reporting statutes",
+w:"The duty is triggered by suspicion, not proof. Immunity exists so that fear of a lawsuit doesn't block reporting."},
+{id:"l24",ch:"8",b:3,t:"mc",q:"After a narcotic overdose error, a nurse manager writes the client a letter falsely saying he had a 'drug sensitivity.' He learns the truth from his records more than 2 years later, past his state's 2-year limit. What is most likely?",
+o:["The case is automatically dismissed","The statute of limitations may be extended, because he couldn't sue until he discovered the harm","Only the manager can be sued","The case moves to criminal court"],a:[1],
+h:"Ch 8, 'Statutes of Limitation'; textbook: project file 4.pdf, discovery rule",
+w:"The discovery rule (Hanssen v. Genesis Health in your textbook) extends the time limit when providers conceal an injury. Concealment doesn't just fail ethically; it keeps the legal window open longer."},
+{id:"l25",ch:"8",b:4,t:"mc",q:"A client received a wrong medication with no lasting harm. The nurse manager suggests not telling the family 'since nothing happened.' Which response is best supported?",
+o:["Agree, since there was no injury","Disclose: facilities must have a process for disclosing unanticipated outcomes, and disclosure is linked to less severe consequences","Tell the family only if they ask directly","Leave it up to the pharmacy"],a:[1],
+h:"Ch 8, 'Transparency and Disclosure of Error'",
+w:"TJC has required a disclosure process since 2001. Studies show disclosure leads to less severe ramifications for clinicians and facilities, not more. The incident report is still filed."},
+{id:"l26",ch:"8",b:3,t:"mc",q:"During a code with no provider present yet, a nurse takes a lifesaving action she normally wouldn't perform. Afterward a negligence claim is filed. Which defense best applies?",
+o:["Good Samaritan immunity","Emergency situation","Governmental immunity","Res ipsa loquitur"],a:[1],
+h:"Ch 8, 'Criminal Law (Cont.)', defenses against negligence",
+w:"Care given in a life-threatening emergency may depart from the normal standard. Good Samaritan immunity is the trap here: it covers emergencies outside the employment setting, and this nurse was on the job."},
+{id:"l27",ch:"8",b:3,t:"mc",q:"An off-duty nurse stops to help at a highway crash. Which statement is accurate?",
+o:["Once she stops, a nurse-patient relationship exists and she must meet the standard of a reasonably prudent nurse","She can't be sued under any circumstances","She can leave at any point, even before help arrives","The same protection covers her during her paid shift"],a:[0],
+h:"Ch 8, defenses slide; textbook: project file 4.pdf, 'Good Samaritan immunity'",
+w:"Stopping is an ethical choice in most states, but stopping creates the relationship. To win, the plaintiff generally has to prove intentional injury or gross negligence, which is why most of these cases are settled in the nurse's favor."},
+{id:"l28",ch:"8",b:1,t:"mc",q:"A nurse works at a federal VA hospital. A client sues after a negligent act. Which protection may shield her from personal responsibility for damages?",
+o:["Good Samaritan immunity","Governmental immunity","The emergency defense","Res ipsa loquitur"],a:[1],
+h:"Ch 8, 'Criminal Law (Cont.)', defenses",
+w:"Governmental immunity covers workers in federal or state facilities. The textbook notes some states haven't waived sovereign immunity, so in those states nurses may be personally exposed, which is one argument for carrying your own malpractice insurance."},
+{id:"l29",ch:"8",b:0,t:"mc",q:"Law created through cases heard and decided in federal and state appellate courts is called:",
+o:["Statutory law","Common (case) law","Administrative law","Criminal law"],a:[1],
+h:"Ch 8, 'Common Law'",
+w:"Also called decisional or judge-made law. Nursing case law sets the current standard of practice that future courts use."},
+{id:"l30",ch:"8",b:1,t:"mc",q:"A new NY graduate wants to confirm what is legally within her scope of practice. Where should she look first?",
+o:["The ANA Code of Ethics","Her state's nurse practice act and board of nursing rules","The hospital's job descriptions","The Joint Commission standards"],a:[1],
+h:"Ch 8, 'Statutory Law (Cont.)', state statutes",
+w:"The nurse practice act defines scope and limits of practice and varies by state. The slides say every nurse should own a copy and understand it."},
+{id:"l31",ch:"8",b:2,t:"mc",q:"A nurse notices her facility billing Medicare for therapy sessions that never happened and reports it. Which federal law makes the billing an offense and covers her as a whistle-blower?",
+o:["HIPAA","The Federal False Claims Act","EMTALA","The Patient Safety and Quality Improvement Act"],a:[1],
+h:"Ch 8, 'Sources of Law and Nursing Practice'",
+w:"Submitting a false claim to the government for payment is the offense. HIPAA also has whistle-blower protection, but for good-faith reports of illegal disclosure of health information."},
+{id:"l32",ch:"8",b:2,t:"mc",q:"On admission, the facility asks whether the client has an advance directive and gives him written information about his right to make one. Which law requires this?",
+o:["The Patient Self-Determination Act","HIPAA","The ADA","EMTALA"],a:[0],
+h:"Ch 8, 'Statutory Law (Cont.)'; textbook: project file 4.pdf, PSDA section",
+w:"Facilities serving Medicare or Medicaid clients must inform clients of these rights and note any existing directive in the record. The admission assessment is often where the nurse raises it."},
+{id:"l33",ch:"8",b:2,t:"mc",q:"A deaf client requests a sign language interpreter for discharge teaching. Which law requires the facility to provide one?",
+o:["HIPAA","EMTALA","The ADA","The False Claims Act"],a:[2],
+h:"Ch 8, 'Statutory Law', ADA; textbook: project file 4.pdf, federal statutes",
+w:"The ADA requires interpreter services and communication devices for clients who can't otherwise communicate their needs. This overlaps with the CLAS standards from Ch 10."},
+{id:"l34",ch:"8",b:3,t:"mc",q:"A nurse overrides an automated dispensing cabinet, pulls a paralytic instead of a sedative without checking the label, and the client dies. The state charges her with a crime. This best illustrates:",
+o:["Ordinary negligence","Criminal negligence","Res ipsa loquitur","Battery"],a:[1],
+h:"Ch 8, 'Criminal Law' and the Tennessee case slide (2022)",
+w:"Criminal negligence is conduct so reckless it results in serious injury or death, and it's prosecuted by the state. The Tennessee case also found significant system flaws; system problems don't erase individual accountability, but they matter to the outcome."},
+{id:"l35",ch:"8",b:1,t:"sata",q:"Which are among the most frequent allegations of nursing negligence? Select all that apply.",
+o:["Failure to ensure patient safety","Failure to monitor and report significant findings","Medication errors","Failure to follow agency policies and procedures","Failure to obtain the client's informed consent for surgery"],a:[0,1,2,3],
+h:"Ch 8, 'Civil Law (Cont.)', most frequent allegations",
+w:"Obtaining informed consent is the provider's duty, not the nurse's. That's the same point tested in the preop consent question."},
+{id:"l36",ch:"8",b:2,t:"mc",q:"In the break room, a nurse falsely tells coworkers that a physician 'comes to work drunk and kills patients.' This is:",
+o:["Libel","Slander","Invasion of privacy","False imprisonment"],a:[1],
+h:"Ch 8, 'Intentional Torts', defamation of character",
+w:"Spoken defamation is slander; written or posted defamation is libel. The same statement on social media would be libel."},
+{id:"l37",ch:"8",b:1,t:"sata",q:"Which information must the provider disclose for consent to be informed? Select all that apply.",
+o:["Nature of the procedure","Expected benefits and outcomes","Potential risks","Alternative therapies","Risks of not having the procedure","The surgeon's malpractice insurance carrier"],a:[0,1,2,3,4],
+h:"Ch 8, 'The Law and Patient Rights (Cont.)', informed consent",
+w:"Five elements. The nurse's role is to confirm the client understands and to notify the provider if he doesn't."},
+{id:"l38",ch:"8",b:3,t:"mc",q:"A client has a valid DNR order on the chart. During an arrest, his son arrives and demands CPR. What is the nurse's legal obligation?",
+o:["Start CPR because the family is requesting it","Honor the DNR and support the son","Begin CPR until the physician arrives to decide","Start compressions only, without intubation"],a:[1],
+h:"Ch 8, 'The Law and Patient Rights (Cont.)', DNR",
+w:"Nurses have an absolute duty to respect a lawfully executed DNR. Starting CPR against it violates the client's own directive, however understandable the son's distress."},
+{id:"l39",ch:"8",b:2,t:"mc",q:"A competent adult refuses a blood transfusion for religious reasons. What should the nurse do?",
+o:["Give the transfusion if his hemoglobin drops further","Respect the refusal, ensure the provider has explained the risks, and document","Ask the family to change his mind before the transfusion","Sedate him and transfuse"],a:[1],
+h:"Ch 8, 'The Law and Patient Rights (Cont.)', right to refuse treatment",
+w:"A competent adult's refusal is legally binding. Transfusing anyway is battery; sedating him to do it adds false imprisonment."},
+{id:"l40",ch:"8",b:1,t:"sata",q:"Which are reasons given for RNs to carry their own malpractice insurance? Select all that apply.",
+o:["Expanding functions of RNs and APRNs","Floating and cross-training mandates","Increasing responsibility for supervising subordinate staff","Some employers fail to provide an adequate defense","Having insurance guarantees a nurse won't be sued"],a:[0,1,2,3],
+h:"Ch 8, 'Reasons for Malpractice Insurance'",
+w:"Insurance doesn't prevent a lawsuit. The textbook also calls it a fallacy that having insurance makes you more likely to be targeted."},
+{id:"l41",ch:"8",b:0,t:"mc",q:"Research on nurse-to-patient ratio laws, first enacted in California, links improved ratios to:",
+o:["Higher failure-to-rescue rates","Lower failure-to-rescue and inpatient mortality rates","More malpractice claims","Longer lengths of stay"],a:[1],
+h:"Ch 8, 'Statutory Law (Cont.)', nurse/patient ratio statutes",
+w:"This is the evidence base behind staffing legislation, one of the legislative concerns in Ch 5 as well."},
+
+/* ---------- LEGAL DILEMMAS ---------- */
+{id:"ld1",ch:"8",b:5,t:"open",q:"Legal dilemma: A provider orders a medication dose you believe is ten times too high. You call; he says, 'Just give it, I know what I'm doing.' Present a legally sound solution.",
+h:"Ch 8, 'Common Law (Cont.)' affirmative duty and defenses slide; textbook: project file 4.pdf, defenses section",
+k:["'Following orders' is never a defense; the nurse must judge whether an order is lawful and in the client's best interest.","Don't give the dose. Verify the order, the reference range, and the client's condition.","Use the chain of command: charge nurse, supervisor, pharmacist, then higher.","Document each consultation objectively in the record.","File an incident report per policy without charting that you filed it."]},
+{id:"ld2",ch:"8",b:5,t:"open",q:"Legal dilemma: You notice a coworker's narcotic counts are repeatedly off, and she seems drowsy at the end of shifts. Present a solution that protects clients and meets your legal obligations.",
+h:"Textbook: project file 4.pdf, list of occurrences that should be reported; Ch 8 incident reports",
+k:["Unethical, illegal, or incompetent practice that is witnessed must be reported.","Report to the nurse manager or chain of command; don't investigate or confront alone.","Describe objective facts (counts, times, observations), not conclusions or opinions.","Client safety comes first; if she's impaired right now, she shouldn't be caring for clients.","The facility and board of nursing process takes it from there; many states have alternative-to-discipline programs."]},
+{id:"ld3",ch:"8",b:5,t:"open",q:"Legal dilemma: At 2 a.m., a competent client with chest pain and an abnormal ECG says he's leaving. Present a solution that respects his rights and limits liability.",
+h:"Ch 8, right to refuse and AMA; textbook: project file 4.pdf, AMA section",
+k:["A competent adult can leave; don't restrain, block, or withhold belongings (false imprisonment).","Notify the provider immediately so he's told the specific risks and the abnormal results.","Explore why he's leaving (cost, family, fear) and address what you can.","Ask him to sign the AMA form; if he refuses, document that.","Chart thoroughly: what he was told, by whom, his words, his condition, and when he left."]},
+{id:"ld4",ch:"8",b:5,t:"open",q:"Legal dilemma: You're a charge nurse. Staffing is short and the only available nurse for a complex client is a new graduate on her third week. Present a solution.",
+h:"Ch 8, 'Liability (Cont.)', personal liability for team leaders; Ch 20, assignment considerations and levels of supervision",
+k:["Charge nurses are held to the standard of a reasonably prudent charge nurse, including for assignments and supervision.","Consider assigning the complex client to a more experienced nurse, or pairing the graduate with a named, competent resource nurse.","Give explicit directions about the level of supervision (the missing piece in the digoxin case).","Escalate unsafe staffing through the chain of command and document it.","Check in and reassess throughout the shift."]},
+
+/* ---------- HURST: ACID-BASE ---------- */
+{id:"ab1",ch:"AB",b:2,t:"mc",q:"ABG: pH 7.30, PaCO2 52 mm Hg, HCO3 25 mEq/L. What is the interpretation?",
+o:["Uncompensated metabolic acidosis","Uncompensated respiratory acidosis","Partially compensated respiratory acidosis","Uncompensated respiratory alkalosis"],a:[1],
+h:"Acid-Base guide, Section 2 (ROME) and Section 3 (tic-tac-toe steps)",
+w:"pH is low (acidosis). PaCO2 is high, moving opposite to pH, so it's respiratory (ROME: Respiratory Opposite). HCO3 is normal, so the kidneys haven't compensated yet.",
+s:"pH is the scoreboard: low means too much acid. CO2 is an acid gas from the lungs, and too much is stuck inside. The kidneys (HCO3) haven't jumped in to help yet."},
+{id:"ab2",ch:"AB",b:2,t:"mc",q:"An anxious client has RR 34 and tingling fingers. ABG: pH 7.50, PaCO2 29 mm Hg, HCO3 24 mEq/L. Which imbalance?",
+o:["Respiratory acidosis","Metabolic alkalosis","Respiratory alkalosis","Metabolic acidosis"],a:[2],
+h:"Acid-Base guide, Section 5 (Respiratory alkalosis)",
+w:"Hyperventilation blows off CO2, pH rises. HCO3 is normal, so it's respiratory and uncompensated. Nursing action: calm the client and coach slow breathing.",
+s:"Breathing super fast blows out too much CO2 (acid), so the blood gets too basic. Slow the breathing down."},
+{id:"ab3",ch:"AB",b:3,t:"mc",q:"A client in DKA has pH 7.25, PaCO2 28 mm Hg, HCO3 15 mEq/L. What is the interpretation?",
+o:["Uncompensated respiratory acidosis","Partially compensated metabolic acidosis","Fully compensated metabolic acidosis","Metabolic alkalosis"],a:[1],
+h:"Acid-Base guide, Section 3 (compensation) and Section 6; LaCharity DKA case study, project file 6.pdf",
+w:"pH low and HCO3 low (same direction) = metabolic acidosis (ROME: Metabolic Equal). PaCO2 is low because the lungs are compensating with Kussmaul respirations. pH is still abnormal, so compensation is only partial.",
+s:"The body made too much acid (ketones). The lungs try to help by breathing big and fast to blow acid away, but pH isn't fixed yet, so it's only partly helped."},
+{id:"ab4",ch:"AB",b:2,t:"mc",q:"A client has had nasogastric suction for 3 days. Which acid-base imbalance is this client most at risk for?",
+o:["Metabolic acidosis","Metabolic alkalosis","Respiratory alkalosis","Respiratory acidosis"],a:[1],
+h:"Acid-Base guide, Section 7 (Metabolic alkalosis); LaCharity project file 2.pdf, Q25",
+w:"NG suction and vomiting remove hydrochloric acid from the stomach, leaving the body with relatively too much base. The lungs may compensate by breathing more slowly to hold on to CO2.",
+s:"Stomach juice is acid. Suck out or throw up too much acid, and what's left is too basic."},
+{id:"ab5",ch:"AB",b:3,t:"mc",q:"A client with long-standing COPD has pH 7.37, PaCO2 55 mm Hg, HCO3 36 mEq/L. What is the interpretation?",
+o:["Compensated respiratory acidosis","Compensated metabolic alkalosis","Uncompensated respiratory acidosis","Normal ABG"],a:[0],
+h:"Acid-Base guide, Section 3 ('Fully compensated? Use 7.40 as the tiebreaker'); LaCharity COPD case study, project file 5.pdf",
+w:"pH is normal but on the acidic side of 7.40, so the primary problem is acidosis. High PaCO2 explains it (respiratory). High HCO3 is the kidneys fully compensating. Normal pH with two abnormal values = fully compensated.",
+s:"COPD lungs trap CO2 all the time. Over weeks the kidneys save extra base to balance it, so the pH looks normal even though both other numbers are off."},
+{id:"ab6",ch:"AB",b:3,t:"mc",q:"A post-op client on a morphine PCA has RR 8 and is difficult to arouse. What is the imbalance and the best first action?",
+o:["Respiratory alkalosis; coach slow breathing","Respiratory acidosis; stop the PCA, stimulate the client, and give naloxone as ordered","Metabolic acidosis; give sodium bicarbonate","Metabolic alkalosis; increase IV fluids"],a:[1],
+h:"Acid-Base guide, Section 4 (Respiratory acidosis, nursing: opioid-induced)",
+w:"Opioid-induced hypoventilation retains CO2. Remove the cause, protect the airway, and reverse the opioid.",
+s:"Too much pain medicine makes breathing slow, so CO2 (acid) builds up. Stop the medicine and wake them up."},
+{id:"ab7",ch:"AB",b:1,t:"mc",q:"What is the purpose of Kussmaul respirations?",
+o:["To compensate for metabolic acidosis by blowing off CO2","To cause respiratory acidosis","To relieve anxiety","To compensate for metabolic alkalosis by retaining CO2"],a:[0],
+h:"Acid-Base guide, Section 6 (Metabolic acidosis, WHY and RED FLAG)",
+w:"Deep, rapid, involuntary breathing lowers CO2 to push pH back toward normal.",
+s:"When the body has too much acid, the lungs breathe big and fast to blow some out, like opening windows in a smoky room."},
+{id:"ab8",ch:"AB",b:3,t:"mc",q:"A client's pH is 7.22. Which electrolyte change should the nurse anticipate?",
+o:["Hypokalemia","Hyperkalemia","Hypernatremia","Hypercalcemia"],a:[1],
+h:"Acid-Base guide, Section 8 (Potassium-hydrogen shift)",
+w:"In acidosis, H+ moves into cells and K+ moves out, raising serum potassium. Correcting the acidosis (for example with insulin in DKA) drives K+ back into cells, so potassium can drop fast.",
+s:"Cells are like a club with limited spots. When too much acid pushes in, potassium gets kicked out into the blood."},
+{id:"ab9",ch:"AB",b:2,t:"sata",q:"Which conditions put a client at risk for metabolic acidosis? Select all that apply.",
+o:["Diabetic ketoacidosis","Severe diarrhea","Kidney failure","Prolonged vomiting","Seizure with lactic acid buildup","Overuse of antacids"],a:[0,1,2,4],
+h:"Acid-Base guide, Sections 6 and 7 (causes); LaCharity project file 2.pdf, Q30-31",
+w:"Diarrhea loses bicarbonate from the gut. Vomiting and antacid overuse cause metabolic alkalosis.",
+s:"Diarrhea dumps base out the bottom. Vomiting dumps acid out the top. Top = alkalosis, bottom = acidosis."},
+{id:"ab10",ch:"AB",b:3,t:"mc",q:"A ventilated client has pH 7.31 and PaCO2 50 mm Hg with the rate set at 10. Which change would correct this?",
+o:["Increase the ventilator rate","Decrease the ventilator rate","Increase the oxygen concentration","Give sodium bicarbonate"],a:[0],
+h:"Acid-Base guide, Section 4; LaCharity project file 2.pdf, Q19",
+w:"More breaths per minute remove more CO2. Raising FiO2 improves oxygenation but doesn't clear CO2.",
+s:"More breaths blow out more CO2. Oxygen doesn't take CO2 away."},
+
+/* ---------- HURST: FLUID AND ELECTROLYTES ---------- */
+{id:"fe1",ch:"FE",b:2,t:"mc",q:"A client's potassium is 6.8 mEq/L. Which ECG change should the nurse expect?",
+o:["Prominent U waves","Tall, peaked T waves","ST depression with flat T waves","Prolonged QT from low calcium"],a:[1],
+h:"F&E guide, Section 5 (Hyperkalemia ECG)",
+w:"Peaked T waves are the classic hyperkalemia change. U waves and flat T waves point to hypokalemia.",
+s:"Too much potassium makes the T wave stand up tall like a tent. It's dangerous for the heartbeat."},
+{id:"fe2",ch:"FE",b:3,t:"mc",q:"A client with K 6.8 mEq/L and peaked T waves has these orders. Which should the nurse give first?",
+o:["Sodium polystyrene sulfonate orally","Recheck potassium in 2 hours","IV calcium gluconate","Regular insulin with dextrose IV"],a:[2],
+h:"F&E guide, Section 5 ('Treating hyperkalemia: protect, shift, remove')",
+w:"With ECG changes, calcium gluconate protects the heart right away, though it doesn't lower potassium. Insulin with dextrose shifts K+ into cells; sodium polystyrene removes it slowly through the GI tract.",
+s:"Calcium is a shield for the heart. Insulin pushes potassium back into the cells. The powder medicine takes it out the slow way, through poop."},
+{id:"fe3",ch:"FE",b:2,t:"sata",q:"Which actions are correct when giving IV potassium chloride? Select all that apply.",
+o:["Give by IV push for faster correction","Always dilute it and use an infusion pump","Confirm adequate urine output before giving it","Stop and assess if the client reports burning at the site","Give it IM if IV access is lost"],a:[1,2,3],
+h:"F&E guide, Section 5 (IV potassium safety)",
+w:"IV push potassium can cause fatal dysrhythmias. Kidneys must be working to excrete excess. Potassium is never given IM or subcut.",
+s:"Never push potassium straight in; it can stop the heart. Drip it slowly and make sure the kidneys can get rid of extra."},
+{id:"fe4",ch:"FE",b:2,t:"mc",q:"A client taking furosemide reports leg cramps and weakness, and the ECG shows U waves. Which imbalance is most likely?",
+o:["Hyperkalemia","Hypokalemia","Hypercalcemia","Hypernatremia"],a:[1],
+h:"F&E guide, Section 5 (Hypokalemia); LaCharity project file 2.pdf, Q9",
+w:"Loop diuretics waste potassium. Spironolactone is the potassium-sparing one that can cause hyperkalemia.",
+s:"Furosemide is a water pill that flushes out potassium too. Low potassium makes muscles weak and crampy."},
+{id:"fe5",ch:"FE",b:3,t:"mc",q:"After a head injury, a client puts out 3 L of very dilute urine in 8 hours. Serum sodium is 152 mEq/L. Which condition is most likely?",
+o:["SIADH","Diabetes insipidus","Fluid volume excess","Hyponatremia"],a:[1],
+h:"F&E guide, Section 4 (Hypernatremia causes); Oncology guide, SIADH 'EXAM LINK' (DI comparison)",
+w:"DI = not enough ADH: huge dilute output, high sodium, dehydration. SIADH is the opposite: water retained, concentrated urine, low sodium.",
+s:"DI means the body forgets how to hold water, so it pees tons of watery urine and the blood gets too salty. SIADH is the opposite: it holds too much water."},
+{id:"fe6",ch:"FE",b:2,t:"mc",q:"A client with SIADH has sodium 118 mEq/L and new confusion. What is the priority?",
+o:["Encourage oral fluids","Seizure precautions and fluid restriction as ordered","Start D5W","Ambulate every 2 hours"],a:[1],
+h:"F&E guide, Section 4 (Hyponatremia); LaCharity project file 2.pdf, Q11",
+w:"Severe hyponatremia causes cerebral edema and seizures. Treatment removes water, not adds it; D5W would make it worse.",
+s:"Too much water dilutes the salt in the blood, and the brain swells. That can cause seizures, so protect the head and cut back on water."},
+{id:"fe7",ch:"FE",b:2,t:"mc",q:"After a thyroidectomy, a client reports tingling around the mouth, and the face twitches when the cheek is tapped. Which imbalance?",
+o:["Hyperkalemia","Hypocalcemia","Hypermagnesemia","Hyponatremia"],a:[1],
+h:"F&E guide, Section 6 (Hypocalcemia)",
+w:"The parathyroid glands can be injured during thyroid surgery. Check calcium, have IV calcium gluconate available, and watch the airway for laryngospasm.",
+s:"Low calcium makes nerves jumpy, so muscles twitch. The glands that control calcium sit right next to the thyroid and can get bumped in surgery."},
+{id:"fe8",ch:"FE",b:3,t:"mc",q:"A client on a magnesium sulfate infusion has RR 10 and absent patellar reflexes. What is the first action?",
+o:["Stop the infusion","Give calcium gluconate","Increase the rate","Recheck in 1 hour"],a:[0],
+h:"F&E guide, Section 7 (Magnesium, nursing)",
+w:"Remove the source first, then give the antidote (calcium gluconate) as ordered.",
+s:"Magnesium is a 'chill-out' mineral. Too much makes reflexes and breathing too slow. Turn it off first."},
+{id:"fe9",ch:"FE",b:2,t:"sata",q:"Which findings indicate fluid volume excess? Select all that apply.",
+o:["Bounding pulse","Crackles in the lungs","Distended neck veins","Weight gain","Flat neck veins","Increased urine specific gravity"],a:[0,1,2,3],
+h:"F&E guide, Section 3 (Fluid volume excess)",
+w:"Flat neck veins and concentrated urine (high specific gravity) point to fluid volume deficit.",
+s:"Too much fluid means the pipes are overfilled: pounding pulse, wet lungs, puffy neck veins, weight going up."},
+{id:"fe10",ch:"FE",b:2,t:"mc",q:"A client with heart failure gained 2 kg overnight. About how much fluid has been retained?",
+o:["200 mL","500 mL","1 L","2 L"],a:[3],
+h:"F&E guide, Section 3 (FVE nursing: daily weights)",
+w:"1 kg of weight gain is about 1 L of fluid. Daily weight is the most reliable indicator of fluid status.",
+s:"1 kg on the scale is about 1 liter of water, like a big soda bottle."},
+{id:"fe11",ch:"FE",b:3,t:"mc",q:"Which IV fluid best expands intravascular volume in a dehydrated client in hypovolemic shock?",
+o:["0.9% normal saline","D5W","0.45% saline","3% saline"],a:[0],
+h:"F&E guide, Section 2 (IV fluids, D5W 'WHY'); LaCharity project file 2.pdf, Q28",
+w:"Isotonic fluid stays in the vessels. D5W becomes hypotonic once the dextrose is metabolized, and 0.45% shifts water into cells. 3% saline is hypertonic and reserved for severe hyponatremia.",
+s:"Normal saline matches your blood, so it stays in the tubes where you need it."},
+{id:"fe12",ch:"FE",b:2,t:"sata",q:"Which findings indicate fluid volume deficit? Select all that apply.",
+o:["Tachycardia with a weak, thready pulse","Orthostatic hypotension","Concentrated urine","Increased hematocrit and BUN","Crackles in the lungs"],a:[0,1,2,3],
+h:"F&E guide, Section 3 (Fluid volume deficit)",
+w:"Hematocrit and BUN rise from hemoconcentration. Crackles indicate excess, not deficit.",
+s:"Not enough fluid: the heart races with weak beats, you get dizzy standing up, your pee is dark, and your blood gets thick."},
+
+/* ---------- HURST: ONCOLOGY ---------- */
+{id:"on1",ch:"ON",b:2,t:"mc",q:"A neutropenic client receiving chemotherapy has a temperature of 100.6 °F (38.1 °C) and feels fine otherwise. What should the nurse do?",
+o:["Recheck in 4 hours","Give acetaminophen and reassess tomorrow","Report immediately and anticipate cultures and IV antibiotics","Encourage oral fluids only"],a:[2],
+h:"Oncology guide, Section 5 (Neutropenia, RED FLAG); Iggy guide 3.9 (Critical Rescue, Iggy p. 394)",
+w:"Without neutrophils there's no redness, swelling, or pus, so fever may be the only sign of infection. Iggy: any temperature above 100.4 °F (38 °C) is reported immediately and starts the infection protocol, with blood cultures drawn before antibiotics.",
+s:"With almost no germ-fighting cells, a fever might be the only warning of a serious infection. Call right away."},
+{id:"on2",ch:"ON",b:2,t:"sata",q:"Which are appropriate neutropenic precautions? Select all that apply.",
+o:["Strict hand hygiene","Follow facility policy on fresh flowers and potted plants","Take temperatures rectally for accuracy","Private room","Avoid raw or undercooked foods","Allow visitors with mild colds if they wear masks"],a:[0,1,3,4],
+h:"Oncology guide, Section 5 (Neutropenia, nursing); Iggy guide 3.9 (Iggy Boxes 18.7 and 18.8)",
+w:"Rectal temps can injure the mucosa and introduce bacteria. Sick visitors should stay away. Iggy phrases the flower rule as 'follow policy'; many facilities ban them outright.",
+s:"Keep germs away: clean hands, no plants (dirt has germs), no raw food, no pokes in the bottom, no sick visitors."},
+{id:"on3",ch:"ON",b:2,t:"sata",q:"Which are appropriate bleeding precautions for thrombocytopenia? Select all that apply.",
+o:["Soft toothbrush","Electric razor","Avoid IM injections","Aspirin for pain","Apply pressure for at least 5 minutes after needle sticks","Straight-edge razor"],a:[0,1,2,4],
+h:"Oncology guide, Section 5 (Thrombocytopenia); Iggy guide 3.9 (Iggy Boxes 18.9 and 18.10)",
+w:"Aspirin and NSAIDs impair platelet function.",
+s:"Low platelets means the blood's band-aids are missing. Avoid anything that makes you bleed."},
+{id:"on4",ch:"ON",b:3,t:"mc",q:"After induction chemotherapy for leukemia, which lab pattern suggests tumor lysis syndrome?",
+o:["High potassium, high phosphorus, low calcium, high uric acid","Low potassium, low phosphorus, high calcium","High sodium and high glucose","Low uric acid and high calcium"],a:[0],
+h:"Oncology guide, Section 6 (Tumor lysis syndrome); Iggy guide 3.11 (tumor lysis syndrome, Iggy p. 403)",
+w:"Rapid cell death spills intracellular contents. Uric acid and phosphate can cause acute kidney injury; hyperkalemia can cause dysrhythmias. Prevention: aggressive hydration and allopurinol.",
+s:"Chemo pops a ton of cancer cells at once, spilling their insides (potassium, phosphorus, uric acid) into the blood. That can clog the kidneys."},
+{id:"on5",ch:"ON",b:3,t:"mc",q:"A client receiving induction chemotherapy has these findings. Which requires the most rapid action?",
+o:["Mouth sores","Bruises on the chest","Potassium 7.1 mEq/L","Fatigue"],a:[2],
+h:"Oncology guide, Section 6 (TLS); F&E guide, Section 5; LaCharity project file 2.pdf, Q30",
+w:"Severe hyperkalemia threatens a fatal dysrhythmia. The others need attention but aren't immediately life-threatening.",
+s:"Potassium that high can stop the heart. The heart beats bruises."},
+{id:"on6",ch:"ON",b:3,t:"mc",q:"A client with lung cancer has facial swelling and distended neck veins that are worse lying down. Which finding would be most ominous?",
+o:["Periorbital edema","Tight shirt collar","Stridor","Dry cough"],a:[2],
+h:"Oncology guide, Section 6 (SVC syndrome); LaCharity SVC cloze, project file 1.pdf, Q41; Iggy guide 3.11 (SVC syndrome, Iggy p. 402)",
+w:"SVC syndrome is compression of the superior vena cava. Stridor signals airway compromise, a late and ominous sign.",
+s:"A tumor squeezes the big vein bringing blood back from the head, so the face swells. Noisy breathing means the airway is getting squeezed too. Emergency."},
+{id:"on7",ch:"ON",b:2,t:"mc",q:"What is usually the earliest sign of spinal cord compression from a tumor?",
+o:["Back pain","Urinary retention","Leg paralysis","Loss of sensation"],a:[0],
+h:"Oncology guide, Section 6 (Spinal cord compression); Iggy guide 3.11 (spinal cord compression)",
+w:"Back pain comes first. Weakness, sensory loss, and bowel or bladder changes are later signs.",
+s:"A tumor pressing on the spine shows up first as back pain. If you wait for weakness, you've waited too long."},
+{id:"on8",ch:"ON",b:2,t:"sata",q:"Which instructions are correct for skin care during external radiation? Select all that apply.",
+o:["Wash with lukewarm water and mild soap, and pat dry","Leave treatment markings in place","Apply scented lotion before treatment","Avoid sun on the treated area","Use a heating pad for comfort","Wear loose cotton clothing"],a:[0,1,3,5],
+h:"Oncology guide, Section 4 (Radiation, external beam); Iggy guide 3.8 (Iggy Box 18.5)",
+w:"No lotions or powders unless prescribed, and no heat. The markings guide treatment.",
+s:"Treat the zapped skin like a bad sunburn: gentle washing, no heat, no sun, no smelly lotions, and don't scrub off the marker lines."},
+{id:"on9",ch:"ON",b:3,t:"mc",q:"A sealed radioactive implant has fallen out onto the client's bed. What should the nurse do?",
+o:["Pick it up with gloved hands and reinsert it","Use long-handled forceps to place it in the lead container and notify radiation oncology","Put it in the sharps container","Leave it for the next shift"],a:[1],
+h:"Oncology guide, Section 4 (Radiation, internal); Iggy guide 3.8 (Iggy Box 18.3)",
+w:"Never touch the source directly. Time, distance, and shielding protect staff.",
+s:"It's like a tiny hot coal of radiation. Don't touch it; use long tongs and put it in the lead box."},
+{id:"on10",ch:"ON",b:3,t:"mc",q:"During a vesicant chemotherapy infusion, the client reports burning and swelling at the IV site. What is the first action?",
+o:["Stop the infusion","Flush the line with saline","Apply a warm compress and continue","Remove the catheter immediately"],a:[0],
+h:"Oncology guide, Section 4 (Safe handling and extravasation); Iggy guide 3.9 (safe handling, Iggy Box 18.6)",
+w:"Stop first. Leave the catheter in and try to aspirate residual drug, notify the provider, give any antidote, and apply a cold or warm compress depending on the drug (most cold; vinca alkaloids warm). Flushing pushes more drug into tissue.",
+s:"The medicine is leaking out of the vein and burning the skin. Turn it off first."},
+
+/* ---------- HURST: BURNS ---------- */
+{id:"bu1",ch:"BU",b:2,t:"mc",q:"Using the rule of nines, what TBSA is burned if an adult has burns to the entire right arm and entire anterior trunk?",
+o:["18%","27%","36%","45%"],a:[1],
+h:"Burns guide, Section 2 (Estimating TBSA); Iggy guide 1.2 (rule of nines)",
+w:"Arm 9% + anterior trunk 18% = 27%. Adult reference: head 9, each arm 9, anterior trunk 18, posterior trunk 18, each leg 18, perineum 1.",
+s:"The body is split into 9% chunks. One arm is 9. The front of the chest and belly is 18. Add them: 27."},
+{id:"bu2",ch:"BU",b:3,t:"mc",q:"An 80-kg client with 25% TBSA burns arrives 2 hours after the injury. Using the Parkland formula, what rate is needed for the rest of the first 8 hours?",
+o:["500 mL/hr","667 mL/hr","333 mL/hr","1,000 mL/hr"],a:[1],
+h:"Burns guide, Section 5 (Parkland formula, late-arrival note); Iggy guide 1.10B (Parkland, Iggy Box 21.16)",
+w:"4 mL × 80 kg × 25 = 8,000 mL in 24 hours. Half (4,000 mL) goes in the first 8 hours from the time of the burn, not arrival. With 2 hours gone, 4,000 ÷ 6 ≈ 667 mL/hr.",
+s:"The recipe is 4 × weight × burn %. Half goes in during the first 8 hours after the burn happened. If you start late, you squeeze it into less time."},
+{id:"bu3",ch:"BU",b:2,t:"mc",q:"Which finding best shows that fluid resuscitation is adequate?",
+o:["Urine output of at least 0.5 mL/kg/hr","Blood pressure 150/90","Clear lung sounds","Absence of thirst"],a:[0],
+h:"Burns guide, Section 5 ('Is resuscitation working?'); Iggy guide 1.10B (urine output goal, Iggy p. 480)",
+w:"Urine output reflects kidney perfusion, the best bedside measure of adequate resuscitation.",
+s:"Pee tells you if the kidneys are getting enough fluid. The kidneys are the fuel gauge."},
+{id:"bu4",ch:"BU",b:3,t:"mc",q:"A house fire victim has singed nasal hair, a hoarse voice, soot in the sputum, and facial burns. What is the priority?",
+o:["Calculate TBSA","Start fluid resuscitation","Assess the airway and prepare for early intubation","Apply silver sulfadiazine"],a:[2],
+h:"Burns guide, Section 4 (Inhalation injury); Iggy guide 1.8 (Critical Rescue, Iggy p. 474; Box 21.13)",
+w:"Inhalation injury causes rapid airway edema. Airway before circulation.",
+s:"Hot smoke burns the inside of the throat. It swells fast and can close off breathing. Airway first."},
+{id:"bu5",ch:"BU",b:3,t:"mc",q:"After an enclosed-space fire, a client's pulse oximetry reads 98%. Which statement is most accurate?",
+o:["Oxygenation is adequate","The reading may be falsely normal; give 100% oxygen and check carboxyhemoglobin","Room air is sufficient","Lower the oxygen to prevent toxicity"],a:[1],
+h:"Burns guide, Section 4 (Carbon monoxide poisoning); Iggy guide 1.8 (carbon monoxide, Iggy Table 21.10)",
+w:"Pulse oximetry can't tell carboxyhemoglobin from oxyhemoglobin.",
+s:"Carbon monoxide sticks to blood like it's oxygen and fools the finger clip. Give lots of oxygen."},
+{id:"bu6",ch:"BU",b:3,t:"mc",q:"Which lab pattern is expected in the emergent phase (first 24 to 48 hours) of a major burn?",
+o:["Hyperkalemia, hyponatremia, increased hematocrit","Hypokalemia, hypernatremia, decreased hematocrit","Normal labs","Hypercalcemia and hyperglycemia only"],a:[0],
+h:"Burns guide, Section 4 (Burn shock) and Quick Reference table; Iggy guide 1.5 (fluid shift table) and 1.8 (Iggy Table 21.11)",
+w:"Damaged cells release potassium, sodium shifts into the interstitial space, and plasma loss concentrates the blood. In the later fluid remobilization phase, expect diuresis and hypokalemia.",
+s:"Burned cells burst and spill potassium. Fluid leaks out of the blood vessels, so the blood gets thick."},
+{id:"bu7",ch:"BU",b:2,t:"mc",q:"A burn is dry, leathery, white, and painless. What depth is it?",
+o:["Superficial","Superficial partial thickness","Deep partial thickness","Full thickness"],a:[3],
+h:"Burns guide, Section 1 (Burn depth); Iggy guide 1.3 (Iggy Table 21.8)",
+w:"Nerve endings are destroyed in full-thickness burns. Partial-thickness burns blister and are very painful.",
+s:"If the nerves are burned away, it doesn't hurt. Painless and leathery means the deepest burn."},
+{id:"bu8",ch:"BU",b:3,t:"mc",q:"A client has a circumferential full-thickness burn of the arm. The fingers are cool and the radial pulse is weak. What should the nurse anticipate?",
+o:["Keep the arm below heart level","Escharotomy","Apply ice","Wrap the dressing tighter"],a:[1],
+h:"Burns guide, Section 4 (Circumferential burns and escharotomy); Iggy guide 1.10B (escharotomy and fasciotomy)",
+w:"Inelastic eschar plus edema cuts off circulation. Escharotomy relieves the pressure; neurovascular checks are essential.",
+s:"The burned skin gets stiff like a tight rubber band and squeezes the arm. They cut it to let blood flow."},
+{id:"bu9",ch:"BU",b:2,t:"mc",q:"A client has an electrical burn with small entry and exit wounds. What is the priority?",
+o:["Cardiac monitoring","Discharge, since the wounds are small","Dressing only","Encourage oral fluids"],a:[0],
+h:"Burns guide, Section 5 (Electrical burns); Iggy guide 1.6 (electrical, Iggy Box 21.12)",
+w:"Current travels internally and can cause dysrhythmias and muscle damage (myoglobin can injure the kidneys). Surface wounds underestimate the damage.",
+s:"Electricity travels through the inside of the body. Small outside wounds can hide big inside damage, especially to the heart."},
+{id:"bu10",ch:"BU",b:2,t:"mc",q:"Which route is best for pain medication in the emergent phase of a major burn?",
+o:["IM morphine","IV opioids","Oral oxycodone","Topical lidocaine only"],a:[1],
+h:"Burns guide, Section 6 (Pain, GI, nutrition and temperature); Iggy guide 1.10D (Drug Alert, Iggy p. 482)",
+w:"Poor tissue and GI perfusion make IM and oral absorption unreliable. Premedicate before dressing changes.",
+s:"In a big burn, blood flow to the muscles and gut is poor, so shots and pills don't absorb well. IV goes straight in."},
+{id:"bu11",ch:"BU",b:1,t:"mc",q:"Which diet best supports burn wound healing?",
+o:["Low protein","High calorie, high protein","Clear liquids for a week","Low calorie"],a:[1],
+h:"Burns guide, Section 6 (Pain, GI, nutrition and temperature); Iggy guide 1.5 (metabolic)",
+w:"Burns create a hypermetabolic state that needs extra calories and protein.",
+s:"Healing a burn is like rebuilding a house. You need tons of building material (protein) and energy (calories)."},
+{id:"bu12",ch:"BU",b:2,t:"sata",q:"Which are correct first aid steps at the scene of a burn? Select all that apply.",
+o:["Stop the burning process","Cool with cool running water","Apply ice","Remove jewelry","Cover with a clean, dry cloth","Apply butter"],a:[0,1,3,4],
+h:"Burns guide, Section 4 (On-scene and emergency care); Iggy guide 1.6 (Iggy Box 21.12)",
+w:"Iggy: cool with cool (not cold) water for at least 5 minutes and don't let the client shiver. Ice deepens tissue injury and causes hypothermia. Remove jewelry before swelling traps it.",
+s:"Stop the burning, cool it (not ice), take off rings before swelling, cover it clean. No butter."},
+{id:"bu13",ch:"BU",b:3,t:"mc",q:"A client with 30% TBSA burns develops metabolic acidosis. What is the first-line treatment?",
+o:["Sodium bicarbonate","IV fluid resuscitation","High-flow oxygen alone","Antibiotics"],a:[1],
+h:"Acid-Base guide, Section 6 (nursing); Burns guide, Section 4; LaCharity burns cloze, project file 4.pdf, Q33; Iggy guide 1.5 and 1.8 (metabolic acidosis in the fluid shift)",
+w:"The acid comes from poor tissue perfusion as fluid leaks out of the vessels. Restoring perfusion with fluids is first line; bicarbonate is usually reserved for pH below 7.0.",
+s:"The acid comes from tissues not getting enough blood. Fix the blood flow with fluids and the acid goes down."},
+
+
+/* ---------- GUIDE-ALIGNED ADDITIONS ---------- */
+{id:"ab11",ch:"AB",b:3,t:"mc",q:"ABG: pH 7.43, PaCO2 30 mm Hg, HCO3 19 mEq/L. What is the interpretation?",
+o:["Fully compensated metabolic acidosis","Fully compensated respiratory alkalosis","Partially compensated respiratory alkalosis","Normal ABG"],a:[1],
+h:"Acid-Base guide, Section 3 ('Fully compensated? Use 7.40 as the tiebreaker')",
+w:"pH is normal but above 7.40, so the original problem was an alkalosis. Low CO2 (base) matches that direction, so it's respiratory. Low HCO3 is the kidneys compensating, and pH is back in range, so it's fully compensated.",
+s:"The pH looks normal, but it leans to the basic side of 7.40. The number that leans the same way (low CO2) started the problem."},
+{id:"ab12",ch:"AB",b:3,t:"mc",q:"During a cardiac arrest, ABG: pH 7.12, PaCO2 60 mm Hg, HCO3 16 mEq/L. What is the interpretation?",
+o:["Partially compensated respiratory acidosis","Partially compensated metabolic acidosis","Combined respiratory and metabolic acidosis","Fully compensated respiratory acidosis"],a:[2],
+h:"Acid-Base guide, Section 3 ('Mixed (combined) disorders')",
+w:"Both CO2 (high) and HCO3 (low) point toward acid, so nothing is compensating: no breathing plus lactic acid from no perfusion. Mixed disorders cause the most extreme pH swings.",
+s:"Two problems at once, both making acid. Nobody is on the other side of the seesaw, so the pH drops a lot."},
+{id:"ab13",ch:"AB",b:4,t:"mc",q:"A post-op client is breathing rapidly, reports tingling lips, and says she feels anxious. ABG shows respiratory alkalosis. What should the nurse do first?",
+o:["Have her breathe into a paper bag","Give the PRN anxiolytic","Check SpO2 and assess for hypoxia, such as a pulmonary embolism","Reassure her it's a panic attack"],a:[2],
+h:"Acid-Base guide, Section 5 (Respiratory alkalosis, RED FLAG)",
+w:"Early hypoxia (PE, pneumonia) causes hyperventilation too, and a post-op client is at risk for PE. Rule out hypoxia before attributing it to anxiety.",
+s:"Fast breathing can mean the body is starving for oxygen, not just nerves. Check oxygen first."},
+{id:"fe13",ch:"FE",b:3,t:"mc",q:"A client with a traumatic brain injury has 0.45% NaCl infusing. What is the best action?",
+o:["Continue; hypotonic fluid protects the brain","Clarify the order, since hypotonic fluid shifts water into brain cells and can worsen cerebral edema","Increase the rate to prevent dehydration","Switch to D5W"],a:[1],
+h:"F&E guide, Section 2 (IV fluids, WHY and nursing)",
+w:"Hypotonic fluids, and D5W once the dextrose is used up, move water into cells. In increased ICP that worsens brain swelling.",
+s:"Watery fluid sneaks into cells and makes them swell. A hurt brain can't afford to swell."},
+{id:"fe14",ch:"FE",b:4,t:"mc",q:"A client with pancreatitis has generalized edema, HR 118, BP 88/56, and low urine output. Which explanation is most accurate?",
+o:["Fluid volume excess; give a diuretic","Third spacing: fluid is trapped outside the vessels, so the client is edematous and hypovolemic at the same time","Normal response to pain","Hypernatremia"],a:[1],
+h:"F&E guide, Section 3 (Third spacing)",
+w:"The edema is fluid in the wrong place. Vitals and urine output show the vessels are low. Treat the hypovolemia, and watch for overload later when fluid shifts back.",
+s:"The water is in the body but locked out of the blood vessels, like money in an account you can't touch."},
+{id:"fe15",ch:"FE",b:3,t:"mc",q:"A stable client with normal kidney function and no ECG changes has a potassium of 6.4 mEq/L. The lab notes the sample was hemolyzed. What is the best first action?",
+o:["Give IV calcium gluconate","Request a redraw","Give sodium polystyrene sulfonate","Start insulin and dextrose"],a:[1],
+h:"F&E guide, Section 5 (Hyperkalemia, 'Watch for false highs')",
+w:"Broken red cells in the tube release potassium and falsely raise the result. When the value doesn't fit the picture, confirm it before treating.",
+s:"If the blood cells broke in the tube, they spill potassium and the number looks fake-high. Check again."},
+{id:"fe16",ch:"FE",b:3,t:"mc",q:"A client with bone metastases has calcium 13.2 mg/dL and is confused and constipated. Which order should the nurse carry out first?",
+o:["Hydrochlorothiazide","IV normal saline","Furosemide","Calcium-rich diet teaching"],a:[1],
+h:"Oncology guide, Section 6 (Hypercalcemia of malignancy); F&E guide, Section 6; Iggy guide 3.11 (hypercalcemia)",
+w:"Rehydrate with NS first: these clients are dehydrated from polyuria, and saline dilutes calcium and helps the kidneys excrete it. The loop diuretic comes after hydration. Thiazides retain calcium, so they're contraindicated.",
+s:"Fill the tank first, then flush. A water pill on a dry client makes the calcium even more concentrated."},
+{id:"on11",ch:"ON",b:2,t:"mc",q:"A client's WBC is 3,200/mm³ with 30% neutrophils and 5% bands. What is the ANC, and what does it mean?",
+o:["1,120; neutropenic","960; severe neutropenia","3,200; normal","1,600; normal"],a:[0],
+h:"Oncology guide, Section 5 (Neutropenia, ANC formula)",
+w:"ANC = WBC × (% neutrophils + % bands) ÷ 100 = 3,200 × 35 ÷ 100 = 1,120. Under 1,500 is neutropenia; under 500 is severe.",
+s:"Count only the germ-fighting soldiers: 35% of 3,200 is 1,120. Under 1,500 means not enough soldiers."},
+{id:"on12",ch:"ON",b:2,t:"mc",q:"When is a client at highest risk for infection after a chemotherapy cycle?",
+o:["During the infusion","About 7 to 10 days after treatment","The day after treatment","After 6 weeks"],a:[1],
+h:"Oncology guide, Section 5 (Bone marrow suppression and the nadir); Iggy guide 3.9 (nadir)",
+w:"That's the nadir, the lowest point of blood counts. Iggy says usually 7 to 10 days; your What & Why guide says 7 to 14. Neutrophils drop first, then platelets, then red cells.",
+s:"Chemo shuts down the blood factory, but the store shelves take a week or two to empty. That's the dangerous time."},
+{id:"on13",ch:"ON",b:1,t:"sata",q:"Classify correctly: which are examples of primary prevention of cancer? Select all that apply.",
+o:["HPV vaccine","Smoking cessation program","Colonoscopy at 45","Physical therapy after mastectomy","Daily sunscreen"],a:[0,1,4],
+h:"Oncology guide, Section 3 (Levels of prevention); Iggy guide 3.5 (primary and secondary prevention)",
+w:"Primary stops cancer before it starts. Colonoscopy looks for it (secondary). PT after mastectomy limits disability after treatment (tertiary).",
+s:"Primary = stop it before it starts. Secondary = find it early. Tertiary = help after."},
+{id:"on14",ch:"ON",b:3,t:"mc",q:"A client is receiving unsealed radioactive iodine. Which statement about precautions is correct?",
+o:["The client's body fluids are radioactive for a period, so handle them per radiation precautions","The client isn't radioactive, so no precautions are needed","Only the implant site is radioactive","Pregnant staff can care for the client if they wear gloves"],a:[0],
+h:"Oncology guide, Section 4 (Radiation, internal); Iggy guide 3.8 (radiation delivery table)",
+w:"Unsealed sources circulate and are excreted, so fluids carry radiation. With a sealed implant, the client emits radiation but fluids aren't radioactive. External beam makes no one radioactive.",
+s:"Swallowed radiation goes all through the body and comes out in pee and sweat, so those are handled carefully."},
+{id:"on15",ch:"ON",b:3,t:"mc",q:"A client with lung cancer has facial swelling, distended neck veins, and a tight collar. Which action is appropriate?",
+o:["Place the client flat","Start an IV in the right arm","Place in high Fowler's and avoid IVs and BP measurements in the arms","Apply warm compresses to the face"],a:[2],
+h:"Oncology guide, Section 6 (SVC syndrome, nursing)",
+w:"Upright positioning helps drainage and breathing. Venous return from the arms is blocked, so arm IVs deliver drugs slowly and raise clot and edema risk.",
+s:"The drain from the head and arms is squeezed. Sit up so gravity helps, and don't put anything into the arms."},
+{id:"bu14",ch:"BU",b:3,t:"mc",q:"A client with deep ear burns is treated with a topical agent and becomes tachypneic with a low HCO3. Which agent is most likely responsible?",
+o:["Silver sulfadiazine","Mafenide acetate","Silver nitrate","Silver-impregnated dressing"],a:[1],
+h:"Burns guide, Section 6 (Wound care and topical agents)",
+w:"Mafenide penetrates eschar and cartilage but inhibits carbonic anhydrase, causing metabolic acidosis; tachypnea is respiratory compensation. Silver sulfadiazine's concern is leukopenia; silver nitrate's is low sodium and potassium.",
+s:"This cream soaks deep but makes the blood a bit acidic, so the client breathes fast to fix it."},
+{id:"bu15",ch:"BU",b:2,t:"mc",q:"A client with neck burns asks for two pillows because it hurts less. What is the best response?",
+o:["Give the pillows for comfort","Use no pillow, or a small towel under the shoulders, to keep the neck extended","Give one pillow as a compromise","Keep the head flexed forward"],a:[1],
+h:"Burns guide, Section 7 (Contractures and scarring)",
+w:"The position of comfort is the position of contracture. Scar tissue shortens as it matures, so the neck is kept extended.",
+s:"New skin shrinks as it heals. If the neck stays bent, it can heal stuck that way."},
+{id:"bu16",ch:"BU",b:4,t:"mc",q:"On day 4 after a 35% TBSA burn, a client has a large increase in urine output, new crackles, and potassium 3.2 mEq/L. What explains all three?",
+o:["Acute kidney injury","Capillaries sealing, so fluid and potassium shift back into the vessels and cells","Sepsis","Too little IV fluid"],a:[1],
+h:"Burns guide, Section 6 (Fluid shift reverses) and Quick Reference table; Iggy guide 1.5 (fluid remobilization, 'Trap alert')",
+w:"The emergent phase runs in reverse: fluid returns to the vessels (diuresis, overload risk), and potassium moves back into cells and is lost in urine.",
+s:"The leaky pipes heal, and all the water that leaked out comes rushing back. Lots of pee, wet lungs, low potassium."},
+{id:"bu17",ch:"BU",b:2,t:"mc",q:"A worker has dry lime powder on the arms. What is the first action?",
+o:["Flood with water immediately","Brush off the dry chemical, then irrigate with large amounts of water","Neutralize with vinegar","Cover with a dry dressing"],a:[1],
+h:"Burns guide, Section 5 (Chemical burns); Iggy guide 1.6 (chemical, Iggy p. 481)",
+w:"Brush off dry chemical, remove clothing, identify the chemical, then irrigate with large amounts of water. Iggy: do not neutralize until the chemical is identified and the correct agent is available; guessing with vinegar can release heat and add a thermal burn.",
+s:"Sweep the powder off before adding water, then rinse a lot. Mixing in another chemical makes heat."},
+{id:"bu18",ch:"BU",b:2,t:"mc",q:"A client has a new split-thickness autograft on the leg. What is the priority?",
+o:["Early ambulation on the grafted leg","Immobilize and elevate the graft site and avoid shear or pressure","Take BP on the grafted leg","Remove the dressing daily to inspect"],a:[1],
+h:"Burns guide, Section 6 (Skin grafts); Iggy guide 1.10C (graft table)",
+w:"A graft has no blood supply at first. Movement, shear, or fluid underneath separates it from the wound bed before new capillaries grow in (about 3 to 5 days).",
+s:"Like new grass sod: don't walk on it until the roots grab."},
+
+
+/* ---------- IGGY-ALIGNED ADDITIONS ---------- */
+{id:"bu19",ch:"BU",b:3,t:"mc",q:"Two hours after a closed-space fire, a client's loud inspiratory wheezes have become quiet, and she is now drooling and using accessory muscles. What does this mean?",
+o:["The bronchodilator is working","The airway is closing; prepare for immediate intubation","Normal post-burn fatigue","She needs to cough and deep breathe"],a:[1],
+h:"Iggy guide 1.8 (Critical Rescue, Iggy p. 474); Burns guide, Section 4 (Inhalation injury)",
+w:"Wheezing that disappears in inhalation injury means too little air is moving to make sound. Drooling and accessory muscle use confirm obstruction. Waiting for hypoxia can make intubation impossible.",
+s:"Quiet isn't better here. The pipe is almost closed, so there's too little air to whistle."},
+{id:"bu20",ch:"BU",b:3,t:"mc",q:"During Parkland resuscitation, a burned client's BP is 98/60. A new nurse suggests a 1,000 mL bolus. What is the best response?",
+o:["Give the bolus to raise the BP","Avoid boluses; titrate the lactated Ringer's rate to hourly urine output","Switch to D5W","Stop the IV fluids"],a:[1],
+h:"Iggy guide 1.10B (Box 21.15 and p. 480)",
+w:"Iggy: fluid boluses are avoided because they raise capillary pressure and worsen edema. The Parkland rate is adjusted to urine output (goal 0.5 mL/kg/hr).",
+s:"The pipes are leaky. Blasting more water in at once just pushes more out into the swelling. Adjust the steady drip instead."},
+{id:"bu21",ch:"BU",b:2,t:"sata",q:"A client has 40% TBSA burns and is intubated. Which orders does the nurse expect? Select all that apply.",
+o:["Nasogastric tube","Proton pump inhibitor or H2 blocker","Early enteral feeding","IM morphine every 4 hours","Hourly urine output"],a:[0,1,2,4],
+h:"Iggy guide 1.5 (GI: Curling ulcer) and 1.8 (NG tube at 25% TBSA)",
+w:"Iggy: NG tube for burns of 25% TBSA or more or intubated clients (ileus, aspiration). Curling ulcer risk rises above 30% TBSA, so give acid suppression plus early enteral feeding. Opioids are IV only.",
+s:"Big burns make the gut stop moving and the stomach get ulcers. A tube drains the stomach, and medicine plus early food protect it."},
+{id:"on16",ch:"ON",b:3,t:"mc",q:"A neutropenic client's roommate asks whether she can catch something from him. What is the nurse's best answer?",
+o:["Yes; he's on airborne precautions","The neutropenic client isn't an infection risk to others; others are a risk to him","Only if you touch his IV","Yes, until his fever resolves"],a:[1],
+h:"Iggy guide 3.9 (Critical Rescue, Iggy p. 394)",
+w:"Iggy: the neutropenic patient is not an infection risk to others; others are a risk to the patient. That's why protective precautions exist, and why indwelling catheters are avoided (Box 18.7).",
+s:"He doesn't have extra germs; he has fewer germ-fighters. Visitors are the danger to him, not the other way around."},
+{id:"on17",ch:"ON",b:2,t:"sata",q:"Which instructions about oral chemotherapy are correct? Select all that apply.",
+o:["Never crush, split, or chew the tablets","A caregiver who handles the drug wears gloves","Oral chemo is less toxic than IV, so no special handling is needed","Don't flush unused tablets; return them to the pharmacy","Store it separately from other medications"],a:[0,1,3,4],
+h:"Iggy guide 3.9 (Drug Alert: oral chemotherapy, Iggy pp. 391-392)",
+w:"Iggy: oral anticancer drugs are just as toxic as IV chemo to the client and the handler. Only the client handles them, or a gloved caregiver.",
+s:"Chemo pills are just as strong as chemo in an IV. Treat them like something that can hurt whoever touches them."},
+{id:"on18",ch:"ON",b:2,t:"mc",q:"A client's platelet count is 18,000/mm³. Which statement is accurate?",
+o:["Bleeding occurs only with major trauma","The client is at risk for spontaneous bleeding; bleeding precautions are the priority","This is a normal post-chemo value","Encourage contact sports to maintain strength"],a:[1],
+h:"Iggy guide 3.9 (thrombocytopenia, Iggy Boxes 18.9 and 18.10)",
+w:"Iggy: under 50,000 small trauma causes prolonged bleeding; under 20,000 bleeding can be spontaneous and uncontrollable. Priority is a safe environment.",
+s:"Platelets are the body's band-aids. Under 20,000, you can bleed without even getting hurt."},
+
+/* ---------- SYNTHESIS ---------- */
+{id:"s1",ch:"X",b:4,t:"open",q:"You delegate fingerstick glucose checks to an AP. The AP gets 48 mg/dL and doesn't tell you for 40 minutes; the client seizes. Using the four elements of negligence and the five rights of delegation, evaluate your legal exposure and what you controlled.",
+h:"Ch 8, 'Civil Law (Cont.)' and 'Liability (Cont.)'; Ch 20, 'Five Rights' and 'High-Risk Delegation'",
+k:["Duty: you were the assigned RN, so a nurse-client relationship existed.","Breach depends on you: did you give report-back parameters (right direction), verify documented competency (right person), and supervise?","Harm occurred (seizure) and causation turns on the 40-minute delay.","You keep accountability for the outcome; the AP is responsible for her own performance. Employer vicarious liability doesn't remove your personal liability.","Afterward: reassess and treat, file an incident report without charting that you filed it, support disclosure, and look for root causes (training, workload) instead of blaming."]},
+{id:"s2",ch:"X",b:5,t:"open",q:"A Mandarin-speaking client needs surgery. His adult daughter wants to 'handle' the conversation and not tell him the diagnosis. Create a plan that respects culture and protects his legal rights.",
+h:"Ch 10, CLAS and 'Social Organization and Communication'; Ch 8, informed consent",
+k:["Use a qualified medical interpreter, not the daughter.","Ask the client himself how much he wants to know and who he wants involved in decisions (social organization).","Informed consent is the provider's duty; notify the provider and don't convey consent information yourself.","If the client chooses to defer to his daughter, that's his choice to make, not hers to impose.","Document the client's stated preferences and the interpreter used."]},
+{id:"s3",ch:"X",b:5,t:"open",q:"Design your first 90 days as a new graduate so you move through reality shock without landing in one of the inappropriate coping patterns. Name the pattern you're personally most at risk for.",
+h:"Ch 25, all phase and strategy slides; Ch 26, energy, resilience, and strategies",
+k:["Expect the shock phase and name the triggers you'll likely hit.","Pick the inappropriate pattern you're most prone to (native, loner, runaway, etc.) and a specific counter-move.","Use a preceptor, residency program, report sheets, and the policy manual; keep a list of skills needing practice.","Use the priority questions (deadlines, safety, consequences, legal issues, who else can do it).","Plan for physical, mental, spiritual, and emotional energy; line up a trusted colleague and support outside work."]},
+{id:"s4",ch:"X",b:5,t:"open",q:"Pick any question in this review. Identify its Bloom's level, its NCLEX Client Needs category, and the CJMM step it tests. Then rewrite it one Bloom's level higher.",
+h:"Ch 28, 'Questions Based on Bloom's', 'NGN-RN Test Plan', and 'CJMM'",
+k:["Remember/understand questions ask you to recall or explain a fact.","Apply questions put the fact into a client scenario.","Analyze questions make you separate similar options (Neuman vs Newman, recovery vs resolution).","Evaluate questions ask you to judge whether an action or statement is right.","Raising a level usually means adding a client, a competing explanation, or a decision with consequences."]},
+{id:"s5",ch:"X",b:4,t:"open",q:"Think of a client from clinical. Defend why one nursing theorist fits that client's care better than a second theorist you considered.",
+h:"Ch 5, theorist slides",
+k:["State the client's core problem (self-care gap, uncertainty, stressors, adaptation, meaning, culture).","Match it to the theory's central concept, not just the theorist's name.","Explain what the second theory would miss or overemphasize.","Link to one concrete intervention the chosen theory points you toward."]}
+];
+
+/* ---------- state ---------- */
+const LEGAL_IDS=new Set(["d3","d4","d5","d6","c3","c6","s1","s2"]);
+const KEY="nur206-trends-review-v1";
+let prog={};
+try{prog=JSON.parse(localStorage.getItem(KEY)||"{}")||{};}catch(e){prog={};}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(prog));}catch(e){}}
+
+let fCh="EXAM", fB=-1, list=[], idx=0, sel=new Set(), hintOn=false, checked=false;
+
+const $=s=>document.querySelector(s);
+const chSel=$("#chapter");
+chSel.innerHTML=`<option value="EXAM">Exam topics (Hurst + Ch 5, 8, 10, 25, 26, 28)</option><option value="HURST">Hurst topics only</option><option value="LEGAL">Legal focus (all chapters)</option><option value="all">Everything, including Ch 20</option>`+Object.keys(CH).map(k=>`<option value="${k}">${CH[k]}</option>`).join("");
+const ladder=$("#ladder");
+ladder.innerHTML=`<button data-b="-1" aria-pressed="true">All</button>`+BL.map((n,i)=>`<button data-b="${i}" aria-pressed="false">${n}</button>`).join("");
+
+function build(){
+  list=Q.filter(q=>(fCh==="all"||(fCh==="EXAM"?q.ch!=="20":fCh==="HURST"?["AB","FE","ON","BU"].includes(q.ch):fCh==="LEGAL"?(q.ch==="8"||LEGAL_IDS.has(q.id)):q.ch===fCh))&&(fB<0||q.b===fB)&&(!$("#missed").checked||(prog[q.id]&&prog[q.id].ok===false)));
+  if($("#shuffle").checked){for(let i=list.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[list[i],list[j]]=[list[j],list[i]];}}
+  idx=0; render();
+}
+function stats(){
+  const graded=Q.filter(q=>q.t!=="open"&&prog[q.id]&&typeof prog[q.id].ok==="boolean");
+  const right=graded.filter(q=>prog[q.id].ok).length;
+  const total=Q.filter(q=>q.t!=="open").length;
+  $("#stats").textContent=graded.length?`${right} of ${graded.length} correct (${total} graded items)`:`${Q.length} items`;
+}
+function ladderSVG(b){
+  let s="";for(let i=0;i<6;i++){s+=`<span class="${i<=b?"on":""}" style="height:${6+i*4}px"></span>`;}
+  return `<div class="bloom" aria-label="Bloom's level ${b+1} of 6, ${BL[b]}">${s}<span class="bloom-name" style="width:auto;background:none">${BL[b]}</span></div>`;
+}
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;");}
+function render(){
+  stats();
+  const stage=$("#stage");
+  $("#prev").disabled=idx<=0; $("#next").disabled=idx>=list.length-1;
+  if(!list.length){
+    stage.innerHTML=`<div class="card empty">${$("#missed").checked?"No missed questions in this filter. Turn off 'Missed only' or change the chapter or level.":"No questions match this filter. Change the chapter or level."}</div>`;
+    $("#count").textContent=""; return;
+  }
+  const q=list[idx]; sel=new Set(); hintOn=false; checked=false;
+  $("#count").textContent=`${idx+1} of ${list.length}`;
+  let body="";
+  if(q.t==="open"){
+    const saved=(prog[q.id]&&prog[q.id].txt)||"";
+    body=`<p class="type">Written response. Draft yours, then compare.</p><textarea id="resp" aria-label="Your response">${esc(saved)}</textarea>`;
+  }else{
+    body=`${q.t==="sata"?`<p class="type">Select all that apply.</p>`:""}<ul class="opts ${q.t==="sata"?"sata":""}">`+
+      q.o.map((o,i)=>`<li><button class="opt" data-i="${i}" aria-pressed="false"><span class="mark" aria-hidden="true"></span><span>${esc(o)}</span></button></li>`).join("")+`</ul>`;
+  }
+  stage.innerHTML=`<article class="card">
+    <div class="meta"><span class="chap"><b>${CH[q.ch]}</b></span>${ladderSVG(q.b)}</div>
+    <p class="stem">${esc(q.q)}</p>${body}
+    <div class="actions">
+      <button class="btn" id="hintBtn">Where to look</button>
+      <button class="btn" id="simpleBtn">Explain like I'm 10</button>
+      <button class="btn primary" id="checkBtn" ${q.t==="open"?"":"disabled"}>${q.t==="open"?"Compare with key points":"Check answer"}</button>
+    </div>
+    <div id="hint"></div><div id="simple"></div><div id="result"></div>
+  </article>`;
+  stage.querySelectorAll(".opt").forEach(b=>b.addEventListener("click",()=>{
+    if(checked)return; const i=+b.dataset.i;
+    if(q.t==="mc"){sel.clear();stage.querySelectorAll(".opt").forEach(x=>x.setAttribute("aria-pressed","false"));}
+    if(sel.has(i)){sel.delete(i);b.setAttribute("aria-pressed","false");}else{sel.add(i);b.setAttribute("aria-pressed","true");}
+    $("#checkBtn").disabled=sel.size===0;
+  }));
+  $("#hintBtn").addEventListener("click",()=>{
+    hintOn=!hintOn;
+    $("#hint").innerHTML=hintOn?`<p class="hint">Where to look: <mark>${esc(q.h)}</mark></p>`:"";
+    $("#hintBtn").textContent=hintOn?"Hide where to look":"Where to look";
+  });
+  let simpleOn=false;
+  $("#simpleBtn").addEventListener("click",()=>{
+    simpleOn=!simpleOn;
+    const txt=q.s||SIMPLE[q.id]||"";
+    $("#simple").innerHTML=simpleOn?`<div class="simple"><strong>The simple version</strong><p>${esc(txt)}</p></div>`:"";
+    $("#simpleBtn").textContent=simpleOn?"Hide simple version":"Explain like I'm 10";
+  });
+  const ta=$("#resp");
+  if(ta)ta.addEventListener("input",()=>{prog[q.id]=Object.assign(prog[q.id]||{},{txt:ta.value});save();});
+  $("#checkBtn").addEventListener("click",()=>{
+    if(q.t==="open"){
+      $("#result").innerHTML=`<div class="verdict"><strong>A strong answer covers:</strong><ul>${q.k.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`;
+      $("#checkBtn").disabled=true; return;
+    }
+    checked=true;
+    const ans=new Set(q.a);
+    const ok=ans.size===sel.size&&[...sel].every(i=>ans.has(i));
+    stage.querySelectorAll(".opt").forEach(b=>{
+      const i=+b.dataset.i; b.disabled=true;
+      if(ans.has(i))b.classList.add("right"); else if(sel.has(i))b.classList.add("wrong");
+    });
+    const key=q.a.map(i=>q.o[i]).join("; ");
+    $("#result").innerHTML=`<div class="verdict ${ok?"":"no"}"><strong>${ok?"Correct.":"Not quite. Answer: "+esc(key)}</strong><p>${esc(q.w)}</p></div>`;
+    prog[q.id]=Object.assign(prog[q.id]||{},{ok}); save(); stats();
+    $("#checkBtn").disabled=true;
+  });
+}
+chSel.addEventListener("change",e=>{fCh=e.target.value;build();});
+ladder.addEventListener("click",e=>{
+  const b=e.target.closest("button"); if(!b)return;
+  fB=+b.dataset.b; ladder.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false")); build();
+});
+$("#missed").addEventListener("change",build);
+$("#shuffle").addEventListener("change",build);
+$("#prev").addEventListener("click",()=>{if(idx>0){idx--;render();window.scrollTo({top:0});}});
+$("#next").addEventListener("click",()=>{if(idx<list.length-1){idx++;render();window.scrollTo({top:0});}});
+$("#reset").addEventListener("click",()=>{if(confirm("Clear all your answers and notes?")){prog={};save();build();}});
+build();
+</script>
+</body>
+</html>
+
+</body></html>

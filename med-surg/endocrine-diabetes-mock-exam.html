@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Endocrine &amp; Diabetes Mock Exam</title>
+<style>
+  :root {
+    --navy: #1c2e4a;
+    --navy-light: #2d4468;
+    --paper: #f6f4ef;
+    --card: #ffffff;
+    --ink: #24303f;
+    --ink-soft: #5b6675;
+    --teal: #2f7166;
+    --teal-bg: #e7f2ef;
+    --rust: #a8402f;
+    --rust-bg: #fbebe8;
+    --gold: #b6862c;
+    --gold-bg: #faf3e3;
+    --line: #dfdccf;
+    --radius: 3px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+  }
+  header.top {
+    background: var(--navy);
+    color: #fff;
+    padding: 28px 20px 22px;
+    margin-bottom: 28px;
+  }
+  header.top .inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  header.top h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 600;
+    font-size: 1.55rem;
+    margin: 0 0 6px;
+    letter-spacing: 0.2px;
+  }
+  header.top p {
+    margin: 0;
+    color: #c9d3e3;
+    font-size: 0.92rem;
+  }
+  .progress-rail {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--paper);
+    padding: 10px 20px 8px;
+    border-bottom: 1px solid var(--line);
+  }
+  .progress-rail .inner {
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .progress-track {
+    flex: 1;
+    height: 5px;
+    background: var(--line);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--teal);
+    width: 0%;
+    transition: width 0.25s ease;
+  }
+  .progress-label {
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    white-space: nowrap;
+    min-width: 62px;
+    text-align: right;
+  }
+  .topic-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    color: var(--navy-light);
+    background: #e7ebf2;
+    border: 1px solid #cdd6e5;
+    padding: 2px 9px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+  }
+  .qcard {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--navy-light);
+    border-radius: var(--radius);
+    padding: 20px 20px 18px;
+    margin-bottom: 16px;
+  }
+  .qnum {
+    font-family: Georgia, serif;
+    font-weight: 600;
+    color: var(--navy);
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+  }
+  .stem {
+    font-size: 1.02rem;
+    margin: 4px 0 14px;
+    color: var(--ink);
+  }
+  .sata-note {
+    font-size: 0.8rem;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 10px;
+    margin-top: -8px;
+  }
+  .opt {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    background: #fff;
+  }
+  .opt:hover { border-color: var(--navy-light); }
+  .opt input { margin-top: 3px; flex-shrink: 0; accent-color: var(--navy); }
+  .opt .otext { font-size: 0.94rem; }
+  .opt.selected { border-color: var(--navy); background: #eef1f7; }
+  .opt.locked { cursor: default; }
+  .opt.correct-answer { border-color: var(--teal); background: var(--teal-bg); }
+  .opt.wrong-answer { border-color: var(--rust); background: var(--rust-bg); }
+  .result-mark {
+    margin-left: auto;
+    font-weight: 700;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+  .result-mark.ok { color: var(--teal); }
+  .result-mark.no { color: var(--rust); }
+  .rationale {
+    display: none;
+    margin-top: 12px;
+    padding: 12px 14px;
+    background: var(--gold-bg);
+    border-left: 3px solid var(--gold);
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    color: #4a3c17;
+  }
+  .rationale strong { color: #7a5a12; }
+  .qcard.graded .rationale { display: block; }
+  .submit-bar {
+    position: sticky;
+    bottom: 0;
+    background: linear-gradient(to top, var(--paper) 70%, transparent);
+    padding: 18px 20px 10px;
+    margin-top: 4px;
+  }
+  .submit-bar .inner { max-width: 680px; margin: 0 auto; }
+  button.submit-btn {
+    display: block;
+    width: 100%;
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    padding: 15px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: var(--radius);
+    cursor: pointer;
+  }
+  button.submit-btn:disabled {
+    background: #a9b3c2;
+    cursor: not-allowed;
+  }
+  button.submit-btn:active:not(:disabled) { background: var(--navy-light); }
+  .unanswered-note {
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--rust);
+    margin-top: 8px;
+    min-height: 18px;
+  }
+  .score-panel {
+    background: var(--navy);
+    color: #fff;
+    border-radius: var(--radius);
+    padding: 26px 22px;
+    margin: 20px 0 24px;
+    text-align: center;
+  }
+  .score-panel .big {
+    font-family: Georgia, serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    margin: 4px 0 2px;
+  }
+  .score-panel .sub {
+    color: #c9d3e3;
+    font-size: 0.9rem;
+  }
+  .score-breakdown {
+    display: flex;
+    justify-content: center;
+    gap: 26px;
+    margin-top: 14px;
+    font-size: 0.85rem;
+    color: #dbe2ee;
+  }
+  .score-breakdown b { color: #fff; font-size: 1rem; }
+  .review-heading {
+    font-family: Georgia, serif;
+    font-size: 1.2rem;
+    color: var(--navy);
+    margin: 30px 0 4px;
+  }
+  .review-sub {
+    color: var(--ink-soft);
+    font-size: 0.88rem;
+    margin-bottom: 18px;
+  }
+  .retake-btn {
+    display: block;
+    width: 100%;
+    background: transparent;
+    color: var(--navy);
+    border: 1.5px solid var(--navy);
+    padding: 13px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: var(--radius);
+    cursor: pointer;
+    margin-top: 6px;
+  }
+  #examForm.graded .opt:not(.locked) { cursor: default; }
+  footer.note {
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    margin-top: 28px;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="inner">
+    <h1>Endocrine &amp; Diabetes Mock Exam</h1>
+    <p>NUR205 · Weeks 1&ndash;2 &mdash; Endocrine assessment, pituitary &amp; adrenal, thyroid &amp; parathyroid, diabetes mellitus &middot; 24 questions</p>
+  </div>
+</header>
+
+<div class="progress-rail">
+  <div class="inner">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label" id="progressLabel">0 / 24 answered</div>
+  </div>
+</div>
+
+<div class="wrap">
+  <form id="examForm"></form>
+
+  <div class="submit-bar" id="submitBar">
+    <div class="inner">
+      <button type="button" class="submit-btn" id="submitBtn" disabled>Answer all questions to submit</button>
+      <div class="unanswered-note" id="unansweredNote"></div>
+    </div>
+  </div>
+
+  <div id="resultsArea"></div>
+
+  <footer class="note">Built from Iggy 11th ed. content verified against the actual chapter text. Not affiliated with Elsevier.</footer>
+</div>
+
+<script>
+const QUESTIONS = [
+  {
+    id: 1, type: 'mc', topic: 'Pituitary',
+    stem: 'A client reports gradual enlargement of the hands, feet, and jaw over several years, along with new joint pain and excessive sweating. Which hormone imbalance does the nurse suspect?',
+    options: ['Excess growth hormone', 'Excess ACTH', 'Deficient ADH', 'Excess prolactin'],
+    correct: 0,
+    rationale: 'This is the classic gradual presentation of <strong>acromegaly</strong> — overproduction of growth hormone in an adult, most often from a pituitary adenoma. Onset is slow, so changes (enlarged hands/feet/jaw, joint pain, increased sweating) can go unnoticed for years before diagnosis.'
+  },
+  {
+    id: 2, type: 'mc', topic: 'Pituitary',
+    stem: 'A client 2 days after transsphenoidal hypophysectomy has a urine output of 300 mL/hr, urine specific gravity of 1.001, and reports intense thirst. Which condition does the nurse suspect?',
+    options: ['SIADH', 'Addisonian crisis', 'Diabetes insipidus (AVP-D)', 'Myxedema coma'],
+    correct: 2,
+    rationale: 'Greatly increased urine output, very dilute urine (low specific gravity, <1.005), and increased thirst are the key features of <strong>diabetes insipidus (AVP deficiency)</strong> — a deficiency of vasopressin (ADH), which is a known risk after pituitary surgery. Urine output that stays high even as fluid intake drops is a hallmark of DI.'
+  },
+  {
+    id: 3, type: 'mc', topic: 'Pituitary',
+    stem: 'A client has a serum sodium of 118 mEq/L, concentrated urine, and no visible edema despite obvious fluid retention. Which condition is most consistent with this picture?',
+    options: ['Diabetes insipidus', 'SIADH', 'Cushing syndrome', 'Hyperparathyroidism'],
+    correct: 1,
+    rationale: '<strong>SIADH</strong> (syndrome of inappropriate ADH) is vasopressin secreted even when plasma osmolarity is low or normal, causing water retention and dilutional hyponatremia — concentrated urine plus low serum sodium, without necessarily visible edema, is the classic SIADH picture. This is the mirror-image opposite of diabetes insipidus.'
+  },
+  {
+    id: 4, type: 'mc', topic: 'Adrenal',
+    stem: 'Which electrolyte pattern would the nurse expect in a client with chronic adrenal insufficiency (Addison disease)?',
+    options: ['Hypokalemia and hypernatremia', 'Hypercalcemia and hypophosphatemia', 'Hyponatremia and hypocalcemia', 'Hyperkalemia and hyponatremia'],
+    correct: 3,
+    rationale: 'Reduced aldosterone in Addison disease decreases potassium excretion (&rarr; <strong>hyperkalemia</strong>) while increasing sodium and water excretion (&rarr; <strong>hyponatremia</strong> and hypovolemia). Potassium retention also promotes hydrogen ion reabsorption, which can drive acidosis.'
+  },
+  {
+    id: 5, type: 'sata', topic: 'Adrenal',
+    stem: 'A client with known adrenal insufficiency develops severe abdominal pain and dizziness two days after major surgery. Which findings would the nurse expect with acute adrenal insufficiency (Addisonian crisis)? Select all that apply.',
+    options: [
+      'Severe hypotension',
+      'Rising serum sodium',
+      'Rapidly rising serum potassium',
+      'Profound weakness and lethargy',
+      'Increased urine output'
+    ],
+    correct: [0, 2, 3],
+    rationale: 'Addisonian crisis is the same problem as chronic insufficiency, but more severe and rapid. <strong>Severe hypotension</strong> results from the volume depletion of aldosterone loss; unless treated promptly, <strong>sodium falls</strong> (not rises) and <strong>potassium rises rapidly</strong>; profound weakness/lethargy is consistent with the chronic picture intensified. Urine output would be expected to <strong>decrease</strong> with volume depletion, not increase — surgery/trauma/infection are classic triggers for crisis in a patient with reduced adrenal reserve.'
+  },
+  {
+    id: 6, type: 'mc', topic: 'Adrenal',
+    stem: 'Which finding is most consistent with Cushing syndrome rather than Addison disease?',
+    options: ['Weight loss', 'Hyperpigmentation', 'Hypotension', 'Truncal obesity with thin extremities'],
+    correct: 3,
+    rationale: '<strong>Truncal obesity with thin extremities</strong> (along with moon face and buffalo hump) is the classic Cushing syndrome fat-redistribution pattern from excess cortisol. Weight loss, hyperpigmentation, and hypotension all point the other direction — toward Addison disease.'
+  },
+  {
+    id: 7, type: 'mc', topic: 'Adrenal',
+    stem: 'A client has taken prednisone 40 mg daily for 3 months for a chronic inflammatory condition. What is the most important instruction regarding stopping this medication?',
+    options: ['Stop once symptoms resolve', 'Reduce the dose by half immediately', 'Taper the dose gradually under provider guidance', 'No special precautions are needed'],
+    correct: 2,
+    rationale: 'Long-term glucocorticoid therapy suppresses the body\'s own cortisol production via negative feedback and causes adrenal cortex atrophy. Stopping abruptly doesn\'t give the pituitary/adrenal axis time to resume normal function — this is a real, named cause of acute adrenal insufficiency (and can precipitate shock). The dose must be <strong>tapered gradually</strong> under medical supervision.'
+  },
+  {
+    id: 8, type: 'mc', topic: 'Thyroid',
+    stem: 'Which combination of findings is most consistent with hyperthyroidism?',
+    options: ['Cold intolerance and weight gain', 'Dry skin and lethargy', 'Bradycardia and constipation', 'Heat intolerance, weight loss, and tachycardia'],
+    correct: 3,
+    rationale: 'Excess thyroid hormone raises the whole-body metabolic rate — <strong>heat intolerance, weight loss despite normal/increased appetite, and tachycardia</strong> are classic hyperthyroid findings. The other three option sets (cold intolerance/weight gain, dry skin/lethargy, bradycardia/constipation) all describe the OPPOSITE state — hypothyroidism.'
+  },
+  {
+    id: 9, type: 'mc', topic: 'Thyroid',
+    stem: 'A client with Graves disease is admitted after surgery with fever, HR 148, agitation, and vomiting. The nurse suspects:',
+    options: ['Addisonian crisis', 'Thyroid storm', 'Myxedema coma', 'Diabetic ketoacidosis'],
+    correct: 1,
+    rationale: '<strong>Thyroid storm</strong> is a life-threatening event in uncontrolled hyperthyroidism, most often with Graves disease — triggered by stressors like surgery, trauma, or infection. Fever and tachycardia are the key symptoms, with GI upset, anxiety, and tremors also common as it develops.'
+  },
+  {
+    id: 10, type: 'mc', topic: 'Thyroid',
+    stem: 'Which combination of findings is most consistent with myxedema coma?',
+    options: ['Tachycardia, fever, diarrhea', 'Hyperglycemia, polyuria, Kussmaul respirations', 'Hypothermia, bradycardia, decreased level of consciousness', 'Hypertension, tremor, diaphoresis'],
+    correct: 2,
+    rationale: 'Myxedema coma is the life-threatening extreme of untreated/undertreated hypothyroidism — <strong>hypothermia, bradycardia, and greatly reduced LOC</strong> reflect the profound whole-body slowdown, alongside hypotension, hyponatremia, hypoglycemia, and respiratory failure risk. This is the mirror-image opposite of thyroid storm.'
+  },
+  {
+    id: 11, type: 'mc', topic: 'Thyroid',
+    stem: 'Which statement by a client taking levothyroxine indicates correct understanding of how to take it?',
+    options: ['"I\'ll take this with my calcium supplement each morning."', '"I\'ll take this at bedtime with a snack."', '"I can stop this once my symptoms improve."', '"I\'ll take this on an empty stomach, 30 to 60 minutes before breakfast."'],
+    correct: 3,
+    rationale: 'Levothyroxine is taken on an <strong>empty stomach, 30&ndash;60 minutes before the first meal</strong> for reliable absorption. Iron, calcium supplements, and antacids all reduce its absorption and must be separated by at least 4 hours. This is lifelong replacement therapy — it is never stopped just because symptoms improve.'
+  },
+  {
+    id: 12, type: 'mc', topic: 'Thyroid',
+    stem: 'A client is 4 hours post total thyroidectomy. Which assessment finding requires immediate follow-up?',
+    options: ['Temperature 98.0\u00b0F (36.7\u00b0C)', 'Report of tingling around the mouth and in the hands', 'Absence of a bowel movement', 'Small amount of serosanguineous drainage on the dressing'],
+    correct: 1,
+    rationale: 'Tingling around the mouth and in the hands is an early sign of <strong>hypocalcemia/tetany</strong> from accidental parathyroid gland injury or removal during thyroid surgery — this needs prompt follow-up (check for Chvostek/Trousseau signs, have IV calcium gluconate available). A normal temperature, no bowel movement yet, and a small amount of expected drainage are all unremarkable this soon after surgery.'
+  },
+  {
+    id: 13, type: 'mc', topic: 'Parathyroid',
+    stem: 'The nurse taps the facial nerve just anterior to the ear and observes twitching of the facial muscles. This is documented as a positive:',
+    options: ['Trousseau sign', 'Homans sign', 'Chvostek sign', 'Babinski sign'],
+    correct: 2,
+    rationale: 'Tapping the facial nerve and observing facial muscle twitching is the <strong>Chvostek sign</strong> — a positive result (along with a positive Trousseau sign) indicates potential tetany from hypocalcemia, tested for in hypoparathyroidism and post-thyroid/parathyroid surgery.'
+  },
+  {
+    id: 14, type: 'mc', topic: 'Parathyroid',
+    stem: 'Which laboratory pattern would the nurse expect in a client with hyperparathyroidism?',
+    options: ['Hypocalcemia and hyperphosphatemia', 'Hyperkalemia and hyponatremia', 'Hypoglycemia and hyperkalemia', 'Hypercalcemia and hypophosphatemia'],
+    correct: 3,
+    rationale: 'Excess parathyroid hormone increases bone resorption and kidney calcium reabsorption while increasing phosphorus excretion — the result is <strong>hypercalcemia and hypophosphatemia</strong>, the defining lab pattern of hyperparathyroidism.'
+  },
+  {
+    id: 15, type: 'sata', topic: 'Parathyroid',
+    stem: 'A client with hyperparathyroidism who is not a surgical candidate is being taught about health maintenance. Which instructions are appropriate? Select all that apply.',
+    options: [
+      'Take lithium as directed to lower your calcium level',
+      'Regular exercise is important for bone strength',
+      'Take bisphosphonates as directed to help protect your bones',
+      'Ensure proper hydration to help prevent kidney stone formation',
+      'Eat a moderate amount of foods containing calcium and vitamin D'
+    ],
+    correct: [1, 2, 3, 4],
+    rationale: 'Lithium is not a treatment for hyperparathyroidism (it is not the calcimimetic drug used — cinacalcet is). Exercise supports bone strength, bisphosphonates protect against the bone loss hyperparathyroidism causes, good hydration helps prevent the kidney stones excess calcium predisposes to, and moderate (not restricted) calcium/vitamin D intake is appropriate teaching for this population.'
+  },
+  {
+    id: 16, type: 'mc', topic: 'Diabetes',
+    stem: 'A 22-year-old presents with abrupt-onset polyuria, polydipsia, and a 15-lb weight loss over 3 weeks. Labs confirm diabetes. Which type is most consistent with this presentation?',
+    options: ['Type 2 diabetes', 'Prediabetes', 'Type 1 diabetes', 'Gestational diabetes'],
+    correct: 2,
+    rationale: 'Abrupt onset with significant weight loss in a young adult is the classic <strong>Type 1 diabetes</strong> pattern — autoimmune beta-cell destruction leaves no insulin to move glucose into cells, so the body breaks down fat and muscle for fuel despite normal or increased eating.'
+  },
+  {
+    id: 17, type: 'mc', topic: 'Diabetes',
+    stem: 'Which single finding is diagnostic for diabetes without requiring a repeat confirmatory test?',
+    options: ['A1C of 6.2%', 'Fasting glucose of 130 mg/dL in an asymptomatic patient', '2-hour OGTT of 150 mg/dL', 'Random glucose of 220 mg/dL in a patient with polyuria, polydipsia, and weight loss'],
+    correct: 3,
+    rationale: 'A random glucose &ge; 200 mg/dL <strong>in a patient with classic hyperglycemia symptoms</strong> is diagnostic on its own. A single abnormal value without symptoms (like the fasting glucose here) needs a second confirmatory test. An A1C of 6.2% falls in the prediabetes range, and an OGTT of 150 mg/dL also falls in the prediabetes band (140&ndash;199), not the diagnostic range.'
+  },
+  {
+    id: 18, type: 'mc', topic: 'Diabetes',
+    stem: 'Which insulin has no discernible peak and must never be mixed with any other insulin in the same syringe?',
+    options: ['Regular insulin', 'Insulin glargine', 'NPH insulin', 'Insulin lispro'],
+    correct: 1,
+    rationale: '<strong>Insulin glargine</strong> (and detemir) are long-acting basal insulins with no discernible peak — they must always be given as a separate injection and never mixed with any other insulin (pH incompatibility). NPH is cloudy and gently rolled before drawing up; regular is the only insulin approved for IV use; lispro is rapid-acting.'
+  },
+  {
+    id: 19, type: 'mc', topic: 'Diabetes',
+    stem: 'A client taking metformin is scheduled for a CT scan with IV contrast in 2 days. What is the priority nursing action?',
+    options: ['Continue metformin as scheduled', 'Double the metformin dose before the procedure', 'Hold metformin 24 hours before and after the contrast study', 'Switch the client to insulin permanently'],
+    correct: 2,
+    rationale: 'Metformin carries a lactic acidosis risk when combined with IV contrast and impaired kidney function — it should be <strong>held 24 hours before and after</strong> the contrast study, restarted only once adequate kidney function is confirmed.'
+  },
+  {
+    id: 20, type: 'mc', topic: 'Diabetes',
+    stem: 'A conscious, alert client with Type 1 diabetes reports feeling shaky. Fingerstick glucose is 62 mg/dL. What is the priority action?',
+    options: ['Give 30 g of fast-acting carbohydrate', 'Administer IM glucagon immediately', 'Withhold treatment and recheck glucose in 1 hour', 'Give 15 g of fast-acting carbohydrate and recheck glucose in 15 minutes'],
+    correct: 3,
+    rationale: 'The 15-15 rule: for glucose 50&ndash;69 mg/dL in a patient who is conscious and can safely swallow, give <strong>15 g of fast carbohydrate and recheck in 15 minutes</strong>. The 30 g dose is reserved for glucose under 50; glucagon and withholding treatment are both wrong for a conscious, symptomatic patient who can take something by mouth right now.'
+  },
+  {
+    id: 21, type: 'mc', topic: 'Diabetes',
+    stem: 'Which finding is most useful for distinguishing DKA from HHS at the bedside?',
+    options: ['Kussmaul respirations and fruity breath odor', 'Blood glucose level alone', 'Patient age', 'History of hypertension'],
+    correct: 0,
+    rationale: '<strong>Kussmaul respirations and a fruity/acetone breath odor</strong> are specific to the ketoacidosis of DKA — HHS produces neither, since ketone production is minimal there. Glucose level and age are supportive clues (DKA classically younger/Type 1, HHS classically older/Type 2) but not the definitive differentiator.'
+  },
+  {
+    id: 22, type: 'mc', topic: 'Diabetes',
+    stem: 'A client in DKA has an initial serum potassium of 5.2 mEq/L. An IV insulin infusion is started. What is the nurse\'s priority concern once treatment begins?',
+    options: ['Potassium will remain elevated throughout treatment', 'Potassium will drop rapidly as insulin shifts it back into cells, risking hypokalemia', 'Sodium will become critically elevated', 'Metabolic alkalosis will develop'],
+    correct: 1,
+    rationale: 'Acidosis shifts potassium OUT of cells, so the initial serum level can look normal or high even though total body potassium is depleted from osmotic diuresis. Insulin therapy reverses that shift, driving potassium back INTO cells — the serum level can <strong>crash quickly</strong>, which is why potassium is monitored continuously and replaced once urine output confirms adequate kidney function.'
+  },
+  {
+    id: 23, type: 'mc', topic: 'Diabetes',
+    stem: 'Which statement by a client with diabetic peripheral neuropathy indicates a NEED FOR FURTHER TEACHING?',
+    options: ['"Since my feet don\'t hurt anymore, I don\'t need to check them as often."', '"I check both feet every day, including the bottoms."', '"I\'ll wear closed shoes and never walk barefoot."', '"I\'ll break in new shoes gradually and inspect for irritation."'],
+    correct: 0,
+    rationale: 'Loss of pain sensation is exactly why MORE vigilant daily inspection is needed, not less — a painless injury can silently progress to a deep ulcer or infection. This statement wrongly connects "no pain" with "no need to check," which is backwards and needs correcting.'
+  },
+  {
+    id: 24, type: 'mc', topic: 'Diabetes',
+    stem: 'A client newly prescribed an SGLT2 inhibitor (e.g., empagliflozin) should be taught to watch for which complication?',
+    options: ['Genital yeast infections and signs of dehydration', 'Bradycardia', 'Hyperkalemia', 'Weight gain'],
+    correct: 0,
+    rationale: 'SGLT2 inhibitors work by blocking kidney reabsorption of filtered glucose, spilling glucose into the urine — the sugary urine promotes <strong>genital yeast infections and UTIs</strong>, and the osmotic diuresis effect raises <strong>dehydration</strong> risk. Rare but serious: Fournier gangrene, which needs immediate reporting of any genital pain/swelling/redness.'
+  }
+];
+
+window.QUESTIONS = QUESTIONS;
+const state = { answers: {}, graded: false };
+
+function buildForm() {
+  const form = document.getElementById('examForm');
+  form.innerHTML = '';
+  QUESTIONS.forEach((q, qi) => {
+    const card = document.createElement('div');
+    card.className = 'qcard';
+    card.id = 'q' + q.id;
+
+    const tag = document.createElement('div');
+    tag.className = 'topic-tag';
+    tag.textContent = q.topic;
+    card.appendChild(tag);
+
+    const num = document.createElement('div');
+    num.className = 'qnum';
+    num.textContent = 'Question ' + (qi + 1) + ' of ' + QUESTIONS.length;
+    card.appendChild(num);
+
+    const stem = document.createElement('div');
+    stem.className = 'stem';
+    stem.textContent = q.stem;
+    card.appendChild(stem);
+
+    if (q.type === 'sata') {
+      const note = document.createElement('div');
+      note.className = 'sata-note';
+      note.textContent = 'Select all that apply';
+      card.appendChild(note);
+    }
+
+    q.options.forEach((optText, oi) => {
+      const opt = document.createElement('label');
+      opt.className = 'opt';
+      opt.dataset.qid = q.id;
+      opt.dataset.oi = oi;
+
+      const input = document.createElement('input');
+      input.type = q.type === 'sata' ? 'checkbox' : 'radio';
+      input.name = 'q' + q.id;
+      input.value = oi;
+      input.addEventListener('change', () => onOptionChange(q, oi, opt));
+
+      const otext = document.createElement('span');
+      otext.className = 'otext';
+      otext.textContent = optText;
+
+      opt.appendChild(input);
+      opt.appendChild(otext);
+      card.appendChild(opt);
+    });
+
+    const rationale = document.createElement('div');
+    rationale.className = 'rationale';
+    rationale.innerHTML = '<strong>Rationale:</strong> ' + q.rationale;
+    card.appendChild(rationale);
+
+    form.appendChild(card);
+  });
+}
+
+function onOptionChange(q, oi, optEl) {
+  if (state.graded) return;
+  if (q.type === 'mc') {
+    state.answers[q.id] = oi;
+    document.querySelectorAll('.opt[data-qid="' + q.id + '"]').forEach(el => el.classList.remove('selected'));
+    optEl.classList.add('selected');
+  } else {
+    if (!state.answers[q.id]) state.answers[q.id] = [];
+    const arr = state.answers[q.id];
+    const idx = arr.indexOf(oi);
+    if (idx > -1) { arr.splice(idx, 1); optEl.classList.remove('selected'); }
+    else { arr.push(oi); optEl.classList.add('selected'); }
+    if (arr.length === 0) delete state.answers[q.id];
+  }
+  updateProgress();
+}
+
+function updateProgress() {
+  const answered = Object.keys(state.answers).length;
+  const total = QUESTIONS.length;
+  document.getElementById('progressFill').style.width = (answered / total * 100) + '%';
+  document.getElementById('progressLabel').textContent = answered + ' / ' + total + ' answered';
+  const btn = document.getElementById('submitBtn');
+  if (answered === total) {
+    btn.disabled = false;
+    btn.textContent = 'Submit exam';
+  } else {
+    btn.disabled = true;
+    btn.textContent = 'Answer all questions to submit';
+  }
+}
+
+function gradeExam() {
+  let earned = 0, possible = 0;
+  let correctCount = 0;
+
+  QUESTIONS.forEach(q => {
+    const card = document.getElementById('q' + q.id);
+    card.classList.add('graded');
+    const userAns = state.answers[q.id];
+
+    if (q.type === 'mc') {
+      possible += 1;
+      const isCorrect = userAns === q.correct;
+      if (isCorrect) { earned += 1; correctCount += 1; }
+      q.options.forEach((_, oi) => {
+        const optEl = card.querySelector('.opt[data-oi="' + oi + '"]');
+        optEl.classList.add('locked');
+        const input = optEl.querySelector('input');
+        input.disabled = true;
+        if (oi === q.correct) {
+          optEl.classList.add('correct-answer');
+          const mark = document.createElement('span');
+          mark.className = 'result-mark ok';
+          mark.textContent = '\u2713 Correct answer';
+          optEl.appendChild(mark);
+        } else if (oi === userAns) {
+          optEl.classList.add('wrong-answer');
+          const mark = document.createElement('span');
+          mark.className = 'result-mark no';
+          mark.textContent = '\u2717 Your answer';
+          optEl.appendChild(mark);
+        }
+      });
+    } else {
+      // SATA plus-minus scoring, floored at 0
+      const maxPts = q.correct.length;
+      possible += maxPts;
+      const selected = userAns || [];
+      let pts = 0;
+      selected.forEach(oi => { pts += q.correct.includes(oi) ? 1 : -1; });
+      pts = Math.max(0, pts);
+      earned += pts;
+      const allRight = selected.length === q.correct.length && selected.every(oi => q.correct.includes(oi));
+      if (allRight) correctCount += 1;
+
+      q.options.forEach((_, oi) => {
+        const optEl = card.querySelector('.opt[data-oi="' + oi + '"]');
+        optEl.classList.add('locked');
+        const input = optEl.querySelector('input');
+        input.disabled = true;
+        const wasSelected = selected.includes(oi);
+        const shouldBeSelected = q.correct.includes(oi);
+        if (shouldBeSelected) {
+          optEl.classList.add('correct-answer');
+          const mark = document.createElement('span');
+          mark.className = 'result-mark ok';
+          mark.textContent = wasSelected ? '\u2713 Correct' : '\u2713 Should be selected';
+          optEl.appendChild(mark);
+        } else if (wasSelected) {
+          optEl.classList.add('wrong-answer');
+          const mark = document.createElement('span');
+          mark.className = 'result-mark no';
+          mark.textContent = '\u2717 Incorrectly selected';
+          optEl.appendChild(mark);
+        }
+      });
+    }
+  });
+
+  state.graded = true;
+  renderResults(earned, possible, correctCount);
+  document.getElementById('submitBar').style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderResults(earned, possible, correctCount) {
+  const pct = Math.round((earned / possible) * 100);
+  const area = document.getElementById('resultsArea');
+  area.innerHTML =
+    '<div class="score-panel">' +
+      '<div class="sub">Your score</div>' +
+      '<div class="big">' + pct + '%</div>' +
+      '<div class="sub">' + earned.toFixed(1).replace(/\.0$/, '') + ' of ' + possible + ' points</div>' +
+      '<div class="score-breakdown">' +
+        '<div><b>' + correctCount + '</b> / ' + QUESTIONS.length + ' fully correct</div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="review-heading">Review your answers</div>' +
+    '<div class="review-sub">Scroll back up through each question above for the full rationale — right and wrong answers are marked inline, with select-all-that-apply items scored plus/minus per option.</div>' +
+    '<button type="button" class="retake-btn" id="retakeBtn">Retake this exam</button>';
+
+  document.getElementById('retakeBtn').addEventListener('click', () => {
+    state.answers = {};
+    state.graded = false;
+    buildForm();
+    updateProgress();
+    document.getElementById('submitBar').style.display = 'block';
+    area.innerHTML = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+buildForm();
+updateProgress();
+document.getElementById('submitBtn').addEventListener('click', gradeExam);
+</script>
+</body>
+</html>

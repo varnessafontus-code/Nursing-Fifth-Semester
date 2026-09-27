@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab Values & Diagnostics Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#FAFAFD; --surface:#FFFFFF; --surface-2:#F5F6FB; --ink:#182238; --ink-soft:#5B6B84; --line:#E9EBF3;
+    --heme:#FF4D6D; --chem:#2D6CDF; --renal:#06A77D; --liver:#43A047; --coag:#8B5CF6; --cardiac:#FF7A33;
+    --endo:#F0B429; --abg:#00BFD8; --lipid:#E23FA0; --uri:#DB9A2C; --dx:#5B4FE0; --peds:#FF6B9D;
+    --crit:#E11D48; --crit-bg:#FFE4E9; --normal:#22B24C; --high:#F0B429; --lowc:#2D6CDF;
+    --font-display:'Baloo 2',system-ui,sans-serif; --font-body:'Nunito',system-ui,sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg:#12141F; --surface:#1B1E2C; --surface-2:#232637; --ink:#F1F2FA; --ink-soft:#A9AFC6; --line:#2C3044;
+      --crit-bg:#3A1826;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg:#12141F; --surface:#1B1E2C; --surface-2:#232637; --ink:#F1F2FA; --ink-soft:#A9AFC6; --line:#2C3044;
+    --crit-bg:#3A1826;
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:var(--font-body); line-height:1.5; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3 { font-family:var(--font-display); margin:0; }
+  p { margin:0; }
+  a { color:inherit; text-decoration:none; }
+
+  .topbar { position:sticky; top:0; z-index:50; background:var(--surface); border-bottom:1px solid var(--line); }
+  .topbar-inner { max-width:980px; margin:0 auto; padding:10px 14px; }
+  .brand { display:flex; align-items:center; gap:8px; font-family:var(--font-display); font-weight:800; font-size:1.1rem; margin-bottom:8px; }
+  .chipnav { display:flex; gap:7px; overflow-x:auto; padding-bottom:2px; scrollbar-width:none; }
+  .chipnav::-webkit-scrollbar { display:none; }
+  .chip {
+    flex:0 0 auto; display:flex; align-items:center; gap:6px; font-size:0.76rem; font-weight:700;
+    padding:7px 12px; border-radius:999px; background:var(--c); color:#fff; white-space:nowrap;
+    box-shadow:0 2px 6px rgba(20,20,60,0.15); opacity:0.55;
+  }
+  .chip.active { opacity:1; transform:translateY(-1px); }
+  .chip.dark-text { color:var(--ink); }
+
+  .wrap { max-width:980px; margin:0 auto; padding:18px 14px 60px; }
+
+  .hero-banner {
+    margin-top:8px; border-radius:22px; padding:28px 22px; color:#fff;
+    background:linear-gradient(120deg, var(--heme) 0%, var(--coag) 45%, var(--chem) 75%, var(--abg) 100%);
+    box-shadow:0 10px 30px rgba(90,50,150,0.18);
+  }
+  .hero-banner h1 { font-size:1.6rem; font-weight:800; text-shadow:0 2px 10px rgba(0,0,0,0.15); }
+  .hero-banner p { margin-top:8px; font-size:0.9rem; max-width:56ch; opacity:0.95; font-weight:600; }
+
+  .legend { margin-top:14px; display:flex; flex-wrap:wrap; gap:8px; }
+  .legend-pill { font-size:0.72rem; font-weight:700; padding:5px 11px; border-radius:999px; background:var(--surface-2); color:var(--ink-soft); border:1px solid var(--line); }
+  .legend-pill b { color:var(--ink); }
+  .legend-pill.dot-normal::before { content:"●"; color:var(--normal); margin-right:4px; }
+  .legend-pill.dot-high::before { content:"●"; color:var(--high); margin-right:4px; }
+  .legend-pill.dot-crit::before { content:"●"; color:var(--crit); margin-right:4px; }
+
+  .panic { margin-top:22px; border-radius:18px; overflow:hidden; border:2px solid var(--crit); background:var(--surface); }
+  .panic-head {
+    padding:10px 16px; font-family:var(--font-display); font-weight:800; color:#fff; font-size:1rem;
+    background:repeating-linear-gradient(135deg, var(--crit), var(--crit) 12px, #ff8095 12px, #ff8095 24px);
+  }
+  .panic-grid { padding:14px 16px 12px; display:grid; grid-template-columns:1fr; gap:8px; }
+  @media (min-width:600px){ .panic-grid { grid-template-columns:1fr 1fr; } }
+  .panic-item { display:flex; gap:8px; padding:8px 10px; background:var(--crit-bg); border-radius:10px; font-size:0.84rem; }
+  .panic-item .k { font-weight:800; color:var(--crit); min-width:100px; flex:0 0 auto; }
+  .panic-note { padding:0 16px 14px; font-size:0.75rem; color:var(--ink-soft); }
+
+  section.cat { margin-top:32px; scroll-margin-top:100px; }
+  .cat-banner { display:flex; align-items:center; gap:12px; border-radius:18px; padding:14px 18px; color:#fff; box-shadow:0 6px 18px rgba(20,20,60,0.12); }
+  .cat-banner.dark-text { color:var(--ink); }
+  .cat-banner .icon { font-size:1.9rem; flex:0 0 auto; }
+  .cat-banner .badge { display:inline-block; font-size:0.68rem; font-weight:800; padding:2px 9px; border-radius:999px; background:rgba(255,255,255,0.28); margin-bottom:3px; }
+  .cat-banner.dark-text .badge { background:rgba(0,0,0,0.1); }
+  .cat-banner h2 { font-size:1.2rem; }
+  .cat-desc { color:var(--ink-soft); font-size:0.82rem; margin:10px 2px 14px; max-width:64ch; }
+
+  .cards-grid { display:grid; grid-template-columns:1fr; gap:12px; }
+  @media (min-width:640px){ .cards-grid { grid-template-columns:1fr 1fr; } }
+  .card { background:var(--surface); border:1px solid var(--line); border-top:5px solid var(--c); border-radius:16px; padding:14px 16px; box-shadow:0 3px 12px rgba(20,20,60,0.05); break-inside:avoid; }
+  .t-name { font-family:var(--font-display); font-weight:700; font-size:1.02rem; color:var(--ink); }
+  .t-name .unit { font-family:var(--font-body); font-weight:600; color:var(--ink-soft); font-size:0.72rem; margin-left:5px; }
+  .vals { margin-top:9px; display:flex; flex-direction:column; gap:5px; }
+  .val { display:flex; gap:8px; font-size:0.85rem; }
+  .val .lbl { font-weight:800; color:var(--c); min-width:70px; flex:0 0 auto; font-size:0.68rem; text-transform:uppercase; letter-spacing:0.03em; padding-top:2px; }
+  .val .v { color:var(--ink); font-weight:600; }
+  .crit-badge { margin-top:9px; display:inline-flex; align-items:center; gap:4px; background:var(--crit-bg); color:var(--crit); font-weight:800; font-size:0.74rem; padding:4px 10px; border-radius:999px; }
+  .pearl { margin-top:9px; font-size:0.78rem; color:var(--ink-soft); line-height:1.45; }
+
+  .vitals-grid { display:grid; grid-template-columns:1fr; gap:12px; }
+  @media (min-width:600px){ .vitals-grid { grid-template-columns:1fr 1fr 1fr; } }
+  .vcard { border-radius:16px; padding:14px 16px; color:#fff; box-shadow:0 6px 16px rgba(20,20,60,0.12); }
+  .vcard h3 { font-size:0.95rem; font-weight:700; }
+  .vcard .age { font-size:0.72rem; opacity:0.9; font-weight:700; margin-bottom:8px; }
+  .vcard dl { margin:0; font-size:0.82rem; display:grid; grid-template-columns:auto 1fr; gap:4px 10px; }
+  .vcard dt { opacity:0.85; font-weight:700; }
+  .vcard dd { margin:0; font-weight:800; }
+
+  footer { margin-top:44px; padding-top:16px; border-top:1px solid var(--line); color:var(--ink-soft); font-size:0.76rem; }
+  footer p + p { margin-top:6px; }
+
+  @media print {
+    * { -webkit-print-color-adjust:exact; print-color-adjust:exact; color-adjust:exact; }
+    body { background:#fff; }
+    .topbar { position:static; }
+    .chipnav { display:none; }
+    .panic, .card, .vcard, .cat-banner { break-inside:avoid; }
+    section.cat { break-inside:avoid-page; }
+    .cards-grid { grid-template-columns:1fr 1fr; }
+    .vitals-grid { grid-template-columns:1fr 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">🧪 <span>Lab Values & Diagnostics</span></div>
+    <nav class="chipnav" id="chipnav">
+      <a class="chip" style="--c:var(--heme)" href="#cbc">🩸 CBC</a>
+      <a class="chip" style="--c:var(--chem)" href="#bmp">⚡ BMP/CMP</a>
+      <a class="chip dark-text" style="--c:var(--liver)" href="#lft">🍃 LFTs</a>
+      <a class="chip" style="--c:var(--coag)" href="#coag">🩹 Coags</a>
+      <a class="chip" style="--c:var(--cardiac)" href="#cardiac">🫀 Cardiac</a>
+      <a class="chip" style="--c:var(--lipid)" href="#lipid">🧈 Lipids</a>
+      <a class="chip dark-text" style="--c:var(--endo)" href="#thyroid">🦋 Thyroid</a>
+      <a class="chip" style="--c:var(--abg)" href="#abg">🫁 ABG</a>
+      <a class="chip dark-text" style="--c:var(--uri)" href="#ua">💧 UA</a>
+      <a class="chip" style="--c:var(--peds)" href="#vitals">👶 Peds Vitals</a>
+      <a class="chip" style="--c:var(--dx)" href="#dx">🔬 Dx Tests</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="hero-banner">
+    <h1>Lab Values & Diagnostics Reference</h1>
+    <p>Adult and pediatric normal ranges by system, plus a diagnostic-test rundown — built for bedside/exam recall. Always confirm against your facility's reference range, since assay methods vary by lab.</p>
+  </div>
+
+  <div class="legend">
+    <span class="legend-pill"><b>NB</b> Neonate 0–28d</span>
+    <span class="legend-pill"><b>INF</b> Infant 1–12mo</span>
+    <span class="legend-pill"><b>Child</b> 1–12y</span>
+    <span class="legend-pill"><b>Adol</b> 12–18y</span>
+    <span class="legend-pill dot-normal">Normal</span>
+    <span class="legend-pill dot-high">High/Low alert</span>
+    <span class="legend-pill dot-crit">Critical/panic</span>
+  </div>
+
+  <div class="panic">
+    <div class="panic-head">🚨 Highest-yield panic values — call the provider</div>
+    <div class="panic-grid">
+      <div class="panic-item"><span class="k">Glucose</span><span>&lt;40 or &gt;400 mg/dL (tighter in neonates — &lt;40 is already critical in a newborn)</span></div>
+      <div class="panic-item"><span class="k">Potassium</span><span>&lt;2.5 or &gt;6.5 mEq/L — cardiac arrhythmia risk</span></div>
+      <div class="panic-item"><span class="k">Sodium</span><span>&lt;120 or &gt;160 mEq/L — seizure risk at extremes</span></div>
+      <div class="panic-item"><span class="k">Hemoglobin</span><span>&lt;5 or &gt;20 g/dL</span></div>
+      <div class="panic-item"><span class="k">Platelets</span><span>&lt;20,000 (spontaneous bleed) or &gt;1,000,000/mm³</span></div>
+      <div class="panic-item"><span class="k">WBC</span><span>&lt;2,000 (neutropenic precautions) or &gt;30,000/mm³</span></div>
+      <div class="panic-item"><span class="k">INR</span><span>&gt;5.0 (unintended) — major bleed risk</span></div>
+      <div class="panic-item"><span class="k">ABG pH</span><span>&lt;7.2 or &gt;7.6</span></div>
+      <div class="panic-item"><span class="k">Bilirubin (NB)</span><span>Rapid rise/crossing the phototherapy line — kernicterus risk</span></div>
+      <div class="panic-item"><span class="k">Troponin</span><span>Any positive/detectable result is abnormal at any age</span></div>
+    </div>
+    <p class="panic-note">Illustrative thresholds for prioritization practice — actual panic values are set by each lab and vary by age/context.</p>
+  </div>
+
+  <section class="cat" id="cbc">
+    <div class="cat-banner" style="background:var(--heme)"><span class="icon">🩸</span><div><span class="badge">CBC</span><h2>Complete Blood Count</h2></div></div>
+    <p class="cat-desc">Newborns run high (placental transfer, birth dehydration); infants dip during physiologic anemia around 2–3 months, then rise toward adult range through adolescence.</p>
+    <div class="cards-grid" style="--c:var(--heme)">
+      <div class="card" style="--c:var(--heme)"><div class="t-name">WBC<span class="unit">×10³/mm³</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">5–10</span></div><div class="val"><span class="lbl">Peds</span><span class="v">NB 9–30 · INF 6–17.5 · Child 5–13.5</span></div></div><div class="crit-badge">⚠ &lt;2 or &gt;30</div><p class="pearl">Trends up with infection/stress; down with marrow suppression or overwhelming sepsis.</p></div>
+      <div class="card" style="--c:var(--heme)"><div class="t-name">RBC<span class="unit">×10⁶/mm³</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">M 4.7–6.1 · F 4.2–5.4</span></div><div class="val"><span class="lbl">Peds</span><span class="v">NB 4.8–7.1 · INF 3.9–5.5 · Child 4.0–5.5</span></div></div><p class="pearl">Rarely interpreted alone — pair with Hgb/Hct.</p></div>
+      <div class="card" style="--c:var(--heme)"><div class="t-name">Hemoglobin<span class="unit">g/dL</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">M 14–18 · F 12–16</span></div><div class="val"><span class="lbl">Peds</span><span class="v">NB 14–24 · INF nadir 9–11 · Child 11–16</span></div></div><div class="crit-badge">⚠ &lt;5 or &gt;20</div><p class="pearl">The 2–3 month nadir is normal physiologic anemia of infancy — not automatically pathologic.</p></div>
+      <div class="card" style="--c:var(--heme)"><div class="t-name">Hematocrit<span class="unit">%</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">M 42–52 · F 37–47</span></div><div class="val"><span class="lbl">Peds</span><span class="v">NB 44–64 · INF 32–42 · Child 33–42</span></div></div><div class="crit-badge">⚠ &lt;15 or &gt;60</div><p class="pearl">Roughly 3× the hemoglobin ("rule of 3") when drawn together.</p></div>
+      <div class="card" style="--c:var(--heme)"><div class="t-name">Platelets<span class="unit">×10³/mm³</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">150–400</span></div><div class="val"><span class="lbl">Peds</span><span class="v">Similar all ages, ~150–450</span></div></div><div class="crit-badge">⚠ &lt;20 or &gt;1,000</div><p class="pearl">&lt;50k → bleeding precautions; &lt;20k → spontaneous bleed risk.</p></div>
+    </div>
+  </section>
+
+  <section class="cat" id="bmp">
+    <div class="cat-banner" style="background:var(--chem)"><span class="icon">⚡</span><div><span class="badge">BMP/CMP</span><h2>Electrolytes, Renal & Glucose</h2></div></div>
+    <p class="cat-desc">Immature kidneys mean infants can't concentrate urine or buffer acid as well as adults — expect mildly lower BUN/creatinine and a narrower buffering margin.</p>
+    <div class="cards-grid">
+      <div class="card" style="--c:var(--chem)"><div class="t-name">Sodium<span class="unit">mEq/L</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">135–145</span></div><div class="val"><span class="lbl">Peds</span><span class="v">NB 133–146; otherwise same as adult</span></div></div><div class="crit-badge">⚠ &lt;120 or &gt;160</div><p class="pearl">Correct slowly — rapid correction of chronic hyponatremia risks osmotic demyelination.</p></div>
+      <div class="card" style="--c:var(--chem)"><div class="t-name">Potassium<span class="unit">mEq/L</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">3.5–5.0</span></div><div class="val"><span class="lbl">Peds</span><span class="v">NB 3.7–5.9 · INF 4.1–5.3 · Child 3.4–4.7</span></div></div><div class="crit-badge">⚠ &lt;2.5 or &gt;6.5</div><p class="pearl">Kids normally run higher than adult upper limits — don't panic at 5.3 in an infant.</p></div>
+      <div class="card" style="--c:var(--chem)"><div class="t-name">Chloride<span class="unit">mEq/L</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">98–106</span></div><div class="val"><span class="lbl">Peds</span><span class="v">Similar; NB 96–106</span></div></div><p class="pearl">Moves with sodium; check alongside acid-base status.</p></div>
+      <div class="card" style="--c:var(--chem)"><div class="t-name">CO₂ (bicarb)<span class="unit">mEq/L</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">23–29</span></div><div class="val"><span class="lbl">Peds</span><span class="v">Slightly lower: 20–28</span></div></div><div class="crit-badge">⚠ &lt;15 or &gt;40</div><p class="pearl">Reflects the metabolic component of acid-base balance.</p></div>
+      <div class="card" style="--c:var(--chem)"><div class="t-name">BUN<span class="unit">mg/dL</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">10–20</span></div><div class="val"><span class="lbl">Peds</span><span class="v">Infant/child 5–18; lower muscle mass</span></div></div><div class="crit-badge">⚠ &gt;100</div><p class="pearl">Rises with dehydration and GI bleed, independent of renal function.</p></div>
+      <div class="card" style="--c:var(--chem)"><div class="t-name">Creatinine<span class="unit">mg/dL</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">M 0.6–1.2 · F 0.5–1.1</span></div><div class="val"><span class="lbl">Peds</span><span class="v">NB 0.3–1.0 · Infant/Child 0.2–0.7</span></div></div><p class="pearl">Rises steadily with muscle mass — a "normal adult" value in a toddler is actually high.</p></div>
+      <div class="card" style="--c:var(--chem)"><div class="t-name">Glucose<span class="unit">mg/dL</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">70–110 fasting</span></div><div class="val"><span class="lbl">Peds</span><span class="v">NB 40–60 (24h) then 50–90; Child 60–100</span></div></div><div class="crit-badge">⚠ &lt;40 or &gt;400</div><p class="pearl">Neonates burn glycogen fast — screen at-risk newborns within hours of birth.</p></div>
+      <div class="card" style="--c:var(--chem)"><div class="t-name">Calcium (total)<span class="unit">mg/dL</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">8.5–10.5</span></div><div class="val"><span class="lbl">Peds</span><span class="v">NB 7.0–9.5 · Child 8.8–10.8</span></div></div><div class="crit-badge">⚠ &lt;6 or &gt;13</div><p class="pearl">Watch for Chvostek's/Trousseau's signs with hypocalcemia.</p></div>
+      <div class="card" style="--c:var(--chem)"><div class="t-name">Magnesium<span class="unit">mg/dL</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">1.5–2.5</span></div><div class="val"><span class="lbl">Peds</span><span class="v">Similar; NB slightly higher 1.4–2.9</span></div></div><div class="crit-badge">⚠ &lt;1.0 or &gt;4.0</div><p class="pearl">Low Mg travels with low K⁺/Ca²⁺ — replace Mg first or the others won't correct.</p></div>
+      <div class="card" style="--c:var(--chem)"><div class="t-name">Phosphorus<span class="unit">mg/dL</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">2.5–4.5</span></div><div class="val"><span class="lbl">Peds</span><span class="v">INF 4.5–6.5 · Child 4.0–5.5 · Adol 3.5–5.0</span></div></div><div class="crit-badge">⚠ &lt;1 or &gt;8</div><p class="pearl">Runs high in growing kids from active bone turnover — expected, not pathologic.</p></div>
+    </div>
+  </section>
+
+  <section class="cat" id="lft">
+    <div class="cat-banner dark-text" style="background:var(--liver)"><span class="icon">🍃</span><div><span class="badge">LFT</span><h2>Liver Function</h2></div></div>
+    <p class="cat-desc">Alk phos runs high in children simply from bone growth — check it against the bilirubin/AST/ALT pattern before assuming hepatic pathology.</p>
+    <div class="cards-grid">
+      <div class="card" style="--c:var(--liver)"><div class="t-name">AST<span class="unit">U/L</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">10–40</span></div><div class="val"><span class="lbl">Peds</span><span class="v">NB up to ~58; child similar to adult</span></div></div><p class="pearl">Not liver-specific — also elevated with muscle/cardiac injury.</p></div>
+      <div class="card" style="--c:var(--liver)"><div class="t-name">ALT<span class="unit">U/L</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">7–56</span></div><div class="val"><span class="lbl">Peds</span><span class="v">Similar, mildly higher in infancy</span></div></div><p class="pearl">More liver-specific than AST.</p></div>
+      <div class="card" style="--c:var(--liver)"><div class="t-name">Alk Phos<span class="unit">U/L</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">44–147</span></div><div class="val"><span class="lbl">Peds</span><span class="v">Child 100–350+ (growth spurts spike further)</span></div></div><p class="pearl">High Alk Phos + normal bili/AST/ALT in a kid = bone growth, not liver disease.</p></div>
+      <div class="card" style="--c:var(--liver)"><div class="t-name">Total bilirubin<span class="unit">mg/dL</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">0.1–1.2</span></div><div class="val"><span class="lbl">Peds</span><span class="v">NB peaks ~5–6 (day 3–5); hour-specific nomogram applies</span></div></div><div class="crit-badge">⚠ Rapid rise/high per nomogram</div><p class="pearl">Jaundice in the first 24h of life is never normal.</p></div>
+      <div class="card" style="--c:var(--liver)"><div class="t-name">Direct (conjugated) bili<span class="unit">mg/dL</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">&lt;0.3</span></div><div class="val"><span class="lbl">Peds</span><span class="v">Same — should stay low at any age</span></div></div><div class="crit-badge">⚠ Any elevation abnormal</div><p class="pearl">Elevated direct bili always warrants work-up.</p></div>
+      <div class="card" style="--c:var(--liver)"><div class="t-name">Albumin<span class="unit">g/dL</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">3.5–5.0</span></div><div class="val"><span class="lbl">Peds</span><span class="v">NB 2.6–3.6; rises to adult range in childhood</span></div></div><div class="crit-badge">⚠ &lt;1.5</div><p class="pearl">Low albumin → edema risk; also tracks nutrition/chronic illness.</p></div>
+    </div>
+  </section>
+
+  <section class="cat" id="coag">
+    <div class="cat-banner" style="background:var(--coag)"><span class="icon">🩹</span><div><span class="badge">COAG</span><h2>Coagulation Studies</h2></div></div>
+    <p class="cat-desc">Clotting factors are physiologically immature at birth, so neonatal PT/aPTT run longer than adult values without indicating a bleeding disorder. Therapy targets for warfarin and heparin are included alongside the baseline values they're monitored with.</p>
+    <div class="cards-grid">
+      <div class="card" style="--c:var(--coag)"><div class="t-name">PT<span class="unit">seconds</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">11–12.5</span></div><div class="val"><span class="lbl">Peds</span><span class="v">NB mildly prolonged, 13–20 first days</span></div></div><div class="crit-badge">⚠ &gt;20 (non-NB)</div><p class="pearl">Reflects the extrinsic pathway; monitors warfarin via INR.</p></div>
+      <div class="card" style="--c:var(--coag)"><div class="t-name">INR</div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">0.8–1.1</span></div><div class="val"><span class="lbl">Peds</span><span class="v">Same reference at any age</span></div></div><div class="crit-badge">⚠ &gt;5.0 unintended</div><p class="pearl">Therapeutic anticoag target is usually 2–3 — not the "normal" range.</p></div>
+      <div class="card" style="--c:var(--coag)"><div class="t-name">💊 Warfarin (Coumadin)<span class="unit">therapy target</span></div><div class="vals"><div class="val"><span class="lbl">Standard</span><span class="v">INR 2.0–3.0 (AFib, DVT/PE)</span></div><div class="val"><span class="lbl">Mech. valve</span><span class="v">INR 2.5–3.5</span></div></div><div class="crit-badge">⚠ INR &gt;5 unintended = high bleed risk</div><p class="pearl">Antidote: vitamin K (phytonadione). Watch for interactions — vitamin K-rich greens, antibiotics, NSAIDs/aspirin all shift INR.</p></div>
+      <div class="card" style="--c:var(--coag)"><div class="t-name">aPTT<span class="unit">seconds</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">30–40</span></div><div class="val"><span class="lbl">Peds</span><span class="v">NB prolonged, 30–55+</span></div></div><div class="crit-badge">⚠ &gt;70</div><p class="pearl">Reflects the intrinsic pathway; monitors unfractionated heparin.</p></div>
+      <div class="card" style="--c:var(--coag)"><div class="t-name">💉 Heparin (IV, unfractionated)<span class="unit">therapy target</span></div><div class="vals"><div class="val"><span class="lbl">Target</span><span class="v">aPTT 1.5–2.5× control (~60–80 sec, lab-dependent)</span></div><div class="val"><span class="lbl">LMWH</span><span class="v">e.g. enoxaparin — no routine aPTT; anti-Xa if monitored</span></div></div><div class="crit-badge">⚠ aPTT &gt;100 sec = high bleed risk</div><p class="pearl">Antidote: protamine sulfate. Watch platelets for HIT (heparin-induced thrombocytopenia).</p></div>
+      <div class="card" style="--c:var(--coag)"><div class="t-name">Fibrinogen<span class="unit">mg/dL</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">200–400</span></div><div class="val"><span class="lbl">Peds</span><span class="v">NB slightly lower, 150–300</span></div></div><div class="crit-badge">⚠ &lt;100</div><p class="pearl">Falling fibrinogen + rising PT/PTT is a DIC red flag.</p></div>
+    </div>
+  </section>
+
+  <section class="cat" id="cardiac">
+    <div class="cat-banner" style="background:var(--cardiac)"><span class="icon">🫀</span><div><span class="badge">CARDIAC</span><h2>Cardiac Markers</h2></div></div>
+    <p class="cat-desc">Used mainly in adults for ACS; in pediatrics reserved for suspected myocarditis, Kawasaki disease, or congenital heart failure.</p>
+    <div class="cards-grid">
+      <div class="card" style="--c:var(--cardiac)"><div class="t-name">Troponin I<span class="unit">ng/mL</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">&lt;0.04</span></div><div class="val"><span class="lbl">Peds</span><span class="v">Same cutoff; used selectively</span></div></div><div class="crit-badge">⚠ Any detectable rise</div><p class="pearl">Peaks ~24h, stays elevated 7–10 days — most specific marker available.</p></div>
+      <div class="card" style="--c:var(--cardiac)"><div class="t-name">BNP<span class="unit">pg/mL</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">&lt;100</span></div><div class="val"><span class="lbl">Peds</span><span class="v">Higher baseline in neonates; age-specific ranges</span></div></div><div class="crit-badge">⚠ &gt;900</div><p class="pearl">Rises with ventricular stretch/volume overload — tracks HF severity.</p></div>
+      <div class="card" style="--c:var(--cardiac)"><div class="t-name">CK-MB</div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">&lt;5% of total CK</span></div><div class="val"><span class="lbl">Peds</span><span class="v">Similar</span></div></div><p class="pearl">Largely replaced by troponin, still tests on some exams.</p></div>
+    </div>
+  </section>
+
+  <section class="cat" id="lipid">
+    <div class="cat-banner" style="background:var(--lipid)"><span class="icon">🧈</span><div><span class="badge">LIPID</span><h2>Lipid Panel</h2></div></div>
+    <p class="cat-desc">Universal pediatric screening is recommended once between ages 9–11 and again between 17–21.</p>
+    <div class="cards-grid">
+      <div class="card" style="--c:var(--lipid)"><div class="t-name">Total cholesterol<span class="unit">mg/dL</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">&lt;200 desirable</span></div><div class="val"><span class="lbl">Peds</span><span class="v">&lt;170 acceptable</span></div></div><p class="pearl">Non-fasting screen is fine for the initial pediatric check.</p></div>
+      <div class="card" style="--c:var(--lipid)"><div class="t-name">LDL<span class="unit">mg/dL</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">&lt;100</span></div><div class="val"><span class="lbl">Peds</span><span class="v">&lt;110</span></div></div><p class="pearl">"Lousy" cholesterol — the primary treatment target.</p></div>
+      <div class="card" style="--c:var(--lipid)"><div class="t-name">HDL<span class="unit">mg/dL</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">&gt;40 (M) / &gt;50 (F)</span></div><div class="val"><span class="lbl">Peds</span><span class="v">&gt;45</span></div></div><p class="pearl">"Healthy" cholesterol — higher is protective.</p></div>
+      <div class="card" style="--c:var(--lipid)"><div class="t-name">Triglycerides<span class="unit">mg/dL</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">&lt;150</span></div><div class="val"><span class="lbl">Peds</span><span class="v">&lt;90 (0–9y) · &lt;130 (10–19y)</span></div></div><div class="crit-badge">⚠ &gt;1000</div><p class="pearl">Most diet-sensitive of the panel — needs a true fasting sample.</p></div>
+    </div>
+  </section>
+
+  <section class="cat" id="thyroid">
+    <div class="cat-banner dark-text" style="background:var(--endo)"><span class="icon">🦋</span><div><span class="badge">THYROID</span><h2>Thyroid Function</h2></div></div>
+    <p class="cat-desc">A normal neonatal TSH surge in the first 24–48 hours is expected — that's exactly why newborn screening is timed after that window.</p>
+    <div class="cards-grid">
+      <div class="card" style="--c:var(--endo)"><div class="t-name">TSH<span class="unit">mIU/L</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">0.4–4.0</span></div><div class="val"><span class="lbl">Peds</span><span class="v">NB surge 20–40 (first 24–48h), then normalizes</span></div></div><p class="pearl">Congenital hypothyroidism screening relies on this surge resolving normally.</p></div>
+      <div class="card" style="--c:var(--endo)"><div class="t-name">Free T4<span class="unit">ng/dL</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">0.8–1.8</span></div><div class="val"><span class="lbl">Peds</span><span class="v">NB higher, 2.0–5.0, declining through infancy</span></div></div><p class="pearl">Untreated congenital hypothyroidism causes irreversible intellectual disability.</p></div>
+    </div>
+  </section>
+
+  <section class="cat" id="abg">
+    <div class="cat-banner" style="background:var(--abg)"><span class="icon">🫁</span><div><span class="badge">ABG</span><h2>Arterial Blood Gases</h2></div></div>
+    <p class="cat-desc">Fetal-to-newborn transition has its own "normal" in the first minutes-to-hours of life — don't apply adult O₂ targets to a delivery room baby.</p>
+    <div class="cards-grid">
+      <div class="card" style="--c:var(--abg)"><div class="t-name">pH</div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">7.35–7.45</span></div><div class="val"><span class="lbl">Peds</span><span class="v">NB 7.29–7.45 acceptable day 1</span></div></div><div class="crit-badge">⚠ &lt;7.2 or &gt;7.6</div><p class="pearl">&lt;7.35 = acidosis; &gt;7.45 = alkalosis. Read pH, then CO₂, then HCO₃.</p></div>
+      <div class="card" style="--c:var(--abg)"><div class="t-name">PaCO₂<span class="unit">mmHg</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">35–45</span></div><div class="val"><span class="lbl">Peds</span><span class="v">Same across ages</span></div></div><div class="crit-badge">⚠ &lt;20 or &gt;70</div><p class="pearl">Respiratory component — high = respiratory acidosis.</p></div>
+      <div class="card" style="--c:var(--abg)"><div class="t-name">PaO₂<span class="unit">mmHg</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">80–100</span></div><div class="val"><span class="lbl">Peds</span><span class="v">NB transitional 60–70, rises within days</span></div></div><div class="crit-badge">⚠ &lt;40</div><p class="pearl">Don't chase adult PaO₂ targets in the first minutes of life.</p></div>
+      <div class="card" style="--c:var(--abg)"><div class="t-name">HCO₃⁻<span class="unit">mEq/L</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">22–26</span></div><div class="val"><span class="lbl">Peds</span><span class="v">Infants lower baseline, 19–24</span></div></div><div class="crit-badge">⚠ &lt;10 or &gt;40</div><p class="pearl">Metabolic component — low = met. acidosis, high = met. alkalosis.</p></div>
+      <div class="card" style="--c:var(--abg)"><div class="t-name">O₂ saturation<span class="unit">%</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">&gt;95</span></div><div class="val"><span class="lbl">Peds</span><span class="v">NB rises 85→95%+ over first ~10 min</span></div></div><div class="crit-badge">⚠ &lt;85 sustained</div><p class="pearl">Congenital heart disease can shift the "acceptable" target.</p></div>
+    </div>
+  </section>
+
+  <section class="cat" id="ua">
+    <div class="cat-banner dark-text" style="background:var(--uri)"><span class="icon">💧</span><div><span class="badge">UA</span><h2>Urinalysis</h2></div></div>
+    <p class="cat-desc">Infant kidneys can't concentrate urine as well as an adult's — a lower max specific gravity in a baby is expected, not a red flag on its own.</p>
+    <div class="cards-grid">
+      <div class="card" style="--c:var(--uri)"><div class="t-name">Specific gravity</div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">1.005–1.030</span></div><div class="val"><span class="lbl">Peds</span><span class="v">Infant ceiling lower, ~1.005–1.020</span></div></div><p class="pearl">High = concentrated/dehydrated; low = dilute or impaired concentrating ability.</p></div>
+      <div class="card" style="--c:var(--uri)"><div class="t-name">pH</div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">4.6–8.0 (avg ~6.0)</span></div><div class="val"><span class="lbl">Peds</span><span class="v">Same at any age</span></div></div><p class="pearl">Diet-dependent; cranberry juice or high-protein diet acidifies urine.</p></div>
+      <div class="card" style="--c:var(--uri)"><div class="t-name">Protein / Glucose / Ketones</div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">Negative</span></div><div class="val"><span class="lbl">Peds</span><span class="v">Same</span></div></div><p class="pearl">Kids ketose faster than adults during illness/fasting (lower glycogen reserves).</p></div>
+      <div class="card" style="--c:var(--uri)"><div class="t-name">WBC / RBC<span class="unit">per hpf</span></div><div class="vals"><div class="val"><span class="lbl">Adult</span><span class="v">WBC &lt;5 · RBC &lt;2–3</span></div><div class="val"><span class="lbl">Peds</span><span class="v">Same</span></div></div><p class="pearl">Elevated WBC = pyuria; rule out contamination before RBC work-up.</p></div>
+    </div>
+  </section>
+
+  <section class="cat" id="vitals">
+    <div class="cat-banner" style="background:var(--peds)"><span class="icon">👶</span><div><span class="badge">PEDS VS</span><h2>Pediatric Vital Signs</h2></div></div>
+    <p class="cat-desc">HR and RR fall while BP rises as a child ages — the single most testable pediatric vitals pattern.</p>
+    <div class="vitals-grid">
+      <div class="vcard" style="background:#FF6B9D"><h3>Neonate</h3><div class="age">0–28 days</div><dl><dt>HR</dt><dd>100–180 bpm</dd><dt>RR</dt><dd>30–60/min</dd><dt>BP</dt><dd>~60–90/30–60</dd></dl></div>
+      <div class="vcard" style="background:#FF9A3D"><h3>Infant</h3><div class="age">1–12 months</div><dl><dt>HR</dt><dd>100–160 bpm</dd><dt>RR</dt><dd>25–40/min</dd><dt>BP</dt><dd>~87–105/53–66</dd></dl></div>
+      <div class="vcard" style="background:#E0A821; color:#182238"><h3>Toddler</h3><div class="age">1–3 years</div><dl><dt>HR</dt><dd>90–150 bpm</dd><dt>RR</dt><dd>20–30/min</dd><dt>BP</dt><dd>~95–105/53–66</dd></dl></div>
+      <div class="vcard" style="background:#43C06A"><h3>Preschool</h3><div class="age">3–6 years</div><dl><dt>HR</dt><dd>80–140 bpm</dd><dt>RR</dt><dd>20–25/min</dd><dt>BP</dt><dd>~95–110/56–70</dd></dl></div>
+      <div class="vcard" style="background:#2D6CDF"><h3>School-age</h3><div class="age">6–12 years</div><dl><dt>HR</dt><dd>70–120 bpm</dd><dt>RR</dt><dd>18–24/min</dd><dt>BP</dt><dd>~97–112/57–71</dd></dl></div>
+      <div class="vcard" style="background:#8B5CF6"><h3>Adolescent</h3><div class="age">12–18 years</div><dl><dt>HR</dt><dd>60–100 bpm</dd><dt>RR</dt><dd>12–20/min</dd><dt>BP</dt><dd>~110–120/60–80</dd></dl></div>
+    </div>
+  </section>
+
+  <section class="cat" id="dx">
+    <div class="cat-banner" style="background:var(--dx)"><span class="icon">🔬</span><div><span class="badge">DX</span><h2>Common Diagnostic Tests</h2></div></div>
+    <p class="cat-desc">What each test evaluates and the nursing consideration most likely to show up on an exam.</p>
+    <div class="cards-grid">
+      <div class="card" style="--c:var(--dx)"><div class="t-name">🩻 Chest X-ray</div><p class="pearl"><b>Evaluates:</b> lung fields, heart size, tube/line placement. <b>Nursing:</b> remove metal/jewelry from the field; confirm pregnancy status if relevant.</p></div>
+      <div class="card" style="--c:var(--dx)"><div class="t-name">🖥️ CT (with contrast)</div><p class="pearl"><b>Evaluates:</b> detailed cross-sectional imaging. <b>Nursing:</b> check renal function and iodine/shellfish allergy first; NPO per protocol.</p></div>
+      <div class="card" style="--c:var(--dx)"><div class="t-name">🧲 MRI</div><p class="pearl"><b>Evaluates:</b> soft tissue, neuro, cardiac detail without radiation. <b>Nursing:</b> screen for implanted metal/pacemakers; young kids often need sedation (NPO).</p></div>
+      <div class="card" style="--c:var(--dx)"><div class="t-name">📡 Ultrasound</div><p class="pearl"><b>Evaluates:</b> soft tissue, abdominal organs, fetal/cardiac structures. <b>Nursing:</b> no radiation — full bladder needed for pelvic studies.</p></div>
+      <div class="card" style="--c:var(--dx)"><div class="t-name">❤️ ECG/EKG</div><p class="pearl"><b>Evaluates:</b> cardiac electrical activity/rhythm. <b>Nursing:</b> non-invasive; lead placement accuracy matters for interpretation.</p></div>
+      <div class="card" style="--c:var(--dx)"><div class="t-name">🧠 EEG</div><p class="pearl"><b>Evaluates:</b> brain electrical activity, seizure focus. <b>Nursing:</b> sleep deprivation may be requested beforehand; wash hair after (electrode gel).</p></div>
+      <div class="card" style="--c:var(--dx)"><div class="t-name">💉 Lumbar puncture</div><p class="pearl"><b>Evaluates:</b> CSF — infection, bleeding, pressure. <b>Nursing:</b> tight fetal/side-lying position; monitor for post-LP headache; strict asepsis.</p></div>
+      <div class="card" style="--c:var(--dx)"><div class="t-name">🔦 Endoscopy / colonoscopy</div><p class="pearl"><b>Evaluates:</b> direct GI mucosa visualization, biopsy capability. <b>Nursing:</b> bowel prep, NPO, consent; monitor airway during sedation.</p></div>
+      <div class="card" style="--c:var(--dx)"><div class="t-name">❤️‍🩹 Cardiac catheterization</div><p class="pearl"><b>Evaluates:</b> coronary/chamber pressures, congenital defects. <b>Nursing:</b> check distal pulses pre/post; monitor site for bleeding.</p></div>
+      <div class="card" style="--c:var(--dx)"><div class="t-name">🧫 Biopsy</div><p class="pearl"><b>Evaluates:</b> tissue diagnosis (liver/renal/marrow). <b>Nursing:</b> check coags beforehand; monitor for bleeding/pain after.</p></div>
+      <div class="card" style="--c:var(--dx)"><div class="t-name">🩸 Blood cultures</div><p class="pearl"><b>Evaluates:</b> bacteremia/sepsis source. <b>Nursing:</b> draw before antibiotics; strict sterile technique.</p></div>
+      <div class="card" style="--c:var(--dx)"><div class="t-name">🫁 Pulmonary function tests</div><p class="pearl"><b>Evaluates:</b> lung volumes, airflow pattern. <b>Nursing:</b> requires cooperation with forced breathing — limited use in young kids.</p></div>
+      <div class="card" style="--c:var(--dx)"><div class="t-name">🧪 PPD / Mantoux</div><p class="pearl"><b>Evaluates:</b> TB exposure. <b>Nursing:</b> read induration (not redness) at 48–72h; document in mm.</p></div>
+      <div class="card" style="--c:var(--dx)"><div class="t-name">🍼 Newborn heel-stick screen</div><p class="pearl"><b>Evaluates:</b> metabolic/genetic/endocrine disorders (PKU, congenital hypothyroidism). <b>Nursing:</b> time after 24h of life + adequate feeding.</p></div>
+      <div class="card" style="--c:var(--dx)"><div class="t-name">⭐ Apgar score</div><p class="pearl"><b>Evaluates:</b> immediate newborn transition (quick assessment, not a lab). <b>Nursing:</b> score at 1 & 5 min — HR, resp effort, tone, reflex irritability, color.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Built as a study/recall aid — not a clinical reference for patient care decisions. Reference ranges vary by lab, assay, and textbook (Wong's, Iggy, Hurst, etc. don't always agree to the decimal); confirm against your program's assigned source before an exam.</p>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+    var sections = chips.map(function(c){ return document.querySelector(c.getAttribute('href')); }).filter(Boolean);
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          var id = '#' + entry.target.id;
+          var chip = chips.find(function(c){ return c.getAttribute('href') === id; });
+          if (!chip) return;
+          if (entry.isIntersecting) {
+            chips.forEach(function(c){ c.classList.remove('active'); });
+            chip.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+      sections.forEach(function(s){ io.observe(s); });
+    } else {
+      chips.forEach(function(c){ c.classList.add('active'); });
+    }
+  })();
+</script>
+
+</body>
+</html>

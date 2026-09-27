@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NUR202 Mock Quiz: Chapters 1, 6 & 8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F6F7F5; --card:#FFFFFF; --ink:#1D2B36; --muted:#5B6873; --line:#D9DEE2;
+  --ch1:#3F51A3; --ch6:#8B3A62; --ch8:#1E7470;
+  --ok:#2F7D4A; --okbg:#E7F3EA; --bad:#B03A2E; --badbg:#F8E8E6; --sel:#E9EDF7;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:"Public Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#141A1F; --card:#1C242B; --ink:#E6EBEF; --muted:#9AA7B1; --line:#33404A;
+    --ch1:#8C9BE8; --ch6:#E08BB5; --ch8:#6CC7BF;
+    --ok:#6FC58C; --okbg:#1D3326; --bad:#F08A7E; --badbg:#3A2220; --sel:#27314A;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#141A1F; --card:#1C242B; --ink:#E6EBEF; --muted:#9AA7B1; --line:#33404A;
+  --ch1:#8C9BE8; --ch6:#E08BB5; --ch8:#6CC7BF;
+  --ok:#6FC58C; --okbg:#1D3326; --bad:#F08A7E; --badbg:#3A2220; --sel:#27314A;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5}
+.wrap{max-width:720px;margin:0 auto;padding:20px 16px 48px}
+header h1{font-family:var(--serif);font-weight:600;font-size:1.6rem;line-height:1.2;margin:0 0 4px}
+header p{margin:0;color:var(--muted);font-size:.95rem}
+.strip{display:grid;grid-template-columns:repeat(25,1fr);gap:3px;margin:18px 0 6px}
+.cell{height:14px;border-radius:2px;background:var(--line);border:0;padding:0;cursor:pointer}
+.cell.ok{background:var(--ok)} .cell.bad{background:var(--bad)}
+.cell.cur{outline:2px solid var(--ink);outline-offset:1px}
+.meta{display:flex;justify-content:space-between;font-size:.85rem;color:var(--muted);margin-bottom:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px 18px}
+.tag{display:inline-block;font-size:.8rem;font-weight:600;padding:2px 8px;border-radius:4px;color:#fff;margin-bottom:10px}
+.t1{background:var(--ch1)} .t6{background:var(--ch6)} .t8{background:var(--ch8)}
+.stem{font-family:var(--serif);font-size:1.12rem;line-height:1.6;margin:0 0 6px}
+.sata{font-size:.85rem;font-weight:600;color:var(--muted);margin:0 0 12px}
+.opts{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:8px}
+.opt{width:100%;text-align:left;display:flex;gap:10px;align-items:flex-start;background:transparent;color:var(--ink);
+  border:1.5px solid var(--line);border-radius:8px;padding:11px 12px;font:inherit;cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--muted)}
+.opt:focus-visible,.btn:focus-visible,.cell:focus-visible{outline:3px solid var(--ch1);outline-offset:2px}
+.opt .l{font-weight:700;min-width:1.2em}
+.opt.picked{background:var(--sel);border-color:var(--ch1)}
+.opt.right{background:var(--okbg);border-color:var(--ok)}
+.opt.wrong{background:var(--badbg);border-color:var(--bad)}
+.opt:disabled{cursor:default}
+.mark{margin-left:auto;font-weight:700;font-size:.85rem;white-space:nowrap}
+.right .mark{color:var(--ok)} .wrong .mark{color:var(--bad)}
+.verdict{margin:18px 0 0;padding:12px 14px;border-radius:8px;font-weight:700}
+.verdict.ok{background:var(--okbg);color:var(--ok)} .verdict.bad{background:var(--badbg);color:var(--bad)}
+.why h3{font-size:.95rem;margin:16px 0 4px}
+.why p{margin:0 0 8px}
+.find{margin-top:14px;padding:10px 12px;border-left:4px solid var(--ch1);background:var(--sel);border-radius:0 6px 6px 0;font-size:.92rem}
+.note{margin-top:10px;font-size:.88rem;color:var(--muted)}
+.row{display:flex;gap:10px;justify-content:space-between;margin-top:18px;flex-wrap:wrap}
+.btn{font:inherit;font-weight:600;border-radius:8px;padding:10px 16px;cursor:pointer;border:1.5px solid var(--ink);background:var(--ink);color:var(--card)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn:disabled{opacity:.4;cursor:default}
+.hidden{display:none}
+.score{font-family:var(--serif);font-size:2.6rem;font-weight:600;margin:0}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.95rem}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line)}
+.missed{list-style:none;padding:0;margin:8px 0 0}
+.missed li{margin:6px 0}
+.missed button{font:inherit;background:none;border:0;color:var(--ch1);text-decoration:underline;cursor:pointer;padding:0;text-align:left}
+@media (prefers-reduced-motion:no-preference){ .reveal{animation:in .25s ease-out} @keyframes in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Mock quiz: Chapters 1, 6 & 8</h1>
+    <p>25 questions from the Varcarolis test bank, ethics items removed. Rationales checked against the 9th edition text in your project files.</p>
+  </header>
+  <div class="strip" id="strip" aria-label="Question progress"></div>
+  <div class="meta"><span id="pos"></span><span id="tally"></span></div>
+  <main id="main"></main>
+</div>
+<script>
+const Q = [
+{ch:8,stem:"An advanced practice nurse observes a novice nurse expressing irritability toward a patient with a long history of alcoholism and suspects countertransference. Which comment by the new nurse confirms this suspicion?",
+opts:["\u201cThis patient continues to deny problems resulting from drinking.\u201d","\u201cMy parents were alcoholics and often neglected our family.\u201d","\u201cThe patient cannot identify any goals for improvement.\u201d","\u201cThe patient said I have many traits like her mother.\u201d"],ans:[1],
+why:"Countertransference is transference in reverse: the nurse unconsciously displaces feelings tied to significant figures in the nurse\u2019s own past onto the patient. The irritability is coming from the nurse\u2019s history with alcoholic parents, not from the patient in front of her.",
+others:"A and C are objective observations about the patient\u2019s behavior. D describes transference, which runs from patient to nurse.",
+find:"Ch. 8, Blurring of Roles \u2192 Countertransference (pp. 127\u2013128). The textbook\u2019s own example is a nurse whose mother was an alcoholic lecturing a patient about skipping AA."},
+{ch:1,stem:"Which assessment finding most clearly indicates that a patient may be experiencing a mental illness? The patient:",
+opts:["reports occasional sleeplessness and anxiety.","reports a consistently sad, discouraged, and hopeless mood.","is able to describe the difference between \u201cas if\u201d and \u201cfor real.\u201d","perceives difficulty making a decision about whether to change jobs."],ans:[1],
+why:"The textbook defines mental illness as psychiatric disorders with definable diagnoses marked by significant dysfunction in thinking, emotion, or behavior. A persistent sad, hopeless mood is an emotional alteration (it is literally the example given for major depression).",
+others:"Occasional sleeplessness and indecision about a job sit on the \u201coccasional stress to mild distress\u201d end of the continuum. Distinguishing \u201cas if\u201d from \u201cfor real\u201d shows intact reality testing, which is healthy.",
+find:"Ch. 1, definitions of mental health and mental illness, plus Fig. 1.2 (mental health\u2013mental illness continuum)."},
+{ch:6,stem:"What is the legal significance of a nurse\u2019s action when a patient verbally refuses medication and the nurse gives the medication over the patient\u2019s objection? The nurse:",
+opts:["has been negligent.","committed malpractice.","fulfilled the standard of care.","can be charged with battery."],ans:[3],
+why:"Battery is the actual harmful or offensive touching of another person without consent. A verbal refusal is a retraction of consent, and the text says providers must respect a retraction whether it is verbal or written, even for involuntarily committed patients.",
+others:"Negligence and malpractice are unintentional torts built on a breached duty that causes harm; forcing medication is intentional. Overriding a competent refusal is never the standard of care.",
+find:"Ch. 6, Intentional Torts (assault vs. battery) and Right to Refuse Treatment."},
+{ch:8,stem:"Which statement shows a nurse has empathy for a patient who made a suicide attempt?",
+opts:["\u201cYou must have been very upset when you tried to hurt yourself.\u201d","\u201cIt makes me sad to see you going through such a difficult experience.\u201d","\u201cIf you tell me what is troubling you, I can help you solve your problems.\u201d","\u201cSuicide is a drastic solution to a problem that may not be such a serious matter.\u201d"],ans:[0],
+why:"Empathy means trying to understand the world from the patient\u2019s perspective and communicating that understanding back. Option A names the patient\u2019s likely feeling and keeps the focus on them.",
+others:"B is sympathy: it centers the nurse\u2019s sadness. C is rescuing and implies the nurse will fix things. D minimizes the patient\u2019s pain.",
+find:"Ch. 8, Empathy Versus Sympathy (p. 132). Compare the \u201csympathetic\u201d and \u201cempathetic\u201d responses to the friend whose mother has cancer."},
+{ch:1,stem:"A category 5 tornado struck a community of 400 people. In the 2 years after the disaster, 140 individuals were diagnosed with PTSD. Which term best applies to these newly diagnosed cases?",
+opts:["Prevalence","Comorbidity","Incidence","Parity"],ans:[2],
+why:"Incidence is the number of new cases in a population over a given period (usually a year). The question stresses \u201cnewly diagnosed\u201d cases after a specific event.",
+others:"Prevalence counts all cases, new and existing, regardless of when they began. Comorbidity is having more than one disorder at once. Parity is equal insurance coverage for mental and physical illness.",
+find:"Ch. 1, Epidemiology of Mental Disorders. The cold (high incidence, low prevalence) vs. diabetes (low incidence, high prevalence) comparison is the fastest way to lock this in."},
+{ch:6,stem:"A voluntarily hospitalized patient tells the nurse, \u201cGet me the forms for discharge. I want to leave now.\u201d Select the nurse\u2019s best response.",
+opts:["\u201cI will get the forms for you right now and bring them to your room.\u201d","\u201cSince you signed your consent for treatment, you may leave if you desire.\u201d","\u201cI will get them for you, but let\u2019s talk about your decision to leave treatment.\u201d","\u201cI cannot give you those forms without your health care provider\u2019s permission.\u201d"],ans:[2],
+why:"Voluntary patients have the right to request and obtain release, but the text notes reevaluation may be needed first, and that reevaluation can lead to involuntary commitment if criteria are met. C honors the right while assessing why the patient wants to leave.",
+others:"A and B skip assessment entirely. D is false; the patient does not need permission to request release.",
+find:"Ch. 6, Voluntary Admissions (p. 95)."},
+{ch:8,stem:"A nurse is talking with a patient, and 5 minutes remain in the session. The patient has been silent most of the session. Another patient interrupts and says, \u201cI really need to talk to you.\u201d The nurse should:",
+opts:["invite the interrupting patient to join in the session with the current patient.","say to the interrupting patient, \u201cI am not available to talk with you at the present time.\u201d","end the unproductive session with the current patient and spend time with the interrupting patient.","tell the interrupting patient, \u201cThis session is 5 more minutes; then I will talk with you.\u201d"],ans:[3],
+why:"The contracted time belongs to the current patient. Keeping it shows the nurse means what she says, which builds trust, and giving the second patient a specific time meets their need too.",
+others:"A breaks confidentiality and the contract. B protects the contract but leaves the interrupting patient with nothing. C abandons the silent patient; silence is not the same as an unproductive session.",
+find:"Ch. 8, Table 8.1, \u201cIf Another Patient Interrupts During Time with Your Current Patient.\u201d"},
+{ch:1,stem:"Which individual is demonstrating the highest level of resilience? One who:",
+opts:["is able to repress stressors.","becomes depressed after the death of a spouse.","lives in a shelter for two years after the home is destroyed by fire.","takes a temporary job to maintain financial stability after loss of a permanent job."],ans:[3],
+why:"The text defines resilience as the ability and capacity to secure the resources needed to support one\u2019s well-being. Taking a temporary job is actively securing a resource after a loss.",
+others:"Repression is a defense mechanism, not adaptation. Depression after loss shows impact, not resource-seeking. Two years in a shelter suggests failure to move forward. Note the text says resilient people are still affected by stress; they just regulate and adapt.",
+find:"Ch. 1, Risk and Protective Factors \u2192 Individual Attributes and Behaviors (resilience, Brief Resilient Coping Scale)."},
+{ch:6,stem:"A patient diagnosed with schizophrenia believes a local minister stirred evil spirits and threatens to bomb the minister\u2019s church. The psychiatrist notifies the minister. The psychiatrist:",
+opts:["released information without proper authorization.","demonstrated the duty to warn and protect.","violated the patient\u2019s confidentiality.","avoided charges of malpractice."],ans:[1],
+why:"Tarasoff v. Regents of the University of California (1974) established that a therapist has a duty to warn a patient\u2019s identifiable potential victim. This is a recognized exception to confidentiality, not a breach of it.",
+others:"A and C describe the breach that the exception overrides. D is a side effect at best, not the legal principle being demonstrated.",
+find:"Ch. 6, Rights Regarding Confidentiality \u2192 Exceptions to the Rule. Know the nursing distinction: staff RNs report threats to the treatment team; APRNs in private practice warn the victim themselves."},
+{ch:8,stem:"Which remark by a patient indicates passage from the orientation phase to the working phase of the nurse-patient relationship?",
+opts:["\u201cI don\u2019t have any problems.\u201d","\u201cIt is so difficult for me to talk about problems.\u201d","\u201cI don\u2019t know how it will help to talk to you about my problems.\u201d","\u201cI want to find a way to deal with my anger without becoming violent.\u201d"],ans:[3],
+why:"The working phase is where the patient recognizes dysfunctional responses and practices more adaptive coping. D shows the patient naming a problem and wanting a new behavior.",
+others:"A (denial), B (difficulty talking), and C (skepticism about the process) are typical before trust and rapport are established, which is orientation.",
+find:"Ch. 8, Orientation Phase and Working Phase (pp. 130\u2013131)."},
+{ch:1,stem:"The Diagnostic and Statistical Manual of Mental Disorders (DSM-5) classifies:",
+opts:["deviant behaviors.","present disability or distress.","people with mental disorders.","mental disorders people have."],ans:[3],
+why:"The text calls it a common misconception that the DSM classifies people. It classifies disorders, which is why it uses \u201can individual with schizophrenia\u201d rather than \u201ca schizophrenic.\u201d",
+others:"Deviance alone is not mental illness; the chapter rejects conformity-based definitions. Disability or distress is only one part of diagnostic criteria. C is the exact misconception the text corrects.",
+find:"Ch. 1, Classification of Mental Disorders \u2192 The DSM-5."},
+{ch:6,stem:"Which nursing intervention demonstrates false imprisonment?",
+opts:["A confused, combative patient says, \u201cI\u2019m getting out of here.\u201d The nurse restrains the patient without an order and promptly obtains one.","A patient has been irritating and attention-seeking all day. The nurse escorts the patient down the hall saying, \u201cStay in your room, or you\u2019ll be put in seclusion.\u201d","An involuntarily hospitalized patient with suicidal ideation runs off the unit. The nurse follows and convinces the patient to return.","An involuntarily hospitalized patient with homicidal ideation tries to leave. The nurse calls security and uses established protocols to prevent it."],ans:[1],
+why:"The text states that making threats if a patient tries to leave a room is still considered secluding, even with the door unlocked. Seclusion is limited to violent or self-destructive behavior that threatens safety. \u201cIrritating and attention-seeking\u201d does not meet that bar, so the threat confines the patient without justification.",
+others:"A: in an emergency, the nurse may restrain and obtain an order as soon as possible. C and D: involuntarily committed patients cannot leave without the team\u2019s permission, and both responses protect safety.",
+find:"Ch. 6, Rights Regarding Restraint and Seclusion (definition of seclusion) and Intentional Torts. Notice the threat itself also fits the definition of assault."},
+{ch:8,stem:"A nurse wants to enhance a patient\u2019s growth by showing positive regard. The nurse\u2019s action most likely to achieve this goal is:",
+opts:["making rounds daily.","staying with a tearful patient.","administering medication as prescribed.","examining personal feelings about a patient."],ans:[1],
+why:"Positive regard is usually communicated through attitudes and actions rather than words. Attending, being present with the patient, is one of those actions, and Table 8.1 says that when a patient cries, the nurse should stay and reinforce that it is all right to cry.",
+others:"Rounds and scheduled medications are routine tasks on any assignment and don\u2019t by themselves show respect for the person. Examining your own feelings is self-awareness that supports being therapeutic, but it is not something the patient experiences.",
+find:"Ch. 8, Positive Regard \u2192 Attitudes and Actions (Attending), and Table 8.1, \u201cIf the Patient Cries.\u201d"},
+{ch:1,stem:"Another health professional asks the nurse the difference between a DSM-5 diagnosis and a nursing diagnosis. Select the nurse\u2019s best response.",
+opts:["\u201cThere is no functional difference. Both identify human disorders.\u201d","\u201cThe DSM-5 diagnosis disregards culture, whereas the nursing diagnosis takes culture into account.\u201d","\u201cThe DSM-5 diagnosis describes causes of disorders, whereas a nursing diagnosis does not explore etiology.\u201d","\u201cThe DSM-5 diagnosis guides medical treatment, whereas the nursing diagnosis offers a framework for identifying interventions for issues the patient is experiencing.\u201d"],ans:[3],
+why:"The text: the DSM-5 is used to diagnose the psychiatric disorder; a nursing diagnosis provides the framework for interventions that address the patient\u2019s response to it. RNs treat the insomnia or hopelessness, not the major depressive disorder itself.",
+others:"A erases the distinction. B is false; both consider culture. C is backwards: the DSM identifies disorders by criteria rather than by cause.",
+find:"Ch. 1, Classification of Mental Disorders and Classification of Nursing Diagnoses.",
+note:"Heads-up: this test bank was written for the 8th edition and its rationale calls the DSM-5 \u201cmultiaxial.\u201d That is outdated; the DSM-5 dropped the multiaxial system. Your 9th edition also uses ICNP rather than NANDA for nursing diagnoses, so check with your professor which one she expects."},
+{ch:6,stem:"A patient in alcohol rehabilitation tells the nurse, \u201cI feel terrible guilt for sexually abusing my 6-year-old before I was admitted.\u201d Select the nurse\u2019s most important action.",
+opts:["Anonymously report the abuse by phone to the local child protection agency.","Reply, \u201cI\u2019m glad you feel comfortable talking to me about it.\u201d","File a written report with the agency\u2019s ethics committee.","Respect nurse-patient relationship confidentiality."],ans:[0],
+why:"Federal confidentiality rules for substance treatment programs prohibit disclosure without a court order and supersede state reporting laws. State reporting can still be satisfied with a court order, a report that doesn\u2019t identify the abuser as a treatment patient, or an anonymous report. The child\u2019s safety is the priority.",
+others:"B builds rapport but protects no one. C sends it to the wrong body. D ignores mandatory reporting.",
+find:"Ch. 6, Statutes for Reporting Child and Older Adult Abuse.",
+note:"The text adds that some states don\u2019t allow anonymous reporting. Know your state\u2019s rule for clinical."},
+{ch:8,stem:"At what point in the nurse-patient relationship should a nurse plan to first address termination?",
+opts:["During the orientation phase","At the end of the working phase","Near the beginning of the termination phase","When the patient initially brings up the topic"],ans:[0],
+why:"Termination is discussed at the first meeting and again at appropriate points in the working phase. The contract made during orientation includes the place, time, date, duration, and the end of the relationship.",
+others:"Waiting until the working or termination phase withholds the conditions of the relationship. Waiting for the patient puts the responsibility in the wrong place; the nurse raises it.",
+find:"Ch. 8, Specifying a Contract (p. 131) and Termination Phase."},
+{ch:1,stem:"Which disorder is a culture-bound syndrome?",
+opts:["Epilepsy","Schizophrenia","Running amok","Major depression"],ans:[2],
+why:"Culture-bound syndromes occur in specific sociocultural contexts and are easily recognized by people in those cultures. Running amok, recognized in parts of Southeast Asia, is the text\u2019s example.",
+others:"Epilepsy is neurological. Schizophrenia and major depression occur across cultures, even though culture shapes how symptoms are expressed and interpreted.",
+find:"Ch. 1, the section on culture and mental illness. The text also discusses anorexia nervosa in the same passage; worth reading why."},
+{ch:6,stem:"After leaving work, a nurse realizes documentation of a PRN medication was omitted. The off-duty nurse phones the nurse on duty and says, \u201cPlease document administration of the medication for me. My password is alpha1.\u201d The nurse receiving the call should:",
+opts:["fulfill the request promptly.","document the caller\u2019s password.","refer the matter to the charge nurse to resolve.","report the request to the patient\u2019s health care provider."],ans:[2],
+why:"You are responsible for every entry made under your password, so passwords stay private. Charting under someone else\u2019s login is fraudulent documentation. Referring the matter to the charge nurse gets the missing entry handled through policy.",
+others:"A and B commit or enable fraudulent charting. D sends it to the wrong person; the provider doesn\u2019t manage documentation or staff conduct, and the charge nurse can resolve it.",
+find:"Ch. 6, Documentation of Care \u2192 Guidelines for Electronic Documentation."},
+{ch:8,stem:"A nurse says, \u201cI am the only one who truly understands this patient. Other staff members are too critical.\u201d The nurse\u2019s statement indicates:",
+opts:["boundary blurring.","sexual harassment.","positive regard.","advocacy."],ans:[0],
+why:"Being defensive when others comment on the special attention a patient receives is listed as a nurse behavior indicating boundary crossing. Role blurring is often the result of unrecognized countertransference, and the fix is supervision.",
+others:"Nothing sexual is described. Positive regard is respect for the patient, not exclusivity. Advocacy speaks up for the patient\u2019s needs; this statement is about the nurse\u2019s relationship.",
+find:"Ch. 8, Box 8.1 (Nurse Behaviors Indicating Boundary Crossing) and Blurring of Roles."},
+{ch:1,stem:"A nurse is part of a team working with groups of depressed patients. Half receive supportive interventions plus antidepressant medication; the other half receive only medication. The team measures outcomes for each group. Which type of study is this?",
+opts:["Incidence","Prevalence","Comorbidity","Clinical epidemiology"],ans:[3],
+why:"Clinical epidemiology examines health and illness at the population level. It includes studies of an illness\u2019s natural history, studies of screening tests, and observational and experimental studies of interventions. Comparing two treatment groups is an experimental study of interventions.",
+others:"Incidence is new cases over a period. Prevalence is all cases, new and existing. Comorbidity is having more than one disorder at a time. None of these compares treatments.",
+find:"Ch. 1, Epidemiology of Mental Disorders (the three bullet points under clinical epidemiology).",
+note:"The test bank\u2019s rationale for this item mislabels prevalence as \u201cnumbers of new cases.\u201d It isn\u2019t; that is incidence."},
+{ch:6,stem:"A patient with psychosis became aggressive, struck another patient, and required seclusion. Select the best documentation.",
+opts:["Patient struck another patient who attempted to leave day room to go to bathroom. Seclusion necessary at 1415. Plan: Maintain seclusion for 8 hours and keep these two patients apart for 24 hours.","Seclusion ordered by physician at 1415 after command hallucinations told the patient to hit another patient. Careful monitoring maintained during seclusion.","Seclusion ordered by MD for aggressive behavior. Begun at 1415. Maintained for 2 hours without incident. Outcome: Patient calmer and apologized.","Patient pacing, shouting. Haloperidol 5 mg PO at 1300. No effect by 1315. At 1415 patient yelled, \u201cI\u2019ll punch anyone who gets near me,\u201d and struck another patient with fist. Physically placed in seclusion at 1420. Seclusion order obtained from MD at 1430."],ans:[3],
+why:"Documentation must show the specific behaviors leading to seclusion, the times, and the less restrictive measures tried first. D records escalating behavior, a quoted threat, the PRN tried and its effect, the time of seclusion, and an order obtained promptly afterward.",
+others:"A plans 8 hours, but adult orders are limited to 4 hours at a time. B and C are vague about behavior and prior interventions.",
+find:"Ch. 6, Orders and Documentation with Restraint and Seclusion (time limits by age are here too: adults 4 h, ages 9\u201317 2 h, under 9 1 h)."},
+{ch:8,stem:"As a nurse discharges a patient, the patient gives the nurse a card of appreciation made in an arts and crafts group. What is the nurse\u2019s best action?",
+opts:["Recognize the effectiveness of the relationship and the patient\u2019s thoughtfulness. Accept the card.","Inform the patient that accepting gifts violates facility policy. Decline the card.","Acknowledge the patient\u2019s transition through termination but decline the card.","Accept the card and invite the patient to return to participate in other arts and crafts groups."],ans:[0],
+why:"The nurse considers the meaning, timing, and value of a gift. An inexpensive gift given at the end of hospitalization, after a relationship has developed, is graciously accepted.",
+others:"B and C refuse a meaningful, low-value gesture for no therapeutic reason. D accepts but then invites ongoing social contact, which blurs boundaries after termination.",
+find:"Ch. 8, Table 8.1, \u201cIf the Patient Gives the Nurse a Present.\u201d Memorize the three rules: expensive = refuse, money = always refuse, inexpensive = depends on timing."},
+{ch:1,stem:"Which nursing intervention is part of the scope of an advanced practice psychiatric-mental health nurse only?",
+opts:["Coordination of care","Health teaching","Milieu therapy","Psychotherapy"],ans:[3],
+why:"Psychotherapy (individual, couple, group, or family) is an advanced practice intervention, along with prescribing psychotropics and consultation.",
+others:"Coordination of care, health teaching, and milieu therapy are all basic-level RN interventions.",
+find:"Ch. 1, Table 1.2 (Basic Level and Advanced Practice Interventions)."},
+{ch:6,stem:"A nurse prepares to give a scheduled haloperidol decanoate injection to an outpatient with schizophrenia. As the nurse swabs the site, the patient shouts, \u201cStop! I don\u2019t want that medicine anymore. I hate the side effects.\u201d Select the nurse\u2019s best action.",
+opts:["Assemble staff for a show of force and proceed with the injection, using restraint if necessary.","Stop the procedure and say, \u201cTell me more about the side effects you\u2019ve been having.\u201d","Proceed with the injection but explain that other medications can reduce the side effects.","Say, \u201cSince I\u2019ve already drawn up the medication, I\u2019m required to give it, but let\u2019s talk to the doctor about delaying next month\u2019s dose.\u201d"],ans:[1],
+why:"Patients can withdraw consent at any time, verbally or in writing, and there is no evidence of dangerousness here. The nurse stops and assesses the side effects, which also gives the provider useful information.",
+others:"A, C, and D all give the medication over a refusal, which is battery (question 3). A drawn-up syringe creates no obligation.",
+find:"Ch. 6, Right to Refuse Treatment. Also think about which side effects of a first-generation antipsychotic you would ask about."},
+{ch:6,stem:"Which individual diagnosed with a mental illness may need involuntary hospitalization? An individual:",
+opts:["who has a panic attack after her child gets lost in a shopping mall.","with visions of demons emerging from cemetery plots throughout the community.","who takes 38 acetaminophen tablets after the person\u2019s stock portfolio becomes worthless.","diagnosed with major depression who stops taking prescribed antidepressant medication."],ans:[2],
+why:"Commitment criteria include mental illness plus danger to self or others, or grave disability. An intentional acetaminophen overdose is direct evidence of danger to self.",
+others:"A panic attack after a frightening event, hallucinations without dangerous behavior, and nonadherence are all concerning but do not meet the dangerousness standard.",
+find:"Ch. 6, Involuntary Commitment (the four criteria)."}
+];
+
+const KEY="nur202-quiz-ch168-v2";
+let S={i:0,res:Array(Q.length).fill(null),picks:Array(Q.length).fill(null),only:null};
+try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&s.res&&s.res.length===Q.length)S=s;}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const L="ABCDE";
+const $=id=>document.getElementById(id);
+const same=(a,b)=>a.length===b.length&&[...a].sort().join()===[...b].sort().join();
+let temp=[];
+
+function strip(){
+  $("strip").innerHTML=Q.map((q,k)=>`<button class="cell ${S.res[k]===true?'ok':S.res[k]===false?'bad':''} ${k===S.i&&S.i<Q.length?'cur':''}" aria-label="Question ${k+1}${S.res[k]===null?'':S.res[k]?', correct':', incorrect'}" data-k="${k}"></button>`).join("");
+  $("strip").querySelectorAll(".cell").forEach(b=>b.onclick=()=>{S.i=+b.dataset.k;save();render()});
+  const done=S.res.filter(r=>r!==null).length, ok=S.res.filter(r=>r===true).length;
+  $("pos").textContent=S.i<Q.length?`Question ${S.i+1} of ${Q.length}`:"Results";
+  $("tally").textContent=`${ok} correct of ${done} answered`;
+}
+
+function render(){
+  strip();
+  if(S.i>=Q.length) return results();
+  const q=Q[S.i], answered=S.res[S.i]!==null, pick=S.picks[S.i]||[];
+  temp=answered?pick:[];
+  let h=`<div class="card"><span class="tag t${q.ch}">Chapter ${q.ch}</span><p class="stem">${q.stem}</p>`;
+  if(q.sata)h+=`<p class="sata">Select all that apply.</p>`;
+  h+=`<ul class="opts">`+q.opts.map((o,k)=>{
+    let c="",m="";
+    if(answered){const isA=q.ans.includes(k),isP=pick.includes(k);
+      if(isA){c="right";m=isP?"Correct":"Answer";} else if(isP){c="wrong";m="Your pick";}}
+    return `<li><button class="opt ${c}" data-k="${k}" ${answered?"disabled":""} aria-pressed="false"><span class="l">${L[k]}.</span><span>${o}</span>${m?`<span class="mark">${m}</span>`:""}</button></li>`;
+  }).join("")+`</ul>`;
+  if(q.sata&&!answered)h+=`<div class="row"><span></span><button class="btn" id="chk" disabled>Check answer</button></div>`;
+  if(answered){
+    const ok=S.res[S.i];
+    h+=`<div class="reveal"><div class="verdict ${ok?'ok':'bad'}">${ok?'Correct.':'Not quite.'} Answer: ${q.ans.map(a=>L[a]).join(", ")}</div>
+    <div class="why"><h3>Why</h3><p>${q.why}</p><h3>Why not the others</h3><p>${q.others}</p></div>
+    <div class="find"><strong>Verify it yourself:</strong> ${q.find}</div>${q.note?`<p class="note">${q.note}</p>`:""}</div>`;
+  }
+  h+=`<div class="row"><button class="btn ghost" id="prev" ${S.i===0?"disabled":""}>Previous</button><button class="btn" id="next" ${answered?"":"disabled"}>${nextIdx()===Q.length?"See results":"Next question"}</button></div></div>`;
+  $("main").innerHTML=h;
+  $("prev").onclick=()=>{S.i=Math.max(0,S.i-1);save();render()};
+  $("next").onclick=()=>{S.i=nextIdx();save();render();window.scrollTo({top:0})};
+  if(!answered){
+    $("main").querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
+      const k=+b.dataset.k;
+      if(!q.sata){grade([k]);return;}
+      temp=temp.includes(k)?temp.filter(x=>x!==k):[...temp,k];
+      b.classList.toggle("picked");b.setAttribute("aria-pressed",temp.includes(k));
+      $("chk").disabled=temp.length===0;
+    });
+    if(q.sata)$("chk").onclick=()=>grade(temp);
+  }
+}
+function nextIdx(){
+  if(S.only){const r=S.only.filter(k=>k>S.i);return r.length?r[0]:Q.length;}
+  return S.i+1;
+}
+function grade(p){S.picks[S.i]=p;S.res[S.i]=same(p,Q[S.i].ans);save();render();}
+
+function results(){
+  const ok=S.res.filter(r=>r===true).length;
+  const by=[1,6,8].map(c=>{const ix=Q.map((q,k)=>q.ch===c?k:-1).filter(k=>k>=0);return{c,n:ix.length,ok:ix.filter(k=>S.res[k]===true).length}});
+  const missed=Q.map((q,k)=>S.res[k]===false?k:-1).filter(k=>k>=0);
+  const blank=S.res.filter(r=>r===null).length;
+  let h=`<div class="card"><p class="score">${ok} / ${Q.length}</p><p>${Math.round(ok/Q.length*100)}% correct${blank?`, ${blank} unanswered`:""}.</p>
+  <table><thead><tr><th>Chapter</th><th>Correct</th><th>%</th></tr></thead><tbody>${by.map(b=>`<tr><td>Chapter ${b.c}</td><td>${b.ok} / ${b.n}</td><td>${Math.round(b.ok/b.n*100)}%</td></tr>`).join("")}</tbody></table>`;
+  if(missed.length)h+=`<h3>Missed questions</h3><ul class="missed">${missed.map(k=>`<li><button data-k="${k}">Q${k+1} (Ch. ${Q[k].ch}): ${Q[k].stem.slice(0,70)}\u2026</button></li>`).join("")}</ul>`;
+  h+=`<div class="row">${missed.length?`<button class="btn" id="redo">Retry missed only</button>`:""}<button class="btn ghost" id="reset">Start over</button></div></div>`;
+  $("main").innerHTML=h;
+  $("main").querySelectorAll(".missed button").forEach(b=>b.onclick=()=>{S.i=+b.dataset.k;S.only=null;save();render()});
+  if($("redo"))$("redo").onclick=()=>{missed.forEach(k=>{S.res[k]=null;S.picks[k]=null});S.only=missed;S.i=missed[0];save();render()};
+  $("reset").onclick=()=>{S={i:0,res:Array(Q.length).fill(null),picks:Array(Q.length).fill(null),only:null};save();render()};
+}
+render();
+</script>
+</body>
+</html>
