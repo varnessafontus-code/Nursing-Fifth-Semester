@@ -1,0 +1,620 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Diabetes Mellitus Mock Quiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap">
+<style>
+:root{
+  --ground:#eef2f5; --card:#ffffff; --ink:#16212c; --muted:#56657a; --line:#d5dde6; --line-soft:#e6ecf2;
+  --accent:#1f5ea8; --accent-soft:#e3edf8; --accent-ink:#ffffff;
+  --ok:#23724a; --ok-bg:#e4f3ea; --bad:#b0402c; --bad-bg:#f9e7e3;
+  --note:#8a5d0c; --note-bg:#fbf4e3; --note-line:#dcb25a;
+  --chart:#f6f8fb; --chart-head:#243447; --chart-head-ink:#e8eef6;
+  --r:6px;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --ground:#0f161e; --card:#17212c; --ink:#e3e9f0; --muted:#9aa9ba; --line:#2c3a4a; --line-soft:#223040;
+    --accent:#6ea6e8; --accent-soft:#1c2e44; --accent-ink:#0f161e;
+    --ok:#6cc896; --ok-bg:#16301f; --bad:#f08a74; --bad-bg:#3a1d17;
+    --note:#e8c071; --note-bg:#2a2314; --note-line:#8a6a28;
+    --chart:#121b25; --chart-head:#0b1118; --chart-head-ink:#cfdae6;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#0f161e; --card:#17212c; --ink:#e3e9f0; --muted:#9aa9ba; --line:#2c3a4a; --line-soft:#223040;
+  --accent:#6ea6e8; --accent-soft:#1c2e44; --accent-ink:#0f161e;
+  --ok:#6cc896; --ok-bg:#16301f; --bad:#f08a74; --bad-bg:#3a1d17;
+  --note:#e8c071; --note-bg:#2a2314; --note-line:#8a6a28;
+  --chart:#121b25; --chart-head:#0b1118; --chart-head-ink:#cfdae6;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding-inline:16px;padding-block:0 96px}
+header.top{padding-block:28px 18px}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+h1{font-family:var(--serif);font-size:30px;line-height:1.15;margin:6px 0 8px;text-wrap:balance}
+.lede{color:var(--muted);margin:0 0 14px;max-width:62ch}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.facts li{font-size:13px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px 11px;color:var(--muted)}
+details.ref{margin-top:16px;background:var(--card);border:1px solid var(--line);border-radius:var(--r)}
+details.ref summary{cursor:pointer;padding:10px 14px;font-weight:600;font-size:14px}
+details.ref .tbl{padding:0 14px 12px;overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+td.num,.mono{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:13px}
+.rail{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--ground);border-bottom:1px solid var(--line);margin-inline:-16px;padding:9px 16px}
+.rail .in{display:flex;align-items:center;gap:12px;max-width:720px;margin:0 auto}
+.track{flex:1;height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.fill{height:100%;width:0;background:var(--accent);transition:width .25s}
+.rail .lab{font-size:12.5px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.section-h{font-family:var(--serif);font-size:21px;margin:30px 0 4px}
+.section-sub{color:var(--muted);margin:0 0 14px;font-size:14px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 18px 16px;margin-bottom:14px}
+.qhead{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin-bottom:8px}
+.qn{font-family:var(--serif);font-weight:700;font-size:16px;margin-right:4px}
+.chip{font-size:11.5px;padding:2px 8px;border-radius:4px;background:var(--accent-soft);color:var(--accent);font-weight:500}
+.chip.skill{background:transparent;border:1px solid var(--line);color:var(--muted)}
+.chip.fmt{background:transparent;color:var(--muted);padding-inline:0}
+.stem{margin:2px 0 12px}
+.hint{font-size:13px;color:var(--note);font-weight:600;margin:-6px 0 10px}
+.opts{display:grid;gap:8px}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:var(--r);cursor:pointer;background:var(--card)}
+.opt:hover{border-color:var(--accent)}
+.opt input{margin-top:4px;accent-color:var(--accent);flex-shrink:0}
+.opt .l{font-weight:600;color:var(--muted);min-width:1.2em}
+.opt.sel{border-color:var(--accent);background:var(--accent-soft)}
+.opt.ok{border-color:var(--ok);background:var(--ok-bg)}
+.opt.bad{border-color:var(--bad);background:var(--bad-bg)}
+.opt .mk{margin-left:auto;font-weight:700;font-size:13px;flex-shrink:0}
+.mk.ok{color:var(--ok)} .mk.bad{color:var(--bad)}
+.locked .opt{cursor:default}
+.mx{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r)}
+.mx table td,.mx table th{padding:8px 10px}
+.mx td.c{text-align:center;width:1%;white-space:nowrap}
+.mx th.c{text-align:center}
+.mx input{accent-color:var(--accent);width:18px;height:18px}
+.mx tr.rowok td:first-child{box-shadow:inset 3px 0 var(--ok)}
+.mx tr.rowbad td:first-child{box-shadow:inset 3px 0 var(--bad)}
+.mx td.want{background:var(--ok-bg)}
+.cloze{line-height:2.3}
+.cloze select{font:inherit;font-size:14px;padding:4px 6px;border:1px solid var(--accent);border-radius:4px;background:var(--card);color:var(--ink);max-width:100%}
+.cloze select.ok{border-color:var(--ok);background:var(--ok-bg)}
+.cloze select.bad{border-color:var(--bad);background:var(--bad-bg)}
+.fix{display:block;font-size:13px;color:var(--ok);font-weight:600;line-height:1.5}
+.passage{background:var(--chart);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;line-height:1.9}
+.hl{font:inherit;color:inherit;background:transparent;border:0;border-bottom:2px dotted var(--muted);padding:0 2px;cursor:pointer;border-radius:2px}
+.hl[aria-pressed="true"]{background:var(--accent-soft);border-bottom:2px solid var(--accent)}
+.hl.ok{background:var(--ok-bg);border-bottom:2px solid var(--ok)}
+.hl.bad{background:var(--bad-bg);border-bottom:2px solid var(--bad);text-decoration:line-through}
+.hl.miss{border-bottom:2px dashed var(--ok)}
+.locked .hl{cursor:default}
+.bow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.bow .col{border:1px solid var(--line);border-radius:var(--r);padding:10px;background:var(--chart)}
+.bow .col h4{margin:0 0 8px;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.bow .col.center{border-color:var(--accent)}
+.bow .opt{padding:8px 9px;font-size:13.5px}
+@media (max-width:620px){.bow{grid-template-columns:1fr}.bow .col.center{order:-1}}
+.ord{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.ord li{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:var(--r);padding:9px 10px;background:var(--card)}
+.ord .pos{font-family:var(--mono);color:var(--muted);min-width:1.4em}
+.ord .t{flex:1}
+.ord .mv{display:flex;flex-direction:column;gap:3px}
+.ord button{font:inherit;font-size:12px;line-height:1;padding:5px 8px;border:1px solid var(--line);border-radius:4px;background:var(--ground);color:var(--ink);cursor:pointer}
+.ord button:disabled{opacity:.35;cursor:default}
+.ord li.ok{border-color:var(--ok);background:var(--ok-bg)}
+.ord li.bad{border-color:var(--bad);background:var(--bad-bg)}
+.actions{display:flex;align-items:center;gap:12px;margin-top:14px;flex-wrap:wrap}
+.btn{font:inherit;font-weight:600;font-size:14px;padding:9px 16px;border-radius:var(--r);border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);cursor:pointer}
+.btn:disabled{background:var(--line);border-color:var(--line);color:var(--muted);cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--accent)}
+.score{font-size:13.5px;font-weight:600;font-variant-numeric:tabular-nums}
+.score.full{color:var(--ok)} .score.part{color:var(--note)} .score.zero{color:var(--bad)}
+.why{margin-top:14px;padding:12px 14px;background:var(--note-bg);border-left:3px solid var(--note-line);border-radius:0 var(--r) var(--r) 0;font-size:14px}
+.why p{margin:0 0 8px}.why p:last-child{margin:0}
+.why .plain{font-style:italic;color:var(--muted)}
+.why strong{color:var(--ink)}
+button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+/* EHR */
+.ehr{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-bottom:14px;background:var(--chart)}
+.ehr .bar{background:var(--chart-head);color:var(--chart-head-ink);padding:9px 14px;font-size:13px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.ehr .bar b{font-weight:600}
+.tabs{display:flex;overflow-x:auto;border-bottom:1px solid var(--line);background:var(--card)}
+.tabs button{font:inherit;font-size:13.5px;padding:9px 14px;border:0;border-bottom:2px solid transparent;background:transparent;color:var(--muted);cursor:pointer;white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+.pane{padding:12px 14px;font-size:14px}
+.pane p{margin:0 0 8px}
+.pane .ts{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.update{border:1px dashed var(--accent);border-radius:var(--r);padding:10px 12px;margin-bottom:12px;background:var(--chart);font-size:14px}
+.update .tag{font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+.update p{margin:0 0 6px}
+.flag{color:var(--bad);font-weight:600}
+.results{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;margin-top:22px}
+.results h2{font-family:var(--serif);margin:0 0 4px;font-size:22px}
+.big{font-family:var(--serif);font-size:44px;font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
+.verdict{color:var(--muted);margin:2px 0 14px}
+.bars{display:grid;gap:7px;margin:12px 0 16px}
+.bars .row{display:grid;grid-template-columns:minmax(0,11em) 1fr 3.6em;gap:10px;align-items:center;font-size:13px}
+.bars .row .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bars .tr{height:8px;background:var(--line);border-radius:4px;overflow:hidden}
+.bars .fl{height:100%;background:var(--accent)}
+.bars .fl.low{background:var(--bad)}
+.bars .pc{font-variant-numeric:tabular-nums;text-align:right;color:var(--muted)}
+footer{color:var(--muted);font-size:12.5px;margin-top:26px;text-align:center}
+@media (prefers-reduced-motion:reduce){.fill{transition:none}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">NUR205 · Glucose Regulation · Iggy 11e, Chapter 56</div>
+    <h1>Diabetes Mellitus Mock Quiz</h1>
+    <p class="lede">Twenty standalone items spread across the chapter, then a six-question unfolding case in Clinical Judgment Measurement Model order. Submit each item to lock it and see the rationale.</p>
+    <ul class="facts">
+      <li>26 items</li><li>MC · SATA · Matrix · Cloze · Highlight · Bow-tie · Ordered</li><li>SATA &amp; highlight: plus-minus, floor 0</li>
+    </ul>
+    <details class="ref">
+      <summary>Reference ranges used in this quiz</summary>
+      <div class="tbl"><table>
+        <tr><th>Test</th><th>Range</th></tr>
+        <tr><td>Fasting blood glucose</td><td class="num">74–106 mg/dL</td></tr>
+        <tr><td>A1C (normal / prediabetes / diabetes)</td><td class="num">4–5.7% / 5.7–6.4% / ≥6.5%</td></tr>
+        <tr><td>Serum osmolarity</td><td class="num">270–300 mOsm/L</td></tr>
+        <tr><td>Serum potassium</td><td class="num">3.5–5.0 mEq/L</td></tr>
+        <tr><td>Serum sodium</td><td class="num">136–145 mEq/L</td></tr>
+        <tr><td>BUN / creatinine</td><td class="num">10–20 / 0.5–1.1 mg/dL</td></tr>
+      </table></div>
+    </details>
+  </header>
+
+  <div class="rail"><div class="in">
+    <div class="track"><div class="fill" id="fill"></div></div>
+    <div class="lab" id="lab">0 / 26 submitted</div>
+  </div></div>
+
+  <main id="quiz"></main>
+  <div id="results"></div>
+  <footer>Every answer option is traceable to Iggy 11th edition, Chapter 56. Not affiliated with Elsevier.</footer>
+</div>
+
+<script>
+const Q = [
+/* ---------- STANDALONE ---------- */
+{type:'mc', topic:'Hypoglycemia', skill:'Prioritize hypotheses',
+ stem:`The nurse receives handoff on four clients with diabetes mellitus. Which client does the nurse see <strong>first</strong>?`,
+ options:[
+  `Client with type 1 diabetes whose premeal capillary glucose is 244 mg/dL and who is asking to walk laps in the hallway`,
+  `Client with type 2 diabetes whose A1C resulted this morning at 8.9%`,
+  `Client 1 day after hip surgery who takes metoprolol, has a capillary glucose of 58 mg/dL, and reports no symptoms`,
+  `Client with diabetic peripheral neuropathy who could not feel the monofilament at 4 of 10 sites on the left foot`],
+ correct:2,
+ why:`<p>A glucose below 70 mg/dL is <strong>actual, acute</strong> hypoglycemia and must be treated quickly. Iggy states that beta blockers <strong>mask the symptoms of hypoglycemia</strong>. The missing tremor and pounding heart are not reassurance. They are the danger, because the client cannot warn you.</p><p>The 244 mg/dL client is above target but stable. The A1C of 8.9% is a chronic, 3-month picture. Monofilament loss is a <em>potential</em> injury risk that calls for teaching. Acute beats chronic, and actual beats potential.</p><p class="plain">Plain version: the one whose sugar is dangerously low right now, with the alarm switched off by the drug, goes first.</p>`},
+
+{type:'mc', topic:'Inpatient glucose control', skill:'Take action',
+ stem:`A client with type 2 diabetes has had capillary glucose values of 120–160 mg/dL for 3 days in the hospital. Today the values are 238 and 262 mg/dL with no change in diet, insulin, or activity. Which action does the nurse take <strong>first</strong>?`,
+ options:[
+  `Assess for signs of infection, including the urine, lungs, skin, and any wounds`,
+  `Request an order to double the next dose of basal insulin`,
+  `Change the meal tray to a clear-liquid diet`,
+  `Request a glycosylated hemoglobin (A1C) level`],
+ correct:0,
+ why:`<p>Iggy's Action Alert says to check for infection when a client with reasonably controlled glucose develops an <strong>unexpected rise</strong>. Examples are urinary tract infection, pneumonia, cellulitis, and wound infection. Balancing hormones raise glucose, and <strong>hyperglycemia often occurs before a fever</strong>.</p><p>Doubling insulin treats the number and ignores the cause, which is intervention before assessment. A diet change has no basis. An A1C reflects the past 3 months and cannot explain a change that happened today.</p><p class="plain">Plain version: when the sugar jumps for no reason, look for a hidden infection before changing medicine.</p>`},
+
+{type:'mc', topic:'Insulin therapy', skill:'Take action',
+ stem:`A client with type 1 diabetes mellitus is NPO this morning for a procedure. Scheduled insulin includes insulin glargine at 0800 and insulin lispro before each meal. Which action by the nurse is appropriate?`,
+ options:[
+  `Hold all insulin until the client is eating again`,
+  `Give the lispro at half the usual dose at breakfast time`,
+  `Substitute a premixed 70/30 insulin so coverage lasts through the procedure`,
+  `Give the basal glargine as prescribed (often at a reduced dose) and hold the mealtime lispro`],
+ correct:3,
+ why:`<p>Iggy is explicit. <strong>Basal insulin, often at a reduced dose, is given when a client is NPO</strong> because it controls baseline glucose. Rapid-acting or short-acting insulin given without food causes hypoglycemia. Insulin mixtures are not given because they contain short-acting or rapid-acting insulin.</p><p>Holding all insulin in type 1 diabetes removes the only insulin source. That is a setup for ketone formation.</p><p class="plain">Plain version: keep the "background" insulin running, and skip the "meal" insulin when there's no meal.</p>`},
+
+{type:'mc', topic:'Insulin therapy', skill:'Analyze cues',
+ stem:`A client taking NPH insulin before dinner reports morning glucose readings of 210–230 mg/dL. Overnight checks are ordered: <span class="mono">2300: 142 · 0300: 54 · 0700: 226 mg/dL</span>. Which intervention does the nurse anticipate?`,
+ options:[
+  `Move the evening NPH dose to 2200 instead of dinnertime`,
+  `Ensure an adequate bedtime snack and evaluate the evening insulin dose`,
+  `Increase the evening NPH dose to lower the morning glucose`,
+  `Add a dose of rapid-acting insulin at 0300`],
+ correct:1,
+ why:`<p>The glucose drops low at 0300 and then rebounds high by morning. This is the <strong>Somogyi phenomenon</strong>, morning hyperglycemia from the counterregulatory response to nighttime hypoglycemia. Iggy's management is to <strong>ensure adequate bedtime intake and evaluate the insulin dose</strong>.</p><p>Moving NPH to 2200 is how <em>dawn phenomenon</em> is managed. In dawn phenomenon the 0300 value is not low; the rise at 5–6 a.m. comes from adrenal hormones. Increasing NPH or giving insulin at 0300 deepens the low that is causing the problem.</p><p class="plain">Plain version: the body panicked at a 3 a.m. low and dumped sugar. Fix the low and the morning high goes away.</p>`},
+
+{type:'mc', topic:'Diabetic ketoacidosis', skill:'Generate solutions',
+ stem:`A client in diabetic ketoacidosis is receiving 0.9% sodium chloride and a continuous IV regular insulin infusion. Two hours later: glucose 248 mg/dL, pH 7.24, HCO<sub>3</sub><sup>−</sup> 13 mEq/L. Which change does the nurse anticipate?`,
+ options:[
+  `Stop the insulin infusion because the glucose goal has been reached`,
+  `Switch to subcutaneous insulin now`,
+  `Change the IV fluid to 5% dextrose in 0.45% sodium chloride and continue the insulin infusion`,
+  `Give sodium bicarbonate by IV push`],
+ correct:2,
+ why:`<p>When glucose reaches <strong>250 mg/dL</strong>, Iggy directs a change to <strong>5% dextrose in 0.45% saline</strong>. This prevents hypoglycemia and <strong>cerebral edema</strong> from osmolarity falling too fast. Insulin continues because acidosis is not resolved. Resolution requires pH above 7.30 and bicarbonate above 18.</p><p>Subcutaneous insulin starts only when the client takes oral fluids and ketosis has stopped. Bicarbonate is reserved for pH 7.0 or less, or HCO<sub>3</sub><sup>−</sup> below 5. Even then it goes by <em>slow infusion over hours</em>, never IV push.</p><p class="plain">Plain version: the sugar is fixed faster than the acid. Add sugar to the bag so you can keep giving insulin until the acid clears.</p>`},
+
+{type:'matrix', topic:'Diabetic ketoacidosis', skill:'Evaluate outcomes',
+ stem:`A client is being treated for diabetic ketoacidosis. For each current finding, indicate whether it <strong>meets</strong> Iggy's criterion for resolution.`,
+ columns:['Meets criterion','Does not meet'],
+ rows:[
+  {label:`Blood glucose 186 mg/dL`, correct:0},
+  {label:`Serum bicarbonate 16 mEq/L`, correct:1},
+  {label:`Venous pH 7.33`, correct:0},
+  {label:`Calculated anion gap 15 mEq/L`, correct:1}],
+ why:`<p>Iggy defines diabetic ketoacidosis as resolved when <strong>all four</strong> criteria are met. Glucose must be below 200 mg/dL, bicarbonate above 18 mEq/L, venous pH above 7.30, and anion gap below 12 mEq/L.</p><p>Bicarbonate 16 and anion gap 15 still show unbuffered ketoacids. This client is <em>not</em> resolved and stays on the insulin infusion, despite a "good" glucose.</p><p class="plain">Plain version: a normal sugar is not the finish line. The acid numbers have to be fixed too.</p>`},
+
+{type:'mc', topic:'Hypoglycemia', skill:'Take action',
+ stem:`A client with chronic kidney disease who receives hemodialysis has a capillary glucose of 64 mg/dL. The client is alert, shaky, and able to swallow. Which is the best <strong>initial</strong> treatment?`,
+ options:[
+  `15 g of glucose gel or glucose tablets`,
+  `4 oz (120 mL) of orange juice`,
+  `Peanut butter crackers`,
+  `A chocolate candy bar`],
+ correct:0,
+ why:`<p>The 15-15 rule applies. Give <strong>15 g of fast-acting carbohydrate</strong> and recheck in 15 minutes. Iggy specifically says to <strong>avoid high-potassium options such as orange juice</strong>. A client on dialysis cannot excrete potassium, so that choice trades one emergency for another.</p><p>Crackers with nut butter are the <em>follow-up</em> complex carbohydrate once glucose is back in range, not the rescue. Chocolate's fat content slows absorption.</p><p class="plain">Plain version: fast sugar first, with no potassium bomb for kidneys that can't clear it.</p>`},
+
+{type:'order', topic:'Hypoglycemia', skill:'Take action',
+ stem:`A client's spouse asks what to do if the client with type 1 diabetes is found unconscious at home. Place the nurse's instructions in the correct order.`,
+ items:[
+  `Give the prescribed dose of glucagon (injection or nasal powder).`,
+  `If still unconscious after 10 minutes, give a second dose of glucagon.`,
+  `If the client remains unconscious, call 911 for transport and IV dextrose.`,
+  `Once awake and no longer nauseated, give a small meal.`],
+ start:[2,0,3,1],
+ why:`<p>This is Iggy's severe hypoglycemia sequence. Give <strong>glucagon first</strong>. <strong>Repeat in 10 minutes</strong> if the client is still unconscious. If that fails, <strong>call 911</strong> for IV dextrose. <strong>Feed once awake</strong> and no longer nauseated, because glucagon's effect is temporary.</p><p>Teach the spouse to place the client on their side. Glucagon can induce vomiting, and side-lying prevents aspiration. Nothing goes by mouth while the client cannot swallow.</p><p class="plain">Plain version: rescue shot, second shot, call for help, then food when they wake up.</p>`},
+
+{type:'mc', topic:'Insulin therapy', skill:'Recognize cues',
+ stem:`The nurse observes a client inject insulin into a firm, lumpy area just above the waistband that the client has used for months "because it doesn't hurt there." The client's glucose readings have been erratic. Which response by the nurse is best?`,
+ options:[
+  `"Switch to your thigh, because insulin absorbs fastest there."`,
+  `"Rub the site for a minute after each injection to help the insulin absorb."`,
+  `"Pull back on the plunger before injecting to make sure you're not in a blood vessel."`,
+  `"Scarred areas absorb insulin slowly. Rotate to healthy tissue within your abdomen, staying 2 inches from your navel."`],
+ correct:3,
+ why:`<p>Iggy notes that scarred areas are <strong>less sensitive to pain but slow insulin absorption</strong>, which explains the erratic readings. Absorption is <strong>fastest in the abdomen</strong>, excluding a 2-inch radius around the navel. Rotation <strong>within one anatomic area</strong> is preferred to keep day-to-day absorption consistent.</p><p>The thigh is not the fastest site. Massaging increases absorption unpredictably, and Box 56.5 says not to rub the site. Aspiration is not needed for insulin.</p><p class="plain">Plain version: the scar is a sponge that soaks up insulin slowly. Move to fresh skin in the same area.</p>`},
+
+{type:'mc', topic:'Physical activity', skill:'Analyze cues',
+ stem:`Four clients with type 1 diabetes mellitus plan vigorous exercise. Which client may begin <strong>without</strong> first taking additional action?`,
+ options:[
+  `Glucose 92 mg/dL, no urine ketones, last meal 3 hours ago`,
+  `Glucose 176 mg/dL, no urine ketones, last insulin injection 4 hours ago`,
+  `Glucose 238 mg/dL, moderate urine ketones`,
+  `Glucose 164 mg/dL, no urine ketones, injected insulin 20 minutes ago`],
+ correct:1,
+ why:`<p>Iggy allows vigorous exercise in type 1 diabetes only when glucose is <strong>100–250 mg/dL with no urine ketones</strong>, and not within 1 hour of an insulin injection or near peak action. Only the 176 mg/dL client meets every condition.</p><p>At 92 mg/dL, the client must eat carbohydrate to get above 100 first. <strong>Ketones mean current insulin is inadequate</strong>, and exercise would push glucose higher; that client does not exercise. Injecting 20 minutes ago puts exercise inside the 1-hour window, which risks a crash.</p><p class="plain">Plain version: sugar in the safe zone, no ketones, and not right after a shot.</p>`},
+
+{type:'mc', topic:'Foot & wound care', skill:'Generate solutions',
+ stem:`A client with diabetic peripheral neuropathy has a shallow ulcer on the ball of the right foot. The client says, "It doesn't hurt, so I've been walking on it like normal." Which intervention is the priority for healing?`,
+ options:[
+  `Leave the ulcer open to air so it stays dry`,
+  `Soak the foot in warm water twice daily`,
+  `Offload pressure from the ulcer, such as with a total-contact cast, and do not wear a shoe on that foot`,
+  `Apply an over-the-counter corn pad around the ulcer`],
+ correct:2,
+ why:`<p>Iggy's standards of care for diabetic ulcers are a moist wound environment, débridement of necrotic tissue, and <strong>elimination of pressure (offloading)</strong>. Eliminating pressure is essential. A client without sensation keeps walking on the ulcer, causing pressure necrosis. A total-contact cast spreads the load.</p><p>Drying the wound contradicts the moist-wound standard. Soaking with heat risks thermal injury to a foot that can't feel temperature. OTC corn treatments cause chemical burns.</p><p class="plain">Plain version: the foot can't feel the damage, so take the weight off it for it.</p>`},
+
+{type:'mc', topic:'Chronic complications', skill:'Prioritize hypotheses',
+ stem:`A client with long-standing type 1 diabetes reports early fullness, bloating, and nausea after meals. The client injects rapid-acting insulin immediately before each meal. Which problem does the nurse anticipate?`,
+ options:[
+  `Hypoglycemia after meals, because food absorption lags behind the insulin's action`,
+  `Diabetic ketoacidosis from increased ketone production`,
+  `Hyperkalemia from delayed potassium absorption`,
+  `Lactic acidosis from slowed intestinal motility`],
+ correct:0,
+ why:`<p>These findings describe <strong>gastroparesis</strong>, delayed gastric emptying from autonomic neuropathy. Iggy names gastroparesis as a cause of <strong>hypoglycemia</strong> from the mismatch between nutrient absorption and insulin action. The insulin arrives on time; the food doesn't. Gastroparesis is on Iggy's list of reasons to monitor glucose more often.</p><p>The other options don't follow from delayed emptying. Diabetic ketoacidosis requires insulin <em>deficiency</em>, and this client is receiving insulin.</p><p class="plain">Plain version: the insulin shows up for dinner, but the food is stuck in the stomach, so the sugar drops.</p>`},
+
+{type:'mc', topic:'Screening', skill:'Recognize cues',
+ stem:`Which adult does the nurse recognize as needing diabetes screening at this visit?`,
+ options:[
+  `26-year-old, BMI 22, physically active, no family history of diabetes`,
+  `31-year-old with a history of gestational diabetes whose screening was normal 1 year ago`,
+  `29-year-old, BMI 23, whose aunt has type 2 diabetes`,
+  `30-year-old, BMI 29, whose father has type 2 diabetes`],
+ correct:3,
+ why:`<p>Box 56.3 recommends testing at any age when BMI is <strong>greater than 25</strong> (23 for Asian Americans) <strong>plus one or more risk factors</strong>. A <strong>first-degree relative</strong> with diabetes is one of them, and a father qualifies.</p><p>After gestational diabetes, testing is lifelong <em>every 3 years</em>, so a normal screen 1 year ago means the 31-year-old is not yet due. An aunt is not first-degree, and BMI 23 doesn't meet the threshold. Routine testing otherwise begins at age 35.</p><p class="plain">Plain version: heavy weight plus a parent with diabetes means test now.</p>`},
+
+{type:'sata', topic:'Perioperative care', skill:'Recognize cues',
+ stem:`The nurse is preparing a client with type 2 diabetes for elective surgery this morning. Which findings does the nurse report to the surgical team <strong>before</strong> surgery? <strong>Select all that apply.</strong>`,
+ options:[
+  `Capillary glucose 236 mg/dL`,
+  `Took glipizide with breakfast yesterday and again this morning`,
+  `Last metformin dose was 30 hours ago`,
+  `Reports frequent heartburn and feeling full after a few bites`,
+  `A1C of 6.8% last month`],
+ correct:[0,1,3],
+ why:`<p><strong>Report:</strong> Preoperative glucose should be <strong>below 200 mg/dL</strong>, since higher levels raise infection rates and impair wound healing. <strong>Sulfonylureas are discontinued 1 day before surgery</strong>, and a dose this morning means hypoglycemia risk while the client is NPO. Heartburn and early satiety suggest <strong>delayed gastric emptying and reflux</strong>, which Iggy links to increased <strong>aspiration risk with anesthesia</strong>.</p><p><strong>Do not need reporting:</strong> Metformin must be stopped <em>at least 24 hours</em> before surgery, so 30 hours meets the requirement. An A1C of 6.8% is near target and not a reason to delay.</p><p class="plain">Plain version: sugar too high, a pill that should have been stopped, and a stomach that might empty into the lungs under anesthesia.</p>`},
+
+{type:'mc', topic:'Kidney disease', skill:'Generate solutions',
+ stem:`A client with type 2 diabetes who uses insulin begins hemodialysis for end-stage kidney disease. Which change in the plan of care does the nurse anticipate?`,
+ options:[
+  `An increased insulin dose, because dialysis removes insulin from the blood`,
+  `A reduced insulin dose, because the risk for hypoglycemia increases`,
+  `Switching from insulin to metformin`,
+  `No change, because dialysis does not affect glucose regulation`],
+ correct:1,
+ why:`<p>Iggy states that <strong>the insulin dose needs to be reduced when dialysis starts</strong> because hypoglycemia risk rises. The kidneys normally break down and excrete insulin. Iggy lists <strong>decreased insulin clearance from progressive kidney failure</strong> among the most common causes of hypoglycemia, so insulin lingers longer.</p><p>Metformin <strong>should not be used</strong> by anyone with kidney disease because of lactic acidosis risk.</p><p class="plain">Plain version: failing kidneys stop clearing insulin, so the same dose hits harder.</p>`},
+
+{type:'mc', topic:'Psychosocial', skill:'Generate solutions',
+ stem:`During a clinic visit, a client with type 2 diabetes admits to skipping the evening insulin dose "most days." Which response by the nurse is <strong>best</strong>?`,
+ options:[
+  `"Skipping insulin will lead to kidney failure and blindness."`,
+  `"I'll need to tell your provider that you're not following the plan."`,
+  `"What makes it hard to take your evening dose?"`,
+  `"Let's switch you to a pill so you don't have to inject."`],
+ correct:2,
+ why:`<p>Iggy directs the nurse to <strong>inquire about barriers</strong> when a client skips doses often. Common barriers are cost, fear of hypoglycemia, fear of injections, needing help from others, and embarrassment. An open-ended question is assessment before intervention and builds self-efficacy.</p><p>A scare tactic and a threat to report both shut the conversation down. Changing the medication is outside nursing scope and assumes the reason without assessing it.</p><p class="plain">Plain version: find out <em>why</em> before trying to fix it.</p>`},
+
+{type:'mc', topic:'Drug therapy', skill:'Prioritize hypotheses',
+ stem:`The nurse reviews phone messages from clients taking antidiabetic drugs. Which client requires <strong>immediate</strong> follow-up?`,
+ options:[
+  `Client taking dulaglutide who reports sudden, severe abdominal pain radiating to the back`,
+  `Client taking metformin who reports mild nausea and loose stools this week`,
+  `Client taking acarbose who reports bloating and flatulence after meals`,
+  `Client taking pioglitazone who reports mild ankle swelling`],
+ correct:0,
+ why:`<p>GLP-1 agonists such as dulaglutide carry an <strong>increased risk for pancreatitis</strong>. Iggy's Drug Alert says to report immediately any sudden intense abdominal pain radiating to the back, left flank, or left shoulder.</p><p>GI upset with metformin, gas and bloating with acarbose, and peripheral edema with pioglitazone are all listed as <strong>common, expected</strong> side effects. For pioglitazone, the report threshold is weight gain over 2 lb in 1 day or 4 lb in a week. Expected beats unexpected in the "who's stable" sort.</p><p class="plain">Plain version: three of these are the drug doing its usual annoying thing. One is a possible inflamed pancreas.</p>`},
+
+{type:'sata', topic:'Education', skill:'Generate solutions',
+ stem:`A client newly diagnosed with type 1 diabetes is still acutely ill in the hospital. Which topics are priority "survival skills" to teach before discharge? <strong>Select all that apply.</strong>`,
+ options:[
+  `How to prepare and inject insulin`,
+  `How to recognize, treat, and prevent hypoglycemia`,
+  `Adjusting insulin with insulin-to-carbohydrate ratios and correction factors`,
+  `Sick-day management rules`,
+  `When and how to notify the diabetes health care provider`,
+  `Eligibility criteria for pancreas transplantation`],
+ correct:[0,1,3,4],
+ why:`<p>Iggy says acutely ill hospitalized adults need only <strong>basic survival skills</strong>, with detailed education reserved for follow-up. Survival skills include insulin preparation and injection, hypoglycemia and hyperglycemia recognition and treatment, basic diet, glucose and ketone monitoring, <strong>sick-day rules</strong>, supplies and storage, and <strong>when to call the provider</strong>.</p><p>Insulin-to-carbohydrate ratios belong to <em>in-depth</em> education. Transplant eligibility is not a discharge survival need.</p><p class="plain">Plain version: teach what keeps them alive this week, and save the advanced material for later.</p>`},
+
+{type:'sata', topic:'Glucose monitoring', skill:'Evaluate outcomes',
+ stem:`The nurse reviews glucose-monitoring teaching with a client who has hypoglycemic unawareness. Which client statements indicate <strong>correct understanding</strong>? <strong>Select all that apply.</strong>`,
+ options:[
+  `"If my sensor shows a very low number, I'll confirm it with a fingerstick."`,
+  `"Since I can't feel my lows, I'll test on my forearm to save my fingertips."`,
+  `"If I become anemic, my meter could read falsely high."`,
+  `"My wife can use my lancet holder as long as she puts in a new lancet."`,
+  `"I'll check my glucose before I drive."`],
+ correct:[0,2,4],
+ why:`<p><strong>Correct:</strong> Continuous monitors lag behind capillary values, so <strong>extreme readings are confirmed by fingerstick</strong>. <strong>Anemia falsely elevates</strong> meter readings, and polycythemia falsely lowers them. Iggy advises checking glucose <strong>before driving</strong>.</p><p><strong>Incorrect:</strong> Iggy's Action Alert says clients with hypoglycemic unawareness should <strong>not test at alternate sites</strong>, because those sites lag when glucose changes fast. The lancet holder itself can spread infection even with a new lancet, so equipment is <strong>never shared</strong>.</p><p class="plain">Plain version: when you can't feel lows, use the fastest, most accurate check, and keep your gear to yourself.</p>`},
+
+{type:'sata', topic:'Sick-day rules', skill:'Generate solutions',
+ stem:`A client with type 1 diabetes calls with a stomach virus and vomiting since last night. Which instructions does the nurse give? <strong>Select all that apply.</strong>`,
+ options:[
+  `"Hold your insulin until you are able to eat again."`,
+  `"Check your blood glucose at least every 2 to 4 hours."`,
+  `"Test your urine for ketones even if your glucose is in range."`,
+  `"Drink 8 to 12 ounces of sugar-free liquid every hour while awake if your glucose is at or above target."`,
+  `"Wait 3 days before calling if the vomiting continues."`,
+  `"Call your provider if your urine shows moderate or large ketones."`],
+ correct:[1,2,3,5],
+ why:`<p>These are Iggy's Box 56.12 sick-day rules. <strong>Insulin is never omitted during illness</strong>, because illness raises glucose through stress hormones and holding insulin invites diabetic ketoacidosis. Monitor glucose every 2–4 hours. <strong>Test ketones even when glucose is in range</strong>, especially with vomiting. Drink 8–12 oz of sugar-free fluid hourly to prevent dehydration, switching to sugar-containing fluids if glucose drops below target.</p><p>Call for <strong>persistent vomiting</strong>, moderate or large ketones, fever of 101.5°F or higher, or illness lasting more than 1–2 days. Waiting 3 days is dangerous.</p><p class="plain">Plain version: keep the insulin going, check more often, look for ketones, drink, and call early.</p>`},
+
+/* ---------- NGN CASE ---------- */
+{type:'highlight', case:true, topic:'NGN case: hyperglycemic-hyperosmolar state', skill:'Recognize cues',
+ stem:`Review the 1030 nurses' note and vital signs. Click the findings that require <strong>immediate follow-up</strong>.`,
+ parts:[
+  `Arrived by EMS. Opens eyes to voice, `,{t:`oriented to person only`,c:1},`. `,
+  {t:`Mucous membranes dry`,c:1},`; `,{t:`skin tenting on forearm`,c:1},`. `,
+  {t:`Breath without odor`,c:0},`. `,{t:`Respirations regular and unlabored`,c:0},`. Indwelling urinary catheter inserted; `,
+  {t:`40 mL dark amber urine returned`,c:1},`. `,{t:`Daughter at bedside`,c:0},`, states client "was talking normally 2 days ago."`,
+  `<br><span class="mono">VS: `,{t:`T 100.8°F (38.2°C)`,c:1},` · `,{t:`HR 118`,c:1},` · RR 20 · `,{t:`BP 92/54`,c:1},` · `,{t:`SpO₂ 95% RA`,c:0},`</span>`],
+ why:`<p><strong>Follow up:</strong> New confusion, since she was normal 2 days ago. Dry mucous membranes, skin tenting, and scant dark urine show <strong>severe dehydration</strong>. Tachycardia with hypotension shows <strong>poor perfusion</strong>. Fever points to infection as the <em>precipitating stressor</em>, consistent with her urinary symptoms.</p><p><strong>Not priority:</strong> No fruity odor and unlabored respirations are pertinent <em>negatives</em>; there is no Kussmaul breathing and no acetone. That matters diagnostically but doesn't need follow-up. SpO₂ 95% is acceptable.</p><p class="plain">Plain version: confused, dried out, and her blood pressure is sagging from lost fluid.</p>`},
+
+{type:'matrix', case:true, topic:'NGN case: hyperglycemic-hyperosmolar state', skill:'Analyze cues',
+ stem:`The 1045 labs result (Labs tab). For each finding, indicate whether it is consistent with diabetic ketoacidosis, hyperglycemic-hyperosmolar state, or both.`,
+ columns:['Diabetic ketoacidosis','Hyperglycemic-hyperosmolar state','Both'],
+ rows:[
+  {label:`Glucose 842 mg/dL`, correct:1},
+  {label:`Serum osmolarity 356 mOsm/L`, correct:1},
+  {label:`Serum ketones negative`, correct:1},
+  {label:`Arterial pH 7.41`, correct:1},
+  {label:`Poor skin turgor, dry mucous membranes`, correct:2},
+  {label:`BUN 48 mg/dL`, correct:2}],
+ why:`<p>Per Table 56.9, hyperglycemic-hyperosmolar state has glucose <strong>above 600 mg/dL</strong>, osmolarity <strong>above 320</strong>, <strong>negative ketones</strong>, and pH <strong>above 7.4</strong>. Diabetic ketoacidosis runs above 300 mg/dL with positive ketones and pH below 7.35. Dehydration findings and <strong>elevated BUN</strong> occur in <strong>both</strong>, since both involve osmotic diuresis and hemoconcentration.</p><p>Iggy explains the mechanism: in hyperglycemic-hyperosmolar state the client secretes <em>just enough insulin to prevent ketosis</em> but not enough to prevent hyperglycemia.</p><p class="plain">Plain version: sky-high sugar, very "thick" blood, and no acid. That's the hyperosmolar picture.</p>`},
+
+{type:'cloze', case:true, topic:'NGN case: hyperglycemic-hyperosmolar state', skill:'Prioritize hypotheses',
+ stem:`Complete the statement.`,
+ template:`Right now, the client is at highest risk for {0}, as evidenced by {1}.`,
+ blanks:[
+  {options:['hypovolemic shock','cerebral edema','hyperkalemia','hypoglycemia'], correct:0},
+  {options:['WBC 14,200/mm³','BP 92/54 with HR 118','serum potassium 3.6 mEq/L','serum sodium 138 mEq/L'], correct:1}],
+ why:`<p>Iggy's pathophysiology chain (Fig. 56.13) runs from osmotic diuresis to extracellular dehydration, then <strong>shock</strong> and tissue hypoxia. Falling pressure with a compensating heart rate is the evidence. That is why Iggy calls the <strong>first priority of fluid replacement to increase blood volume</strong>.</p><p>Cerebral edema is a risk that appears <em>during treatment</em>, when osmolarity drops too fast, so it isn't the risk right now. Potassium 3.6 is normal. The WBC points to the trigger, not to the immediate threat.</p><p class="plain">Plain version: she's lost so much water that her circulation is starting to fail.</p>`},
+
+{type:'bowtie', case:true, topic:'NGN case: hyperglycemic-hyperosmolar state', skill:'Generate solutions',
+ stem:`Complete the diagram. Select the condition the client is most likely experiencing, <strong>2</strong> actions to take, and <strong>2</strong> parameters to monitor.`,
+ cond:{options:['Diabetic ketoacidosis','Hyperglycemic-hyperosmolar state','Acute adrenal insufficiency','Syndrome of inappropriate antidiuretic hormone'], correct:1},
+ act:{options:['Infuse 0.9% sodium chloride at 1 L/hr','Give sodium bicarbonate IV','Begin an IV regular insulin infusion after fluid replacement is underway','Restrict fluids to 1 L/day to prevent cerebral edema','Give the scheduled glipizide'], correct:[0,2]},
+ mon:{options:['Urine ketones every hour','Level of consciousness and pupils hourly','Serum amylase daily','Serum potassium every 1–2 hours with continuous cardiac monitoring','A1C daily'], correct:[1,3]},
+ why:`<p><strong>Actions:</strong> With hypotension, Iggy uses <strong>normal saline at 1 L/hr</strong> until blood pressure and urine output are adequate. <strong>IV insulin is given after adequate fluids have been replaced.</strong> Bicarbonate has no role, since pH is 7.41. Fluid restriction is the opposite of what's needed. An oral sulfonylurea is not appropriate in a hyperglycemic crisis.</p><p><strong>Monitor:</strong> Assess hourly for <strong>cerebral edema</strong> (abrupt mental status change, abnormal neuro signs). Check <strong>serum electrolytes every 1–2 hours</strong> with continuous cardiac monitoring, because potassium drops quickly once insulin starts. Ketones are negative by definition here.</p><p class="plain">Plain version: refill the tank, then add insulin, and watch the brain and the potassium.</p>`},
+
+{type:'mc', case:true, topic:'NGN case: hyperglycemic-hyperosmolar state', skill:'Take action',
+ update:`<div class="tag">Chart update · Nurses' notes 1500</div>
+ <p>Received 3 L 0.9% NaCl, now 0.45% NaCl at 200 mL/hr. Insulin infusion started 1200. At 1400: oriented to person and place, following commands.</p>
+ <p><span class="flag">At 1500: difficult to arouse, responds only to painful stimulus. Right pupil 5 mm and sluggish; left 3 mm and brisk.</span></p>
+ <p class="mono">VS: BP 128/72 · HR 96 · RR 16 · UO 55 mL/hr<br>Labs 1500: glucose 398 mg/dL (842 at 1045) · K⁺ 3.2 mEq/L · osmolarity 301 mOsm/L</p>`,
+ stem:`Which action does the nurse take <strong>first</strong>?`,
+ options:[
+  `Increase the rate of the 0.45% sodium chloride infusion`,
+  `Request an order for IV potassium replacement`,
+  `Recheck the capillary glucose in 1 hour`,
+  `Notify the diabetes health care provider immediately of the change in level of consciousness and pupils`],
+ correct:3,
+ why:`<p>Iggy states that <strong>regression after initial improvement may indicate a too-rapid reduction in plasma osmolarity</strong>. Osmolarity fell from 356 to 301 in about 4 hours, and glucose dropped roughly 100 mg/dL per hour against a target of 50–70. Iggy's Critical Rescue: for changes in LOC, <strong>pupil size, shape, or reaction</strong>, or seizures, <strong>immediately notify the diabetes health care provider</strong>. This is a brain emergency, and the brain comes first in the organ hierarchy.</p><p>More hypotonic fluid worsens cerebral edema. Potassium 3.2 needs replacement, but it is second to a herniation risk, and urine output must be at least 30 mL/hr before IV potassium. Waiting an hour is waiting on a dilating pupil.</p><p class="plain">Plain version: she got better, then suddenly worse, with one big pupil. That's brain swelling. Call now.</p>`},
+
+{type:'matrix', case:true, topic:'NGN case: hyperglycemic-hyperosmolar state', skill:'Evaluate outcomes',
+ update:`<div class="tag">Chart update · Day 2, 0800</div>
+ <p>Cerebral edema managed per provider; rate of glucose and osmolarity correction slowed. Now receiving subcutaneous basal insulin and IV ceftriaxone for urinary tract infection.</p>`,
+ stem:`Compare each finding with the prior shift. Indicate whether the client's condition has improved, not changed, or declined.`,
+ columns:['Improved','Not changed','Declined'],
+ rows:[
+  {label:`Orientation: person and place → person, place, and time`, correct:0},
+  {label:`Serum osmolarity: 312 → 294 mOsm/L`, correct:0},
+  {label:`Glucose: 236 → 212 mg/dL`, correct:0},
+  {label:`Urine output: 60 mL/hr → 22 mL/hr (last 3 hours)`, correct:2},
+  {label:`Serum potassium: 3.4 → 3.4 mEq/L`, correct:1},
+  {label:`Temperature: 99.6°F → 98.8°F`, correct:0}],
+ why:`<p>Iggy says <strong>slow, steady improvement in central nervous system function is the best evidence that fluid management is satisfactory</strong>, so full orientation is the key positive. Osmolarity back inside 270–300 and a steadily falling glucose also show improvement. Defervescence shows the antibiotic is working.</p><p>Urine output of 22 mL/hr is below <strong>30 mL/hr</strong>, which is the floor for safe IV potassium. Iggy links diuresis and dehydration with acute kidney injury risk, so this <strong>decline</strong> needs follow-up. Potassium is unchanged and still low-normal.</p><p class="plain">Plain version: brain, blood, and fever are getting better, but the kidneys are putting out less and need a look.</p>`}
+];
+
+/* ---------- ENGINE ---------- */
+const LET='ABCDEFGH';
+const quiz=document.getElementById('quiz');
+let S;
+function init(){
+  S=Q.map(q=>({done:false,pts:0,sel:
+    q.type==='mc'?null: q.type==='sata'||q.type==='highlight'?new Set():
+    q.type==='matrix'?q.rows.map(()=>null): q.type==='cloze'?q.blanks.map(()=>null):
+    q.type==='bowtie'?{cond:null,act:new Set(),mon:new Set()}: q.start.slice()}));
+}
+function maxPts(q){return {mc:1,order:1,bowtie:5,sata:(q.correct||[]).length,matrix:(q.rows||[]).length,cloze:(q.blanks||[]).length,highlight:(q.parts||[]).filter(p=>typeof p==='object'&&p.c).length}[q.type];}
+const FMT={mc:'Multiple choice',sata:'Select all that apply',matrix:'Matrix',cloze:'Drop-down cloze',highlight:'Highlight',bowtie:'Bow-tie',order:'Ordered response'};
+
+function answered(i){const q=Q[i],s=S[i].sel;
+  switch(q.type){case 'mc':return s!==null;case 'sata':case 'highlight':return s.size>0;
+  case 'matrix':case 'cloze':return s.every(v=>v!==null);
+  case 'bowtie':return s.cond!==null&&s.act.size===2&&s.mon.size===2;case 'order':return true;}}
+
+function grade(i){const q=Q[i],s=S[i].sel;let p=0;
+  if(q.type==='mc')p=s===q.correct?1:0;
+  else if(q.type==='sata'){s.forEach(o=>p+=q.correct.includes(o)?1:-1);p=Math.max(0,p);}
+  else if(q.type==='highlight'){s.forEach(k=>p+=q.parts[k].c?1:-1);p=Math.max(0,p);}
+  else if(q.type==='matrix')p=q.rows.filter((r,k)=>s[k]===r.correct).length;
+  else if(q.type==='cloze')p=q.blanks.filter((b,k)=>s[k]===b.correct).length;
+  else if(q.type==='bowtie'){p=(s.cond===q.cond.correct?1:0);s.act.forEach(o=>p+=q.act.correct.includes(o)?1:0);s.mon.forEach(o=>p+=q.mon.correct.includes(o)?1:0);}
+  else if(q.type==='order')p=s.every((v,k)=>v===k)?1:0;
+  return p;}
+
+function optRow(i,type,name,k,text,checked,cls,mark,dis){
+  return `<label class="opt ${cls}"><input type="${type}" name="${name}" data-q="${i}" data-o="${k}" ${checked?'checked':''} ${dis?'disabled':''}><span class="l">${LET[k]}.</span><span>${text}</span>${mark}</label>`;}
+
+function body(i){const q=Q[i],st=S[i],s=st.sel,d=st.done;let h='';
+  if(q.type==='mc'||q.type==='sata'){
+    const multi=q.type==='sata';
+    if(multi&&!d)h+=`<div class="hint">Select all that apply.</div>`;
+    h+=`<div class="opts">`+q.options.map((t,k)=>{
+      const on=multi?s.has(k):s===k, right=multi?q.correct.includes(k):q.correct===k;
+      let cls=on?'sel':'',mk='';
+      if(d){cls=right?'ok':on?'bad':'';mk=right?`<span class="mk ok">${on?'✓ Correct':'Correct answer'}</span>`:on?`<span class="mk bad">✗</span>`:'';}
+      return optRow(i,multi?'checkbox':'radio','q'+i,k,t,on,cls,mk,d);}).join('')+`</div>`;
+  }
+  else if(q.type==='matrix'){
+    h+=`<div class="mx"><table><thead><tr><th>Finding</th>${q.columns.map(c=>`<th class="c">${c}</th>`).join('')}</tr></thead><tbody>`;
+    q.rows.forEach((r,k)=>{const rc=d?(s[k]===r.correct?'rowok':'rowbad'):'';
+      h+=`<tr class="${rc}"><td>${r.label}</td>`+q.columns.map((c,cI)=>`<td class="c ${d&&cI===r.correct?'want':''}"><input type="radio" name="q${i}r${k}" data-q="${i}" data-r="${k}" data-o="${cI}" aria-label="${r.label.replace(/<[^>]+>/g,'')}: ${c}" ${s[k]===cI?'checked':''} ${d?'disabled':''}></td>`).join('')+`</tr>`;});
+    h+=`</tbody></table></div>`;
+  }
+  else if(q.type==='cloze'){
+    h+=`<div class="cloze">`+q.template.replace(/\{(\d)\}/g,(m,n)=>{const b=q.blanks[n],v=s[n];
+      const cls=d?(v===b.correct?'ok':'bad'):'';
+      let out=`<select data-q="${i}" data-b="${n}" class="${cls}" aria-label="Blank ${+n+1}" ${d?'disabled':''}><option value="">Select…</option>${b.options.map((o,k)=>`<option value="${k}" ${v===k?'selected':''}>${o}</option>`).join('')}</select>`;
+      if(d&&v!==b.correct)out+=`<span class="fix">Correct: ${b.options[b.correct]}</span>`;return out;})+`</div>`;
+  }
+  else if(q.type==='highlight'){
+    if(!d)h+=`<div class="hint">Click phrases to highlight them. Click again to clear.</div>`;
+    h+=`<div class="passage">`+q.parts.map((p,k)=>{if(typeof p==='string')return p;
+      const on=s.has(k);let cls='';if(d)cls=p.c?(on?'ok':'miss'):(on?'bad':'');
+      return `<button type="button" class="hl ${cls}" data-q="${i}" data-p="${k}" aria-pressed="${on}" ${d?'disabled':''}>${p.t}</button>`;}).join('')+`</div>`;
+    if(d)h+=`<div class="hint" style="margin:8px 0 0;font-weight:500">Green solid = correct pick · green dashed = missed · red = incorrect pick</div>`;
+  }
+  else if(q.type==='bowtie'){
+    const grp=(g,title,cfg,multi,center)=>`<div class="col ${center?'center':''}"><h4>${title}</h4><div class="opts">`+cfg.options.map((t,k)=>{
+      const on=multi?s[g].has(k):s[g]===k, right=multi?cfg.correct.includes(k):cfg.correct===k;
+      let cls=on?'sel':'',mk='';if(d){cls=right?'ok':on?'bad':'';mk=right&&on?'<span class="mk ok">✓</span>':on?'<span class="mk bad">✗</span>':'';}
+      const full=multi&&!on&&s[g].size>=2;
+      return `<label class="opt ${cls}"><input type="${multi?'checkbox':'radio'}" name="q${i}${g}" data-q="${i}" data-g="${g}" data-o="${k}" ${on?'checked':''} ${d||full?'disabled':''}><span>${t}</span>${mk}</label>`;}).join('')+`</div></div>`;
+    h+=`<div class="bow">${grp('act','Actions to take (2)',q.act,true)}${grp('cond','Condition most likely',q.cond,false,true)}${grp('mon','Parameters to monitor (2)',q.mon,true)}</div>`;
+  }
+  else if(q.type==='order'){
+    h+=`<ol class="ord">`+s.map((it,pos)=>{const cls=d?(it===pos?'ok':'bad'):'';
+      return `<li class="${cls}"><span class="pos">${pos+1}</span><span class="t">${q.items[it]}</span>${d?'':`<span class="mv"><button type="button" data-q="${i}" data-pos="${pos}" data-dir="-1" aria-label="Move up" ${pos===0?'disabled':''}>▲</button><button type="button" data-q="${i}" data-pos="${pos}" data-dir="1" aria-label="Move down" ${pos===s.length-1?'disabled':''}>▼</button></span>`}</li>`;}).join('')+`</ol>`;
+    if(d&&!s.every((v,k)=>v===k))h+=`<div class="why" style="margin-top:10px;background:var(--ok-bg);border-color:var(--ok)"><p><strong>Correct order:</strong></p><ol style="margin:0;padding-left:20px">${q.items.map(t=>`<li>${t}</li>`).join('')}</ol></div>`;
+  }
+  return h;}
+
+function card(i){const q=Q[i],st=S[i],mx=maxPts(q);
+  let sc='';if(st.done){const c=st.pts===mx?'full':st.pts===0?'zero':'part';sc=`<span class="score ${c}">${st.pts} / ${mx} point${mx>1?'s':''}</span>`;}
+  return `<div class="qhead"><span class="qn">${i+1}.</span><span class="chip">${q.topic.replace('NGN case: ','')}</span><span class="chip skill">${q.skill}</span><span class="chip fmt">${FMT[q.type]}</span></div>
+  ${q.update?`<div class="update">${q.update}</div>`:''}
+  <div class="stem">${q.stem}</div>
+  <div class="${st.done?'locked':''}">${body(i)}</div>
+  <div class="actions">${st.done?sc:`<button type="button" class="btn" data-submit="${i}" ${answered(i)?'':'disabled'}>Submit answer</button><span class="score" style="color:var(--muted);font-weight:400">${mx} point${mx>1?'s':''} possible</span>`}</div>
+  ${st.done?`<div class="why">${q.why}</div>`:''}`;}
+
+function ehr(){return `<h2 class="section-h">Unfolding case study</h2>
+<p class="section-sub">Questions 21–26 follow one client in Clinical Judgment Measurement Model order. Chart updates appear inside later questions.</p>
+<div class="ehr">
+ <div class="bar"><span><b>R. Alvarez</b> · 78 y · F</span><span>Emergency department · Admitted 1030</span></div>
+ <div class="tabs" role="tablist">
+  ${['History','Nurses’ notes','Vital signs','Labs'].map((t,k)=>`<button type="button" role="tab" id="tab${k}" aria-selected="${k===0}" aria-controls="pane${k}" data-tab="${k}">${t}</button>`).join('')}
+ </div>
+ <div class="pane" role="tabpanel" id="pane0" aria-labelledby="tab0"><p>Type 2 diabetes mellitus managed with glipizide. Hypertension managed with hydrochlorothiazide. Lives with her daughter.</p><p>Daughter reports 4 days of burning on urination, poor appetite, and "barely drinking anything," with increasing sleepiness since yesterday.</p></div>
+ <div class="pane" role="tabpanel" id="pane1" aria-labelledby="tab1" hidden><p><span class="ts">1030</span> Arrived by EMS. Opens eyes to voice, oriented to person only. Mucous membranes dry; skin tenting on forearm. Breath without odor. Respirations regular and unlabored. Indwelling urinary catheter inserted; 40 mL dark amber urine returned. Daughter at bedside, states client "was talking normally 2 days ago."</p></div>
+ <div class="pane" role="tabpanel" id="pane2" aria-labelledby="tab2" hidden><div style="overflow-x:auto"><table><tr><th>Time</th><th>T</th><th>HR</th><th>RR</th><th>BP</th><th>SpO₂</th></tr><tr><td class="num">1030</td><td class="num">100.8°F</td><td class="num">118</td><td class="num">20</td><td class="num">92/54</td><td class="num">95% RA</td></tr></table></div></div>
+ <div class="pane" role="tabpanel" id="pane3" aria-labelledby="tab3" hidden><div style="overflow-x:auto"><table>
+  <tr><th>1045</th><th>Result</th><th>Reference</th></tr>
+  <tr><td>Glucose</td><td class="num">842 mg/dL</td><td class="num">74–106</td></tr>
+  <tr><td>Serum osmolarity</td><td class="num">356 mOsm/L</td><td class="num">270–300</td></tr>
+  <tr><td>Sodium</td><td class="num">138 mEq/L</td><td class="num">136–145</td></tr>
+  <tr><td>Potassium</td><td class="num">3.6 mEq/L</td><td class="num">3.5–5.0</td></tr>
+  <tr><td>Bicarbonate</td><td class="num">24 mEq/L</td><td class="num">22–26</td></tr>
+  <tr><td>Arterial pH</td><td class="num">7.41</td><td class="num">7.35–7.45</td></tr>
+  <tr><td>Serum ketones</td><td class="num">Negative</td><td class="num">Negative</td></tr>
+  <tr><td>BUN / creatinine</td><td class="num">48 / 1.9 mg/dL</td><td class="num">10–20 / 0.5–1.1</td></tr>
+  <tr><td>WBC</td><td class="num">14,200/mm³</td><td class="num">5,000–10,000</td></tr>
+  <tr><td>Urinalysis</td><td>Glucose 4+, ketones negative, nitrites positive, leukocyte esterase positive</td><td></td></tr>
+ </table></div></div>
+</div>`;}
+
+function render(){
+  const first=Q.findIndex(q=>q.case);
+  quiz.innerHTML=`<h2 class="section-h">Standalone items</h2><p class="section-sub">Questions 1–20 are spread across the chapter.</p>`+
+    Q.map((q,i)=>(i===first?ehr():'')+`<section class="q" id="q${i}">${card(i)}</section>`).join('');
+  progress();
+}
+function redraw(i){document.getElementById('q'+i).innerHTML=card(i);}
+function setBtn(i){const b=document.querySelector(`[data-submit="${i}"]`);if(b)b.disabled=!answered(i);}
+
+function progress(){
+  const n=S.filter(s=>s.done).length,got=S.reduce((a,s)=>a+s.pts,0),poss=Q.reduce((a,q,i)=>a+(S[i].done?maxPts(q):0),0);
+  document.getElementById('fill').style.width=(n/Q.length*100)+'%';
+  document.getElementById('lab').textContent=`${n} / ${Q.length} submitted`+(n?` · ${got}/${poss} pts`:'');
+  const r=document.getElementById('results');
+  if(n<Q.length){r.innerHTML='';return;}
+  const total=Q.reduce((a,q)=>a+maxPts(q),0),pct=Math.round(got/total*100);
+  const topics={};Q.forEach((q,i)=>{const t=q.case?'NGN case':q.topic;topics[t]=topics[t]||[0,0];topics[t][0]+=S[i].pts;topics[t][1]+=maxPts(q);});
+  const verdict=pct>=85?'At or above your 85% course target.':pct>=75?'Below your 85% target. Review the red rationales before moving on.':'Well below target. Re-read the Ch. 56 sections behind every miss, then retake.';
+  r.innerHTML=`<div class="results"><h2>Results</h2><div class="big">${pct}%</div><p class="verdict">${got} of ${total} points. ${verdict}</p>
+  <div class="bars">${Object.entries(topics).map(([t,[a,b]])=>{const p=Math.round(a/b*100);return `<div class="row"><span class="nm" title="${t}">${t}</span><span class="tr"><span class="fl ${p<75?'low':''}" style="width:${p}%;display:block"></span></span><span class="pc">${a}/${b}</span></div>`;}).join('')}</div>
+  <button type="button" class="btn ghost" id="retake">Retake quiz</button></div>`;
+}
+
+quiz.addEventListener('change',e=>{const t=e.target,i=+t.dataset.q;if(isNaN(i)||S[i].done)return;const q=Q[i],s=S[i].sel;
+  if(q.type==='mc'){S[i].sel=+t.dataset.o;t.closest('.opts').querySelectorAll('.opt').forEach(l=>l.classList.toggle('sel',l.querySelector('input').checked));}
+  else if(q.type==='sata'){const k=+t.dataset.o;t.checked?s.add(k):s.delete(k);t.closest('.opt').classList.toggle('sel',t.checked);}
+  else if(q.type==='matrix'){s[+t.dataset.r]=+t.dataset.o;}
+  else if(q.type==='cloze'){s[+t.dataset.b]=t.value===''?null:+t.value;}
+  else if(q.type==='bowtie'){const g=t.dataset.g,k=+t.dataset.o;
+    if(g==='cond')s.cond=k;else{t.checked?s[g].add(k):s[g].delete(k);}
+    redraw(i);const el=document.querySelector(`#q${i} input[data-g="${g}"][data-o="${k}"]`);if(el)el.focus();return;}
+  setBtn(i);});
+
+quiz.addEventListener('click',e=>{
+  const tab=e.target.closest('[data-tab]');
+  if(tab){const k=+tab.dataset.tab;document.querySelectorAll('[data-tab]').forEach(b=>b.setAttribute('aria-selected',+b.dataset.tab===k));
+    for(let n=0;n<4;n++)document.getElementById('pane'+n).hidden=n!==k;return;}
+  const hl=e.target.closest('.hl');
+  if(hl){const i=+hl.dataset.q;if(S[i].done)return;const k=+hl.dataset.p,s=S[i].sel;s.has(k)?s.delete(k):s.add(k);hl.setAttribute('aria-pressed',s.has(k));setBtn(i);return;}
+  const mv=e.target.closest('[data-dir]');
+  if(mv){const i=+mv.dataset.q,p=+mv.dataset.pos,dir=+mv.dataset.dir,s=S[i].sel,n=p+dir;[s[p],s[n]]=[s[n],s[p]];redraw(i);
+    const f=document.querySelector(`#q${i} [data-pos="${n}"][data-dir="${dir}"]`)||document.querySelector(`#q${i} [data-pos="${n}"]`);if(f)f.focus();return;}
+  const sb=e.target.closest('[data-submit]');
+  if(sb){const i=+sb.dataset.submit;if(!answered(i))return;S[i].pts=grade(i);S[i].done=true;redraw(i);progress();return;}
+});
+document.getElementById('results').addEventListener('click',e=>{if(e.target.id==='retake'){init();render();window.scrollTo(0,0);}});
+
+init();render();
+</script>
+
+</body></html>

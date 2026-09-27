@@ -16,3 +16,4 @@ blockquote{margin:12px 0;padding:8px 14px;border-left:4px solid var(--accent);ba
 code{background:var(--soft);padding:1px 4px;border-radius:3px}
 ol>li{margin-bottom:12px}
 .back{display:inline-block;font-size:.9rem;margin-bottom:12px;text-decoration:none}
+img{max-width:100%;height:auto}
