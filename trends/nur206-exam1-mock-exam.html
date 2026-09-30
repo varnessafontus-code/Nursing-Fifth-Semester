@@ -1,0 +1,634 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>NUR206 Exam 1 Mock Exam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Newsreader:opsz,wght@6..72,500;6..72,650&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* Layout: exam console — sticky progress rail on top, one question card, fixed action bar at the bottom; case-study record docks above the stem. */
+:root{
+  --bg:#F2F5F7; --card:#FFFFFF; --ink:#16212B; --muted:#56636F; --rule:#D5DCE2; --soft:#E8EDF1;
+  --accent:#0F6B70; --sel:#1F5E8C; --selbg:#E2EDF7; --ok:#2B7A4B; --okbg:#E3F2E8; --bad:#B0281F; --badbg:#FBE8E5; --flag:#B7860B; --hl:#FBE38A; --hl-ink:#16212B;
+  --FE:#2E6CA0; --AB:#6B4E9E; --BU:#B24629; --ON:#4F5E80; --TR:#2C7650; --CS:#0F6B70;
+  --display:"Newsreader",Georgia,serif; --body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#10171D; --card:#172129; --ink:#E3E9EE; --muted:#9BA9B5; --rule:#2B3944; --soft:#1D2A33;
+  --accent:#5CC1C6; --sel:#7DB6E3; --selbg:#1B3246; --ok:#6BC28E; --okbg:#173326; --bad:#F08A7E; --badbg:#3A1C19; --flag:#E0B640; --hl:#E6CC5A; --hl-ink:#12181D;
+  --FE:#6FA6D6; --AB:#A68BD6; --BU:#E57D5F; --ON:#97A5C8; --TR:#6CC495; --CS:#5CC1C6; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#10171D; --card:#172129; --ink:#E3E9EE; --muted:#9BA9B5; --rule:#2B3944; --soft:#1D2A33;
+  --accent:#5CC1C6; --sel:#7DB6E3; --selbg:#1B3246; --ok:#6BC28E; --okbg:#173326; --bad:#F08A7E; --badbg:#3A1C19; --flag:#E0B640; --hl:#E6CC5A; --hl-ink:#12181D;
+  --FE:#6FA6D6; --AB:#A68BD6; --BU:#E57D5F; --ON:#97A5C8; --TR:#6CC495; --CS:#5CC1C6; color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.5}
+button,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{max-width:780px;margin:0 auto;padding-inline:16px}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--rule)}
+.bar .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-block:10px 6px}
+.bar h1{font-size:15px;margin:0;font-weight:700}
+.meta{font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.strip{display:flex;gap:2px;align-items:flex-end;height:30px;padding-bottom:8px;overflow-x:auto;scrollbar-width:none}
+.strip::-webkit-scrollbar{display:none}
+.tick{flex:1 0 7px;min-width:7px;height:12px;border:0;padding:0;border-radius:2px;background:var(--soft);box-shadow:inset 0 -3px 0 var(--c);position:relative}
+.tick.done{background:var(--c)}
+.tick.r-ok{background:var(--ok);box-shadow:none}.tick.r-part{background:var(--flag);box-shadow:none}.tick.r-bad{background:var(--bad);box-shadow:none}
+.tick.cur{height:22px;outline:2px solid var(--ink);outline-offset:1px}
+.tick.flag::after{content:"";position:absolute;left:50%;top:-6px;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:var(--flag)}
+main{padding-block:18px 130px}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:18px}
+.tags{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;font-size:13px;color:var(--muted);margin-bottom:10px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:var(--ink)}
+.chip i{width:10px;height:10px;border-radius:50%;background:var(--c)}
+.ngn{font-family:var(--mono);font-size:11px;letter-spacing:.04em;padding:2px 6px;border-radius:4px;border:1px solid var(--accent);color:var(--accent)}
+.stem{font-family:var(--display);font-size:1.22rem;line-height:1.5;margin:0 0 6px}
+.instr{font-size:14px;color:var(--muted);margin:0 0 14px}
+.opt{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;background:var(--card);border:1.5px solid var(--rule);border-radius:8px;padding:11px 13px;margin:0 0 9px;line-height:1.4}
+.opt .key{flex:0 0 26px;height:26px;border-radius:50%;border:1.5px solid var(--muted);display:grid;place-items:center;font-size:13px;font-weight:700;color:var(--muted)}
+.opt.box .key{border-radius:5px}
+.opt[aria-pressed="true"]{border-color:var(--sel);background:var(--selbg)}
+.opt[aria-pressed="true"] .key{background:var(--sel);border-color:var(--sel);color:var(--card)}
+.m-ok{border-color:var(--ok)!important;background:var(--okbg)!important}
+.m-bad{border-color:var(--bad)!important;background:var(--badbg)!important}
+.m-miss{border-color:var(--ok)!important;border-style:dashed!important}
+.opt:disabled,.seg button:disabled,.hl:disabled{cursor:default}
+.mrow{border-top:1px solid var(--rule);padding:11px 0}
+.mrow:first-of-type{border-top:0}
+.mlabel{font-weight:700;margin-bottom:7px}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{border:1.5px solid var(--rule);background:var(--card);border-radius:18px;padding:6px 12px;font-size:14px}
+.seg button[aria-pressed="true"]{border-color:var(--sel);background:var(--selbg);font-weight:700}
+.cloze{font-family:var(--display);font-size:1.12rem;line-height:2.2}
+.cloze select{font-family:var(--body);font-size:15px;padding:4px 6px;border:1.5px solid var(--sel);border-radius:6px;background:var(--selbg);max-width:100%}
+.passage{display:flex;flex-direction:column;gap:6px}
+.hl{background:var(--card);border:1.5px dashed var(--rule);text-align:left;padding:8px 10px;border-radius:6px;line-height:1.4}
+.hl[aria-pressed="true"]{background:var(--hl);color:var(--hl-ink);border-style:solid;border-color:var(--flag)}
+.hl.m-ok,.hl.m-bad,.hl.m-miss{color:var(--ink)!important}
+.bowgrid{display:grid;grid-template-columns:1fr 1.1fr 1fr;gap:6px;align-items:center;margin:4px 0 6px}
+.bowgrid .col{display:grid;gap:6px}
+.slot{min-height:44px;border:1.5px dashed var(--muted);border-radius:6px;padding:6px 8px;font-size:13px;line-height:1.3;display:flex;align-items:center;color:var(--muted)}
+.slot.full{border-style:solid;border-color:var(--sel);background:var(--selbg);color:var(--ink)}
+.slot.center{min-height:66px;font-weight:700}
+.bowhead{display:grid;grid-template-columns:1fr 1.1fr 1fr;gap:6px;font-size:12px;color:var(--muted);text-align:center;margin-bottom:14px}
+fieldset{border:0;margin:0 0 12px;padding:0}
+legend{font-weight:700;margin-bottom:8px;font-size:15px}
+.olist{list-style:none;margin:0;padding:0}
+.olist li{display:flex;gap:10px;align-items:center;border:1.5px solid var(--rule);border-radius:8px;padding:9px 10px;margin-bottom:8px;background:var(--card)}
+.olist .n{font-weight:700;color:var(--muted);width:18px}
+.olist .t{flex:1;min-width:0}
+.olist .mv{display:flex;flex-direction:column;gap:4px}
+.olist .mv button{width:36px;height:28px;border:1px solid var(--rule);border-radius:6px;background:var(--soft)}
+.record{border:1px solid var(--rule);border-radius:10px;background:var(--soft);padding:12px 14px;margin-bottom:14px}
+.record h3{margin:0 0 6px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+.record details{border-top:1px solid var(--rule);padding:8px 0}
+.record details:first-of-type{border-top:0}
+.record summary{cursor:pointer;font-weight:700;font-size:14px}
+.record p{margin:6px 0;font-size:15px}
+.record table{border-collapse:collapse;width:100%;font-size:14px;margin-top:6px}
+.record th,.record td{border-bottom:1px solid var(--rule);padding:5px 6px;text-align:left;vertical-align:top}
+.record .tbl{overflow-x:auto}
+.fb{margin-top:16px;border-left:4px solid var(--c,var(--muted));background:var(--soft);border-radius:0 8px 8px 0;padding:12px 14px}
+.fb h3{margin:0 0 6px;font-size:15px}
+.fb p{margin:0 0 8px}
+.fb .kid{border-top:1px dashed var(--rule);padding-top:8px}
+.fb .kid b{color:var(--accent)}
+.fb .ref{font-size:13px;color:var(--muted);margin:0}
+.act{position:fixed;left:0;right:0;bottom:0;background:var(--bg);border-top:1px solid var(--rule);padding:10px 0 calc(10px + env(safe-area-inset-bottom,0px));z-index:5}
+.act .wrap{display:flex;gap:8px}
+.btn{border:1.5px solid var(--rule);background:var(--card);border-radius:8px;padding:11px 14px;font-weight:700;font-size:15px}
+.btn.primary{background:var(--ink);color:var(--bg);border-color:var(--ink);flex:1}
+.btn[aria-pressed="true"]{border-color:var(--flag);color:var(--flag)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.hero h2{font-family:var(--display);font-weight:650;font-size:2.1rem;line-height:1.15;margin:6px 0 10px;text-wrap:balance}
+.hero p{color:var(--muted);max-width:62ch}
+.mix{display:flex;flex-wrap:wrap;gap:6px 16px;margin:12px 0 18px;font-size:14px}
+.choice{display:grid;gap:10px;margin:0 0 18px}
+.choice label{display:flex;gap:12px;align-items:flex-start;border:1.5px solid var(--rule);border-radius:8px;padding:12px 14px;background:var(--card);cursor:pointer}
+.choice input{margin-top:4px;accent-color:var(--accent)}
+.choice small{display:block;color:var(--muted)}
+.score{font-family:var(--display);font-size:3.4rem;line-height:1;margin:6px 0 4px;font-variant-numeric:tabular-nums}
+.bars{display:grid;gap:9px;margin:18px 0}
+.bars .b{display:grid;grid-template-columns:150px minmax(0,1fr) 52px;gap:10px;align-items:center;font-size:14px}
+.bars .track{height:10px;border-radius:5px;background:var(--soft);overflow:hidden}
+.bars .fill{height:100%;background:var(--c)}
+.bars .pct{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
+.rlist{list-style:none;padding:0;margin:0}
+.rlist li{border-top:1px solid var(--rule)}
+.rlist button{width:100%;display:flex;gap:10px;align-items:center;text-align:left;border:0;background:none;padding:11px 2px}
+.dot{width:12px;height:12px;border-radius:50%;flex:0 0 12px}
+.rlist .q{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:15px}
+.rlist .s{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.filt{display:flex;gap:8px;align-items:center;font-size:14px;margin:10px 0}
+@media (max-width:520px){.stem{font-size:1.1rem}.bars .b{grid-template-columns:105px minmax(0,1fr) 46px}.slot{font-size:12px}.hero h2{font-size:1.75rem}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="bar"><div class="wrap">
+  <div class="row"><h1>NUR206 Exam 1 Mock Exam</h1><span class="meta" id="meta"></span></div>
+  <nav class="strip" id="strip" aria-label="Question navigator"></nav>
+</div></div>
+<main class="wrap" id="app"></main>
+<div class="act" id="act" hidden><div class="wrap">
+  <button class="btn" id="bBack">Back</button>
+  <button class="btn" id="bFlag" aria-pressed="false">Flag</button>
+  <button class="btn primary" id="bNext">Next</button>
+</div></div>
+
+<script>
+const TOPICS={FE:"Fluid & electrolytes",AB:"Acid-base",BU:"Burns",ON:"Oncology",T5:"Ch 5 Theories",T8:"Ch 8 Legal",T10:"Ch 10 Culture",T25:"Ch 25 Transition",T26:"Ch 26 Time",T28:"Ch 28 NCLEX",CS:"Case study"};
+const CASE=[
+{time:"ED · 0300",html:`<p><b>History.</b> 54-year-old man, 70 kg (154 lb). Rescued from a house fire in a <b>closed bedroom</b> at 0200. EMS started oxygen by nonrebreather mask at 0230.</p>
+<p><b>Burns.</b> Entire anterior trunk and both entire arms, partial and full thickness. Face blistered; singed nasal hair.</p>
+<p><b>Nurses' note.</b> Voice hoarse. Coughing up sputum with dark specks. Reports headache and says "something's not right." Restless, picking at the sheets. Faint expiratory wheezes bilaterally. Last ate at 1900.</p>
+<p><b>Vital signs.</b> T 98.8°F (37.1°C) · HR 124 · RR 28 · BP 102/64 · SpO₂ 99% on nonrebreather</p>`},
+{time:"ED · 0330 labs",html:`<table><tr><th>Test</th><th>Result</th><th>Reference</th></tr>
+<tr><td>Carboxyhemoglobin</td><td><b>24%</b></td><td>&lt; 3%</td></tr>
+<tr><td>Hematocrit</td><td><b>54%</b></td><td>42–52%</td></tr>
+<tr><td>Potassium</td><td><b>5.6 mEq/L</b></td><td>3.5–5.0</td></tr>
+<tr><td>Sodium</td><td>134 mEq/L</td><td>135–145</td></tr>
+<tr><td>ABG</td><td>pH <b>7.31</b> · PaCO₂ 36 · HCO₃ <b>18</b> · PaO₂ 92 (on NRB)</td><td>7.35–7.45 · 35–45 · 22–26 · 80–100</td></tr></table>`},
+{time:"Burn ICU · 0400",html:`<p><b>Update.</b> Intubated at 0345 for progressive stridor. Burn extent confirmed: anterior trunk 18% + right arm 9% + left arm 9% = <b>36% TBSA</b>.</p>
+<p><b>Orders.</b> Lactated Ringer's through 2 large-bore IVs using the <b>Parkland formula, 4 mL/kg/%TBSA</b> (your guides; the Hurst workbook uses 2 mL). Indwelling urinary catheter; hourly urine output. Fluid resuscitation starts at 0400.</p>`},
+{time:"Burn ICU · Day 2, 0400 (26 hours post-burn)",html:`<p><b>Assessment.</b> HR 102 · BP 118/72 · on ventilator. Urine output last 3 hours: 38, 42, 40 mL/hr, clear yellow.</p>
+<p><b>Labs.</b> Carboxyhemoglobin 2% · Hematocrit 45% · Potassium <b>6.1 mEq/L</b>; monitor shows tall, peaked T waves.</p>
+<p><b>Extremities.</b> Circumferential full-thickness burn of right arm: right fingers cool, capillary refill 5 seconds, radial pulse faint by Doppler. Left arm: capillary refill 2 seconds.</p>`}
+];
+const ITEMS=[
+/* ============ FLUID & ELECTROLYTES ============ */
+{tp:"FE",t:"mc",q:"A client's potassium has been low (3.1–3.3 mEq/L) for 4 days despite daily potassium replacement. Which lab should the nurse ask the provider about?",
+o:["Serum magnesium","Serum sodium","Serum chloride","Serum albumin"],a:[0],
+r:"Low magnesium makes the kidneys waste potassium, so hypokalemia won't stay corrected until magnesium is corrected. Check Mg whenever K keeps coming back low.",
+k:"Magnesium is the lid on the potassium jar. If the lid is missing, the potassium keeps spilling out no matter how much you pour in.",ref:"F&E What & Why Section 5 (Hypokalemia) and Section 7"},
+{tp:"FE",t:"mc",q:"A client has 2 days of vomiting and diarrhea. Which set of findings does the nurse expect?",
+o:["HR 118 and weak, BP 92/58, Hct 52%, urine specific gravity 1.034","HR 58 and bounding, BP 160/94, urine specific gravity 1.002","HR 110 and bounding, crackles, Hct 34%","HR 72, BP 124/80, distended neck veins"],a:[0],
+r:"FVD: tachycardia with a weak, thready pulse (it comes before hypotension), low BP, and concentrated labs: Hct, BUN, and urine SG rise because the same particles are in less water. Bounding pulse, crackles, JVD, and a diluted Hct are FVE.",
+k:"Kool-Aid with half the water: same powder, stronger drink. That's why the lab numbers look high.",ref:"F&E What & Why Section 3 · Hurst pp. 4–5"},
+{tp:"FE",t:"sata",q:"The nurse is hanging IV fluids for several clients. Which clients should receive IV fluids at a slow rate? Select all that apply.",
+o:["An 88-year-old with pneumonia","A 6-month-old with dehydration","A 55-year-old with a history of heart failure","A 40-year-old with chronic kidney disease","A healthy 25-year-old dehydrated after a marathon"],a:[0,1,2,3],
+r:"Give IV fluids slowly to the elderly, the very young, and clients with heart or kidney disease. They can't handle a fast volume load and slide into FVE (crackles, JVD, dyspnea).",
+k:"Old hearts, tiny hearts, weak hearts, and weak kidneys can't handle a fire hose.",ref:"F&E What & Why Section 3 (FVE) · Hurst p. 4"},
+{tp:"FE",t:"mc",q:"A client is actively bleeding after trauma and a new nurse suggests hanging D5W to replace volume. Why is this inappropriate?",
+o:["D5W is hypertonic and will pull fluid out of the cells","D5W acts hypotonic once the dextrose is metabolized, so the free water moves into cells instead of staying in the vessels","D5W contains potassium that could cause hyperkalemia","D5W can't be given through a peripheral IV"],a:[1],
+r:"D5W is isotonic in the bag, but the body metabolizes the dextrose quickly and leaves free water, so it acts hypotonic. Free water leaves the vessels and moves into cells, so it doesn't restore blood volume. Use an isotonic crystalloid (NS or LR) for volume loss; NS is the only fluid given with blood.",
+k:"Sugar water turns into plain water once the sugar is eaten up, and plain water sneaks into the cells instead of filling the pipes.",ref:"F&E What & Why Section 2"},
+{tp:"FE",t:"mc",q:"Six hours after a transsphenoidal hypophysectomy, a client's urine output is 900 mL over 2 hours with a specific gravity of 1.002. Which medication does the nurse anticipate?",
+o:["Furosemide","Desmopressin acetate","3% sodium chloride","Spironolactone"],a:[1],
+r:"Pituitary surgery is a red flag for an ADH problem. Huge volumes of dilute urine = diabetes insipidus (no ADH). Desmopressin (DDAVP) or vasopressin replaces ADH. A diuretic would worsen the loss; 3% saline treats hyponatremia, not DI (in DI sodium is high).",
+k:"The 'hold the water' button broke. Desmopressin is a new button.",ref:"F&E What & Why Sections 1 and 4; Oncology What & Why (SIADH vs DI) · Hurst p. 2"},
+{tp:"FE",t:"matrix",cj:"Analyze cues",q:"For each finding, indicate whether it is consistent with SIADH or diabetes insipidus.",
+cols:["SIADH","Diabetes insipidus"],rows:["Urine specific gravity 1.030","Serum sodium 126 mEq/L","Large volume of pale, dilute urine","Serum sodium 151 mEq/L","Weight gain of 2 kg over 2 days with no edema","Hematocrit 53%"],a:[0,0,1,1,0,1],
+r:"SIADH (too much ADH): water retained → weight gain without edema, concentrated urine, diluted blood (Na and osmolality low). DI (no ADH): water lost → dilute urine, concentrated blood (Na and Hct high).",
+k:"Stuck-ON button (SIADH) = thick pee, watery blood. Broken-OFF button (DI) = watery pee, thick blood.",ref:"Oncology What & Why (SIADH) · F&E What & Why Section 4 · Hurst p. 2"},
+{tp:"FE",t:"mc",q:"A client taking furosemide has a potassium of 3.1 mEq/L. Potassium chloride 20 mEq is prescribed IV. Which action is correct?",
+o:["Give it IV push over 2 minutes to correct the level quickly","Confirm urine output of at least 30 mL/hr, then infuse it diluted on a pump no faster than 10 mEq/hr peripherally","Hang it by gravity so the rate is easy to adjust","Give it IM if the client has poor IV access"],a:[1],
+r:"IV potassium: never IV push, IM, or subcut; always diluted on a pump; commonly no faster than 10 mEq/hr through a peripheral line; confirm UO ≥ 30 mL/hr first because the kidneys are the only real way to get rid of extra K. IV push can depolarize the whole heart and stop it.",
+k:"Potassium is dumped by the kidneys. Check the drain works, then pour it in slowly.",ref:"F&E What & Why Section 5 (IV potassium safety) · Hurst p. 12"},
+{tp:"FE",t:"order",cj:"Take action",q:"A dialysis client who missed two sessions has a potassium of 6.8 mEq/L with peaked T waves. Place the treatments in the order the nurse expects them.",
+o:["IV calcium gluconate","IV regular insulin with dextrose","Sodium polystyrene sulfonate (or another binder)","Dialysis"],
+r:"Protect → shift → remove. Calcium gluconate stabilizes the cardiac membrane first (it doesn't lower K). Insulin with dextrose shifts K into cells (buys hours). A binder starts removing K through the gut, and dialysis removes it definitively. Only the last steps lower total body potassium.",
+k:"Flooded basement: put on rubber boots (calcium), sweep the water into a corner (insulin), then pump it out (binders, dialysis).",ref:"F&E What & Why Section 5 (Treating hyperkalemia)"},
+{tp:"FE",t:"mc",q:"A client receiving IV magnesium sulfate has these findings. Which one requires the nurse to stop the infusion and notify the provider?",
+o:["Patellar reflexes absent","Urine output 140 mL/hr","Feels warm and flushed","Respiratory rate 16/min"],a:[0],
+r:"Stop and notify if DTRs are absent, RR < 12, or urine output < 30 mL/hr. Flushing and warmth are expected (Mg is a vasodilator). The antidote for toxicity is IV calcium gluconate.",
+k:"Magnesium is a brake. When the knee stops kicking, the brake is on too hard, and breathing is next.",ref:"F&E What & Why Section 7 · Hurst pp. 8–9"},
+{tp:"FE",t:"highlight",cj:"Recognize cues",q:"A client is 10 hours after a total thyroidectomy. Click every finding in the nurse's note that suggests hypocalcemia.",
+ph:["Reports tingling around the lips.","Incisional pain rated 4/10.","Facial muscles twitch when the cheek is tapped.","Carpal spasm when the BP cuff is inflated.","Drain has 30 mL of serosanguineous fluid.","New high-pitched sound on inspiration.","BP 132/80, HR 84.","Deep tendon reflexes 4+ (hyperactive)."],a:[0,2,3,5,7],
+r:"The parathyroids can be removed or damaged → low calcium → the 'doorstop' is gone and nerves fire on their own: perioral tingling, + Chvostek, + Trousseau, hyperreflexia, and laryngospasm (stridor), which is an airway emergency. Keep IV calcium gluconate and airway equipment at the bedside.",
+k:"Calcium is the doorstop that keeps nerves calm. Without it, doors swing open at the slightest breeze: twitching, cramps, and the throat can squeeze shut.",ref:"F&E What & Why Section 6 · Hurst p. 9"},
+{tp:"FE",t:"cloze",cj:"Analyze cues",q:"A client with small cell lung cancer has a serum sodium of 122 mEq/L, gained 2 kg without edema, and is newly confused. Complete the statement.",
+text:"The confusion is caused by water shifting {0} brain cells. The first-line intervention is {1}. If 3% saline is used, correcting the sodium too fast risks {2}.",
+blanks:[["out of","into","around"],["a fluid restriction","a 0.45% sodium chloride infusion","a thiazide diuretic"],["hypokalemia","osmotic demyelination","hyperglycemia"]],a:[1,0,1],
+r:"SIADH from the tumor causes dilutional hyponatremia: the blood is more watery than brain cells, so water moves into them → cerebral edema. Fluid restriction is first-line; hypertonic saline only for severe symptoms, corrected slowly (commonly ≤ ~8 mEq/L in 24 h) to avoid osmotic demyelination.",
+k:"The salt got drowned, not lost. Stop adding water, and fix it slowly so the brain doesn't get whiplash.",ref:"Oncology What & Why (SIADH) · F&E What & Why Section 4"},
+
+/* ============ ACID-BASE ============ */
+{tp:"AB",t:"mc",q:"One day after surgery with a mid-abdominal incision, a client is splinting and breathing shallowly. ABG: pH 7.33, PaCO₂ 58 mm Hg, HCO₃ 30 mEq/L. How does the nurse interpret it?",
+o:["Metabolic alkalosis, partially compensated","Respiratory acidosis, partially compensated","Respiratory acidosis, uncompensated","Respiratory acidosis, fully compensated"],a:[1],
+r:"pH acid; PaCO₂ acid (high) matches → respiratory. HCO₃ base (high) = kidneys compensating, but the pH is still abnormal → partially compensated. Hypoventilation from incisional pain is a classic cause.",
+k:"The lungs broke (not breathing out CO₂). The kidneys are helping, but the pH isn't fixed yet.",ref:"Acid-Base What & Why Sections 3–4 · Hurst pp. 14–15"},
+{tp:"AB",t:"mc",q:"A client has had an NG tube to suction for 4 days and is on furosemide. ABG: pH 7.49, PaCO₂ 44 mm Hg, HCO₃ 34 mEq/L. Which additional finding does the nurse anticipate?",
+o:["Serum potassium 3.0 mEq/L","Serum potassium 5.9 mEq/L","Kussmaul respirations","Anion gap of 20"],a:[0],
+r:"NG suction removes stomach HCl → metabolic alkalosis (pH and HCO₃ both up). Diuretics add to it. Low K makes the kidneys excrete H⁺ to hold K, worsening the alkalosis, so the two feed each other. Kussmaul breathing and a high anion gap go with metabolic acidosis.",
+k:"Suctioning the stomach pours out acid and potassium, so the body goes basic and potassium drops.",ref:"Acid-Base What & Why Sections 7–8 · Hurst p. 18"},
+{tp:"AB",t:"mc",q:"A client is breathing rapidly, reports tingling around her lips, and says she feels anxious. ABG: pH 7.49, PaCO₂ 30. What must the nurse do before attributing this to anxiety?",
+o:["Check SpO₂ or PaO₂ to rule out hypoxia, such as from a pulmonary embolism","Have her breathe into a paper bag","Give the prescribed anxiolytic","Recheck the ABG in 1 hour"],a:[0],
+r:"Respiratory alkalosis from hyperventilation. Never assume it's 'just anxiety': early hypoxia (PE, asthma, pneumonia) causes the same picture. The tingling comes from low ionized calcium: in alkalosis, albumin binds more calcium.",
+k:"Fast breathing can mean 'I'm scared' or 'I can't get enough air.' Check the air first.",ref:"Acid-Base What & Why Section 5"},
+{tp:"AB",t:"matrix",cj:"Analyze cues",q:"Interpret each ABG. (pH 7.35–7.45 · PaCO₂ 35–45 mm Hg · HCO₃ 22–26 mEq/L)",
+cols:["Respiratory acidosis","Respiratory alkalosis","Metabolic acidosis","Metabolic alkalosis"],
+rows:["pH 7.29 · PaCO₂ 40 · HCO₃ 17","pH 7.36 · PaCO₂ 30 · HCO₃ 16","pH 7.52 · PaCO₂ 30 · HCO₃ 24","pH 7.44 · PaCO₂ 50 · HCO₃ 33"],a:[2,2,1,3],
+r:"Row 1: acid pH, normal CO₂, acid HCO₃ → metabolic acidosis, uncompensated. Row 2: pH normal but below 7.40 (leans acid); HCO₃ acid matches → metabolic acidosis, fully compensated. Row 3: base pH with base CO₂ → respiratory alkalosis. Row 4: pH above 7.40 (leans alkaline); HCO₃ base matches → metabolic alkalosis, fully compensated.",
+k:"Find the teammate pointing the same way as the pH. A normal pH still leans toward where the problem started.",ref:"Acid-Base What & Why Section 3 (7.40 tiebreaker) · Hurst p. 20"},
+{tp:"AB",t:"mc",q:"A client with COPD was dyspneic and anxious on admission. Two hours later she is quiet, drowsy, and no longer complains of shortness of breath. What should the nurse do?",
+o:["Document that her breathing has improved","Let her sleep, since she was exhausted","Check an ABG for rising CO₂","Increase her oxygen to 6 L to help her rest"],a:[2],
+r:"A COPD client who becomes quiet and drowsy and stops complaining may be retaining CO₂ (CO₂ narcosis), not improving. ↑ CO₂ = ↓ LOC. O₂ in chronic retainers is titrated to target (often 88–92%), though oxygen is never withheld from a hypoxic client.",
+k:"Sleepy after struggling to breathe can mean the CO₂ is putting the brain to sleep.",ref:"Acid-Base What & Why Section 4 (Red flag) · Hurst p. 14"},
+{tp:"AB",t:"mc",q:"A client in DKA has deep, rapid respirations. Initial potassium was 5.6 mEq/L. Two hours after an insulin drip starts, what does the nurse expect?",
+o:["Potassium will rise further as the acidosis worsens","Potassium will fall, so it must be checked frequently and replaced as ordered","Potassium won't change until the pH is normal","Potassium will rise because insulin blocks its excretion"],a:[1],
+r:"In acidosis H⁺ moves into cells and K⁺ moves out, so serum K can look high while total body K is depleted. Insulin (and correcting the acidosis) drives K back into cells, so serum K drops fast. Hypokalemia during DKA treatment can cause fatal dysrhythmias.",
+k:"A revolving door: fix the acid and potassium walks back inside, leaving the blood empty.",ref:"Acid-Base What & Why Section 8"},
+{tp:"AB",t:"cloze",cj:"Analyze cues",q:"A client arrests on the unit. ABG during the code: pH 7.18, PaCO₂ 58 mm Hg, HCO₃ 17 mEq/L. Complete the statement.",
+text:"The PaCO₂ is {0} and the HCO₃ is {1}, so this is {2}.",
+blanks:[["basic","acidic","normal"],["acidic","basic","normal"],["respiratory acidosis with metabolic compensation","a combined respiratory and metabolic acidosis","metabolic acidosis with respiratory compensation"]],a:[1,0,1],
+r:"Both values point the same way as the pH, so nothing is compensating: a mixed (combined) disorder. No breathing raises CO₂; no perfusion creates lactic acid. Mixed disorders cause the most extreme pH swings.",
+k:"Two problems pushing the same way with nobody pushing back.",ref:"Acid-Base What & Why Section 3 (Mixed disorders)"},
+
+/* ============ BURNS ============ */
+{tp:"BU",t:"mc",q:"An adult has partial- and full-thickness burns to the entire posterior trunk, the entire left leg, and the perineum, plus a superficial sunburn on both arms. What %TBSA is used for fluid calculations?",
+o:["28%","37%","55%","19%"],a:[1],
+r:"Posterior trunk 18 + one leg 18 + perineum 1 = 37%. Superficial (first-degree) burns are NOT counted; counting them would overestimate fluids and cause overload.",
+k:"Only the burns that go past the top layer count toward the total.",ref:"Burns What & Why Section 2 · Iggy guide (Parkland excludes superficial)"},
+{tp:"BU",t:"sata",q:"A client with an electrical burn has dark, tea-colored urine. Which actions are appropriate? Select all that apply.",
+o:["Notify the provider","Anticipate a higher urine output target, often 75–100 mL/hr","Monitor CK and serum potassium","Restrict fluids to protect against overload","Place the client on a cardiac monitor","Assume the small skin wounds mean minimal injury"],a:[0,1,2,4],
+r:"Tea-colored urine = myoglobin from rhabdomyolysis, which clogs kidney tubules → AKI. Higher UO target to flush it; monitor CK and K (muscle breakdown releases K); cardiac monitoring (~24 h) for dysrhythmias. Small skin wounds hide deep damage (iceberg). Hurst adds mannitol with an inline filter.",
+k:"Cooked muscle leaks a brown dye that clogs the kidney filters. Flush it through fast.",ref:"Burns What & Why Section 5 (Electrical) · Hurst pp. 32, 35"},
+{tp:"BU",t:"mc",q:"A client with burns has silver nitrate dressings. Which finding is most important to report?",
+o:["The dressings and linens are stained black","Serum sodium 128 mEq/L and potassium 3.2 mEq/L","The client reports the dressings are cool","Mild itching at the wound edges"],a:[1],
+r:"Silver nitrate leaches sodium and potassium out → hyponatremia and hypokalemia. Black staining is expected; dressings are kept wet. Mafenide is the painful one that causes metabolic acidosis; silver sulfadiazine can cause transient leukopenia.",
+k:"Silver nitrate pulls salts out of the body, so keep checking the salts.",ref:"Burns What & Why Section 6 (Topical agents)"},
+{tp:"BU",t:"mc",q:"A client's deep partial-thickness burns are reassessed on day 3 and some areas now look full thickness. What best explains this?",
+o:["The first assessment was done incorrectly","Tissue in the zone of stasis died, deepening the burn","The zone of hyperemia expanded","This is normal healing"],a:[1],
+r:"The zone of stasis is injured but savable. Hypovolemia, hypothermia, ice, infection, or pressure let it die, so the burn deepens over 2–3 days (burn conversion). That's why depth and TBSA are reassessed on days 2–3. Conversion can also be a sign of infection.",
+k:"A dartboard: the bullseye is gone, the outer ring will heal, and the middle ring is the one you fight for.",ref:"Burns What & Why Section 1 (Zones of injury)"},
+{tp:"BU",t:"matrix",cj:"Recognize cues",q:"For each finding in a client with a 40% TBSA burn, indicate the phase in which it is expected.",
+cols:["Emergent (leaky capillaries)","Acute (fluid shifting back)"],
+rows:["Hematocrit 55%","Serum potassium 5.8 mEq/L","Large increase in urine output","New crackles and bounding pulse","Serum potassium 3.2 mEq/L","Low urine output with tachycardia"],a:[0,0,1,1,1,0],
+r:"Emergent: capillary leak → hypovolemia (low UO, tachycardia), hemoconcentration (Hct up), hyperkalemia (damaged cells). Acute (~48–72 h): capillaries seal, fluid returns → diuresis, risk of overload (crackles, bounding pulse), hypokalemia (K moves back into cells and is lost in urine), Hct falls.",
+k:"Day 1 the pipes leak out. Around day 2–3 the water floods back in and everything flips.",ref:"Burns What & Why Sections 4 and 6 and Quick Reference"},
+{tp:"BU",t:"mc",q:"Two days after an autograft to the left forearm, which action by the nurse is correct?",
+o:["Take blood pressures on the left arm to monitor perfusion","Keep the grafted arm immobilized and elevated","Begin active range of motion of the left elbow","Remove the dressing to check adherence every 4 hours"],a:[1],
+r:"A graft survives on the wound bed until new capillaries grow in (~3–5 days). Anything that separates it (movement, shear, fluid underneath) kills it: immobilize, elevate, no BP cuff on the grafted limb, watch for fluid under the graft and infection.",
+k:"New sod. If anyone walks on it before the roots grab the soil, it dies.",ref:"Burns What & Why Section 6 (Skin grafts) · Hurst pp. 30–31"},
+{tp:"BU",t:"mc",q:"A client with axillary burns keeps his arms at his sides because \"it hurts less.\" What should the nurse teach?",
+o:["Keeping the arms at the sides is fine while the burns heal","Position the arms abducted about 90 degrees and do range of motion several times a day","Cross the arms over the chest to protect the grafts","Keep the arms still until the pressure garments arrive"],a:[1],
+r:"The position of comfort is the position of contracture: healing tissue shortens and pulls joints into flexion. Axillary burns: arms abducted ~90°. Neck: no pillows. Hands: splinted in a functional position. Premedicate before PT and ROM.",
+k:"Healing skin shrinks like shrink-wrap. If it shrinks while the arm is down, the arm gets stuck down.",ref:"Burns What & Why Section 7 (Contractures)"},
+{tp:"BU",t:"mc",q:"Why is IV morphine preferred over IM morphine in the emergent phase of a major burn?",
+o:["IM injections are more painful","IM absorption is erratic from edema and poor perfusion, and the stored drug can flood in later when fluid shifts back","IV morphine doesn't cause respiratory depression","IM morphine is contraindicated with lactated Ringer's"],a:[1],
+r:"With edema and poor tissue perfusion, little of an IM dose is absorbed at first; when the fluid shifts back, the stored drug floods in → overdose and respiratory depression. Assess respiratory rate before giving any opioid.",
+k:"A shot in swollen muscle sits there like a package on a porch nobody opens, then all the packages get opened at once.",ref:"Burns What & Why Section 6 (Pain) · Hurst p. 28"},
+{tp:"BU",t:"mc",q:"A burn client's tetanus status is unknown. Tetanus immune globulin and tetanus toxoid are both prescribed. The client asks why he needs both. What is the nurse's best response?",
+o:["\"The immune globulin gives you antibodies right away; the toxoid helps your body make its own over 2 to 4 weeks.\"","\"Both give immediate protection; two doses are just stronger.\"","\"The toxoid protects you now; the immune globulin is a booster for later.\"","\"The immune globulin prevents an allergic reaction to the toxoid.\""],a:[0],
+r:"Tetanus immunization is given if not current (no dose in 10 years or unknown). Immune globulin = passive immunity, immediate. Toxoid = active immunity; the body builds its own antibodies over 2–4 weeks.",
+k:"Immune globulin is borrowing a friend's umbrella now. The toxoid teaches you to build your own.",ref:"Burns What & Why Section 4 · Iggy guide · Hurst p. 28"},
+
+/* ============ ONCOLOGY ============ */
+{tp:"ON",t:"mc",q:"A 58-year-old who has smoked for 30 years asks, \"Is there any point in quitting now?\" Which response reflects the stages of carcinogenesis?",
+o:["\"Yes. Smoking promotes the growth of mutated cells, and promotion can reverse when the exposure stops.\"","\"Not really. The damage from initiation can't be undone.\"","\"Only if you haven't had any abnormal screenings yet.\"","\"Quitting only helps if you also start a vaccine.\""],a:[0],
+r:"Initiation (the mutation) is irreversible, but promotion depends on continued exposure to promoters like tobacco and is reversible if exposure stops. That's why quitting lowers risk at any stage and why smoking cessation is primary prevention.",
+k:"The match is already lit, but you can stop pouring gasoline on it.",ref:"Oncology What & Why Section 1 (Carcinogenesis)"},
+{tp:"ON",t:"sata",q:"Which warning signs of cancer should the nurse include in teaching? Select all that apply.",
+o:["A sore that does not heal","Nagging cough or hoarseness","Obvious change in a wart or mole","Sudden weight gain","Change in bowel or bladder habits","Unusual bleeding or discharge"],a:[0,1,2,4,5],
+r:"CAUTION: Change in bowel/bladder, A sore that does not heal, Unusual bleeding/discharge, Thickening or lump, Indigestion or difficulty swallowing, Obvious change in wart or mole, Nagging cough or hoarseness. Also unexplained weight LOSS, fatigue, and fever.",
+k:"Spell CAUTION and you have the list.",ref:"Oncology What & Why Section 3 · Hurst p. 38"},
+{tp:"ON",t:"mc",q:"A client says, \"My doctor said my breast cancer is grade II, stage IV. What does that mean?\" Which explanation is accurate?",
+o:["Grade describes how abnormal the cells look; stage describes how far the cancer has spread","Grade and stage mean the same thing","Stage describes how abnormal the cells look; grade describes spread","Stage IV means the cancer is contained to the breast"],a:[0],
+r:"Grading (I–IV) = how abnormal/undifferentiated the cells look under the microscope. Staging (TNM) = how far it has spread; stage IV = distant metastasis. Higher is worse for both. Breast cancer in bone is still called and treated as breast cancer.",
+k:"Grade = how rowdy the troublemakers are. Stage = how many neighborhoods they've taken over.",ref:"Oncology What & Why Section 2"},
+{tp:"ON",t:"mc",q:"Which statement by a client after a total laryngectomy shows a need for more teaching?",
+o:["\"I'll cover my stoma with a bib when I go outside.\"","\"I can still go swimming as long as I keep my face out of the water.\"","\"I'll use my Blom-Singer device to talk.\"","\"I won't be able to drink through a straw.\""],a:[1],
+r:"After a total laryngectomy all breathing is through the stoma, so water can enter the airway even with the face dry: no swimming. The client also can't whistle, use a straw, or smoke. The bib filters air.",
+k:"The new 'nose' is in the neck. Swimming would pour water straight into the lungs.",ref:"Hurst lecture pp. 40–41"},
+{tp:"ON",t:"mc",q:"A client with lung cancer says her rings feel tight and her face is puffy every morning. The nurse notes distended neck veins. Which action is correct?",
+o:["Place her flat with legs elevated","Place her in high Fowler's and avoid IVs and BPs in her arms","Start an IV in her right arm for fluids","Apply warm compresses to her face"],a:[1],
+r:"Superior vena cava syndrome: the tumor compresses the SVC, so the head, neck, and arms back up (worst after lying flat all night). High Fowler's helps drainage and breathing; no BPs, IVs, or sticks in the upper extremities. Stridor or LOC change = emergency.",
+k:"A traffic jam on the only highway back to the heart. Sit her up so gravity helps traffic move.",ref:"Oncology What & Why Section 6 (SVC syndrome)"},
+{tp:"ON",t:"order",cj:"Take action",q:"The nurse finds a client's sealed radioactive implant on the bed linens. Place the actions in order.",
+o:["Put on gloves","Pick up the implant with long-handled forceps","Place the implant in the lead-lined container","Leave the container in the room and notify radiation safety"],
+r:"Never touch a dislodged source with your hands. Gloves → long-handled forceps → lead container → keep it in the room and notify the radiation department.",
+k:"Protect your hands, use the long tongs, put it in its lead box, then call the experts.",ref:"Oncology What & Why Section 4 (Brachytherapy) · Hurst p. 43"},
+{tp:"ON",t:"sata",q:"A client has a sealed cervical radiation implant. Which actions are appropriate? Select all that apply.",
+o:["Assign a private room with a sign on the door","Cluster care to limit time in the room","Treat the client's urine as radioactive","Keep pregnant staff and visitors out of the room","Keep the client on bedrest with a low-fiber diet","Allow the client's 10-year-old grandson to sit on the bed"],a:[0,1,3,4],
+r:"Time, distance, shielding: private room, sign, cluster care, no pregnant visitors or staff, restrict children (Hurst: none under 16). With a SEALED source the client emits radiation, but body fluids are NOT radioactive. Bedrest and low fiber help keep the implant in place.",
+k:"Sealed = the radiation is locked in the container. It shines out, but it can't leak into pee.",ref:"Oncology What & Why Section 4 · Hurst pp. 42–43"},
+{tp:"ON",t:"mc",q:"During a peripheral infusion of a vesicant, the client reports burning at the site, and there is no blood return. The nurse stops the infusion. What is the next action?",
+o:["Remove the catheter immediately","Leave the catheter in place and attempt to aspirate residual drug","Flush the line with saline to clear the drug","Restart the infusion at a slower rate"],a:[1],
+r:"Extravasation: stop the infusion, leave the catheter in and try to aspirate residual drug, notify the provider, give the antidote per protocol, apply cold (most drugs) or warm (vinca alkaloids) compresses, elevate, and document. Flushing would push more vesicant into the tissue.",
+k:"The poison leaked out of the pipe. Suck back what you can before pulling the pipe.",ref:"Oncology What & Why Section 4 (Extravasation)"},
+{tp:"ON",t:"mc",q:"A client received chemotherapy 10 days ago. WBC is 2,000/mm³ with 40% neutrophils and 5% bands. Temperature is 100.6°F (38.1°C), and the central line site looks normal. What is the priority?",
+o:["Recheck the temperature in 4 hours","Obtain cultures and start IV antibiotics promptly","Give acetaminophen and encourage fluids","Reassure the client because the line site looks clean"],a:[1],
+r:"ANC = 2,000 × (40 + 5) ÷ 100 = 900 (neutropenic; < 1,500). Day 10 is near the nadir (7–14 days). Without neutrophils there's no pus, redness, or swelling, so fever may be the only sign. Temp ≥ 100.4°F in neutropenia = emergency: cultures and IV antibiotics within about an hour.",
+k:"An army with no soldiers: there's no battle to see, and the only alarm is the fever.",ref:"Oncology What & Why Section 5 (Nadir, Neutropenia)"},
+{tp:"ON",t:"bowtie",cj:"Take action",q:"A client receiving chemotherapy has platelets of 18,000/mm³, petechiae on both legs, and bleeding gums after brushing. Complete the diagram: the condition, 2 actions to take, and 2 parameters to monitor.",
+conds:["Neutropenia","Thrombocytopenia","Deep vein thrombosis","Hypercalcemia"],ca:1,
+acts:["Switch the client to an electric razor","Take temperatures rectally for accuracy","Give ibuprofen for the client's headache","Avoid IM injections","Encourage a firm-bristle toothbrush"],aa:[0,3],
+pars:["Level of consciousness and pupil changes","Stool and urine for blood","Serum potassium","Absolute neutrophil count","Blood glucose"],pa:[0,1],
+r:"Platelets < 20,000 = spontaneous bleeding risk (thrombocytopenia). Bleeding precautions: electric razor, soft toothbrush, no IMs, no rectal temps or suppositories, no aspirin/NSAIDs, hold pressure 5–10 minutes after sticks. Monitor for bleeding, including intracranial (LOC, headache, pupils) and blood in stool or urine.",
+k:"Platelets are the patches for leaks. With few patches, avoid anything that pokes, scrapes, or thins the blood.",ref:"Oncology What & Why Section 5 (Thrombocytopenia) · Hurst p. 53"},
+{tp:"ON",t:"mc",q:"A client with metastatic prostate cancer reports new mid-back pain that's worse when lying down. He is walking normally. What should the nurse do?",
+o:["Reassure him that back pain is common with bone metastases","Report it immediately as possible spinal cord compression","Give PRN ibuprofen and reassess in the morning","Encourage more walking to loosen the muscles"],a:[1],
+r:"New back pain in a cancer client = spinal cord compression until proven otherwise. Pain comes first, then weakness, sensory loss, and bowel/bladder problems (late). Outcome depends on function at diagnosis: clients who walk at diagnosis usually keep walking. Treatment: dexamethasone, radiation.",
+k:"Stepping on a garden hose. Step off early and the water flows again; stand too long and it kinks for good.",ref:"Oncology What & Why Section 6 (Spinal cord compression)"},
+
+/* ============ CH 5 ============ */
+{tp:"T5",t:"matrix",cj:"Analyze cues",q:"For each question about a proposed theory, select the acceptance criterion it tests (textbook Box 5.2).",
+cols:["Accuracy","Consistency","Fruitfulness","Simplicity"],
+rows:["Does it explain past events and predict future outcomes?","Does it generate new directions for research?","Does it give a road map for replication, and is it easy to follow?","Can it address new situations without changing its founding assumptions?"],a:[0,2,3,1],
+r:"Box 5.2: Accuracy = explains retrospective occurrences and predicts. Fruitfulness = new directions for research. Simplicity = a road map for replication; simple and makes sense. Consistency = addresses new entities without changing founding assumptions. Your peer's guide labels replication as Accuracy; the textbook says Simplicity.",
+k:"Accurate = right about past and future. Fruitful = grows new ideas. Simple = easy recipe anyone can repeat. Consistent = doesn't change its rules for new cases.",ref:"Ch 5, Box 5.2"},
+{tp:"T5",t:"mc",q:"A 9-year-old awaiting an appendectomy says she's afraid she'll wake up while they cut, because her dad told her she'd just be asleep. The nurse explains how anesthesia differs from sleep. In Mishel's theory, the nurse is addressing which stage?",
+o:["Stimuli frame","Appraisal","Coping","Adaptation"],a:[0],
+r:"The stimuli frame is what generates the uncertainty; here, the child's misreading of the word 'sleep' (the textbook's Case Study 5.1). Clarifying it is the stimuli-frame intervention. Appraisal is assigning a positive or negative value; coping and adaptation follow.",
+k:"First, find and fix what's making her unsure. That's the starting point.",ref:"Ch 5, Case Study 5.1"},
+{tp:"T5",t:"mc",q:"A family keeps telling a client with advanced cancer, \"You'll be home and back to normal in no time.\" Which of Nightingale's canons warns against this?",
+o:["Variety","Chattering hopes and advices","Noise","Light"],a:[1],
+r:"Nightingale warned against 'chattering hopes and advices': cheering the sick by making light of their danger and exaggerating their chances of recovery, which offers false hope.",
+k:"Pretending everything is fine doesn't help the patient.",ref:"Ch 5, Nightingale's canons"},
+{tp:"T5",t:"mc",q:"A nurse plans care around helping the client perform 14 basic activities, with the goal of independence. Which theorist's work is guiding care?",
+o:["Virginia Henderson","Imogene King","Myra Levine","Dorothy Johnson"],a:[0],
+r:"Henderson (1966): nursing assists patients with 14 essential functions toward independence. King = goal attainment through transactions; Levine = conservation; Johnson = behavioral system.",
+k:"Henderson's 14 = the daily-life checklist to get someone back on their own.",ref:"Ch 5, Table 5.2"},
+{tp:"T5",t:"mc",q:"Which is an example of a middle-range theory?",
+o:["Rogers' science of unitary human beings","Beck's theory of postpartum depression","The nursing metaparadigm","Nightingale's definition of nursing"],a:[1],
+r:"Middle-range theories are smaller in scope and focus on a specific population or situation (Beck's postpartum depression, Pender's health promotion, theory of unpleasant symptoms). Rogers' theory is a grand theory.",
+k:"Grand = explains a huge chunk of life. Middle-range = zooms in on one group or problem.",ref:"Ch 5, Levels of theory"},
+
+/* ============ CH 8 ============ */
+{tp:"T8",t:"mc",q:"A police officer tells an ED nurse to draw a blood alcohol level from an unconscious crash victim. There is no consent and no court order. What should the nurse do?",
+o:["Draw the blood, because police requests override consent","Draw the blood but don't document it","Respectfully decline and notify the nursing supervisor","Ask the client's friend in the waiting room to consent"],a:[2],
+r:"Drawing blood without consent can be medical battery (the Utah ED vignette; O'Brien v. Synnott). The nurse advocates for the patient, declines respectfully, and involves the supervisor or administration.",
+k:"Nobody, not even police, can make you poke someone who hasn't said yes.",ref:"Ch 8, vignette; Battery"},
+{tp:"T8",t:"sata",q:"Which hospital-acquired conditions will CMS NOT pay hospitals to treat? Select all that apply.",
+o:["A surgical sponge left in the abdomen","A stage 2 pressure injury","An air embolism","A catheter-associated urinary tract infection","A hip fracture from a fall in the hospital","Pneumonia that was present on admission"],a:[0,2,3,4],
+r:"Box 8.1 'never events' include retained foreign objects, air embolism, blood incompatibility, stage III or IV (not stage 2) pressure ulcers, falls and trauma, poor glycemic control, CAUTI, vascular catheter infection, certain surgical site infections, and DVT/PE. Present-on-admission conditions aren't hospital-acquired.",
+k:"If the hospital caused a preventable problem, Medicare won't pay to fix it.",ref:"Ch 8, Box 8.1"},
+{tp:"T8",t:"mc",q:"A nursing student leaves a client with an unsteady gait alone on a commode, and the client falls. Which statement is accurate?",
+o:["Only the student can be sued","The hospital can be held to the same standard of care as if a licensed nurse made the error","Students can't be part of a negligence claim","The claim would be professional malpractice"],a:[1],
+r:"Dimora v. Cleveland Clinic: the hospital was held to the same legal standard for the student's error as for a licensed nurse's (vicarious liability). The supervising instructor or nurse may also be named. Because students aren't licensed, the claim is usually ordinary negligence, not malpractice.",
+k:"A student's mistake still counts, and the hospital and teacher share the blame.",ref:"Ch 8, Claims of negligence and student nurses"},
+{tp:"T8",t:"mc",q:"The signed consent says \"wound debridement, right leg.\" During surgery, the surgeon asks for amputation instruments. What should the circulating nurse do?",
+o:["Open the instruments; it's the surgeon's decision","Question the surgeon; if it isn't resolved, keep the instruments off the field and get the supervisor immediately","Wake the client enough to ask permission","Call a family member for verbal consent and proceed"],a:[1],
+r:"The consent doesn't authorize amputation, and the anesthetized client can't consent. The nurse must question it; if the surgeon persists, don't place the instruments on the sterile field, alert the team, and get the supervisor and medical administrator.",
+k:"She said yes to cleaning the wound, not to losing her leg.",ref:"Ch 8, Informed consent"},
+{tp:"T8",t:"mc",q:"A client asks the nurse to witness the signing of his living will. What is the nurse's best action?",
+o:["Sign as a witness","Refer the request to the agency's risk manager","Ask the client's son to witness instead","Tell him living wills aren't valid in hospitals"],a:[1],
+r:"The textbook says to refer a request to witness a living will to the risk manager; it may not be lawful for the nurse to witness it in that state.",
+k:"When a legal paper comes up, send it to the legal helpers.",ref:"Ch 8, Living wills"},
+{tp:"T8",t:"mc",q:"Which element of negligence is established when a nurse accepts a client assignment?",
+o:["Duty","Breach of duty","Damages","Proximate cause"],a:[0],
+r:"Accepting the assignment creates the nurse-patient relationship, which establishes the duty to meet the standard of care. The plaintiff must also prove breach, harm, and proximate cause.",
+k:"Saying 'I'll take this patient' is saying 'I'm responsible for you.'",ref:"Ch 8, Elements of negligence"},
+{tp:"T8",t:"mc",q:"Which statement about physical restraints is accurate?",
+o:["A nurse may never apply restraints without a written order first","Restraints may be used when there isn't enough staff to watch a confused client","In an emergency, the nurse may apply restraints, then promptly contact the provider for an order","Bedrails and chair trays are not considered restraints"],a:[2],
+r:"Nurses may lawfully restrain in an emergency when no other strategy protects the patient, then contact the physician promptly. Restraints are never used for short staffing, and bedrails and chair trays count as restraints.",
+k:"Restraints are the last resort, only for safety, and the doctor has to hear about it right away.",ref:"Ch 8, Use of physical restraints"},
+{tp:"T8",t:"highlight",cj:"Evaluate outcomes",q:"A nurse drafts a note after finding a client on the floor. Click every entry that should NOT appear in the medical record.",
+ph:["0900 Entered room. Client lying on floor at foot of bed.","Client fell out of bed.","Side rails up ×2; bed in low position.","Incident report completed and sent to risk management.","Client is a whiner and a drug seeker.","BP 128/76, HR 88, alert and oriented ×4.","Provider notified at 0910; new orders received."],a:[1,3,4],
+r:"'Fell out of bed' is an unwitnessed assumption; chart only what you observed. Never mention the incident report in the chart. 'Whiner' and 'drug seeker' are subjective, defamatory comments (libel). Objective findings, safety measures, and provider notification belong in the record.",
+k:"Write what you saw, not what you guess or think of the person, and keep the incident report out of the chart.",ref:"Ch 8, Incident reports; Defamation"},
+
+/* ============ CH 10 ============ */
+{tp:"T10",t:"matrix",cj:"Analyze cues",q:"For each client practice, indicate how the nurse should classify it.",
+cols:["Adaptive (beneficial)","Neutral","Maladaptive (harmful)"],
+rows:["Takes garlic instead of the prescribed antihypertensive","Takes garlic along with the prescribed antihypertensive","Takes garlic and the antihypertensive and walks daily","Receives coining while having a known clotting disorder"],a:[2,1,0,2],
+r:"The textbook's own example: garlic instead of the medication is harmful; garlic with it is neutral; garlic + medication + daily exercise is adaptive. Dermal practices like coining are usually adaptive or neutral but maladaptive with a clotting disorder.",
+k:"Ask: does it help, do nothing, or hurt? Keep what helps or doesn't hurt.",ref:"Ch 10, Cultural client assessment"},
+{tp:"T10",t:"mc",q:"What is the first step in becoming a culturally competent nurse?",
+o:["Learn the health beliefs of the largest local ethnic group","Complete a cultural self-assessment","Hire bilingual staff","Complete a cultural assessment on every client at admission"],a:[1],
+r:"The textbook: the first step is a cultural self-assessment of your own culturally based attitudes and ethnocentric tendencies. The client assessment comes after.",
+k:"Before you can understand someone else's 'normal,' you have to notice your own.",ref:"Ch 10, Cultural self-assessment"},
+{tp:"T10",t:"mc",q:"A woman from a rural region who speaks a regional dialect needs a gynecologic history taken. Who is the best interpreter?",
+o:["Her 12-year-old son, who speaks English well","A male bilingual security guard from the capital city","A trained female medical interpreter from her home region","Her husband, who can explain things in her dialect"],a:[2],
+r:"Choose interpreters considering gender (many cultures prohibit discussing intimate matters across genders), birth origin (dialects), and socioeconomic class, and prefer those who know medical terms. Children should never interpret. Family and friends are used only at the client's request.",
+k:"Pick someone who speaks her exact dialect, knows medical words, and is someone she can talk to about private things.",ref:"Ch 10, Communication; health care facilities"},
+{tp:"T10",t:"mc",q:"On the continuum of attitudes toward culturally diverse groups, which attitude is the minimum level essential in a democratic society?",
+o:["Respect","Tolerance","Celebration","Contempt"],a:[1],
+r:"Hate → contempt → tolerance (neutral; accepts differences without trying to change them; the minimum for democracy) → respect → celebration (the most positive).",
+k:"Tolerance is the floor. Celebration is the top.",ref:"Ch 10, Attitudes toward culturally diverse groups"},
+{tp:"T10",t:"mc",q:"A client with a present time orientation is starting a twice-daily medication. What is the best teaching approach?",
+o:["Give a detailed calendar of appointments for the next year","Focus on long-term complications of missed doses","Link the doses to things the client already does every day, such as breakfast and bedtime","Explain that punctuality is expected in Western health care"],a:[2],
+r:"Present-oriented clients focus on today and may not respond to future-focused teaching. The textbook says to consider how the client views time when teaching medication schedules; tying doses to daily routines works with that view.",
+k:"If someone lives for today, connect the pill to something they do every day.",ref:"Ch 10, Time"},
+
+/* ============ CH 25 ============ */
+{tp:"T25",t:"mc",q:"While interviewing for her first job, a new graduate asks, \"How many nurses have left this unit in the past year?\" Which element of transition is she assessing?",
+o:["Stability","Predictability","Familiarity","Consistency"],a:[0],
+r:"Duchscher's stability = what's unlikely to change. The textbook's interview questions to judge stability include how many nurses left in the past year, staffing levels, acuity, and whether people like working there.",
+k:"She's checking whether the unit is steady or always shaking.",ref:"Ch 25, Transition shock"},
+{tp:"T25",t:"mc",q:"A new nurse says, \"This is just a paycheck until I buy my car. I do what I have to do to get by.\" Which response to reality shock is this?",
+o:["Native","Rutter","Runaway","Change agent"],a:[1],
+r:"Rutters see nursing as 'just a job' and do what they must to get by. Natives copy unit shortcuts; runaways leave; change agents work within the system to improve it.",
+k:"Stuck in a rut, just going through the motions.",ref:"Ch 25, Reality shock"},
+{tp:"T25",t:"mc",q:"Which statement correctly distinguishes compassion fatigue from burnout?",
+o:["Compassion fatigue has a swift onset; burnout develops over time","Burnout comes on suddenly; compassion fatigue takes years","They are two names for the same thing","Compassion fatigue affects only nurses in their first year"],a:[0],
+r:"The textbook: burnout evolves over time; compassion fatigue has a swift onset. The single greatest risk for compassion fatigue is sacrificing your own self-care. Prevention: Awareness, Balance, Connections.",
+k:"Burnout is a slow leak. Compassion fatigue is a sudden drain of your caring tank.",ref:"Ch 25, Compassion fatigue"},
+{tp:"T25",t:"mc",q:"During report, a night nurse repeatedly leaves out critical lab results for a new graduate and rolls her eyes when asked questions. This is best described as:",
+o:["Type 1 workplace violence","Horizontal (lateral) violence","Biculturalism","The honeymoon phase"],a:[1],
+r:"Horizontal violence is directed at peers: withholding patient information, belittling, exclusion, eye-rolling, refusing to help. Type 1 is a criminal stranger. The ANA has zero tolerance for it.",
+k:"Coworkers being mean to coworkers, sideways instead of top-down.",ref:"Ch 25, Violence at work"},
+{tp:"T25",t:"mc",q:"Which describes a mentor rather than a preceptor?",
+o:["Orients the new nurse to one unit's routines during orientation","A voluntary, two-way relationship lasting at least 2 years that guides career growth","Signs off skills on the orientation checklist","Is assigned by the manager for a 6-week orientation"],a:[1],
+r:"Mentoring is a voluntary, ongoing two-way partnership of at least 2 years; the mentor supports goals, confidence, and intuition. A preceptor orients the novice to a specific area, aids socialization, and teaches unit skills during the final semester or orientation.",
+k:"A preceptor is your driving instructor for one road. A mentor is the coach you keep for years.",ref:"Ch 25, Role models and mentors; Preceptorships"},
+
+/* ============ CH 26 ============ */
+{tp:"T26",t:"mc",q:"A nurse gives herself the whole afternoon to finish a care plan that should take 30 minutes, and it takes the whole afternoon. This illustrates:",
+o:["The Pareto principle","Parkinson's law","Complexity compression","No detourism"],a:[1],
+r:"Parkinson's law: work expands to fill the time available. Scheduling a set amount of time for each task controls it.",
+k:"Give homework all night and it takes all night.",ref:"Ch 26, Scheduling activities"},
+{tp:"T26",t:"mc",q:"Handling each e-mail only once (act on it, pass it to the right person, or delete it) is called:",
+o:["The art of wastebasketry","The art of no detourism","The stacked-desk syndrome","The continuum approach"],a:[0],
+r:"Wastebasketry: handle a paper or e-mail once, then do it, delegate it, or dump it. No detourism = finish one task before starting another. Stacked-desk syndrome = clutter on the desk or in the mind.",
+k:"Touch it once: do it, pass it, or trash it.",ref:"Ch 26, Organizing for control"},
+{tp:"T26",t:"mc",q:"A nurse is partway through her planned medication pass when she's given two admissions and a transfer. She feels scattered and stressed. The literature calls this:",
+o:["Complexity compression","Fear of downtime","Fear of completion","Parkinson's law"],a:[0],
+r:"Complexity compression: the stress and distraction nurses experience when taking on unplanned responsibilities while doing their planned work.",
+k:"Too many new jobs squeezed into a day that was already full.",ref:"Ch 26, Time and energy distractions"},
+{tp:"T26",t:"mc",q:"A coworker asks the nurse to join a committee that doesn't fit her goals. Which response best reflects the chapter's advice on saying no?",
+o:["\"I'm swamped for the next 3 weeks. Maybe after that?\"","\"No, thank you. I can't take that on.\"","\"Let me think about it and get back to you next month.\"","\"I'd love to, but my manager probably won't let me.\""],a:[1],
+r:"Decline gracefully but clearly, with no elaborate qualifier. Excuses about time ('in 3 weeks') leave room for the person to agree to a later date, and you end up committed anyway.",
+k:"A clear, polite 'no' is kinder than a 'maybe' that turns into a 'yes' you didn't want.",ref:"Ch 26, Learning the art of saying no"},
+
+/* ============ CH 28 ============ */
+{tp:"T28",t:"mc",q:"On a minimum-length NCLEX-RN (85 items) under the 2026 test plan, how many items are unscored pretest items?",
+o:["0","15","18","52"],a:[1],
+r:"Minimum-length exam: 52 content items + 18 clinical judgment case-study items (3 case studies × 6) + 15 unscored pretest items = 85.",
+k:"52 + 18 + 15 = 85. The 15 are practice questions for the test makers.",ref:"2026 NCLEX-RN Test Plan, p. 15"},
+{tp:"T28",t:"mc",q:"Which client needs subcategory makes up the largest share of NCLEX-RN items?",
+o:["Pharmacological and parenteral therapies","Management of care","Physiological adaptation","Reduction of risk potential"],a:[1],
+r:"2026 Test Plan: Management of care 15–21% (largest), pharmacological and parenteral therapies 13–19%, physiological adaptation 11–17%, reduction of risk potential 9–15%.",
+k:"Managing care (priorities, delegation, legal) is the biggest slice of the pie.",ref:"2026 NCLEX-RN Test Plan, p. 5"},
+{tp:"T28",t:"mc",q:"A candidate runs out of time after 120 items before the computer is 95% certain of a result. How is the result decided?",
+o:["It's an automatic fail","Only the last 60 items are scored","By the final ability estimate from all completed items","By the percentage of items answered correctly"],a:[2],
+r:"Run-out-of-time rule (2026): if the minimum number of items wasn't reached, it's a fail; if it was, the exam is scored using the final ability estimate from ALL completed items. The 'last 60 items' rule in the 8th-edition textbook is outdated.",
+k:"If time runs out after enough questions, the computer uses everything you did to decide.",ref:"2026 NCLEX-RN Test Plan, p. 16"},
+{tp:"T28",t:"mc",q:"A question asks the nurse to decide which of four clients to assess first. At which level of Bloom's taxonomy is it written?",
+o:["Knowledge","Comprehension","Application","Analysis"],a:[3],
+r:"Analysis items require drawing conclusions and setting priorities. Most NCLEX items are written at application or higher.",
+k:"Choosing who's most important means taking the situation apart and comparing. That's analysis.",ref:"Ch 28, Cognitive domains"},
+
+/* ============ UNFOLDING CASE STUDY ============ */
+{tp:"CS",cs:0,t:"highlight",cj:"Recognize cues",q:"Review the ED record. Click every finding that requires immediate follow-up.",
+ph:["Rescued from a closed bedroom","Voice hoarse","Sputum with dark specks","Headache and restlessness","Faint expiratory wheezes","Temperature 98.8°F (37.1°C)","Weighs 70 kg (154 lb)","Last ate at 1900"],a:[0,1,2,3,4],
+r:"Enclosed space, hoarseness, dark specks in sputum, and wheezing are indicators of inhalation injury, the #1 cause of burn death. Headache and restlessness point to hypoxia and carbon monoxide poisoning. Note that SpO₂ 99% is falsely reassuring: pulse oximetry reads carboxyhemoglobin as oxygenated hemoglobin, so don't rely on it.",
+k:"Smoke in a closed room + raspy voice + black-speckled spit = the airway is burned inside.",ref:"Burns What & Why (inhalation injury); Hurst pp. 25–26"},
+{tp:"CS",cs:1,t:"matrix",cj:"Analyze cues",q:"The 0330 labs are back. For each finding, select the problem it most supports.",
+cols:["Inhalation injury (airway)","Carbon monoxide poisoning","Burn shock (hypovolemia)"],
+rows:["Hoarse voice and expiratory wheezes","Carboxyhemoglobin 24% with headache","HR 124 and BP 102/64","Hematocrit 54%","Sputum with dark specks"],a:[0,1,2,2,0],
+r:"Airway: hoarseness, wheezing, soot in sputum. CO poisoning: elevated carboxyhemoglobin with headache and confusion despite a normal SpO₂. Burn shock: capillary leak moves plasma out of the vessels, so the pulse rises, BP falls, and the blood becomes concentrated (hematocrit up).",
+k:"Three problems at once: a swollen airway, poisoned blood that can't carry oxygen, and leaky pipes losing water.",ref:"Burns What & Why (emergent phase); Hurst pp. 22, 25–26"},
+{tp:"CS",cs:1,t:"cloze",cj:"Prioritize hypotheses",q:"Complete the statement about the client's priorities.",
+text:"The client's priority problem is {0} because {1}. The ABG shows {2}.",
+blanks:[["hypovolemia","risk for airway obstruction","pain"],["fluid loss is the leading cause of burn death","pain raises the heart rate","inhalation injury can swell and close the airway within hours"],["respiratory acidosis","metabolic acidosis","respiratory alkalosis"]],a:[1,2,1],
+r:"Airway first: inhalation injury is the #1 cause of death, and edema can obstruct the airway, which is why the provider may intubate early. ABG 7.31 / 36 / 18: acidosis with a normal PaCO₂ and a low HCO₃ = metabolic acidosis (from poor tissue oxygenation). Pain never killed anyone.",
+k:"No air, nothing else matters. Fix the airway before the fluids.",ref:"Burns What & Why (airway first); Hurst pp. 17, 25, 27"},
+{tp:"CS",cs:1,t:"bowtie",cj:"Generate solutions",q:"Complete the diagram: the condition the nurse is most concerned about, 2 actions to take, and 2 parameters to monitor.",
+conds:["Carbon monoxide poisoning with inhalation injury","Hypocalcemia","Fluid volume excess","Metabolic alkalosis"],ca:0,
+acts:["Continue 100% oxygen by nonrebreather mask","Prepare for early intubation","Titrate oxygen down to keep SpO₂ at 92%","Give IM morphine for pain","Keep the client flat to rest"],aa:[0,1],
+pars:["Carboxyhemoglobin level","Respiratory status: stridor, retractions, voice changes","Pulse oximetry as the main measure of oxygenation","Blood glucose","Deep tendon reflexes"],pa:[0,1],
+r:"CO poisoning is treated with 100% oxygen; titrating by SpO₂ is wrong because pulse oximetry can't tell CO from O₂. With face/neck burns and airway signs, the provider may intubate prophylactically. Monitor the carboxyhemoglobin level and airway status (stridor and retractions are bad signs). IM pain meds don't absorb well in burn shock; use IV.",
+k:"Flood the blood with oxygen to push the CO off, and be ready to put in a breathing tube before the throat swells shut.",ref:"Burns What & Why (CO poisoning); Hurst pp. 25–28"},
+{tp:"CS",cs:2,t:"cloze",cj:"Take action",q:"Use the 0400 orders to calculate the fluid resuscitation.",
+text:"Total lactated Ringer's for the first 24 hours: {0}. Volume due by 1000: {1}. Starting at 0400, the hourly rate for the next 6 hours: {2}.",
+blanks:[["5,040 mL","10,080 mL","20,160 mL"],["5,040 mL","2,520 mL","7,560 mL"],["1,260 mL/hr","630 mL/hr","840 mL/hr"]],a:[1,0,2],
+r:"Parkland: 4 mL × 70 kg × 36% = 10,080 mL for 24 hours. Half (5,040 mL) is due in the first 8 hours after the BURN (0200 → 1000), not after the IV starts. Starting at 0400 leaves 6 hours: 5,040 ÷ 6 = 840 mL/hr. The other half (5,040 mL) runs over the next 16 hours. If your instructor uses the 2 mL formula from the Hurst workbook, every number halves: 5,040 total, 2,520 by 1000, 420 mL/hr. The timing logic is the same.",
+k:"The clock started when he got burned. He's already 2 hours behind, so the same amount has to go in faster.",ref:"Burns What & Why (Parkland formula); Hurst pp. 26–27 uses 2 mL"},
+{tp:"CS",cs:3,t:"matrix",cj:"Evaluate outcomes",q:"It is Day 2, 26 hours after the burn. For each finding, indicate whether it shows the plan is working or needs follow-up now.",
+cols:["Effective","Needs follow-up"],
+rows:["Urine output 38–42 mL/hr","Carboxyhemoglobin 2%","Hematocrit 45%","Potassium 6.1 mEq/L with tall, peaked T waves","Right fingers cool, capillary refill 5 seconds (circumferential arm burn)","BP 118/72"],a:[0,0,0,1,1,0],
+r:"Urine output of 30–50 mL/hr shows adequate fluid replacement; carboxyhemoglobin and hematocrit have normalized; BP is stable. Needs follow-up: hyperkalemia with ECG changes (ruptured cells), and signs of compromised circulation under a circumferential burn, which may need an escharotomy.",
+k:"The fluids and oxygen worked. Still need fixing: high potassium bothering the heart, and a tight burn squeezing the arm like a rubber band.",ref:"Burns What & Why; F&E What & Why (hyperkalemia); Hurst pp. 11, 27, 31–33"}
+];
+
+(function(){let seed=31;const rnd=()=>{seed=(seed*9301+49297)%233280;return seed/233280;};
+ITEMS.forEach(it=>{if(it.t!=="mc"&&it.t!=="sata")return;const n=it.o.length;const p=[...Array(n).keys()];for(let i=n-1;i>0;i--){const j=Math.floor(rnd()*(i+1));[p[i],p[j]]=[p[j],p[i]];}
+it.o=p.map(k=>it.o[k]);it.a=it.a.map(k=>p.indexOf(k)).sort((x,y)=>x-y);});})();
+
+</script>
+<script>
+(function(){
+const TC={FE:"FE",AB:"AB",BU:"BU",ON:"ON",T5:"TR",T8:"TR",T10:"TR",T25:"TR",T26:"TR",T28:"TR",CS:"CS"};
+const col=tp=>`var(--${TC[tp]})`;
+const NGN=new Set(["matrix","cloze","highlight","bowtie","order"]);
+const TYPE={mc:"Multiple choice",sata:"Select all that apply",matrix:"Matrix",cloze:"Drop-down cloze",highlight:"Highlight",bowtie:"Bowtie",order:"Drag and drop, ordered"};
+const INSTR={mc:"Select one answer.",sata:"Select all that apply.",matrix:"Select one option in each row.",cloze:"Choose one option from each drop-down.",highlight:"Click to highlight. Click again to remove.",bowtie:"Choose 1 condition, 2 actions, and 2 parameters.",order:"Use the arrows to put the steps in order, first at the top."};
+const KEY="nur206-exam1-mock-v1";
+const N=ITEMS.length;
+// stable shuffled start order for ordered-response items
+function seeded(n,seed){const a=[...Array(n).keys()];let s=seed;for(let i=n-1;i>0;i--){s=(s*9301+49297)%233280;const j=Math.floor(s/233280*(i+1));[a[i],a[j]]=[a[j],a[i]];}if(a.every((v,i)=>v===i))a.reverse();return a;}
+let S=load()||fresh();
+function fresh(){return{mode:null,cur:0,ans:{},done:{},flag:{},finished:false};}
+function load(){try{const v=JSON.parse(localStorage.getItem(KEY));return v&&v.ans?v:null}catch(e){return null}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function blank(it,i){switch(it.t){case"mc":case"sata":case"highlight":return[];case"matrix":return it.rows.map(()=>null);case"cloze":return it.blanks.map(()=>null);case"bowtie":return{c:null,a:[],p:[]};case"order":return seeded(it.o.length,i*7+3);}}
+function val(i){if(!(i in S.ans))S.ans[i]=blank(ITEMS[i],i);return S.ans[i];}
+function answered(i){const v=S.ans[i],it=ITEMS[i];if(v==null)return false;if(it.t==="order")return !!S.touched?.[i];if(Array.isArray(v))return it.t==="matrix"||it.t==="cloze"?v.every(x=>x!=null):v.length>0;return v.c!=null&&v.a.length===2&&v.p.length===2;}
+function score(it,v){
+  if(it.t==="mc"){return[v&&v[0]===it.a[0]?1:0,1];}
+  if(it.t==="sata"||it.t==="highlight"){let s=0;(v||[]).forEach(x=>s+=it.a.includes(x)?1:-1);return[Math.max(0,s),it.a.length];}
+  if(it.t==="matrix"||it.t==="cloze"){let s=0;it.a.forEach((c,r)=>{if(v&&v[r]===c)s++});return[s,it.a.length];}
+  if(it.t==="bowtie"){let s=0;if(v.c===it.ca)s++;v.a.forEach(x=>{if(it.aa.includes(x))s++});v.p.forEach(x=>{if(it.pa.includes(x))s++});return[s,5];}
+  if(it.t==="order"){return[v.every((x,k)=>x===k)?1:0,1];}
+}
+function status(i){const[s,m]=score(ITEMS[i],val(i));return s===m?"ok":s>0?"part":"bad";}
+function showFeedback(i){return S.done[i]&&(S.mode==="practice"||S.finished);}
+
+/* ---------- start ---------- */
+function start(){
+  $("#act").hidden=true;
+  const counts={};ITEMS.forEach(it=>counts[it.tp]=(counts[it.tp]||0)+1);
+  const ngn=ITEMS.filter(it=>NGN.has(it.t)&&!("cs"in it)).length;
+  const resume=S.mode&&!S.finished&&Object.keys(S.done).length;
+  $("#app").innerHTML=`<div class="hero">
+  <p class="meta">${N} questions · ${ngn} stand-alone NGN items · 1 unfolding case study (6 items)</p>
+  <h2>NUR206 Exam 1 Mock Exam</h2>
+  <p>Hurst fluid &amp; electrolytes, acid-base, burns and oncology, plus Trends Chapters 5, 8, 10, 25, 26 and 28. NGN items use partial-credit scoring like the NCLEX: select-all and highlight items subtract for wrong picks; matrix, cloze and bowtie score each part; ordered items are all or nothing. None of these questions repeat your earlier Trends review.</p>
+  <div class="mix">${Object.keys(TOPICS).filter(k=>counts[k]).map(k=>`<span class="chip" style="--c:${col(k)}"><i></i>${TOPICS[k]} · ${counts[k]}</span>`).join("")}</div>
+  <div class="choice" role="radiogroup" aria-label="Mode">
+   <label><input type="radio" name="mode" value="practice" ${S.mode!=="exam"?"checked":""}><span><b>Practice mode</b><small>Check each answer as you go and see the rationale and "Like I'm 10" explanation right away.</small></span></label>
+   <label><input type="radio" name="mode" value="exam" ${S.mode==="exam"?"checked":""}><span><b>Exam mode</b><small>No feedback until you finish. Then review every rationale and your score by topic.</small></span></label>
+  </div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+   <button class="btn primary" id="go" style="flex:0 1 auto">${resume?"Start over":"Start exam"}</button>
+   ${resume?`<button class="btn" id="resume">Resume at question ${S.cur+1}</button>`:""}
+  </div></div>`;
+  $("#go").onclick=()=>{const m=document.querySelector('input[name=mode]:checked').value;S=fresh();S.mode=m;save();go(0);};
+  if(resume)$("#resume").onclick=()=>go(S.cur);
+  strip();meta();
+}
+/* ---------- strip & meta ---------- */
+function strip(){
+  $("#strip").innerHTML=ITEMS.map((it,i)=>{let c="tick";if(S.done[i]){c+=showFeedback(i)?" r-"+status(i):" done";}if(i===S.cur&&S.mode)c+=" cur";if(S.flag[i])c+=" flag";return`<button class="${c}" style="--c:${col(it.tp)}" aria-label="Question ${i+1}" data-i="${i}"></button>`}).join("");
+  $("#strip").querySelectorAll("button").forEach(b=>b.onclick=()=>{if(S.mode)go(+b.dataset.i)});
+  const cur=$("#strip .cur");if(cur)cur.scrollIntoView({block:"nearest",inline:"center"});
+}
+function meta(){const d=Object.keys(S.done).length;$("#meta").textContent=S.mode?`${d}/${N} answered`:`${N} questions`;}
+/* ---------- question ---------- */
+function go(i){S.cur=i;save();render();window.scrollTo({top:0});}
+function render(){
+  const i=S.cur,it=ITEMS[i],v=val(i),fb=showFeedback(i),lock=fb;
+  $("#act").hidden=false;
+  let rec="";
+  if("cs"in it){rec=`<div class="record"><h3>Client record · updates as the case unfolds</h3>${CASE.slice(0,it.cs+1).map((st,k)=>`<details ${k===it.cs?"open":""}><summary>${st.time}${k===it.cs?" · new":""}</summary><div class="tbl">${st.html}</div></details>`).join("")}</div>`;}
+  let body="";
+  if(it.t==="mc"||it.t==="sata"){body=it.o.map((o,k)=>{let cls="opt"+(it.t==="sata"?" box":"");if(fb){if(it.a.includes(k))cls+=v.includes(k)?" m-ok":" m-miss";else if(v.includes(k))cls+=" m-bad";}return`<button class="${cls}" data-k="${k}" aria-pressed="${v.includes(k)}" ${lock?"disabled":""}><span class="key">${String.fromCharCode(65+k)}</span><span>${esc(o)}</span></button>`}).join("");}
+  if(it.t==="highlight"){body=`<div class="passage">${it.ph.map((p,k)=>{let cls="hl";if(fb){if(it.a.includes(k))cls+=v.includes(k)?" m-ok":" m-miss";else if(v.includes(k))cls+=" m-bad";}return`<button class="${cls}" data-k="${k}" aria-pressed="${v.includes(k)}" ${lock?"disabled":""}>${esc(p)}</button>`}).join("")}</div>`;}
+  if(it.t==="matrix"){body=it.rows.map((r,ri)=>`<div class="mrow"><div class="mlabel">${esc(r)}</div><div class="seg" role="radiogroup" aria-label="${esc(r)}">${it.cols.map((c,ci)=>{let cls="";if(fb){if(it.a[ri]===ci)cls=v[ri]===ci?"m-ok":"m-miss";else if(v[ri]===ci)cls="m-bad";}return`<button class="${cls}" data-r="${ri}" data-c="${ci}" aria-pressed="${v[ri]===ci}" ${lock?"disabled":""}>${esc(c)}</button>`}).join("")}</div></div>`).join("");}
+  if(it.t==="cloze"){body=`<p class="cloze">${esc(it.text).replace(/\{(\d)\}/g,(m,d)=>{d=+d;let cls="";if(fb)cls=v[d]===it.a[d]?"m-ok":"m-bad";return`<select data-b="${d}" class="${cls}" ${lock?"disabled":""} aria-label="Blank ${d+1}"><option value="">Select…</option>${it.blanks[d].map((o,k)=>`<option value="${k}" ${v[d]===k?"selected":""}>${esc(o)}</option>`).join("")}</select>${fb&&v[d]!==it.a[d]?` <b style="color:var(--ok);font-family:var(--body);font-size:14px">→ ${esc(it.blanks[d][it.a[d]])}</b>`:""}`})}</p>`;}
+  if(it.t==="bowtie"){
+    const slot=(txt,cls)=>`<div class="slot ${txt?"full":""} ${cls||""}">${txt?esc(txt):"—"}</div>`;
+    const mk=(arr,ans,k)=>{let c="";if(fb)c=ans.includes(k)?"m-ok":"m-bad";return c};
+    body=`<div class="bowgrid"><div class="col">${slot(it.acts[v.a[0]],fb&&v.a[0]!=null?mk(v.a,it.aa,v.a[0]):"")}${slot(it.acts[v.a[1]],fb&&v.a[1]!=null?mk(v.a,it.aa,v.a[1]):"")}</div><div class="col">${slot(it.conds[v.c],"center "+(fb&&v.c!=null?(v.c===it.ca?"m-ok":"m-bad"):""))}</div><div class="col">${slot(it.pars[v.p[0]],fb&&v.p[0]!=null?mk(v.p,it.pa,v.p[0]):"")}${slot(it.pars[v.p[1]],fb&&v.p[1]!=null?mk(v.p,it.pa,v.p[1]):"")}</div></div><div class="bowhead"><span>Actions to take</span><span>Condition most likely</span><span>Parameters to monitor</span></div>`+
+    [["Condition most likely","c",it.conds,[it.ca]],["Actions to take (choose 2)","a",it.acts,it.aa],["Parameters to monitor (choose 2)","p",it.pars,it.pa]].map(([lg,g,list,ans])=>`<fieldset><legend>${lg}</legend>${list.map((o,k)=>{const on=g==="c"?v.c===k:v[g].includes(k);let cls="opt"+(g==="c"?"":" box");if(fb){if(ans.includes(k))cls+=on?" m-ok":" m-miss";else if(on)cls+=" m-bad";}return`<button class="${cls}" data-g="${g}" data-k="${k}" aria-pressed="${on}" ${lock?"disabled":""}><span class="key">${String.fromCharCode(65+k)}</span><span>${esc(o)}</span></button>`}).join("")}</fieldset>`).join("");}
+  if(it.t==="order"){body=`<ol class="olist">${v.map((x,pos)=>{let cls="";if(fb)cls=x===pos?"m-ok":"m-bad";return`<li class="${cls}"><span class="n">${pos+1}</span><span class="t">${esc(it.o[x])}${fb&&x!==pos?` <small style="color:var(--muted)">(belongs at ${x+1})</small>`:""}</span><span class="mv"><button data-mv="-1" data-p="${pos}" aria-label="Move up" ${lock||pos===0?"disabled":""}>▲</button><button data-mv="1" data-p="${pos}" aria-label="Move down" ${lock||pos===v.length-1?"disabled":""}>▼</button></span></li>`}).join("")}</ol>`;}
+  let feedback="";
+  if(fb){const[s,m]=score(it,v);const st=s===m?"ok":s>0?"part":"bad";feedback=`<div class="fb" style="--c:var(--${st==="ok"?"ok":st==="part"?"flag":"bad"})"><h3>${st==="ok"?"Correct":st==="part"?"Partly correct":"Not quite"} · ${s}/${m} point${m>1?"s":""}</h3><p>${esc(it.r)}</p>${it.k?`<p class="kid"><b>Like I'm 10:</b> ${esc(it.k)}</p>`:""}<p class="ref">Where to look: ${esc(it.ref)}</p></div>`;}
+  $("#app").innerHTML=`${rec}<article class="card"><div class="tags"><span class="chip" style="--c:${col(it.tp)}"><i></i>${TOPICS[it.tp]}</span><span>Question ${i+1} of ${N}</span><span>${TYPE[it.t]}</span>${NGN.has(it.t)?`<span class="ngn">NGN</span>`:""}${it.cj?`<span>CJMM: ${it.cj}</span>`:""}</div>
+  <p class="stem">${esc(it.q)}</p><p class="instr">${INSTR[it.t]}</p>${body}${feedback}</article>`;
+  wire(i);buttons();strip();meta();
+}
+function wire(i){
+  const it=ITEMS[i],v=val(i),app=$("#app");
+  const rer=()=>{save();render();};
+  if(it.t==="mc")app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{S.ans[i]=[+b.dataset.k];rer();});
+  if(it.t==="sata"||it.t==="highlight")app.querySelectorAll(it.t==="sata"?".opt":".hl").forEach(b=>b.onclick=()=>{const k=+b.dataset.k;const a=val(i);S.ans[i]=a.includes(k)?a.filter(x=>x!==k):[...a,k];rer();});
+  if(it.t==="matrix")app.querySelectorAll(".seg button").forEach(b=>b.onclick=()=>{v[+b.dataset.r]=+b.dataset.c;rer();});
+  if(it.t==="cloze")app.querySelectorAll("select").forEach(s=>s.onchange=()=>{v[+s.dataset.b]=s.value===""?null:+s.value;save();buttons();});
+  if(it.t==="bowtie")app.querySelectorAll("fieldset .opt").forEach(b=>b.onclick=()=>{const g=b.dataset.g,k=+b.dataset.k;if(g==="c")v.c=k;else{const arr=v[g];if(arr.includes(k))v[g]=arr.filter(x=>x!==k);else{arr.push(k);if(arr.length>2)arr.shift();}}rer();});
+  if(it.t==="order")app.querySelectorAll("[data-mv]").forEach(b=>b.onclick=()=>{const p=+b.dataset.p,d=+b.dataset.mv;[v[p],v[p+d]]=[v[p+d],v[p]];S.touched=S.touched||{};S.touched[i]=true;rer();});
+}
+function buttons(){
+  const i=S.cur,fb=showFeedback(i);
+  $("#bBack").disabled=i===0;
+  $("#bFlag").setAttribute("aria-pressed",!!S.flag[i]);$("#bFlag").textContent=S.flag[i]?"Flagged":"Flag";
+  const nx=$("#bNext");
+  if(S.finished){nx.textContent=i===N-1?"Results":"Next";nx.disabled=false;return;}
+  if(S.mode==="practice"&&!fb){nx.textContent="Check answer";nx.disabled=!answered(i)&&ITEMS[i].t!=="order";}
+  else{nx.textContent=i===N-1?"Finish exam":"Next";nx.disabled=S.mode==="exam"&&!answered(i)&&ITEMS[i].t!=="order";}
+}
+$("#bBack").onclick=()=>{if(S.cur>0)go(S.cur-1)};
+$("#bFlag").onclick=()=>{S.flag[S.cur]=!S.flag[S.cur];save();buttons();strip();};
+$("#bNext").onclick=()=>{
+  const i=S.cur;
+  if(S.finished){i===N-1?results():go(i+1);return;}
+  if(S.mode==="practice"&&!showFeedback(i)){S.done[i]=true;save();render();return;}
+  S.done[i]=true;save();
+  if(i===N-1){const left=ITEMS.map((_,k)=>k).filter(k=>!S.done[k]);if(left.length){go(left[0]);return;}S.finished=true;save();results();}
+  else go(i+1);
+};
+/* ---------- results ---------- */
+function results(){
+  S.finished=true;save();$("#act").hidden=true;
+  let tot=0,max=0;const by={};
+  ITEMS.forEach((it,i)=>{const[s,m]=score(it,val(i));tot+=s;max+=m;const g=it.tp;by[g]=by[g]||[0,0];by[g][0]+=s;by[g][1]+=m;});
+  const pct=Math.round(tot/max*100);
+  const rows=ITEMS.map((it,i)=>({i,it,st:status(i),sc:score(it,val(i))}));
+  $("#app").innerHTML=`<div class="hero"><p class="meta">Results</p><p class="score">${pct}%</p><p>${tot} of ${max} points across ${N} questions. NGN items give partial credit, so points and questions don't match one to one.</p></div>
+  <div class="bars">${Object.keys(TOPICS).filter(k=>by[k]).map(k=>{const p=Math.round(by[k][0]/by[k][1]*100);return`<div class="b" style="--c:${col(k)}"><span>${TOPICS[k]}</span><div class="track"><div class="fill" style="width:${p}%"></div></div><span class="pct">${p}%</span></div>`}).join("")}</div>
+  <div class="filt"><label><input type="checkbox" id="onlyMiss"> Show only missed or partly correct</label></div>
+  <ul class="rlist" id="rlist"></ul>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:18px"><button class="btn" id="again">Retake the exam</button></div>`;
+  const draw=()=>{const only=$("#onlyMiss").checked;$("#rlist").innerHTML=rows.filter(r=>!only||r.st!=="ok").map(r=>`<li><button data-i="${r.i}"><span class="dot" style="background:var(--${r.st==="ok"?"ok":r.st==="part"?"flag":"bad"})"></span><span class="q">${r.i+1}. ${esc(r.it.q)}</span><span class="s">${r.sc[0]}/${r.sc[1]}</span></button></li>`).join("");$("#rlist").querySelectorAll("button").forEach(b=>b.onclick=()=>go(+b.dataset.i));};
+  $("#onlyMiss").onchange=draw;draw();
+  $("#again").onclick=()=>{S=fresh();save();start();};
+  strip();meta();window.scrollTo({top:0});
+}
+if(S.finished)results();else start();
+})();
+</script>
+
+</body></html>

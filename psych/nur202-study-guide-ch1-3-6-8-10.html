@@ -1,0 +1,1204 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Nurse 202 Study Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F6F7F5; --card:#FFFFFF; --ink:#1D2B36; --muted:#56636E; --line:#D9DEE2; --zebra:#F3F5F4;
+  --c1:#3F51A3; --c3:#A0621C; --c6:#8B3A62; --c8:#1E7470; --c10:#4F6E2A;
+  --warn:#F6EFD9; --warnln:#B8892B; --warnink:#6B4D12;
+  --rx:#E6F0F3; --rxln:#2C6F86;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:"Public Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --acc:var(--c1);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#141A1F; --card:#1C242B; --ink:#E6EBEF; --muted:#9FAAB3; --line:#33404A; --zebra:#20292F;
+    --c1:#8C9BE8; --c3:#D9A060; --c6:#E08BB5; --c8:#6CC7BF; --c10:#9DC46B;
+    --warn:#35301F; --warnln:#C9A04A; --warnink:#EAD49A;
+    --rx:#1B2C33; --rxln:#6FB3CB;
+  }
+}
+:root[data-theme="dark"]{
+    color-scheme:dark;
+    --paper:#141A1F; --card:#1C242B; --ink:#E6EBEF; --muted:#9FAAB3; --line:#33404A; --zebra:#20292F;
+    --c1:#8C9BE8; --c3:#D9A060; --c6:#E08BB5; --c8:#6CC7BF; --c10:#9DC46B;
+    --warn:#35301F; --warnln:#C9A04A; --warnink:#EAD49A;
+    --rx:#1B2C33; --rxln:#6FB3CB;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16.5px;line-height:1.6;padding-inline:16px;padding-block:0 64px}
+.wrap{max-width:780px;margin:0 auto}
+h1,h2,h3,h4{font-family:var(--serif);text-wrap:balance;line-height:1.2;margin:0}
+p{margin:0}
+.hero{padding-block:36px 20px;display:grid;gap:10px}
+.hero h1{font-size:clamp(2rem,6vw,2.7rem);font-weight:700;letter-spacing:-.01em}
+.hero p{color:var(--muted);max-width:62ch}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.88rem;color:var(--muted);margin-top:6px}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend i{width:14px;height:14px;border-radius:3px;display:inline-block;border-left:4px solid}
+.lg-plain{background:color-mix(in srgb,var(--c1) 12%,var(--card));border-color:var(--c1)!important}
+.lg-trap{background:var(--warn);border-color:var(--warnln)!important}
+.lg-rx{background:var(--rx);border-color:var(--rxln)!important}
+
+nav.chips{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);padding-block:10px;border-bottom:1px solid var(--line);margin-inline:-16px;padding-inline:16px}
+nav.chips .in{max-width:780px;margin:0 auto;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+nav.chips a{flex:none;text-decoration:none;font-weight:600;font-size:.88rem;padding:6px 12px;border-radius:999px;border:1.5px solid var(--line);color:var(--ink);background:var(--card);white-space:nowrap}
+nav.chips a b{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px;vertical-align:1px}
+nav.chips a:hover{border-color:var(--muted)}
+a:focus-visible{outline:3px solid var(--c1);outline-offset:2px}
+
+section.ch{margin-top:44px;display:grid;gap:22px}
+.chhead{border-top:6px solid var(--acc);padding-top:14px;display:grid;gap:6px}
+.chhead .num{font-family:var(--sans);font-weight:700;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:var(--acc)}
+.chhead h2{font-size:clamp(1.6rem,4.5vw,2.05rem);font-weight:700}
+.chhead p{color:var(--muted)}
+.topic{display:grid;gap:12px}
+.topic h3{font-size:1.28rem;font-weight:600;padding-top:6px}
+.topic h4{font-family:var(--sans);font-size:1rem;font-weight:700;margin-top:4px}
+ul.pts{margin:0;padding-left:1.2em;display:grid;gap:5px}
+ul.pts li::marker{color:var(--acc)}
+ol.pts{margin:0;padding-left:1.4em;display:grid;gap:5px}
+strong{font-weight:700}
+.term{font-weight:700;color:var(--acc)}
+
+.box{border-left:5px solid;border-radius:0 8px 8px 0;padding:12px 14px;display:grid;gap:6px}
+.box .lbl{font-weight:700;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase}
+.plain{background:color-mix(in srgb,var(--acc) 10%,var(--card));border-color:var(--acc)}
+.plain .lbl{color:var(--acc)}
+.trap{background:var(--warn);border-color:var(--warnln)}
+.trap .lbl{color:var(--warnink)}
+.trap ul{margin:0;padding-left:1.1em;display:grid;gap:6px}
+.rx{background:var(--rx);border-color:var(--rxln)}
+.rx .lbl{color:var(--rxln)}
+.rx ul{margin:0;padding-left:1.1em;display:grid;gap:4px}
+
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:.93rem;line-height:1.45}
+th,td{text-align:left;vertical-align:top;padding:9px 11px;border-bottom:1px solid var(--line)}
+thead th{background:color-mix(in srgb,var(--acc) 16%,var(--card));font-weight:700;font-size:.86rem;white-space:nowrap}
+tbody tr:nth-child(even){background:var(--zebra)}
+tbody tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600}
+table.wide{min-width:640px}
+.num{font-variant-numeric:tabular-nums}
+
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.mini{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px;display:grid;gap:6px;align-content:start}
+.mini h4{font-family:var(--serif);font-size:1.05rem}
+.mini p,.mini li{font-size:.93rem}
+.mini ul{margin:0;padding-left:1.1em;display:grid;gap:3px}
+
+/* continuum */
+.cont{display:grid;gap:8px}
+.cont .bar{height:14px;border-radius:7px;background:linear-gradient(90deg,var(--c10),var(--c3) 55%,var(--c6))}
+.cont .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;font-size:.88rem}
+.cont .cols div{display:grid;gap:3px;align-content:start}
+.cont .cols b{font-size:.95rem}
+.cont .cols div:nth-child(2){text-align:center}.cont .cols div:nth-child(3){text-align:right}
+
+/* flow / steps */
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px}
+.flow .st{flex:1 1 150px;background:var(--card);border:1.5px solid var(--acc);border-radius:8px;padding:10px 12px;display:grid;gap:3px;align-content:start}
+.flow .st b{font-size:.95rem}
+.flow .st span{font-size:.86rem;color:var(--muted)}
+.flow .ar{align-self:center;color:var(--acc);font-weight:700}
+@media (max-width:560px){.flow{flex-direction:column}.flow .ar{transform:rotate(90deg);align-self:center}}
+
+.phases{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:10px;counter-reset:ph}
+.phases .ph{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--acc);border-radius:6px;padding:12px;display:grid;gap:6px;align-content:start;counter-increment:ph}
+.phases .ph h4::before{content:counter(ph) ". ";color:var(--acc)}
+.phases .ph h4{font-family:var(--serif);font-size:1.05rem}
+.phases .ph ul{margin:0;padding-left:1.05em;font-size:.9rem;display:grid;gap:3px}
+
+.bline{display:grid;grid-template-columns:1fr 1.3fr 1fr 1fr 1.1fr;border-radius:8px;overflow:hidden;font-size:.84rem;min-width:600px}
+.bline div{padding:10px 8px;display:grid;gap:3px;align-content:start}
+.bline b{font-size:.9rem}
+
+svg.gas{width:100%;height:auto;display:block}
+svg.gas .ax{stroke:var(--muted);stroke-width:1.5;fill:none}
+svg.gas .norm{stroke:var(--muted);stroke-dasharray:5 5;stroke-width:1.5;fill:none}
+svg.gas .curve{stroke:var(--c10);stroke-width:3.5;fill:none}
+svg.gas text{fill:var(--ink);font-family:var(--sans);font-size:14px}
+svg.gas text.mut{fill:var(--muted);font-size:12.5px}
+svg.gas .zone{fill:var(--zebra)}
+
+.toc{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:grid;gap:8px}
+.toc h2{font-size:1.1rem}
+.toc ol{margin:0;padding-left:1.3em;display:grid;gap:4px;font-size:.95rem}
+.toc a{color:var(--ink)}
+footer{margin-top:48px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);padding-top:14px}
+</style>
+
+<div class="wrap">
+<header class="hero">
+  <h1>Nurse 202 Study Guide</h1>
+  <p>Psychiatric–mental health nursing, Chapters 1, 3, 6, 8 and 10 of the 9th edition. Chapter 6 covers the legal content only; ethical principles are left out because they are not on your exam.</p>
+  <div class="legend">
+    <span><i class="lg-plain"></i>Simply put: the idea in everyday words</span>
+    <span><i class="lg-trap"></i>Exam trap: common wrong answers and outdated facts</span>
+    <span><i class="lg-rx"></i>Nursing priority: what you actually do</span>
+  </div>
+</header>
+</div>
+
+<nav class="chips" aria-label="Chapters">
+  <div class="in">
+    <a href="#ch1"><b style="background:var(--c1)"></b>Ch 1 Mental health</a>
+    <a href="#ch3"><b style="background:var(--c3)"></b>Ch 3 Neurobiology &amp; meds</a>
+    <a href="#ch6"><b style="background:var(--c6)"></b>Ch 6 Legal</a>
+    <a href="#ch8"><b style="background:var(--c8)"></b>Ch 8 Relationships</a>
+    <a href="#ch10"><b style="background:var(--c10)"></b>Ch 10 Stress</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<!-- ================= CHAPTER 1 ================= -->
+<section class="ch" id="ch1" style="--acc:var(--c1)">
+  <div class="chhead">
+    <span class="num">Chapter 1</span>
+    <h2>Mental Health and Mental Illness</h2>
+    <p>What counts as healthy, what shapes risk, how we count and classify disorders, and what psychiatric nurses do at each level of practice.</p>
+  </div>
+
+  <div class="topic">
+    <h3>Defining mental health and mental illness</h3>
+    <ul class="pts">
+      <li><span class="term">Health (WHO):</span> "a state of complete physical, mental, and social well-being and not merely the absence of disease." There is no overall health without mental health.</li>
+      <li><span class="term">Mental health (WHO):</span> a state of well-being in which people reach their potential, cope with normal stresses, work productively, and contribute to the community. It gives the capacity for rational thinking, communication, learning, emotional growth, resilience, and self-esteem.</li>
+      <li><span class="term">Mental illness:</span> all psychiatric disorders with definable diagnoses, showing significant dysfunction in <strong>thinking</strong> (Alzheimer's disease), <strong>emotion</strong> (major depressive disorder), or <strong>behavior</strong> (schizophrenia), or a mix.</li>
+      <li>Old definitions based on "strange" or nonconforming behavior are rejected. By that standard, Lincoln, Gandhi and Nightingale could have been called ill. <strong>Mental health is not conformity.</strong></li>
+      <li>Attributes of mentally healthy people include rational thinking, meaningful relationships, effective coping and communication, resiliency, self-control, positive self-concept, self-awareness, self-care, happiness, and spiritual satisfaction.</li>
+    </ul>
+    <div class="box plain"><span class="lbl">Simply put</span><p>Mental health doesn't mean you're always happy. It means you can handle normal bad days, get your work done, get along with people, and bounce back. Mental illness is when the brain's thinking, feelings, or behavior stop working well enough that daily life gets hard, and it lasts.</p></div>
+    <div class="grid2">
+      <div class="mini"><h4>How common it is (2019)</h4><ul><li>About 1 in 5 U.S. adults (21%) had a mental illness</li><li>Ages 18–25 had the highest rate, about 24%</li><li>About 5.2% lived with a serious mental illness</li><li>Only about 16% of adults received treatment</li></ul></div>
+      <div class="mini"><h4>Mental vs. physical illness</h4><p>The textbook calls this split artificial: the brain is an organ, so mental illness is physical illness. Treating it as "all in the head" or a personal choice feeds <strong>stigma</strong>, the belief that the whole person is flawed, shown through shunning, disgrace, and shame.</p></div>
+    </div>
+  </div>
+
+  <div class="topic">
+    <h3>The mental health–mental illness continuum</h3>
+    <p>Health and illness are endpoints on a line, not an either/or. Everyone sits somewhere on it and can shift over time, and people at the far end can move back through recovery.</p>
+    <div class="cont" role="img" aria-label="Continuum from well-being through emotional problems to mental illness">
+      <div class="bar"></div>
+      <div class="cols">
+        <div><b>Well-being</b><span>Occasional stress to mild distress</span><span>No impairment</span></div>
+        <div><b>Emotional problems or concerns</b><span>Mild to moderate distress</span><span>Mild or temporary impairment (insomnia, poor concentration, low appetite)</span></div>
+        <div><b>Mental illness</b><span>Marked distress</span><span>Moderate to disabling or chronic impairment</span></div>
+      </div>
+    </div>
+    <div class="box plain"><span class="lbl">Simply put</span><p>Think of a dimmer switch, not an on/off switch. A failed exam might dim you for a day or two. Mild depression or ADHD sits in the middle. Schizophrenia or severe depression is dimmed low for a long time. The key difference at the illness end is <strong>long-term impairment</strong>, not just feeling bad.</p></div>
+  </div>
+
+  <div class="topic">
+    <h3>Risk and protective factors</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Domain</th><th>What it includes</th></tr></thead>
+      <tbody>
+        <tr><td>Individual attributes and behaviors</td><td>Inborn and learned traits; handling thoughts and feelings; social skills. Biological factors (prenatal alcohol, oxygen loss at birth). Genetics is a huge predictor, involved in nearly every disorder.</td></tr>
+        <tr><td>Social and economic circumstances</td><td>Family (the earliest social group), schools and peers, socioeconomic status, education.</td></tr>
+        <tr><td>Environmental factors</td><td>Political climate, culture, access to healthcare, water, safety services; social and economic policy such as better reimbursement for mental healthcare.</td></tr>
+      </tbody>
+    </table></div>
+    <h4>Resilience</h4>
+    <ul class="pts">
+      <li><span class="term">Resilience</span> is the ability and capacity to <strong>secure the resources you need</strong> to support your well-being. Example: children of poverty or abuse who seek out trusted adults.</li>
+      <li>Resilient people are still affected by stress. They regulate their emotions and avoid dwelling on negative, self-defeating thoughts.</li>
+      <li><strong>Brief Resilient Coping Scale:</strong> 4 items, total 4–20. Scores 4–13 are low resilient copers, 14–16 medium, 17–20 high.</li>
+    </ul>
+    <div class="box plain"><span class="lbl">Simply put</span><p>Resilience is like a phone that goes looking for a charger when the battery is low. The battery still drains; the resilient person goes and finds the outlet (a new job, a support person, a plan).</p></div>
+  </div>
+
+  <div class="topic">
+    <h3>Culture and mental illness</h3>
+    <ul class="pts">
+      <li>There is no single standard for mental health because it is partly <strong>culturally defined</strong>. One view: mental illness is behavior a culture sees as violating its norms.</li>
+      <li>Definitions change with the times. "Hysteria" was once a diagnosis for women and faded as women's rights improved.</li>
+      <li><span class="term">Culture-bound syndromes</span> occur in specific cultures and are easily recognized there. Example: <strong>running amok</strong> in parts of Southeast Asia (usually a man, sudden near-indiscriminate violence). Anorexia nervosa has been recognized mainly in the U.S., Europe and Australia; social media may be spreading it.</li>
+      <li>Hearing God's voice can be desired in some religious groups but read as a symptom in others, which is why culture makes diagnosis harder.</li>
+    </ul>
+  </div>
+
+  <div class="topic">
+    <h3>Nature, nurture, and the diathesis-stress model</h3>
+    <ul class="pts">
+      <li>History swung from supernatural explanations, to germ theory (dropped because no "mania germ" existed), to psychological theories, and back toward biology after <strong>chlorpromazine (Thorazine) in 1952</strong> calmed agitated patients.</li>
+      <li>The <span class="term">diathesis-stress model</span> is the most accepted explanation: <strong>diathesis</strong> = biological or genetic predisposition; <strong>stress</strong> = environmental stress or trauma. Most disorders come from both together.</li>
+    </ul>
+    <div class="box plain"><span class="lbl">Simply put</span><p>Genes load the gun and stress pulls the trigger. Some people have a lot of genetic "loading" and get sick with a small push. Others have little loading but get sick after a huge push from life.</p></div>
+  </div>
+
+  <div class="topic">
+    <h3>Recovery and the consumer movement</h3>
+    <ul class="pts">
+      <li>People with mental illness ("consumers") pushed back against forced, paternalistic treatment. <strong>NAMI</strong> (National Alliance on Mental Illness) formed in <strong>1979</strong>.</li>
+      <li><span class="term">Recovery (SAMHSA):</span> "a process of change through which individuals improve their health and wellness, live a self-directed life, and strive to reach their full potential." The focus shifts from compliance to <strong>self-determination</strong>.</li>
+    </ul>
+    <div class="mini"><h4>SAMHSA's 10 guiding principles of recovery</h4>
+      <ul>
+        <li>Emerges from <strong>hope</strong> (the catalyst)</li>
+        <li>Is <strong>person-driven</strong> (self-determination)</li>
+        <li>Occurs through <strong>many pathways</strong> and is nonlinear, with setbacks</li>
+        <li>Is <strong>holistic</strong>: mind, body, spirit, community</li>
+        <li>Is supported by <strong>peers and allies</strong></li>
+        <li>Is supported through <strong>relationships and social networks</strong></li>
+        <li>Is <strong>culturally based</strong> and influenced</li>
+        <li>Is supported by <strong>addressing trauma</strong> (trauma-informed care)</li>
+        <li>Involves individual, family and community <strong>strengths and responsibility</strong></li>
+        <li>Is based on <strong>respect</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="topic">
+    <h3>Milestones that shaped mental healthcare</h3>
+    <div class="tw"><table class="wide">
+      <thead><tr><th>When</th><th>Initiative</th><th>Why it matters</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1990s</td><td>Decade of the Brain (Pres. G.H.W. Bush)</td><td>Boosted neuroscience research: genes for neurological illness, many receptors for few neurotransmitters, cytokines in depression, better imaging.</td></tr>
+        <tr><td class="num">1999</td><td>Surgeon General's Report on Mental Health</td><td>Two messages: mental health is fundamental to overall health, and effective treatments exist.</td></tr>
+        <tr><td class="num">1990–2003</td><td>Human Genome Project</td><td>Mapped ~20,000–25,000 genes; strengthened genetic explanations of psychiatric disorders.</td></tr>
+        <tr><td class="num">2003</td><td>President's New Freedom Commission</td><td>Called the system "in shambles." Goals: consumer- and family-driven care, no disparities, early screening, technology. It included no nurses.</td></tr>
+        <tr><td class="num">2005, 2011</td><td>Institute of Medicine reports</td><td>Quality Chasm (safe, effective, patient-centered, timely, efficient, equitable care) and The Future of Nursing.</td></tr>
+        <tr><td>After IOM</td><td>QSEN</td><td>Six competencies: patient-centered care, teamwork and collaboration, evidence-based practice, quality improvement, safety, informatics.</td></tr>
+        <tr><td class="num">2013</td><td>BRAIN Initiative (Pres. Obama)</td><td>$300 million to develop technology for understanding the brain.</td></tr>
+        <tr><td class="num">2013</td><td>Research Domain Criteria (NIMH)</td><td>NIMH stopped funding DSM-based studies and shifted to causes at the molecular level.</td></tr>
+      </tbody>
+    </table></div>
+    <h4>Funding laws</h4>
+    <div class="tw"><table class="wide">
+      <thead><tr><th>Law</th><th>What it did</th></tr></thead>
+      <tbody>
+        <tr><td>Mental Health Parity Act (1996)</td><td>Plans offering mental health coverage had to match annual and lifetime limits for medical/surgical care. Many plans added new limits anyway.</td></tr>
+        <tr><td>Wellstone-Domenici Parity Act (2008)</td><td>Group plans with more than 50 employees must cover mental health on par for deductibles, copays, visit limits and out-of-pocket costs.</td></tr>
+        <tr><td>Affordable Care Act (2010)</td><td>No denial for preexisting conditions; mental health and addiction treatment are essential benefits with no annual or lifetime dollar limits; young adults stay on parents' plans until 26 (important because most disorders begin in adolescence or the early 20s).</td></tr>
+      </tbody>
+    </table></div>
+    <div class="box plain"><span class="lbl">Simply put</span><p><span class="term">Parity</span> means equal. Insurance has to treat depression the way it treats diabetes: no extra copays, no special visit caps.</p></div>
+  </div>
+
+  <div class="topic">
+    <h3>Epidemiology: counting mental illness</h3>
+    <div class="tw"><table class="wide">
+      <thead><tr><th>Term</th><th>Meaning</th><th>Clue words</th></tr></thead>
+      <tbody>
+        <tr><td>Epidemiology</td><td>Quantitative study of how mental disorders are distributed in populations; identifies high-risk groups and risk factors.</td><td>"distribution," "high-risk groups"</td></tr>
+        <tr><td>Incidence</td><td><strong>New</strong> cases in a population over a set period, usually a year.</td><td>"newly diagnosed," "developed"</td></tr>
+        <tr><td>Prevalence</td><td><strong>All</strong> cases, new and existing, in a population during a period, regardless of when they began.</td><td>"total," "currently living with"</td></tr>
+        <tr><td>Lifetime risk</td><td>Chance of developing a disorder over a lifetime; higher than both incidence and prevalence.</td><td>"in their lifetime"</td></tr>
+        <tr><td>Comorbidity</td><td>More than one disorder at the same time (e.g., depression with diabetes).</td><td>"co-occurring," "dual diagnosis"</td></tr>
+        <tr><td>Clinical epidemiology</td><td>Studies of an illness's natural history (untreated course), of screening tests, and observational or experimental studies of treatments.</td><td>"compares treatment groups"</td></tr>
+      </tbody>
+    </table></div>
+    <div class="box plain"><span class="lbl">Simply put</span><p>A cold has <strong>high incidence</strong> (lots of new cases each year) but <strong>low prevalence</strong> (few people have one right now, because it goes away). Diabetes is the opposite: few new cases each year, but it lasts, so many people have it at any moment.</p></div>
+    <h4>Twelve-month prevalence in U.S. adults</h4>
+    <div class="tw"><table>
+      <thead><tr><th>Disorder</th><th class="num">%</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td>Schizophrenia</td><td class="num">1.1</td><td>Men and women equally</td></tr>
+        <tr><td>Major depressive disorder</td><td class="num">6.7</td><td>Leading cause of disability; about twice as common in women</td></tr>
+        <tr><td>Bipolar disorder</td><td class="num">2.6</td><td>Men and women equally</td></tr>
+        <tr><td>Generalized anxiety disorder</td><td class="num">3.1</td><td>Highest risk from childhood to middle age</td></tr>
+        <tr><td>PTSD</td><td class="num">3.5</td><td>Can develop at any time</td></tr>
+        <tr><td>Alzheimer's disease</td><td class="num">10 / 50</td><td>10% of people over 65; 50% over 85</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="topic">
+    <h3>Classifying disorders: DSM-5 and nursing diagnoses</h3>
+    <ul class="pts">
+      <li><span class="term">DSM-5</span> (American Psychiatric Association, 2013) gives the <strong>diagnostic criteria</strong> for about 157 disorders. It is the dominant system in the U.S. and also collects epidemiological statistics.</li>
+      <li>The DSM classifies <strong>disorders, not people</strong>. Use person-first language: "a person with schizophrenia," never "a schizophrenic."</li>
+      <li><span class="term">ICD-10-CM</span> is the international classification (WHO), adapted for the U.S. Both are used for care planning and reimbursement.</li>
+      <li><strong>Nursing care is based on responses to illness.</strong> RNs don't diagnose or treat major depressive disorder; they treat the insomnia, hopelessness, or self-care deficit it causes.</li>
+      <li>Your 9th edition uses the <span class="term">International Classification for Nursing Practice (ICNP)</span> for standardized nursing diagnoses.</li>
+    </ul>
+    <div class="box plain"><span class="lbl">Simply put</span><p>The DSM-5 answers "what disorder is this?" and guides medical treatment. The nursing diagnosis answers "what problem is this person having because of it, and what can the nurse do?"</p></div>
+    <div class="box trap"><span class="lbl">Exam trap</span><ul>
+      <li>Older questions call the DSM-5 "multiaxial." It isn't; the DSM-5 dropped the multiaxial system.</li>
+      <li>Older questions use NANDA and NIC. Your textbook uses ICNP. Check which one your professor expects.</li>
+      <li>If an answer defines prevalence as "new cases," it's wrong. New cases = incidence.</li>
+      <li>"Alzheimer's is the most prevalent disorder" only holds for people over 65 (10%) and over 85 (50%).</li>
+    </ul></div>
+  </div>
+
+  <div class="topic">
+    <h3>Psychiatric–mental health nursing</h3>
+    <ul class="pts">
+      <li>Defined as promoting mental health through <strong>assessment, diagnosis, and treatment of human responses</strong> to mental health problems and psychiatric disorders, across the lifespan and in every setting.</li>
+      <li>Guided by <em>Psychiatric-Mental Health Nursing: Scope and Standards of Practice</em> (ANA, APNA and ISPN, 2014). Its <strong>phenomena of concern</strong> include promoting health, preventing distress, co-occurring mental and substance or physical disorders, self-harm, violence, isolation, and low health literacy.</li>
+    </ul>
+    <div class="tw"><table class="wide">
+      <thead><tr><th>Level</th><th>Preparation</th><th>Interventions</th></tr></thead>
+      <tbody>
+        <tr><td>Basic: PMH-RN</td><td>Diploma, associate or baccalaureate RN working in psych. Board certification (RN-BC) after 2 years full-time RN work, 2,000 psych clinical hours and 30 hours of psych continuing education.</td><td><strong>Coordination of care, health teaching and health maintenance, milieu therapy, pharmacological/biological/integrative therapies</strong> (assess medication response, teach, report observations). Uses counseling, not psychotherapy.</td></tr>
+        <tr><td>Advanced: PMH-APRN</td><td>MSN or DNP in psychiatric nursing. Current certification exam is the PMHNP-BC.</td><td>All of the basic interventions <strong>plus prescribing psychotropics</strong> (with admitting privileges), <strong>psychotherapy</strong> (individual, couple, group, family), and <strong>consultation</strong>.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="box plain"><span class="lbl">Simply put</span><p>If the answer choice is <strong>prescribe</strong>, <strong>psychotherapy</strong>, or <strong>consult</strong>, it's advanced practice. Assessing, teaching, coordinating, running a safe unit, and building therapeutic relationships are things every RN does.</p></div>
+    <h4>Trends and advocacy</h4>
+    <ul class="pts">
+      <li><strong>Five trends:</strong> educational challenges (sicker patients, stays of about 3 days instead of about 2 weeks), a shortage of mental health professionals, an aging population, growing cultural diversity (majority-minority by 2044, so cultural competence matters), and technology (genetics, telehealth).</li>
+      <li><span class="term">Advocacy</span> is direct (reporting abuse or neglect, protecting confidentiality, supporting the patient's treatment decisions) or indirect (joining NAMI, following legislation, writing lawmakers when funding for vulnerable groups is cut).</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= CHAPTER 3 ================= -->
+<section class="ch" id="ch3" style="--acc:var(--c3)">
+  <div class="chhead">
+    <span class="num">Chapter 3</span>
+    <h2>Neurobiology and Pharmacotherapy</h2>
+    <p>How the brain sends messages, where psychiatric symptoms come from, and how each drug class changes the chemistry, including the side effects you must watch for.</p>
+  </div>
+
+  <div class="topic">
+    <h3>What the brain regulates</h3>
+    <ul class="pts">
+      <li>Monitors the outside world and body fluids, controls skeletal muscles (including the diaphragm and speech muscles, so psych meds can depress breathing or slur speech), regulates internal organs, basic drives (hunger, thirst, sex, self-protection), memory, mood, thinking, sleep, and language.</li>
+      <li><strong>Sleep:</strong> sleep disturbance shows up in virtually every psychiatric disorder, and better sleep is a marker of recovery. Give <strong>sedating meds at bedtime</strong> and <strong>stimulants early in the day</strong>.</li>
+      <li><span class="term">Circadian rhythms:</span> 24-hour cycles of sleep, body temperature, cortisol and neurotransmitters (NE, serotonin). They are altered in mood disorders, which is why you ask a depressed patient about their best and worst times of day.</li>
+      <li>Changes in basic drives (loss of sex drive, over- or undereating) can signal depression.</li>
+    </ul>
+    <h4>Autonomic nervous system</h4>
+    <div class="tw"><table class="wide">
+      <thead><tr><th>Division</th><th>Nickname</th><th>Main chemical</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr><td>Sympathetic</td><td>Fight or flight</td><td>Norepinephrine (and epinephrine from the adrenals)</td><td>Dominant in fear and anger: ↑ heart rate, ↑ BP, ↑ respirations, dilated pupils, dry mouth, slowed digestion. Anxiety activates it (racing heart, short of breath, blushing, sweaty palms).</td></tr>
+        <tr><td>Parasympathetic</td><td>Rest and digest</td><td>Acetylcholine</td><td>Conserves energy: slows heart, ↑ gut motility and digestion, bladder contraction, salivation.</td></tr>
+      </tbody>
+    </table></div>
+    <h4>Hormone links</h4>
+    <div class="flow" aria-label="HPA axis">
+      <div class="st"><b>Hypothalamus</b><span>releases CRH</span></div><span class="ar" aria-hidden="true">→</span>
+      <div class="st"><b>Pituitary</b><span>releases ACTH</span></div><span class="ar" aria-hidden="true">→</span>
+      <div class="st"><b>Adrenal cortex</b><span>releases cortisol, the stress hormone</span></div>
+    </div>
+    <ul class="pts">
+      <li><strong>HPA axis:</strong> cortisol is <strong>high in depression</strong> (suppresses immunity, so more infections) and <strong>low in PTSD</strong> (lower cortisol, worse symptoms).</li>
+      <li><strong>Thyroid:</strong> hyperthyroidism looks like anxiety; hypothyroidism looks like depression. Rule these out.</li>
+    </ul>
+  </div>
+
+  <div class="topic">
+    <h3>Neurons and neurotransmission</h3>
+    <ul class="pts">
+      <li>The brain has about 100 billion <span class="term">neurons</span>. Each one responds to stimuli, conducts an electrical impulse (action potential: sodium in, potassium out), and releases <span class="term">neurotransmitters</span>.</li>
+      <li>The neurotransmitter crosses the <span class="term">synapse</span> and attaches to a <span class="term">receptor</span> on the next cell, which either excites or inhibits it.</li>
+      <li>Afterward it is removed in one of two ways:
+        <ul class="pts">
+          <li><strong>Destroyed at the receptor</strong> by an enzyme. Acetylcholine is broken down by <strong>acetylcholinesterase</strong>.</li>
+          <li><strong>Reuptake:</strong> pulled back into the sending cell, then reused or destroyed by <strong>monoamine oxidase (MAO)</strong>. This is how norepinephrine, dopamine and serotonin are cleared.</li>
+        </ul>
+      </li>
+      <li>Too little signal can come from too little neurotransmitter or too few receptors; too much from excess release or oversensitive receptors.</li>
+    </ul>
+    <div class="box plain"><span class="lbl">Simply put</span><p>A neuron is a mail carrier. The neurotransmitter is the letter, the synapse is the street, and the receptor is the mailbox. After delivery, the letter gets shredded on the spot (acetylcholine) or carried back to the post office to be recycled or shredded by MAO (serotonin, NE, dopamine). Most psych drugs work by blocking the mailbox, blocking the return trip, or stopping the shredder.</p></div>
+  </div>
+
+  <div class="topic">
+    <h3>Brain structures</h3>
+    <div class="tw"><table class="wide">
+      <thead><tr><th>Structure</th><th>Job</th><th>Psychiatric link</th></tr></thead>
+      <tbody>
+        <tr><td>Brainstem (midbrain, pons, medulla)</td><td>Heart rate, breathing, BP, digestion, sleep, reflexes (cough, swallow, vomit)</td><td>Mesolimbic and mesocortical dopamine pathways start here and project to the limbic system (reward, substance use).</td></tr>
+        <tr><td>Hypothalamus (above the brainstem)</td><td>Hunger, thirst, sex drive; links thoughts and emotions to organs; sleep-wake cycle; releasing hormones</td><td>Extreme overeating or overdrinking points here.</td></tr>
+        <tr><td>Cerebellum</td><td>Coordination of voluntary movement, balance, equilibrium</td><td>Rich in GABA receptors, so benzodiazepines cause <strong>ataxia</strong>.</td></tr>
+        <tr><td>Frontal lobe</td><td>Initiating movement, reasoning, intellectual function</td><td>↓ frontal activity in schizophrenia; ↓ prefrontal activity in depression.</td></tr>
+        <tr><td>Parietal lobe</td><td>Touch and sensation</td><td></td></tr>
+        <tr><td>Temporal lobe</td><td>Hearing; stores sounds into memory; language comprehension</td><td>Memory processing</td></tr>
+        <tr><td>Occipital lobe</td><td>Vision</td><td></td></tr>
+        <tr><td>Basal ganglia</td><td>Regulation of movement</td><td>Dopamine blockade here causes <strong>EPS</strong>.</td></tr>
+        <tr><td>Amygdala (limbic)</td><td>Emotion, basic drives</td><td>Abnormal in <strong>anxiety disorders</strong></td></tr>
+        <tr><td>Hippocampus (limbic)</td><td>Learning and memory</td><td>Changes in <strong>Alzheimer's disease</strong>; damaged by repeated head injury</td></tr>
+      </tbody>
+    </table></div>
+    <div class="box plain"><span class="lbl">Simply put</span><p>Movement areas (basal ganglia) and emotion areas (limbic system) are next-door neighbors that share chemicals. That's why drugs for emotional problems can cause movement problems, and drugs for movement problems (like Parkinson's meds) can cause emotional ones.</p></div>
+    <h4>Imaging the brain</h4>
+    <div class="grid2">
+      <div class="mini"><h4>Structural: what it looks like</h4><ul><li><strong>CT:</strong> x-ray "slices"; shows atrophy, enlarged ventricles, infarcts. First choice to tell Alzheimer's from multiple strokes.</li><li><strong>MRI:</strong> magnetic field; detailed structure</li></ul></div>
+      <div class="mini"><h4>Functional: what it's doing</h4><ul><li><strong>PET:</strong> radioactive glucose tracer shows activity and blood flow</li><li><strong>SPECT</strong></li><li><strong>fMRI</strong></li></ul><p>Findings: ↓ frontal glucose use in schizophrenia, ↓ prefrontal activity in depression.</p></div>
+    </div>
+    <ul class="pts">
+      <li>There is no good way to measure neurotransmitter levels directly. Much of what we know comes from how drugs work (e.g., D₂ blockers stop hallucinations, so hallucinations probably involve too much dopamine).</li>
+      <li><span class="term">Concordance rate</span> (twin studies) shows genetic risk: how often both identical twins have a disorder.</li>
+    </ul>
+  </div>
+
+  <div class="topic">
+    <h3>Neurotransmitters at a glance</h3>
+    <div class="tw"><table class="wide">
+      <thead><tr><th>Neurotransmitter</th><th>What it does</th><th>Too little</th><th>Too much</th></tr></thead>
+      <tbody>
+        <tr><td>Dopamine (DA)</td><td>Fine motor movement, integrating emotions and thoughts, decision making, reward</td><td>Parkinson's disease, depression</td><td>Schizophrenia, mania</td></tr>
+        <tr><td>Norepinephrine (NE)</td><td>Mood, attention, arousal; drives the sympathetic "fight or flight" response</td><td>Depression</td><td>Mania, anxiety states, schizophrenia</td></tr>
+        <tr><td>Serotonin (5-HT)</td><td>Sleep, hunger, mood, pain perception, aggression, sexual behavior</td><td>Depression</td><td></td></tr>
+        <tr><td>Histamine (H)</td><td>Alertness, inflammation, gastric secretion</td><td>Blocking it: sedation, weight gain</td><td></td></tr>
+        <tr><td>GABA</td><td>Main <strong>inhibitory (calming)</strong> transmitter; reduces anxiety, aggression, excitation; anticonvulsant, muscle relaxing</td><td>Anxiety, schizophrenia, mania, Huntington's</td><td>Reduced anxiety (can impair cognition)</td></tr>
+        <tr><td>Glutamate</td><td>Main <strong>excitatory</strong> transmitter; learning and memory</td><td>Psychosis (NMDA)</td><td>Neurotoxic; neurodegeneration in Alzheimer's</td></tr>
+        <tr><td>Acetylcholine (ACh)</td><td>Learning and memory; drives the parasympathetic "rest and digest" response</td><td>Alzheimer's, Huntington's, Parkinson's</td><td>Depression</td></tr>
+      </tbody>
+    </table></div>
+    <div class="box plain"><span class="lbl">Simply put</span><p>Match the drug to the chemical problem. Schizophrenia = too much dopamine, so antipsychotics <strong>block</strong> dopamine. Depression = too little serotonin/NE, so antidepressants <strong>raise</strong> them. Anxiety = not enough GABA calming, so benzodiazepines <strong>boost</strong> GABA. Alzheimer's = too little ACh and too much glutamate, so we <strong>save ACh</strong> and <strong>block glutamate</strong>. ADHD meds <strong>raise</strong> dopamine and NE.</p></div>
+  </div>
+
+  <div class="topic">
+    <h3>How drugs move and act</h3>
+    <div class="grid2">
+      <div class="mini"><h4>Pharmacokinetics</h4><p>What the body does to the drug: <strong>ADME</strong>: absorption, distribution, metabolism, excretion. Example: lithium is cleared by the kidneys, so renal function guides its dose and level checks.</p></div>
+      <div class="mini"><h4>Pharmacodynamics</h4><p>What the drug does to the body: its receptor actions and effects.</p></div>
+      <div class="mini"><h4>Agonist vs. antagonist</h4><ul><li><strong>Agonist:</strong> mimics the neurotransmitter and stimulates the receptor</li><li><strong>Partial agonist:</strong> stimulates, but less</li><li><strong>Antagonist:</strong> blocks the receptor</li></ul></div>
+      <div class="mini"><h4>Pharmacogenetics</h4><ul><li><strong>Poor metabolizers</strong> (slow CYP450 enzymes) get higher levels and more side effects; <strong>rapid metabolizers</strong> get less effect.</li><li>~10% of Caucasians are poor CYP2D6 metabolizers (risperidone); ~20% of some Asian groups are poor CYP2C19 metabolizers (citalopram, diazepam).</li><li>Test patients of Asian ancestry for <strong>HLA-B*1502</strong> before carbamazepine (Stevens-Johnson risk).</li></ul></div>
+    </div>
+  </div>
+
+  <div class="topic">
+    <h3>Receptor blockade and side effects</h3>
+    <p>Many side effects are predictable once you know which receptor a drug blocks. This table covers TCAs, antipsychotics, and many other psych drugs.</p>
+    <div class="tw"><table class="wide">
+      <thead><tr><th>Receptor blocked</th><th>Side effects</th><th>Teaching</th></tr></thead>
+      <tbody>
+        <tr><td>Histamine H₁</td><td>Sedation, drowsiness, weight gain, hypotension</td><td>Take at bedtime; watch diet and weight</td></tr>
+        <tr><td>Alpha-1 (α₁) adrenergic</td><td><strong>Orthostatic hypotension</strong>, dizziness, reflex tachycardia, ejaculation problems, priapism</td><td>Rise slowly; sit on the edge of the bed first (fall risk)</td></tr>
+        <tr><td>Muscarinic M₁ (anticholinergic)</td><td>Dry mouth, blurred vision, constipation, urinary retention, tachycardia; memory problems and confusion in older adults</td><td>Sugarless gum, fluids, fiber; report urinary retention. Tolerance does not develop.</td></tr>
+        <tr><td>Dopamine D₂</td><td>EPS, ↑ prolactin (gynecomastia, galactorrhea, amenorrhea, sexual dysfunction)</td><td>Report stiffness, restlessness, abnormal movements</td></tr>
+      </tbody>
+    </table></div>
+    <div class="box plain"><span class="lbl">Simply put</span><p>Anticholinergic = "dries you up and slows you down": can't see, can't pee, can't spit, can't poop. Alpha-1 block = "blood pools in the legs when you stand," so you get dizzy. H₁ block = the Benadryl effect: sleepy and hungry.</p></div>
+  </div>
+
+  <div class="topic">
+    <h3>Antianxiety and sleep medications</h3>
+    <h4>Benzodiazepines</h4>
+    <ul class="pts">
+      <li><strong>How:</strong> bind the GABA<sub>A</sub> receptor and boost GABA's calming effect (more chloride enters, cell quiets down). No GABA present = no effect.</li>
+      <li><strong>Examples:</strong> alprazolam (Xanax), clonazepam (Klonopin), diazepam (Valium), lorazepam (Ativan). Insomnia-only: flurazepam, temazepam, triazolam. Alcohol withdrawal seizures: chlordiazepoxide (Librium), diazepam, lorazepam. Drug of choice for <strong>status epilepticus</strong>.</li>
+      <li><strong>Effects:</strong> antianxiety, hypnotic, anticonvulsant, amnestic, muscle relaxant. <strong>Fast onset</strong>, so best for acute anxiety.</li>
+      <li><strong>Side effects:</strong> sedation (most common; tolerance develops), ataxia, anterograde amnesia, rare paradoxical agitation in children and older adults.</li>
+      <li>Alone they rarely stop breathing, but <strong>with alcohol or opioids</strong> they can cause fatal CNS depression.</li>
+      <li>Controlled substances; physical dependence develops. Withdrawal looks like the opposite of the drug: anxiety, insomnia, muscle tension, seizures. <strong>Taper, never stop abruptly.</strong></li>
+    </ul>
+    <div class="box rx"><span class="lbl">Nursing priority</span><ul><li>No driving or operating machinery until effects are known; no alcohol or other CNS depressants.</li><li>Older adults: falls, fractures, delirium; alternatives are usually preferred.</li><li>Patients with substance use disorders are usually given noncontrolled alternatives.</li></ul></div>
+    <h4>Other sleep and anxiety drugs</h4>
+    <div class="tw"><table class="wide">
+      <thead><tr><th>Drug</th><th>Key facts</th></tr></thead>
+      <tbody>
+        <tr><td>Z-hypnotics: zolpidem (Ambien), zaleplon (Sonata), eszopiclone (Lunesta)</td><td>Sleep and amnesia only (no antianxiety or anticonvulsant effect). Controlled. Complex sleep behaviors (sleepwalking, sleep-driving): stop if they ever occur. Zaleplon shortest (~1 h, falling asleep); eszopiclone ~6 h (staying asleep), bitter taste. Women get a lower zolpidem starting dose.</td></tr>
+        <tr><td>Ramelteon (Rozerem)</td><td>Melatonin receptor agonist for trouble falling asleep. Not controlled. Headache, dizziness; may ↑ prolactin. Do not combine with fluvoxamine.</td></tr>
+        <tr><td>Doxepin low dose (Silenor)</td><td>Low-dose TCA; H₁ block for trouble staying asleep. Avoid with urinary retention, glaucoma, MAOIs.</td></tr>
+        <tr><td>Suvorexant (Belsomra), lemborexant (Dayvigo)</td><td>Orexin receptor antagonists. <strong>Contraindicated in narcolepsy.</strong> Controlled. Rare sleep paralysis, hallucinations.</td></tr>
+        <tr><td>Buspirone (BuSpar)</td><td>For generalized anxiety disorder. Serotonin 5-HT₁A partial agonist.</td></tr>
+        <tr><td>Antidepressants (SSRIs, SNRIs)</td><td><strong>First-line for long-term anxiety.</strong> Take 4–8 weeks to work but have no misuse potential and treat co-occurring depression.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="tw"><table>
+      <thead><tr><th></th><th>Buspirone</th><th>Benzodiazepines</th></tr></thead>
+      <tbody>
+        <tr><td>Chemical</td><td>Serotonin</td><td>GABA</td></tr>
+        <tr><td>Controlled?</td><td>No</td><td>Yes</td></tr>
+        <tr><td>Dosing</td><td>Every day, scheduled</td><td>Daily or as needed</td></tr>
+        <tr><td>Onset</td><td>Several weeks</td><td>Fast</td></tr>
+        <tr><td>Side effects</td><td>Dizziness, headache, nausea</td><td>Sedation, ataxia, dependence</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="topic">
+    <h3>Antidepressants</h3>
+    <ul class="pts">
+      <li><strong>Monoamine hypothesis:</strong> depression involves too little serotonin, NE, and/or dopamine. Receptors become "up-regulated"; raising the transmitters slowly "down-regulates" them, which may explain why antidepressants take <strong>4–8 weeks</strong>.</li>
+      <li>Another theory: long-term use raises neurotrophic factors that help neurons survive and form new connections.</li>
+    </ul>
+    <div class="box plain"><span class="lbl">Simply put</span><p>Antidepressants work fast on chemistry but slow on mood. It's like repainting a room: the paint goes on day one, but it takes weeks for the whole room to dry and look different. Teach patients to keep taking it even if they feel nothing yet.</p></div>
+    <div class="tw"><table class="wide">
+      <thead><tr><th>Class</th><th>Examples</th><th>How it works</th><th>Must-know facts</th></tr></thead>
+      <tbody>
+        <tr><td>SSRIs</td><td>fluoxetine (Prozac), sertraline (Zoloft), paroxetine (Paxil), citalopram (Celexa), escitalopram (Lexapro), fluvoxamine (Luvox)</td><td>Block serotonin reuptake, so more serotonin stays in the synapse</td><td><strong>First-line</strong> for depression and anxiety. Nausea, jitteriness, sleep changes, <strong>sexual dysfunction</strong>. No EPS; little anticholinergic effect.</td></tr>
+        <tr><td>SNRIs</td><td>venlafaxine (Effexor), desvenlafaxine (Pristiq), duloxetine (Cymbalta), levomilnacipran (Fetzima); milnacipran for fibromyalgia only</td><td>Block reuptake of serotonin and NE</td><td>First-line. Like SSRIs plus <strong>sweating</strong> and dose-related <strong>↑ BP and HR</strong> (monitor). Help <strong>neuropathic pain</strong>. Venlafaxine has the worst discontinuation syndrome (flu-like, dizziness, paresthesias).</td></tr>
+        <tr><td>NaSSA</td><td>mirtazapine (Remeron)</td><td>Blocks α₂, 5-HT₂ and 5-HT₃ receptors</td><td>Sedation, ↑ appetite, weight gain. Good for insomnia and weight loss. Less GI upset and sexual dysfunction.</td></tr>
+        <tr><td>NDRI</td><td>bupropion (Wellbutrin, Zyban)</td><td>Blocks NE and dopamine reuptake</td><td>Also for smoking cessation. Insomnia, tremor, weight loss. Least sexual dysfunction. <strong>Contraindicated with seizures, eating disorders, or abrupt alcohol/benzo withdrawal</strong> (seizure risk).</td></tr>
+        <tr><td>SARIs</td><td>trazodone (Desyrel), nefazodone (Serzone)</td><td>Serotonin reuptake block plus 5-HT₂A block</td><td>Trazodone mostly used off-label for <strong>sleep</strong>; α₁ block causes orthostasis (rise slowly) and <strong>priapism</strong>. Nefazodone: rare liver failure.</td></tr>
+        <tr><td>Others</td><td>vortioxetine (Trintellix); vilazodone (Viibryd)</td><td>Multiple serotonin actions</td><td>Vortioxetine may improve SSRI sexual dysfunction. Vilazodone: take with food.</td></tr>
+        <tr><td>TCAs</td><td>amitriptyline (Elavil), imipramine (Tofranil), nortriptyline, desipramine</td><td>Block serotonin and NE reuptake</td><td>Not first-line. H₁, α₁ and M₁ block: sedation, weight gain, orthostasis, <strong>strong anticholinergic effects</strong>. Block cardiac sodium channels: <strong>overdose can be fatal</strong>. Give suicidal patients the smallest supply.</td></tr>
+        <tr><td>MAOIs</td><td>phenelzine (Nardil), isocarboxazid (Marplan), tranylcypromine (Parnate), selegiline patch (Emsam)</td><td>Inhibit MAO, so serotonin, NE and DA are not broken down</td><td><strong>Last-line.</strong> Low-tyramine diet. Many drug interactions; washout needed when starting or stopping.</td></tr>
+      </tbody>
+    </table></div>
+    <h4>SSRI differences</h4>
+    <div class="grid2">
+      <div class="mini"><p><strong>Fluoxetine:</strong> most activating (insomnia, nervousness); very long half-life, once-weekly form exists.</p></div>
+      <div class="mini"><p><strong>Sertraline:</strong> most GI upset (diarrhea).</p></div>
+      <div class="mini"><p><strong>Fluvoxamine:</strong> most sedating; give at bedtime.</p></div>
+      <div class="mini"><p><strong>Paroxetine:</strong> most anticholinergic SSRI; caution in narrow-angle glaucoma.</p></div>
+      <div class="mini"><p><strong>Citalopram:</strong> dose-related QT prolongation; watch potassium and other QT drugs.</p></div>
+    </div>
+    <h4>MAOI safety</h4>
+    <div class="box rx"><span class="lbl">Nursing priority</span><ul>
+      <li><strong>Tyramine</strong> (aged cheese, pickled or smoked fish, wine) can't be broken down, causing vasoconstriction and a <strong>hypertensive crisis</strong>.</li>
+      <li><strong>No serotonergic drugs</strong> (SSRIs, buspirone, dextromethorphan) because of <strong>serotonin syndrome</strong>.</li>
+      <li><strong>No sympathomimetics</strong> (stimulants, pseudoephedrine) because of hypertensive crisis.</li>
+      <li>Give a written list of foods and drugs to avoid.</li>
+    </ul></div>
+    <h4>Newer options</h4>
+    <div class="grid2">
+      <div class="mini"><h4>Esketamine (Spravato)</h4><ul><li>NMDA (glutamate) antagonist, nasal spray</li><li>Treatment-resistant depression (2 failed trials), with an oral antidepressant</li><li>Restricted program, given only under supervision; monitor at least 2 hours for <strong>dissociation</strong> and <strong>↑ BP</strong></li></ul></div>
+      <div class="mini"><h4>Brexanolone (Zulresso)</h4><ul><li>First drug for <strong>postpartum depression</strong>; acts at GABA<sub>A</sub></li><li>60-hour IV infusion with continuous pulse oximetry</li><li>Excessive sedation risk: accompany the mother with her baby</li></ul></div>
+    </div>
+  </div>
+
+  <div class="topic">
+    <h3>Mood stabilizers</h3>
+    <h4>Lithium: the gold standard for bipolar disorder</h4>
+    <ul class="pts">
+      <li>A salt (cation like sodium and potassium). It likely stabilizes electrical activity, reduces glutamate, and enhances serotonin. It may reduce suicide risk.</li>
+      <li><span class="term">Narrow therapeutic index:</span> the toxic level is close to the effective level. Monitor blood levels regularly.</li>
+      <li><strong>Levels go up with</strong> dehydration, declining kidney function, hydrochlorothiazide, ACE inhibitors (lisinopril), and NSAIDs (ibuprofen). <strong>Caffeine lowers</strong> levels.</li>
+    </ul>
+    <div class="tw"><table>
+      <thead><tr><th>System</th><th>Lithium adverse effects</th></tr></thead>
+      <tbody>
+        <tr><td>Fluid and electrolyte</td><td>Polyuria, polydipsia, edema</td></tr>
+        <tr><td>Nervous and musculoskeletal</td><td>Fine tremor, ataxia, sedation</td></tr>
+        <tr><td>Endocrine</td><td>Hypothyroidism, weight gain</td></tr>
+        <tr><td>Digestive</td><td>Nausea, vomiting, diarrhea</td></tr>
+        <tr><td>Skin</td><td>Acne, hair loss, psoriasis</td></tr>
+      </tbody>
+    </table></div>
+    <div class="box plain"><span class="lbl">Simply put</span><p>The body treats lithium like salt. Lose water or salt (sweating, vomiting, diuretics) and the kidneys hold on to lithium, so the level climbs toward toxic. Keep fluids and salt steady.</p></div>
+    <h4>Anticonvulsant mood stabilizers</h4>
+    <div class="tw"><table class="wide">
+      <thead><tr><th>Drug</th><th>Use</th><th>Watch for</th></tr></thead>
+      <tbody>
+        <tr><td>Valproate (Depakote)</td><td>Mania, mixed episodes, rapid cycling</td><td>Sedation, weight gain, tremor. Serious: thrombocytopenia, pancreatitis, liver failure, high ammonia. Check LFTs, CBC and levels. <strong>Pregnancy test first</strong> (spina bifida).</td></tr>
+        <tr><td>Carbamazepine (Tegretol)</td><td>Second-line for mania and mixed episodes</td><td>Dizziness, ataxia, blurred vision; hyponatremia, leukopenia; <strong>Stevens-Johnson syndrome</strong> (HLA-B*1502 test in Asian patients). Speeds up metabolism of other drugs, so oral contraceptives may fail. Check LFTs, CBC, ECG, sodium. Pregnancy test.</td></tr>
+        <tr><td>Lamotrigine (Lamictal)</td><td><strong>Maintenance and bipolar depression</strong></td><td>Slow titration; report <strong>any rash</strong> (SJS). Halve the dose if valproate is added.</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="topic">
+    <h3>Antipsychotics</h3>
+    <h4>First-generation (typical): phenothiazines, haloperidol and related drugs</h4>
+    <p>They <strong>block D₂ receptors</strong>. That helps in one pathway and causes side effects in the other three.</p>
+    <div class="tw"><table class="wide">
+      <thead><tr><th>Dopamine pathway</th><th>Effect of D₂ blockade</th></tr></thead>
+      <tbody>
+        <tr><td>Mesolimbic</td><td><strong>Therapeutic:</strong> reduces positive symptoms (hallucinations, delusions)</td></tr>
+        <tr><td>Nigrostriatal (basal ganglia)</td><td><strong>EPS:</strong> acute dystonia, akathisia, parkinsonism (days to months); tardive dyskinesia (months to years, may be permanent)</td></tr>
+        <tr><td>Mesocortical</td><td>Worsens negative and cognitive symptoms</td></tr>
+        <tr><td>Tuberoinfundibular</td><td><strong>↑ Prolactin</strong> (dopamine normally holds prolactin down): gynecomastia, galactorrhea, amenorrhea, sexual dysfunction, bone loss</td></tr>
+      </tbody>
+    </table></div>
+    <div class="box plain"><span class="lbl">Simply put</span><p>Dopamine is the brakes on prolactin. Block dopamine, the brakes come off, prolactin rises, and you get breast changes and missed periods. <strong>Akathisia</strong> is the "can't sit still" feeling of inner restlessness.</p></div>
+    <div class="box rx"><span class="lbl">Nursing priority</span><ul>
+      <li>Screen for tardive dyskinesia with the <strong>AIMS</strong> (Abnormal Involuntary Movement Scale).</li>
+      <li><strong>Neuroleptic malignant syndrome (NMS):</strong> rare but life-threatening. Muscle rigidity, altered mental status, high fever, unstable BP and HR. Treat immediately.</li>
+      <li>Other blockade: H₁ (sedation, weight gain), M₁ (anticholinergic effects that don't fade), α₁ (orthostatic hypotension).</li>
+    </ul></div>
+    <h4>Second-generation (atypical)</h4>
+    <ul class="pts">
+      <li>Block <strong>D₂ and 5-HT₂A</strong>. Blocking 5-HT₂A lets some dopamine through, so they cause <strong>less EPS and less prolactin rise</strong>. First-line; treat positive and negative symptoms. Several are also approved for depression.</li>
+      <li><strong>Metabolic syndrome risk:</strong> weight gain, high glucose, high lipids. Weight gain comes from blocking <strong>H₁ and 5-HT₂C</strong>; M₃ block on the pancreas causes insulin resistance. <strong>Clozapine and olanzapine</strong> are highest risk.</li>
+    </ul>
+    <div class="tw"><table class="wide">
+      <thead><tr><th>Drug</th><th>What sets it apart</th></tr></thead>
+      <tbody>
+        <tr><td>Clozapine (Clozaril)</td><td>For treatment-resistant schizophrenia (2 failed trials); most effective; lowers suicide risk; minimal EPS. Risks: <strong>neutropenia</strong>, seizures, severe metabolic effects, sedation, orthostasis, anticholinergic effects. Restricted program with <strong>ANC</strong> monitoring: weekly for 6 months, every 2 weeks for 6 months, then every 4 weeks. Smoking lowers levels; quitting raises them.</td></tr>
+        <tr><td>Olanzapine (Zyprexa)</td><td>High metabolic risk; sedating, anticholinergic. Long-acting injection needs 3 hours of observation (post-injection delirium).</td></tr>
+        <tr><td>Risperidone (Risperdal)</td><td>Potent D₂ blocker: more EPS (especially over 6 mg/day) and ↑ prolactin; orthostasis. Injectable every 2 or 4 weeks.</td></tr>
+        <tr><td>Paliperidone (Invega)</td><td>Active metabolite of risperidone; ↑ prolactin; tablet shells may appear in stool. Injections every 4 or 12 weeks.</td></tr>
+        <tr><td>Quetiapine (Seroquel)</td><td>Very sedating (H₁); minimal EPS and prolactin; moderate metabolic risk.</td></tr>
+        <tr><td>Ziprasidone (Geodon)</td><td><strong>QT prolongation</strong>; take with a 500-calorie meal; low metabolic risk.</td></tr>
+        <tr><td>Lurasidone (Latuda)</td><td>Take with 350 calories; low metabolic and QT risk.</td></tr>
+        <tr><td>Aripiprazole (Abilify), brexpiprazole, cariprazine</td><td>Partial D₂ agonists: keep prolactin low; rare compulsive gambling, shopping or sex. Cariprazine has high EPS and a long half-life.</td></tr>
+        <tr><td>Iloperidone, asenapine, lumateperone</td><td>Iloperidone: orthostasis (slow titration), QT. Asenapine: sublingual, nothing to eat or drink for 10 minutes. Lumateperone: sedating, take with food.</td></tr>
+        <tr><td>Pimavanserin (Nuplazid)</td><td>Serotonin-only; for Parkinson's disease psychosis.</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="topic">
+    <h3>ADHD and Alzheimer's medications</h3>
+    <div class="grid2">
+      <div class="mini"><h4>ADHD</h4><ul><li><strong>Stimulants</strong> (first-line): methylphenidate (Ritalin, Concerta), amphetamines (Adderall, Vyvanse). Block NE and DA reuptake. Controlled. Insomnia, ↑ BP and HR, agitation, growth suppression; rarely psychosis or mania. Give early in the day.</li><li><strong>Nonstimulants</strong> (less effective; for substance use, MAOI use, preference): atomoxetine (NE reuptake inhibitor; monitor BP, HR, liver); guanfacine and clonidine (α₂ agonists; titrate slowly; <strong>don't stop abruptly</strong>, rebound hypertension).</li></ul></div>
+      <div class="mini"><h4>Alzheimer's disease</h4><ul><li><strong>Cholinesterase inhibitors</strong> slow memory loss by saving ACh: donepezil (Aricept), galantamine (Razadyne), rivastigmine (Exelon). Side effects: nausea, vomiting, diarrhea, incontinence, <strong>bradycardia and syncope</strong>. Less effective as disease progresses; abrupt stop can worsen cognition.</li><li><strong>Memantine</strong> (Namenda): NMDA antagonist that blocks excess glutamate; moderate to severe disease; constipation, confusion. Often added to donepezil (Namzaric).</li><li>No current drug stops the degeneration.</li></ul></div>
+    </div>
+    <h4>Herbal supplements</h4>
+    <p>Patients may think herbals are safer, cheaper, or worth trying when prescriptions didn't help. Many lack safety and efficacy data, they aren't FDA-regulated, and products may not contain what the label says. Ask about them in a neutral, nonjudgmental way.</p>
+  </div>
+
+  <div class="box trap"><span class="lbl">Exam trap: Chapter 3</span><ul>
+    <li><strong>Gynecomastia comes from high prolactin</strong>, caused by dopamine blockade. Answers blaming "decreased prolactin" are wrong.</li>
+    <li><strong>Clozapine:</strong> your textbook monitors the ANC, not the total WBC. The action is the same: low count means hold the dose and report immediately; a sore throat or fever is reported right away.</li>
+    <li><strong>Lamotrigine does not treat acute mania.</strong> It's for maintenance and bipolar depression.</li>
+    <li><strong>Paroxetine</strong> is the most anticholinergic SSRI, but still far less than a TCA like imipramine.</li>
+    <li><strong>Phenothiazines block dopamine</strong>; a question may call it a "dopaminergic effect," but the movement side effects come from blockade.</li>
+    <li>FDA-approved anticonvulsant mood stabilizers are <strong>valproate, carbamazepine and lamotrigine</strong>. Gabapentin is not one of them.</li>
+    <li>The <strong>hypothalamus sits above the brainstem</strong>, not inside it.</li>
+    <li>SGA weight gain comes from blocking <strong>both H₁ and 5-HT₂C</strong>. H₁ is still the best single answer.</li>
+    <li>Tacrine (Cognex) is no longer sold in the U.S. If you see it as an option, it's a distractor.</li>
+  </ul></div>
+</section>
+
+<!-- ================= CHAPTER 6 ================= -->
+<section class="ch" id="ch6" style="--acc:var(--c6)">
+  <div class="chhead">
+    <span class="num">Chapter 6</span>
+    <h2>Legal Considerations</h2>
+    <p>Admission and discharge, patients' rights, restraint and seclusion, confidentiality and its exceptions, torts, and documentation. Ethical principles are omitted.</p>
+  </div>
+
+  <div class="topic">
+    <h3>Mental health law basics</h3>
+    <ul class="pts">
+      <li>Mental health laws are mostly <strong>state</strong> laws, so they vary. Learn your state's rules for clinical.</li>
+      <li>The <strong>Community Mental Health Centers Act of 1963</strong> (Kennedy) drove <strong>deinstitutionalization</strong>: a shift from state hospitals to community care that respects civil rights.</li>
+      <li>Drug courts and mental health courts focus on treatment and diversion instead of punishment.</li>
+      <li>Parity laws (2008 Wellstone-Domenici, 2010 ACA) improve insurance access.</li>
+    </ul>
+    <h4>Every admission rests on four guidelines</h4>
+    <ol class="pts">
+      <li>Admission status (voluntary or involuntary) <strong>does not</strong> decide whether the patient can make informed healthcare decisions.</li>
+      <li>A well-defined psychiatric problem exists (DSM-5).</li>
+      <li>The illness has created an immediate crisis and less restrictive options (outpatient care) are inadequate or unavailable.</li>
+      <li>Hospitalization is reasonably expected to help.</li>
+    </ol>
+  </div>
+
+  <div class="topic">
+    <h3>Admission types</h3>
+    <div class="tw"><table class="wide">
+      <thead><tr><th>Type</th><th>How it happens</th><th>Key rules</th></tr></thead>
+      <tbody>
+        <tr><td>Voluntary</td><td>Patient applies <strong>in writing</strong>, understands the need and is willing. Under 16: parent or guardian may apply. Ages 16–18: may apply on their own or through an authorized person.</td><td>Has the <strong>right to request and obtain release</strong>. The provider may reevaluate first, and that can lead to involuntary commitment if criteria are met.</td></tr>
+        <tr><td>Involuntary commitment (assisted inpatient treatment)</td><td><strong>Court-ordered</strong>, without the patient's approval. Usually started by family, a guardian or a professional; typically <strong>two physicians</strong> (or other professionals) certify the need.</td><td>Criteria: (1) mental illness, (2) <strong>danger to self or others</strong>, (3) <strong>gravely disabled</strong> (can't meet basic needs for food, clothing, shelter), (4) needs treatment and the illness prevents seeking it voluntarily. In most states, no more than <strong>72 hours</strong> without a formal hearing. Right to a lawyer and a judge.</td></tr>
+        <tr><td>Emergency (temporary) commitment</td><td>For people too confused to decide for themselves or too ill to wait. Depending on the state, started by anyone through the court or by a physician, APRN, social worker, or police; a facility psychiatrist confirms.</td><td>Purpose: observation, diagnosis, treatment. Held <strong>24 to 96 hours</strong> depending on the state, then a hearing decides discharge, voluntary admission, or involuntary commitment.</td></tr>
+      </tbody>
+    </table></div>
+    <ul class="pts">
+      <li><span class="term">Writ of habeas corpus:</span> a patient who believes they're held without cause can petition the court to be freed. The hospital must submit it to the court immediately.</li>
+      <li><span class="term">Least restrictive alternative doctrine:</span> use the least drastic action that achieves the goal. If depression can be treated safely as an outpatient, hospitalization is too restrictive.</li>
+    </ul>
+    <div class="box plain"><span class="lbl">Simply put</span><p>Voluntary means "I checked myself in, and I can ask to leave." Involuntary means "a court decided I have to stay because I'm dangerous or can't take care of myself." Having a mental illness alone, stopping meds, or hearing voices is not enough; there has to be danger or grave disability.</p></div>
+    <div class="box rx"><span class="lbl">Nursing priority</span><ul><li>When a voluntary patient asks for discharge forms, get the forms <strong>and</strong> explore the decision ("Let's talk about why you want to leave"). Don't refuse, and don't just hand them over without assessing.</li></ul></div>
+  </div>
+
+  <div class="topic">
+    <h3>Discharge types</h3>
+    <div class="tw"><table class="wide">
+      <thead><tr><th>Type</th><th>What it means</th></tr></thead>
+      <tbody>
+        <tr><td>Unconditional release</td><td>Most common. Ends the legal patient-institution relationship. Ordered by the psychiatrist, APRN, PA, or court. If a requested discharge seems unsafe, most states allow a 72-hour hold for evaluation.</td></tr>
+        <tr><td>Against medical advice (AMA)</td><td>Treatment would help but there's no compelling reason (such as danger) to hold the patient. The patient signs an AMA form, which becomes part of the permanent record.</td></tr>
+        <tr><td>Conditional release</td><td>Requires outpatient treatment for a set time; the person is checked for medication follow-through, meeting basic needs, and community reintegration. An <strong>involuntary</strong> patient on conditional release can be readmitted on the original commitment order; a voluntary patient can only be readmitted through the usual process.</td></tr>
+        <tr><td>Assisted outpatient treatment</td><td><strong>Court-ordered</strong> outpatient treatment, either at discharge or straight from the community. Often tied to benefits and housing. For people with repeated hospitalizations or arrests from nonadherence who would be dangerous if they relapsed.</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="topic">
+    <h3>Patients' rights</h3>
+    <h4>Right to treatment</h4>
+    <ul class="pts">
+      <li>Free from excessive or unnecessary medication</li>
+      <li>Privacy and dignity</li>
+      <li>The <strong>least restrictive environment</strong></li>
+      <li>Access to an attorney, clergy, and private care providers</li>
+      <li>No lobotomy, ECT, or similar treatments without fully informed consent</li>
+    </ul>
+    <h4>Right to refuse treatment</h4>
+    <ul class="pts">
+      <li>Patients can withhold, withdraw or retract consent <strong>at any time, verbally or in writing, even if involuntarily committed</strong>.</li>
+      <li><strong>Emergency exception:</strong> if the person may cause serious, imminent harm to self or others, the facility can medicate without a court hearing.</li>
+      <li><strong>Non-emergency forced medication</strong> requires a court hearing and all five criteria: serious mental illness; deteriorating function with suffering or threatening behavior; benefits outweigh harm; lacks capacity to decide; less restrictive options have failed.</li>
+      <li>Landmark cases: <em>Rogers v. Okin</em> (Massachusetts) and <em>Rennie v. Klein</em> (New Jersey) established that involuntarily hospitalized patients keep the right to refuse antipsychotics unless there's an emergency or a judicial finding of incompetence.</li>
+    </ul>
+    <div class="box rx"><span class="lbl">Nursing priority</span><ul><li>If a patient says "Stop, I don't want that" as you prepare an injection, <strong>stop</strong> and ask about their concerns (often side effects). Giving it anyway is battery. A drawn-up syringe creates no obligation to give it.</li></ul></div>
+    <h4>Informed consent</h4>
+    <ul class="pts">
+      <li>Based on the right to self-determination (<em>Canterbury v. Spence</em>, 1972). The <strong>prescriber</strong> is legally responsible for obtaining it; the nurse educates and clarifies.</li>
+      <li>Required for surgery, ECT, and experimental drugs or procedures. Patients may refuse research and can voice grievances without reprisal.</li>
+      <li>The patient must be told: the condition; the nature and purpose of the treatment; its risks and benefits; alternatives; the probability of success; and the risks of not consenting.</li>
+      <li><span class="term">Implied consent:</span> the patient shows willingness, such as taking the pill you offer. The more risky or intrusive the procedure, the more you need explicit informed consent. If the patient doesn't understand, <strong>notify the prescriber</strong>.</li>
+    </ul>
+    <div class="tw"><table>
+      <thead><tr><th></th><th>Capacity</th><th>Competency</th></tr></thead>
+      <tbody>
+        <tr><td>What it is</td><td>Ability to make an informed decision at this moment</td><td>A <strong>legal</strong> determination of mental soundness to make decisions</td></tr>
+        <tr><td>Who decides</td><td>Clinicians give opinions</td><td>A court, through a formal proceeding</td></tr>
+        <tr><td>Can it change?</td><td>Yes, it can come and go</td><td>Presumed competent until declared incompetent</td></tr>
+      </tbody>
+    </table></div>
+    <ul class="pts">
+      <li>If declared incompetent, a <strong>guardian</strong> consents or refuses for the patient, always considering the patient's wishes. Usual order: spouse or partner, adult children or grandchildren, parents, adult siblings, adult nieces and nephews; otherwise a court-trained volunteer.</li>
+      <li><span class="term">Psychiatric advance directive:</span> written while well; lists preferred providers, a decision-maker, medication preferences, consent or refusal of ECT and admission, preferred facilities, and who should not visit. When the patient becomes ill, it <strong>applies and must be respected</strong> in treatment planning.</li>
+    </ul>
+  </div>
+
+  <div class="topic">
+    <h3>Restraint and seclusion</h3>
+    <ul class="pts">
+      <li>Always the <strong>least restrictive means for the shortest time</strong>. In an emergency, less restrictive measures don't have to be tried first if staff judge they would be ineffective.</li>
+      <li>First rule out physical causes of agitation: drug interactions or side effects, fever, low blood sugar, hypoxia, electrolyte imbalance.</li>
+      <li><strong>Try first:</strong> verbal intervention (ask for cooperation), reduce stimulation, active listening, diversion, PRN medication.</li>
+    </ul>
+    <div class="tw"><table class="wide">
+      <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+      <tbody>
+        <tr><td>Physical or mechanical restraint</td><td>Any device or material that reduces movement of arms, legs, body or head. <strong>Side rails count</strong> if used to keep the patient in bed.</td></tr>
+        <tr><td>Holding</td><td>Restricting movement by holding the person ("therapeutic hold"). Dangerous; has caused deaths.</td></tr>
+        <tr><td>Chemical restraint</td><td>Medication, or a dose, not used for the patient's condition. Less restrictive physically but affects awareness.</td></tr>
+        <tr><td>Seclusion</td><td>Confining a patient alone and preventing them from leaving; only for violent or self-destructive behavior that threatens safety. <strong>Threatening a patient if they leave the room counts as seclusion even if the door is unlocked.</strong></td></tr>
+        <tr><td>Timeout</td><td>Patient chooses or accepts time alone and <strong>can leave any time</strong>. Not seclusion.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="tw"><table>
+      <thead><tr><th>Age</th><th class="num">Maximum per order</th></tr></thead>
+      <tbody>
+        <tr><td>Adults 18 and older</td><td class="num">4 hours</td></tr>
+        <tr><td>Ages 9–17</td><td class="num">2 hours</td></tr>
+        <tr><td>Under 9</td><td class="num">1 hour</td></tr>
+      </tbody>
+    </table></div>
+    <div class="box rx"><span class="lbl">Nursing priority</span><ul>
+      <li>In an emergency the nurse may restrain or seclude first and get an order <strong>as soon as possible</strong> after.</li>
+      <li>Orders are <strong>never PRN or standing</strong>. They can be renewed up to 24 hours total; then a physician or advanced practice provider must see the patient in person.</li>
+      <li>Release as soon as behavior is calmer and safer. Reapplying requires a <strong>new order</strong>.</li>
+      <li>Continuous observation; assess every 15–30 minutes for food, fluids, toileting, safety and comfort; document each check.</li>
+      <li>Document the specific behaviors, what was tried first and how it worked, the times placed in and released, and who ordered it. Protect the restrained patient from others (strangulation, assault).</li>
+    </ul></div>
+  </div>
+
+  <div class="topic">
+    <h3>Confidentiality</h3>
+    <ul class="pts">
+      <li>Confidentiality prohibits sharing privileged information without the patient's consent. <strong>Only the patient can waive it.</strong></li>
+      <li>Never discuss patients in elevators or cafeterias, even without names. School paperwork never carries full identifiers.</li>
+      <li><span class="term">HIPAA (1996)</span> and its 2003 Privacy Rule: share only with those who need it to carry out the treatment plan. <strong>Psychotherapy notes</strong> get extra protection.</li>
+      <li>Releasing information to an employer, another facility or any third party requires the patient's <strong>signed consent</strong> stating what may be released.</li>
+      <li><strong>Social media</strong> is never confidential and can be subpoenaed. "Disguised" posts have been traced back to patients.</li>
+      <li>Confidentiality continues <strong>after death</strong>.</li>
+      <li><strong>Privileged communication</strong> (protection from testifying) covers APRNs in 12 states and psych RNs in 9. Elsewhere, nurses must answer a court's questions.</li>
+      <li>Sharing information with the <strong>treatment team</strong> is not a breach. Tell patients up front who will see what they say.</li>
+    </ul>
+    <h4>Exceptions: when you must share</h4>
+    <div class="tw"><table class="wide">
+      <thead><tr><th>Exception</th><th>Rule</th></tr></thead>
+      <tbody>
+        <tr><td>Duty to warn and protect</td><td><em>Tarasoff v. Regents of the University of California</em> (1974): a therapist must warn a patient's identifiable potential victim. Duty to protect: assess the danger, identify who is threatened, act to protect them (warn the victim, family or police). <strong>Staff RNs report threats to the treatment team; APRNs in private practice warn the victim themselves.</strong></td></tr>
+        <tr><td>Child abuse</td><td>All states require reporting. <strong>Conflict:</strong> federal law protects the records of substance use treatment patients. Report is still possible with a court order, without identifying the abuser as a treatment patient, or anonymously (some states don't allow anonymous reports).</td></tr>
+        <tr><td>Older adult and disabled adult abuse</td><td>Most states require reporting; failure can be a misdemeanor. Good-faith reporters are protected from civil liability.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="box plain"><span class="lbl">Simply put</span><p>What a patient tells you stays private, with one big exception: safety. If they threaten to hurt someone or a child is being abused, you have to tell. That's why you never promise to keep a secret: "I can't promise that. It might be important to share with the team."</p></div>
+    <h4>Failure to protect</h4>
+    <ul class="pts">
+      <li>A suicidal patient left alone with the means to self-harm (an open sixth-floor window) is the nurse's liability.</li>
+      <li>Check identification before every medication; most psych patients are walking around.</li>
+      <li>Protect patients from other patients, from sexual misconduct, and from threatening family members; document domestic violence objectively.</li>
+    </ul>
+  </div>
+
+  <div class="topic">
+    <h3>Torts: civil wrongs</h3>
+    <p>A <span class="term">tort</span> is any wrongful act, intentional or not, that injures a person, property or reputation. The injured person (plaintiff) sues the responsible person (defendant) for money.</p>
+    <div class="tw"><table class="wide">
+      <thead><tr><th>Tort</th><th>Definition</th><th>Psych example</th></tr></thead>
+      <tbody>
+        <tr><td colspan="3" style="font-weight:700;background:color-mix(in srgb,var(--acc) 8%,var(--card))">Intentional</td></tr>
+        <tr><td>Assault</td><td>An intentional <strong>threat</strong> that makes someone fear harm</td><td>"You'll never get out of here"; pretending to hit a patient</td></tr>
+        <tr><td>Battery</td><td>Actual harmful or offensive <strong>touching</strong> without consent</td><td>Giving a medication the patient refused; shoving a patient to hurry</td></tr>
+        <tr><td>False imprisonment</td><td>Confining a competent person against their will</td><td>Unnecessary seclusion or restraint; PRN sedation for staff convenience (chemical restraint); holding a voluntary patient without cause</td></tr>
+        <tr><td>Invasion of privacy</td><td>Breaking confidences, photos without permission</td><td>Suing former patients with diagnoses in public court records</td></tr>
+        <tr><td>Defamation</td><td>False statement that harms reputation. <strong>Slander</strong> = spoken; <strong>libel</strong> = written</td><td>Lunchroom talk; a Facebook post about a patient</td></tr>
+        <tr><td colspan="3" style="font-weight:700;background:color-mix(in srgb,var(--acc) 8%,var(--card))">Unintentional</td></tr>
+        <tr><td>Negligence</td><td>Failure to use ordinary care when there's a duty to</td><td>Not questioning an unsafe order; not protecting from self-harm; not teaching</td></tr>
+        <tr><td>Malpractice</td><td>Professional negligence</td><td>Finding orthostatic hypotension and never following up with teaching</td></tr>
+      </tbody>
+    </table></div>
+    <h4>Five elements needed to prove negligence</h4>
+    <div class="flow">
+      <div class="st"><b>Duty</b><span>You accepted the job, so you owe care. APRNs are held to a higher standard.</span></div>
+      <div class="st"><b>Breach of duty</b><span>Care fell below what a reasonable nurse would do (commission or omission).</span></div>
+      <div class="st"><b>Cause in fact</b><span>"But for" the nurse's action, would the injury have happened?</span></div>
+      <div class="st"><b>Proximate cause</b><span>Was the harm <strong>foreseeable</strong>?</span></div>
+      <div class="st"><b>Damages</b><span>Actual losses, pain and suffering, consequential harm.</span></div>
+    </div>
+    <div class="box plain"><span class="lbl">Simply put</span><p>Assault is the threat; battery is the touch. False imprisonment doesn't need locks or force: scaring someone into staying put is enough. Negligence is a mistake that hurt someone; malpractice is that mistake made by a professional doing their job.</p></div>
+  </div>
+
+  <div class="topic">
+    <h3>Standards of care and reporting</h3>
+    <div class="tw"><table class="wide">
+      <thead><tr><th>Source</th><th>What it sets</th></tr></thead>
+      <tbody>
+        <tr><td>State board of nursing and the Nurse Practice Act</td><td>Licensure and its revocation; scope of practice; titles; consequences for violations. Purpose: protect the public.</td></tr>
+        <tr><td>Professional associations</td><td>ANA <em>Scope and Standards</em> (16 standards); APNA; the joint <em>Psychiatric-Mental Health Nursing: Scope and Standards of Practice</em>.</td></tr>
+        <tr><td>Institutional policies</td><td>Used in court to show whether care met criteria. If a policy is <strong>below</strong> the professional or legal standard (e.g., seclusion up to 6 hours when state law says 4), follow the higher standard and work to change the policy.</td></tr>
+        <tr><td>Custom</td><td>Usual practice can be used as evidence, but a substandard custom won't protect you.</td></tr>
+      </tbody>
+    </table></div>
+    <ul class="pts">
+      <li>The nurse's duty of care is owed to the <strong>patient</strong>, even though the nurse is accountable to the provider, employer and profession.</li>
+      <li>Wrong or unusual order (e.g., an adult dose for an older adult): <strong>hold the medication and contact the prescriber</strong>.</li>
+      <li><strong>Impaired or unsafe colleague:</strong> in most states you have a legal duty to intervene and report. If the danger is immediate (a nurse slurring words on shift), tell a <strong>supervisor right away</strong>; if the supervisor doesn't act, you must act to protect the patient. Document evidence clearly before accusing anyone. Where to report beyond that varies by state.</li>
+      <li>Duty to intervene and report: impaired care, boundary violations with patients. Not reportable: a peer who struggles to write outcomes (teach), telephone orders (acceptable), a patient refusing medication (their right).</li>
+    </ul>
+  </div>
+
+  <div class="topic">
+    <h3>Documentation</h3>
+    <ul class="pts">
+      <li>The record communicates between providers, supports continuity, quality improvement, risk management, utilization review and reimbursement, and serves as <strong>legal evidence</strong> (courts presume it true and untainted by memory).</li>
+      <li>Courts assume that <strong>care not documented did not happen</strong>.</li>
+      <li>Chart <strong>objective, specific</strong> observations and the patient's exact words ("Wore four layers of clothing. States, 'I need protection from evil bacteria'"), not vague labels ("appeared to hallucinate," "calmer").</li>
+      <li>Always document a patient's intent to harm self or others and what was done to protect them.</li>
+      <li>You're responsible for every entry under your password. Never share it, and never chart for someone else. If a colleague asks you to, refer it to the charge nurse.</li>
+      <li>Patients may see their records by facility protocol, but the record belongs to the institution.</li>
+    </ul>
+    <h4>Violence against nurses</h4>
+    <p>Nurses' rate of workplace violence is about three times that of other jobs; 21% of nurses and students in one survey were physically assaulted in a year and over half verbally abused. Nurses have the same right as anyone not to be harmed. Newer laws increase penalties for striking healthcare workers. Prosecutors usually don't charge confused, delirious or psychotic patients, but violent patients, visitors and family who know what they're doing can be charged.</p>
+  </div>
+
+  <div class="box trap"><span class="lbl">Exam trap: Chapter 6</span><ul>
+    <li>Involuntary patients <strong>still have the right to refuse</strong> medication outside an emergency.</li>
+    <li>A <strong>verbal</strong> refusal counts. Giving the med anyway is <strong>battery</strong>, not negligence or malpractice (those require unintentional harm).</li>
+    <li>Threatening seclusion to keep a patient in their room is false imprisonment, even with the door open.</li>
+    <li>Mental illness, noncompliance, or hallucinations alone don't justify involuntary admission. Look for <strong>danger to self or others</strong> or <strong>grave disability</strong>.</li>
+    <li>Notifying a threatened victim is the <strong>duty to warn</strong>, not a confidentiality violation.</li>
+    <li>Seclusion for an adult can't be planned for 8 hours; orders are limited to 4 hours at a time.</li>
+  </ul></div>
+</section>
+
+<!-- ================= CHAPTER 8 ================= -->
+<section class="ch" id="ch8" style="--acc:var(--c8)">
+  <div class="chhead">
+    <span class="num">Chapter 8</span>
+    <h2>Therapeutic Relationships</h2>
+    <p>How a therapeutic relationship differs from a friendship, how to keep boundaries, Peplau's phases, and the nurse qualities that help patients grow.</p>
+  </div>
+
+  <div class="topic">
+    <h3>Foundations</h3>
+    <ul class="pts">
+      <li>The nurse-patient relationship is the <strong>basis of all psychiatric nursing</strong> approaches.</li>
+      <li><span class="term">Therapeutic use of self:</span> using your own personality and talents to promote healing. A collaborative, respectful alliance is one of the best predictors of good outcomes.</li>
+      <li><span class="term">Psychotherapy</span> is theory-based talk therapy done by APRNs, psychiatrists and psychologists. It changes brain chemistry much like medication; the best treatment for most disorders combines both.</li>
+      <li><span class="term">Counseling</span> is what RNs do: a supportive face-to-face process to problem-solve, resolve conflicts, and feel supported.</li>
+      <li><strong>Goals:</strong> help the patient express distressing thoughts and feelings, problem-solve for daily living, examine self-defeating thoughts and try alternatives, promote self-care and independence, educate about the disorder and medications, and promote recovery.</li>
+    </ul>
+    <div class="tw"><table class="wide">
+      <thead><tr><th></th><th>Personal (social) relationship</th><th>Therapeutic relationship</th></tr></thead>
+      <tbody>
+        <tr><td>Purpose</td><td>Friendship, socializing, enjoyment, getting a task done</td><td>The patient's growth and goals</td></tr>
+        <tr><td>Whose needs</td><td><strong>Both</strong> people's (mutual)</td><td><strong>The patient's only</strong>; the nurse meets their own needs outside the relationship</td></tr>
+        <tr><td>Communication</td><td>Advice-giving, shared stories, often superficial</td><td>Nurse uses communication skills to explore the patient's thoughts, feelings and experiences</td></tr>
+        <tr><td>Solutions</td><td>Often offered by the friend</td><td>Discussed together, <strong>carried out by the patient</strong></td></tr>
+        <tr><td>Evaluation</td><td>Little</td><td>Progress is evaluated regularly</td></tr>
+      </tbody>
+    </table></div>
+    <ul class="pts">
+      <li>A small amount of self-disclosure is fine and can build connection (briefly answering "what's nursing school like?"), then refocus on the patient.</li>
+      <li>A <span class="term">therapeutic encounter</span> is a short, informal interaction that can still help a lot when the nurse shows genuine concern, positive regard and empathy.</li>
+      <li><span class="term">Clinical supervision</span> is a mentoring relationship with feedback and evaluation; students get it from faculty and staff.</li>
+    </ul>
+  </div>
+
+  <div class="topic">
+    <h3>Boundaries</h3>
+    <ul class="pts">
+      <li>Boundaries are the "edge" of professional behavior and exist to <strong>protect patients</strong>. The <strong>nurse</strong>, never the patient, is responsible for keeping them.</li>
+      <li>There is a power differential even for students: you've read the chart, you're there to help, and you aren't the patient.</li>
+    </ul>
+    <div class="tw" style="border:0;background:transparent">
+      <div class="bline" role="img" aria-label="Continuum of professional involvement">
+        <div style="background:color-mix(in srgb,var(--c6) 22%,var(--card))"><b>Under-involved</b><span>Disinterest, neglect, abandonment</span></div>
+        <div style="background:color-mix(in srgb,var(--c10) 26%,var(--card))"><b>Therapeutic zone</b><span>Helpful, focused on the patient</span></div>
+        <div style="background:color-mix(in srgb,var(--c3) 18%,var(--card))"><b>Boundary crossing</b><span>Least serious over-involvement; often fixable with self-awareness and supervision</span></div>
+        <div style="background:color-mix(in srgb,var(--c3) 32%,var(--card))"><b>Boundary violation</b><span>Nurse's needs met instead of the patient's; harmful</span></div>
+        <div style="background:color-mix(in srgb,var(--c6) 36%,var(--card))"><b>Sexual misconduct</b><span>Most extreme violation; loss of license</span></div>
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="mini"><h4>Signs of boundary crossing</h4><ul><li>Spending much more time with one patient than others</li><li>Doing tasks the patient can do alone</li><li>Sharing too much personal information</li><li>Thinking about the patient outside work</li><li>Getting defensive when others comment on the special attention ("I'm the only one who understands this patient")</li><li>Accepting personal comments and questions</li></ul></div>
+      <div class="mini"><h4>Boundary violations</h4><ul><li>Accepting cash or expensive gifts</li><li>Planning a business together</li><li>Excessive touching</li><li>Trying to influence political or religious beliefs</li><li>Discussing a patient on social media</li><li>Social contact after discharge, such as inviting a patient to a staff picnic or to coffee</li></ul></div>
+    </div>
+  </div>
+
+  <div class="topic">
+    <h3>Transference and countertransference</h3>
+    <p>Blurred roles are often caused by <strong>unrecognized</strong> transference or countertransference.</p>
+    <div class="tw"><table class="wide">
+      <thead><tr><th></th><th>Transference</th><th>Countertransference</th></tr></thead>
+      <tbody>
+        <tr><td>Direction</td><td><strong>Patient → nurse</strong></td><td><strong>Nurse → patient</strong></td></tr>
+        <tr><td>What happens</td><td>Patient unconsciously displaces feelings about someone from their past onto the nurse</td><td>Nurse unconsciously displaces feelings about someone from their own past onto the patient</td></tr>
+        <tr><td>Clue</td><td>"You remind me of my mother." Stronger toward authority figures. Can be positive (motivated, open) or negative (anger, hostility, jealousy, dependency).</td><td>Strong positive or negative feelings about a patient; over-identification; power struggles, competition, arguing; feeling unusually happy or angry about the patient's progress</td></tr>
+        <tr><td>Response</td><td>Explore it: "Let's talk about a person who was cold toward you."</td><td>Recognize it and seek <strong>supervision</strong>. Don't suppress it, don't dump it on the patient, don't just ask to switch patients.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="box plain"><span class="lbl">Simply put</span><p>Transference: the patient sees their mom when they look at you. Countertransference: you see your dad (or your grandmother, or your ex) when you look at the patient. A nurse who grew up with alcoholic parents and feels irritated by a patient with alcoholism is showing countertransference. Not every reaction is transference: if you break a promise, the patient's anger is realistic.</p></div>
+    <h4>Values and beliefs</h4>
+    <p>Our values reflect our own culture and choices and aren't right for everyone. Religion, politics, gender roles, drugs, sex and money can all cause conflict with patients. Self-awareness of your own values helps you accept differences. When a patient and nurse disagree on something like a right to die, the best analysis is that <strong>different values</strong> are being expressed, not that one of them is right.</p>
+  </div>
+
+  <div class="topic">
+    <h3>Peplau's phases of the nurse-patient relationship</h3>
+    <p>Hildegard Peplau (1952) described overlapping phases; a preorientation phase is added before them.</p>
+    <div class="phases">
+      <div class="ph"><h4>Preorientation</h4><ul><li>Prepare before meeting: chart, diagnosis, meds, labs, staff tips</li><li>Recognize your own fears and feelings</li><li>Learn unit safety rules (e.g., don't go into rooms alone)</li></ul></div>
+      <div class="ph"><h4>Orientation</h4><ul><li>Introductions: your name, role, purpose; ask what the patient wants to be called</li><li>Build <strong>rapport and trust</strong></li><li>Set the <strong>contract</strong>: place, time, date, duration</li><li>Explain <strong>confidentiality</strong> (who will know)</li><li>Bring up <strong>termination</strong> for the first time</li></ul></div>
+      <div class="ph"><h4>Working</h4><ul><li>Gather more data</li><li>Identify problem-solving skills and self-esteem</li><li>Teach about the disorder and meds; symptom management</li><li>Patient explores problems and practices new coping</li><li>Evaluate progress</li></ul></div>
+      <div class="ph"><h4>Termination</h4><ul><li>Summarize goals achieved</li><li>Review teaching; give handouts</li><li>Discuss using new coping skills and plans for the future</li><li>Review the relationship; share feelings and memories</li><li>Old feelings of loss or abandonment may resurface</li></ul></div>
+    </div>
+    <div class="grid2">
+      <div class="mini"><h4>Sounds like orientation</h4><ul><li>"I don't have any problems." (denial)</li><li>"It's so hard for me to talk about this."</li><li>"I don't see how talking to you will help."</li></ul></div>
+      <div class="mini"><h4>Sounds like working</h4><ul><li>"I want to find a way to deal with my anger without becoming violent."</li><li>The patient names a problem and wants to change a behavior.</li></ul></div>
+    </div>
+    <ul class="pts">
+      <li>A <span class="term">contract</span> shows the nurse works <strong>with</strong> the patient, not <strong>for</strong> them: both share responsibility.</li>
+      <li>Successful termination = summarizing and evaluating the changes together. Avoiding the topic, giving a phone number, or planning to meet later are all wrong.</li>
+      <li>When a new nurse takes over after a long relationship ends, they start again at <strong>orientation</strong>.</li>
+    </ul>
+    <div class="box plain"><span class="lbl">Simply put</span><p>Getting to know each other (orientation), doing the real work (working), saying goodbye well (termination). The goodbye is planned from the very first meeting so it never comes as a surprise.</p></div>
+  </div>
+
+  <div class="topic">
+    <h3>Tough moments and what to say</h3>
+    <div class="tw"><table class="wide">
+      <thead><tr><th>Patient does this</th><th>Helpful response</th></tr></thead>
+      <tbody>
+        <tr><td>Threatens suicide</td><td>Assess for a plan and its lethality. "This is serious. I don't want any harm to come to you. I need to share this with the staff."</td></tr>
+        <tr><td>Asks you to keep a secret</td><td>"I can't make that promise. It might be important to share with other staff." The patient then decides what to tell you.</td></tr>
+        <tr><td>Asks a personal question</td><td>You may answer briefly, then refocus: "Yes, I have two kids. But this time is for you."</td></tr>
+        <tr><td>Makes sexual advances</td><td>Set clear limits: "We're here to focus on your concerns." If it continues, leave and say when you'll return. Reassignment if needed.</td></tr>
+        <tr><td>Cries</td><td><strong>Stay</strong>, let them know it's all right to cry, offer tissues: "You're still upset about your brother's death."</td></tr>
+        <tr><td>Leaves before the session ends</td><td>Don't take it personally; some can't tolerate long periods. Check back later.</td></tr>
+        <tr><td>Doesn't want to talk</td><td>"It's all right. I'd like to spend time with you. We don't have to talk." Short, frequent visits (e.g., 5 minutes) to show you're reliable.</td></tr>
+        <tr><td>Gives you a gift</td><td>Explore the meaning. <strong>Money: always refuse. Expensive: refuse.</strong> Inexpensive at the <strong>end</strong> of a relationship (a handmade card at discharge): accept graciously. Inexpensive at the <strong>beginning</strong>: refuse and explore ("Are you worried some part of your care will be overlooked?").</td></tr>
+        <tr><td>Another patient interrupts</td><td>The contracted time belongs to the first patient: "I'm with Mr. Rob for 5 more minutes; then I can talk with you."</td></tr>
+        <tr><td>Asks you to do something they can do</td><td>Encourage independence: "Your doctor will be on the unit this afternoon; that's a good thing to discuss with her." Doing it for them builds helplessness.</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="topic">
+    <h3>What helps patients grow: genuineness, empathy, positive regard</h3>
+    <div class="grid2">
+      <div class="mini"><h4>Genuineness</h4><p>Being open, honest and authentic; what's on the outside matches the inside (<strong>congruent</strong> communication). Use communication tools naturally, not like a parrot.</p></div>
+      <div class="mini"><h4>Empathy</h4><p>Trying to understand the world from the <strong>patient's</strong> point of view and communicating that. An attitude, not a technique; possibly the most important quality.</p></div>
+      <div class="mini"><h4>Positive regard</h4><p>Seeing the person as worthy of care, with strengths and potential. Shown through actions: <strong>attending</strong> (being fully present, such as staying with a crying patient), <strong>suspending value judgments</strong>, and <strong>helping patients develop their own resources</strong>.</p></div>
+    </div>
+    <div class="tw"><table class="wide">
+      <thead><tr><th></th><th>Sympathy</th><th>Empathy</th></tr></thead>
+      <tbody>
+        <tr><td>Meaning</td><td>Feeling pity or sorrow <strong>for</strong> someone</td><td>Understanding feelings <strong>from their side</strong></td></tr>
+        <tr><td>Focus</td><td>The nurse's own feelings</td><td>The patient's feelings</td></tr>
+        <tr><td>Sounds like</td><td>"It makes me so sad to see you like this."</td><td>"You must have been very upset when you tried to hurt yourself." / "This must be devastating for you. What are you thinking and feeling?"</td></tr>
+      </tbody>
+    </table></div>
+    <ul class="pts">
+      <li><strong>Nonjudgmental responses</strong> ask about feelings and impact instead of labeling: "How do you feel about that?" or "How do these activities affect your life?" Not "That's not a good way to behave."</li>
+      <li>To reduce judgment: recognize it, identify where you learned it, and build another way to see the patient's behavior.</li>
+      <li>Attending uses posture, eye contact and body language, all culturally influenced. Introductions, interested facial expressions and an open posture show interest; sitting behind a desk creates a barrier.</li>
+      <li>Consistency builds security: the same nurse daily, a posted schedule, set session times.</li>
+    </ul>
+  </div>
+
+  <div class="box trap"><span class="lbl">Exam trap: Chapter 8</span><ul>
+    <li>Not every gift is refused. A handmade card at discharge is accepted.</li>
+    <li>"It makes me sad…" is <strong>sympathy</strong>; it centers the nurse.</li>
+    <li>Termination is first discussed in <strong>orientation</strong>, not at the end.</li>
+    <li>Countertransference is handled through <strong>supervision</strong>, not by suppressing feelings, confronting the patient, or asking for reassignment.</li>
+    <li>"You remind me of my mother" said by the <strong>patient</strong> is transference, not countertransference.</li>
+  </ul></div>
+</section>
+
+<!-- ================= CHAPTER 10 ================= -->
+<section class="ch" id="ch10" style="--acc:var(--c10)">
+  <div class="chhead">
+    <span class="num">Chapter 10</span>
+    <h2>Stress Responses and Stress Management</h2>
+    <p>How the body reacts to stress in the short and long term, what softens or worsens it, how to measure it, and which techniques lower it.</p>
+  </div>
+
+  <div class="topic">
+    <h3>Stressors and early theories</h3>
+    <ul class="pts">
+      <li><span class="term">Stressors:</span> any physical or psychological stimulus that provokes a stress response. They can be acute or chronic, external or internal.</li>
+      <li><strong>Physiological stressors:</strong> heat, cold, trauma, infection, hemorrhage, hunger, pain. <strong>Psychological stressors:</strong> divorce, job loss, debt, death, retirement, and even positive changes like marriage, a new baby, or unexpected success.</li>
+      <li>The body reacts the same way whether a stressor is <strong>real or perceived</strong>, negative or positive.</li>
+      <li><strong>Walter Cannon: fight or flight.</strong> Sympathetic response: ↑ BP, HR, respirations and cardiac output. Criticized as too simple; some animals and people <strong>freeze</strong> instead.</li>
+    </ul>
+    <h4>Selye's general adaptation syndrome (GAS)</h4>
+    <p>Hans Selye defined stress as "a nonspecific response of the body to any demand for change" and added the HPA axis to Cannon's model.</p>
+    <div class="tw" style="padding:12px">
+      <svg class="gas" viewBox="0 0 640 250" role="img" aria-label="Resistance to stress over time across the alarm, resistance and exhaustion stages">
+        <rect class="zone" x="60" y="20" width="150" height="190"/>
+        <rect class="zone" x="410" y="20" width="200" height="190"/>
+        <line class="ax" x1="60" y1="210" x2="610" y2="210"/>
+        <line class="ax" x1="60" y1="20" x2="60" y2="210"/>
+        <line class="norm" x1="60" y1="130" x2="610" y2="130"/>
+        <path class="curve" d="M60 130 C90 130 100 150 120 158 C140 166 160 90 210 70 C260 55 350 55 410 62 C470 72 500 150 540 185 C565 200 590 204 610 205"/>
+        <text x="135" y="40" text-anchor="middle">Alarm</text>
+        <text x="310" y="40" text-anchor="middle">Resistance</text>
+        <text x="510" y="40" text-anchor="middle">Exhaustion</text>
+        <text class="mut" x="605" y="124" text-anchor="end">normal resistance</text>
+        <text class="mut" x="335" y="232" text-anchor="middle">time</text>
+        <text class="mut" x="48" y="118" text-anchor="middle" transform="rotate(-90 48 118)">resistance to stress</text>
+      </svg>
+    </div>
+    <div class="tw"><table class="wide">
+      <thead><tr><th>Stage</th><th>What happens</th></tr></thead>
+      <tbody>
+        <tr><td>1. Alarm</td><td>Brief, intense fight-or-flight. Eyes or ears send a signal to the <strong>amygdala</strong>; if it reads danger, it alerts the <strong>hypothalamus</strong>, which responds two ways:<br><strong>Sympathetic:</strong> adrenals release <strong>epinephrine</strong>: faster HR, ↑ BP, rapid deep breathing, dilated pupils, sharper senses, glucose released, blood shunted from gut (dry mouth) and kidneys.<br><strong>HPA axis</strong> ("the gas pedal"): CRH → ACTH → <strong>cortisol</strong> (↑ glucose and muscle endurance; digestion slows; immunity and memory affected).<br>If the threat passes, the <strong>parasympathetic</strong> system puts on the brakes (rest and digest).</td></tr>
+        <tr><td>2. Resistance (adaptation)</td><td>Sustained, optimal resistance; stressors are usually overcome, with recovery and repair. Resources are being used up.</td></tr>
+        <tr><td>3. Exhaustion</td><td>Resistance fails, resources are depleted, stress becomes chronic. Long-term cortisol exposure brings anxiety disorders, major depression, sleep disorders, digestive problems, heart disease and weight gain.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="box plain"><span class="lbl">Simply put</span><p>Alarm is slamming the gas when a car swerves at you. Resistance is driving hard for a long stretch; you can do it, but the tank is draining. Exhaustion is running on empty; the engine starts breaking down, and that's when stress-related illness shows up.</p></div>
+    <div class="tw"><table>
+      <thead><tr><th></th><th>Distress</th><th>Eustress</th></tr></thead>
+      <tbody>
+        <tr><td>Kind</td><td>Negative, draining</td><td>Positive, motivating ("eu" = good)</td></tr>
+        <tr><td>Leads to</td><td>Anxiety, depression, confusion, helplessness, hopelessness, fatigue</td><td>Happiness, hope, purposeful action</td></tr>
+        <tr><td>Examples</td><td>Death in the family, financial overload, job insecurity, losing a pet</td><td>A much-needed vacation, a favorite sport, a new baby, a new job challenge</td></tr>
+      </tbody>
+    </table></div>
+    <ul class="pts">
+      <li><strong>Critique of GAS:</strong> different stressors may cause different responses, and degree matters. GAS best describes men; women often <strong>"tend and befriend"</strong> (protect the young, lean on social networks). Women are more vulnerable to stress disorders, possibly because they're more sensitive to CRH.</li>
+    </ul>
+  </div>
+
+  <div class="topic">
+    <h3>Stress and the immune system</h3>
+    <ul class="pts">
+      <li>Rats given saccharin with an immune-suppressing drug later suppressed their immunity from the saccharin alone: proof of a <strong>brain–immune connection</strong> (psychoneuroimmunology).</li>
+      <li>Short-term stress can prime immunity (cytokines released), but cytokines trigger corticosteroids that then <strong>inhibit</strong> the immune system. Prolonged stress suppresses immunity and lowers resistance to infection; wounds heal more slowly.</li>
+      <li>People with major depression have higher inflammatory cytokines; levels normalize with recovery. Interleukin chemotherapy can cause depression.</li>
+    </ul>
+    <div class="tw"><table class="wide">
+      <thead><tr><th>Acute stress can cause</th><th>Prolonged (chronic) stress can cause</th></tr></thead>
+      <tbody>
+        <tr><td>Uneasiness and concern</td><td>Anxiety and panic attacks</td></tr>
+        <tr><td>Sadness</td><td>Major depressive disorder</td></tr>
+        <tr><td>Loss of appetite</td><td>Anorexia or overeating</td></tr>
+        <tr><td>Suppression of the immune system</td><td>Lowered resistance to infection; opportunistic infections</td></tr>
+        <tr><td>Increased metabolism and use of body fats</td><td>Insulin-resistant diabetes, hypertension</td></tr>
+        <tr><td>Infertility</td><td>Amenorrhea, loss of sex drive, impotence, anovulation</td></tr>
+        <tr><td>Increased energy use</td><td>Fatigue, irritability, decreased memory and learning</td></tr>
+        <tr><td>Increased cardiovascular tone</td><td>Heart attack, angina, sudden cardiac death, blood clots, stroke</td></tr>
+        <tr><td>Increased cardiopulmonary tone</td><td>Respiratory problems</td></tr>
+      </tbody>
+    </table></div>
+    <p>Other body effects of stress: headache, back aches, insomnia, rapid breathing, digestive problems, appetite changes, ↑ blood glucose, low libido, erectile dysfunction, irregular periods.</p>
+    <h4>Adverse childhood experiences (4 or more ACEs)</h4>
+    <div class="tw"><table>
+      <thead><tr><th>Increased risk</th><th>Adult outcomes</th></tr></thead>
+      <tbody>
+        <tr><td class="num">4- to 12-fold</td><td>Alcohol use, substance use, major depression, suicide attempts</td></tr>
+        <tr><td class="num">2- to 4-fold</td><td>Smoking, poor self-rated health, 50+ sexual partners, STDs</td></tr>
+        <tr><td class="num">1.4- to 1.6-fold</td><td>Physical inactivity, obesity</td></tr>
+        <tr><td>Graded increase</td><td>Heart disease, cancer, chronic lung disease, fractures, liver disease</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="topic">
+    <h3>Mediators of the stress response</h3>
+    <p>Mediators are what buffer or worsen the effect of a stressor for a particular person.</p>
+    <div class="tw"><table class="wide">
+      <thead><tr><th>Mediator</th><th>Key point</th></tr></thead>
+      <tbody>
+        <tr><td>Perception</td><td>The <strong>perception</strong> of a stressor, not the stressor itself, drives the reaction. Shaped by age, gender, culture, life experience and lifestyle (a layoff hits a 40-year-old with a new baby harder than a financially secure 60-year-old).</td></tr>
+        <tr><td>Individual temperament</td><td>Genetics, childhood experiences, coping strategies and outlook form personality strengths and vulnerabilities.</td></tr>
+        <tr><td>Social support</td><td>Strong support buffers distress and is linked to lower mortality. Isolation raises illness and early death. An extremely important thing to assess.</td></tr>
+        <tr><td>Support groups</td><td>For people facing similar events: AA (the prototype 12-step group), Gamblers Anonymous, Reach for Recovery, Parents Without Partners, online and video groups.</td></tr>
+        <tr><td>Culture</td><td>Many <strong>Asian, African and Central American</strong> people express distress in <strong>somatic</strong> (bodily) terms and experience it physically.</td></tr>
+        <tr><td>Spirituality and religion</td><td>Enhance immune function and well-being; prayer can elicit the relaxation response. Religious groups also provide belonging and social support. Support a patient who wants to use prayer.</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="topic">
+    <h3>Measuring stress and assessing coping</h3>
+    <ul class="pts">
+      <li><strong>Holmes and Rahe Social Readjustment Scale (1967)</strong> weighted life events by severity to predict vulnerability to stress-related illness. Most events were rated even more stressful in 2007.</li>
+      <li><span class="term">Recent Life Changes Questionnaire</span> (revised version): add life change units (LCUs). <strong>High stress = 300+ in 6 months or 500+ in a year.</strong> Caveats: people and cultures perceive events differently, thresholds differ, and it equates change with stress.</li>
+      <li><strong>Perceived Stress Scale (PSS-10):</strong> measures how uncontrollable, unpredictable and overloaded life feels; no absolute cutoff.</li>
+    </ul>
+    <div class="tw"><table>
+      <thead><tr><th>Sample life event</th><th class="num">LCU</th></tr></thead>
+      <tbody>
+        <tr><td>Death of a child</td><td class="num">123</td></tr>
+        <tr><td>Death of a spouse</td><td class="num">119</td></tr>
+        <tr><td>Divorce</td><td class="num">96</td></tr>
+        <tr><td>Fired from work</td><td class="num">79</td></tr>
+        <tr><td>Separation due to marital problems</td><td class="num">76</td></tr>
+        <tr><td>Laid off</td><td class="num">68</td></tr>
+        <tr><td>Marriage</td><td class="num">50</td></tr>
+        <tr><td>Move to a different town, city or state</td><td class="num">47</td></tr>
+        <tr><td>Beginning or ending school</td><td class="num">38</td></tr>
+        <tr><td>More responsibilities at work</td><td class="num">29</td></tr>
+        <tr><td>Vacation</td><td class="num">24</td></tr>
+      </tbody>
+    </table></div>
+    <div class="box plain"><span class="lbl">Simply put</span><p>Stress points add up. Losing a job (68–79) <em>and</em> starting school (38) at the same time adds up to more than a single big event like a separation (76). When a question asks who needs the most thorough stress assessment, look for the person stacking changes.</p></div>
+    <h4>Four coping styles to assess</h4>
+    <ol class="pts">
+      <li>Health-sustaining habits: medical adherence, diet, relaxation, pacing energy</li>
+      <li>Life satisfaction: work, family, hobbies, humor, spiritual comfort, arts, nature</li>
+      <li>Social support</li>
+      <li>Effective, healthy responses to stress</li>
+    </ol>
+    <div class="box rx"><span class="lbl">Nursing priority</span><ul>
+      <li>First assess before you intervene: "Let's talk about what's going on in your life, then look at options." Ask how the patient currently copes.</li>
+      <li>Judge progress with <strong>objective</strong> data, such as blood pressure dropping from the 140s to the 120s, over subjective reports.</li>
+      <li>Anxious patient with high vital signs right now: start slow, deep breathing to activate the parasympathetic system.</li>
+    </ul></div>
+  </div>
+
+  <div class="topic">
+    <h3>Stress-management techniques</h3>
+    <p>No single technique fits everyone; a mix works best. Relaxation helps anxiety, depression, insomnia and nightmares, and many medical conditions.</p>
+    <div class="tw"><table class="wide">
+      <thead><tr><th>Technique</th><th>How it works</th></tr></thead>
+      <tbody>
+        <tr><td>Biofeedback</td><td>Instruments show muscle activity, brain waves, skin temperature, HR or BP so a person can learn to control them. Smartwatches and trackers now do this too.</td></tr>
+        <tr><td>Deep breathing</td><td>The most common technique in the U.S. Slow abdominal breathing: in through the nose expanding the belly, hold 3 seconds, out slowly through the mouth; 2–5 minutes.</td></tr>
+        <tr><td>Guided imagery</td><td>Focus on pleasant, calming images to replace stressful ones (a quiet mountain stream, floating deeper with each breath). Scripts should avoid unrealistic promises or things outside the patient's control. Reduces anxiety and pain.</td></tr>
+        <tr><td>Progressive muscle relaxation</td><td>Edmund Jacobson, 1938. Tense a muscle group tightly for about 8 seconds, then release, moving feet to face or face to feet. Tension, not pain.</td></tr>
+        <tr><td>Meditation</td><td>Trains the mind toward calm; creates a hypometabolic state that quiets the sympathetic system.</td></tr>
+        <tr><td>Mindfulness</td><td>Being in the present moment. <strong>STOP:</strong> Stop, Take a breath, Observe thoughts and feelings, Proceed.</td></tr>
+        <tr><td>Physical exercise</td><td>At least 3 hours a week of any activity lowers depression risk; each extra 30 minutes lowers it about 17% more. Raises endorphins. Yoga adds meditation and calms the HPA axis.</td></tr>
+        <tr><td>Cognitive reframing</td><td>From CBT. Recognize and replace irrational thoughts ("I'll never be happy until I'm as successful as my sister" becomes "I can find contentment at my own level"). Watch for overgeneralizations ("always," "never") and "should" statements.</td></tr>
+        <tr><td>Journaling</td><td>Identifies sources of stress and increases self-awareness; helps with worry and grief.</td></tr>
+        <tr><td>Humor</td><td>Making a stressful situation look absurd takes the sting out.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="grid2">
+      <div class="mini"><h4>Everyday stress busters</h4><ul><li><strong>Sleep</strong> 7–9 hours. Go to bed 30–60 minutes <strong>earlier</strong>; sleeping later disrupts body rhythms.</li><li><strong>Exercise</strong> 150 minutes a week of moderate aerobic activity, at least 3 hours before bed.</li><li><strong>Caffeine:</strong> no more than 4 cups a day; wean slowly.</li><li>Music, pets, massage.</li></ul></div>
+      <div class="mini"><h4>Quick matching</h4><ul><li>"New ways of thinking" → cognitive reframing</li><li>"Imagine calm circumstances" → guided imagery</li><li>"Instruments give feedback" → biofeedback</li><li>"Tense then release" → progressive relaxation</li><li>"Increase self-awareness" → journaling</li></ul></div>
+    </div>
+  </div>
+
+  <div class="box trap"><span class="lbl">Exam trap: Chapter 10</span><ul>
+    <li>Your textbook never says exercise is "comparable to SSRIs." It says exercise lowers depression risk and raises endorphins.</li>
+    <li>In the alarm stage the adrenals release <strong>epinephrine</strong>. Heart rate and respirations go <strong>up</strong> under stress, never down.</li>
+    <li>The <strong>hypothalamus</strong> triggers the autonomic response; the <strong>sympathetic</strong> division is the one stimulated.</li>
+    <li>Sleeping in later is the wrong answer; going to bed earlier is right. Exercising right before bed disrupts sleep.</li>
+    <li>"Anorexia" in a stress question usually means loss of appetite, not the eating disorder.</li>
+  </ul></div>
+</section>
+
+<footer>Nurse 202 Study Guide. Built from the 9th edition text for Chapters 1, 3, 6 (legal content only), 8 and 10. Pair it with the Nurse 202 Practice Quiz.</footer>
+</div>
+
+</body></html>

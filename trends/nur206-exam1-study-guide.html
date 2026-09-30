@@ -1,0 +1,838 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>NUR206 Exam 1 Study Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Newsreader:opsz,wght@6..72,500;6..72,650&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* Layout: one reading column (≤760px) under a sticky topic rail; each topic carries its own color stripe, like tabbed chart dividers. */
+:root{
+  --bg:#F2F5F7; --card:#FFFFFF; --ink:#16212B; --muted:#56636F; --rule:#D5DCE2; --soft:#E8EDF1;
+  --accent:#0F6B70; --hl:#FBE38A; --hl-ink:#16212B;
+  --fe:#2E6CA0; --ab:#6B4E9E; --bu:#B24629; --on:#4F5E80; --tr:#2C7650;
+  --kid:#EAF4F1; --kid-rule:#0F6B70; --trap:#FBEDEA; --trap-rule:#B24629; --chk:#FFF5D6; --chk-rule:#B7860B;
+  --display:"Newsreader",Georgia,"Times New Roman",serif;
+  --body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#10171D; --card:#172129; --ink:#E3E9EE; --muted:#9BA9B5; --rule:#2B3944; --soft:#1D2A33;
+  --accent:#5CC1C6; --hl:#E6CC5A; --hl-ink:#12181D;
+  --fe:#6FA6D6; --ab:#A68BD6; --bu:#E57D5F; --on:#97A5C8; --tr:#6CC495;
+  --kid:#152B2A; --kid-rule:#5CC1C6; --trap:#35201B; --trap-rule:#E57D5F; --chk:#2F2914; --chk-rule:#E0B640;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#10171D; --card:#172129; --ink:#E3E9EE; --muted:#9BA9B5; --rule:#2B3944; --soft:#1D2A33;
+  --accent:#5CC1C6; --hl:#E6CC5A; --hl-ink:#12181D;
+  --fe:#6FA6D6; --ab:#A68BD6; --bu:#E57D5F; --on:#97A5C8; --tr:#6CC495;
+  --kid:#152B2A; --kid-rule:#5CC1C6; --trap:#35201B; --trap-rule:#E57D5F; --chk:#2F2914; --chk-rule:#E0B640;
+  color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
+.wrap{max-width:760px;margin:0 auto;padding-inline:16px}
+header.top{padding-block:28px 12px}
+.eyebrow{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0}
+h1{font-family:var(--display);font-weight:650;font-size:2.2rem;line-height:1.1;margin:.2em 0 .3em;text-wrap:balance}
+.lede{color:var(--muted);margin:0;max-width:62ch}
+nav.rail{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--rule)}
+nav.rail .wrap{display:flex;gap:6px;overflow-x:auto;padding-block:10px;scrollbar-width:thin}
+nav.rail a{flex:0 0 auto;text-decoration:none;color:var(--ink);font-size:.85rem;padding:6px 10px;border-radius:999px;border:1px solid var(--rule);background:var(--card);white-space:nowrap}
+nav.rail a i{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--c);margin-right:6px;vertical-align:1px}
+main{padding-block:12px 64px}
+section.topic{border-left:5px solid var(--c);background:var(--card);border-radius:0 10px 10px 0;padding:20px 18px 8px;margin:22px 0}
+section.topic > h2{font-family:var(--display);font-weight:650;font-size:1.6rem;line-height:1.2;margin:0 0 4px;text-wrap:balance}
+.src{font-size:.85rem;color:var(--muted);margin:0 0 14px}
+h3{font-size:1.1rem;margin:22px 0 8px;color:var(--c)}
+h4{font-size:1rem;margin:16px 0 6px}
+p{margin:0 0 10px}
+ul,ol{margin:0 0 12px;padding-left:22px}
+li{margin:3px 0}
+.part{font-family:var(--display);font-size:1.25rem;font-weight:650;margin:40px 0 0;padding-bottom:6px;border-bottom:2px solid var(--ink)}
+.tbl{overflow-x:auto;margin:8px 0 14px;border:1px solid var(--rule);border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:.93rem;min-width:520px}
+th,td{padding:8px 10px;text-align:left;vertical-align:top;border-bottom:1px solid var(--rule)}
+th{background:var(--soft);font-weight:700;font-size:.85rem}
+tr:last-child td{border-bottom:0}
+.lab{font-family:var(--mono);font-size:.9em;background:var(--hl);color:var(--hl-ink);padding:1px 5px;border-radius:3px;white-space:nowrap}
+mark{background:var(--hl);color:var(--hl-ink);padding:0 3px;border-radius:2px}
+.box{border-left:4px solid;border-radius:0 8px 8px 0;padding:10px 14px;margin:12px 0}
+.box > b:first-child{display:block;font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;margin-bottom:3px}
+.kid{background:var(--kid);border-color:var(--kid-rule)}
+.kid > b:first-child{color:var(--kid-rule)}
+.trap{background:var(--trap);border-color:var(--trap-rule)}
+.trap > b:first-child{color:var(--trap-rule)}
+.chk{background:var(--chk);border-color:var(--chk-rule)}
+.chk > b:first-child{color:var(--chk-rule)}
+.box p:last-child,.box ul:last-child{margin-bottom:0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px;margin:10px 0 14px}
+.mini{border:1px solid var(--rule);border-radius:8px;padding:10px 12px}
+.mini h4{margin:0 0 6px;color:var(--c)}
+.mini ul{margin:0;padding-left:18px}
+.map td:first-child{font-weight:700;white-space:nowrap}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--c);margin-right:6px}
+.math{font-family:var(--mono);font-size:.92rem;background:var(--soft);border-radius:6px;padding:10px 12px;margin:8px 0 12px;line-height:1.7;overflow-x:auto;white-space:pre-wrap}
+.toplink{font-size:.85rem;color:var(--muted)}
+footer{color:var(--muted);font-size:.85rem;padding-block:0 40px}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+@media (max-width:480px){h1{font-size:1.8rem} section.topic{padding:16px 14px 6px} body{font-size:16px}}
+</style>
+
+<header class="top wrap">
+  <p class="eyebrow">NUR206 Professional Trends · Exam 1</p>
+  <h1>NUR206 Exam 1 Study Guide</h1>
+  <p class="lede">Everything on Exam 1 in one place. The Hurst topics (fluid &amp; electrolytes, acid-base, burns, oncology) come from your What &amp; Why and Iggy study guides, with Hurst lecture points added. Trends Chapters 5, 8, 10, 25, 26 and 28 come from the textbook. Every topic has a "Like I'm 10" box, the testing traps, and a flag wherever sources disagree.</p>
+</header>
+
+<nav class="rail" aria-label="Topics"><div class="wrap">
+  <a href="#map" style="--c:var(--accent)"><i></i>Exam map</a>
+  <a href="#fe" style="--c:var(--fe)"><i></i>Fluids</a>
+  <a href="#lytes" style="--c:var(--fe)"><i></i>Electrolytes</a>
+  <a href="#ab" style="--c:var(--ab)"><i></i>Acid-base</a>
+  <a href="#bu" style="--c:var(--bu)"><i></i>Burns</a>
+  <a href="#on" style="--c:var(--on)"><i></i>Oncology</a>
+  <a href="#c5" style="--c:var(--tr)"><i></i>Ch 5</a>
+  <a href="#c8" style="--c:var(--tr)"><i></i>Ch 8</a>
+  <a href="#c10" style="--c:var(--tr)"><i></i>Ch 10</a>
+  <a href="#c25" style="--c:var(--tr)"><i></i>Ch 25</a>
+  <a href="#c26" style="--c:var(--tr)"><i></i>Ch 26</a>
+  <a href="#c28" style="--c:var(--tr)"><i></i>Ch 28</a>
+  <a href="#fix" style="--c:var(--chk-rule)"><i></i>Corrections</a>
+</div></nav>
+
+<main class="wrap">
+
+<!-- ================= MAP ================= -->
+<section class="topic" id="map" style="--c:var(--accent)">
+  <h2>Exam map</h2>
+  <p class="src">What's on Exam 1 and where each part comes from.</p>
+  <div class="tbl"><table class="map">
+    <tr><th>Part</th><th>Topic</th><th>Your source</th></tr>
+    <tr><td><span class="dot" style="--c:var(--fe)"></span>Hurst</td><td>Fluid &amp; electrolytes</td><td>F&amp;E What &amp; Why guide · Hurst workbook pp. 1–12</td></tr>
+    <tr><td><span class="dot" style="--c:var(--ab)"></span>Hurst</td><td>Acid-base balance (ABGs)</td><td>Acid-Base What &amp; Why guide · Hurst workbook pp. 13–20</td></tr>
+    <tr><td><span class="dot" style="--c:var(--bu)"></span>Hurst</td><td>Burns</td><td>Burns What &amp; Why + Iggy study guide · Hurst workbook pp. 21–35</td></tr>
+    <tr><td><span class="dot" style="--c:var(--on)"></span>Hurst</td><td>Oncology</td><td>Oncology What &amp; Why + Iggy study guide · Hurst workbook pp. 36–54</td></tr>
+    <tr><td><span class="dot" style="--c:var(--tr)"></span>Trends</td><td>Ch 5 Theories · Ch 8 Legal · Ch 10 Culture</td><td>Cherry &amp; Jacob, <i>Contemporary Nursing</i></td></tr>
+    <tr><td><span class="dot" style="--c:var(--tr)"></span>Trends</td><td>Ch 25 Student → professional · Ch 26 Managing time · Ch 28 NCLEX-RN</td><td>Cherry &amp; Jacob + 2026 NCLEX-RN Test Plan</td></tr>
+  </table></div>
+  <div class="box chk"><b>Chapter numbers</b><p>Your instructor's slides number <i>Transition from student to professional</i> as Ch 25 and <i>Managing time</i> as Ch 26. The 8th-edition PDF in the project numbers them 24 and 25. Same content, so this guide uses your course numbering. The endocrine pages (55–57) aren't one of your four Hurst topics, so they're left out.</p></div>
+  <h3 style="--c:var(--accent)">The Hurst NCLEX mindset (manual p. i)</h3>
+  <ul>
+    <li>The NCLEX is a <b>safety</b> test. It protects the public from unsafe nurses.</li>
+    <li>You're a <b>brand-new nurse</b>. There are no happy NCLEX questions.</li>
+    <li>The NCLEX hospital is <b>perfect</b>: every department is open, you have an order for every option, and the only patient is the one on the screen.</li>
+    <li>If you can say it, you can teach it. Think about the WHY.</li>
+  </ul>
+</section>
+
+<p class="part">Part A · Hurst topics (from your What &amp; Why and Iggy study guides)</p>
+
+<!-- ================= FLUIDS ================= -->
+<section class="topic" id="fe" style="--c:var(--fe)">
+  <h2>Fluids &amp; IV solutions</h2>
+  <p class="src">Your F&amp;E What &amp; Why guide Sections 1–3 · Hurst workbook pp. 1–7</p>
+  <div class="box trap"><b>The big rule</b><p>For every imbalance ask: (1) Is this a <b>water</b> problem or a <b>particle</b> problem? (2) What does this ion do to <b>nerves and muscles</b>? Answer both and you can predict the symptoms instead of memorizing lists.</p></div>
+
+  <h3>Where the water is and how it moves</h3>
+  <ul>
+    <li>Total body water ≈ <b>60%</b> of adult weight (less in older adults and people with more fat; more in infants). ICF ≈ 2/3 (K⁺ is the main cation); ECF ≈ 1/3 (Na⁺ is the main cation), split into plasma and interstitial fluid.</li>
+    <li>The Na⁺/K⁺ pump (uses ATP) keeps Na⁺ out and K⁺ in. Break cells open (burns, crush, TLS) and K⁺ floods out → hyperkalemia.</li>
+    <li><b>Osmosis</b>: water moves toward the saltier side (water follows sodium). <b>Hydrostatic pressure</b> (BP) pushes fluid out of capillaries; <b>oncotic pressure</b> (albumin) pulls it back. Serum osmolality <span class="lab">275–295 mOsm/kg</span>.</li>
+    <li>Edema = push beats pull: ↑ hydrostatic (HF, overload), ↓ oncotic (low albumin: liver disease, malnutrition, burns), or leaky capillaries (burns, sepsis).</li>
+  </ul>
+  <div class="box kid"><b>Like I'm 10</b><p>A soaker hose with tiny holes. Blood pressure pushes water out the holes; albumin is a sponge inside the hose soaking it back in. Turn the pressure up, take the sponge away, or poke bigger holes, and the garden floods.</p></div>
+
+  <h3>Who controls the water</h3>
+  <div class="tbl"><table>
+    <tr><th>Signal</th><th>What it does</th></tr>
+    <tr><td>Thirst</td><td>Triggered by ↑ serum osmolality or ↓ blood volume</td></tr>
+    <tr><td>ADH (posterior pituitary)</td><td>Kidneys reabsorb <b>water only</b> → small volume of concentrated urine</td></tr>
+    <tr><td>RAAS → aldosterone (adrenals)</td><td>↓ BP or kidney flow → renin → angiotensin II (vasoconstriction) → aldosterone → keep <b>Na⁺ and water</b>, dump K⁺. Too much: Cushing's, Conn's. Too little: Addison's</td></tr>
+    <tr><td>ANP / BNP (heart)</td><td>Stretched chambers → kidneys dump Na⁺ and water. BNP is the heart-failure lab. Bed rest triggers ANP → diuresis</td></tr>
+  </table></div>
+  <p>Aldosterone saves Na⁺ and wastes K⁺, which is why spironolactone (an aldosterone blocker) is potassium-sparing.</p>
+
+  <h3>SIADH vs. diabetes insipidus</h3>
+  <div class="tbl"><table>
+    <tr><th></th><th>SIADH: too much ADH</th><th>DI: not enough ADH</th></tr>
+    <tr><td>Water</td><td>Retained → weight gain <b>without edema</b></td><td>Lost → huge urine output</td></tr>
+    <tr><td>Urine</td><td>Concentrated (SG ↑), small volume</td><td>Dilute (SG ↓)</td></tr>
+    <tr><td>Blood</td><td>Dilute: Na⁺ ↓, osmolality ↓</td><td>Concentrated: Na⁺ ↑, Hct ↑</td></tr>
+    <tr><td>Classic causes</td><td>Small cell lung cancer, head injury</td><td>Head injury, craniotomy, transsphenoidal hypophysectomy</td></tr>
+    <tr><td>Treatment</td><td>Fluid restriction first; 3% saline only if severe, corrected slowly; tolvaptan/demeclocycline</td><td>Desmopressin (DDAVP) or vasopressin; replace fluids</td></tr>
+  </table></div>
+  <div class="box trap"><b>Hurst lecture adds</b><p>Concussion + sudden increase in urine output → check <b>blood pressure</b> first. Polyuria: think shock first.</p></div>
+
+  <h3>IV fluids</h3>
+  <div class="tbl"><table>
+    <tr><th>Type</th><th>Examples</th><th>What happens</th><th>Used for</th><th>Watch for</th></tr>
+    <tr><td><b>Isotonic</b></td><td>0.9% NS, LR (D5W only in the bag)</td><td>Stays in the ECF; expands blood volume</td><td>Hypovolemia, blood loss, burns, surgery. NS is the only fluid with blood</td><td>Overload in HF/renal disease. LR has K⁺, Ca²⁺, lactate: caution in hyperkalemia, liver disease, lactic acidosis; not in the blood line</td></tr>
+    <tr><td><b>Hypotonic</b></td><td>0.45% NaCl, 0.225% NaCl; D5W once the dextrose is used</td><td>Water moves <b>into cells</b></td><td>Cellular dehydration, hypernatremia, DKA after initial resuscitation</td><td>Cerebral edema (confusion, headache), low BP. <b>Avoid in ↑ ICP, burns, trauma</b></td></tr>
+    <tr><td><b>Hypertonic</b></td><td>3% NaCl, D5 0.45% NaCl, D5NS, D5LR, D10W</td><td>Pulls water <b>out of cells</b> into vessels</td><td>Severe hyponatremia, cerebral edema (per protocol)</td><td>Overload (crackles, JVD), hypernatremia. Pump; 3% often ICU/central line</td></tr>
+  </table></div>
+  <p><b>D5W</b> is isotonic in the bag, but the dextrose is metabolized fast and leaves free water, so it acts hypotonic: not used to replace volume, avoided with ↑ ICP.</p>
+  <div class="box kid"><b>Like I'm 10</b><p>Cells are grapes in a bath. Plain-water bath (hypotonic): grapes swell and can burst. Salty bath (hypertonic): grapes shrivel into raisins. Same-as-blood bath (isotonic): the grapes don't change; you just have more bath.</p></div>
+
+  <h3>Fluid volume deficit vs. excess</h3>
+  <div class="tbl"><table>
+    <tr><th></th><th>Deficit (hypovolemia)</th><th>Excess (hypervolemia)</th></tr>
+    <tr><td>Causes</td><td>Vomiting, diarrhea, NG suction, hemorrhage, burns, fever, diuretics, poor intake, DKA, third spacing</td><td>Heart failure, kidney failure, cirrhosis, excess IV fluid or sodium, SIADH, corticosteroids</td></tr>
+    <tr><td>Signs</td><td>Tachycardia with a weak, thready pulse (comes <b>before</b> hypotension); orthostatic drop; flat neck veins; UO &lt; 30 mL/hr, dark urine; dry mucosa; weight loss; confusion in older adults</td><td>Bounding pulse, ↑ BP, JVD, crackles, dyspnea/orthopnea, edema, rapid weight gain, S3, confusion</td></tr>
+    <tr><td>Labs</td><td>↑ Hct, ↑ BUN (BUN:creatinine &gt; 20:1), urine SG &gt; 1.030, ↑ osmolality (concentrated, not increased)</td><td>↓ Hct, ↓ BUN (diluted); ↓ urine SG if kidneys work</td></tr>
+    <tr><td>Nursing</td><td>Oral fluids or IV isotonic; strict I&amp;O, daily weights, orthostatic vitals, UO ≥ 30 mL/hr (0.5 mL/kg/hr); fall precautions; skin turgor unreliable in older adults (use sternum/forehead)</td><td>Daily weights (same time, scale, clothes; <b>1 kg = 1 L</b>); loop diuretic + monitor K⁺; restrict Na⁺/fluid; semi- to high Fowler's; lung sounds, SpO₂; protect edematous skin</td></tr>
+  </table></div>
+  <div class="box trap"><b>Red flag</b><p>New crackles, pink frothy sputum, or sudden severe dyspnea = pulmonary edema. Sit up, O₂, notify the provider.</p></div>
+  <p><b>Third spacing</b>: fluid trapped where it can't circulate (tissue, ascites, pleura) from burns, sepsis, low albumin, pancreatitis, bowel obstruction, major surgery. The client can be <b>swollen and hypovolemic at the same time</b>; when it shifts back (burns after ~48–72 h), watch for overload. Like money in a locked savings account: it's on paper, but your card still declines.</p>
+</section>
+
+<!-- ================= ELECTROLYTES ================= -->
+<section class="topic" id="lytes" style="--c:var(--fe)">
+  <h2>Electrolytes</h2>
+  <p class="src">Your F&amp;E What &amp; Why guide Sections 4–7, 9 · Hurst workbook pp. 8–12</p>
+  <div class="tbl"><table>
+    <tr><th>Electrolyte</th><th>Normal</th><th>LOW</th><th>HIGH</th></tr>
+    <tr><td>Sodium</td><td class="lab">135–145 mEq/L</td><td>Confusion, headache, seizures (brain swells)</td><td>Thirst, agitation, seizures (brain shrinks)</td></tr>
+    <tr><td>Potassium</td><td class="lab">3.5–5.0 mEq/L</td><td>Weakness, cramps, ileus; flat T, U wave</td><td>Twitching → paralysis; peaked T, wide QRS</td></tr>
+    <tr><td>Calcium</td><td class="lab">9.0–10.5 mg/dL</td><td>Tingling, tetany, Chvostek/Trousseau, long QT</td><td>Weakness, constipation, confusion, stones, short QT</td></tr>
+    <tr><td>Magnesium</td><td class="lab">1.3–2.1 mEq/L</td><td>Tremor, hyperreflexia, torsades</td><td>↓ DTRs, ↓ RR, bradycardia, hypotension</td></tr>
+    <tr><td>Phosphorus</td><td class="lab">3.0–4.5 mg/dL</td><td>Weakness, respiratory failure</td><td>Signs of low calcium</td></tr>
+    <tr><td>Urine SG</td><td class="lab">1.005–1.030</td><td>Dilute (overload, DI)</td><td>Concentrated (dehydration, SIADH)</td></tr>
+  </table></div>
+  <p><b>Pattern:</b> low Ca and low Mg look alike (twitchy). High Ca and high Mg look alike (sluggish, ↓ reflexes). Both high and low K cause weakness; the ECG and history tell them apart.</p>
+
+  <h3>Sodium = water balance + brain</h3>
+  <div class="grid2">
+    <div class="mini"><h4>Hyponatremia (&lt; 135)</h4><ul><li>Too much water: SIADH, excess hypotonic fluid or water, HF, cirrhosis. Sodium loss: vomiting, diarrhea, NG suction, thiazides, adrenal insufficiency, sweating replaced with plain water</li><li>Water moves into brain cells → cerebral edema → headache, confusion, seizures, coma</li><li>Dilutional → fluid restriction first. Sodium loss → NS; 3% NaCl if severe/symptomatic</li><li>Correct <b>slowly</b> (often ≤ ~8 mEq/L in 24 h) or risk osmotic demyelination. Seizure precautions</li></ul></div>
+    <div class="mini"><h4>Hypernatremia (&gt; 145)</h4><ul><li>Water loss or no access to water: DI, fever, sweating, watery diarrhea, confused/intubated/older adults, tube feedings, excess hypertonic saline or bicarb</li><li>Water pulled out of brain cells → thirst, dry sticky mucosa, flushed skin, restlessness → seizures</li><li>Replace water <b>gradually</b> (0.45% NaCl, D5W, oral water); too fast → cerebral edema</li></ul></div>
+  </div>
+
+  <h3>Potassium = muscles and the heart</h3>
+  <p>About 98% of K⁺ lives inside cells, so small serum changes matter (4 → 6 is a 50% jump). The kidneys excrete ~90% of it.</p>
+  <div class="grid2">
+    <div class="mini"><h4>Hypokalemia (&lt; 3.5)</h4><ul><li>Loop/thiazide diuretics, vomiting, NG suction, diarrhea, laxatives, insulin, alkalosis, steroids, poor intake, <b>low Mg</b></li><li>Weakness, leg cramps, ↓ reflexes, shallow breathing, constipation/ileus</li><li>ECG: flat T, <b>U wave</b>, ST depression. Raises digoxin toxicity risk</li><li>Oral K with food and a full glass of water; K-rich foods; <b>check Mg</b> (K won't stay corrected until Mg is)</li></ul></div>
+    <div class="mini"><h4>Hyperkalemia (&gt; 5.0)</h4><ul><li>Kidney failure (most common), spironolactone, ACE inhibitors/ARBs, acidosis, cell destruction (burns, crush, TLS), transfusion, adrenal insufficiency</li><li>Hemolyzed sample reads falsely high: redraw if it doesn't fit</li><li>Twitching, paresthesias → weakness → flaccid paralysis; cramping, diarrhea</li><li>ECG: <b>tall peaked T</b> → prolonged PR, flat P → wide QRS → V-fib/asystole</li></ul></div>
+  </div>
+  <div class="box trap"><b>IV potassium safety</b><ul><li><b>Never</b> IV push, IM, or subcut. Always diluted, on a pump.</li><li>Usually no faster than <b>10 mEq/hr peripherally</b> (faster only per policy with central line + monitor).</li><li>Confirm urine output ≥ <b>30 mL/hr</b> before and during. Assess the site (it burns; phlebitis).</li></ul></div>
+  <p><b>Treating hyperkalemia: protect → shift → remove.</b> (1) IV <b>calcium gluconate</b> protects the heart (doesn't lower K). (2) Shift K into cells: IV regular insulin + dextrose (watch glucose), albuterol, bicarb if acidotic. (3) Remove it: loop diuretics, binders (sodium polystyrene sulfonate, patiromer), dialysis. Steps 1–2 buy time; only step 3 lowers total body K.</p>
+  <div class="box kid"><b>Like I'm 10</b><p>A flooded basement. Calcium is rubber boots (protects you, doesn't move water). Insulin sweeps the water into a corner (still in the house). Dialysis and binders are the pump that gets it out.</p></div>
+
+  <h3>Calcium = nerve stability (the doorstop)</h3>
+  <div class="grid2">
+    <div class="mini"><h4>Hypocalcemia (&lt; 9.0)</h4><ul><li>Thyroidectomy/parathyroidectomy, radical neck, hypoparathyroidism, kidney failure, low vitamin D, pancreatitis, massive transfusion (citrate), low Mg, alkalosis</li><li>Tingling (mouth, fingers), cramps, tetany, <b>+ Chvostek</b> (tap Cheek), <b>+ Trousseau</b> (BP cuff), hyperreflexia, <b>laryngospasm/stridor</b>, seizures; long QT</li><li>IV calcium slowly on a monitor (don't mix with bicarb); oral Ca + vitamin D; airway equipment at bedside after thyroid surgery</li></ul></div>
+    <div class="mini"><h4>Hypercalcemia (&gt; 10.5)</h4><ul><li>Cancer (bone mets, myeloma, PTH-like hormone), hyperparathyroidism, <b>immobility</b>, thiazides, excess vitamin D</li><li>"Stones, bones, groans, moans": kidney stones, bone pain, constipation/nausea, confusion; weakness, ↓ reflexes, polyuria; short QT</li><li><b>IV NS first</b>, then loop diuretic (never thiazides); bisphosphonates, calcitonin; mobility; fluids; strain urine</li></ul></div>
+  </div>
+  <p>Low albumin lowers total calcium without changing the active (ionized) calcium; check ionized or corrected Ca. Calcium and phosphorus sit on a seesaw.</p>
+
+  <h3>Magnesium &amp; phosphorus</h3>
+  <ul>
+    <li><b>Low Mg</b>: alcohol use disorder, malnutrition, diuretics, diarrhea, NG suction, long-term PPIs, refeeding. Looks like low Ca: tremors, hyperreflexia, tetany, Chvostek/Trousseau, seizures, <b>torsades</b>. Makes the kidneys waste K.</li>
+    <li><b>High Mg</b>: kidney failure, Mg antacids/laxatives, IV magnesium sulfate. Flushing, ↓/absent DTRs, lethargy, hypotension, bradycardia, respiratory depression.</li>
+    <li><b>IV magnesium sulfate</b>: check DTRs, RR, UO, LOC before and during. <b>Stop and notify</b> if DTRs are absent, RR &lt; 12, or UO &lt; 30 mL/hr. Antidote: IV <b>calcium gluconate</b>.</li>
+    <li><b>High phosphorus</b>: kidney failure, TLS, phosphate enemas → causes low Ca; binders with meals. <b>Low phosphorus</b>: refeeding, alcohol, DKA treatment → weakness, respiratory failure (phosphorus is part of ATP). Start nutrition slowly in malnourished clients.</li>
+  </ul>
+</section>
+
+<!-- ================= ACID-BASE ================= -->
+<section class="topic" id="ab" style="--c:var(--ab)">
+  <h2>Acid-base &amp; ABGs</h2>
+  <p class="src">Your Acid-Base &amp; ABGs What &amp; Why guide · Hurst workbook pp. 13–20</p>
+  <p>Normal: pH <span class="lab">7.35–7.45</span> · PaCO₂ <span class="lab">35–45</span> (lungs) · HCO₃⁻ <span class="lab">22–26</span> (kidneys) · PaO₂ <span class="lab">80–100</span>, SaO₂ 95–100% (oxygenation, not acid-base).</p>
+  <ul>
+    <li><b>CO₂ is acid in disguise:</b> CO₂ + H₂O ⇌ H₂CO₃ ⇌ H⁺ + HCO₃⁻. More CO₂ → more H⁺ → acidosis. Every breath out removes acid.</li>
+    <li><b>Three regulators:</b> buffers (seconds, small capacity) → lungs (minutes to hours) → kidneys (hours to days, strongest). That's why acute respiratory problems look uncompensated and COPD is often fully compensated.</li>
+  </ul>
+  <div class="box kid"><b>Like I'm 10</b><p>A leak in your house. Buffers are towels (instant but fill up fast). The lungs are a shop vac (quick). The kidneys are the plumber (takes days to show up, but actually fixes it).</p></div>
+
+  <h3>ROME and the tic-tac-toe method</h3>
+  <p><b>R</b>espiratory <b>O</b>pposite (pH and PaCO₂ move opposite ways) · <b>M</b>etabolic <b>E</b>qual (pH and HCO₃⁻ move the same way).</p>
+  <ol>
+    <li>Label pH: acid (&lt; 7.35), normal, base (&gt; 7.45).</li>
+    <li>Label PaCO₂: acid (&gt; 45), normal, base (&lt; 35). High CO₂ = acid.</li>
+    <li>Label HCO₃⁻: acid (&lt; 22), normal, base (&gt; 26).</li>
+    <li>Whichever matches the pH is the <b>cause</b>.</li>
+    <li>Compensation: other value normal = <b>uncompensated</b>; other value opposite + pH abnormal = <b>partially</b>; opposite + pH normal = <b>fully</b>.</li>
+    <li>Check oxygenation separately.</li>
+  </ol>
+  <p><b>Normal pH but abnormal numbers?</b> Use 7.40 as the tiebreaker: 7.35–7.39 leans acid, 7.41–7.45 leans alkaline. The body never overcompensates. <b>Both</b> values pointing the same way as the pH = <b>mixed</b> disorder (e.g., cardiac arrest: 7.18/58/17), the most dangerous kind.</p>
+  <div class="math">7.32 / 50 / 29 → acid · acid · base → respiratory acidosis, partially compensated
+7.32 / 41 / 20 → acid · normal · acid → metabolic acidosis, uncompensated
+7.45 / 52 / 35 → normal-alkaline · acid · base → metabolic alkalosis, fully compensated
+7.18 / 58 / 17 → acid · acid · acid → mixed respiratory + metabolic acidosis</div>
+
+  <h3>The four disorders</h3>
+  <div class="tbl"><table>
+    <tr><th></th><th>Resp acidosis<br>pH ↓ CO₂ ↑</th><th>Resp alkalosis<br>pH ↑ CO₂ ↓</th><th>Metabolic acidosis<br>pH ↓ HCO₃ ↓</th><th>Metabolic alkalosis<br>pH ↑ HCO₃ ↑</th></tr>
+    <tr><td>Cause</td><td><b>Hypo</b>ventilation: COPD, opioids/sedatives/anesthesia, neuromuscular (MG, GBS, ALS, SCI), pneumonia, atelectasis, pulmonary edema, chest trauma, obstruction (Hurst: mid-abdominal incision, pneumothorax)</td><td><b>Hyper</b>ventilation: anxiety, pain, fever, early hypoxia (PE, asthma, altitude, pneumonia), ventilator too high, early aspirin toxicity, early sepsis, CNS injury</td><td>Acid gained: DKA, lactic acidosis (shock, sepsis, arrest, seizures), kidney failure, salicylates, starvation, toxic alcohols. Base lost: <b>diarrhea</b>, fistulas, ileostomy</td><td>Acid lost: <b>vomiting, NG suction</b>, loop/thiazide diuretics, hypokalemia, hyperaldosteronism, steroids. Base gained: antacids, IV bicarb, massive transfusion</td></tr>
+    <tr><td>Signs</td><td>Headache, drowsiness → confusion → CO₂ narcosis; tachycardia, flushed skin; hyperkalemia</td><td>Lightheaded, tingling lips/fingers, carpopedal spasm, tetany (low ionized Ca), palpitations; hypokalemia</td><td><b>Kussmaul</b> respirations, headache, confusion, N/V, warm skin, hypotension, dysrhythmias; hyperkalemia</td><td>Slow shallow breathing (compensation), confusion, tingling, tetany, cramps, dysrhythmias; hypokalemia</td></tr>
+    <tr><td>Nursing</td><td>Improve ventilation: airway, HOB up, TCDB, IS, bronchodilators; naloxone for opioids; BiPAP/intubation. COPD: titrate O₂ (often 88–92%), never withhold O₂ from a hypoxic client</td><td><b>Treat the cause</b>. Rule out hypoxia/PE before blaming anxiety; coach slow breathing; notify RT for vent changes</td><td>Treat the cause (DKA: fluids + insulin; perfusion; dialysis). Bicarb only for severe. Monitor K and rhythm. <b>Don't slow Kussmaul</b> breathing</td><td>Antiemetics; limit NG suction; irrigate NG with <b>NS, not water</b>; replace fluids (NS) and K</td></tr>
+  </table></div>
+  <div class="box trap"><b>Red flags &amp; strategies</b><ul><li>A COPD client who gets quiet and drowsy and stops complaining of dyspnea may be retaining CO₂, not improving.</li><li>A DKA client whose breathing suddenly slows while still acidotic may be tiring out.</li><li>Restlessness: think hypoxia first (Hurst). ↑ CO₂ = ↓ LOC.</li></ul></div>
+
+  <h3>Potassium-hydrogen shift</h3>
+  <p><b>Acidosis → hyperkalemia; alkalosis → hypokalemia.</b> In acidosis H⁺ moves into cells and K⁺ moves out (a revolving door). Correcting acidosis (insulin in DKA) drives K back in, so serum K can drop fast: check K frequently. Burns: early lactic acidosis + cell damage = two sources of high K.</p>
+  <p><b>Anion gap</b> = Na⁺ − (Cl⁻ + HCO₃⁻), normal ≈ 8–12. High gap = acid added (DKA, lactic, renal failure, toxins). Normal gap = bicarb lost (diarrhea).</p>
+  <p><b>ABG collection:</b> Allen test before a radial stick; firm pressure ≥ 5 min (10+ on anticoagulants); remove air bubbles; label O₂ and temperature; ice if delayed; wait 20–30 min after O₂ changes or suctioning. In <b>CO poisoning</b> pulse ox reads falsely normal: you need an ABG with co-oximetry.</p>
+</section>
+
+<!-- ================= BURNS ================= -->
+<section class="topic" id="bu" style="--c:var(--bu)">
+  <h2>Burns</h2>
+  <p class="src">Your Burns What &amp; Why guide and Iggy study guide (Ch 21) · Hurst workbook pp. 21–35</p>
+  <div class="box trap"><b>The big rule</b><p>Almost every burn question is about <b>airway, fluid, or infection</b>. Find the time since injury first: early = airway and fluid; after ~72 hours = infection, fluid overload, contractures.</p></div>
+
+  <h3>Skin, types, depth</h3>
+  <ul>
+    <li>Skin is the raincoat: barrier to infection, holds fluid, regulates temperature, sensation, vitamin D, appearance. Each lost job = a nursing problem.</li>
+    <li>Types: thermal (most common), chemical (<b>alkalis</b> penetrate deeper, keep burning longer), electrical, inhalation, radiation, cold. In young children, "stocking/glove" scald lines or burns that don't fit the story suggest abuse: mandatory report.</li>
+  </ul>
+  <div class="tbl"><table>
+    <tr><th>Depth</th><th>Look</th><th>Pain</th><th>Heals</th></tr>
+    <tr><td>Superficial (1st)</td><td>Red, dry, blanches, no blisters</td><td>Painful</td><td>3–6 days, no scar. <b>Not counted in TBSA</b></td></tr>
+    <tr><td>Superficial partial (2nd)</td><td>Blisters, moist, pink/red, blanches</td><td>Very painful</td><td>~2–3 weeks</td></tr>
+    <tr><td>Deep partial (2nd)</td><td>Red and white/waxy, blisters rare, soft dry eschar</td><td>Painful</td><td>Scars; may need graft</td></tr>
+    <tr><td>Full thickness (3rd)</td><td>Dry, leathery; white, brown, black, cherry red; hard eschar</td><td><b>Painless center</b> (nerves destroyed); painful edges</td><td>Needs grafting</td></tr>
+    <tr><td>Deep full (4th)</td><td>Into muscle, tendon, bone (often electrical)</td><td>—</td><td>Grafting doesn't work alone</td></tr>
+  </table></div>
+  <p><b>Zones of injury:</b> coagulation (center, dead) → <b>stasis</b> (savable, or lost to hypovolemia, hypothermia, ice, infection) → hyperemia (recovers). The burn can deepen over 2–3 days, so depth and TBSA are reassessed on days 2–3.</p>
+  <div class="box kid"><b>Like I'm 10</b><p>A lawn. Superficial: grass scorched, roots fine, grows back fast. Partial: some roots survive. Full thickness: roots and soil burned away, so nothing grows back unless you lay new sod (a graft).</p></div>
+
+  <h3>Sizing the burn and who needs a burn center</h3>
+  <div class="grid2">
+    <div class="mini"><h4>TBSA</h4><ul><li>Rule of nines (adult): head &amp; neck 9 · each arm 9 · anterior trunk 18 · posterior trunk 18 · each leg 18 (front 9/back 9) · perineum 1</li><li>Front of one arm 4.5%; front of one leg 9%</li><li>Palm with fingers ≈ 1% (scattered burns). Lund-Browder: most precise, preferred for children</li><li><b>Only partial and full thickness count</b></li></ul></div>
+    <div class="mini"><h4>Burn center referral (ABA)</h4><ul><li>Partial thickness &gt; 10% TBSA; any full thickness</li><li>Face, hands, feet, genitalia, perineum, major joints</li><li>Electrical, chemical, or inhalation injury</li><li>Serious pre-existing illness or major trauma; children without pediatric capability</li></ul></div>
+  </div>
+
+  <h3>Phases</h3>
+  <div class="tbl"><table>
+    <tr><th>Phase</th><th>Timing</th><th>Priorities</th></tr>
+    <tr><td>Emergent (resuscitative)</td><td>Injury → fluid resuscitation done and diuresis begins (~24–48 h per Iggy; your guide says up to ~72 h)</td><td>In order: airway, circulation/perfusion, temperature, pain, emotional support</td></tr>
+    <tr><td>Acute (healing)</td><td>Start of diuresis (~36–72 h) → wound closure</td><td>Infection, wound care/grafts, nutrition, fluid overload, mobility</td></tr>
+    <tr><td>Rehabilitative</td><td>Wound closure → best function (starts at admission)</td><td>Contractures, scars, psychosocial recovery, return to roles</td></tr>
+  </table></div>
+
+  <h3>Emergent phase: burn shock</h3>
+  <p>Mediators open gaps in capillaries (systemic if &gt; ~20–25% TBSA). Albumin escapes, oncotic pull drops, and the leak feeds itself. Greatest in the first ~8–12 hours, continuing to ~24.</p>
+  <div class="tbl"><table>
+    <tr><th></th><th>Emergent (leaky)</th><th>Acute (sealing, fluid returns)</th></tr>
+    <tr><td>Volume</td><td>Hypovolemia + edema; ↓ BP, ↑ HR, ↓ UO, ↓ cardiac output</td><td>Big diuresis → risk of <b>overload</b> (crackles, JVD, bounding pulse)</td></tr>
+    <tr><td>Potassium</td><td><b>↑</b> (damaged cells, hemolysis)</td><td><b>↓</b> (shifts back into cells + urine loss)</td></tr>
+    <tr><td>Sodium</td><td>↓ (trapped in edema fluid)</td><td>May stay ↓ (dilution, wound loss)</td></tr>
+    <tr><td>Hematocrit</td><td>↑ (hemoconcentration)</td><td>↓ (dilution + RBC loss)</td></tr>
+    <tr><td>Acid-base</td><td>Metabolic acidosis (lactic)</td><td>Watch for acidosis with mafenide</td></tr>
+  </table></div>
+
+  <h3>Airway, inhalation injury, carbon monoxide</h3>
+  <ul>
+    <li>Suspect with an enclosed space, facial burns, singed nasal hair/eyebrows, soot or <b>carbonaceous sputum</b>, <b>hoarseness</b>/voice change, stridor, drooling, trouble swallowing, wheezing.</li>
+    <li>Upper airway (heat) swells fast, often within 24–48 h, and worsens once big fluid volumes start. Lower airway (chemicals) → bronchospasm, pneumonia, ARDS at 24–72 h.</li>
+    <li>100% O₂ by nonrebreather, HOB up (no spine injury), <b>anticipate early intubation</b>. Hoarseness or stridor outranks fluid and pain.</li>
+    <li><b>CO</b> binds Hgb 200+ times more strongly than O₂. Headache, dizziness, nausea, confusion → seizures, coma. Cherry-red skin is late and unreliable. <b>Pulse ox reads falsely normal</b>; diagnose with COHb (co-oximetry). Treat with 100% O₂ (hyperbaric in some cases).</li>
+  </ul>
+  <div class="box kid"><b>Like I'm 10</b><p>CO takes every seat on the oxygen bus and won't get up. The bus looks full (SpO₂ 98%), but none of the passengers are oxygen.</p></div>
+
+  <h3>Scene and ED care</h3>
+  <ul>
+    <li>Your safety first; stop the burning (stop, drop, roll; remove from source; remove burned clothing unless stuck). Fire in a facility: <b>RACE</b> (Rescue, Alarm, Confine, Evacuate); extinguisher <b>PASS</b>.</li>
+    <li>ABCDE with c-spine protection for trauma, falls, electrical. Remove <b>all jewelry</b> early (becomes a tourniquet).</li>
+    <li>Cool small burns with cool running water about 10–20 min (Hurst says no more than 10). <b>No ice</b>, butter, ointments. Cover with a clean, dry sheet; large burns: limit cooling, keep warm.</li>
+    <li>Two large-bore IVs (&gt; ~20% TBSA), indwelling catheter for hourly UO, NG tube for burns ≥ 25% or intubated clients. Tetanus if not current (no dose in 10 years or unknown).</li>
+    <li>Check apical/carotid/femoral pulses; sterile dressing under a BP cuff on burned skin; cardiac monitor; elevate burned limbs; eye consult for facial burns. Labs: CBC, lytes, BUN/Cr, glucose, ABG with COHb, CPK, albumin, urinalysis for myoglobin, CXR, ECG.</li>
+  </ul>
+
+  <h3>Fluid resuscitation</h3>
+  <div class="math">Parkland (your guides, Iggy): 4 mL LR × kg × %TBSA = first 24 h
+  ½ in the first 8 h from the TIME OF BURN · ½ over the next 16 h
+  Superficial burns are NOT counted.
+
+Example: 80 kg, 30% → 4 × 80 × 30 = 9,600 mL
+  first 8 h: 4,800 mL = 600 mL/h · next 16 h: 4,800 mL = 300 mL/h
+Late start: burned 0900, IV at 1100 → first half runs over 6 h (800 mL/h)</div>
+  <div class="box chk"><b>Your Hurst workbook differs</b><p>The workbook (p. 27) teaches the ABA range 2–4 mL, using 2 mL for adult thermal, 3 mL for children, 4 mL for electrical. Your guides say to use the number your textbook and instructor use. If a question gives a multiplier, use it.</p></div>
+  <ul>
+    <li>LR is preferred (closer to plasma; lactate → bicarb helps acidosis; large NS volumes cause hyperchloremic acidosis). <b>No boluses.</b> Colloids (albumin) are held until capillaries start to seal (~12–24 h), or they leak out too.</li>
+    <li><b>Hourly urine output is the #1 indicator</b>: adults <span class="lab">0.5–1 mL/kg/hr</span> (30–50 mL/hr) · electrical/myoglobin <span class="lab">75–100 mL/hr</span> · children ~<span class="lab">1 mL/kg/hr</span>. Titrate the rate to UO; report UO below target for 2 hours in a row.</li>
+    <li>Too little → AKI, shock, deepening burns. Too much ("fluid creep") → pulmonary edema, compartment syndrome, worse airway edema.</li>
+  </ul>
+
+  <h3>Circumferential burns</h3>
+  <p>Eschar doesn't stretch, so swelling under it crushes veins, then arteries and nerves. Check the <b>6 P's</b>: pain (out of proportion, on passive stretch), pallor, paresthesia, pulselessness (<b>late</b>), paralysis, poikilothermia. Chest burns restrict ventilation. Treat with <b>escharotomy</b> or fasciotomy. Elevate, hourly neurovascular checks (Doppler). Rising pain, numbness, or lost Doppler pulse → notify now.</p>
+
+  <h3>Chemical &amp; electrical</h3>
+  <div class="grid2">
+    <div class="mini"><h4>Chemical</h4><ul><li><b>Brush off dry powder first</b>, then irrigate with large amounts of water (20+ min, longer for alkalis; eyes prolonged)</li><li>Remove contaminated clothing; wear PPE</li><li><b>Don't neutralize</b> (the reaction releases heat → second burn)</li></ul></div>
+    <div class="mini"><h4>Electrical</h4><ul><li>Entry/exit wounds; damage follows the current through deep tissue (iceberg)</li><li>Dysrhythmias (V-fib, asystole) → cardiac monitoring ~24 h</li><li>Rhabdomyolysis → tea-colored urine (myoglobin) → AKI; higher UO target; monitor CK and K</li><li>Compartment syndrome; c-spine precautions (falls, thrown); fractures from contractions</li></ul></div>
+  </div>
+  <p class="toplink">Hurst adds: for myoglobinuria, mannitol (inline filter, check clarity, don't refrigerate) and more fluids until the urine clears.</p>
+
+  <h3>Acute phase: infection, wounds, grafts</h3>
+  <ul>
+    <li><b>Infection/sepsis is the leading cause of death after the emergent phase.</b> Signs are subtle (baseline temp and HR are already high): confusion, tachypnea, hypo- or hyperthermia, new hyperglycemia, feeding intolerance, thrombocytopenia, ileus, wound changes (partial converting to full thickness, foul drainage, early eschar separation, graft sloughing).</li>
+    <li>Prevention: hand hygiene, aseptic wound care (cap, gown, mask, gloves), protective environment, no plants/flowers, early wound closure, early enteral feeding. Premedicate ~30 min before dressing changes; keep the room warm.</li>
+  </ul>
+  <div class="tbl"><table>
+    <tr><th>Topical</th><th>Key points</th></tr>
+    <tr><td>Silver sulfadiazine</td><td>Broad-spectrum, painless; transient <b>leukopenia</b>; caution with sulfa allergy; poor eschar penetration</td></tr>
+    <tr><td>Mafenide acetate</td><td>Penetrates eschar (ears, cartilage, deep wounds); <b>painful</b>; <b>metabolic acidosis</b> (carbonic anhydrase inhibitor) → watch for hyperventilation</td></tr>
+    <tr><td>Silver nitrate</td><td>Stains black; leaches Na⁺ and K⁺ → <b>hyponatremia, hypokalemia</b>; keep dressings <b>wet</b></td></tr>
+    <tr><td>Silver-impregnated dressings</td><td>Left on for several days → fewer painful changes</td></tr>
+  </table></div>
+  <ul>
+    <li><b>Grafts:</b> autograft (own skin, permanent; split- or full-thickness); allograft (cadaver) and xenograft (pig) are temporary with higher infection risk. A graft lives on the wound bed until capillaries grow in (~3–5 days): <b>immobilize</b>, elevate, <b>no BP cuff</b> on the grafted limb, avoid shear, watch for fluid under the graft and infection. The donor site is a new partial-thickness wound, often more painful.</li>
+    <li><b>Pain:</b> IV opioids in the emergent phase (IM/subcut absorb erratically, then flood in when fluid shifts back). Premedicate for procedures. Itching is common in healing wounds.</li>
+    <li><b>GI:</b> paralytic ileus (NG to suction); <b>Curling's ulcer</b> (risk ↑ with ventilation, multiorgan problems, &gt; 30% TBSA) → PPI or H₂ blocker + early enteral feeding.</li>
+    <li><b>Nutrition:</b> hypermetabolic (metabolic rate can double): high calorie, high protein (2–4× normal), high carbohydrate; start enteral feeding early (often within 24 h). If a question says NPO until bowel sounds return, returning bowel sounds mean the ileus has resolved.</li>
+    <li><b>Temperature:</b> burned skin can't hold heat; warm room, warmed fluids, cover wounds.</li>
+  </ul>
+
+  <h3>Rehabilitative phase</h3>
+  <ul>
+    <li><b>The position of comfort is the position of contracture.</b> ROM several times a day, splints, positioning in extension. Neck: <b>no pillows</b> (small towel under shoulders). Axilla: arms abducted ~<b>90°</b>. Hands: splinted in a functional position (Hurst: wrap fingers separately).</li>
+    <li>Hypertrophic scars: <b>pressure garments ~23 hours a day</b> for a year or more. Protect healed skin from the sun.</li>
+    <li>Psychosocial: body image, anxiety, depression, PTSD, grief, guilt. Assess readiness before encouraging the client to look at scars; demonstrate acceptance; support groups.</li>
+    <li>Prevention teaching: no smoking in the home (never near home O₂), working smoke detectors, two ways out of every room, fire extinguisher, water heater ≤ <span class="lab">120°F (49°C)</span>, pot handles in, outlet covers.</li>
+  </ul>
+</section>
+
+<!-- ================= ONCOLOGY ================= -->
+<section class="topic" id="on" style="--c:var(--on)">
+  <h2>Oncology</h2>
+  <p class="src">Your Oncology What &amp; Why guide and Iggy study guide (Ch 18) · Hurst workbook pp. 36–54</p>
+
+  <h3>How cancer happens</h3>
+  <ul>
+    <li>Normal cells stop when crowded and self-destruct when damaged. Cancer = DNA mutations: proto-oncogenes become oncogenes (gas pedal stuck on) and tumor suppressor genes like p53 fail (brakes cut). Usually needs several mutations, which is why risk rises with age.</li>
+    <li><b>Benign</b>: encapsulated, well-differentiated, slow, doesn't metastasize (but can still kill by location, e.g., brain). <b>Malignant</b>: not encapsulated, poorly differentiated, invades, metastasizes, recurs.</li>
+    <li><b>Carcinogenesis:</b> initiation (irreversible mutation) → <b>promotion</b> (tobacco, alcohol, obesity, hormones make mutated cells multiply; <b>reversible</b> if exposure stops) → progression (invasion, metastasis). That's why quitting smoking helps at any stage.</li>
+    <li>Metastasis: lymphatic (most common for carcinomas), bloodstream (lungs, liver, bone, brain), seeding into a cavity. Named for the origin: breast cancer in bone = metastatic breast cancer.</li>
+    <li><b>Grading</b> (I–IV) = how abnormal the cells look. <b>Staging</b> (TNM) = how far it has spread. Higher is worse for both.</li>
+  </ul>
+  <div class="box kid"><b>Like I'm 10</b><p>Initiation is dropping a lit match (can't un-drop it). Promotion is pouring gasoline on it: stop pouring and it may burn out. Progression is the fire jumping to the next house.</p></div>
+
+  <h3>Risk, prevention, screening</h3>
+  <ul>
+    <li>Tobacco is the #1 preventable cause (≥ 30% of cancers); obesity/inactivity next; aging is the biggest overall risk factor (Hurst workbook).</li>
+    <li><b>Primary</b> (is the cancer there yet? no): smoking cessation, sunscreen, HPV and hepatitis B vaccines, diet, exercise, limit alcohol. <b>Secondary</b> (looking for it): screening. <b>Tertiary</b> (already treated): rehab, managing effects, support groups.</li>
+    <li><b>CAUTION:</b> Change in bowel/bladder · A sore that doesn't heal · Unusual bleeding/discharge · Thickening or lump · Indigestion or trouble swallowing · Obvious change in a wart or mole · Nagging cough or hoarseness. Also unexplained weight loss, fatigue, fever.</li>
+  </ul>
+  <div class="tbl"><table>
+    <tr><th>Screening</th><th>Your guide</th><th>Hurst workbook</th></tr>
+    <tr><td>Breast</td><td>Mammography from 40–45 (groups differ)</td><td>Annual from 45; no deodorant, lotion, or powder; BSE days 7–12</td></tr>
+    <tr><td>Colorectal</td><td>From 45: colonoscopy every 10 years or stool tests</td><td>Same</td></tr>
+    <tr><td>Cervical</td><td>Pap/HPV from 21–25 depending on guideline</td><td>Pap from 21 every 3 years; HPV test every 5 years at 25–65</td></tr>
+    <tr><td>Lung</td><td>Annual low-dose CT, age 50–80 with 20 pack-years</td><td>—</td></tr>
+    <tr><td>Prostate / testicular</td><td>Shared decision on PSA at 50 (earlier for Black men or family history); self-exams</td><td>Monthly TSE ages 15–36; DRE/PSA over 50</td></tr>
+  </table></div>
+  <p><b>Diagnosis:</b> biopsy is the only definitive test. Imaging and tumor markers (CEA, PSA, CA-125, AFP) support it and track recurrence.</p>
+
+  <h3>Surgery</h3>
+  <p>Prophylactic, diagnostic, curative, debulking, palliative, reconstructive: know the goal before you teach. From the Hurst lecture:</p>
+  <div class="grid2">
+    <div class="mini"><h4>Total laryngectomy</h4><ul><li>Permanent stoma; all breathing through it</li><li>Semi-Fowler's; NG feeds protect the suture line; watch for carotid rupture; mouth care; humidity; bib outdoors</li><li>Talks with electrolarynx or Blom-Singer; can't whistle, use a straw, smoke, or swim</li></ul></div>
+    <div class="mini"><h4>Mastectomy with node removal</h4><ul><li>Check dressings front and back</li><li>Affected arm for life: no BPs, IVs, injections, constriction</li><li>Hair brushing, ball squeezing, wall climbing build collateral circulation</li></ul></div>
+  </div>
+
+  <h3>Radiation</h3>
+  <div class="tbl"><table>
+    <tr><th></th><th>External beam (teletherapy)</th><th>Sealed internal (implant, seeds)</th><th>Unsealed internal (PO/IV isotope)</th></tr>
+    <tr><td>Client radioactive?</td><td><b>No</b></td><td>Yes, while the source is in; <b>body fluids are not</b></td><td>Yes; <b>body fluids are</b> radioactive for a period</td></tr>
+    <tr><td>Nursing</td><td>Effects are local to the field (chest → esophagitis; pelvis → diarrhea); fatigue systemic. Wash with lukewarm water and mild soap, pat dry; <b>don't wash off markings</b>; no lotion, powder, deodorant, perfume on the site; avoid sun, heat/cold packs, tight clothes</td><td colspan="2">Time, distance, shielding. Private room, sign on door, cluster care; no pregnant visitors or staff; restrict children. Hurst: visitors 30 min/day at 6 ft, none under 16; rotate nurses; bedrest and low-fiber diet to keep an implant in. <b>Dislodged source: never touch it</b>; long-handled forceps → lead container → notify radiation safety. Unsealed: body-fluid precautions, flush multiple times</td></tr>
+  </table></div>
+
+  <h3>Chemotherapy</h3>
+  <ul>
+    <li>Kills dividing cells, including hair, GI lining, and marrow (the side-effect list). Cell-cycle specific (antimetabolites in S phase, vinca alkaloids in M phase) vs nonspecific (alkylating agents). Given in combinations and cycles so marrow can recover.</li>
+    <li><b>Safe handling:</b> double chemo-rated gloves, impermeable gown, eye/face protection if splash risk; prepared in a biologic safety cabinet. <b>Excreta can contain drug for about 48 hours</b>: PPE for body fluids, double-flush per policy. <i>(Hurst workbook says 3–7 days; go with your textbook.)</i> Disposal in yellow chemo containers.</li>
+    <li><b>Extravasation</b> (pain, burning, swelling, no blood return): <b>stop the infusion</b>, leave the catheter in and aspirate residual drug, notify provider, antidote per protocol, cold compress for most drugs (<b>warm for vinca alkaloids</b>), elevate, document. Prevent with blood-return checks; central lines preferred for vesicants. Don't "wait and see."</li>
+    <li>Other: targeted therapy, immunotherapy (checkpoint inhibitors → immune-related colitis, pneumonitis, thyroiditis, rash), hormonal therapy (tamoxifen), stem cell transplant (profound infection risk until engraftment).</li>
+  </ul>
+
+  <h3>Side effects</h3>
+  <div class="tbl"><table>
+    <tr><th>Problem</th><th>Know</th></tr>
+    <tr><td>Nadir</td><td>Lowest counts <b>7–14 days</b> after chemo (Iggy 7–10); recovery ~3–4 weeks. Drop order: <b>neutrophils → platelets → RBCs</b> (shortest-lived first). Risk is highest at the nadir, not on infusion day</td></tr>
+    <tr><td>Neutropenia</td><td>ANC = WBC × (% neutrophils + % bands) ÷ 100. <b>&lt; 1,500</b> neutropenia; <b>&lt; 500</b> severe. No pus, redness, or swelling without neutrophils; <b>fever may be the only sign</b>. Temp ≥ <span class="lab">100.4°F (38°C)</span> = emergency: cultures, IV antibiotics within ~1 hour. Hand hygiene #1; private room; no fresh flowers, plants, standing water; follow food policy (many texts: no raw/undercooked); no rectal temps, suppositories, enemas; growth factors (filgrastim)</td></tr>
+    <tr><td>Thrombocytopenia</td><td>&lt; 150,000; bleeding with trauma &lt; 50,000; <b>spontaneous &lt; 20,000</b>; transfuse &lt; 10,000 or active bleeding. Soft toothbrush, electric razor, no IMs, pressure 5–10 min after sticks, no rectal temps, stool softeners, <b>no aspirin/NSAIDs</b>, don't blow nose hard. Watch petechiae, gums, urine/stool blood, <b>neuro changes</b> (intracranial bleed)</td></tr>
+    <tr><td>Anemia &amp; fatigue</td><td>Fatigue is the <b>most common</b> side effect. Energy conservation; light exercise helps. Transfusion or epoetin (raises BP and clot risk)</td></tr>
+    <tr><td>GI &amp; hair</td><td>Give antiemetics (ondansetron, a 5-HT3 blocker) <b>before</b> chemo and around the clock, not just PRN. Anticipatory nausea is conditioned → relaxation, anti-anxiety meds. Mucositis: soft brush, saline or baking-soda rinse, no alcohol mouthwash, no spicy/acidic food, check for thrush. Alopecia starts ~2–3 weeks; usually temporary</td></tr>
+  </table></div>
+  <p class="toplink">Hurst adds: opioids are the gold standard for cancer pain with no ceiling dose (limited by side effects); DVT is the 2nd leading cause of death in cancer (fear PE); RBCs for symptomatic anemia; products often irradiated.</p>
+
+  <h3>Oncologic emergencies</h3>
+  <div class="tbl"><table>
+    <tr><th>Emergency</th><th>What / why</th><th>Nursing</th></tr>
+    <tr><td>Tumor lysis syndrome</td><td>Massive cell death 12–72 h after chemo (leukemia, lymphoma, bulky tumors): <b>↑ K, ↑ phosphorus, ↓ Ca, ↑ uric acid</b> → AKI, dysrhythmias. Ca drops because phosphate binds it</td><td>Aggressive IV hydration; allopurinol or rasburicase; strict I&amp;O; cardiac monitor; watch for tetany</td></tr>
+    <tr><td>Hypercalcemia of malignancy</td><td>Most common metabolic emergency (bone mets, myeloma, PTH-like hormone). Polyuria → dehydration → higher Ca (vicious cycle)</td><td><b>IV NS first</b>, then loop diuretic; bisphosphonates, calcitonin; mobility; fall and seizure precautions; monitor</td></tr>
+    <tr><td>SIADH</td><td>Tumor (small cell lung) makes ADH → ↓ Na, concentrated urine, weight gain without edema</td><td>Fluid restriction first; 3% saline only if severe, slowly; daily weights; seizure precautions</td></tr>
+    <tr><td>SVC syndrome</td><td>Tumor (lung, lymphoma) compresses the SVC: facial/periorbital/arm edema worst in the morning, distended neck veins, tight collar, dyspnea. Late: stridor, LOC change</td><td><b>High Fowler's</b>; no BPs, IVs, or sticks in the arms; watch the airway</td></tr>
+    <tr><td>Spinal cord compression</td><td>Back pain first (worse lying down, with coughing) → weakness → sensory loss → bowel/bladder (late)</td><td>New back pain = compression until proven otherwise; report now; dexamethasone, radiation; neuro checks</td></tr>
+    <tr><td>Tamponade / DIC</td><td>Tamponade: Beck's triad (hypotension, JVD, muffled heart sounds). DIC: clotting everywhere, then bleeding; ↓ platelets and fibrinogen, ↑ PT/PTT and D-dimer</td><td>Pericardiocentesis. DIC: treat the cause, replace blood products</td></tr>
+  </table></div>
+  <div class="box kid"><b>Like I'm 10</b><p>Bone marrow is a store. Chemo shuts down the delivery trucks, but the shelves are still stocked. The shelves empty in order of how fast things sell: neutrophils first, then platelets, then red cells. The nadir is the day the shelves are emptiest.</p></div>
+</section>
+
+<p class="part">Part B · Trends (Cherry &amp; Jacob)</p>
+
+<!-- ================= CH 5 ================= -->
+<section class="topic" id="c5" style="--c:var(--tr)">
+  <h2>Ch 5 · Theories of nursing practice</h2>
+  <p class="src">Course objectives 1 &amp; 8 · SLO 1</p>
+  <h3>Science, theory, and the words</h3>
+  <ul>
+    <li><b>Science</b> brings facts together and gives them coherence. Scientific process: <b>hypothesis → method → data collection → results → evaluation</b>.</li>
+    <li><b>Theory</b>: abstract generalization that explains how phenomena relate; needs <b>at least two related concepts</b>. Theory guides research; research validates theory.</li>
+    <li><b>Concept</b> = basic ingredient (pain, stress, adaptation). <b>Proposition</b> = statement of the relationship between concepts. <b>Conceptual model/framework</b> = concepts grouped by a common theme (looser than a theory). <b>Schematic model</b> = a diagram (blueprint) of the theory. <b>Philosophy</b> = values and beliefs (Watson).</li>
+    <li><b>Metaparadigm</b> (the four concepts in nursing models): <b>nursing, person, health, environment</b>.</li>
+    <li><b>Levels:</b> grand theory = broad (Rogers' unitary man). Middle-range/practice theory = specific population or situation (Beck's postpartum depression, Pender's Health Promotion, theory of unpleasant symptoms, Mishel). Nurses use middle-range theories daily.</li>
+  </ul>
+  <h3>Six criteria for theory acceptance (textbook Box 5.2)</h3>
+  <div class="tbl"><table>
+    <tr><th>Criterion</th><th>The question it asks</th></tr>
+    <tr><td>Inclusiveness</td><td>Does it include all concepts related to the area of interest?</td></tr>
+    <tr><td>Consistency</td><td>Can it address new entities <b>without changing its founding assumptions</b>?</td></tr>
+    <tr><td>Accuracy</td><td>Does it explain past occurrences and <b>predict</b> future outcomes?</td></tr>
+    <tr><td>Relevance</td><td>Does it reflect the scientific base it came from?</td></tr>
+    <tr><td>Fruitfulness</td><td>Does it generate <b>new directions for research</b>?</td></tr>
+    <tr><td>Simplicity</td><td>Does it give a <b>road map for replication</b>? Easy to follow? Makes sense?</td></tr>
+  </table></div>
+  <div class="box trap"><b>Trap</b><p>In this textbook, "can someone replicate it?" is <b>Simplicity</b>, not Accuracy or Consistency. Your peer's guide gets this one wrong both ways.</p></div>
+
+  <h3>Nightingale: the first nursing theorist (environmental adaptation)</h3>
+  <p>Nursing puts the patient in the best condition for <b>nature</b> to act. Her canons: <b>ventilation and warming</b> (air as pure as outside without chilling) · <b>noise</b> (no sudden noise, chatter, or whispering) · <b>variety</b> (flowers, colors, pets) · <b>diet</b> · <b>light</b> (second only to fresh air) · <b>chattering hopes and advices</b> (don't cheer the sick by making light of their danger: false hope) · <b>cleanliness</b> (health of houses; hand washing with friction).</p>
+
+  <h3>Theorists at a glance</h3>
+  <div class="tbl"><table>
+    <tr><th>Theorist (year)</th><th>Theory</th><th>Cue words in a question</th></tr>
+    <tr><td>Peplau (1952)</td><td>Interpersonal relations</td><td>Nurse–client relationship; client's feelings predict outcomes; anxiety; mutual goals; nurse as resource, teacher, counselor</td></tr>
+    <tr><td>Abdellah (1960)</td><td>21 nursing problems</td><td>Client-centered problems list</td></tr>
+    <tr><td>Orlando (1961)</td><td>Nursing process theory</td><td>Client's immediate behavior drives nurse's action; short-term focus</td></tr>
+    <tr><td>Henderson (1966)</td><td>Definition of nursing</td><td><b>14 essential functions</b> toward <b>independence</b></td></tr>
+    <tr><td>Levine (1967)</td><td>Conservation model</td><td>Conserve energy, structural, personal, social integrity</td></tr>
+    <tr><td>Rogers (1970)</td><td>Science of unitary human beings</td><td><b>Energy fields</b>, pattern, openness; synchronicity with the universe</td></tr>
+    <tr><td>Neuman (1970)</td><td>Systems model</td><td><b>Stressors</b>; primary/secondary/tertiary <b>prevention</b></td></tr>
+    <tr><td>Orem (1971)</td><td>Self-care deficit</td><td>Measure self-care deficit; nurse supports only what the client can't do; restore self-care</td></tr>
+    <tr><td>King (1971)</td><td>Goal attainment</td><td>Nurse–client <b>transactions</b> to reach goals</td></tr>
+    <tr><td>Roy (1974)</td><td>Adaptation model</td><td>Nurse = change agent who <b>modifies stimuli</b> so the client adapts</td></tr>
+    <tr><td>Leininger (1977)</td><td>Culture care diversity &amp; universality</td><td>Transcultural; worldview; ethnohistory; culturally congruent care</td></tr>
+    <tr><td>Watson (1978)</td><td>Human caring</td><td><b>Transpersonal caring</b>; 10 carative factors; mind-body-soul harmony</td></tr>
+    <tr><td>Newman (1979)</td><td>Health as expanding consciousness</td><td>Chronic/terminal illness; <b>meaning</b>; pattern; growth even without cure</td></tr>
+    <tr><td>Johnson (1980)</td><td>Behavioral system</td><td>Regulation of behavior; support and comfort</td></tr>
+    <tr><td>Parse (1981)</td><td>Human becoming</td><td>Quality of life from the person's own perspective</td></tr>
+    <tr><td>Mishel (1981)</td><td>Uncertainty in illness</td><td>Not knowing; waiting for results; misunderstood information</td></tr>
+  </table></div>
+  <p><b>Mishel's 4 stages:</b> (1) <b>stimuli frame</b>: what's causing the uncertainty (in the textbook case, a 9-year-old hears "you'll be asleep" and fears waking during surgery) → (2) <b>appraisal</b>: client assigns a positive or negative value → (3) <b>coping</b> mechanisms → (4) <b>adaptation</b>.</p>
+  <div class="box kid"><b>Like I'm 10</b><ul><li>Orem = training wheels: help with just the part you can't do yet.</li><li>Roy = rearranging the furniture so someone on crutches can get around.</li><li>Neuman = armor against stressors. Newman (with a w) = finding meaning.</li><li>Rogers = people are energy fields.</li><li>Mishel = "not knowing is the scariest part."</li></ul></div>
+</section>
+
+<!-- ================= CH 8 ================= -->
+<section class="topic" id="c8" style="--c:var(--tr)">
+  <h2>Ch 8 · Legal issues in nursing and health care</h2>
+  <p class="src">Course objectives 2, 3 &amp; 8 · SLO 6</p>
+  <h3>Where law comes from</h3>
+  <ul>
+    <li><b>Laws</b> say "must/shall" (minimum conduct with penalties). <b>Ethics</b> say "should/may."</li>
+    <li><b>Statutory law</b>: written by legislatures (Congress, state). Violations are crimes. Ignorance of the law is never a defense.</li>
+    <li><b>Common law</b> (case law, judge-made): appellate court opinions that set the standard of nursing conduct.</li>
+    <li><b>Civil law</b> (torts) vs <b>criminal law</b> (offenses against society; misdemeanors and felonies).</li>
+  </ul>
+  <h3>Federal statutes</h3>
+  <div class="tbl"><table>
+    <tr><th>Law</th><th>What it does</th></tr>
+    <tr><td>Medicare Conditions of Participation (42 CFR 482)</td><td>Minimum standards: individualized written care plan, trained staff, adequate staffing, discharge planning ASAP. CMS won't pay for "never events" (hospital-acquired conditions): retained foreign object, air embolism, blood incompatibility, stage III/IV pressure ulcer, falls and trauma, poor glycemic control, CAUTI, vascular catheter infection, certain SSIs, DVT/PE after some surgeries</td></tr>
+    <tr><td>EMTALA (1986)</td><td>"Antidumping": everyone gets a medical screening exam and is <b>stabilized</b> regardless of ability to pay; no transfer of unstable patients or women in labor. Fines $25–50K</td></tr>
+    <tr><td>ADA (1990)</td><td>Reasonable accommodation: interpreters, assistive devices (e.g., head-activated call light for a quadriplegic client)</td></tr>
+    <tr><td>Patient Self-Determination Act (1990)</td><td>On admission, written notice of the right to participate in decisions, accept or refuse treatment, and make advance directives; ask if the client has one and note it</td></tr>
+    <tr><td>HIPAA (1996)</td><td>Confidentiality of health information; whistle-blower protection for good-faith reports. Social media posts of patients (even "unidentifiable" body parts) are forbidden</td></tr>
+    <tr><td>Patient Safety &amp; Quality Improvement Act (2005)</td><td>Allows non-identifiable safety data to go to patient safety organizations</td></tr>
+    <tr><td>False Claims Act</td><td>Offense to submit false Medicare/Medicaid claims; whistle-blower gets 15–25% of recovery</td></tr>
+  </table></div>
+  <h3>State law</h3>
+  <ul>
+    <li><b>Nurse Practice Act</b>: defines RN, scope, standards, misconduct, grounds for discipline. Board rules have the force of law. Clarify any order that is inaccurate, unauthorized, not current, harmful, or contraindicated.</li>
+    <li>Board discipline: reprimand, probation, fines, limit/suspend/revoke license. Most discipline is tied to <b>chemical impairment</b> (10–15% of RNs chemically dependent).</li>
+    <li>Staffing: California (1999, effective 2004) was the only state with mandated nurse-patient ratios. Many states restrict mandatory overtime. Corporate negligence claims for understaffing.</li>
+    <li><b>Reporting statutes</b>: child abuse (immunity for good-faith reports), elder abuse, domestic violence (some states), communicable diseases, weapon injuries. Failing to report can bring criminal charges.</li>
+  </ul>
+  <h3>Negligence and malpractice (unintentional torts)</h3>
+  <p><b>Negligence</b>: failure to act as a reasonably prudent person would. <b>Malpractice</b>: negligence by a <b>professional</b>; usually needs an expert witness.</p>
+  <div class="grid2">
+    <div class="mini"><h4>4 elements the plaintiff must prove</h4><ol style="margin:0;padding-left:18px"><li><b>Duty</b>: nurse-patient relationship (accepting the assignment; phone triage counts)</li><li><b>Breach</b> of the standard of care</li><li><b>Actual harm/damage</b></li><li><b>Proximate cause</b>: direct link (or "substantial cause")</li></ol></div>
+    <div class="mini"><h4>Special doctrines</h4><ul><li><b>Res ipsa loquitur</b>: "the thing speaks for itself" (retained sponge); no expert needed</li><li><b>Gross negligence</b>: reckless disregard → punitive damages</li><li><b>Criminal negligence</b>: so reckless it's a crime (10× penicillin dose to a newborn; epidural given IV)</li><li><b>Comparative negligence</b>: damages split by each defendant's share (nurses paid 15% in <i>Janga</i>)</li></ul></div>
+  </div>
+  <ul>
+    <li><b>Affirmative duty</b> (<i>Utter v. United Hospital</i>, 1977): nurses must use independent judgment and take positive action, including the chain of command. "I was following orders" is never a defense.</li>
+    <li>Students: usually <b>ordinary negligence</b>; the supervising instructor/nurse and the hospital (vicarious liability) can be named. The hospital is held to the same standard as for a licensed nurse's error. Tell patients a student is caring for them.</li>
+    <li>Most frequent allegations: failure to communicate/report (the #1 cause of error per TJC), failure to monitor, ensure safety, rescue; improper treatment; medication errors; not following policy; not invoking the chain of command.</li>
+  </ul>
+  <h3>Defenses and limits</h3>
+  <ul>
+    <li><b>Emergency</b>: reasonable deviation to save a life (skipping a full prep in a crash C-section).</li>
+    <li><b>Governmental immunity</b>: VA, USPHS, NASA, DoD nurses; the government is substituted as defendant.</li>
+    <li><b>Good Samaritan</b>: off-duty emergency help; plaintiff must prove intentional harm or <b>gross</b> negligence. Stopping creates a nurse-patient relationship. Some states have "duty to rescue" laws.</li>
+    <li><b>Statute of limitations</b>: often 2–3 years; extended by the discovery rule, fraud or concealment, retained objects, incompetence, minors.</li>
+    <li><b>Disclosure</b> of errors leads to less severe consequences. The provider leads disclosure; the nurse shouldn't disclose before talking with the provider and leaders.</li>
+    <li>Nurses should carry their own <b>malpractice insurance</b> (expanding roles, floating, supervising, employers not defending, coverage limits).</li>
+  </ul>
+  <h3>Liability</h3>
+  <div class="tbl"><table>
+    <tr><th>Type</th><th>Meaning</th></tr>
+    <tr><td>Personal</td><td>You're always accountable for your own acts; no one can take it for you ("I'll take responsibility")</td></tr>
+    <tr><td>Floating</td><td>Don't perform tasks you lack skill for. Negotiate; ask for a resource nurse and document who will co-manage. <i>Winkelman</i>: a nurse may refuse an unsafe float. <i>Francis</i>: firing upheld when the nurse refused offered orientation</td></tr>
+    <tr><td>Charge nurse / manager</td><td>First responder, triage and staffing, delegation, supervising orientees and floats, reporting deficits, chain of command</td></tr>
+    <tr><td>Vicarious (respondeat superior)</td><td>"Let the master answer": employer is also liable for employees' negligence within their job</td></tr>
+    <tr><td>Corporate</td><td>The facility's own duties: safe facilities and equipment, competent staff, oversight, enforce policies, adequate staffing</td></tr>
+  </table></div>
+  <h3>Risk management &amp; incident reports</h3>
+  <ul>
+    <li>Report every unusual occurrence (injury, unexpected death, equipment failure, adverse reactions, unmet needs, refusals, unsafe practice, complaints, spills, violence). Usually to risk management within 24 h.</li>
+    <li>Write <b>objectively</b>: "Patient discovered lying prone at the foot of the bed," not "patient fell out of bed."</li>
+    <li><b>Never</b> mention the incident report in the chart, photocopy it, or let a provider "order" one.</li>
+  </ul>
+  <h3>Intentional torts</h3>
+  <div class="tbl"><table>
+    <tr><th>Tort</th><th>Example</th></tr>
+    <tr><td>Assault</td><td>Threat that causes fear of unconsented touching ("stop screaming or I'll inject you")</td></tr>
+    <tr><td>Battery</td><td>Unconsented touching; no harm required (drawing blood for police without consent)</td></tr>
+    <tr><td>Defamation</td><td><b>Libel</b> = written ("drug seeker" in the chart); <b>slander</b> = spoken (in the elevator)</td></tr>
+    <tr><td>False imprisonment</td><td>Detaining a competent person: restraints, hiding clothes, guards, sedation against will</td></tr>
+    <tr><td>Invasion of privacy</td><td>Making private health info public; sharing passwords; social media</td></tr>
+    <tr><td>Intentional infliction of emotional distress</td><td>Outrageous conduct (sharing a client's HIV status with friends)</td></tr>
+  </table></div>
+  <h3>Patient rights</h3>
+  <ul>
+    <li><b>Living will</b>: wishes for end-of-life care; written, dated, signed, witnessed. If asked to witness, refer to <b>risk management</b> (may be unlawful for you). Can be revoked at any time.</li>
+    <li><b>DNR</b>: a lawfully executed DNR must be followed, even if family objects; get the supervisor. Ignoring it → battery, "wrongful life."</li>
+    <li><b>Durable power of attorney for health care</b>: names the proxy who decides once the client is decisionally incompetent.</li>
+    <li><b>Informed consent</b>: the provider discloses nature, benefits, risks, alternatives, and risks of refusing. <b>Not delegable to the RN.</b> If the client doesn't understand, notify the provider and delay; hold your witness signature. If a surgeon starts a procedure the consent doesn't cover (debridement → amputation), question it, don't open the instruments, and get the supervisor.</li>
+    <li>Interpreters: qualified; family or friends only at the client's request. Deaf clients: ASL interpreter. Document the interpreter's name. All states let minors consent to STD testing/treatment.</li>
+    <li><b>Refusal/AMA</b>: competent adults may refuse (Jehovah's Witness case). Notify the provider; explain dangers; document; never detain.</li>
+    <li><b>Restraints</b>: least restrictive, last resort, never for short staffing. Bedrails and chair trays count. Nurses may restrain in an emergency, then contact the provider promptly. Orders timed and dated; document assessments.</li>
+  </ul>
+  <div class="box kid"><b>Like I'm 10</b><p>To win a negligence case you need all four legs of the table: a duty, breaking it, someone got hurt, and your mistake caused the hurt. Take away any leg and the table falls over. Intentional torts are different: doing the thing on purpose is enough, even with no injury.</p></div>
+</section>
+
+<!-- ================= CH 10 ================= -->
+<section class="topic" id="c10" style="--c:var(--tr)">
+  <h2>Ch 10 · Cultural competency and social issues</h2>
+  <p class="src">Course objective 5 · SLO 3, 7</p>
+  <h3>Terms</h3>
+  <ul>
+    <li><b>Culture</b>: shared values, beliefs, practices passed down. <b>Ethnicity</b>: shared linguistic, racial, or cultural background. <b>Minority</b>: group smaller than the majority.</li>
+    <li><b>Ethnocentric</b>: my culture is best. <b>Prejudice</b>: preconceived negative judgment. <b>Stereotyping</b>: assigning beliefs to a group without seeing the individual.</li>
+    <li><b>Cultural humility</b>: lifelong self-evaluation, fixing power imbalances, partnerships. <b>Cultural sensitivity</b>: neutral language that shows appreciation. <b>Transcultural</b>: grounded in your own culture, skilled in others.</li>
+  </ul>
+  <h3>The numbers</h3>
+  <ul>
+    <li>Federally defined minority groups: Asian American · Black/African American · Hispanic/Latino · Native Hawaiian/Pacific Islander · American Indian/Alaska Native. Minorities projected to be the majority by <b>2044</b>.</li>
+    <li>Adults 65+ will double to about 72 million; ~20% of the population by 2030.</li>
+    <li>Highest poverty: American Indian/Alaska Native, then Black. Highest uninsured: Hispanic.</li>
+    <li><b>Homicide</b> is the 2nd leading cause of death at ages 15–24. <b>Intimate partner violence</b> is the single greatest cause of injury to women 15–24, across all groups.</li>
+    <li>RN workforce: about 83% white, 6% Black, 6% Asian, 3% Hispanic (2013 survey); men about 11% of RNs.</li>
+    <li>History: NACGN (1908) recruited Black nurses before WWII; Cadet Nurse Corps in WWII; <i>Brown v. Board</i> (1954); Chi Eta Phi mentors.</li>
+  </ul>
+  <h3>Attitude continuum</h3>
+  <p>Hate → contempt → <b>tolerance</b> (minimum needed in a democracy) → respect → <b>celebration</b> (most positive).</p>
+  <h3>Giger &amp; Davidhizar's six cultural phenomena</h3>
+  <div class="tbl"><table>
+    <tr><th>Phenomenon</th><th>What to assess</th></tr>
+    <tr><td>Environmental control</td><td>Mastery over nature (expects meds and surgery to work) · subject to nature (fate; may not adhere) · harmony with nature (balance). Includes folk medicine and healers</td></tr>
+    <tr><td>Biologic variations</td><td>Body build, genetics, skin color, disease susceptibility, nutrition</td></tr>
+    <tr><td>Social organization</td><td>Family unit (nuclear, single-parent, extended), religious/ethnic groups, who supports whom</td></tr>
+    <tr><td>Communication</td><td>Language (the greatest obstacle), eye contact, silence. Ask how the client wants to be addressed; no "honey"</td></tr>
+    <tr><td>Space</td><td>Intimate zone <b>0–18 inches</b> (eye and ear exams); uncomfortable before trust is built</td></tr>
+    <tr><td>Time</td><td>Past, present, or future orientation. Present-oriented clients may be late and skip prevention; tie med schedules to their day</td></tr>
+  </table></div>
+  <h3>Interpreters and CLAS</h3>
+  <ul>
+    <li>A skilled interpreter is mandatory. No children (subject matter, authority). Consider <b>gender</b>, <b>birth origin/dialect</b>, and <b>socioeconomic class</b>; medical-terminology skills matter. Some groups see a stranger as a breach of confidentiality; others don't want family to know.</li>
+    <li>CLAS (Office of Minority Health): free interpreter services for LEP clients, notices of that right in their language, translated signage and materials, competent interpreters (family and friends aren't adequate substitutes), record primary language, ongoing organizational self-assessments, grievance processes, annual progress report.</li>
+  </ul>
+  <h3>Cultural assessment</h3>
+  <ol>
+    <li><b>Self-assessment first</b>: your own attitudes and ethnocentric tendencies.</li>
+    <li>Client assessment: ethnic affiliation, religion, family patterns, food patterns (what counts as "food"), health practices.</li>
+    <li>Classify each practice: <b>adaptive</b> (beneficial), <b>neutral</b>, or <b>maladaptive</b> (harmful). Garlic <i>instead of</i> the antihypertensive = maladaptive; garlic <i>with</i> it = neutral; garlic + med + daily exercise = adaptive.</li>
+    <li>Dermal practices (cupping, pinching, coining, burning) leave marks. Usually adaptive or neutral; <b>maladaptive with a clotting disorder</b>. Differentiate from abuse.</li>
+  </ol>
+  <p>Healers and extended family can be part of the plan if not harmful; give them privacy. Illnesses outside Western medicine: mal ojo, susto, bilis, empacho.</p>
+  <div class="box kid"><b>Like I'm 10</b><p>Before you can understand someone else's "normal," you have to notice your own. Then ask, don't assume, and keep anything they do that helps or doesn't hurt.</p></div>
+</section>
+
+<!-- ================= CH 25 ================= -->
+<section class="topic" id="c25" style="--c:var(--tr)">
+  <h2>Ch 25 · From student to professional nurse</h2>
+  <p class="src">Course objectives 6 &amp; 7 (mentoring and preceptorship) · 8th-ed PDF Ch 24</p>
+  <h3>Reality shock (Kramer, 1974)</h3>
+  <div class="tbl"><table>
+    <tr><th>Phase</th><th>What it looks like</th></tr>
+    <tr><td>Honeymoon</td><td>Everything is as imagined; orientation with friends; budgeting the new salary</td></tr>
+    <tr><td>Shock / rejection</td><td>Orientation ends; conflicting ways of doing skills; no expert to explain gray areas; flaws in the system</td></tr>
+    <tr><td>Recovery</td><td>First sign: <b>sense of humor returns</b>; less tension and anxiety</td></tr>
+    <tr><td>Resolution</td><td>Grows as a person and professional; meets expectations; can elicit change</td></tr>
+  </table></div>
+  <h3>How new nurses cope with shock</h3>
+  <div class="tbl"><table>
+    <tr><th>Type</th><th>Behavior</th></tr>
+    <tr><td>Native</td><td>"Goes native": copies unit shortcuts (meds without knowing actions)</td></tr>
+    <tr><td>Runaway</td><td>Leaves nursing or returns to school to teach</td></tr>
+    <tr><td>Rutter</td><td>"Just a job"; does what's needed to get by</td></tr>
+    <tr><td>Burned out</td><td>Bottles up conflict; stress, emotional indifference, fatigue; develops <b>over time</b></td></tr>
+    <tr><td>Compassion fatigue</td><td><b>Swift onset</b>; decline in compassion from exposure to patients' trauma. Greatest risk: <b>sacrificing your own self-care</b>. Prevention ABCs: Awareness, Balance, Connections</td></tr>
+    <tr><td>Loner</td><td>"Just do the job and keep quiet"; prefers nights</td></tr>
+    <tr><td>New nurse on the block</td><td>Changes jobs often; always "new here"</td></tr>
+    <tr><td>Change agent (healthy)</td><td>Works within the system to improve it</td></tr>
+  </table></div>
+  <h3>Transition shock (Duchscher)</h3>
+  <ul>
+    <li>Abrupt shock of moving from student to nurse: doubt, confusion, disorientation, loss.</li>
+    <li>Elements: <b>stability</b> (ask: how many nurses left last year? staffing? acuity?), <b>predictability</b>, <b>familiarity</b>, <b>consistency</b>.</li>
+    <li>Takes about <b>6 months</b> to find your "sea legs." Stages: doing → being → knowing.</li>
+    <li>25% of new nurses leave within the first year (NCSBN).</li>
+  </ul>
+  <h3>Why it's a shock</h3>
+  <ul>
+    <li>School = whole-task (primary nursing, holistic). Work often = <b>partial-task/functional</b> nursing (tasks divided; checkmark = quality check).</li>
+    <li>School evaluates the correct steps; work evaluates whether care met policy and procedure.</li>
+  </ul>
+  <h3>Benner: novice to expert (1984)</h3>
+  <ol><li><b>Novice</b>: rules learned by rote (still in school)</li><li><b>Advanced beginner</b>: most new nurses enter here</li><li><b>Competent</b>: long-range goals, mastering skills</li><li><b>Proficient</b>: sees the whole situation</li><li><b>Expert</b>: intuition; instant decisions</li></ol>
+  <p><b>Intuition</b> is nonconscious pattern recognition, not guessing; it develops with experience and sits beside objective data.</p>
+  <h3>Special needs of novice nurses</h3>
+  <p>Interpersonal, clinical, organizational, delegation, priority-setting, and assertiveness skills; dealing with horizontal violence; intuition. Practice what you'll say before clarifying an order.</p>
+  <h3>Workplace violence</h3>
+  <ul>
+    <li>Type 1 criminal stranger · Type 2 patient/client · Type 3 coworker (<b>horizontal/lateral violence</b>) · Type 4 personal relationship.</li>
+    <li>Horizontal violence: withholding patient information, exclusion, belittling, refusing to help, eye-rolling, scapegoating. ANA: zero tolerance.</li>
+  </ul>
+  <h3>Strategies to ease transition</h3>
+  <ul>
+    <li><b>NCSBN Transition to Practice model</b>: same preceptor for 6 months (+ support for 6 more), built on QSEN modules.</li>
+    <li><b>Biculturalism</b>: merging school values with workplace values.</li>
+    <li><b>Mentor</b>: voluntary, two-way, ongoing relationship (at least 2 years) with an experienced nurse who guides, supports, and validates intuition; recipient = <b>protégé</b>. <b>Role model</b>: an example to watch. <b>Preceptor</b>: experienced nurse who orients you to a specific unit and teaches skills (final semester or orientation). <b>Self-mentoring</b>: your own resources, problem solving, questions.</li>
+    <li><b>Residency</b>: usually 12 months; Vizient/AACN program ~95% first-year retention vs ~75% national.</li>
+    <li>Join NSNA/ANA. Watch for impostor feelings; build self-esteem.</li>
+    <li><b>NURSES</b>: Never fail to ask for help · Use facility resources · Reenergize with professional associations · Stay in contact with friends · Evaluate your growth realistically · Stay focused on goals.</li>
+    <li>Job hunting: first-year turnover over 20% is a concern.</li>
+  </ul>
+  <div class="box kid"><b>Like I'm 10</b><p>A preceptor is a driving instructor in the passenger seat for your first months on one road. A mentor is the coach you keep for years who helps you figure out where you want to drive.</p></div>
+</section>
+
+<!-- ================= CH 26 ================= -->
+<section class="topic" id="c26" style="--c:var(--tr)">
+  <h2>Ch 26 · Managing time: the path to high self-performance</h2>
+  <p class="src">Course objective 6 · 8th-ed PDF Ch 25</p>
+  <h3>Energy management</h3>
+  <p>"Energy, not time, is the fundamental currency of high performance." Four sources:</p>
+  <div class="tbl"><table>
+    <tr><th>Source</th><th>What builds it</th></tr>
+    <tr><td>Physical</td><td>Eating well, sleep, exercise, breaks, water. Work on this <b>first</b></td></tr>
+    <tr><td>Mental</td><td><b>Realistic optimism</b>; sustained concentration; preparation, visualization, positive self-talk</td></tr>
+    <tr><td>Spiritual</td><td>Purpose and direction; reflection in a quiet place</td></tr>
+    <tr><td>Emotional</td><td>Emotional intelligence: self-control, empathy, patience, trust. Fueled by the other three</td></tr>
+  </table></div>
+  <p><b>Mindfulness</b>: 1–2 minutes of focused breathing to stay in the present. <b>Complexity compression</b>: stress from taking on unplanned work while doing planned work.</p>
+  <h3>Morgenstern's 10 psychological obstacles</h3>
+  <p>Unclear goals · conquistador of chaos (crisis manager) · fear of downtime · <b>need to be a caretaker</b> · fear of failure · fear of success · <b>fear of disrupting the status quo</b> · fear of completion · <b>need for perfection</b> · fear of losing creativity.</p>
+  <h3>Distractions</h3>
+  <div class="grid2">
+    <div class="mini"><h4>External</h4><ul><li>Interruptions, visitors, meetings</li><li>Paperwork, understaffing, lack of information</li><li>Poor communication, unclear authority, red tape, waiting</li></ul></div>
+    <div class="mini"><h4>Internal (from you)</h4><ul><li>Procrastination, poor planning, poor delegation</li><li>Inability to say no, attempting too much</li><li>Clutter, disorganization, indecision, daydreaming, haste, surfing the Internet</li></ul></div>
+  </div>
+  <h3>Plan → organize → implement</h3>
+  <ul>
+    <li><b>Planning is the most important step.</b> 1 minute of planning ≈ 10 minutes of productivity; arrive 10–15 minutes early to map priorities.</li>
+    <li>Priorities: urgent (now) vs important (flexible timing). <b>ABC</b>: A = high value, B = medium, C = low (do A first; some C's never need doing). <b>Pareto (80/20)</b>: 20% of effort produces 80% of results; the vital few. <b>Continuum</b>: intrinsic importance, urgency, delegation, visitations.</li>
+    <li><b>Parkinson's law</b>: work expands to fill the time available; scheduling controls it. 15 focused minutes ≈ 1 hour of productivity. Schedule tasks in your "prime time."</li>
+    <li>To-do list: daily, revised as priorities shift, reviewed at the end of the shift.</li>
+    <li>Organizing: clear the <b>stacked desk</b> (and mind) · <b>no detourism</b> (one task to completion) · <b>wastebasketry</b> (handle a paper once: do it, delegate it, dump it) · professional e-mail.</li>
+    <li>Implementing: attack priorities early; break big tasks down. Procrastination: recognize it, admit it, then identify the task, ask why, consider delegating, set deadlines, one piece at a time, 95% can be enough (never in patient safety). Delegation steps (the delegator keeps accountability). Control interruptions (focused phone greeting). Say "no" clearly and briefly without an elaborate excuse. Reward yourself. Use technology.</li>
+    <li>When overwhelmed: <b>stop and plan</b>. Ask, "What is the best use of my time right now?"</li>
+  </ul>
+  <div class="box kid"><b>Like I'm 10</b><p>Your energy is a phone battery. Food, sleep, and movement charge it first; without that charge, the other apps (focus, purpose, patience) crash. Planning is checking the map before you drive: one minute saves ten minutes of wrong turns.</p></div>
+</section>
+
+<!-- ================= CH 28 ================= -->
+<section class="topic" id="c28" style="--c:var(--tr)">
+  <h2>Ch 28 · The NCLEX-RN examination</h2>
+  <p class="src">Course objective 9 · textbook + 2026 NCLEX-RN Test Plan (current rules)</p>
+  <h3>Purpose</h3>
+  <p>(1) Safeguard the public from unsafe practitioners; (2) help boards of nursing decide who can perform entry-level RN work. Graduates of associate, diploma, and baccalaureate programs all take the same exam. Pass/fail. Given by computer adaptive testing (CAT) at Pearson VUE.</p>
+  <h3>How the exam works now (2026 Test Plan)</h3>
+  <div class="tbl"><table>
+    <tr><th>Rule</th><th>Detail</th></tr>
+    <tr><td>Length</td><td>Minimum <b>85</b>, maximum <b>150</b> items, <b>5 hours</b> including breaks</td></tr>
+    <tr><td>Minimum-length exam</td><td>52 content items + <b>18 case-study items (3 case studies × 6)</b> + <b>15 unscored pretest</b> items</td></tr>
+    <tr><td>Clinical judgment</td><td>3 case studies plus about 10% stand-alone clinical judgment items (bowtie, trend)</td></tr>
+    <tr><td>CAT</td><td>Each item is chosen so you have about a 50% chance of answering correctly. Competency depends on the <b>difficulty</b> of items you answer correctly, not how many. No skipping, no going back</td></tr>
+    <tr><td>Pass/fail rules</td><td>(1) <b>95% confidence interval</b> rule (most common) · (2) <b>maximum-length</b>: final ability estimate decides · (3) <b>run out of time</b>: below minimum items = fail; otherwise final ability estimate from all completed items</td></tr>
+    <tr><td>Scoring</td><td>Partial credit on multi-key items: plus/minus, 0/1, and rationale scoring</td></tr>
+  </table></div>
+  <div class="box chk"><b>Outdated numbers in the textbook</b><p>The 8th-edition chapter still says 75–265 items, 6 hours, and "analyze the last 60 questions" if time runs out. Those rules ended with the Next Generation NCLEX. Use the 2026 numbers above.</p></div>
+  <h3>Client needs (2026)</h3>
+  <div class="tbl"><table>
+    <tr><th>Category</th><th>Subcategory</th><th>% of items</th></tr>
+    <tr><td rowspan="2">Safe &amp; effective care environment</td><td>Management of care</td><td><b>15–21%</b> (largest)</td></tr>
+    <tr><td>Safety &amp; infection prevention and control</td><td>10–16%</td></tr>
+    <tr><td colspan="2">Health promotion &amp; maintenance</td><td>6–12%</td></tr>
+    <tr><td colspan="2">Psychosocial integrity</td><td>6–12%</td></tr>
+    <tr><td rowspan="4">Physiological integrity</td><td>Basic care &amp; comfort</td><td>6–12%</td></tr>
+    <tr><td>Pharmacological &amp; parenteral therapies</td><td>13–19%</td></tr>
+    <tr><td>Reduction of risk potential</td><td>9–15%</td></tr>
+    <tr><td>Physiological adaptation</td><td>11–17%</td></tr>
+  </table></div>
+  <p><b>Integrated processes:</b> caring · clinical judgment · communication &amp; documentation · culture &amp; spirituality · nursing process (assessment, analysis, planning, implementation, evaluation) · teaching/learning.</p>
+  <h3>Clinical Judgment Measurement Model (6 steps)</h3>
+  <ol>
+    <li><b>Recognize cues</b>: pick out relevant data (history, vital signs)</li>
+    <li><b>Analyze cues</b>: connect the cues to the client's condition</li>
+    <li><b>Prioritize hypotheses</b>: rank explanations by urgency, likelihood, risk</li>
+    <li><b>Generate solutions</b>: expected outcomes and possible interventions</li>
+    <li><b>Take action</b>: do the highest-priority solution</li>
+    <li><b>Evaluate outcomes</b>: compare what happened with what you expected</li>
+  </ol>
+  <p>Your instructor's slide says "Picturize hypotheses." The exam term is <b>Prioritize hypotheses</b>.</p>
+  <h3>Bloom's levels</h3>
+  <p>Remember (normal K range) → understand (which item fits a clear liquid diet) → apply (priority assessment before IM morphine) → analyze (tetany + Trousseau + Ca 8 → hypocalcemia; setting priorities, drawing conclusions). Most NCLEX items are at <b>application or higher</b>.</p>
+  <h3>Build your study plan</h3>
+  <p>Read the candidate bulletin and test plan · get your Authorization to Test (apply to your board first) · needs assessment of strengths and weaknesses · analyze standardized exams · pick individual vs group study · study in ~50-minute blocks · learn concepts, not isolated facts · practice questions and read every rationale · about 1 minute per item · avoid excess caffeine · stay positive: the goal is minimum entry-level competence. Most students study 2–3 months.</p>
+  <div class="box kid"><b>Like I'm 10</b><p>The NCLEX is an eye exam. It keeps flipping lenses until it's sure. Stopping early doesn't mean you failed or passed; it means the machine is sure. Getting hard questions right counts more than getting lots of easy ones right.</p></div>
+</section>
+
+<!-- ================= CORRECTIONS ================= -->
+<section class="topic" id="fix" style="--c:var(--chk-rule)">
+  <h2>Corrections &amp; manual checks</h2>
+  <p class="src">Read this before you study from any single source</p>
+  <h3>Where your study guides and the Hurst workbook disagree</h3>
+  <p>Your guides are the primary source here. Use the guide's number unless your instructor or the question says otherwise.</p>
+  <div class="tbl"><table>
+    <tr><th>Topic</th><th>Your guides (Iggy)</th><th>Hurst workbook</th></tr>
+    <tr><td>Burn fluid formula</td><td>Parkland 4 mL × kg × %TBSA</td><td>2 mL adult thermal, 3 mL child, 4 mL electrical</td></tr>
+    <tr><td>Chemo in body fluids</td><td>About 48 hours</td><td>3–7 days</td></tr>
+    <tr><td>Cooling a burn</td><td>Cool water about 10–20 min</td><td>No more than 10 min</td></tr>
+    <tr><td>When fluid shifts back after a burn</td><td>~48–72 h (Iggy: capillaries recover 48–72 h)</td><td>After 48 h</td></tr>
+    <tr><td>Albumin in burns</td><td>Held until capillaries start sealing (~12–24 h)</td><td>After the first 24 h</td></tr>
+    <tr><td>D5W</td><td>Isotonic in the bag, acts hypotonic in the body</td><td>Listed as isotonic</td></tr>
+    <tr><td>Mammogram start</td><td>40–45 (groups differ)</td><td>45</td></tr>
+  </table></div>
+  <h3>Your filled-in Hurst workbook</h3>
+  <ul>
+    <li><b>p. 2</b>: your DI note says "retain sodium." Sodium isn't retained in DI; water is lost, so sodium is left behind and concentrated. Your second note ("sodium stays behind") is the correct one.</li>
+    <li><b>p. 8</b>: hypercalcemia "Add what to diet?" You wrote <i>protein</i>. Check it against the Ca↔phosphorus seesaw on the same page.</li>
+    <li><b>p. 9</b>: Mg sulfate exercise (urine output 180 → 140 mL/h). You circled "stop the infusion." Your F&amp;E guide says to stop only for absent DTRs, RR &lt; 12, or UO &lt; 30 mL/hr, and 140 mL/h is well above that. Confirm with the Hurst rationale.</li>
+    <li><b>p. 9</b>: right-hand clinical judgment box (seizure history vs 8 hours post heart cath) is blank.</li>
+    <li><b>p. 47</b>: chemo spill order. You put the respirator before the gown and gloves before goggles. Standard donning is gown → mask/respirator → goggles → gloves last. Check the Hurst answer.</li>
+  </ul>
+  <h3>Your peer's Trends guide</h3>
+  <ul>
+    <li><b>Ch 5 Q2</b>: says replication = <b>Accuracy</b>, and its own table calls it Consistency. The textbook (Box 5.2) says <b>Simplicity</b> ("provide a road map for replication").</li>
+    <li>Question numbers skip (8–9 and 17 in each quiz), and some answers are cut off at page breaks.</li>
+    <li>No Chapter 28 content even though it's listed.</li>
+    <li>Benner's "competent = 2–3 years" isn't in your textbook; the book gives stage descriptions only.</li>
+  </ul>
+  <h3>Correction to my own earlier notes</h3>
+  <p>I told you the IPV age range (15–24) and the OMB minority list in your peer's guide needed checking. Your textbook matches your peer's guide on both: IPV is "the single greatest cause of injury to women 15 to 24," and the book lists Hispanic/Latino among the federally defined minority groups. Use the textbook's version on this exam.</p>
+</section>
+
+<footer class="wrap"><p>Sources: your Fluids &amp; Electrolytes, Acid-Base &amp; ABGs, Burns, and Oncology What &amp; Why guides and your Burns/Shock/Oncology Iggy study guide; Hurst Review student workbook pp. 1–54; Cherry &amp; Jacob, <i>Contemporary Nursing: Issues, Trends, &amp; Management</i>, 8th ed., Chs 5, 8, 10, 24–25, 28; NCSBN 2026 NCLEX-RN Test Plan; NUR206 Week 1 deck.</p></footer>
+</main>
+
+</body></html>
