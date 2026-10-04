@@ -1,0 +1,850 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NUR205 Exam 1: Clinical Judgment Set</title>
+<style>
+:root{--bg:#f4f1ea;--card:#fffdf8;--ink:#1c2526;--mut:#5d6b6c;--line:#d9d3c5;--acc:#0f5c63;--acc-ink:#fff;--soft:#e3eeee;
+--ok:#1e6b3c;--okbg:#e1f1e5;--bad:#a3261d;--badbg:#f8e3e0;--warn:#8a5a00;--warnbg:#f8ecd0;--chart:#eef1f3}
+@media (prefers-color-scheme:dark){:root{--bg:#12191a;--card:#1a2324;--ink:#e9eeec;--mut:#9aa9a8;--line:#2e3b3c;--acc:#5fc2c9;--acc-ink:#06282b;--soft:#1f3436;
+--ok:#7fd79c;--okbg:#173022;--bad:#ff9f94;--badbg:#3a1b18;--warn:#f0c367;--warnbg:#3a2e12;--chart:#202b2d}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 64px}
+h1{font:600 30px/1.2 Georgia,"Times New Roman",serif;margin:4px 0 12px;text-wrap:balance}
+h2{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin:18px 0 8px}
+h2:first-child{margin-top:0}
+.eyebrow{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--acc);margin:0;font-weight:600}
+.lead{font-size:18px;color:var(--mut);margin:0 0 20px;max-width:62ch}
+.muted{color:var(--mut);font-size:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin:0 0 16px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.row.end{margin-top:8px}
+.resume{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;border-color:var(--acc)}
+button{font:inherit;color:inherit;cursor:pointer}
+button:disabled{cursor:default}
+.btn{min-height:46px;padding:0 18px;border-radius:10px;border:1px solid var(--line);background:var(--card);font-weight:600}
+.btn.pri{background:var(--acc);color:var(--acc-ink);border-color:var(--acc)}
+.btn:disabled{opacity:.45}
+.btn.big{width:100%;margin-top:16px;min-height:54px;font-size:18px}
+.btn.flagged{background:var(--warnbg);border-color:var(--warn);color:var(--warn)}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.segb{text-align:left;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:transparent;display:flex;flex-direction:column}
+.segb span{font-size:14px;color:var(--mut)}
+.segb.on{border-color:var(--acc);background:var(--soft)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:40px;padding:0 12px;border-radius:20px;border:1px solid var(--line);background:transparent;font-size:14px;color:var(--mut)}
+.chip.on{border-color:var(--acc);background:var(--soft);color:var(--ink)}
+.check{display:flex;gap:8px;align-items:center;margin-top:14px;font-size:15px}
+.check input{width:20px;height:20px;accent-color:var(--acc)}
+.notes ul{margin:0 0 10px;padding-left:20px}.notes li{margin:4px 0}
+.top{position:sticky;top:0;background:var(--bg);padding:8px 0 10px;z-index:2}
+.meta{display:flex;justify-content:space-between;font-size:14px;color:var(--mut);font-weight:600}
+.clock{font-variant-numeric:tabular-nums}
+.bar{height:6px;border-radius:3px;background:var(--line);overflow:hidden;margin-top:6px}
+.bar>div{height:100%;background:var(--acc)}
+.bar.g>div{background:var(--ok)}.bar.m>div{background:var(--warn)}.bar.l>div{background:var(--bad)}
+.chart{background:var(--chart);border:1px solid var(--line);border-radius:10px;margin:8px 0 16px;overflow:hidden}
+.ctitle{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);padding:10px 14px 0;font-weight:700}
+.tabs{display:flex;overflow-x:auto;border-bottom:1px solid var(--line)}
+.tab{flex:none;min-height:44px;padding:0 14px;border:0;background:transparent;font-size:14px;font-weight:600;color:var(--mut);border-bottom:3px solid transparent}
+.tab.on{color:var(--ink);border-bottom-color:var(--acc);background:var(--card)}
+.cbody{padding:10px 14px 14px;font-size:16px}
+.stem{font:600 21px/1.35 Georgia,"Times New Roman",serif;margin:6px 0 10px;text-wrap:pretty}
+.hint{font-size:14px;color:var(--mut);margin:0 0 12px}
+.opts{display:grid;gap:8px}
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--card);min-height:52px}
+.ltr{flex:none;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--mut);display:grid;place-items:center;font-size:14px;font-weight:700;color:var(--mut)}
+.ltr.box{border-radius:6px}
+.ot{flex:1;min-width:0}
+.or{display:block;font-size:15px;color:var(--mut);margin-top:6px}
+.opt.sel{border-color:var(--acc);background:var(--soft)}
+.opt.sel .ltr{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}
+.opt.ok{border-color:var(--ok);background:var(--okbg);opacity:1}
+.opt.ok .ltr{background:var(--ok);border-color:var(--ok);color:var(--card)}
+.opt.bad{border-color:var(--bad);background:var(--badbg)}
+.opt.bad .ltr{background:var(--bad);border-color:var(--bad);color:var(--card)}
+.opt.miss{border-color:var(--warn);background:var(--warnbg);border-style:dashed}
+.opt:disabled{color:var(--ink)}
+.hl{display:flex;flex-wrap:wrap;gap:8px}
+.seg-h{min-height:44px;padding:8px 12px;border-radius:8px;border:1.5px solid var(--line);background:var(--card);text-align:left}
+.seg-h.sel{background:#ffe98a;border-color:#b08a00;color:#1c2526}
+.seg-h.ok{background:var(--okbg);border-color:var(--ok);color:var(--ink)}
+.seg-h.bad{background:var(--badbg);border-color:var(--bad);color:var(--ink)}
+.seg-h.miss{background:var(--warnbg);border-color:var(--warn);border-style:dashed;color:var(--ink)}
+.seg-h:disabled{color:var(--ink)}.seg-h.dim:disabled{color:var(--mut)}
+.mxw{overflow-x:auto}
+.mx{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px}
+.mx th{font-size:13px;font-weight:700;padding:10px 6px;border-bottom:1px solid var(--line);vertical-align:bottom;min-width:92px}
+.mx td{padding:8px 6px;border-bottom:1px solid var(--line)}
+.mx tr:last-child td{border-bottom:0}
+.mx .rt{padding-left:12px}
+.mx .cell{text-align:center;width:1%}
+.radio{width:30px;height:30px;border-radius:50%;border:2px solid var(--mut);background:transparent;padding:0;position:relative}
+.radio.sel{border-color:var(--acc)}
+.radio.sel::after{content:"";position:absolute;inset:5px;border-radius:50%;background:var(--acc)}
+.cell.ok{background:var(--okbg)}.cell.bad{background:var(--badbg)}
+.cell.bad .radio.sel{border-color:var(--bad)}.cell.bad .radio.sel::after{background:var(--bad)}
+.cell.ok .radio{border-color:var(--ok)}.cell.ok .radio.sel::after{background:var(--ok)}
+.rbad .rt{color:var(--bad)}
+.cz{font-size:18px;line-height:2.3;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:0}
+.cz select{font:inherit;font-size:16px;max-width:100%;padding:6px 8px;border-radius:8px;border:1.5px solid var(--acc);background:var(--soft);color:var(--ink)}
+.cz select.ok{border-color:var(--ok);background:var(--okbg)}.cz select.bad{border-color:var(--bad);background:var(--badbg)}
+.cz select:disabled{opacity:1;color:var(--ink)}
+.fix{color:var(--ok);font-weight:600}
+.ord{list-style:none;counter-reset:n;padding:0;margin:0;display:grid;gap:8px}
+.ord li{counter-increment:n;display:flex;gap:12px;align-items:center;padding:10px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--card)}
+.ord li::before{content:counter(n);flex:none;width:28px;height:28px;border-radius:50%;background:var(--soft);display:grid;place-items:center;font-weight:700;font-size:14px}
+.ord li.ok{border-color:var(--ok);background:var(--okbg)}.ord li.bad{border-color:var(--bad);background:var(--badbg)}
+.mv{display:flex;gap:6px;flex:none}
+.ar{width:44px;height:44px;border-radius:8px;border:1px solid var(--line);background:var(--bg);font-size:14px}
+.ar:disabled{opacity:.3}
+.right{margin-top:12px;padding:12px 14px;border-radius:10px;border:1.5px solid var(--ok);background:var(--okbg)}
+.right ol{margin:6px 0 0;padding-left:22px}
+.conf{display:flex;gap:8px;align-items:center;margin-top:16px;flex-wrap:wrap}
+.cf{min-height:40px;padding:0 14px;border-radius:20px;border:1px solid var(--line);background:transparent;font-size:14px}
+.cf.on{background:var(--soft);border-color:var(--acc);font-weight:600}
+.fb{margin-top:16px;padding:14px 16px;border-radius:10px;border-left:6px solid var(--mut);background:var(--card);border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.fb.full{border-left-color:var(--ok)}.fb.part{border-left-color:var(--warn)}.fb.zero{border-left-color:var(--bad)}
+.fbh{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.fbh span{font-size:14px;color:var(--mut)}
+.fb p{margin:8px 0}
+.plain{background:var(--soft);padding:10px 12px;border-radius:8px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tags span{font-size:12px;padding:3px 8px;border-radius:12px;border:1px solid var(--line);color:var(--mut)}
+.src{font-size:13px;color:var(--mut)}
+.ask{margin-top:16px;padding:14px 16px;border-radius:10px;border:1.5px solid var(--warn);background:var(--warnbg)}
+.ask p{margin:0 0 10px}
+.foot{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+.foot .pri{margin-left:auto;min-width:150px}
+.nav{margin-top:16px;padding:14px;border-radius:10px;border:1px solid var(--line);background:var(--card)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(46px,1fr));gap:6px}
+.nb{height:44px;border-radius:8px;border:1px solid var(--line);background:transparent;font-size:14px;font-weight:600;position:relative}
+.nb.ans{background:var(--soft)}.nb.cur{outline:2.5px solid var(--acc);outline-offset:1px}
+.nb.full{background:var(--okbg);border-color:var(--ok)}.nb.part{background:var(--warnbg);border-color:var(--warn)}.nb.zero{background:var(--badbg);border-color:var(--bad)}
+.nb.flag::after{content:"";position:absolute;top:4px;right:4px;width:8px;height:8px;border-radius:50%;background:var(--warn)}
+.legend{margin:10px 0}
+.score{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.big{font:700 56px/1 Georgia,serif}
+.big.g{color:var(--ok)}.big.m{color:var(--warn)}.big.l{color:var(--bad)}
+.brow{margin:10px 0}.bl{display:flex;justify-content:space-between;gap:12px;font-size:15px}
+.lnk{border:0;background:transparent;color:var(--acc);font-weight:700;text-decoration:underline;padding:6px 4px}
+.list{display:grid;gap:6px}
+.li{display:flex;gap:10px;align-items:center;text-align:left;width:100%;min-height:48px;padding:8px 12px;border-radius:8px;border:1px solid var(--line);border-left-width:6px;background:transparent;font-size:15px}
+.li.full{border-left-color:var(--ok)}.li.part{border-left-color:var(--warn)}.li.zero{border-left-color:var(--bad)}
+.num{flex:none;width:26px;font-weight:700;color:var(--mut)}.lt{flex:1;min-width:0}.pts{flex:none;font-weight:700;font-variant-numeric:tabular-nums}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+@media (max-width:520px){h1{font-size:25px}.stem{font-size:19px}.seg{grid-template-columns:1fr}.foot .pri{flex:1 1 100%;order:-1;margin:0}.mx th{min-width:70px;font-size:12px}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const MC="mc",SATA="sata",MX="matrix",CZ="cloze",ORD="order",HL="highlight";
+const N={moc:"Management of Care",saf:"Safety and Infection Control",hp:"Health Promotion and Maintenance",bcc:"Basic Care and Comfort",ph:"Pharmacological Therapies",rr:"Reduction of Risk Potential",pa:"Physiological Adaptation"};
+const S={rc:"Recognize Cues",ac:"Analyze Cues",ph:"Prioritize Hypotheses",gs:"Generate Solutions",ta:"Take Action",eo:"Evaluate Outcomes"};
+const CASE_CHART_1=[["History","72-year-old woman, 80 kg. Day 1 after surgical repair of a hip fracture. History: hypertension, type 2 diabetes mellitus, osteoarthritis. Home drugs continued: lisinopril, metformin, ibuprofen."],
+["Nurses' Notes","<b>1400:</b> Vomited three times since surgery. Oral intake 150 mL in 12 hours. IV 0.9% saline at 50 mL/hr. Urine 22 mL/hr for the last 3 hours, dark amber. Lungs clear. Pain 3 of 10."],
+["Vital Signs","<b>1400:</b> Blood pressure 88/52 mm Hg · Heart rate 118 · Respirations 20 · SpO₂ 96% on room air · Temperature 98.8°F (37.1°C)"],
+["Laboratory","Creatinine 1.9 mg/dL (baseline 0.9) · BUN 42 mg/dL · Potassium 4.9 mEq/L · Sodium 141 mEq/L"],
+["Orders","Ibuprofen 600 mg every 6 hours, scheduled · Lisinopril 20 mg daily, due now · Metformin 1000 mg twice daily · CT of the abdomen with IV contrast today"]];
+const CASE_CHART_2=CASE_CHART_1.concat([["Update 1700","<b>1700:</b> Received 1000 mL of 0.9% saline over 1 hour, then 150 mL/hr. Blood pressure 124/76, heart rate 96. Urine 15 mL/hr. New crackles in both lung bases, respirations 26, SpO₂ 92% on room air, new ankle edema. Potassium 5.3 mEq/L."]]);
+const CASE_CHART_3=CASE_CHART_2.concat([["Next Morning","<b>0800:</b> Furosemide given overnight; fluids restricted. Reassessment data are listed in the question."]]);
+
+const Q=[
+/* ---------- Chapter 53 ---------- */
+{ch:53,need:N.ph,skill:S.ac,type:MC,src:"Iggy Ch. 56, hypoglycemia; Table 56.5",
+stem:"A client with severe hypoglycemia receives glucagon. Which action explains how this drug raises blood glucose?",
+opts:[{t:"It stimulates the liver to break down stored glycogen.",c:1,r:"Glucagon is the main balancing hormone to insulin. It raises glucose by liver glycogen breakdown."},
+{t:"It moves glucose from the blood into the cells.",r:"That is insulin. It would lower blood glucose further."},
+{t:"It delays absorption of carbohydrate from the intestine.",r:"That is an alpha-glucosidase inhibitor such as acarbose."},
+{t:"It triggers release of preformed insulin from beta cells.",r:"That is a sulfonylurea such as glipizide."}],
+why:"Every wrong option is the true mechanism of a different diabetes drug. Know each class by what it does, not by its name. The effect of glucagon is temporary, so glucose is rechecked every 15 minutes.",
+plain:"The liver is a sugar pantry. Glucagon is the key that opens it."},
+
+/* ---------- Chapter 54 ---------- */
+{ch:54,need:N.ph,skill:S.gs,type:SATA,src:"Iggy Ch. 54, Box 54.11",
+stem:"A client is discharged on hydrocortisone replacement after bilateral adrenalectomy. Which instructions does the nurse include? Select all that apply.",
+opts:[{t:"“Take the medication with meals or snacks.”",c:1,r:"Prevents stomach irritation."},
+{t:"“Take the second daily dose at bedtime.”",r:"The second dose is taken between 4 p.m. and 6 p.m., not at bedtime."},
+{t:"“Increase the dose as your provider directs during illness or severe stress.”",c:1,r:"The body cannot raise its own cortisol for stress."},
+{t:"“If vomiting keeps you from taking the pill, wait until you can keep it down.”",r:"Never skip a dose. If the drug cannot be taken by mouth, call the provider or go to the emergency department for an injection."},
+{t:"“Learn how to give yourself an intramuscular injection of hydrocortisone.”",c:1,r:"Needed when the oral drug cannot be taken."},
+{t:"“You can stop the medication once your weight and blood pressure are stable.”",r:"Replacement is lifelong after bilateral adrenalectomy. Stopping for even a day or two causes acute adrenal insufficiency."}],
+why:"With no adrenal glands the client depends completely on the drug. The traps are timing (late afternoon, not bedtime) and the idea that a dose can wait.",
+plain:"The body's stress battery was removed. The pill is the battery now, so it can never be left out."},
+
+{ch:54,need:N.pa,skill:S.ac,type:MX,src:"Iggy Ch. 54, Box 54.1; SIADH assessment",
+stem:"For each finding, choose the disorder it supports.",
+cols:["Diabetes insipidus","Syndrome of inappropriate antidiuretic hormone"],
+rows:[{t:"Urine specific gravity 1.002",a:0},{t:"Serum sodium 121 mEq/L",a:1},{t:"Urine output of 7 L in 24 hours",a:0},
+{t:"Weight gain of 1.5 kg without dependent edema",a:1},{t:"Full, bounding pulse",a:1},{t:"Increased plasma osmolarity with intense thirst",a:0}],
+why:"Diabetes insipidus is too little antidiuretic hormone: water pours out, the urine is dilute, and the blood becomes concentrated. Syndrome of inappropriate antidiuretic hormone is too much: free water is held, sodium is diluted, and urine is concentrated. Free water, not salt, is retained, so dependent edema is usually absent.",
+plain:"One is a tap stuck open. The other is a tap stuck shut."},
+
+{ch:54,need:N.rr,skill:S.ta,type:MC,src:"Iggy Ch. 54, hypophysectomy postoperative care; Box 54.3",
+stem:"Six hours after transsphenoidal hypophysectomy a client says, “I can't stop swallowing.” The head of the bed is at 30 degrees. The lips are dry from mouth breathing. Which action does the nurse take first?",
+opts:[{t:"Assess the nasal drip pad for a halo sign and test the drainage for glucose.",c:1,r:"Increased swallowing or postnasal drip may be cerebrospinal fluid leaking. A yellow edge around clear drainage and glucose in the drainage confirm it."},
+{t:"Have the client cough to clear the secretions.",r:"Coughing raises pressure at the incision and can cause a cerebrospinal fluid leak."},
+{t:"Apply lubricating jelly to the lips.",r:"Correct care for dryness, but it is not the priority."},
+{t:"Remind the client to deep breathe hourly.",r:"Correct care, but it does not address the new cue."}],
+why:"The dry lips are a red herring. They are expected with mouth breathing. Constant swallowing is the cue, and assessment comes before any intervention.",
+plain:"Brain fluid may be dripping down the throat. Find out before doing anything else."},
+
+{ch:54,need:N.pa,skill:S.ac,type:CZ,src:"Iggy Ch. 54, diabetes insipidus; hypophysectomy complications",
+chart:[["Nurses' Notes","Day 1 after hypophysectomy. Urine output 450 mL/hr for 2 hours. Urine specific gravity 1.003. Serum sodium 149 mEq/L. Reports intense thirst."]],
+stem:"Complete the statements.",
+parts:["The findings are most consistent with ",{o:["diabetes insipidus","syndrome of inappropriate antidiuretic hormone","cerebrospinal fluid leak"],a:0},
+". The nurse anticipates a prescription for ",{o:["desmopressin","tolvaptan","fluid restriction of 800 mL per day"],a:0},
+". The immediate risk from this condition is ",{o:["dehydration","fluid overload","dilutional hyponatremia"],a:0},"."],
+why:"Large volumes of dilute urine with a rising sodium after pituitary surgery is transient diabetes insipidus. Desmopressin replaces the missing hormone. Tolvaptan and fluid restriction treat the opposite disorder and would be harmful here.",
+plain:"The body is losing water fast. Replace the hormone that tells the kidneys to keep it."},
+
+{ch:54,need:N.ph,skill:S.eo,type:MC,src:"Iggy Ch. 54, diabetes insipidus interventions",
+stem:"A client with diabetes insipidus is taught about intranasal desmopressin. Which statement indicates a need for further teaching?",
+opts:[{t:"“If I get a head cold, I will use an extra spray so enough is absorbed.”",c:1,r:"With an upper respiratory infection the oral or subcutaneous form is used. The dose is not self-increased."},
+{t:"“I will weigh myself every day on the same scale at the same time.”",r:"Correct. The drug causes water retention."},
+{t:"“More urination and thirst than usual tell me I need another dose.”",r:"Correct. Polyuria and polydipsia signal the need for another dose."},
+{t:"“Weight gain over 2.2 pounds with a headache means I go to the emergency department.”",r:"Correct. These are signs of water toxicity."}],
+why:"Read the stem for what it asks. Three statements are correct self-care. The drug can cause water overload, so extra doses on the client's own judgment are unsafe.",
+plain:"A stuffy nose blocks the spray. The answer is a different form of the drug, not more spray."},
+
+{ch:54,need:N.saf,skill:S.rc,type:MC,src:"Iggy Ch. 54, SIADH interventions",
+stem:"A client with small cell lung cancer has a serum sodium of 117 mEq/L. Which finding requires the nurse's immediate action?",
+opts:[{t:"New muscle twitching and increasing irritability",c:1,r:"These subtle changes come before seizures and coma."},
+{t:"Weight gain of 1 kg since yesterday",r:"A concern that reflects about 1 L of retained water, but it is not the immediate threat."},
+{t:"Dry mouth",r:"Expected with fluid restriction. Managed with oral rinses that are not swallowed."},
+{t:"Urine specific gravity 1.034",r:"Expected. Urine is concentrated in this disorder."}],
+why:"All four are abnormal. Only one predicts a seizure. Fluid shifts into brain tissue as sodium falls, and the risk rises below 120 mEq/L.",
+plain:"The brain is swelling with extra water. Twitching is the smoke before the fire."},
+
+{ch:54,need:N.bcc,skill:S.gs,type:SATA,src:"Iggy Ch. 54, SIADH interventions; Box 54.4",
+stem:"A client with syndrome of inappropriate antidiuretic hormone has a serum sodium of 119 mEq/L and receives tube feedings. Which interventions belong in the plan of care? Select all that apply.",
+opts:[{t:"Restrict fluids to the prescribed 500 to 1000 mL in 24 hours.",c:1,r:"Fluid intake further dilutes sodium."},
+{t:"Dilute tube feedings and flush the tube with saline instead of water.",c:1,r:"Water adds free water. Saline does not dilute sodium further."},
+{t:"Urge the client to drink fluids equal to the urine output.",r:"That is care for diabetes insipidus."},
+{t:"Provide frequent mouth rinses and warn the client not to swallow them.",c:1,r:"Comfort measure for dry mouth during fluid restriction."},
+{t:"Give desmopressin as prescribed.",r:"Desmopressin is a vasopressin analog. It causes or worsens this disorder."},
+{t:"Reduce environmental noise and lighting.",c:1,r:"Sodium below 120 mEq/L raises seizure risk. Overstimulation is reduced."}],
+why:"Two options are correct care for the neighboring disorder. That is the trap. Basic care here is safety care: the mouth rinse and the quiet room are part of the answer.",
+plain:"Too much water is already on board. Do not add more, and keep things calm."},
+
+{ch:54,need:N.ph,skill:S.eo,type:MC,src:"Iggy Ch. 54, SIADH drug therapy",
+chart:[["Laboratory","Tolvaptan started at 0600.<br>Serum sodium: 0600 = 118 · 1200 = 124 · 1800 = 129 · 2400 = 133 mEq/L"]],
+stem:"Which action does the nurse take at 2400?",
+opts:[{t:"Report the rate of sodium rise to the provider immediately.",c:1,r:"A rise of more than 12 mEq/L in 24 hours is linked to central nervous system demyelination. This is 15 mEq/L in 18 hours."},
+{t:"Document a therapeutic response and continue the drug.",r:"The direction is right. The speed is dangerous."},
+{t:"Request hypertonic saline to reach the normal range faster.",r:"This would raise sodium even faster."},
+{t:"Request a diuretic to speed water excretion.",r:"Diuretics are used on a limited basis and can worsen sodium loss."}],
+why:"A value moving toward normal is not automatically good news. This is why tolvaptan is given only in the hospital with close sodium monitoring.",
+plain:"Fixing salt too fast hurts the brain. Slow and steady is the goal."},
+
+{ch:54,need:N.saf,skill:S.ac,type:MC,src:"Iggy Ch. 54, hypercortisolism: preventing infection",
+stem:"A client taking prednisone long term has a temperature of 99.6°F (37.6°C). Baseline was 98.4°F (36.9°C). There is no redness, drainage, or cough. How does the nurse interpret this finding?",
+opts:[{t:"It indicates infection until proven otherwise.",c:1,r:"A rise of even 1°F above baseline is significant when immunity is reduced."},
+{t:"It is too low to be significant without pus or redness.",r:"Excess cortisol suppresses fever and pus. A severe infection can be present with only a low-grade fever."},
+{t:"It indicates an impending thyroid crisis.",r:"That rule belongs to hyperthyroidism."},
+{t:"It reflects acute adrenal insufficiency.",r:"That presents with hypotension, hyperkalemia, and hypoglycemia."}],
+why:"The missing signs are the trap. Steroids hide inflammation, so the usual warning signs do not appear.",
+plain:"The steroid turned off the body's alarm. A small beep means a big problem."},
+
+{ch:54,need:N.moc,skill:S.ta,type:MC,src:"Iggy Ch. 54, hypercortisolism: restoring fluid balance",
+stem:"The nurse is caring for a client with hypercortisolism and fluid overload. Which task is appropriate to delegate to assistive personnel?",
+opts:[{t:"Measuring and recording exact intake and output",c:1,r:"Assistive personnel can measure. The nurse makes sure they know the amounts must be exact, not estimated."},
+{t:"Assessing the skin for reddened areas and excoriation",r:"Assessment stays with the nurse."},
+{t:"Teaching the client to use a soft toothbrush and an electric shaver",r:"Teaching stays with the nurse."},
+{t:"Auscultating the lungs for crackles every 8 hours",r:"Assessment stays with the nurse."}],
+why:"Delegate tasks, not judgment. Assess, teach, and evaluate are never delegated.",
+plain:"Helpers can measure and report. Only the nurse decides what it means."},
+
+{ch:54,need:N.ph,skill:S.gs,type:SATA,src:"Iggy Ch. 54, hyperaldosteronism",
+stem:"A client with hyperaldosteronism who cannot have surgery starts spironolactone. Creatinine is mildly elevated. Which teaching points does the nurse include? Select all that apply.",
+opts:[{t:"Avoid potassium supplements and foods rich in potassium.",c:1,r:"The drug spares potassium. Hyperkalemia risk is higher with impaired kidney function."},
+{t:"Report muscle weakness, dizziness, lethargy, or drowsiness.",c:1,r:"Symptoms of hyponatremia, which can occur with this drug."},
+{t:"Report breast tissue enlargement.",c:1,r:"Gynecomastia is a reportable side effect."},
+{t:"Report hives or a rash.",c:1,r:"Reportable side effects."},
+{t:"Follow a strict low-sodium diet.",r:"Hyponatremia can occur. The client may need increased dietary sodium."},
+{t:"Expect the drug to lower potassium further.",r:"It is potassium-sparing and an aldosterone antagonist. It raises potassium."}],
+why:"The disease wastes potassium and holds sodium. The drug does the reverse. Teaching follows the drug, not the disease.",
+plain:"The drug flips the switch: it keeps potassium in and lets sodium go."},
+
+/* ---------- Chapter 55 ---------- */
+{ch:55,need:N.moc,skill:S.ph,type:MC,src:"Iggy Ch. 55, thyroidectomy postoperative care; Critical Rescue",
+stem:"The nurse receives report on four clients who had a total thyroidectomy. Which client does the nurse see first?",
+opts:[{t:"4 hours postoperative; drooling and reports difficulty swallowing; anterior dressing dry and intact",c:1,r:"Drooling and inability to swallow are signs of obstruction. The Rapid Response Team is initiated. Bleeding can pool behind the neck while the front of the dressing stays dry."},
+{t:"6 hours postoperative; voice is hoarse and weak",r:"Laryngeal nerve damage. Usually temporary. Voice is checked every 2 hours."},
+{t:"10 hours postoperative; reports tingling around the mouth and in the fingertips",r:"Early hypocalcemia. Needs calcium soon, but the airway is not yet involved."},
+{t:"12 hours postoperative; temperature has risen from 98.6°F to 99.8°F (37.0°C to 37.7°C)",r:"May signal impending thyroid crisis and is reported immediately, but an actual airway problem comes first."}],
+why:"All four need action. Airway beats everything, and an actual problem beats a potential one. The dry dressing is false reassurance.",
+plain:"One client is starting to lose the airway. Everyone else can wait a few minutes."},
+
+{ch:55,need:N.pa,skill:S.gs,type:SATA,src:"Iggy Ch. 55, Box 55.6",
+stem:"A client with Graves disease develops a temperature of 104.2°F (40.1°C), heart rate 152, agitation, and vomiting during a urinary tract infection. Which prescriptions does the nurse anticipate? Select all that apply.",
+opts:[{t:"Methimazole",c:1,r:"Antithyroid drug to block hormone production."},
+{t:"Aspirin for fever",r:"Nonsalicylate antipyretics are used."},
+{t:"Propranolol",c:1,r:"Controls heart rate."},
+{t:"Cooling blanket",c:1,r:"Comfort measure to reduce fever."},
+{t:"IV levothyroxine",r:"That is thyroid hormone replacement, the treatment for myxedema coma."},
+{t:"Glucocorticoids",c:1,r:"Given as prescribed during thyroid storm."}],
+why:"This is thyroid storm triggered by infection. One wrong option treats the opposite emergency, and the other is the wrong kind of antipyretic.",
+plain:"The engine is racing. Cut the fuel, slow the heart, cool the body."},
+
+{ch:55,need:N.moc,skill:S.ta,type:MC,src:"Iggy Ch. 55, hyperthyroidism nonsurgical management; Action Alert",
+stem:"Which instruction does the nurse give assistive personnel caring for a client with hyperthyroidism?",
+opts:[{t:"“Keep a fresh pitcher of ice water at the bedside and change the linen when it is damp.”",c:1,r:"Comfort care for heat intolerance and diaphoresis that is appropriate to delegate."},
+{t:"“Feel the front of the neck each shift and report any enlargement.”",r:"A goiter is not palpated in a client with hyperthyroid symptoms. It can trigger thyroid storm."},
+{t:"“Keep the room warm and leave the door open.”",r:"The room is kept cool and quiet with the door closed to reduce stimulation."},
+{t:"“Teach the client to use artificial tears for dry eyes.”",r:"Teaching stays with the nurse."}],
+why:"Two distractors are unsafe for this disorder and one is outside the scope of assistive personnel.",
+plain:"Cool, quiet, dry sheets. That is the helper's job here."},
+
+{ch:55,need:N.pa,skill:S.ta,type:MC,src:"Iggy Ch. 55, Box 55.3; improving gas exchange",
+stem:"A client with hypothyroidism received a standard dose of an opioid after surgery. The client is now unresponsive with respirations of 8, heart rate 46, and temperature 95.4°F (35.2°C). Which action does the nurse take first?",
+opts:[{t:"Maintain a patent airway.",c:1,r:"Respiratory failure is the most common cause of death in myxedema coma."},
+{t:"Give IV thyroid hormone as prescribed.",r:"Correct treatment, after the airway."},
+{t:"Give IV glucose as prescribed.",r:"Correct treatment, after the airway."},
+{t:"Check the temperature and blood pressure hourly.",r:"Correct monitoring, after the airway."}],
+why:"Every option is a real step in emergency care of myxedema coma. Only the order is being tested. Opioids and sedatives are known triggers because hypothyroidism increases sensitivity to them.",
+plain:"Nothing else matters if the client is not breathing."},
+
+{ch:55,need:N.ph,skill:S.eo,type:MC,src:"Iggy Ch. 55, Drug Alert: levothyroxine",
+stem:"A client starting levothyroxine receives teaching. Which statement indicates a need for further teaching?",
+opts:[{t:"“I will take it with my calcium supplement at breakfast so I don't forget.”",c:1,r:"Calcium, iron, and antacids reduce absorption. They are separated from levothyroxine by at least 4 hours, and the drug is taken on an empty stomach."},
+{t:"“I will take it with water 30 to 60 minutes before breakfast.”",r:"Correct."},
+{t:"“I will report chest pain right away.”",r:"Correct. Too high a dose can cause dysrhythmias, heart failure, and myocardial infarction."},
+{t:"“I will take this for the rest of my life.”",r:"Correct. Replacement is lifelong."}],
+why:"The wrong statement sounds responsible. The problem is absorption.",
+plain:"Calcium grabs the thyroid pill in the stomach so less of it gets in."},
+
+{ch:55,need:N.ph,skill:S.ac,type:MX,src:"Iggy Ch. 55, Table 55.2; Drug Alerts",
+stem:"For each teaching point, choose the drug it applies to.",
+cols:["Methimazole","Propylthiouracil","Both drugs"],
+rows:[{t:"Notify the provider if pregnancy occurs because the drug causes birth defects.",a:0},
+{t:"Report dark urine or yellowing of the skin or eyes.",a:1},
+{t:"Avoid crowds and people who are ill.",a:2},
+{t:"Report weight gain, slow heart rate, and cold intolerance.",a:2},
+{t:"First-line therapy because of ease of use.",a:0}],
+why:"The two drugs act the same way but are not interchangeable. Propylthiouracil carries the liver toxicity warning. Methimazole carries the birth defect warning. Both reduce the immune response and both can overshoot into hypothyroidism.",
+plain:"Same family, different warning labels. Keep the labels on the right bottle."},
+
+{ch:55,need:N.saf,skill:S.gs,type:SATA,src:"Iggy Ch. 55, Box 55.5; radioactive iodine therapy",
+stem:"A client receives radioactive iodine therapy for hyperthyroidism as an outpatient. Which instructions does the nurse include? Select all that apply.",
+opts:[{t:"Sit to urinate.",c:1,r:"Prevents splashing radioactive urine. Applies to men and women."},
+{t:"Flush the toilet two to three times with the lid closed after each use.",c:1,r:"Body fluids are radioactive for a few days."},
+{t:"Expect symptom relief within a few days.",r:"Relief may take 6 to 8 weeks because stored hormone is still released."},
+{t:"Stay at least 6 feet from pregnant women, infants, and young children.",c:1,r:"Usually for at least a week, including not sharing a bed."},
+{t:"Use absorbent gel-filled pads for urinary incontinence.",r:"Gel-filled briefs and pads are avoided. Tissue layers that can be flushed are used."},
+{t:"No follow-up is needed once symptoms resolve.",r:"Hypothyroidism can develop years later. Regular follow-up is required."}],
+why:"The source is unsealed, so the precautions are about body fluids and distance.",
+plain:"For about a week the client's urine and saliva carry a little radiation. Keep it away from babies and flush it away."},
+
+{ch:55,need:N.pa,skill:S.gs,type:MC,src:"Iggy Ch. 55, parathyroidectomy; hypoparathyroidism",
+stem:"On the first day after parathyroidectomy the client's hand flexes into a spasm while the blood pressure cuff is inflated. Serum calcium is 7.4 mg/dL. Which prescription does the nurse anticipate?",
+opts:[{t:"IV calcium gluconate",c:1,r:"A positive Trousseau sign indicates potential tetany. Acute, severe hypocalcemia is treated with IV calcium gluconate."},
+{t:"Cinacalcet",r:"Lowers calcium. It treats hyperparathyroidism."},
+{t:"An oral bisphosphonate",r:"Protects bone in hyperparathyroidism. It does not correct acute hypocalcemia."},
+{t:"High-calcium foods at the next meal",r:"Part of long-term management, not an acute rescue."}],
+why:"The remaining glands may take days to weeks to recover after surgery. A hypocalcemic crisis can occur in that window.",
+plain:"Low calcium makes muscles lock up. Calcium by vein works fastest."},
+
+{ch:55,need:N.saf,skill:S.ta,type:MC,src:"Iggy Ch. 55, Nursing Safety Priority: Action Alert",
+stem:"A nursing student prepares to palpate the thyroid of a client with tremors, heart rate 122, heat intolerance, and a visible goiter. Why does the nurse stop the student?",
+opts:[{t:"Palpation can cause a sudden release of thyroid hormone and trigger thyroid storm.",c:1,r:"Thyroid tissue is not palpated in a client with hyperthyroid symptoms."},
+{t:"Palpation can damage the laryngeal nerve.",r:"That is a surgical complication."},
+{t:"Palpation can cause tetany.",r:"Tetany follows parathyroid injury and hypocalcemia."},
+{t:"Palpation can cause airway obstruction from swelling.",r:"Obstruction is a postoperative risk."}],
+why:"The distractors are real thyroid complications from the wrong situation. Match the complication to its cause.",
+plain:"Squeezing an overfull gland pushes out more hormone."},
+
+/* ---------- Chapter 56 ---------- */
+{ch:56,need:N.pa,skill:S.ta,type:ORD,src:"Iggy Ch. 56, interventions for diabetic ketoacidosis",
+stem:"A client with type 1 diabetes mellitus arrives with glucose 512 mg/dL, pH 7.18, positive ketones, and deep, rapid respirations. Place the actions in the order the nurse expects to perform them.",
+steps:["Assess the airway and level of consciousness.",
+"Start the prescribed IV fluid at 15 to 20 mL/kg for the first hour.",
+"Give the IV regular insulin bolus and start the continuous infusion.",
+"Change the fluid to 5% dextrose in 0.45% saline when glucose reaches 250 mg/dL.",
+"Start subcutaneous insulin when the client can take oral fluids and ketosis has stopped."],
+why:"Airway first. Fluids restore blood volume and perfusion. IV regular insulin lowers glucose by about 50 to 75 mg/dL each hour. Dextrose is added at 250 mg/dL to prevent hypoglycemia and cerebral edema. Subcutaneous insulin is last because its onset is delayed.",
+plain:"Check breathing, refill the tank, bring the sugar down slowly, add sugar back before it drops too far, then switch to shots."},
+
+{ch:56,need:N.ph,skill:S.ta,type:MC,src:"Iggy Ch. 56, DKA drug therapy; Action Alert",
+stem:"Three hours into treatment for diabetic ketoacidosis, potassium is 4.3 mEq/L (was 5.4). Urine output has been 18 mL/hr for 2 hours. IV potassium is prescribed “when potassium falls below 5.0.” Which action does the nurse take?",
+opts:[{t:"Hold the potassium and report the urine output to the provider.",c:1,r:"Urine output must be at least 30 mL/hr before IV potassium-containing solutions are given."},
+{t:"Start the potassium now because the level is below 5.0.",r:"The trigger is met, but the safety check is not."},
+{t:"Stop the insulin infusion until potassium is replaced.",r:"Insulin is still needed to clear ketones."},
+{t:"Give sodium bicarbonate.",r:"Used only for severe acidosis with pH of 7.0 or less."}],
+why:"Two rules apply at once: replace potassium once it falls below 5.0, and never give it without adequate urine output. The second rule decides the action.",
+plain:"If the drain is blocked, do not turn on the tap."},
+
+{ch:56,need:N.pa,skill:S.gs,type:MC,src:"Iggy Ch. 56, DKA fluid and electrolyte management",
+stem:"On IV regular insulin, a client's glucose has fallen from 498 to 244 mg/dL. Ketones remain positive. The IV fluid is 0.9% saline. Which change does the nurse anticipate?",
+opts:[{t:"The fluid is changed to 5% dextrose in 0.45% saline.",c:1,r:"Started at about 250 mg/dL to prevent hypoglycemia and cerebral edema while insulin continues."},
+{t:"The insulin infusion is stopped.",r:"Ketones are still present. Resolution requires glucose below 200 mg/dL with bicarbonate above 18 mEq/L and pH above 7.30."},
+{t:"Subcutaneous insulin replaces the infusion.",r:"Only when the client can take oral fluids and ketosis has stopped."},
+{t:"IV sodium bicarbonate is added.",r:"Only for pH of 7.0 or less."}],
+why:"The glucose is not the disease. The acid is. Insulin keeps running until the ketones clear, and dextrose makes that safe.",
+plain:"Keep the insulin going to stop the acid, and add sugar to the bag so the client does not crash."},
+
+{ch:56,need:N.pa,skill:S.ac,type:MX,src:"Iggy Ch. 56, Table 56.9",
+stem:"For each finding, choose the condition it supports.",
+cols:["Diabetic ketoacidosis","Hyperglycemic-hyperosmolar state"],
+rows:[{t:"Serum pH 7.21",a:0},{t:"Glucose 910 mg/dL with serum osmolarity 352 mOsm/L",a:1},{t:"Kussmaul respirations with fruity breath",a:0},
+{t:"Gradual onset in an older adult with type 2 diabetes mellitus and poor fluid intake",a:1},{t:"Serum ketones negative",a:1},{t:"Serum bicarbonate 11 mEq/L",a:0}],
+why:"In hyperglycemic-hyperosmolar state there is just enough insulin to prevent ketosis but not enough to control glucose. Glucose climbs higher, and the danger is dehydration and neurologic change. In diabetic ketoacidosis the danger is acid.",
+plain:"One is an acid problem. The other is a thick, syrupy blood problem."},
+
+{ch:56,need:N.rr,skill:S.eo,type:MC,src:"Iggy Ch. 56, HHS fluid therapy; Critical Rescue",
+chart:[["Flow Sheet","Hyperglycemic-hyperosmolar state, IV fluids infusing.<br><b>0800:</b> Responds only to pain. Glucose 880.<br><b>1200:</b> Opens eyes to voice, follows commands. Glucose 520.<br><b>1600:</b> Drowsy, confused, pupils sluggish. Glucose 310."]],
+stem:"How does the nurse interpret the 1600 assessment?",
+opts:[{t:"Plasma osmolarity is falling too rapidly; notify the provider immediately.",c:1,r:"Regression after initial improvement suggests a too-rapid reduction in osmolarity. Changes in level of consciousness or pupils signal cerebral edema."},
+{t:"The rate of fluid replacement is inadequate.",r:"That explains a lack of improvement, not improvement followed by decline."},
+{t:"This is the expected lag before brain function recovers.",r:"Recovery can lag behind glucose, but it does not reverse."},
+{t:"Hypoglycemia has developed.",r:"Glucose is 310 mg/dL."}],
+why:"Read the trend, not the last value. Better then worse has a different meaning than never better.",
+plain:"The blood was thinned out too fast and water is rushing into the brain."},
+
+{ch:56,need:N.pa,skill:S.ta,type:MC,src:"Iggy Ch. 56, hypoglycemia: drug therapy; Critical Rescue",
+stem:"A client with type 1 diabetes mellitus is found unresponsive. Glucose is 36 mg/dL. There is no IV access. Which action does the nurse take first?",
+opts:[{t:"Give the prescribed glucagon and position the client on the side.",c:1,r:"Glucagon is first-line for severe hypoglycemia when the client cannot swallow. It can cause vomiting, so the client is turned to prevent aspiration."},
+{t:"Give 15 g of glucose gel by mouth.",r:"The client cannot swallow. Aspiration risk."},
+{t:"Repeat the glucose check in 15 minutes.",r:"Done after treatment."},
+{t:"Call the diabetes health care provider for insulin instructions.",r:"Done after treatment."}],
+why:"The level of consciousness decides the route. If glucagon does not work, the dose is repeated in 10 minutes.",
+plain:"A person who cannot swallow gets the shot, then gets rolled on the side."},
+
+{ch:56,need:N.bcc,skill:S.ta,type:MC,src:"Iggy Ch. 56, hypoglycemia: nutrition therapy",
+stem:"A hospitalized client is alert, pale, and clammy with a glucose of 44 mg/dL. Which does the nurse give?",
+opts:[{t:"30 g of rapidly absorbed carbohydrate",c:1,r:"Below 50 mg/dL the amount is 30 g."},
+{t:"15 g of rapidly absorbed carbohydrate",r:"The amount for glucose below 70 mg/dL. This client is below 50."},
+{t:"A chocolate bar",r:"Fat slows absorption."},
+{t:"Crackers with nut butter",r:"A complex carbohydrate is given after the recheck is above the hypoglycemic range."}],
+why:"The 15-15 rule has a second tier. The number in the stem matters.",
+plain:"The lower the sugar, the bigger the first dose of sugar."},
+
+{ch:56,need:N.ph,skill:S.gs,type:MC,src:"Iggy Ch. 56, insulin therapy in the hospital",
+stem:"A client with type 1 diabetes mellitus is NPO for surgery at 1300. The 0730 glucose is 148 mg/dL. Scheduled at 0800: insulin glargine 24 units and insulin lispro 8 units with breakfast. Which action does the nurse take?",
+opts:[{t:"Give the glargine after confirming whether the dose is reduced, and hold the lispro.",c:1,r:"Basal insulin controls baseline glucose and is given when NPO, often at a reduced dose. Rapid-acting insulin causes hypoglycemia if the client is not eating."},
+{t:"Hold both insulins until the client can eat.",r:"A client with type 1 diabetes mellitus without basal insulin is at risk for ketoacidosis."},
+{t:"Give both insulins as scheduled.",r:"Lispro without food causes hypoglycemia."},
+{t:"Give the lispro and hold the glargine.",r:"Backwards."}],
+why:"Know each insulin by its job. Glargine has no peak and covers the background. Lispro covers a meal.",
+plain:"Background insulin keeps running. Mealtime insulin needs a meal."},
+
+{ch:56,need:N.rr,skill:S.gs,type:MC,src:"Iggy Ch. 56, Drug Alert: metformin; Ch. 60, contrast",
+stem:"A client with type 2 diabetes mellitus and a creatinine of 1.7 mg/dL is scheduled for a CT scan with contrast medium tomorrow. Which prescription does the nurse question?",
+opts:[{t:"Metformin 1000 mg with breakfast tomorrow",c:1,r:"Withheld 24 hours before contrast and until kidney function is established. Risk of lactic acidosis and acute kidney injury."},
+{t:"IV fluids at 1 mL/kg/hr for 6 to 12 hours before the scan",r:"Appropriate. Hydration dilutes the contrast and speeds its elimination."},
+{t:"Hold ibuprofen",r:"Appropriate. Combining nephrotoxic agents increases risk."},
+{t:"Repeat serum creatinine before the scan",r:"Appropriate. Kidney function is assessed before contrast."}],
+why:"Three prescriptions protect the kidney. One adds a second insult.",
+plain:"The dye is hard on the kidneys. Do not add another drug the kidneys must clear."},
+
+{ch:56,need:N.hp,skill:S.gs,type:SATA,src:"Iggy Ch. 56, Box 56.12; DKA patient education",
+stem:"A client with type 1 diabetes mellitus has had vomiting for 12 hours. Which instructions does the nurse give? Select all that apply.",
+opts:[{t:"Check blood glucose at least every 2 to 4 hours.",c:1,r:"Sick-day rule."},
+{t:"Test urine for ketones even if blood glucose is in range.",c:1,r:"Particularly when vomiting."},
+{t:"Hold insulin until able to eat again.",r:"Insulin is not omitted during illness."},
+{t:"When glucose is normal or elevated, drink 8 to 12 ounces of calorie-free, caffeine-free fluid every hour while awake.",c:1,r:"Prevents dehydration."},
+{t:"Take a brisk walk if glucose is above 250 mg/dL.",r:"Vigorous exercise is done only when glucose is 100 to 250 mg/dL with no ketones."},
+{t:"Call the provider if moderate or large ketones are present.",c:1,r:"Also if vomiting cannot be stopped or illness lasts more than 1 to 2 days."}],
+why:"Illness raises glucose through stress hormones even when the client is not eating. Infection or illness is the most common trigger of diabetic ketoacidosis.",
+plain:"Being sick pushes sugar up, so insulin is still needed even with an empty stomach."},
+
+/* ---------- Chapter 60 ---------- */
+{ch:60,need:N.ph,skill:S.gs,type:MX,src:"Iggy Ch. 60, hemodialysis nursing care; Box 60.10; Table 60.5",
+stem:"A client with end-stage kidney disease has hemodialysis at 1000. The 0800 medications are due. For each drug, choose the nurse's plan.",
+cols:["Anticipate holding until after dialysis","Give with breakfast as scheduled"],
+rows:[{t:"Atenolol",a:0},{t:"Cefazolin IV",a:0},{t:"Folic acid and vitamin B complex",a:0},{t:"Sevelamer",a:1}],
+why:"Antihypertensives can contribute to hypotension during dialysis. Cefazolin and vitamins are dialyzable and would be removed. Sevelamer is a phosphate binder that only works when taken with a meal. The nurse confirms the plan with the nephrology provider or pharmacist.",
+plain:"Do not give a drug the machine will wash out, or one that drops blood pressure during the treatment."},
+
+{ch:60,need:N.rr,skill:S.rc,type:MC,src:"Iggy Ch. 60, postdialysis care; complications of hemodialysis",
+stem:"A client returns from hemodialysis. Which finding requires immediate follow-up?",
+opts:[{t:"Headache, restlessness, and new confusion",c:1,r:"Mental status change suggests dialysis disequilibrium syndrome, which can progress to seizures or coma."},
+{t:"Weight 2 kg lower than before dialysis",r:"Expected from fluid removal."},
+{t:"Blood pressure 108/64 mm Hg; it was 152/92 before dialysis",r:"Expected from fluid removal."},
+{t:"Temperature 99.5°F (37.5°C)",r:"The machine warms the blood slightly. A true fever would raise concern for sepsis."}],
+why:"Three findings look abnormal and are expected. Know the expected post-dialysis picture so the real change stands out.",
+plain:"Lighter, lower pressure, a little warm: all normal. A confused brain is not."},
+
+{ch:60,need:N.saf,skill:S.gs,type:MC,src:"Iggy Ch. 60, anticoagulation; postdialysis care",
+stem:"One hour after hemodialysis, which prescribed action does the nurse postpone and clarify?",
+opts:[{t:"Intramuscular hepatitis B vaccine",c:1,r:"Heparin stays active for 4 to 6 hours. Invasive procedures are avoided during that time."},
+{t:"Weigh the client and compare with the predialysis weight",r:"Required."},
+{t:"Assess the vascular access site for bleeding",r:"Required."},
+{t:"Measure blood pressure for orthostatic changes",r:"Required."}],
+why:"The client is anticoagulated even though no anticoagulant appears on the medication list.",
+plain:"The blood is still thin from the machine. No needles for a few hours."},
+
+{ch:60,need:N.bcc,skill:S.gs,type:SATA,src:"Iggy Ch. 60, Box 60.9; Action Alert",
+stem:"A client has a new arteriovenous fistula in the left forearm. Which actions belong in the plan of care? Select all that apply.",
+opts:[{t:"Take blood pressure in the right arm.",c:1,r:"Compression can cause loss of the access."},
+{t:"Use the fistula for IV fluids if no other access is available.",r:"The access is never used for general IV fluids or drugs."},
+{t:"Check distal pulses and capillary refill in the left arm.",c:1,r:"Circulation below the access is assessed first."},
+{t:"Teach the client not to carry heavy objects with the left arm.",c:1,r:"Anything that compresses the arm is avoided."},
+{t:"Encourage routine range-of-motion exercises of the left arm.",c:1,r:"Routine exercise is encouraged."},
+{t:"Palpate for a thrill and auscultate for a bruit.",c:1,r:"Every 4 hours while awake."}],
+why:"Protecting the arm does not mean resting the arm. Compression is the enemy, not movement.",
+plain:"Guard the arm like a lifeline: no squeezing, no needles, but keep it moving."},
+
+{ch:60,need:N.hp,skill:S.eo,type:MC,src:"Iggy Ch. 60, Table 60.7; Table 60.8; Box 60.9",
+stem:"A client is discharged after creation of an arteriovenous fistula. Which statement indicates a need for further teaching?",
+opts:[{t:"“My fistula can be used for dialysis next week.”",c:1,r:"A fistula needs 2 to 3 months or longer to mature. A temporary access is used until then."},
+{t:"“I will not sleep with my weight on that arm.”",r:"Correct."},
+{t:"“I will wash the area with antibacterial soap between treatments.”",r:"Correct."},
+{t:"“No blood pressures or needle sticks in that arm.”",r:"Correct."}],
+why:"A graft can be used in 1 to 3 weeks. A fistula cannot. The two are often confused.",
+plain:"The vein needs months to toughen up before it can take dialysis needles."},
+
+{ch:60,need:N.saf,skill:S.ta,type:MC,src:"Iggy Ch. 60, Action Alert: peritonitis; PD complications",
+stem:"A client on peritoneal dialysis for 6 months has cloudy outflow, abdominal tenderness, and a temperature of 100.8°F (38.2°C). Which action does the nurse take first?",
+opts:[{t:"Send a specimen of the outflow for culture and sensitivity, Gram stain, and cell count.",c:1,r:"Cloudy outflow is the earliest sign of peritonitis. The specimen identifies the organism."},
+{t:"Warm the next bag of dialysate.",r:"Treats pain during inflow."},
+{t:"Turn the client from side to side.",r:"Treats poor inflow or outflow."},
+{t:"Milk the tubing.",r:"Dislodges a fibrin clot."}],
+why:"Each distractor fixes a different peritoneal dialysis problem. Match the action to the problem in the stem.",
+plain:"Cloudy fluid means germs. Catch a sample so the right antibiotic can be chosen."},
+
+{ch:60,need:N.rr,skill:S.rc,type:MX,src:"Iggy Ch. 60, PD complications",
+stem:"A nurse inspects peritoneal dialysis outflow. For each finding, choose the correct response.",
+cols:["Expected","Report"],
+rows:[{t:"Blood-tinged outflow during the first week of peritoneal dialysis",a:0},{t:"Clear, light yellow outflow",a:0},{t:"Cloudy outflow",a:1},
+{t:"Brown outflow",a:1},{t:"Outflow the color of urine with the same glucose level as urine",a:1}],
+why:"Blood-tinged fluid is expected when the catheter is new and clears within a week or two. Cloudy means infection. Brown means bowel perforation. Urine-colored means bladder perforation.",
+plain:"Pink at the start is fine. Cloudy, brown, or looks like urine means something is wrong inside."},
+
+{ch:60,need:N.pa,skill:S.ph,type:MC,src:"Iggy Ch. 60, CKD pathophysiology: potassium; nutrition",
+stem:"A client with end-stage kidney disease missed two dialysis sessions. Potassium is 6.1 mEq/L, sodium 138 mEq/L, creatinine 7.2 mg/dL, BUN 68 mg/dL. What is the priority nursing action?",
+opts:[{t:"Assess heart rate and rhythm.",c:1,r:"High potassium causes life-threatening changes in cardiac rate and rhythm. Tall, peaked T waves are the sign."},
+{t:"Weigh the client.",r:"Needed, not first."},
+{t:"Teach the client about dietary potassium restriction.",r:"Needed, not during an acute threat."},
+{t:"Review the client's fluid intake for the past 24 hours.",r:"Needed, not first."}],
+why:"Creatinine and BUN are high but expected in end-stage disease. Potassium is the value that kills.",
+plain:"Too much potassium makes the heart misfire. Look at the heart first."},
+
+{ch:60,need:N.bcc,skill:S.gs,type:SATA,src:"Iggy Ch. 60, Table 60.6; nutrition; drug therapy",
+stem:"Which instructions does the nurse give a client with end-stage kidney disease who receives hemodialysis three times a week? Select all that apply.",
+opts:[{t:"Limit fluid to 500 to 700 mL plus the amount of urine output each day.",c:1,r:"The fluid allowance on hemodialysis."},
+{t:"Use a salt substitute to season food.",r:"Salt substitutes contain potassium chloride."},
+{t:"Take the phosphate binder with meals.",c:1,r:"It binds dietary phosphorus only when food is present."},
+{t:"Avoid antacids that contain magnesium.",c:1,r:"The kidneys cannot excrete magnesium."},
+{t:"Limit protein to 0.55 to 0.60 g/kg each day.",r:"That is the restriction before dialysis. Hemodialysis removes protein, so the need rises to about 1.0 to 1.5 g/kg."},
+{t:"Take vitamin supplements just before dialysis.",r:"Water-soluble vitamins are removed by dialysis. They are taken after."}],
+why:"Diet rules change when dialysis starts. Protein goes up, not down.",
+plain:"The machine washes out some good things too, so protein and vitamins are added back afterward."},
+
+{ch:60,need:N.rr,skill:S.rc,type:MC,src:"Iggy Ch. 60, kidney transplant postoperative care",
+stem:"Twelve hours after kidney transplant, hourly urine outputs were 160, 150, 155, and then 35 mL. Which finding does the nurse report immediately?",
+opts:[{t:"The drop in urine output to 35 mL in the last hour",c:1,r:"An abrupt decrease may indicate rejection, thrombosis, obstruction, or acute kidney injury."},
+{t:"Pink, blood-tinged urine",r:"Expected right after surgery. It clears over days to weeks."},
+{t:"Incisional pain rated 4 of 10",r:"Expected and treated."},
+{t:"The new kidney can be felt in the right lower abdomen",r:"Expected. The kidney is placed in the anterior iliac fossa."}],
+why:"Urine output is assessed at least hourly for the first 48 hours for exactly this reason. Thrombosis requires emergency surgery.",
+plain:"The new kidney suddenly slowed down. That is the alarm."},
+
+{ch:60,need:N.moc,skill:S.ph,type:MC,src:"Iggy Ch. 60, CKD: managing fluid volume; pulmonary edema",
+stem:"The nurse receives report on four clients. Which client does the nurse see first?",
+opts:[{t:"Chronic kidney disease; crackles halfway up both lungs, respirations 30, SpO₂ 88%, restless",c:1,r:"Pulmonary edema with hypoxemia. An actual breathing problem."},
+{t:"Stage 4 chronic kidney disease; creatinine 4.2 mg/dL, reports fatigue",r:"Chronic and expected."},
+{t:"Hemodialysis in 1 hour; blood pressure 164/96 mm Hg, weight up 2.2 kg since the last treatment",r:"Expected before dialysis. The treatment will address it."},
+{t:"Peritoneal dialysis; cloudy outflow, temperature 100.6°F (38.1°C)",r:"Peritonitis is urgent and comes second. The airway and breathing problem comes first."}],
+why:"Two clients have real problems. Breathing outranks infection. Unstable outranks stable, and acute outranks chronic.",
+plain:"One client is drowning in fluid right now."},
+
+{ch:60,need:N.moc,skill:S.ta,type:MC,src:"Iggy Ch. 60, CKD: preventing injury; Box 60.9; Table 60.6",
+stem:"Which instruction does the nurse give assistive personnel caring for a client with long-standing chronic kidney disease who receives hemodialysis through a left arm fistula?",
+opts:[{t:"“Use a lift sheet to reposition the client. Do not pull.”",c:1,r:"Bones are brittle and fracture easily with little pain."},
+{t:"“Take the blood pressure on the left arm if the right arm has an IV.”",r:"Never on the access arm."},
+{t:"“Encourage fluids each time you enter the room.”",r:"Fluid is restricted to 500 to 700 mL plus urine output."},
+{t:"“Estimate the urine output when the client uses the toilet.”",r:"Intake and output must be measured accurately."}],
+why:"Basic care is where injuries happen. Three instructions sound routine and are wrong for this client.",
+plain:"The bones are like chalk. Lift, do not drag."},
+
+{ch:60,need:N.saf,skill:S.ta,type:ORD,src:"Iggy Ch. 60, Box 60.12",
+stem:"The nurse changes the dressing on a peritoneal dialysis catheter. Place the steps in order.",
+steps:["Mask yourself and the client, then wash your hands.",
+"Put on sterile gloves, remove the old dressing, and remove the contaminated gloves.",
+"Assess the site for swelling, redness, or discharge.",
+"With new sterile gloves, clean with swabs in a circular motion from the insertion site outward.",
+"Apply precut gauze pads over the site and tape only the edges."],
+why:"Peritonitis is the major complication of peritoneal dialysis and most often comes from contamination. Clean from the cleanest point, the insertion site, outward.",
+plain:"Mask, old dressing off, look, clean from the middle out, cover."},
+
+/* ---------- Unfolding case: Chapter 60 ---------- */
+{ch:60,cs:1,need:N.rr,skill:S.rc,type:HL,src:"Iggy Ch. 60, AKI assessment; Critical Rescue",chart:CASE_CHART_1,
+stem:"Case study, item 1 of 6. Select the findings that require follow-up.",
+segs:[{t:"Vomited three times since surgery",c:1},{t:"oral intake 150 mL in 12 hours",c:1},{t:"blood pressure 88/52 mm Hg",c:1},{t:"heart rate 118",c:1},
+{t:"SpO₂ 96% on room air",c:0},{t:"temperature 98.8°F",c:0},{t:"urine 22 mL/hr for the last 3 hours",c:1},{t:"urine dark amber",c:1},
+{t:"lungs clear",c:0},{t:"pain 3 of 10",c:0},{t:"creatinine 1.9 mg/dL, baseline 0.9",c:1}],
+why:"Fluid loss, low blood pressure, tachycardia, dark urine, and falling output are signs of volume depletion. For an 80-kg client, less than 0.5 mL/kg/hr is less than 40 mL/hr. A rising creatinine over hours to days is reported urgently.",
+plain:"Not enough fluid going in, too much coming out, and the kidneys are starting to complain."},
+
+{ch:60,cs:1,need:N.pa,skill:S.ac,type:CZ,src:"Iggy Ch. 60, AKI etiology; Box 60.2",chart:CASE_CHART_1,
+stem:"Case study, item 2 of 6. Complete the statement.",
+parts:["The client is most likely developing ",{o:["prerenal","intrarenal","postrenal"],a:0}," acute kidney injury caused by ",
+{o:["reduced kidney perfusion from volume depletion","obstruction of urine outflow","direct damage to kidney tissue from contrast medium"],a:0},"."],
+why:"Vomiting, poor intake, and hypotension reduce blood flow to the kidneys. Blood pressure medications and ibuprofen are listed contributors to reduced perfusion. No contrast has been given yet, and nothing suggests obstruction.",
+plain:"The kidneys are fine so far. They are just not getting enough blood."},
+
+{ch:60,cs:1,need:N.pa,skill:S.ph,type:MC,src:"Iggy Ch. 60, Critical Rescue: volume depletion",chart:CASE_CHART_1,
+stem:"Case study, item 3 of 6. Which risk is the priority at this time?",
+opts:[{t:"Permanent kidney damage from continued poor perfusion",c:1,r:"Early intervention for volume depletion prevents permanent damage. Waiting allows the injury to progress."},
+{t:"Pulmonary edema from fluid overload",r:"Lungs are clear and SpO₂ is 96%. No cues yet."},
+{t:"Obstruction of urine outflow",r:"No cues."},
+{t:"Uremic pericarditis",r:"A late complication of symptomatic uremia."}],
+why:"The priority hypothesis is the one the current cues support and that will cause harm soonest if nothing is done.",
+plain:"Fix the blood flow now, before the kidneys are hurt for good."},
+
+{ch:60,cs:1,need:N.rr,skill:S.gs,type:MX,src:"Iggy Ch. 60, AKI prevention; Box 60.2; Box 60.3; Ch. 56 Drug Alert",chart:CASE_CHART_1,
+stem:"Case study, item 4 of 6. For each potential action, choose whether the nurse anticipates it or questions it.",
+cols:["Anticipate","Question"],
+rows:[{t:"Request an increase in the IV fluid rate",a:0},{t:"Give the scheduled ibuprofen",a:1},{t:"Proceed with the CT scan using IV contrast",a:1},
+{t:"Give the scheduled lisinopril",a:1},{t:"Measure urine output hourly",a:0},{t:"Hold the metformin",a:0}],
+why:"Restore volume and remove every additional insult. Ibuprofen and contrast are nephrotoxic. Lisinopril lowers a blood pressure that is already 88/52. Metformin is not used with kidney impairment because of lactic acidosis.",
+plain:"Give the kidneys more blood and stop everything that makes their job harder."},
+
+{ch:60,cs:1,need:N.pa,skill:S.ta,type:MC,src:"Iggy Ch. 60, AKI interventions; kidney replacement therapy",chart:CASE_CHART_2,
+stem:"Case study, item 5 of 6. Review the 1700 update. Which action does the nurse take?",
+opts:[{t:"Report the findings now and anticipate fluid restriction or diuretic therapy.",c:1,r:"New crackles, edema, and low output after fluids indicate a positive fluid balance from acute kidney injury."},
+{t:"Request another 500 to 1000 mL saline fluid challenge.",r:"Fluid challenges are for clients without fluid overload."},
+{t:"Encourage oral fluids of 2 to 3 L per day.",r:"That is teaching for healthy adults."},
+{t:"Prepare the client for kidney replacement therapy now.",r:"Indications are symptomatic uremia, potassium above 6.5 mEq/L, pH below 7.1, or fluid overload that inhibits perfusion. Not met."}],
+why:"The plan reverses. Blood pressure recovered but the kidneys did not respond, so fluid that was the treatment is now the problem. Assess the response to every fluid challenge.",
+plain:"The tank is now too full because the drain still is not working."},
+
+{ch:60,cs:1,need:N.pa,skill:S.eo,type:MX,src:"Iggy Ch. 60, AKI; Box 60.1; Table 60.2",chart:CASE_CHART_3,
+stem:"Case study, item 6 of 6. For each finding the next morning, choose whether it shows the client is improving.",
+cols:["Improving","Not improving"],
+rows:[{t:"Urine output 55 mL/hr",a:0},{t:"Creatinine 1.8 mg/dL; it was 2.4 last evening",a:0},{t:"Weight down 1.2 kg and crackles cleared",a:0},
+{t:"Potassium 6.0 mEq/L; it was 5.3",a:1},{t:"New confusion and a flapping tremor of the hands",a:1}],
+why:"Evaluate each parameter on its own. Output, creatinine, and fluid status are better. Potassium is rising toward a dangerous level, and confusion with asterixis is a neurologic complication of acute kidney injury. Both are reported.",
+plain:"Most signs are better, but two are worse, and those two are the dangerous ones."}
+];
+
+</script>
+<script>
+(function(){
+'use strict';
+const KEY='nur205-cj-set-v1';
+const app=document.getElementById('app');
+const TYPE_NAME={mc:'Multiple choice',sata:'Select all that apply',matrix:'Matrix',cloze:'Drop-down',order:'Ordered response',highlight:'Highlight'};
+const CH_NAME={53:'Ch. 53 Endocrine assessment',54:'Ch. 54 Pituitary and adrenal',55:'Ch. 55 Thyroid and parathyroid',56:'Ch. 56 Diabetes mellitus',60:'Ch. 60 Kidney injury and kidney disease'};
+const HINT={sata:'Select all that apply. Each correct pick earns 1 point, each incorrect pick subtracts 1, and the item cannot go below zero.',
+matrix:'One selection per row. 1 point per row.',cloze:'1 point per drop-down.',
+order:'Use the arrows to move each step. All steps are used. Scored all or nothing.',
+highlight:'Tap each finding that requires follow-up. Each correct pick earns 1 point, each incorrect pick subtracts 1.'};
+const CONF=[['s','Sure'],['u','Unsure'],['g','Guess']];
+let st=null,items=[],view='start',navOpen=false,askSubmit=false,tab={i:-1,n:0};
+let setup={mode:'tutor',mix:true,chs:[53,54,55,56,60]};
+
+function h(tag,attrs){const e=document.createElement(tag);
+ if(attrs)for(const k in attrs){const v=attrs[k];if(v==null||v===false)continue;
+  if(k==='class')e.className=v;else if(k==='html')e.innerHTML=v;else if(k.slice(0,2)==='on')e.addEventListener(k.slice(2),v);else e.setAttribute(k,v===true?'':v)}
+ const kids=Array.prototype.slice.call(arguments,2);
+ (function add(list){list.forEach(k=>{if(k==null||k===false)return;if(Array.isArray(k))return add(k);e.appendChild(k.nodeType?k:document.createTextNode(String(k)))})})(kids);
+ return e}
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function shuffle(a,r){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));const x=a[i];a[i]=a[j];a[j]=x}return a}
+function dds(q){return q.parts.filter(p=>typeof p!=='string')}
+
+function prepare(seed,chs,mix,only){
+ const r=rng(seed);
+ const pool=Q.map((q,id)=>({q,id})).filter(x=>chs.indexOf(x.q.ch)>=0&&(!only||only.indexOf(x.id)>=0));
+ let units=[],cu=null;
+ pool.forEach(x=>{if(x.q.cs){if(!cu){cu=[];units.push(cu)}cu.push(x)}else units.push([x])});
+ if(mix)units=shuffle(units,r);
+ let cyc=[];
+ return [].concat.apply([],units).map(x=>{const q=x.q,it={q,id:x.id};
+  if(q.type===MC){if(!cyc.length)cyc=shuffle([0,1,2,3],r);const pos=cyc.pop();const ci=q.opts.findIndex(o=>o.c);
+   const rest=shuffle(q.opts.map((o,i)=>i).filter(i=>i!==ci),r);rest.splice(pos,0,ci);it.ord=rest}
+  else if(q.type===SATA)it.ord=shuffle(q.opts.map((o,i)=>i),r);
+  else if(q.type===CZ)it.ord=dds(q).map(p=>shuffle(p.o.map((o,i)=>i),r));
+  else if(q.type===ORD){let o;do{o=shuffle(q.steps.map((s,i)=>i),r)}while(o.every((v,i)=>v===i));it.init=o}
+  return it});
+}
+function score(it,a){const q=it.q;
+ if(q.type===MC)return{got:a!=null&&q.opts[a].c?1:0,max:1};
+ if(q.type===SATA||q.type===HL){const arr=q.type===SATA?q.opts:q.segs;const max=arr.filter(o=>o.c).length;let g=0;(a||[]).forEach(i=>{g+=arr[i].c?1:-1});return{got:Math.max(0,g),max}}
+ if(q.type===MX){let g=0;q.rows.forEach((r,i)=>{if(a&&a[i]===r.a)g++});return{got:g,max:q.rows.length}}
+ if(q.type===CZ){const d=dds(q);let g=0;d.forEach((p,i)=>{if(a&&a[i]===p.a)g++});return{got:g,max:d.length}}
+ return{got:a&&a.every((v,i)=>v===i)?1:0,max:1};
+}
+function answered(it,a){const q=it.q;
+ if(q.type===MC)return a!=null;
+ if(q.type===SATA||q.type===HL)return!!(a&&a.length);
+ if(q.type===MX)return!!a&&q.rows.every((r,i)=>a[i]!=null);
+ if(q.type===CZ)return!!a&&dds(q).every((p,i)=>a[i]!=null);
+ return true}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+function load(){try{const s=JSON.parse(localStorage.getItem(KEY));return s&&s.v===1?s:null}catch(e){return null}}
+function clearSaved(){try{localStorage.removeItem(KEY)}catch(e){}}
+function fmt(s){const m=Math.floor(s/60),x=s%60;return(m<10?'0':'')+m+':'+(x<10?'0':'')+x}
+
+function begin(only){
+ st={v:1,seed:(Date.now()%2147483000)+1,mode:setup.mode,chs:setup.chs.slice(),mix:setup.mix,only:only||null,idx:0,ans:[],conf:[],chk:[],flag:[],done:false,el:0};
+ build();items.forEach((it,i)=>{if(it.q.type===ORD)st.ans[i]=it.init.slice()});
+ view='q';navOpen=false;askSubmit=false;save();render(true)}
+function build(){items=prepare(st.seed,st.chs,st.mix,st.only)}
+function resume(s){st=s;build();view=st.done?'res':'q';render(true)}
+function finish(){st.done=true;askSubmit=false;navOpen=false;view='res';save();render(true)}
+function go(i){st.idx=Math.max(0,Math.min(items.length-1,i));askSubmit=false;save();render(true)}
+function upd(){save();render(false)}
+function toggle(arr,v){const k=arr.indexOf(v);if(k>=0)arr.splice(k,1);else arr.push(v);return arr}
+
+setInterval(function(){if(view==='q'&&st&&!st.done){st.el++;const e=document.getElementById('clock');if(e)e.textContent=fmt(st.el);if(st.el%10===0)save()}},1000);
+
+function render(top){const y=window.scrollY;app.textContent='';
+ app.appendChild(view==='start'?vStart():view==='res'?vRes():vQ());
+ try{window.scrollTo(0,top?0:y)}catch(e){}}
+
+/* ---------- start ---------- */
+function vStart(){const saved=load();
+ const count=Q.filter(q=>setup.chs.indexOf(q.ch)>=0).length;
+ return h('main',{class:'wrap'},
+  h('p',{class:'eyebrow'},'NUR205 · Exam 1 · Iggy 11th edition'),
+  h('h1',null,'Clinical Judgment Set'),
+  h('p',{class:'lead'},'Fifty questions on chapters 53 to 56 and 60, written at application and analysis level. Expect priority and see-first items where every client is abnormal, six-option select-all, delegation, red herrings, and one six-item unfolding case.'),
+  saved?h('div',{class:'card resume'},h('div',null,h('strong',null,saved.done?'Finished attempt saved':'Attempt in progress'),h('div',{class:'muted'},saved.done?'Open the results and review.':'Question '+(saved.idx+1)+', '+fmt(saved.el)+' elapsed.')),
+   h('div',{class:'row'},h('button',{class:'btn pri',id:'resume',onclick:()=>resume(saved)},saved.done?'Open results':'Resume'),h('button',{class:'btn',onclick:()=>{clearSaved();render(false)}},'Discard'))):null,
+  h('section',{class:'card'},
+   h('h2',null,'Mode'),
+   h('div',{class:'seg'},[['tutor','Rapid fire','Rationale after each question'],['exam','Exam','Rationales at the end']].map(m=>
+    h('button',{class:'segb'+(setup.mode===m[0]?' on':''),id:'mode-'+m[0],onclick:()=>{setup.mode=m[0];render(false)}},h('strong',null,m[1]),h('span',null,m[2])))),
+   h('h2',null,'Chapters'),
+   h('div',{class:'chips'},[53,54,55,56,60].map(c=>h('button',{class:'chip'+(setup.chs.indexOf(c)>=0?' on':''),onclick:()=>{toggle(setup.chs,c);render(false)}},CH_NAME[c]+' · '+Q.filter(q=>q.ch===c).length))),
+   h('label',{class:'check'},h('input',{type:'checkbox',checked:setup.mix,onchange:e=>{setup.mix=e.target.checked}}),' Mix chapters together, as on the real exam'),
+   h('button',{class:'btn pri big',id:'start',disabled:!count,onclick:()=>begin(null)},'Start · '+count+' questions')),
+  h('section',{class:'card notes'},
+   h('h2',null,'How it is scored'),
+   h('ul',null,
+    h('li',null,'Multiple choice and ordered response: 1 point, all or nothing.'),
+    h('li',null,'Select all that apply and highlight: plus 1 for each correct pick, minus 1 for each incorrect pick, never below zero.'),
+    h('li',null,'Matrix and drop-down: 1 point per row or drop-down.'),
+    h('li',null,'Rating your confidence is optional. Results list what you missed while sure and what you got right on a guess.')),
+   h('p',{class:'muted'},'Every answer choice was checked against Ignatavicius, Medical-Surgical Nursing, 11th edition. Each rationale names its source section.')));
+}
+
+/* ---------- question ---------- */
+function chartBox(q,i){if(!q.chart)return null;const c=q.chart;
+ if(tab.i!==i){tab={i,n:c.length>5?c.length-1:0}}
+ if(c.length===1)return h('div',{class:'chart'},h('div',{class:'ctitle'},c[0][0]),h('div',{class:'cbody',html:c[0][1]}));
+ return h('div',{class:'chart'},
+  h('div',{class:'tabs',role:'tablist'},c.map((t,n)=>h('button',{class:'tab'+(n===tab.n?' on':''),role:'tab','data-tab':n,onclick:()=>{tab.n=n;render(false)}},t[0]))),
+  h('div',{class:'cbody',html:c[tab.n][1]}));
+}
+function body(it,i,locked){const q=it.q,a=st.ans[i];
+ if(q.type===MC)return h('div',{class:'opts'},it.ord.map((oi,k)=>{const o=q.opts[oi],sel=a===oi;
+  return h('button',{class:'opt'+(sel?' sel':'')+(locked?(o.c?' ok':sel?' bad':' dim'):''),'data-i':oi,disabled:locked,onclick:()=>{st.ans[i]=oi;upd()}},
+   h('span',{class:'ltr'},'ABCD'.charAt(k)),h('span',{class:'ot'},o.t,locked?h('span',{class:'or'},(o.c?'Correct. ':sel?'Your answer. ':'')+o.r):null))}));
+ if(q.type===SATA)return h('div',{class:'opts'},it.ord.map((oi,k)=>{const o=q.opts[oi],sel=!!a&&a.indexOf(oi)>=0;
+  return h('button',{class:'opt'+(sel?' sel':'')+(locked?(o.c?(sel?' ok':' miss'):sel?' bad':' dim'):''),'data-i':oi,disabled:locked,onclick:()=>{st.ans[i]=toggle((a||[]).slice(),oi);upd()}},
+   h('span',{class:'ltr box'},sel?'✓':String(k+1)),h('span',{class:'ot'},o.t,locked?h('span',{class:'or'},(o.c?(sel?'Correct. ':'Missed. This one applies. '):sel?'Does not apply. ':'Does not apply. ')+o.r):null))}));
+ if(q.type===HL)return h('div',{class:'hl'},q.segs.map((s,k)=>{const sel=!!a&&a.indexOf(k)>=0;
+  return h('button',{class:'seg-h'+(sel?' sel':'')+(locked?(s.c?(sel?' ok':' miss'):sel?' bad':' dim'):''),'data-i':k,disabled:locked,onclick:()=>{st.ans[i]=toggle((a||[]).slice(),k);upd()}},s.t)}));
+ if(q.type===MX)return h('div',{class:'mxw'},h('table',{class:'mx'},
+  h('thead',null,h('tr',null,h('th',null,''),q.cols.map(c=>h('th',null,c)))),
+  h('tbody',null,q.rows.map((r,ri)=>h('tr',{class:locked?((a&&a[ri]===r.a)?'rok':'rbad'):''},h('td',{class:'rt'},r.t),
+   q.cols.map((c,ci)=>{const sel=!!a&&a[ri]===ci;return h('td',{class:'cell'+(locked&&ci===r.a?' ok':'')+(locked&&sel&&ci!==r.a?' bad':'')},
+    h('button',{class:'radio'+(sel?' sel':''),'data-r':ri,'data-c':ci,'aria-label':c,disabled:locked,onclick:()=>{const n=(a||[]).slice();while(n.length<q.rows.length)n.push(null);n[ri]=ci;st.ans[i]=n;upd()}}))}))))));
+ if(q.type===CZ){let d=-1;const list=dds(q);return h('p',{class:'cz'},q.parts.map(p=>{if(typeof p==='string')return p;d++;const di=d,cur=a?a[di]:null;
+  const s=h('select',{'data-d':di,disabled:locked,class:locked?(cur===p.a?'ok':'bad'):'',onchange:e=>{const n=(st.ans[i]||[]).slice();while(n.length<list.length)n.push(null);n[di]=e.target.value===''?null:+e.target.value;st.ans[i]=n;upd()}},
+   h('option',{value:''},'Select…'),it.ord[di].map(oi=>h('option',{value:oi,selected:cur===oi},p.o[oi])));
+  return[s,locked&&cur!==p.a?h('span',{class:'fix'},' → '+p.o[p.a]):null]}))}
+ const cur=a||it.init;
+ return h('div',null,h('ol',{class:'ord'},cur.map((si,k)=>h('li',{class:locked?(si===k?'ok':'bad'):'','data-s':si},
+  h('span',{class:'ot'},q.steps[si]),
+  locked?null:h('span',{class:'mv'},
+   h('button',{class:'ar','aria-label':'Move up','data-up':k,disabled:k===0,onclick:()=>{const n=cur.slice();n[k]=cur[k-1];n[k-1]=cur[k];st.ans[i]=n;upd()}},'▲'),
+   h('button',{class:'ar','aria-label':'Move down','data-down':k,disabled:k===cur.length-1,onclick:()=>{const n=cur.slice();n[k]=cur[k+1];n[k+1]=cur[k];st.ans[i]=n;upd()}},'▼'))))),
+  locked&&!cur.every((v,k)=>v===k)?h('div',{class:'right'},h('strong',null,'Correct order'),h('ol',null,q.steps.map(s=>h('li',null,s)))):null);
+}
+function feedback(it,i){const q=it.q,s=score(it,st.ans[i]);
+ const cls=s.got===s.max?'full':s.got>0?'part':'zero';
+ return h('section',{class:'fb '+cls},
+  h('div',{class:'fbh'},h('strong',null,s.got===s.max?'Correct':s.got>0?'Partial credit':'Incorrect'),h('span',null,s.got+' of '+s.max+(s.max===1?' point':' points'))),
+  h('p',null,q.why),
+  h('p',{class:'plain'},h('strong',null,'In plain words: '),q.plain),
+  h('div',{class:'tags'},h('span',null,CH_NAME[q.ch]),h('span',null,q.need),h('span',null,q.skill),h('span',null,TYPE_NAME[q.type])),
+  h('p',{class:'src'},'Source: '+q.src));
+}
+function navGrid(){return h('div',{class:'nav'},
+ h('div',{class:'grid'},items.map((it,k)=>{let c='nb';const locked=st.done||st.chk[k];
+  if(k===st.idx)c+=' cur';
+  if(locked){const s=score(it,st.ans[k]);c+=s.got===s.max?' full':s.got>0?' part':' zero'}else if(it.q.type!==ORD&&answered(it,st.ans[k]))c+=' ans';
+  if(st.flag[k])c+=' flag';
+  return h('button',{class:c,onclick:()=>{navOpen=false;go(k)}},String(k+1))})),
+ h('div',{class:'legend muted'},'Outlined = current · filled = answered · dot = flagged'),
+ st.done?null:h('button',{class:'btn',id:'finish-early',onclick:()=>{askSubmit=true;navOpen=false;render(false)}},'Finish now'));
+}
+function vQ(){const i=st.idx,it=items[i],q=it.q,n=items.length;
+ const locked=st.done||!!st.chk[i],has=answered(it,st.ans[i]),last=i===n-1;
+ const unanswered=items.filter((x,k)=>!(st.chk[k]||(x.q.type!==ORD&&answered(x,st.ans[k]))||(x.q.type===ORD&&st.mode==='exam'))).length;
+ let primary;
+ if(st.done)primary=last?h('button',{class:'btn pri',onclick:()=>{view='res';render(true)}},'Results'):h('button',{class:'btn pri',id:'next',onclick:()=>go(i+1)},'Next');
+ else if(st.mode==='tutor'&&!st.chk[i])primary=h('button',{class:'btn pri',id:'check',disabled:!has,onclick:()=>{st.chk[i]=1;upd()}},'Check answer');
+ else if(last)primary=h('button',{class:'btn pri',id:'submit',onclick:()=>{if(st.mode==='tutor'&&!unanswered)finish();else{askSubmit=true;render(false)}}},st.mode==='tutor'?'See results':'Submit exam');
+ else primary=h('button',{class:'btn pri',id:'next',onclick:()=>go(i+1)},'Next');
+ return h('main',{class:'wrap'},
+  h('header',{class:'top'},
+   h('div',{class:'meta'},h('span',null,(st.done?'Review · ':'')+'Question '+(i+1)+' of '+n),h('span',{id:'clock',class:'clock'},fmt(st.el))),
+   h('div',{class:'bar'},h('div',{style:'width:'+Math.round((i+1)/n*100)+'%'}))),
+  chartBox(q,i),
+  h('h1',{class:'stem'},q.stem),
+  HINT[q.type]?h('p',{class:'hint'},HINT[q.type]):null,
+  body(it,i,locked),
+  locked?feedback(it,i):h('div',{class:'conf'},h('span',{class:'muted'},'Confidence'),CONF.map(c=>h('button',{class:'cf'+(st.conf[i]===c[0]?' on':''),'data-cf':c[0],onclick:()=>{st.conf[i]=st.conf[i]===c[0]?null:c[0];upd()}},c[1]))),
+  askSubmit?h('div',{class:'ask'},h('p',null,unanswered?unanswered+(unanswered===1?' question is':' questions are')+' unanswered and will score zero. Finish anyway?':'Finish and see results?'),
+   h('div',{class:'row'},h('button',{class:'btn pri',id:'confirm',onclick:finish},'Finish'),h('button',{class:'btn',onclick:()=>{askSubmit=false;render(false)}},'Keep working'))):null,
+  h('footer',{class:'foot'},
+   h('button',{class:'btn',id:'back',disabled:i===0,onclick:()=>go(i-1)},'Back'),
+   st.done?h('button',{class:'btn',onclick:()=>{view='res';render(true)}},'Results'):h('button',{class:'btn'+(st.flag[i]?' flagged':''),onclick:()=>{st.flag[i]=st.flag[i]?null:1;upd()}},st.flag[i]?'Flagged':'Flag'),
+   h('button',{class:'btn',id:'navt',onclick:()=>{navOpen=!navOpen;render(false)}},navOpen?'Hide list':'All questions'),
+   primary),
+  navOpen?navGrid():null);
+}
+
+/* ---------- results ---------- */
+function vRes(){const sc=items.map((it,i)=>score(it,st.ans[i]));
+ const got=sc.reduce((a,s)=>a+s.got,0),max=sc.reduce((a,s)=>a+s.max,0),pct=max?Math.round(got/max*100):0;
+ const full=sc.filter(s=>s.got===s.max).length;
+ function group(title,keyf,order){const m={};items.forEach((it,i)=>{const k=keyf(it.q);(m[k]=m[k]||{got:0,max:0,n:0});m[k].got+=sc[i].got;m[k].max+=sc[i].max;m[k].n++});
+  let keys=Object.keys(m);if(order)keys=order.filter(k=>m[k]);else keys.sort((a,b)=>m[a].got/m[a].max-m[b].got/m[b].max);
+  return h('section',{class:'card'},h('h2',null,title),keys.map(k=>{const p=Math.round(m[k].got/m[k].max*100);
+   return h('div',{class:'brow'},h('div',{class:'bl'},h('span',null,k),h('span',{class:'muted'},m[k].got+'/'+m[k].max+' · '+p+'%')),h('div',{class:'bar '+(p>=85?'g':p>=70?'m':'l')},h('div',{style:'width:'+p+'%'})))}))}
+ const jump=k=>h('button',{class:'lnk',onclick:()=>{view='q';go(k)}},'Q'+(k+1));
+ const sureWrong=[],guessRight=[],missed=[];
+ items.forEach((it,i)=>{if(sc[i].got<sc[i].max){missed.push(it.id);if(st.conf[i]==='s')sureWrong.push(i)}else if(st.conf[i]==='g')guessRight.push(i)});
+ const anyConf=st.conf.some(c=>c);
+ return h('main',{class:'wrap'},
+  h('p',{class:'eyebrow'},'NUR205 · Exam 1 · Clinical Judgment Set'),
+  h('h1',null,'Results'),
+  h('section',{class:'card score'},
+   h('div',{class:'big '+(pct>=85?'g':pct>=70?'m':'l')},pct+'%'),
+   h('div',null,h('div',null,h('strong',null,got+' of '+max+' points')),h('div',{class:'muted'},full+' of '+items.length+' questions with full credit · '+fmt(st.el)+' · '+(st.mode==='tutor'?'rapid fire':'exam')+' mode'),
+    h('div',{class:'muted'},'Course target: 85%.'))),
+  anyConf?h('section',{class:'card'},h('h2',null,'Confidence check'),
+   h('p',null,h('strong',null,'Missed while sure ('+sureWrong.length+'): '),sureWrong.length?sureWrong.map(k=>[jump(k),' ']):'none.',h('span',{class:'muted'},sureWrong.length?' These are false beliefs. Fix them first.':'')),
+   h('p',null,h('strong',null,'Full credit on a guess ('+guessRight.length+'): '),guessRight.length?guessRight.map(k=>[jump(k),' ']):'none.',h('span',{class:'muted'},guessRight.length?' Read these rationales. The point was luck.':''))):null,
+  group('By clinical judgment step',q=>q.skill,[S.rc,S.ac,S.ph,S.gs,S.ta,S.eo]),
+  group('By client need',q=>q.need),
+  group('By chapter',q=>CH_NAME[q.ch]),
+  group('By item type',q=>TYPE_NAME[q.type]),
+  h('section',{class:'card'},h('h2',null,'Every question'),
+   h('div',{class:'list'},items.map((it,k)=>h('button',{class:'li '+(sc[k].got===sc[k].max?'full':sc[k].got>0?'part':'zero'),onclick:()=>{view='q';go(k)}},
+    h('span',{class:'num'},String(k+1)),h('span',{class:'lt'},it.q.stem.replace(/^Case study, item \d of 6\. /,'Case: ').slice(0,96)+(it.q.stem.length>96?'…':'')),h('span',{class:'pts'},sc[k].got+'/'+sc[k].max))))),
+  h('div',{class:'row end'},
+   missed.length?h('button',{class:'btn pri',id:'retake-missed',onclick:()=>{setup={mode:st.mode,mix:st.mix,chs:st.chs.slice()};begin(missed)}},'Retake the '+missed.length+' missed'):null,
+   h('button',{class:'btn',id:'retake',onclick:()=>{setup={mode:st.mode,mix:st.mix,chs:st.chs.slice()};begin(null)}},'Retake, reshuffled'),
+   h('button',{class:'btn',onclick:()=>{view='start';render(true)}},'Setup')));
+}
+window.__exam={prepare,score,answered,get st(){return st},get items(){return items}};
+render(true);
+})();
+
+</script>
+</body>
+</html>
+
+</body></html>
