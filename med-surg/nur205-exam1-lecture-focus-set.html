@@ -1,0 +1,964 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lecture Focus Set</title>
+<style>
+:root{--bg:#f4f1ea;--card:#fffdf8;--ink:#1c2526;--mut:#5d6b6c;--line:#d9d3c5;--acc:#0f5c63;--acc-ink:#fff;--soft:#e3eeee;
+--ok:#1e6b3c;--okbg:#e1f1e5;--bad:#a3261d;--badbg:#f8e3e0;--warn:#8a5a00;--warnbg:#f8ecd0;--chart:#eef1f3}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12191a;--card:#1a2324;--ink:#e9eeec;--mut:#9aa9a8;--line:#2e3b3c;--acc:#5fc2c9;--acc-ink:#06282b;--soft:#1f3436;
+--ok:#7fd79c;--okbg:#173022;--bad:#ff9f94;--badbg:#3a1b18;--warn:#f0c367;--warnbg:#3a2e12;--chart:#202b2d}}
+:root[data-theme="dark"]{--bg:#12191a;--card:#1a2324;--ink:#e9eeec;--mut:#9aa9a8;--line:#2e3b3c;--acc:#5fc2c9;--acc-ink:#06282b;--soft:#1f3436;
+--ok:#7fd79c;--okbg:#173022;--bad:#ff9f94;--badbg:#3a1b18;--warn:#f0c367;--warnbg:#3a2e12;--chart:#202b2d}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 64px}
+h1{font:600 30px/1.2 Georgia,"Times New Roman",serif;margin:4px 0 12px;text-wrap:balance}
+h2{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin:18px 0 8px}
+h2:first-child{margin-top:0}
+.eyebrow{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--acc);margin:0;font-weight:600}
+.lead{font-size:18px;color:var(--mut);margin:0 0 20px;max-width:62ch}
+.muted{color:var(--mut);font-size:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin:0 0 16px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.row.end{margin-top:8px}
+.resume{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;border-color:var(--acc)}
+button{font:inherit;color:inherit;cursor:pointer}
+button:disabled{cursor:default}
+.btn{min-height:46px;padding:0 18px;border-radius:10px;border:1px solid var(--line);background:var(--card);font-weight:600}
+.btn.pri{background:var(--acc);color:var(--acc-ink);border-color:var(--acc)}
+.btn:disabled{opacity:.45}
+.btn.big{width:100%;margin-top:16px;min-height:54px;font-size:18px}
+.btn.flagged{background:var(--warnbg);border-color:var(--warn);color:var(--warn)}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.segb{text-align:left;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:transparent;display:flex;flex-direction:column}
+.segb span{font-size:14px;color:var(--mut)}
+.segb.on{border-color:var(--acc);background:var(--soft)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:40px;padding:0 12px;border-radius:20px;border:1px solid var(--line);background:transparent;font-size:14px;color:var(--mut)}
+.chip.on{border-color:var(--acc);background:var(--soft);color:var(--ink)}
+.check{display:flex;gap:8px;align-items:center;margin-top:14px;font-size:15px}
+.check input{width:20px;height:20px;accent-color:var(--acc)}
+.notes ul{margin:0 0 10px;padding-left:20px}.notes li{margin:4px 0}
+.top{position:sticky;top:0;background:var(--bg);padding:8px 0 10px;z-index:2}
+.meta{display:flex;justify-content:space-between;font-size:14px;color:var(--mut);font-weight:600}
+.clock{font-variant-numeric:tabular-nums}
+.bar{height:6px;border-radius:3px;background:var(--line);overflow:hidden;margin-top:6px}
+.bar>div{height:100%;background:var(--acc)}
+.bar.g>div{background:var(--ok)}.bar.m>div{background:var(--warn)}.bar.l>div{background:var(--bad)}
+.chart{background:var(--chart);border:1px solid var(--line);border-radius:10px;margin:8px 0 16px;overflow:hidden}
+.ctitle{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);padding:10px 14px 0;font-weight:700}
+.tabs{display:flex;overflow-x:auto;border-bottom:1px solid var(--line)}
+.tab{flex:none;min-height:44px;padding:0 14px;border:0;background:transparent;font-size:14px;font-weight:600;color:var(--mut);border-bottom:3px solid transparent}
+.tab.on{color:var(--ink);border-bottom-color:var(--acc);background:var(--card)}
+.cbody{padding:10px 14px 14px;font-size:16px}
+.stem{font:600 21px/1.35 Georgia,"Times New Roman",serif;margin:6px 0 10px;text-wrap:pretty}
+.caselbl{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--acc);font-weight:700;margin:0}
+.hardtag{border-color:var(--warn)!important;color:var(--warn)!important}
+.hint{font-size:14px;color:var(--mut);margin:0 0 12px}
+.opts{display:grid;gap:8px}
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--card);min-height:52px}
+.ltr{flex:none;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--mut);display:grid;place-items:center;font-size:14px;font-weight:700;color:var(--mut)}
+.ltr.box{border-radius:6px}
+.ot{flex:1;min-width:0}
+.or{display:block;font-size:15px;color:var(--mut);margin-top:6px}
+.opt.sel{border-color:var(--acc);background:var(--soft)}
+.opt.sel .ltr{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}
+.opt.ok{border-color:var(--ok);background:var(--okbg);opacity:1}
+.opt.ok .ltr{background:var(--ok);border-color:var(--ok);color:var(--card)}
+.opt.bad{border-color:var(--bad);background:var(--badbg)}
+.opt.bad .ltr{background:var(--bad);border-color:var(--bad);color:var(--card)}
+.opt.miss{border-color:var(--warn);background:var(--warnbg);border-style:dashed}
+.opt:disabled{color:var(--ink)}
+.hl{display:flex;flex-wrap:wrap;gap:8px}
+.seg-h{min-height:44px;padding:8px 12px;border-radius:8px;border:1.5px solid var(--line);background:var(--card);text-align:left}
+.seg-h.sel{background:#ffe98a;border-color:#b08a00;color:#1c2526}
+.seg-h.ok{background:var(--okbg);border-color:var(--ok);color:var(--ink)}
+.seg-h.bad{background:var(--badbg);border-color:var(--bad);color:var(--ink)}
+.seg-h.miss{background:var(--warnbg);border-color:var(--warn);border-style:dashed;color:var(--ink)}
+.seg-h:disabled{color:var(--ink)}.seg-h.dim:disabled{color:var(--mut)}
+.mxw{overflow-x:auto}
+.mx{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px}
+.mx th{font-size:13px;font-weight:700;padding:10px 6px;border-bottom:1px solid var(--line);vertical-align:bottom;min-width:84px}
+.mx .rt{min-width:170px}
+.mx td{padding:8px 6px;border-bottom:1px solid var(--line)}
+.mx tr:last-child td{border-bottom:0}
+.mx .rt{padding-left:12px}
+.mx .cell{text-align:center;width:1%}
+.radio{width:30px;height:30px;border-radius:50%;border:2px solid var(--mut);background:transparent;padding:0;position:relative}
+.radio.sel{border-color:var(--acc)}
+.radio.sel::after{content:"";position:absolute;inset:5px;border-radius:50%;background:var(--acc)}
+.cell.ok{background:var(--okbg)}.cell.bad{background:var(--badbg)}
+.cell.bad .radio.sel{border-color:var(--bad)}.cell.bad .radio.sel::after{background:var(--bad)}
+.cell.ok .radio{border-color:var(--ok)}.cell.ok .radio.sel::after{background:var(--ok)}
+.rbad .rt{color:var(--bad)}
+.cz{font-size:18px;line-height:2.3;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:0}
+.cz select{font:inherit;font-size:16px;max-width:100%;padding:6px 8px;border-radius:8px;border:1.5px solid var(--acc);background:var(--soft);color:var(--ink)}
+.cz select.ok{border-color:var(--ok);background:var(--okbg)}.cz select.bad{border-color:var(--bad);background:var(--badbg)}
+.cz select:disabled{opacity:1;color:var(--ink)}
+.fix{color:var(--ok);font-weight:600}
+.ord{list-style:none;counter-reset:n;padding:0;margin:0;display:grid;gap:8px}
+.ord li{counter-increment:n;display:flex;gap:12px;align-items:center;padding:10px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--card)}
+.ord li::before{content:counter(n);flex:none;width:28px;height:28px;border-radius:50%;background:var(--soft);display:grid;place-items:center;font-weight:700;font-size:14px}
+.ord li.ok{border-color:var(--ok);background:var(--okbg)}.ord li.bad{border-color:var(--bad);background:var(--badbg)}
+.mv{display:flex;gap:6px;flex:none}
+.ar{width:44px;height:44px;border-radius:8px;border:1px solid var(--line);background:var(--bg);font-size:14px}
+.ar:disabled{opacity:.3}
+.right{margin-top:12px;padding:12px 14px;border-radius:10px;border:1.5px solid var(--ok);background:var(--okbg)}
+.right ol{margin:6px 0 0;padding-left:22px}
+.conf{display:flex;gap:8px;align-items:center;margin-top:16px;flex-wrap:wrap}
+.cf{min-height:40px;padding:0 14px;border-radius:20px;border:1px solid var(--line);background:transparent;font-size:14px}
+.cf.on{background:var(--soft);border-color:var(--acc);font-weight:600}
+.fb{margin-top:16px;padding:14px 16px;border-radius:10px;border-left:6px solid var(--mut);background:var(--card);border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.fb.full{border-left-color:var(--ok)}.fb.part{border-left-color:var(--warn)}.fb.zero{border-left-color:var(--bad)}
+.fbh{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.fbh span{font-size:14px;color:var(--mut)}
+.fb p{margin:8px 0}
+.plain{background:var(--soft);padding:10px 12px;border-radius:8px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tags span{font-size:12px;padding:3px 8px;border-radius:12px;border:1px solid var(--line);color:var(--mut)}
+.src{font-size:13px;color:var(--mut)}
+.ask{margin-top:16px;padding:14px 16px;border-radius:10px;border:1.5px solid var(--warn);background:var(--warnbg)}
+.ask p{margin:0 0 10px}
+.foot{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+.foot .pri{margin-left:auto;min-width:150px}
+.nav{margin-top:16px;padding:14px;border-radius:10px;border:1px solid var(--line);background:var(--card)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(46px,1fr));gap:6px}
+.nb{height:44px;border-radius:8px;border:1px solid var(--line);background:transparent;font-size:14px;font-weight:600;position:relative}
+.nb.ans{background:var(--soft)}.nb.cur{outline:2.5px solid var(--acc);outline-offset:1px}
+.nb.full{background:var(--okbg);border-color:var(--ok)}.nb.part{background:var(--warnbg);border-color:var(--warn)}.nb.zero{background:var(--badbg);border-color:var(--bad)}
+.nb.flag::after{content:"";position:absolute;top:4px;right:4px;width:8px;height:8px;border-radius:50%;background:var(--warn)}
+.legend{margin:10px 0}
+.score{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.big{font:700 56px/1 Georgia,serif}
+.big.g{color:var(--ok)}.big.m{color:var(--warn)}.big.l{color:var(--bad)}
+.brow{margin:10px 0}.bl{display:flex;justify-content:space-between;gap:12px;font-size:15px}
+.lnk{border:0;background:transparent;color:var(--acc);font-weight:700;text-decoration:underline;padding:6px 4px}
+.list{display:grid;gap:6px}
+.li{display:flex;gap:10px;align-items:center;text-align:left;width:100%;min-height:48px;padding:8px 12px;border-radius:8px;border:1px solid var(--line);border-left-width:6px;background:transparent;font-size:15px}
+.li.full{border-left-color:var(--ok)}.li.part{border-left-color:var(--warn)}.li.zero{border-left-color:var(--bad)}
+.num{flex:none;width:26px;font-weight:700;color:var(--mut)}.lt{flex:1;min-width:0}.pts{flex:none;font-weight:700;font-variant-numeric:tabular-nums}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+@media (max-width:520px){h1{font-size:25px}.stem{font-size:19px}.seg{grid-template-columns:1fr}.foot .pri{flex:1 1 100%;order:-1;margin:0}.mx th{min-width:58px;font-size:11px;padding:8px 3px}.mx .rt{min-width:118px;padding-left:8px;font-size:15px}.mx td{padding:6px 3px}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const MC="mc",SATA="sata",MX="matrix",CZ="cloze",ORD="order",HL="highlight";
+const N={moc:"Management of Care",saf:"Safety and Infection Control",hp:"Health Promotion and Maintenance",psy:"Psychosocial Integrity",bcc:"Basic Care and Comfort",ph:"Pharmacological Therapies",rr:"Reduction of Risk Potential",pa:"Physiological Adaptation"};
+const S={rc:"Recognize Cues",ac:"Analyze Cues",ph:"Prioritize Hypotheses",gs:"Generate Solutions",ta:"Take Action",eo:"Evaluate Outcomes"};
+const Q=[];
+
+/* ================= CHAPTER 53: Assessment of the Endocrine System (lecture-focus set) ================= */
+const L53A=[["History","47-year-old man referred for suspected primary adrenal cortex hypofunction. Testing is not finished and no treatment has been started. Four months of fatigue, a 12-lb weight loss, and a craving for salty food. His wife says he is irritable and cries easily, which is new for him. He managed at home until 2 days ago, when fever, a productive cough, and vomiting began."],
+["Assessment","Darkened skin over the knuckles, the elbows, and an old appendectomy scar. Blood pressure 106/64 mm Hg lying, 84/50 mm Hg standing with dizziness. Heart rate 96 lying, 122 standing. Temperature 101.8°F (38.8°C)."],
+["Laboratory","Sodium 129 mEq/L (flagged low) · Potassium 5.6 mEq/L (flagged high) · Glucose 61 mg/dL (flagged low)"]];
+const L53B=L53A.concat([["Six Hours Later","Hormone replacement and IV fluids have been given as prescribed. The reassessment findings are listed in the question."]]);
+Q.push(
+/* ---- unfolding case: adrenal cortex dysfunction and the response to stress ---- */
+{ch:53,cs:"L53",hard:1,need:N.pa,skill:S.ac,type:MX,src:"Lecture: Adrenal cortex hormones | Iggy Ch. 53, Adrenal Cortex; Box 53.1; Physical Assessment: Inspection",chart:L53A,
+stem:"For each finding in the chart, choose the hormone change that best explains it.",
+cols:["Too little cortisol","Too little aldosterone","High adrenocorticotropic hormone"],
+rows:[{t:"Glucose 61 mg/dL, flagged low",a:0},
+{t:"Potassium 5.6 mEq/L, flagged high",a:1},
+{t:"Darkened skin over the knuckles and the old scar",a:2},
+{t:"New irritability and crying easily",a:0},
+{t:"Low extracellular fluid volume, shown by dizziness and a pulse rise on standing",a:1}],
+why:"Cortisol prevents hypoglycemia and maintains emotional stability, behavior, and cognitive function. Aldosterone maintains extracellular fluid volume and promotes potassium excretion in the kidney. Cortisol also affects sodium balance, but aldosterone is the hormone that maintains extracellular fluid volume. Skin over the joints and over scar tissue darkens because of increased adrenocorticotropic hormone and melanocyte-stimulating hormone.",
+plain:"One hormone keeps sugar and mood steady, and another keeps salt and water in and pushes potassium out. The darker skin comes from the brain's “work harder” signal."},
+
+{ch:53,cs:"L53",hard:1,need:N.pa,skill:S.ph,type:MC,src:"Lecture: Priority in adrenal cortex dysfunction is the response to stress | Iggy Ch. 53, Adrenal Cortex (glucocorticoids)",chart:L53A,
+stem:"The client managed at home for 4 months and became unstable within 2 days of becoming ill. Which hypothesis best explains why this illness is dangerous for this client and takes priority in planning care?",
+opts:[{t:"The infection demands more cortisol than his damaged adrenal cortex can release.",c:1,r:"Physical stress normally increases glucocorticoid release. Cortisol governs the response to stress, is essential for life, and must be present for catecholamines to act and for normal heart muscle excitability."},
+{t:"The fever has caused more fluid loss than he has been able to replace by drinking.",r:"Fever adds to fluid loss in any client, so it does not explain why this client cannot compensate or why the glucose is low."},
+{t:"The low glucose level is the result of two days of vomiting and poor food intake.",r:"Poor intake contributes, but a healthy adrenal cortex prevents hypoglycemia by raising liver glucose production."},
+{t:"The high potassium level is new and is the cause of his dizziness when he stands.",r:"Nothing in the chart shows that the potassium level is new, and the dizziness on standing comes from low extracellular fluid volume."}],
+why:"Emotional, chemical, or physical stress increases the release of glucocorticoids. A damaged adrenal cortex cannot meet that demand, so the stress response is the priority concern in adrenal cortex dysfunction. The other statements describe pieces of the picture, not the reason it turned dangerous.",
+plain:"Being sick makes the body ask for extra stress hormone. His gland cannot make extra, so a regular infection becomes an emergency."},
+
+{ch:53,cs:"L53",need:N.pa,skill:S.eo,type:SATA,src:"Lecture: Priority concepts, fluid and electrolyte balance and glucose regulation | Iggy Ch. 53, Adrenal Cortex; Box 53.1; Auscultation",chart:L53B,
+stem:"Which reassessment findings would show that the client is responding to treatment? Select all that apply.",
+opts:[{t:"Glucose 94 mg/dL (was 61 mg/dL)",c:1,r:"Glucocorticoids prevent hypoglycemia, and the glucose has risen from a value that was flagged low."},
+{t:"Sodium 137 mEq/L (was 129 mEq/L)",c:1,r:"The serum sodium is back within 136 to 145 mEq/L."},
+{t:"Blood pressure 112/70 mm Hg lying and 108/68 mm Hg standing, with no dizziness",c:1,r:"The orthostatic change is gone, which shows that extracellular fluid volume is being restored."},
+{t:"Potassium 5.9 mEq/L (was 5.6 mEq/L)",r:"The potassium was flagged high and has gone higher, so potassium excretion by the kidney has not improved."},
+{t:"Heart rate 124 lying, with a new irregular rhythm",r:"Some endocrine problems induce dysrhythmias. A faster, irregular rhythm is a sign the client is getting worse."},
+{t:"New confusion about where he is",r:"Glucocorticoids maintain behavior and cognitive functions. New confusion is not improvement."}],
+why:"Evaluate against what the missing hormones do. Cortisol keeps glucose up and supports the heart and thinking. Aldosterone holds sodium and water and removes potassium. Improvement means the low glucose and low sodium come up, the high potassium comes down, and the blood pressure holds when he stands.",
+plain:"Better sugar, better salt, and no dizziness on standing mean the treatment is working. Higher potassium, a jumpy heartbeat, or confusion mean it is not."},
+
+/* ---- findings that prompt a detailed endocrine assessment ---- */
+{ch:53,need:N.hp,skill:S.rc,type:HL,src:"Lecture: Current health problems, energy, elimination, reproduction, physical features | Iggy Ch. 53, Box 53.4; Nutrition History; Physical Assessment: Inspection",
+stem:"The nurse reviews the intake note for a 44-year-old woman at a routine visit. Select the findings that call for a detailed endocrine assessment.",
+segs:[{t:"More tired than usual for 4 months",c:1},
+{t:"one bowel movement a day, unchanged",c:0},
+{t:"gained 16 lb in 6 months without eating differently",c:1},
+{t:"heart rate 72 and regular",c:0},
+{t:"feels cold when others in the room are comfortable",c:1},
+{t:"scalp hair is thinner and feels coarse",c:1},
+{t:"started wearing reading glasses last year",c:0},
+{t:"voice has become hoarse and lower",c:1},
+{t:"thyroid gland not visible at rest",c:0},
+{t:"does not wake at night to urinate",c:0},
+{t:"menstrual periods are heavier and closer together",c:1},
+{t:"blood pressure the same lying and standing",c:0}],
+why:"A change in energy level, feeling hot or cold much of the time, a change in hair distribution or texture, a change in voice quality, a significant weight change without a diet change, and a change in menstrual flow or frequency are all cues the systems history looks for. The thyroid is normally not visible, and unchanged elimination and steady vital signs are normal findings.",
+plain:"Tired, heavier, cold, different hair, different voice, different periods: together these say “check the glands.” Needing reading glasses at 44 does not."},
+
+/* ---- physical assessment: palpation safety ---- */
+{ch:53,hard:1,need:N.saf,skill:S.ta,type:MC,src:"Lecture: Physical assessment, inspection, auscultation, palpation | Iggy Ch. 53, Palpation; Nursing Safety Priority: Action Alert",
+stem:"The nurse precepts a student who is examining a client with suspected hyperthyroidism. Which action by the student requires the nurse to intervene?",
+opts:[{t:"Standing behind the client with fingers curved around the front of the neck",c:1,r:"This is the start of thyroid palpation. Pressure on or palpation of the thyroid in suspected hyperthyroidism can cause a sudden release of thyroid hormones and a thyroid storm."},
+{t:"Standing in front of the client and watching the lower neck during a swallow",r:"Inspection is safe. The thyroid may be seen moving upward with a swallow."},
+{t:"Listening to the chest with a stethoscope for the heart rate and rhythm",r:"Auscultation of the chest gives a baseline, because some endocrine problems induce dysrhythmias."},
+{t:"Measuring blood pressure and pulse with the client lying, sitting, and standing",r:"Orthostatic vital signs are a correct part of the endocrine assessment."}],
+why:"The position described is the correct technique for palpating a thyroid gland, which is what makes it tempting. It is the wrong action for this client. Do not palpate or press on the thyroid when hyperthyroidism is present or suspected.",
+plain:"Squeezing an overactive thyroid can make it dump its hormone all at once. Look and listen, but do not press."},
+
+/* ---- aging: decreased antidiuretic hormone ---- */
+{ch:53,hard:1,need:N.moc,skill:S.ac,type:MC,src:"Lecture: Aging, decreased antidiuretic hormone gives dilute urine and dehydration | Iggy Ch. 53, Older Adult Health: Age-Related Endocrine System Changes",
+stem:"Assistive personnel report on an 87-year-old client who has no fluid restriction: “She drank only about 350 mL today, but her urine is pale and there is plenty of it, so she is well hydrated.” Which response by the nurse is best?",
+opts:[{t:"“Her urine can stay dilute even when she drinks very little. I will assess her now.”",c:1,r:"With decreased antidiuretic hormone production, urine is more dilute and may not concentrate when intake is low. The client is at greater risk for dehydration and is assessed frequently."},
+{t:"“Pale urine tells us her intake is enough. Record the amount and recheck this evening.”",r:"In an older adult, pale urine does not rule out dehydration, and this delays the assessment."},
+{t:"“Pale urine with low intake points to diabetes mellitus. Check her blood glucose now.”",r:"Diabetes mellitus is suggested by increased and persistent thirst and hunger. This client is drinking very little."},
+{t:"“Please check her skin and mouth for dryness and tell me whether she is dehydrated.”",r:"Assessing for dehydration is the nurse's responsibility. Assistive personnel are taught to offer fluids at least every 2 hours while the client is awake."}],
+why:"Dilute urine together with low intake is the pattern of the age-related fall in antidiuretic hormone. The nurse assesses for dehydration and then directs assistive personnel to offer fluids at least every 2 hours while the client is awake, unless another condition prevents it.",
+plain:"Older kidneys keep letting water out even when little water goes in. Pale urine does not prove she has had enough to drink."},
+
+/* ---- psychosocial assessment ---- */
+{ch:53,need:N.psy,skill:S.ta,type:MC,src:"Lecture: Psychosocial assessment, behavior and personality changes | Iggy Ch. 53, Psychosocial Assessment",
+stem:"A client with a long-standing pituitary disorder says, “I handle stress the same way I always have.” The client's husband, seated beside the client, shakes his head. Which action does the nurse take next?",
+opts:[{t:"Ask the client whether the husband may describe what he has noticed.",c:1,r:"Clients may not recognize changes in themselves. If the client is agreeable, the nurse asks a family member about changes in behavior or personality."},
+{t:"Ask the husband to step into the hall and describe the changes in private.",r:"The family member is asked only when the client agrees."},
+{t:"Document that the client reports no change in the way stress is handled.",r:"Accurate, but it ignores the cue. Clients may not recognize these changes in themselves."},
+{t:"Assess the client's readiness to learn self-management of the disorder.",r:"A real part of the psychosocial assessment, but it does not follow up on the cue just given."}],
+why:"Many endocrine problems change behavior, personality, and psychological responses, and the client may not see it. The nurse asks about stress, crying, patience, and anger, and with the client's agreement asks a family member.",
+plain:"People cannot always see how they have changed. Ask the client first if it is okay to hear from the family."},
+
+/* ---- endocrine changes with COVID-19 ---- */
+{ch:53,hard:1,need:N.moc,skill:S.ph,type:MC,src:"Lecture: Endocrine changes associated with COVID-19 | Iggy Ch. 53, Endocrine Changes Associated With COVID-19",
+stem:"Four clients admitted with COVID-19 each have a glucose of 268 mg/dL this morning, and a urine ketone check is prescribed for each of them. Which client is most likely to have ketoacidosis and is checked first?",
+opts:[{t:"72-year-old Hispanic man who has had type 2 diabetes mellitus for 14 years",c:1,r:"With COVID-19, ketoacidosis was often diagnosed in older clients of non-White ethnic groups with a history of type 2 diabetes mellitus, and this client fits every part of that description."},
+{t:"34-year-old Black woman who had no diabetes mellitus before this infection",r:"Hyperglycemia arose frequently in clients who were not previously diabetic, but ketoacidosis was reported mostly in older clients with a history of type 2 diabetes mellitus."},
+{t:"78-year-old White woman who had no diabetes mellitus before this infection",r:"Older age is one part of the reported pattern, but this client has no history of type 2 diabetes mellitus."},
+{t:"36-year-old White man who has had type 2 diabetes mellitus for 2 years",r:"Type 2 diabetes mellitus is one part of the reported pattern, but the reports describe older clients."}],
+why:"The virus can infect and replicate in pancreatic cells, so hyperglycemia arose frequently, even in clients who were not previously diabetic. Ketoacidosis was often diagnosed in older clients of non-White ethnic groups with a history of type 2 diabetes mellitus. All four clients have the same glucose and all four get the ketone check. The client who fits the whole reported pattern is checked first.",
+plain:"The virus can upset the organ that makes insulin, so anyone's sugar can go up. The dangerous acid problem showed up most in older people who already had type 2 diabetes, so that person is checked first."},
+
+/* ---- glands and their hormones ---- */
+{ch:53,need:N.pa,skill:S.ac,type:CZ,src:"Lecture: Pineal gland, gonads, thyroid cell types, pancreatic somatostatin | Iggy Ch. 53, Pineal Gland; Gonads; Thyroid Gland; Pancreas",
+stem:"Complete the nurse's analysis of four clients.",
+parts:["A night-shift worker who sleeps in a brightly lit room cannot keep a regular sleep-wake cycle. The pineal gland secretes melatonin when it is ",{o:["light","dark","cold"],a:1},
+". A 19-year-old has structurally normal ovaries but has not developed secondary sexual characteristics. The nurse suspects too little ",{o:["gonadotropic hormone from the anterior pituitary","oxytocin from the posterior pituitary","melatonin from the pineal gland"],a:0},
+". A client's thyroid parafollicular cells have been destroyed, and the follicular cells are intact. The hormone lost is ",{o:["thyroxine (T4)","parathyroid hormone","calcitonin"],a:2},
+", which normally ",{o:["raises serum calcium by increasing bone resorption","lowers serum calcium by reducing bone resorption","raises the metabolic rate of all cells"],a:1},
+". A client receives a drug that acts like somatostatin. The nurse monitors the blood glucose because the drug inhibits the release of ",{o:["insulin only","glucagon only","both insulin and glucagon"],a:2},"."],
+why:"Melatonin is secreted when it is dark. The gonads stay dormant until gonadotropic hormones from the anterior pituitary trigger maturation at puberty. Thyroid follicular cells make T4 and T3, and parafollicular cells make calcitonin, which lowers serum calcium and phosphorus by reducing bone resorption, the opposite of parathyroid hormone. Somatostatin inhibits the release of glucagon and insulin, and also gastrin, secretin, and other gastrointestinal peptides.",
+plain:"Darkness turns on the sleep hormone, and the pituitary wakes up the ovaries and testes. One kind of thyroid cell runs body speed and the other kind lowers calcium, and somatostatin is a brake on both sugar hormones."},
+
+/* ---- diagnostic assessment: teaching ---- */
+{ch:53,need:N.rr,skill:S.gs,type:SATA,src:"Lecture: Diagnostic assessment, assays, urine tests, genetic tests | Iggy Ch. 53, Laboratory Assessment: Assays; Urine Tests; Genetic Tests",
+stem:"A client who was adopted as an infant is having an endocrine evaluation. Genetic testing and a 24-hour urine collection are planned, and the client asks why. Which information does the nurse include in teaching? Select all that apply.",
+opts:[{t:"“Genetic testing may be done when a hormone level is too low to be measured.”",c:1,r:"This is the stated reason for genetic testing in endocrine assessment."},
+{t:"“Genetic testing is especially useful for you because you know little about your family history.”",c:1,r:"It is particularly useful when the client has limited knowledge of family history."},
+{t:"“Talk with your provider before you take any new prescribed or over-the-counter drug during testing.”",c:1,r:"Some drugs can interfere with the assay."},
+{t:"“A full 24 hours of urine shows how a gland is working better than one sample, because many hormones are released in pulses.”",c:1,r:"Pulsatile secretion makes a timed collection a better reflection of gland function than a single blood or urine sample."},
+{t:"“If the urine container has a preservative in it, pour the preservative out before you begin.”",r:"The client is told not to discard the preservative and to handle it with caution, because some preservatives are caustic."},
+{t:"“A saliva sample will be used to measure your pituitary hormones.”",r:"Saliva reflects steroid hormones. Protein hormones, such as those from the pituitary gland, are not assessed with saliva."}],
+why:"Genetic testing is used when some hormone levels are too low to be measured, and it helps most when family history is unknown. A 24-hour urine collection reflects gland function better than a single sample, and any preservative stays in the container. New drugs can interfere with the assay, and saliva is used for steroid hormones, not pituitary hormones.",
+plain:"When a hormone is too tiny to measure, the genes can be checked instead. Save every drop of urine for a whole day, and ask before taking any new medicine."}
+);
+
+/* ================= CHAPTER 54 (lecture-focus set): Pituitary and Adrenal Gland Conditions ================= */
+const L54A=[["History","64-year-old man. Has taken prednisone every day for 3 years for an autoimmune disorder. Admitted with a weight gain of 24 lb over 5 months, swelling of both ankles, and weakness when climbing stairs. No history of depression or memory problems."],
+["Assessment","Round face, fat pad between the shoulders, large abdomen with thin arms and legs. Thin skin with bruises on both forearms. 2+ ankle edema. Neck veins distended. Fine crackles in both lung bases. Oriented to person, place, time, and situation."],
+["Vital Signs and Laboratory","Blood pressure 166/96 mm Hg · Heart rate 90, full and bounding · Respirations 18 · Temperature 98.4°F (36.9°C)<br>Sodium 147 mEq/L · Potassium 3.3 mEq/L · Fasting glucose 196 mg/dL · Lymphocyte count low"],
+["Nurses' Notes","<b>Day 2, 0900:</b> Cheerful and talkative, joking with staff.<br><b>Day 2, 1100:</b> Found crying at the bedside. States, “I don't feel like myself. I can't concentrate and I have not slept well in weeks.” Wife states, “He was laughing an hour ago. Yesterday he snapped at our grandson. He is never like this.”"]];
+const L54B=L54A.concat([["Plan of Care","Priority problems: fluid overload, potential for injury, potential for infection.<br>Fluid restriction 1,500 mL in 24 hours, offered on a schedule. Sodium 2 g per day. Daily weight before breakfast. Walks in the hall three times a day. Assistive personnel assigned to help with hygiene, meals, and walking."]]);
+const L54C=L54B.concat([["Clinic Visit, Week 4","Discharged 4 weeks ago. The provider lowered the prednisone dose and gave a written schedule. The client brings his daily weight record. Findings from this visit are listed in the question."]]);
+Q.push(
+/* ---- Cushing syndrome: 3-item unfolding case ---- */
+{ch:54,cs:"L54",hard:1,need:N.psy,skill:S.ac,type:MC,src:"Lecture: Cushing syndrome psychosocial assessment | Iggy Ch. 54, Cushing Syndrome: Psychosocial Assessment",chart:L54A,
+stem:"The nurse reviews the Nurses' Notes with the rest of the record. How does the nurse interpret the change in the client's behavior?",
+opts:[{t:"Excess cortisol is acting on the brain; ask about irritability and confusion.",c:1,r:"Hypercortisolism causes emotional instability. The nurse asks about mood swings, irritability, crying or laughing inappropriately, trouble concentrating, and sleep difficulty."},
+{t:"A low sodium level is affecting the brain; begin hourly neurologic checks.",r:"That reasoning fits syndrome of inappropriate antidiuretic hormone. This client's sodium is 147 mEq/L, which is high."},
+{t:"A low blood glucose level is developing; check a fingerstick glucose now.",r:"Hypoglycemia belongs to adrenal insufficiency. Excess cortisol raises glucose, and this client's fasting level is 196 mg/dL."},
+{t:"He is grieving the change in his appearance; arrange a body image referral.",r:"Body changes do matter to clients, but they do not explain rapid swings from laughing to crying with poor concentration and poor sleep."}],
+why:"Excess cortisol stimulates the central nervous system. Clients often say they do not feel like themselves and report mood swings, irritability, crying or laughing inappropriately, difficulty concentrating, and sleep problems. The sodium and glucose values in the record rule out the two look-alike explanations.",
+plain:"Too much of the stress hormone makes feelings flip fast, like a light switch going on and off. It is the hormone, not the person."},
+
+{ch:54,cs:"L54",need:N.moc,skill:S.ta,type:SATA,src:"Lecture: Cushing syndrome priority problems and planning | Iggy Ch. 54, Cushing Syndrome: Restoring Fluid Volume Balance; Preventing Injury; Preventing Infection",chart:L54B,
+stem:"The nurse gives directions to the assistive personnel who will help with this client's care. Which directions does the nurse give? Select all that apply.",
+opts:[{t:"“Measure everything he drinks and all of his urine. Do not estimate.”",c:1,r:"Intake and output must be accurate, not estimated, because treatment decisions are based on them."},
+{t:"“Look at the color and clearness of his urine and tell me what you see.”",c:1,r:"Assistive personnel are taught to check urine for color and character and to report the findings."},
+{t:"“Use a lift sheet to move him up in bed. Do not pull on his arms.”",c:1,r:"A lift sheet is used instead of grasping the client because the skin is fragile and bone density is reduced."},
+{t:"“Put on a mask before you go into his room if you have a cold.”",c:1,r:"Anyone with an upper respiratory infection who enters the room must wear a mask because the client's immunity is reduced."},
+{t:"“Keep his water pitcher full and remind him to drink at every visit.”",r:"He is on a fluid restriction. Fluids are offered on a schedule spread over 24 hours."},
+{t:"“Help him shave with a blade razor each morning.”",r:"Clients are taught to use an electric shaver to avoid skin trauma."}],
+why:"Each correct direction matches one of the three priority problems. Exact intake and output and urine checks track fluid overload. The lift sheet prevents skin and bone injury. The mask protects a client with reduced immunity. The two wrong directions would add fluid and risk a skin injury.",
+plain:"His body is holding too much water, his skin and bones break easily, and he cannot fight germs well. Every helper has to work around those three things."},
+
+{ch:54,cs:"L54",need:N.pa,skill:S.eo,type:MX,src:"Lecture: Cushing syndrome evaluate outcomes | Iggy Ch. 54, Cushing Syndrome: Evaluate Outcomes; Care Coordination and Transition Management",chart:L54C,
+stem:"At the week 4 clinic visit the nurse evaluates the plan of care. For each finding, choose whether the expected outcome is met.",
+cols:["Outcome met","Outcome not met"],
+rows:[{t:"Blood pressure 130/80 mm Hg; weight within 1 lb of the discharge weight for 2 weeks",a:0},
+{t:"Potassium 3.1 mEq/L",a:1},
+{t:"Skin intact with two small bruises; stool negative for occult blood",a:0},
+{t:"Burning on urination for 2 days; temperature 98.6°F (37°C)",a:1},
+{t:"He and everyone in the home had an influenza vaccination; he avoids crowds",a:0},
+{t:"“I felt so good last weekend that I left the prednisone at home for 2 days.”",a:1}],
+why:"Expected outcomes are blood pressure at or near normal, stable weight, and normal sodium and potassium; intact skin, minimal bruising, no fractures, and no occult blood; and no fever, purulent drainage, cough, or burning on urination. A client with reduced immunity can have an infection with little or no fever. A corticosteroid taken for more than a week is never stopped suddenly because acute adrenal insufficiency can follow.",
+plain:"Good news is steady weight, calm blood pressure, whole skin, and no bleeding. Low potassium, burning when he urinates, and skipped pills all mean something still needs fixing."},
+
+/* ---- hypopituitarism ---- */
+{ch:54,need:N.rr,skill:S.rc,type:CZ,src:"Lecture: Hypopituitarism assessment | Iggy Ch. 54, Hypopituitarism: Pathophysiology Review; Recognize Cues",
+stem:"A 47-year-old woman with a pituitary tumor comes to the clinic. She reports no menses for 8 months, feeling cold and tired, and scraping the side mirror of her car on the garage door twice this month. The provider orders T3, T4, and estradiol levels. Complete the statements.",
+parts:["The report about the car mirror is a cue of tumor growth, so the nurse assesses the client's ",{o:["hand grip strength","peripheral vision","deep tendon reflexes"],a:1},
+". The provider ordered these tests because some pituitary hormones are evaluated by measuring ",{o:["their effects on the target glands","the size of the sella turcica","the response to an oral glucose dose"],a:0},
+". If the levels are low, the nurse expects ",{o:["no further testing","the same tests to be repeated in 6 months","further pituitary evaluation"],a:2},
+". The deficiencies that are most life-threatening are deficiencies of ",{o:["luteinizing hormone and follicle-stimulating hormone","growth hormone and prolactin","adrenocorticotropic hormone and thyroid-stimulating hormone"],a:2},"."],
+why:"Tumor growth often shows first as vision change, especially loss of peripheral vision, and the mirror scrapes are that cue. For some pituitary hormones the laboratory measures the hormone's effect: T3 and T4 from the thyroid and estradiol from the gonads. Low levels call for further pituitary evaluation. Loss of adrenocorticotropic hormone or thyroid-stimulating hormone is most life-threatening because vital adrenal and thyroid hormones fall.",
+plain:"The pituitary is the boss gland. To see whether the boss is working, the laboratory checks whether the worker glands are still doing their jobs. Trouble seeing off to the side is often the first warning."},
+
+/* ---- hyperpituitarism: hypophysectomy ---- */
+{ch:54,hard:1,need:N.rr,skill:S.ac,type:MX,src:"Lecture: Hyperpituitarism hypophysectomy care | Iggy Ch. 54, Hyperpituitarism: Postoperative Care; Box 54.3",
+stem:"A client had the entire pituitary gland removed by transsphenoidal hypophysectomy 8 hours ago. Nasal packing and a drip pad are in place. For each observation, choose the correct category.",
+cols:["Expected finding","Report to the surgeon","Correct the care or teaching"],
+rows:[{t:"The client cannot smell the food on the meal tray.",a:0},
+{t:"The client breathes through the mouth and the lips are dry.",a:0},
+{t:"Clear drainage on the drip pad has a light yellow ring at its edge.",a:1},
+{t:"The client says, “Something keeps dripping down the back of my throat.”",a:1},
+{t:"Vision is blurred. It was clear at the check 1 hour ago.",a:1},
+{t:"The head of the bed was lowered flat so the client could sleep.",a:2},
+{t:"A family member coaches the client to cough to clear the chest.",a:2},
+{t:"The client says, “I will take the thyroid and steroid pills until my 6-month visit.”",a:2}],
+why:"A reduced sense of smell is expected for 3 to 4 months, and mouth breathing is expected with nasal packing. A light yellow ring at the edge of clear drainage is the halo sign, and postnasal drip or increased swallowing may also mean cerebrospinal fluid is leaking. Neurologic status is checked every hour, and any change in vision, mental status, level of consciousness, or extremity strength is acted on. The head of the bed stays elevated, coughing is avoided, and replacement of thyroid hormone and glucocorticoid is lifelong when the whole gland is removed.",
+plain:"Not smelling and a dry mouth are normal after this surgery. A yellow ring on the pad, a drip in the throat, or blurry eyes mean tell the surgeon. Lying flat, coughing, and planning to stop the pills are mistakes to fix."},
+
+/* ---- diabetes insipidus ---- */
+{ch:54,need:N.saf,skill:S.ac,type:SATA,src:"Lecture: Diabetes insipidus classifications and assessment | Iggy Ch. 54, Diabetes Insipidus: Recognize Cues; Action Alert; Interventions",
+stem:"A client who has taken lithium for 11 years reports constant thirst and urinating all night. A 24-hour measurement shows a fluid intake of 4,600 mL and a urine output of 5,400 mL. Urine specific gravity is 1.002 and serum sodium is 149 mEq/L. Which interpretations and actions by the nurse are correct? Select all that apply.",
+opts:[{t:"The 24-hour result supports diabetes insipidus.",c:1,r:"The disorder is considered when urine output is more than 3 L in 24 hours and is greater than the volume taken in."},
+{t:"Lithium is a likely cause, and the kidneys are not responding to vasopressin.",c:1,r:"Lithium can cause arginine vasopressin resistance, the nephrogenic form, in which the hormone is present but the kidney does not respond."},
+{t:"Make sure the client never goes more than 4 hours without fluids.",c:1,r:"These clients cannot reduce urine output, so withholding fluids for more than 4 hours can cause severe dehydration."},
+{t:"A low-salt, low-to-normal protein diet and a thiazide diuretic can lower the urine output.",c:1,r:"For the resistance form, urine output can be lowered with a low-salt, low-to-normal protein diet and a diuretic. A thiazide causes mild volume depletion that reduces urine output."},
+{t:"A specific gravity of 1.002 shows the kidneys are concentrating the urine.",r:"A specific gravity below 1.005 is dilute urine. It shows the kidneys are not reabsorbing water."},
+{t:"Have the client stop drinking after 1800 to reduce urination at night.",r:"Limiting fluids does not lower urine output in this disorder. It causes dehydration and raises the sodium level further."}],
+why:"The 24-hour intake and output is measured without restricting food or fluid. Output over 3 L that exceeds intake, dilute urine with a specific gravity below 1.005, and a rising sodium level point to diabetes insipidus. Lithium points to the form in which the kidney does not respond to vasopressin, so urine output can be lowered with diet and a thiazide diuretic. The safety rule is that fluids are never withheld for more than 4 hours.",
+plain:"The kidneys are like a tap that will not turn off. Taking away his water does not slow the tap; it just dries the client out."},
+
+/* ---- syndrome of inappropriate antidiuretic hormone ---- */
+{ch:54,hard:1,need:N.saf,skill:S.ta,type:MC,src:"Lecture: Syndrome of inappropriate antidiuretic hormone interventions and neurologic checks | Iggy Ch. 54, Syndrome of Inappropriate Antidiuretic Hormone: Take Actions; Box 54.4",
+stem:"A client with small cell lung cancer was admitted yesterday with nausea, a weight gain of 2 kg in 3 days without ankle edema, and concentrated urine. Fluids are restricted to 1,000 mL in 24 hours. This morning the client was alert and oriented with a serum sodium of 124 mEq/L. At 1400 the client is drowsy, opens the eyes only when spoken to, and is disoriented to time. The serum sodium is 118 mEq/L. Which change does the nurse make to the plan of care?",
+opts:[{t:"Perform neurologic checks at least every hour.",c:1,r:"A change in level of consciousness calls for neurologic checks at least every hour, and a sodium level below 120 mEq/L raises the risk for seizures."},
+{t:"Keep neurologic checks at every 2 to 4 hours.",r:"That schedule is sufficient only for a client who is hyponatremic but alert, awake, and oriented, as this client was this morning."},
+{t:"Request a diuretic to remove the retained water.",r:"Diuretics are used on a limited basis when the sodium level is near normal and heart failure is present. They can increase sodium loss."},
+{t:"Brighten the room and turn on the television.",r:"Noise and lighting are reduced, not increased, to prevent overstimulation when the sodium level is this low."}],
+why:"Small cell lung cancer is a listed cause of syndrome of inappropriate antidiuretic hormone, and water retention without dependent edema, concentrated urine, and dilutional hyponatremia fit it. The risk for neurologic changes and seizures rises when the sodium level falls below 120 mEq/L, and disorientation is an early cue. An alert, awake, oriented client can be checked every 2 to 4 hours. Once the level of consciousness changes, checks are done at least every hour, and noise and lighting are reduced.",
+plain:"Too much water is making the brain swell a little, and the client is getting sleepy and mixed up. The nurse has to check the brain much more often now."},
+
+/* ---- adrenal gland hypofunction ---- */
+{ch:54,hard:1,need:N.pa,skill:S.ta,type:MC,src:"Lecture: Adrenal gland hypofunction interventions | Iggy Ch. 54, Adrenal Gland Hypofunction: Take Actions; Box 54.7",
+stem:"A client with primary adrenal insufficiency is admitted with nausea and muscle weakness. Blood pressure is 102/64 mm Hg lying down. The apical pulse is 54 and irregular. Sodium is 128 mEq/L, potassium is 6.3 mEq/L, and glucose is 74 mg/dL. Which action does the nurse take first?",
+opts:[{t:"Measure the blood pressure lying and then standing.",r:"This checks for fluid depletion and is part of care, but the slow, irregular pulse with a potassium of 6.3 mEq/L is the more immediate threat."},
+{t:"Attach the cardiac monitor and assess the rhythm.",c:1,r:"Hyperkalemia can cause dysrhythmias with an irregular heart rate and can lead to cardiac arrest, so assessing cardiac function is the nursing priority."},
+{t:"Weigh the client and start an intake and output record.",r:"Daily weight and intake and output are required, but they do not address the immediate cardiac risk."},
+{t:"Recheck the blood glucose with a fingerstick.",r:"Preventing hypoglycemia is part of care, but the glucose is within the normal range at 74 mg/dL."}],
+why:"Loss of aldosterone lets potassium build up. Hyperkalemia can cause dysrhythmias with an irregular heart rate and can result in cardiac arrest, so assessing cardiac function is a nursing priority. Signs of hyperkalemia on the monitor include a slow heart rate, heart block, and tall, peaked T waves. Checking for fluid deficit, weighing daily, and preventing hypoglycemia all follow.",
+plain:"Too much potassium can make the heart beat slow and bumpy, and then stop. Look at the heart first; the other checks come right after."},
+
+/* ---- Cushing syndrome: heart failure risk ---- */
+{ch:54,need:N.moc,skill:S.ph,type:MC,src:"Lecture: Cushing syndrome fluid overload and heart failure risk | Iggy Ch. 54, Cushing Syndrome: Restoring Fluid Volume Balance, Nonsurgical Management",
+stem:"The nurse receives report on four clients with hypercortisolism. Each has gained 2 lb (0.9 kg) since yesterday and has ankle edema. Which client does the nurse see first because the risk for pulmonary edema and heart failure is greatest?",
+opts:[{t:"A 46-year-old with a temperature of 99.5°F (37.5°C)",r:"A small rise in temperature may mean infection and needs follow-up, but it is not one of the conditions that raises the risk for pulmonary edema."},
+{t:"A 51-year-old with a fasting glucose of 214 mg/dL",r:"High glucose is expected with excess cortisol and needs management, but it is not one of the conditions that raises the risk for heart failure from fluid overload."},
+{t:"A 49-year-old with osteoporosis and back pain",r:"This client is at risk for fracture, but has no coexisting cardiac, kidney, pulmonary, or liver problem."},
+{t:"A 44-year-old with chronic kidney disease",c:1,r:"A client with fluid overload who also has a kidney problem is at greater risk for pulmonary edema and heart failure."}],
+why:"Any client with fluid overload can progress to pulmonary edema and heart failure, and pulmonary edema can occur quickly and lead to death. The older adult, or a client who also has cardiac, kidney, pulmonary, or liver problems, is at greater risk. The nurse monitors for a bounding pulse, neck vein distention, crackles, increasing edema, and reduced urine output at least every 2 hours.",
+plain:"All four are holding extra water. The one whose kidneys cannot get rid of water well will get into trouble fastest."},
+
+/* ---- hyperaldosteronism ---- */
+{ch:54,need:N.hp,skill:S.eo,type:MC,src:"Lecture: Hyperaldosteronism surgery and spironolactone | Iggy Ch. 54, Hyperaldosteronism: Interprofessional Collaborative Care",
+stem:"A client with hyperaldosteronism from an adenoma in one adrenal gland is scheduled for removal of that gland. Blood pressure is 172/100 mm Hg and potassium is 3.0 mEq/L. Which statement by the client indicates a need for further teaching?",
+opts:[{t:"“My potassium has to come up to normal before the operation.”",r:"Correct understanding. The potassium level must be corrected before surgery."},
+{t:"“The spironolactone I take now helps my body hold on to potassium.”",r:"Correct understanding. Spironolactone is a potassium-sparing diuretic and an aldosterone antagonist."},
+{t:"“I will get a steroid before surgery to prevent an adrenal crisis.”",r:"Correct understanding. Glucocorticoids are given before surgery to prevent adrenal crisis."},
+{t:"“After this surgery I will need steroid pills for life.”",c:1,r:"After removal of one gland, glucocorticoid replacement may be needed only temporarily. It is lifelong when both glands are removed."}],
+why:"Hypokalemia and high blood pressure are the most common problems in hyperaldosteronism. Surgery is a common treatment, and the potassium level must be corrected first with spironolactone or potassium supplements. Glucocorticoids are given before surgery to prevent adrenal crisis. Replacement is temporary after one gland is removed and lifelong only when both are removed.",
+plain:"He has two of these glands. Taking one out leaves the other to take over after a while, so the extra medicine is not forever."}
+);
+
+/* ================= CHAPTER 55: Thyroid and Parathyroid Gland Conditions (lecture-focus set) ================= */
+const L55A=[["History","49-year-old woman. Radioactive iodine therapy for Graves disease 5 years ago, then levothyroxine. Stopped the levothyroxine 5 months ago: “I felt fine and the refills ran out.” Now sleeps 10 to 11 hours a night and is still tired. No bowel movement for 5 days. Wears a sweater in July. Muscle aches. Menstrual periods are now heavy and last 9 days. Her partner says she is forgetful and withdrawn."],
+["Assessment","Puffy face with swelling around both eyes. Nonpitting edema of the hands and feet. Hoarse voice, thick tongue, slow speech. Skin cool, dry, and coarse. Weight up 17 lb in 5 months. Oriented; slow to answer. Breath sounds present in all lung fields."],
+["Vital Signs","Blood pressure 134/94 mm Hg · Heart rate 50 · Respirations 14 · SpO₂ 94% on room air · Temperature 96.4°F (35.8°C)"]];
+const L55B=L55A.concat([["Laboratory","Thyroid-stimulating hormone 52 µU/mL (reference 0.3 to 5) · Free T4 0.3 ng/dL (reference 0.8 to 2.8) · T3 38 ng/dL (reference 70 to 205) · Sodium 137 mEq/L · Glucose 84 mg/dL"],
+["Medical Unit","Admitted for monitoring while levothyroxine is restarted at a low dose. Orders include oxygen to keep SpO₂ above 93%.<br><b>1500:</b> Asleep. Rouses to voice and is oriented. Respirations 10 and shallow · SpO₂ 89% on room air · Heart rate 48 · Blood pressure 130/92 mm Hg · Temperature 96.2°F (35.7°C). Breath sounds decreased at both bases."]]);
+const L55C=L55B.concat([["Follow-up Visit","<b>8 weeks after discharge.</b> Takes levothyroxine every morning. Weight down 9 lb. The findings and the client's statements are listed in the question."]]);
+Q.push(
+/* ---- unfolding case: hypothyroidism ---- */
+{ch:55,cs:"L55",need:N.pa,skill:S.ac,type:CZ,src:"Lecture: Hypothyroidism cues and laboratory pattern | Iggy Ch. 55, Hypothyroidism: Laboratory Assessment; Box 55.1; Table 55.1",chart:L55A,
+stem:"Complete the statements about this client.",
+parts:["These findings are most consistent with ",{o:["hypothyroidism","a return of Graves disease","hyperparathyroidism"],a:0},
+". The nurse expects her T3 and T4 levels to be ",{o:["decreased","increased","within the normal range"],a:0},
+" and her thyroid-stimulating hormone level to be ",{o:["high","low","near normal"],a:0},
+", because the problem is in the ",{o:["thyroid gland itself","anterior pituitary gland","parathyroid glands"],a:0},"."],
+why:"Radiation-induced destruction of thyroid tissue is a primary cause of hypothyroidism, and the replacement hormone it requires is lifelong, so stopping the drug brought the slowed metabolism back. T3 and T4 are reduced. Thyroid-stimulating hormone is high in primary hypothyroidism because the pituitary keeps signaling a gland that cannot respond. It is low or near normal only in secondary disease.",
+plain:"Her thyroid was shut down on purpose years ago, and the tablet was doing its job. Without the tablet, the brain shouts at the gland but nothing answers."},
+
+{ch:55,cs:"L55",hard:1,need:N.pa,skill:S.ta,type:MC,src:"Lecture: Hypothyroidism priority problems, improving gas exchange | Iggy Ch. 55, Hypothyroidism: Analysis; Improving Gas Exchange",chart:L55B,
+stem:"Review the 1500 entry. Which action does the nurse take first?",
+opts:[{t:"Apply the prescribed oxygen and recheck SpO₂.",c:1,r:"Decreased gas exchange is the first priority problem. Oxygen is applied when the client has hypoxemia, and respiratory failure is the most common cause of death in myxedema coma."},
+{t:"Place the client on a cardiac monitor.",r:"Monitoring heart rate and rhythm supports perfusion, which is the second priority problem. It follows the breathing problem."},
+{t:"Cover the client with warm blankets.",r:"Appropriate for the low temperature, but it does not correct an SpO₂ of 89%."},
+{t:"Compare her mental status with the admission note.",r:"Mental status is assessed at least every 8 hours and changes are reported, but she rouses and is oriented. The hypoxemia is treated first."}],
+why:"All four are correct actions for this client. The textbook lists the priority problems in order: decreased gas exchange, reduced perfusion, then the potential for myxedema coma. Hypoxemia with slow, shallow breathing is an actual problem, so oxygen comes first. The nurse then reports the change promptly.",
+plain:"She is not getting enough air. Fix the air first, then look at the heart, the warmth, and the thinking."},
+
+{ch:55,cs:"L55",need:N.hp,skill:S.eo,type:MX,src:"Lecture: Hypothyroidism self-management education and outcomes | Iggy Ch. 55, Hypothyroidism: Self-Management Education; Evaluation; Drug Alert (levothyroxine)",chart:L55C,
+stem:"At the 8-week visit the nurse evaluates the plan of care. For each finding or client statement, choose whether it shows the plan is working or requires more teaching.",
+cols:["Shows the plan is working","Requires more teaching"],
+rows:[{t:"Heart rate 68 with blood pressure 122/78 mm Hg",a:0},
+{t:"“I feel like myself again, so I will stop the tablets when this bottle is empty.”",a:1},
+{t:"SpO₂ 97% on room air",a:0},
+{t:"“I write down how many hours I sleep and how often my bowels move.”",a:0},
+{t:"“When my stomach is upset, I chew an antacid along with my morning tablet.”",a:1},
+{t:"Answers promptly and recalls 3 of 3 words after 5 minutes",a:0},
+{t:"“I started an herbal energy supplement from the pharmacy. I did not think I had to ask about it.”",a:1},
+{t:"“I eat more vegetables and whole grains and drink more water to stay regular.”",a:0}],
+why:"Expected outcomes are a pulse above 60 with a normal blood pressure, SpO₂ above 93%, and improved cognition. The most important teaching is about hormone replacement: it is lifelong, antacids, iron, and calcium are separated from it by at least 4 hours, and no over-the-counter product is taken without asking the provider. Need for sleep and bowel elimination are the two easiest things for the client to track.",
+plain:"Her body is back up to speed. She still needs to learn that the tablet is forever, is taken by itself, and that new products get checked first."},
+
+/* ---- hypothyroidism: primary versus secondary ---- */
+{ch:55,hard:1,need:N.rr,skill:S.ac,type:MC,src:"Lecture: Hypothyroidism laboratory pattern, primary versus secondary | Iggy Ch. 55, Hypothyroidism: Laboratory Assessment; Table 55.1; Box 55.1",
+stem:"A 58-year-old man with a pituitary tumor reports fatigue, constipation, and feeling cold. Heart rate is 54. Results: total T4 3.2 mcg/dL (reference 4 to 12), T3 34 ng/dL (reference 40 to 180), thyroid-stimulating hormone 0.5 µU/mL (reference 0.3 to 5). How does the nurse interpret these results?",
+opts:[{t:"Secondary hypothyroidism from too little pituitary stimulation",c:1,r:"T3 and T4 are low, and the thyroid-stimulating hormone level is not raised in response. In secondary hypothyroidism it is decreased or near normal, and a pituitary tumor is a listed cause."},
+{t:"Primary hypothyroidism from failure of the thyroid gland",r:"In primary disease the pituitary responds to low T3 and T4 with a high thyroid-stimulating hormone level."},
+{t:"Normal thyroid function with an in-range thyroid-stimulating hormone level",r:"T3 and T4 are both below range and the client has symptoms. An in-range thyroid-stimulating hormone level does not rule out secondary disease."},
+{t:"Early hyperthyroidism with a low-normal thyroid-stimulating hormone level",r:"Hyperthyroidism raises T3 and T4. These are decreased."}],
+why:"The thyroid-stimulating hormone value falls inside the reference range, which is the trap. With T3 and T4 this low, a healthy pituitary would push the value high. A value that stays low or near normal points to the pituitary as the source.",
+plain:"The thyroid is quiet because nobody is telling it to work. The boss gland has the problem."},
+
+/* ---- hyperthyroidism ---- */
+{ch:55,hard:1,need:N.moc,skill:S.ph,type:MC,src:"Lecture: Thyroid storm, report a temperature rise of 1 F | Iggy Ch. 55, Hyperthyroidism: Nonsurgical Management; Critical Rescue",
+stem:"The nurse receives report on four clients at 0800. Which client does the nurse see first?",
+opts:[{t:"Graves disease; temperature 98.6°F (37°C) at 0400 and 99.8°F (37.7°C) now; heart rate 108",c:1,r:"A temperature increase of even 1°F may signal impending thyroid storm. It is reported immediately and the cardiac status is assessed."},
+{t:"Hypothyroidism; heart rate 56; temperature 96.8°F (36°C); slow to answer, as on admission",r:"A heart rate below 60 and a temperature below 97°F are expected with hypothyroidism, and the mental status has not changed."},
+{t:"1 day after total thyroidectomy; hoarse, weak voice; no stridor; SpO₂ 97%; swallowing well",r:"Hoarseness with a weak voice reflects laryngeal nerve damage and is usually temporary. The voice is checked every 2 hours. There are no signs of obstruction."},
+{t:"Hyperparathyroidism; calcium 11.2 mg/dL; nausea and no bowel movement for 3 days",r:"Expected with a high calcium level. Confusion and psychosis appear when the level is above 12 mg/dL."}],
+why:"Every client has abnormal findings, and the correct one has the mildest-looking numbers. In hyperthyroidism a rise of 1.2°F is treated as the possible onset of thyroid storm, which is fatal if untreated.",
+plain:"For most people a small fever is nothing. In Graves disease it can be the first sign of a storm, so that client comes first."},
+
+{ch:55,need:N.rr,skill:S.gs,type:SATA,src:"Lecture: Thyroidectomy complications, neck position and voice checks | Iggy Ch. 55, Hyperthyroidism: Surgical Management, Postoperative Care",
+stem:"A client returns to the surgical unit after a total thyroidectomy. Which interventions does the nurse include in the plan of care for the first 24 hours? Select all that apply.",
+opts:[{t:"Keep the client in a semi-Fowler's position with pillows supporting the head and neck.",c:1,r:"Pillows support the head and neck, and positions that extend the neck are avoided."},
+{t:"Assess the voice every 2 hours and document any change.",c:1,r:"Laryngeal nerve damage causes hoarseness and a weak voice."},
+{t:"Inspect the dressing and behind the neck for blood.",c:1,r:"Hemorrhage is most likely in the first 24 hours, and blood can collect behind the neck."},
+{t:"Ask about tingling around the mouth and in the fingers and toes.",c:1,r:"These are early signs of hypocalcemia from parathyroid injury."},
+{t:"Lay the client flat with the neck extended to keep the airway open.",r:"Positions that cause neck extension are avoided. The client is placed in a semi-Fowler's position with the head and neck supported."},
+{t:"Treat a moderate amount of serosanguineous drainage in the drain as hemorrhage.",r:"A moderate amount of serosanguineous drainage in a drain is normal. Hemorrhage shows as bleeding at the incision or as respiratory distress from tracheal compression."}],
+why:"Monitoring for complications is the most important nursing action after thyroid surgery: hemorrhage, respiratory distress, hypocalcemia with tetany, laryngeal nerve damage, and thyroid storm. The client also deep-breathes every 30 minutes to 1 hour, and tracheostomy, oxygen, and suction equipment stay in the room.",
+plain:"Keep the neck propped and never stretched back. Listen to the voice, look for blood, and ask about tingling."},
+
+{ch:55,need:N.hp,skill:S.ta,type:SATA,src:"Lecture: Hyperthyroidism, radioactive iodine therapy | Iggy Ch. 55, Hyperthyroidism: Nonsurgical Management (radioactive iodine therapy)",
+stem:"A 38-year-old client with Graves disease is scheduled for radioactive iodine therapy. Which information does the nurse include in teaching? Select all that apply.",
+opts:[{t:"“The treatment is taken by mouth, and you go home the same day.”",c:1,r:"It is given as oral iodine-131 on an outpatient basis."},
+{t:"“Relief of your symptoms may take 6 to 8 weeks.”",c:1,r:"The gland stores hormone that continues to be released."},
+{t:"“You may still need your antithyroid drug for the first few weeks.”",c:1,r:"Additional drug therapy may be needed when symptoms are severe."},
+{t:"“Your thyroid levels will be checked regularly, because the gland can become underactive years later.”",c:1,r:"Some clients become hypothyroid and then need lifelong hormone replacement."},
+{t:"“The treatment is safe during pregnancy because the radiation dose is low.”",r:"It is not used in pregnancy. Iodine-131 crosses the placenta and can damage the fetal thyroid gland."},
+{t:"“No precautions are needed at home, because the iodine stays inside the thyroid gland.”",r:"The source is unsealed. Some radioactivity is present in body fluids and stool for a few days."}],
+why:"The thyroid takes up the radioactive iodine and some hormone-producing cells are destroyed. The degree of destruction varies, one dose may be enough or a second may be needed, and hypothyroidism can appear several years after therapy, so follow-up continues.",
+plain:"The medicine slowly quiets the gland. It takes weeks to work, and the gland may end up too quiet, so it gets checked for years."},
+
+/* ---- thyroid cancer ---- */
+{ch:55,need:N.pa,skill:S.gs,type:MC,src:"Lecture: Thyroid cancer types and treatment | Iggy Ch. 55, Thyroid Cancer: Interprofessional Collaborative Care",
+stem:"A client with anaplastic thyroid carcinoma says, “My sister had papillary thyroid cancer. She had surgery and then radioactive iodine.” Which treatment does the nurse expect for this client?",
+opts:[{t:"External beam radiation, chemotherapy, or both",c:1,r:"These are used most often for anaplastic carcinoma because it has usually metastasized at diagnosis and is difficult to remove completely."},
+{t:"Total thyroidectomy, then radioactive iodine",r:"This is the usual plan for most other types. Radioactive iodine is not used to treat anaplastic carcinoma."},
+{t:"Removal of one lobe of the thyroid only",r:"Possible only when a cancer is small and contained."},
+{t:"A kinase inhibitor as the first treatment",r:"Kinase inhibitors may be used when radioactive iodine after surgery is not successful."}],
+why:"Surgery is the treatment of choice for most thyroid cancers. Anaplastic carcinoma is the exception: it is rare, grows rapidly, and invades nearby tissue. Radiation may shrink the tumor before surgery or treat cancer that persists afterward.",
+plain:"Her sister had the slow kind that can be cut out. This kind has usually spread by the time it is found, so the treatment has to reach further."},
+
+/* ---- parathyroid ---- */
+{ch:55,need:N.ph,skill:S.gs,type:MX,src:"Lecture: Hypoparathyroidism and hyperparathyroidism treatment | Iggy Ch. 55, Hypoparathyroidism: Interventions; Hyperparathyroidism: Interventions",
+stem:"The nurse cares for one client with hypoparathyroidism and one client with hyperparathyroidism. For each intervention, choose the client it is planned for.",
+cols:["Hypoparathyroidism","Hyperparathyroidism"],
+rows:[{t:"IV calcium gluconate for acute, severe symptoms",a:0},
+{t:"Cinacalcet by mouth with routine calcium levels",a:1},
+{t:"Oral calcitriol and calcium carbonate",a:0},
+{t:"A bisphosphonate when fracture risk is high and surgery is declined",a:1},
+{t:"Drug dose adjusted to hold the serum calcium in the low-normal range",a:0},
+{t:"Regular exercise, adequate hydration, and no prolonged bed rest",a:1},
+{t:"Teaching that therapy is lifelong and to wear a medical alert bracelet",a:0}],
+why:"Hypoparathyroidism leaves the calcium level too low, so calcium and vitamin D are replaced for life, but only to the low-normal range so that urine calcium does not rise and form kidney stones. Hyperparathyroidism raises calcium and thins bone: cinacalcet lowers parathyroid hormone release, bisphosphonates are preferred when fracture risk is high and surgery is not done, and the client stays active and hydrated.",
+plain:"One client needs calcium put back in. The other has too much calcium in the blood and bones that break easily."},
+
+{ch:55,need:N.saf,skill:S.ta,type:MC,src:"Lecture: Hyperparathyroidism, injury prevention | Iggy Ch. 55, Hyperparathyroidism: Interventions (Preventing injury; Nonsurgical Management)",
+stem:"A 68-year-old client with chronic hyperparathyroidism is admitted with a kidney stone. Serum calcium is 11.4 mg/dL, and a bone density scan shows significant bone loss. The nurse observes assistive personnel giving morning care. Which action requires the nurse to intervene?",
+opts:[{t:"Sliding the client up in bed by pulling under both arms",c:1,r:"Bones are fragile and can fracture. Assistive personnel are taught to handle the client carefully and to reposition with a lift sheet rather than pulling."},
+{t:"Walking with the client in the hallway before breakfast",r:"Appropriate. Regular exercise is encouraged and prolonged bed rest is avoided, even with bone density loss."},
+{t:"Refilling the water pitcher and offering fluids every hour",r:"Appropriate. Adequate hydration is part of care when the calcium level is high."},
+{t:"Setting up the breakfast tray, which includes a carton of milk",r:"Appropriate. The diet contains moderate amounts of calcium and vitamin D. Calcium is not removed from the diet."}],
+why:"Priority nursing interventions for hyperparathyroidism focus on monitoring and preventing injury, because bone density loss puts the client at risk for fragile fractures. The textbook names the handling error: the client is repositioned with a lift sheet, not pulled. Activity, fluids, and a moderate amount of dietary calcium are all part of the plan, so stopping those would be the wrong correction.",
+plain:"These bones are thin like chalk. Lift the client on a sheet and never tug on the arms. Walking, water, and a normal amount of milk are fine."}
+);
+
+/* ================= CHAPTER 56: Diabetes Mellitus (lecture-focus set) ================= */
+const L56A=[["History","44-year-old man with type 1 diabetes mellitus for 21 years. Uses insulin glargine at bedtime and insulin lispro with meals. Three days of vomiting and diarrhea. He stopped all insulin 2 days ago “because I was not eating.” Weight 80 kg."],
+["Assessment","Opens his eyes only to a loud voice, then drifts off. Vomited twice in triage; gurgling sounds with each breath. Respirations deep and rapid with a fruity odor. Holds his abdomen and moans when it is touched. Dry mouth, sunken eyes, poor skin turgor."],
+["Vital Signs","Blood pressure 92/54 mm Hg · Heart rate 126 · Respirations 32 · Temperature 99.9°F (37.7°C) · SpO₂ 93% on room air"],
+["Laboratory","Glucose 596 mg/dL · Arterial pH 7.14 · Bicarbonate 9 mEq/L · Potassium 5.7 mEq/L · Sodium 132 mEq/L · Blood urea nitrogen 38 mg/dL · Creatinine 1.8 mg/dL · Serum and urine ketones positive"],
+["Prescriptions","0.9% saline at 15 to 20 mL/kg over the first hour · Regular insulin IV bolus, then continuous IV infusion · Continuous cardiac monitoring · Hourly intake and output · Serial electrolyte levels"]];
+const L56B=L56A.concat([["Hour 3","Alert and oriented. Airway clear, no further vomiting. The 0.9% saline bolus is complete; 0.45% saline is infusing at 500 mL/hr. Regular insulin IV infusion continues.<br>Glucose 428 mg/dL · Potassium 4.6 mEq/L · Bicarbonate 12 mEq/L<br>Urine output 65 mL/hr for the past 2 hours. Cardiac monitor: sinus tachycardia, rate 108.<br>A new prescription is written for IV potassium replacement."]]);
+const L56C=L56B.concat([["Hour 6","Potassium replacement and 0.45% saline are infusing. Regular insulin IV infusion continues. The reassessment findings are listed in the question."]]);
+Q.push(
+/* ---- unfolding case: diabetic ketoacidosis ---- */
+{ch:56,cs:"L56",hard:1,need:N.pa,skill:S.ph,type:MC,src:"Lecture: Priority management of diabetic ketoacidosis | Iggy Ch. 56, Interventions for Preventing Diabetic Ketoacidosis: Blood Glucose Management",chart:L56A,
+stem:"The nurse reviews the admission findings and the new prescriptions. Which problem is the nurse's first priority?",
+opts:[{t:"An airway at risk from vomiting and decreased responsiveness",c:1,r:"The chapter directs the nurse to assess the airway and level of consciousness first. He is hard to rouse, is vomiting, and has gurgling with each breath."},
+{t:"Low blood volume, shown by hypotension and a heart rate of 126",r:"Restoring blood volume is the first outcome of fluid therapy, but hydration status is assessed after the airway and level of consciousness."},
+{t:"Ongoing ketone production that will not stop until insulin is given",r:"True, and IV regular insulin is prescribed, but glucose is the last item in the chapter's assessment order and the airway is the first."},
+{t:"A potassium imbalance that places him at risk for dysrhythmias",r:"A real risk that needs monitoring. The potassium of 5.7 mEq/L will fall with treatment, but it is not the first threat."}],
+why:"All four problems are real and all will be treated. The chapter states that the nurse first assesses the airway and level of consciousness, then hydration, electrolytes, and glucose. When confusion or Kussmaul respirations are present, ketoacidosis can quickly lead to shock and coma, so a client who cannot protect his airway is the first concern.",
+plain:"Fluids and insulin cannot help someone who cannot breathe safely. Make sure the air can get in first."},
+
+{ch:56,cs:"L56",hard:1,need:N.ph,skill:S.ta,type:MC,src:"Lecture: Potassium in diabetic ketoacidosis | Iggy Ch. 56, Diabetic Ketoacidosis: Drug Therapy; Action Alert",chart:L56B,
+stem:"Review the Hour 3 entry. Which action does the nurse take?",
+opts:[{t:"Hold the potassium, because a level of 4.6 mEq/L is not low.",r:"That waits for hypokalemia to develop. Replacement is started to prevent it, once the level falls below 5.0 mEq/L."},
+{t:"Start the potassium replacement at the prescribed rate.",c:1,r:"Replacement begins once the serum level falls below 5.0 mEq/L, and urine output is above the required 30 mL/hr. The level keeps falling as insulin, fluids, and correction of acidosis continue."},
+{t:"Hold the potassium, because the urine output is not adequate.",r:"The check is correct but the conclusion is not. Urine output must be at least 30 mL/hr before IV potassium is given, and his is 65 mL/hr."},
+{t:"Start the potassium, and pause the insulin until the level is stable.",r:"Insulin is still needed to stop ketone production. Bicarbonate is only 12 mEq/L, so the ketoacidosis has not resolved."}],
+why:"A level of 4.6 mEq/L looks normal, but it has dropped from 5.7 in 3 hours. Osmotic diuresis has already carried large amounts of potassium out in the urine, and acidosis had shifted what was left out of the cells and into the blood. Insulin therapy, correction of acidosis, and volume expansion now lower the serum level, so replacement starts when it falls below 5.0 mEq/L, provided urine output is at least 30 mL/hr.",
+plain:"His body is low on potassium even though the blood test looks fine. Insulin is pushing it back into the cells, so it is topped up before it runs short."},
+
+{ch:56,cs:"L56",need:N.rr,skill:S.eo,type:SATA,src:"Lecture: Priority management of diabetic ketoacidosis | Iggy Ch. 56, Diabetic Ketoacidosis: Fluid and Electrolyte Management; Drug Therapy",chart:L56C,
+stem:"At hour 6 the nurse reassesses the client. Which findings show a complication of treatment that the nurse reports now? Select all that apply.",
+opts:[{t:"New crackles in both lung bases with SpO₂ 90%",c:1,r:"Signs of fluid overload. The nurse watches for heart failure and pulmonary edema during fluid replacement."},
+{t:"Abdominal distention, absent bowel sounds, and new muscle weakness",c:1,r:"Signs of hypokalemia, which include muscle weakness and abdominal distention or paralytic ileus."},
+{t:"Drowsy and slow to answer after being fully alert at hour 3",c:1,r:"Mental status is recorded every hour. A decline after improvement may reflect cerebral edema from a rapid fall in serum osmolarity, or hypokalemia."},
+{t:"Glucose 266 mg/dL, down from 428 mg/dL at hour 3",r:"A fall of 54 mg/dL each hour. The expected rate with insulin therapy is about 50 to 75 mg/dL per hour. Dextrose is added to the fluid when the level reaches 250 mg/dL."},
+{t:"Urine output 60 mL/hr",r:"Adequate output. It shows the kidneys are perfused and allows potassium replacement to continue."},
+{t:"Bicarbonate 15 mEq/L, up from 9 mEq/L on admission",r:"Acidosis is correcting. Resolution requires a level above 18 mEq/L, with glucose below 200 mg/dL, venous pH above 7.30, and an anion gap below 12 mEq/L, so treatment continues."}],
+why:"The nurse assesses cardiac, kidney, and mental status to avoid fluid overload, and judges fluid replacement by blood pressure, intake and output, and daily weight. As much as 6 to 10 L may be given in the first 24 hours, so the lungs and the level of consciousness are checked often. Three of these findings are the expected response and should not be mistaken for problems.",
+plain:"The sugar, the urine, and the acid level are all heading the right way. Wet lungs, a quiet belly with weak muscles, and new sleepiness are the warning signs."},
+
+/* ---- standalone items ---- */
+{ch:56,need:N.pa,skill:S.ac,type:CZ,src:"Lecture: Normal glucose and insulin physiology; absence of insulin | Iggy Ch. 56, The Endocrine Pancreas; Absence of Insulin; Physical Activity",
+stem:"A client with type 1 diabetes mellitus has a cold and finds ketones in the urine. The client asks what this means. Complete the nurse's explanation.",
+parts:["Insulin is made by the pancreatic ",{o:["alpha cells","beta cells","delta cells"],a:1},". It attaches to receptors on your cells so that glucose can ",
+{o:["move from the blood into the cells","be changed into ketones","pass out through the kidneys"],a:0},". When there is not enough insulin, the body ",
+{o:["stores the extra glucose as fat","stops releasing glucose from the liver","breaks down fat for energy, which makes acid ketones"],a:2},". While ketones are present, you should ",
+{o:["exercise harder to use up the ketones","not exercise, because it would raise your glucose","drink less fluid until the urine clears"],a:1},"."],
+why:"Beta cells produce insulin, first as inactive proinsulin. Insulin binds to membrane receptors and lets glucose move into cells. Without it, glucose builds up in the blood, the body breaks down fat, and ketones form as the acid by-product. Urine ketones mean that current insulin levels are not adequate, and the chapter states the client should not exercise when they are present.",
+plain:"Insulin is the key that lets sugar into the cells. With no key, the body burns fat instead and makes acid, and exercise only makes that worse."},
+
+{ch:56,need:N.hp,skill:S.rc,type:SATA,src:"Lecture: Metabolic syndrome | Iggy Ch. 56, Type 2 Diabetes and Metabolic Syndrome",
+stem:"A 50-year-old man has an annual health visit. He takes lisinopril for hypertension and no other drugs. Which findings count as features of metabolic syndrome? Select all that apply.",
+opts:[{t:"Waist circumference 42 inches (107 cm)",c:1,r:"Abdominal obesity is a waist of 40 inches or more for men."},
+{t:"Blood pressure 126/78 mm Hg while taking lisinopril",c:1,r:"Drug treatment for hypertension counts, even when the reading is controlled."},
+{t:"Fasting blood glucose 108 mg/dL",c:1,r:"A fasting level of 100 mg/dL or more counts."},
+{t:"Triglycerides 142 mg/dL",r:"The feature is a level of 150 mg/dL or more, or drug treatment for elevated triglycerides."},
+{t:"High-density lipoprotein cholesterol 46 mg/dL",r:"The cutoff for men is less than 40 mg/dL. Less than 50 mg/dL applies to women."},
+{t:"Low-density lipoprotein cholesterol 134 mg/dL",r:"Not one of the listed features of the syndrome."}],
+why:"Metabolic syndrome is the presence at the same time of abdominal obesity, hyperglycemia, hypertension, and hyperlipidemia, each with a defined cutoff or drug treatment for that problem. This client has three features, which raises his risk for type 2 diabetes mellitus and cardiovascular disease. A normal blood pressure reading on treatment still counts.",
+plain:"A large waist, a blood pressure that needs a pill, and a fasting sugar that is a little high add up to a warning for diabetes and heart disease."},
+
+{ch:56,hard:1,need:N.hp,skill:S.eo,type:MC,src:"Lecture: Assessment and ongoing complication screening; A1C | Iggy Ch. 56, Health Promotion/Disease Prevention; Ongoing Assessment; Reducing the Risk for Kidney Disease",
+stem:"A 58-year-old client was diagnosed with type 2 diabetes mellitus last month. After teaching about follow-up testing, which statement shows a need for further teaching?",
+opts:[{t:"“The urine albumin test can wait until I have had diabetes for 5 years.”",c:1,r:"That schedule applies to type 1 diabetes mellitus. With type 2, yearly urine albumin testing starts at diagnosis."},
+{t:"“I will see the ophthalmologist every year, even if my vision seems fine.”",r:"Correct. Retinopathy has few symptoms until vision is lost, so eyes are examined yearly."},
+{t:"“Eating carefully the day before the test will not change my A1C result.”",r:"Correct. A1C is not altered by eating habits on the day before the test. It reflects the average glucose over about the previous 3 months."},
+{t:"“Someone should test the feeling in my feet at least once every year.”",r:"Correct. A monofilament foot examination is recommended at least annually."}],
+why:"Diabetes mellitus is the leading cause of end-stage kidney disease. A yearly urine albumin test is done for clients who have had type 1 diabetes mellitus for more than 5 years and for all clients with type 2 diabetes mellitus starting at diagnosis. Finding kidney changes early allows treatment to be adjusted to slow or halt nephropathy.",
+plain:"With type 2, the kidney check starts as soon as the diabetes is found and is repeated every year. The 5-year wait is only for type 1."},
+
+{ch:56,hard:1,need:N.rr,skill:S.eo,type:MC,src:"Lecture: Hyperglycemic-hyperosmolar state versus diabetic ketoacidosis | Iggy Ch. 56, Hyperglycemic-Hyperosmolar State: Fluid Therapy; Continuing Therapy",
+stem:"A 76-year-old woman with type 2 diabetes mellitus is admitted with a glucose of 912 mg/dL, serum osmolarity 356 mOsm/L, pH 7.38, and negative ketones. She responds only to pain. During the first 12 hours of treatment, which finding is the best evidence that fluid replacement is satisfactory?",
+opts:[{t:"She opens her eyes to voice and later follows commands.",c:1,r:"A slow but steady improvement in central nervous system function is the best evidence that fluid management is satisfactory."},
+{t:"Glucose falls from 912 to 520 mg/dL during the first 2 hours.",r:"That is about 196 mg/dL per hour. The expected reduction is 50 to 70 mg/dL per hour, and a rapid fall risks cerebral edema."},
+{t:"Urine output is 45 mL/hr with a blood pressure of 118/70 mm Hg.",r:"A good sign that blood volume is restored and the infusion rate can be reduced, but it is not the best evidence named in the chapter."},
+{t:"Serum osmolarity is 296 mOsm/L 6 hours after admission.",r:"Too fast. The outcome is rehydration and normal glucose within 36 to 72 hours, and a too-rapid reduction in osmolarity causes neurologic regression."}],
+why:"In this condition the severity of the neurologic changes follows the level of blood hyperosmolarity and cell dehydration. Restoring fluid balance in brain cells is slow, so the chapter names steady improvement in level of consciousness as the best evidence. Two options describe numbers that look good but are correcting too quickly.",
+plain:"Her brain dried out slowly, so it has to be refilled slowly. Waking up a little more each hour shows the fluid is going in at the right speed."},
+
+{ch:56,need:N.hp,skill:S.eo,type:SATA,src:"Lecture: Nursing priorities: foot care and skin integrity; client education | Iggy Ch. 56, Preventing Injury From Peripheral Neuropathy: Footwear; Box 56.9",
+stem:"A client with type 2 diabetes mellitus cannot feel the 10-g monofilament on either foot and has no ulcers. After teaching about footwear, which statements show that the client understands? Select all that apply.",
+opts:[{t:"“I will shop for new shoes late in the day.”",c:1,r:"Shoes are bought later in the day, when feet are normally larger."},
+{t:"“I will change my shoes at midday and again in the evening.”",c:1,r:"Tight shoes damage tissue, so shoes are changed by midday and again in the evening."},
+{t:"“My shoes should be about a half inch longer than my longest toe.”",c:1,r:"The shoe should be one-half to five-eighths of an inch longer than the longest toe."},
+{t:"“I will pick leather or cloth shoes instead of plastic ones.”",c:1,r:"Shoes should be made of breathable materials such as leather or cloth."},
+{t:"“I will wear new shoes all day for the first week to break them in.”",r:"New shoes need a long, gradual break-in period with frequent foot inspection for irritation or blisters."},
+{t:"“Knee-high stockings with snug elastic tops will help my circulation.”",r:"Tight stockings and constricting bands reduce blood flow and are avoided."}],
+why:"Any degree of peripheral neuropathy places the client at risk for skin breakdown, because pressure and rubbing are not felt. Protective shoes are fitted by an experienced fitter such as a certified podiatrist. Neuropathy is the main risk factor for a diabetic foot ulcer, and most lower extremity amputations are preceded by one.",
+plain:"His feet cannot tell him when a shoe is rubbing, so the shoes have to be chosen and changed in a way that never lets a sore start."},
+
+{ch:56,need:N.saf,skill:S.ph,type:MC,src:"Lecture: Nursing priorities: preventing injury from hypoglycemia; confusion means severe hypoglycemia | Iggy Ch. 56, Interventions for Preventing Hypoglycemia; Box 56.10",
+stem:"The nurse receives report on four clients with diabetes mellitus. Which client does the nurse see first?",
+opts:[{t:"Type 1; insulin was given and the meal tray is late; now confused, cool, and clammy",c:1,r:"Confusion is a sign that the brain is short of glucose. In severe hypoglycemia the client cannot treat it alone, and the brain stores only a few minutes' supply of glucose."},
+{t:"Type 2 and taking prednisone; glucose 304 mg/dL with thirst and frequent urination; alert",r:"Corticosteroids raise glucose in the hospital. This needs treatment, but the client is alert and stable."},
+{t:"Type 2 with peripheral neuropathy; a new blister on the heel that the client cannot feel",r:"A blister is covered with a dry sterile dressing and reported to the provider right away to prevent an ulcer. It is not an immediate threat to life."},
+{t:"Type 2 with albumin in the urine; blood pressure 164/96 mm Hg and lisinopril is now due",r:"Hypertension speeds diabetic kidney disease, so the dose should be given, but this is a long-term risk."}],
+why:"All four clients have a real problem. Sweating and tremors are early warnings; confusion comes later, when the brain is deprived of glucose, and can progress to seizure and coma. Delaying a meal by more than 30 minutes after some insulin doses raises the risk, so this client's glucose is checked and treated before anything else is done.",
+plain:"A brain with no sugar starts to shut down within minutes. The confused, sweaty client who had insulin but no food comes first."},
+
+{ch:56,need:N.hp,skill:S.gs,type:MX,src:"Lecture: Tips: monitor glucose more often during illness; check ketones | Iggy Ch. 56, Diabetic Ketoacidosis: Patient and Family Education; Box 56.12",
+stem:"The nurse reviews sick-day rules with a client who has type 1 diabetes mellitus. For each situation during an illness at home, choose what the nurse teaches the client to do.",
+cols:["Continue sick-day management at home","Call the diabetes health care provider"],
+rows:[{t:"Urine ketones are moderate.",a:1},
+{t:"Glucose is still elevated after two supplemental doses of insulin.",a:1},
+{t:"Temperature has been 100.2°F (37.9°C) since this morning and is not rising.",a:0},
+{t:"Vomited once 3 hours ago; now keeping down small sips of a sports drink.",a:0},
+{t:"The illness is in its third day with no improvement.",a:1},
+{t:"Glucose is 212 mg/dL, urine ketones are negative, and the usual insulin was taken.",a:0},
+{t:"No food or fluid has stayed down for the past 6 hours.",a:1}],
+why:"Illness is the most common trigger of diabetic ketoacidosis, so glucose is checked at least every 2 to 4 hours and insulin is not omitted. The client calls for moderate or high ketones, glucose that stays elevated after two supplemental insulin doses, a temperature of 101.5°F (38.6°C) or a fever lasting more than 24 hours, vomiting that cannot be stopped or an inability to take food or fluids, and an illness lasting more than 1 to 2 days. Small amounts of fluid may be tolerated even when vomiting is present.",
+plain:"Being sick pushes sugar up. Keep testing, keep taking insulin, keep sipping, and call when ketones climb, extra insulin is not working, or nothing stays down."}
+);
+
+/* ================= CHAPTER 60: Acute Kidney Injury and Chronic Kidney Disease (lecture-focus set) ================= */
+const L60A=[["History","63-year-old woman with end-stage kidney disease from hypertension and type 2 diabetes mellitus. Hemodialysis every Tuesday, Thursday, and Saturday through an arteriovenous graft in the left upper arm. Last session Saturday, full treatment. Makes less than 100 mL of urine a day. Admitted Sunday night with black, tarry stools for 2 days.<br><b>Diet:</b> 2-gram sodium diet. Started seasoning food with a potassium chloride salt substitute 2 weeks ago.<br><b>Home drugs:</b> atenolol daily, calcium acetate with meals, multivitamin with folic acid after dialysis, epoetin alfa weekly."],
+["Nurses' Notes","<b>Sunday 2300:</b> Two units of packed red blood cells given for a hemoglobin of 6.9 g/dL.<br><b>Monday 0800:</b> Alert and oriented. No stool since admission. Lungs clear. Trace ankle edema. Weight 71.2 kg (dry weight 70.0 kg). Bruit and thrill present over the graft. Cardiac monitor: regular rhythm, rate 76."],
+["Vital Signs","<b>Monday 0800:</b> Blood pressure 148/88 mm Hg (right arm) · Heart rate 76, regular · Respirations 18 · SpO₂ 96% on room air · Temperature 98.2°F (36.8°C)"],
+["Laboratory","<b>Monday 0800:</b> Potassium 6.2 mEq/L (4.9 after dialysis on Saturday) · Sodium 139 mEq/L · Creatinine 8.6 mg/dL · Blood urea nitrogen 84 mg/dL · Bicarbonate 19 mEq/L · Hemoglobin 8.4 g/dL"]];
+const L60A2=L60A.concat([["1330 Update","Next scheduled hemodialysis: Tuesday 0700.<br><b>Monday 1330:</b> Cardiac monitor now shows tall, peaked T waves. Heart rate 52 and irregular (was 76 and regular). Blood pressure 104/60 mm Hg (was 148/88). Repeat potassium 6.6 mEq/L. Client is awake and says she feels “strange.”"]]);
+const L60A3=L60A2.concat([["After Dialysis","Emergent hemodialysis through the graft from 1500 to 1830, with a reduced dose of heparin in the circuit because of the recent bleeding. Weight before dialysis 71.2 kg. Returned to the unit at 1900. Reassessment findings are listed in the question."]]);
+Q.push(
+/* ---- unfolding case: chronic kidney disease, hyperkalemia, hemodialysis ---- */
+{ch:60,cs:"L60",need:N.pa,skill:S.ac,type:SATA,src:"Lecture: chronic kidney disease, hyperkalemia and diet restrictions | Iggy Ch. 60, Metabolic Changes (potassium); Enhancing Nutrition",chart:L60A,
+stem:"Which items in the chart contributed to this client's potassium level? Select all that apply.",
+opts:[{t:"Potassium chloride salt substitute",c:1,r:"Clients with end-stage kidney disease are taught to avoid salt substitutes made of potassium chloride. She cut sodium and added potassium."},
+{t:"Black, tarry stools for 2 days",c:1,r:"Bleeding or hemorrhage is a listed contributor to high potassium in chronic kidney disease."},
+{t:"Two units of packed red blood cells",c:1,r:"Blood transfusions are a listed contributor to high potassium in chronic kidney disease."},
+{t:"Urine output of less than 100 mL a day",c:1,r:"Potassium leaves the body mainly through the kidneys. Normal levels hold only until the 24-hour urine output falls below 500 mL, so any added load stays in the blood."},
+{t:"Calcium acetate with meals",r:"A phosphate binder. It lowers phosphorus and can raise calcium. It is not a source of potassium."},
+{t:"Multivitamin with folic acid after dialysis",r:"Vitamins are supplemented, not restricted, and she takes them at the correct time so dialysis does not remove them."}],
+why:"She did not miss a treatment, so the nurse looks for a potassium load. In late chronic kidney disease any added potassium can cause hyperkalemia: potassium in drugs or seasonings, failure to restrict dietary potassium, tissue breakdown, blood transfusions, and bleeding. The diet restricts sodium, potassium, and phosphorus, while vitamins and minerals are added back.",
+plain:"Her kidneys cannot get rid of potassium, so every extra bit stays in. The fake salt, the bleeding, and the donated blood each added some."},
+
+{ch:60,cs:"L60",hard:1,need:N.pa,skill:S.ta,type:MC,src:"Lecture: potassium 5.9 mEq/L, priority is heart rate and rhythm | Iggy Ch. 60, Metabolic Changes (potassium); Hemodialysis: indications for emergent dialysis",chart:L60A2,
+stem:"Review the 1330 Update. Which action does the nurse take first?",
+opts:[{t:"Report the rhythm change now and prepare the client for hemodialysis today.",c:1,r:"Symptomatic hyperkalemia with ECG changes is a listed indication for emergent dialysis, and a rhythm change that affects blood pressure is reported immediately."},
+{t:"Remove the salt substitute, restrict dietary potassium, and recheck the level at 0600.",r:"Correct actions that stop more potassium from coming in. They do nothing about the potassium already acting on the heart."},
+{t:"Request IV furosemide to increase the loss of potassium in the urine.",r:"Loop diuretics do cause potassium loss, which helps a client who still makes urine. They are not effective in end-stage kidney disease."},
+{t:"Continue cardiac monitoring and send the client to dialysis at 0700 as scheduled.",r:"Monitoring continues, but tall T waves, a slow irregular rate, and a falling blood pressure show the heart is already affected. Waiting is unsafe."}],
+why:"High potassium causes life-threatening changes in cardiac rate and rhythm, which is why heart rate and rhythm are assessed first whenever potassium is high. Tall, peaked T waves are the ECG sign. Once the rhythm has changed, the potassium has to come out, and in a client who makes almost no urine that means dialysis now, not tomorrow.",
+plain:"The potassium has started to disturb her heartbeat. Only the dialysis machine can take it out fast enough, so the nurse calls now."},
+
+{ch:60,cs:"L60",need:N.rr,skill:S.eo,type:MX,src:"Lecture: hemodialysis, post-dialysis assessment and weights | Iggy Ch. 60, Postdialysis Care; Anticoagulation; Box 60.11",chart:L60A3,
+stem:"The client returns from hemodialysis at 1900. For each reassessment finding, choose the correct interpretation.",
+cols:["Expected or desired after hemodialysis","Requires follow-up"],
+rows:[{t:"Weight 70.1 kg",a:0},
+{t:"Blood pressure 126/76 mm Hg in the right arm",a:0},
+{t:"Temperature 99.3°F (37.4°C)",a:0},
+{t:"Potassium 4.7 mEq/L, T waves of normal height, heart rate 72 and regular",a:0},
+{t:"One new black, tarry stool",a:1},
+{t:"No bruit heard and no thrill felt over the graft",a:1},
+{t:"Client asks for her salt substitute with the evening meal",a:1}],
+why:"Weight and blood pressure are expected to be lower than the readings from 0800 because fluid was removed; she lost 1.1 kg, about 1.1 L, which is why she is weighed before and after on the same scale. The machine warms the blood, so a slight rise in temperature is expected, while a true fever would suggest sepsis and call for a blood culture. Heparin stays active for 4 to 6 hours after dialysis, even at a reduced dose, so new bleeding is followed up at once. A graft with no bruit or thrill may be clotted, and the request for the salt substitute shows the teaching is not finished.",
+plain:"Lighter, lower pressure, a little warm, and a calm heart are what the treatment is supposed to do. Bleeding, a silent graft, and the fake salt are not."},
+
+/* ---- acute kidney injury ---- */
+{ch:60,hard:1,need:N.rr,skill:S.rc,type:MC,src:"Lecture: acute kidney injury finding that needs immediate intervention | Iggy Ch. 60, Acute Kidney Injury: Physical Assessment; Take Actions: Interventions",
+stem:"A 74-year-old client who weighs 80 kg is 18 hours past coronary artery bypass surgery. The nurse reviews the 0600 data. Which finding requires immediate intervention?",
+opts:[{t:"Mean arterial pressure 58 mm Hg, heart rate 118, thready pulses",c:1,r:"A mean arterial pressure below 65 mm Hg with tachycardia and thready pulses means the kidneys are poorly perfused. Avoiding hypotension is how acute kidney injury is prevented, so the nurse acts and reports now."},
+{t:"Urine output 35 mL in the last hour; it was 50 mL the hour before",r:"For 80 kg, 0.5 mL/kg/hr is 40 mL/hr, so this one hour is low. The points for reporting are less than 30 mL/hr for 2 hours, or less than 0.5 mL/kg/hr for 2 or more hours. The falling output is a result of the low pressure, and the pressure is what the nurse acts on."},
+{t:"Creatinine 1.2 mg/dL; it was 1.0 mg/dL before the surgery",r:"A rise of 0.2 mg/dL does not meet the criterion of 0.3 mg/dL or more within 48 hours. Creatinine takes time to rise, so the trend is followed."},
+{t:"SpO₂ 92% while receiving 2 L of oxygen by nasal cannula",r:"Worth watching, but the level linked to hypoxemic damage to kidney tissue is below 88%."}],
+why:"Older age and cardiac surgery put this client at high risk. Urine output and creatinine have not yet reached the reporting points, and both change only after the kidney has already been underperfused. The vital signs show the hypoperfusion while there is still time to correct it, and waiting for 6 hours of low output to meet the definition lets the damage progress.",
+plain:"The kidneys are not getting enough blood right now. Fix the pressure before the urine stops, not after."},
+
+{ch:60,need:N.pa,skill:S.ac,type:MX,src:"Lecture: acute kidney injury etiology, prerenal, intrarenal, postrenal | Iggy Ch. 60, Etiology; Box 60.2; Fig. 60.1",
+stem:"For each client with acute kidney injury, choose the type that the cause supports.",
+cols:["Prerenal","Intrarenal","Postrenal"],
+rows:[{t:"Hemorrhage after a crash, with a blood pressure of 76/40 mm Hg for 1 hour before fluids were given",a:0},
+{t:"Enlarged prostate, with a narrow urine stream and difficulty starting to void for several weeks",a:2},
+{t:"Day 6 of IV tobramycin, with a trough level above the target range",a:1},
+{t:"Severe burns over the chest and both legs yesterday",a:0},
+{t:"Sore throat 2 weeks ago, now smoky urine and a diagnosis of acute glomerulonephritis",a:1},
+{t:"Cervical cancer with a tumor pressing on both ureters",a:2}],
+why:"Prerenal causes sit outside the kidney and reduce perfusion: blood or fluid loss, severe burns, severe dehydration, shock. Intrarenal causes damage kidney tissue itself: nephrotoxic drugs such as aminoglycosides, contrast media, glomerulonephritis. Postrenal causes block urine flow: enlarged prostate, stones, and tumors.",
+plain:"Not enough blood going in, damage inside the kidney, or a blocked drain on the way out."},
+
+{ch:60,need:N.hp,skill:S.gs,type:SATA,src:"Lecture: teach healthy adults to drink 2 to 3 L of water daily; nephrotoxic drugs | Iggy Ch. 60, Health Promotion/Disease Prevention (acute kidney injury and chronic kidney disease); Box 60.6",
+stem:"The nurse teaches a community running club about protecting the kidneys. Several members have hypertension or diabetes mellitus, and many take ibuprofen after long runs. Which points does the nurse include? Select all that apply.",
+opts:[{t:"“Healthy adults should drink 2 to 3 L of water a day, and this matters most on days you sweat heavily.”",c:1,r:"Dehydration reduces kidney perfusion and can cause acute kidney injury even in adults with no kidney problems. Athletes and heavy sweaters are named specifically."},
+{t:"“If you take ibuprofen or naproxen, use the lowest dose for the shortest time.”",c:1,r:"These drugs interfere with blood flow to the kidney. High-dose and long-term use reduces kidney function."},
+{t:"“If you have diabetes or hypertension, have your urine albumin-to-creatinine ratio, creatinine, and blood urea nitrogen checked every year.”",c:1,r:"Yearly testing is urged for these two groups because they are the leading causes of chronic kidney disease."},
+{t:"“If you are treated for a kidney or bladder infection, take every dose of the antibiotic.”",c:1,r:"Adults treated for an infection anywhere in the kidney or urinary system are taught to take all antibiotics as prescribed."},
+{t:"“Juice and sweetened sports drinks are the best fluids for flushing the kidneys.”",r:"Water is the ideal flushing agent. Sugary, high-calorie drinks are avoided."},
+{t:"“Kidney damage causes pain or a change in urination early, so testing can wait until you notice symptoms.”",r:"Changes in kidney function are often silent for many years. Most adults with chronic kidney disease do not know they have it."}],
+why:"Prevention has two parts: keep blood flowing to the kidneys and keep toxins away from them. Dehydration combined with a nonsteroidal anti-inflammatory drug attacks kidney perfusion from two directions. Controlling and screening the diseases that lead to chronic kidney disease is the other half.",
+plain:"Kidneys need plenty of water and do not like pain pills. They also do not complain when they are hurt, so get them tested."},
+
+/* ---- prioritization across the kidney replacement therapies ---- */
+{ch:60,hard:1,need:N.moc,skill:S.ph,type:MC,src:"Lecture: peritoneal dialysis, cloudy effluent is the earliest sign of peritonitis | Iggy Ch. 60, Peritoneal Dialysis: Complications; Action Alert (peritonitis)",
+stem:"The nurse receives report on four clients. Which client does the nurse see first?",
+opts:[{t:"Peritoneal dialysis for 5 months; cloudy outflow today, no fever or pain",c:1,r:"Cloudy or opaque outflow is the earliest indication of peritonitis, the major complication of peritoneal dialysis. A specimen is sent for culture, Gram stain, and cell count now, before fever and pain appear."},
+{t:"Second day after kidney transplant; urine is pink, output steady at 120 mL/hr",r:"Urine is pink and bloody after surgery and clears over days to weeks. A steady hourly output is the reassuring finding."},
+{t:"Stage 3 chronic kidney disease; blood pressure 156/94 mm Hg, albumin in the urine",r:"Blood pressure is above the target of 130/80 mm Hg and treatment needs adjusting. This is a long-term problem, not a change this morning."},
+{t:"End-stage kidney disease; hemoglobin 9.4 g/dL, fatigue, and severe itching",r:"Expected with uremia and anemia. The hemoglobin goal with treatment is only about 10 g/dL."}],
+why:"All four clients are abnormal. Three have findings that are expected for their condition or have been present for a long time. Only one has a new sign of an acute complication, and the absence of fever and pain does not make it less urgent because cloudiness comes first.",
+plain:"Cloudy fluid is the first warning of infection in the belly. It shows up before the fever does."},
+
+/* ---- hemodialysis: team supervision ---- */
+{ch:60,hard:1,need:N.saf,skill:S.ta,type:MC,src:"Lecture: hemodialysis, pre-dialysis care and holding atenolol | Iggy Ch. 60, Hemodialysis Nursing Care; Box 60.9; Box 60.11",
+stem:"A client with end-stage kidney disease has an arteriovenous graft in the right forearm. At 0745 the dialysis unit calls to move today's hemodialysis from 1400 to 0900. The 0730 blood pressure is 134/82 mm Hg, and no one has yet discussed the morning drugs with the nephrology provider. Which action by a team member requires the nurse to intervene?",
+opts:[{t:"The licensed practical nurse prepares to give the 0800 atenolol on time.",c:1,r:"Atenolol is an antihypertensive. The nurse first asks the dialysis nurse or nephrology provider whether an antihypertensive is given before dialysis, because fluid removal lowers blood pressure and some of these drugs add to hypotension during the treatment."},
+{t:"The licensed practical nurse gives calcium acetate with the breakfast tray.",r:"Correct. A phosphate binder must be taken at mealtime, whatever the dialysis schedule."},
+{t:"The assistive personnel takes the blood pressure on the left arm.",r:"Correct. Blood pressure is never measured on the arm with the vascular access."},
+{t:"The assistive personnel weighs the client on the scale used yesterday.",r:"Correct. The weight before dialysis is compared with the dry weight and with the weight afterward, so the same scale is used."}],
+why:"Before dialysis the nurse knows the weight, blood pressure, and dry weight, protects the access arm, and discusses with the nephrology provider or pharmacist which drugs are withheld until after the treatment. Antihypertensives are the drugs the nurse is told to ask about, because some contribute to hypotension during dialysis. Not every morning drug is held: the phosphate binder still goes with the meal.",
+plain:"The machine will pull fluid off and lower the blood pressure. A blood pressure pill on top of that can drop it too far, so ask before giving it."},
+
+/* ---- kidney transplantation ---- */
+{ch:60,need:N.rr,skill:S.gs,type:CZ,src:"Lecture: kidney transplantation, preoperative, operative and postoperative care | Iggy Ch. 60, Kidney Transplantation: Preoperative Care; Operative Procedures; Postoperative Care",
+stem:"A client with stage 5 chronic kidney disease will receive a kidney from a living donor tomorrow. Complete the statements about the plan of care.",
+parts:["Before the operation, the nurse expects the client to have dialysis within ",{o:["7 days","24 hours","72 hours"],a:1}," of surgery. The new kidney is placed in the ",{o:["right or left anterior iliac fossa","space left when a failed kidney is removed","upper abdomen below the liver"],a:0},", and the client's own kidneys are ",{o:["removed during the same operation","removed once the new kidney is working","left in place unless infected or painful"],a:2},". After surgery the nurse measures urine output at least ",{o:["every 4 hours for the first 24 hours","every hour for the first 48 hours","every shift until the catheter is removed"],a:1},"."],
+why:"The client usually needs dialysis within 24 hours of surgery. The kidney goes in the anterior iliac fossa because the ureter, artery, and vein are easier to connect there and the kidney is easier to palpate. The failed kidneys are not removed unless they are chronically infected or, as in polycystic kidney disease, enlarged and painful. Urine output is assessed at least hourly for the first 48 hours because an abrupt decrease may indicate rejection, acute kidney injury, thrombosis, or obstruction.",
+plain:"The new kidney sits low in the front of the belly and the old ones stay where they are. Then the nurse counts the urine every hour, because a sudden drop is the alarm."},
+
+/* ---- therapeutic communication ---- */
+{ch:60,need:N.psy,skill:S.ta,type:MC,src:"Lecture: therapeutic communication with an anxious client | Iggy Ch. 60, Minimizing Psychosocial Compromise; Table 60.4",
+stem:"A client with stage 4 chronic kidney disease is told to begin preparing for kidney replacement therapy. The client grips the chair, avoids eye contact, and says, “I watched my father on dialysis for years. I don't think I can do that.” Which response by the nurse is best?",
+opts:[{t:"“It sounds like what you saw with your father frightens you. Tell me more about that.”",c:1,r:"Names the fear behind the words and invites the client to talk. The nurse encourages the client to discuss thoughts, feelings, and fears about treatment."},
+{t:"“Dialysis has improved a great deal. It will be much easier for you than it was for him.”",r:"False reassurance. The nurse cannot promise this, and it closes the conversation."},
+{t:"“You have several months before a decision is needed, so let's focus on your diet today.”",r:"Changes the subject and dismisses the feeling the client just expressed."},
+{t:"“You have the right to refuse dialysis, and a kidney transplant is another option for you.”",r:"True statements, but they answer a question the client did not ask and skip over the fear."}],
+why:"Clenched hands and absent eye contact are cues of anxiety. The nurse reduces anxiety with an open atmosphere, encouraging the client to ask questions and discuss fears about the diagnosis and treatment. At stage 4 the team discusses the client's preferences and values and teaches the options, and that teaching can only land after the fear has been heard.",
+plain:"The client is scared because of what happened to a parent. Let the client talk about it before giving facts."}
+);
+
+</script>
+<script>
+(function(){
+'use strict';
+const KEY='nur205-lecture-focus-v1';
+const app=document.getElementById('app');
+const TYPE_NAME={mc:'Multiple choice',sata:'Select all that apply',matrix:'Matrix',cloze:'Drop-down',order:'Ordered response',highlight:'Highlight'};
+const CH_NAME={53:'Ch. 53 Endocrine assessment',54:'Ch. 54 Pituitary and adrenal',55:'Ch. 55 Thyroid and parathyroid',56:'Ch. 56 Diabetes mellitus',60:'Ch. 60 Kidney injury and kidney disease'};
+const CASE={};Q.forEach((q,i)=>{if(q.cs){(CASE[q.cs]=CASE[q.cs]||{ids:[],base:q.chart?q.chart.length:0}).ids.push(i)}});
+const HINT={sata:'Select all that apply. Each correct pick earns 1 point, each incorrect pick subtracts 1, and the item cannot go below zero.',
+matrix:'One selection per row. 1 point per row.',cloze:'1 point per drop-down.',
+order:'Use the arrows to move each step. All steps are used. Scored all or nothing.',
+highlight:'Tap each finding that requires follow-up. Each correct pick earns 1 point, each incorrect pick subtracts 1.'};
+const CONF=[['s','Sure'],['u','Unsure'],['g','Guess']];
+let st=null,items=[],view='start',navOpen=false,askSubmit=false,tab={i:-1,n:0};
+let setup={mode:'tutor',mix:true,chs:[53,54,55,56,60]};
+
+function h(tag,attrs){const e=document.createElement(tag);
+ if(attrs)for(const k in attrs){const v=attrs[k];if(v==null||v===false)continue;
+  if(k==='class')e.className=v;else if(k==='html')e.innerHTML=v;else if(k.slice(0,2)==='on')e.addEventListener(k.slice(2),v);else e.setAttribute(k,v===true?'':v)}
+ const kids=Array.prototype.slice.call(arguments,2);
+ (function add(list){list.forEach(k=>{if(k==null||k===false)return;if(Array.isArray(k))return add(k);e.appendChild(k.nodeType?k:document.createTextNode(String(k)))})})(kids);
+ return e}
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function shuffle(a,r){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));const x=a[i];a[i]=a[j];a[j]=x}return a}
+function dds(q){return q.parts.filter(p=>typeof p!=='string')}
+
+function prepare(seed,chs,mix,only){
+ const r=rng(seed);
+ const pool=Q.map((q,id)=>({q,id})).filter(x=>chs.indexOf(x.q.ch)>=0&&(!only||only.indexOf(x.id)>=0));
+ let units=[];const cu={};
+ pool.forEach(x=>{if(x.q.cs){if(!cu[x.q.cs]){cu[x.q.cs]=[];units.push(cu[x.q.cs])}cu[x.q.cs].push(x)}else units.push([x])});
+ if(mix)units=shuffle(units,r);
+ let cyc=[];
+ return [].concat.apply([],units).map(x=>{const q=x.q,it={q,id:x.id};if(q.cs){it.ci=CASE[q.cs].ids.indexOf(x.id)+1;it.cn=CASE[q.cs].ids.length}
+  if(q.type===MC){if(!cyc.length)cyc=shuffle([0,1,2,3],r);const pos=cyc.pop();const ci=q.opts.findIndex(o=>o.c);
+   const rest=shuffle(q.opts.map((o,i)=>i).filter(i=>i!==ci),r);rest.splice(pos,0,ci);it.ord=rest}
+  else if(q.type===SATA)it.ord=shuffle(q.opts.map((o,i)=>i),r);
+  else if(q.type===CZ)it.ord=dds(q).map(p=>shuffle(p.o.map((o,i)=>i),r));
+  else if(q.type===ORD){let o;do{o=shuffle(q.steps.map((s,i)=>i),r)}while(o.every((v,i)=>v===i));it.init=o}
+  return it});
+}
+function score(it,a){const q=it.q;
+ if(q.type===MC)return{got:a!=null&&q.opts[a].c?1:0,max:1};
+ if(q.type===SATA||q.type===HL){const arr=q.type===SATA?q.opts:q.segs;const max=arr.filter(o=>o.c).length;let g=0;(a||[]).forEach(i=>{g+=arr[i].c?1:-1});return{got:Math.max(0,g),max}}
+ if(q.type===MX){let g=0;q.rows.forEach((r,i)=>{if(a&&a[i]===r.a)g++});return{got:g,max:q.rows.length}}
+ if(q.type===CZ){const d=dds(q);let g=0;d.forEach((p,i)=>{if(a&&a[i]===p.a)g++});return{got:g,max:d.length}}
+ return{got:a&&a.every((v,i)=>v===i)?1:0,max:1};
+}
+function answered(it,a){const q=it.q;
+ if(q.type===MC)return a!=null;
+ if(q.type===SATA||q.type===HL)return!!(a&&a.length);
+ if(q.type===MX)return!!a&&q.rows.every((r,i)=>a[i]!=null);
+ if(q.type===CZ)return!!a&&dds(q).every((p,i)=>a[i]!=null);
+ return true}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+function load(){try{const s=JSON.parse(localStorage.getItem(KEY));return s&&s.v===1?s:null}catch(e){return null}}
+function clearSaved(){try{localStorage.removeItem(KEY)}catch(e){}}
+function fmt(s){const m=Math.floor(s/60),x=s%60;return(m<10?'0':'')+m+':'+(x<10?'0':'')+x}
+
+function begin(only){
+ st={v:1,seed:(Date.now()%2147483000)+1,mode:setup.mode,chs:setup.chs.slice(),mix:setup.mix,only:only||null,idx:0,ans:[],conf:[],chk:[],flag:[],done:false,el:0};
+ build();items.forEach((it,i)=>{if(it.q.type===ORD)st.ans[i]=it.init.slice()});
+ view='q';navOpen=false;askSubmit=false;save();render(true)}
+function build(){items=prepare(st.seed,st.chs,st.mix,st.only)}
+function resume(s){st=s;build();view=st.done?'res':'q';render(true)}
+function finish(){st.done=true;askSubmit=false;navOpen=false;view='res';save();render(true)}
+function go(i){st.idx=Math.max(0,Math.min(items.length-1,i));askSubmit=false;save();render(true)}
+function upd(){save();render(false)}
+function toggle(arr,v){const k=arr.indexOf(v);if(k>=0)arr.splice(k,1);else arr.push(v);return arr}
+
+setInterval(function(){if(view==='q'&&st&&!st.done){st.el++;const e=document.getElementById('clock');if(e)e.textContent=fmt(st.el);if(st.el%10===0)save()}},1000);
+
+function render(top){const y=window.scrollY;app.textContent='';
+ app.appendChild(view==='start'?vStart():view==='res'?vRes():vQ());
+ try{window.scrollTo(0,top?0:y)}catch(e){}}
+
+/* ---------- start ---------- */
+function vStart(){const saved=load();
+ const count=Q.filter(q=>setup.chs.indexOf(q.ch)>=0).length;
+ return h('main',{class:'wrap'},
+  h('p',{class:'eyebrow'},'NUR205 · Exam 1 · Iggy 11th edition'),
+  h('h1',null,'Lecture Focus Set'),
+  h('p',{class:'lead'},'Fifty questions, 10 for each of chapters 53, 54, 55, 56, and 60, the length of the real exam. Every question is built on a topic from the lecture slides. The slides chose the topics; the textbook supplied every answer. Each chapter has one three-item unfolding case and at least three questions with close-call options. All questions are new: none repeats the two Clinical Judgment sets.'),
+  saved?h('div',{class:'card resume'},h('div',null,h('strong',null,saved.done?'Finished attempt saved':'Attempt in progress'),h('div',{class:'muted'},saved.done?'Open the results and review.':'Question '+(saved.idx+1)+', '+fmt(saved.el)+' elapsed.')),
+   h('div',{class:'row'},h('button',{class:'btn pri',id:'resume',onclick:()=>resume(saved)},saved.done?'Open results':'Resume'),h('button',{class:'btn',onclick:()=>{clearSaved();render(false)}},'Discard'))):null,
+  h('section',{class:'card'},
+   h('h2',null,'Mode'),
+   h('div',{class:'seg'},[['tutor','Rapid fire','Rationale after each question'],['exam','Exam','Rationales at the end']].map(m=>
+    h('button',{class:'segb'+(setup.mode===m[0]?' on':''),id:'mode-'+m[0],onclick:()=>{setup.mode=m[0];render(false)}},h('strong',null,m[1]),h('span',null,m[2])))),
+   h('h2',null,'Chapters'),
+   h('div',{class:'chips'},[53,54,55,56,60].map(c=>h('button',{class:'chip'+(setup.chs.indexOf(c)>=0?' on':''),onclick:()=>{toggle(setup.chs,c);render(false)}},CH_NAME[c]+' · '+Q.filter(q=>q.ch===c).length))),
+   h('label',{class:'check'},h('input',{type:'checkbox',checked:setup.mix,onchange:e=>{setup.mix=e.target.checked}}),' Mix chapters together, as on the real exam'),
+   h('button',{class:'btn pri big',id:'start',disabled:!count,onclick:()=>begin(null)},'Start · '+count+' questions')),
+  h('section',{class:'card notes'},
+   h('h2',null,'How it is scored'),
+   h('ul',null,
+    h('li',null,'Multiple choice and ordered response: 1 point, all or nothing.'),
+    h('li',null,'Select all that apply and highlight: plus 1 for each correct pick, minus 1 for each incorrect pick, never below zero.'),
+    h('li',null,'Matrix and drop-down: 1 point per row or drop-down.'),
+    h('li',null,'Rating your confidence is optional. Results list what you missed while sure and what you got right on a guess.'),
+    h('li',null,'Results show your score on the close-call questions separately.')),
+   h('p',{class:'muted'},'Every answer choice was checked against Ignatavicius, Medical-Surgical Nursing, 11th edition. Each rationale names the lecture topic and the textbook section it comes from. Where a slide and the textbook disagree, the textbook was followed.')));
+}
+
+/* ---------- question ---------- */
+function chartBox(q,i){if(!q.chart)return null;const c=q.chart;
+ if(tab.i!==i){tab={i,n:(q.cs&&c.length>CASE[q.cs].base)?c.length-1:0}}
+ if(c.length===1)return h('div',{class:'chart'},h('div',{class:'ctitle'},c[0][0]),h('div',{class:'cbody',html:c[0][1]}));
+ return h('div',{class:'chart'},
+  h('div',{class:'tabs',role:'tablist'},c.map((t,n)=>h('button',{class:'tab'+(n===tab.n?' on':''),role:'tab','data-tab':n,onclick:()=>{tab.n=n;render(false)}},t[0]))),
+  h('div',{class:'cbody',html:c[tab.n][1]}));
+}
+function body(it,i,locked){const q=it.q,a=st.ans[i];
+ if(q.type===MC)return h('div',{class:'opts'},it.ord.map((oi,k)=>{const o=q.opts[oi],sel=a===oi;
+  return h('button',{class:'opt'+(sel?' sel':'')+(locked?(o.c?' ok':sel?' bad':' dim'):''),'data-i':oi,disabled:locked,onclick:()=>{st.ans[i]=oi;upd()}},
+   h('span',{class:'ltr'},'ABCD'.charAt(k)),h('span',{class:'ot'},o.t,locked?h('span',{class:'or'},(o.c?'Correct. ':sel?'Your answer. ':'')+o.r):null))}));
+ if(q.type===SATA)return h('div',{class:'opts'},it.ord.map((oi,k)=>{const o=q.opts[oi],sel=!!a&&a.indexOf(oi)>=0;
+  return h('button',{class:'opt'+(sel?' sel':'')+(locked?(o.c?(sel?' ok':' miss'):sel?' bad':' dim'):''),'data-i':oi,disabled:locked,onclick:()=>{st.ans[i]=toggle((a||[]).slice(),oi);upd()}},
+   h('span',{class:'ltr box'},sel?'✓':String(k+1)),h('span',{class:'ot'},o.t,locked?h('span',{class:'or'},(o.c?(sel?'Correct. ':'Missed. This one applies. '):sel?'Does not apply. ':'Does not apply. ')+o.r):null))}));
+ if(q.type===HL)return h('div',{class:'hl'},q.segs.map((s,k)=>{const sel=!!a&&a.indexOf(k)>=0;
+  return h('button',{class:'seg-h'+(sel?' sel':'')+(locked?(s.c?(sel?' ok':' miss'):sel?' bad':' dim'):''),'data-i':k,disabled:locked,onclick:()=>{st.ans[i]=toggle((a||[]).slice(),k);upd()}},s.t)}));
+ if(q.type===MX)return h('div',{class:'mxw'},h('table',{class:'mx'},
+  h('thead',null,h('tr',null,h('th',null,''),q.cols.map(c=>h('th',null,c)))),
+  h('tbody',null,q.rows.map((r,ri)=>h('tr',{class:locked?((a&&a[ri]===r.a)?'rok':'rbad'):''},h('td',{class:'rt'},r.t),
+   q.cols.map((c,ci)=>{const sel=!!a&&a[ri]===ci;return h('td',{class:'cell'+(locked&&ci===r.a?' ok':'')+(locked&&sel&&ci!==r.a?' bad':'')},
+    h('button',{class:'radio'+(sel?' sel':''),'data-r':ri,'data-c':ci,'aria-label':c,disabled:locked,onclick:()=>{const n=(a||[]).slice();while(n.length<q.rows.length)n.push(null);n[ri]=ci;st.ans[i]=n;upd()}}))}))))));
+ if(q.type===CZ){let d=-1;const list=dds(q);return h('p',{class:'cz'},q.parts.map(p=>{if(typeof p==='string')return p;d++;const di=d,cur=a?a[di]:null;
+  const s=h('select',{'data-d':di,disabled:locked,class:locked?(cur===p.a?'ok':'bad'):'',onchange:e=>{const n=(st.ans[i]||[]).slice();while(n.length<list.length)n.push(null);n[di]=e.target.value===''?null:+e.target.value;st.ans[i]=n;upd()}},
+   h('option',{value:''},'Select…'),it.ord[di].map(oi=>h('option',{value:oi,selected:cur===oi},p.o[oi])));
+  return[s,locked&&cur!==p.a?h('span',{class:'fix'},' → '+p.o[p.a]):null]}))}
+ const cur=a||it.init;
+ return h('div',null,h('ol',{class:'ord'},cur.map((si,k)=>h('li',{class:locked?(si===k?'ok':'bad'):'','data-s':si},
+  h('span',{class:'ot'},q.steps[si]),
+  locked?null:h('span',{class:'mv'},
+   h('button',{class:'ar','aria-label':'Move up','data-up':k,disabled:k===0,onclick:()=>{const n=cur.slice();n[k]=cur[k-1];n[k-1]=cur[k];st.ans[i]=n;upd()}},'▲'),
+   h('button',{class:'ar','aria-label':'Move down','data-down':k,disabled:k===cur.length-1,onclick:()=>{const n=cur.slice();n[k]=cur[k+1];n[k+1]=cur[k];st.ans[i]=n;upd()}},'▼'))))),
+  locked&&!cur.every((v,k)=>v===k)?h('div',{class:'right'},h('strong',null,'Correct order'),h('ol',null,q.steps.map(s=>h('li',null,s)))):null);
+}
+function feedback(it,i){const q=it.q,s=score(it,st.ans[i]);
+ const cls=s.got===s.max?'full':s.got>0?'part':'zero';
+ return h('section',{class:'fb '+cls},
+  h('div',{class:'fbh'},h('strong',null,s.got===s.max?'Correct':s.got>0?'Partial credit':'Incorrect'),h('span',null,s.got+' of '+s.max+(s.max===1?' point':' points'))),
+  h('p',null,q.why),
+  h('p',{class:'plain'},h('strong',null,'In plain words: '),q.plain),
+  h('div',{class:'tags'},h('span',null,CH_NAME[q.ch]),h('span',null,q.need),h('span',null,q.skill),h('span',null,TYPE_NAME[q.type]),q.hard?h('span',{class:'hardtag'},'Close-call options'):null),
+  h('p',{class:'src'},q.src.replace(' | ',' · Source: ')));
+}
+function navGrid(){return h('div',{class:'nav'},
+ h('div',{class:'grid'},items.map((it,k)=>{let c='nb';const locked=st.done||st.chk[k];
+  if(k===st.idx)c+=' cur';
+  if(locked){const s=score(it,st.ans[k]);c+=s.got===s.max?' full':s.got>0?' part':' zero'}else if(it.q.type!==ORD&&answered(it,st.ans[k]))c+=' ans';
+  if(st.flag[k])c+=' flag';
+  return h('button',{class:c,onclick:()=>{navOpen=false;go(k)}},String(k+1))})),
+ h('div',{class:'legend muted'},'Outlined = current · filled = answered · dot = flagged'),
+ st.done?null:h('button',{class:'btn',id:'finish-early',onclick:()=>{askSubmit=true;navOpen=false;render(false)}},'Finish now'));
+}
+function vQ(){const i=st.idx,it=items[i],q=it.q,n=items.length;
+ const locked=st.done||!!st.chk[i],has=answered(it,st.ans[i]),last=i===n-1;
+ const unanswered=items.filter((x,k)=>!(st.chk[k]||(x.q.type!==ORD&&answered(x,st.ans[k]))||(x.q.type===ORD&&st.mode==='exam'))).length;
+ let primary;
+ if(st.done)primary=last?h('button',{class:'btn pri',onclick:()=>{view='res';render(true)}},'Results'):h('button',{class:'btn pri',id:'next',onclick:()=>go(i+1)},'Next');
+ else if(st.mode==='tutor'&&!st.chk[i])primary=h('button',{class:'btn pri',id:'check',disabled:!has,onclick:()=>{st.chk[i]=1;upd()}},'Check answer');
+ else if(last)primary=h('button',{class:'btn pri',id:'submit',onclick:()=>{if(st.mode==='tutor'&&!unanswered)finish();else{askSubmit=true;render(false)}}},st.mode==='tutor'?'See results':'Submit exam');
+ else primary=h('button',{class:'btn pri',id:'next',onclick:()=>go(i+1)},'Next');
+ return h('main',{class:'wrap'},
+  h('header',{class:'top'},
+   h('div',{class:'meta'},h('span',null,(st.done?'Review · ':'')+'Question '+(i+1)+' of '+n),h('span',{id:'clock',class:'clock'},fmt(st.el))),
+   h('div',{class:'bar'},h('div',{style:'width:'+Math.round((i+1)/n*100)+'%'}))),
+  chartBox(q,i),
+  it.ci?h('p',{class:'caselbl'},'Unfolding case · item '+it.ci+' of '+it.cn):null,
+  h('h1',{class:'stem'},q.stem),
+  HINT[q.type]?h('p',{class:'hint'},HINT[q.type]):null,
+  body(it,i,locked),
+  locked?feedback(it,i):h('div',{class:'conf'},h('span',{class:'muted'},'Confidence'),CONF.map(c=>h('button',{class:'cf'+(st.conf[i]===c[0]?' on':''),'data-cf':c[0],onclick:()=>{st.conf[i]=st.conf[i]===c[0]?null:c[0];upd()}},c[1]))),
+  askSubmit?h('div',{class:'ask'},h('p',null,unanswered?unanswered+(unanswered===1?' question is':' questions are')+' unanswered and will score zero. Finish anyway?':'Finish and see results?'),
+   h('div',{class:'row'},h('button',{class:'btn pri',id:'confirm',onclick:finish},'Finish'),h('button',{class:'btn',onclick:()=>{askSubmit=false;render(false)}},'Keep working'))):null,
+  h('footer',{class:'foot'},
+   h('button',{class:'btn',id:'back',disabled:i===0,onclick:()=>go(i-1)},'Back'),
+   st.done?h('button',{class:'btn',onclick:()=>{view='res';render(true)}},'Results'):h('button',{class:'btn'+(st.flag[i]?' flagged':''),onclick:()=>{st.flag[i]=st.flag[i]?null:1;upd()}},st.flag[i]?'Flagged':'Flag'),
+   h('button',{class:'btn',id:'navt',onclick:()=>{navOpen=!navOpen;render(false)}},navOpen?'Hide list':'All questions'),
+   primary),
+  navOpen?navGrid():null);
+}
+
+/* ---------- results ---------- */
+function vRes(){const sc=items.map((it,i)=>score(it,st.ans[i]));
+ const got=sc.reduce((a,s)=>a+s.got,0),max=sc.reduce((a,s)=>a+s.max,0),pct=max?Math.round(got/max*100):0;
+ const full=sc.filter(s=>s.got===s.max).length;
+ function group(title,keyf,order){const m={};items.forEach((it,i)=>{const k=keyf(it.q);(m[k]=m[k]||{got:0,max:0,n:0});m[k].got+=sc[i].got;m[k].max+=sc[i].max;m[k].n++});
+  let keys=Object.keys(m);if(order)keys=order.filter(k=>m[k]);else keys.sort((a,b)=>m[a].got/m[a].max-m[b].got/m[b].max);
+  return h('section',{class:'card'},h('h2',null,title),keys.map(k=>{const p=Math.round(m[k].got/m[k].max*100);
+   return h('div',{class:'brow'},h('div',{class:'bl'},h('span',null,k),h('span',{class:'muted'},m[k].got+'/'+m[k].max+' · '+p+'%')),h('div',{class:'bar '+(p>=85?'g':p>=70?'m':'l')},h('div',{style:'width:'+p+'%'})))}))}
+ const jump=k=>h('button',{class:'lnk',onclick:()=>{view='q';go(k)}},'Q'+(k+1));
+ const sureWrong=[],guessRight=[],missed=[];
+ items.forEach((it,i)=>{if(sc[i].got<sc[i].max){missed.push(it.id);if(st.conf[i]==='s')sureWrong.push(i)}else if(st.conf[i]==='g')guessRight.push(i)});
+ const anyConf=st.conf.some(c=>c);
+ return h('main',{class:'wrap'},
+  h('p',{class:'eyebrow'},'NUR205 · Exam 1 · Lecture Focus Set'),
+  h('h1',null,'Results'),
+  h('section',{class:'card score'},
+   h('div',{class:'big '+(pct>=85?'g':pct>=70?'m':'l')},pct+'%'),
+   h('div',null,h('div',null,h('strong',null,got+' of '+max+' points')),h('div',{class:'muted'},full+' of '+items.length+' questions with full credit · '+fmt(st.el)+' · '+(st.mode==='tutor'?'rapid fire':'exam')+' mode'),
+    h('div',{class:'muted'},'Course target: 85%.'))),
+  anyConf?h('section',{class:'card'},h('h2',null,'Confidence check'),
+   h('p',null,h('strong',null,'Missed while sure ('+sureWrong.length+'): '),sureWrong.length?sureWrong.map(k=>[jump(k),' ']):'none.',h('span',{class:'muted'},sureWrong.length?' These are false beliefs. Fix them first.':'')),
+   h('p',null,h('strong',null,'Full credit on a guess ('+guessRight.length+'): '),guessRight.length?guessRight.map(k=>[jump(k),' ']):'none.',h('span',{class:'muted'},guessRight.length?' Read these rationales. The point was luck.':''))):null,
+  group('By clinical judgment step',q=>q.skill,[S.rc,S.ac,S.ph,S.gs,S.ta,S.eo]),
+  group('By client need',q=>q.need),
+  group('By chapter',q=>CH_NAME[q.ch]),
+  group('By item type',q=>TYPE_NAME[q.type]),
+  group('By difficulty of the options',q=>q.hard?'Close-call options':'Standard options',['Close-call options','Standard options']),
+  h('section',{class:'card'},h('h2',null,'Every question'),
+   h('div',{class:'list'},items.map((it,k)=>h('button',{class:'li '+(sc[k].got===sc[k].max?'full':sc[k].got>0?'part':'zero'),onclick:()=>{view='q';go(k)}},
+    h('span',{class:'num'},String(k+1)),h('span',{class:'lt'},(it.ci?'Case '+it.ci+'/'+it.cn+': ':'')+it.q.stem.slice(0,96)+(it.q.stem.length>96?'…':'')),h('span',{class:'pts'},sc[k].got+'/'+sc[k].max))))),
+  h('div',{class:'row end'},
+   missed.length?h('button',{class:'btn pri',id:'retake-missed',onclick:()=>{setup={mode:st.mode,mix:st.mix,chs:st.chs.slice()};begin(missed)}},'Retake the '+missed.length+' missed'):null,
+   h('button',{class:'btn',id:'retake',onclick:()=>{setup={mode:st.mode,mix:st.mix,chs:st.chs.slice()};begin(null)}},'Retake, reshuffled'),
+   h('button',{class:'btn',onclick:()=>{view='start';render(true)}},'Setup')));
+}
+window.__exam={prepare,score,answered,get st(){return st},get items(){return items}};
+render(true);
+})();
+
+</script>
+</body>
+</html>
+
+</body></html>
