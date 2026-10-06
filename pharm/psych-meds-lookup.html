@@ -1,0 +1,1250 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Psych Meds Lookup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a pocket psych drug handbook — sticky search + category index tabs, entries as expandable monographs */
+:root{
+  --paper:#EEF3F1; --card:#FFFFFF; --ink:#132029; --muted:#55646D; --line:#D2DCD9; --line-strong:#B9C7C3;
+  --accent:#0A6A64; --accent-ink:#FFFFFF; --accent-soft:#DCEDEA;
+  --warn:#AD2318; --warn-soft:#FBEAE7; --tox:#663C9C; --tox-soft:#F0E9F8; --tip:#7C5300; --tip-soft:#FAF0D6; --lab:#1F5FA8; --lab-soft:#E4EEFA;
+  --mark:#FFE07A; --mark-ink:#132029; --shadow:0 1px 2px rgba(19,32,41,.06),0 4px 14px rgba(19,32,41,.05);
+  --s1:#3D5A98; --s2:#2F7D8C; --s3:#8A4E9C; --s4:#B23A48; --s5:#9C2B2B; --s6:#2E7FB8; --s7:#B07A14;
+  --s8:#B5487E; --s9:#3E8E5E; --s10:#6E7F1F; --s11:#C2602B; --s12:#7A5A3A; --s13:#4F6470;
+  --f-display:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --f-body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#0E1517; --card:#162125; --ink:#E2ECE9; --muted:#9AABAF; --line:#26353A; --line-strong:#34474D;
+  --accent:#4FC2B8; --accent-ink:#06211F; --accent-soft:#163A37;
+  --warn:#FF8A7E; --warn-soft:#3A1C1A; --tox:#C3A2F0; --tox-soft:#2A2140; --tip:#F0C35C; --tip-soft:#33290F; --lab:#8DBBF2; --lab-soft:#172A40;
+  --mark:#7A6417; --mark-ink:#FFF6D6; --shadow:0 1px 2px rgba(0,0,0,.3);
+  --s1:#8AA6E6; --s2:#6CC3D2; --s3:#C99BDA; --s4:#F08B97; --s5:#E77F7F; --s6:#7DB8E6; --s7:#E7B95A;
+  --s8:#EE93BD; --s9:#80C99C; --s10:#B6C760; --s11:#F1A070; --s12:#C9A27E; --s13:#9FB3BD;
+  color-scheme:dark }}
+:root[data-theme="dark"]{
+  --paper:#0E1517; --card:#162125; --ink:#E2ECE9; --muted:#9AABAF; --line:#26353A; --line-strong:#34474D;
+  --accent:#4FC2B8; --accent-ink:#06211F; --accent-soft:#163A37;
+  --warn:#FF8A7E; --warn-soft:#3A1C1A; --tox:#C3A2F0; --tox-soft:#2A2140; --tip:#F0C35C; --tip-soft:#33290F; --lab:#8DBBF2; --lab-soft:#172A40;
+  --mark:#7A6417; --mark-ink:#FFF6D6; --shadow:0 1px 2px rgba(0,0,0,.3);
+  --s1:#8AA6E6; --s2:#6CC3D2; --s3:#C99BDA; --s4:#F08B97; --s5:#E77F7F; --s6:#7DB8E6; --s7:#E7B95A;
+  --s8:#EE93BD; --s9:#80C99C; --s10:#B6C760; --s11:#F1A070; --s12:#C9A27E; --s13:#9FB3BD;
+  color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5;-webkit-text-size-adjust:100%}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:980px;margin:0 auto;padding-inline:16px}
+
+/* Sticky header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--paper);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;flex-direction:column;gap:10px;padding-block:12px 10px}
+.brand{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand h1{margin:0;font-family:var(--f-display);font-stretch:118%;font-weight:800;font-size:1.3rem;letter-spacing:-.01em;line-height:1.1}
+.brand h1 span{color:var(--accent)}
+.tabs{display:flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px}
+.tabs button{border:0;background:none;padding:5px 12px;border-radius:999px;cursor:pointer;font-size:.85rem;font-weight:700;color:var(--muted)}
+.tabs button[aria-selected="true"]{background:var(--accent);color:var(--accent-ink)}
+.search{position:relative}
+.search input{width:100%;padding:11px 40px 11px 14px;border-radius:12px;border:1.5px solid var(--line-strong);background:var(--card);font-size:16px}
+.search input::-webkit-search-cancel-button{display:none}
+.search input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px var(--accent-soft)}
+.search .clear{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:none;width:32px;height:32px;border-radius:8px;cursor:pointer;color:var(--muted);font-size:1.2rem;line-height:1}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+.chip{flex:none;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 11px;font-size:.82rem;cursor:pointer;white-space:nowrap}
+.chip .dot{width:8px;height:8px;border-radius:2px;background:var(--c,var(--accent))}
+.chip .n{font-family:var(--f-mono);font-size:.72rem;color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip[aria-pressed="true"] .n{color:inherit;opacity:.75}
+.tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:.82rem;color:var(--muted)}
+.tools .count{margin-right:auto;font-family:var(--f-mono);font-size:.75rem}
+.tbtn{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:4px 10px;cursor:pointer;font-size:.8rem;font-weight:700;color:var(--ink)}
+.toggle{display:inline-flex;align-items:center;gap:8px;cursor:pointer;user-select:none;font-weight:700;color:var(--ink)}
+.toggle input{position:absolute;opacity:0;pointer-events:none}
+.toggle .sw{width:34px;height:20px;border-radius:999px;background:var(--line-strong);position:relative;transition:background .15s}
+.toggle .sw::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:var(--card);transition:transform .15s}
+.toggle input:checked + .sw{background:var(--accent)}
+.toggle input:checked + .sw::after{transform:translateX(14px)}
+.toggle input:focus-visible + .sw{outline:2px solid var(--accent);outline-offset:2px}
+
+main .wrap{padding-block:16px 48px;display:flex;flex-direction:column;gap:22px}
+.group{display:flex;flex-direction:column;gap:8px}
+.group h2{margin:0;display:flex;align-items:center;gap:10px;font-family:var(--f-display);font-stretch:112%;font-weight:700;font-size:.8rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.group h2 .tab{width:14px;height:14px;border-radius:3px;background:var(--c)}
+.group h2::after{content:"";flex:1;height:1px;background:var(--line)}
+
+/* Monograph cards */
+details.mono{background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+details.mono[open]{border-color:var(--line-strong)}
+details.mono > summary{list-style:none;cursor:pointer;padding:12px 14px;display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:start}
+details.mono > summary::-webkit-details-marker{display:none}
+.s-head{display:flex;flex-direction:column;gap:2px;min-width:0}
+.s-title{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-width:0}
+.s-title h3{margin:0;font-family:var(--f-display);font-stretch:110%;font-weight:700;font-size:1.05rem;line-height:1.25;text-wrap:balance}
+.sfx{font-family:var(--f-mono);font-size:.72rem;color:var(--accent);background:var(--accent-soft);border-radius:5px;padding:1px 6px;white-space:nowrap}
+.systag{font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--c)}
+.s-drugs{grid-column:1/2;color:var(--muted);font-size:.85rem;min-width:0;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.chev{grid-row:1/3;grid-column:2;align-self:center;width:28px;height:28px;border-radius:8px;display:grid;place-items:center;color:var(--muted);transition:transform .15s}
+details[open] .chev{transform:rotate(180deg)}
+mark{background:var(--mark);color:var(--mark-ink);border-radius:3px;padding:0 1px}
+
+.body{border-top:1px solid var(--line);padding:12px 14px 14px;display:flex;flex-direction:column;gap:14px}
+.druglist{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.drow{display:grid;grid-template-columns:minmax(0,1fr);gap:2px;padding:9px 12px;border-top:1px solid var(--line)}
+.drow:first-child{border-top:0}
+.drow .dn{font-weight:700}
+.drow .db{font-style:italic;color:var(--muted);font-weight:400}
+.drow .dnote{font-size:.88rem;color:var(--ink)}
+.drow.hit{background:var(--tip-soft)}
+@media (min-width:720px){ .drow{grid-template-columns:minmax(150px,230px) minmax(0,1fr);gap:4px 16px} .drow .dnote{grid-column:2;grid-row:1/3} }
+
+.secs{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+@media (min-width:760px){ .secs{grid-template-columns:repeat(2,minmax(0,1fr))} .sec.wide{grid-column:1/-1} }
+.sec{border-radius:10px;padding:10px 12px;background:var(--paper);min-width:0}
+.sec h4{margin:0 0 4px;font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.sec .ans p{margin:0}
+.sec .ans ul{margin:0;padding-left:1.1em}
+.sec .ans li{margin:2px 0}
+.sec.k-ae,.sec.k-warn{background:var(--warn-soft)} .sec.k-ae h4,.sec.k-warn h4{color:var(--warn)}
+.sec.k-tox{background:var(--tox-soft)} .sec.k-tox h4{color:var(--tox)}
+.sec.k-hesi{background:var(--tip-soft)} .sec.k-hesi h4{color:var(--tip)}
+.sec.k-kid{background:var(--accent-soft)} .sec.k-kid h4{color:var(--accent)}
+.sec.k-kid .ans{font-style:italic}
+.sec.k-labs{background:var(--lab-soft)} .sec.k-labs h4{color:var(--lab)}
+.sec.k-labs li b{font-weight:700}
+.dg{color:var(--lab);font-weight:700;margin-right:2px;cursor:help}
+.srcline{margin:0;font-size:.8rem;color:var(--muted)}
+.srcline b{color:var(--ink)}
+table.wide{min-width:980px}
+table.mid{min-width:680px}
+.qnav{display:flex;flex-wrap:wrap;gap:6px}
+.qnav button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:4px 10px;font-size:.8rem;color:var(--ink);cursor:pointer}
+.qsec{scroll-margin-top:150px}
+
+.cardfoot{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.copybtn{border:1px solid var(--line-strong);background:var(--card);border-radius:8px;padding:6px 12px;cursor:pointer;font-weight:700;font-size:.82rem}
+.copybtn.ok{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+
+/* Self-test mode */
+body.quiz .sec .ans{filter:blur(6px);user-select:none;cursor:pointer;transition:filter .15s}
+body.quiz .sec.revealed .ans{filter:none;user-select:text}
+body.quiz .sec{cursor:pointer}
+body.quiz .sec h4::after{content:" · tap to reveal";text-transform:none;letter-spacing:0;font-weight:400;color:var(--muted)}
+body.quiz .sec.revealed h4::after{content:""}
+@media (prefers-reduced-motion:reduce){ *{transition:none!important} }
+
+.empty{text-align:center;color:var(--muted);padding:40px 12px;border:1px dashed var(--line-strong);border-radius:12px}
+
+/* Quick reference */
+.qsec{display:flex;flex-direction:column;gap:8px}
+.qsec h2{margin:0;font-family:var(--f-display);font-stretch:112%;font-weight:700;font-size:1rem}
+.qsec p.lede{margin:0;color:var(--muted);font-size:.88rem}
+.tablewrap{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{text-align:left;padding:8px 12px;border-top:1px solid var(--line);vertical-align:top}
+thead th{border-top:0;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--paper)}
+td.mono{font-family:var(--f-mono);font-size:.82rem;white-space:nowrap;font-variant-numeric:tabular-nums}
+td:first-child{font-weight:700}
+.foot{color:var(--muted);font-size:.8rem;border-top:1px solid var(--line);padding-top:14px}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <h1>Psych Meds <span>Lookup</span></h1>
+      <div class="tabs" role="tablist" aria-label="View">
+        <button role="tab" id="tab-drugs" aria-selected="true" aria-controls="view-drugs">Drugs</button>
+        <button role="tab" id="tab-quick" aria-selected="false" aria-controls="view-quick">Quick reference</button>
+      </div>
+    </div>
+    <div class="search">
+      <input id="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search a drug, brand, class, suffix or finding (e.g. Zoloft, -apine, tremor)" aria-label="Search drugs">
+      <button class="clear" id="clear" aria-label="Clear search" hidden>×</button>
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Filter by category"></div>
+    <div class="tools" id="tools">
+      <span class="count" id="count"></span>
+      <label class="toggle"><input type="checkbox" id="quiz"><span class="sw"></span>Self-test</label>
+      <button class="tbtn" id="expand">Expand all</button>
+      <button class="tbtn" id="collapse">Collapse all</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap" id="view-drugs" role="tabpanel" aria-labelledby="tab-drugs"></div>
+  <div class="wrap" id="view-quick" role="tabpanel" aria-labelledby="tab-quick" hidden></div>
+</main>
+
+<script>
+const SYSTEMS = [
+  {id:"dep", name:"Antidepressants", hue:"var(--s3)"},
+  {id:"mood", name:"Mood Stabilizers", hue:"var(--s7)"},
+  {id:"apsy", name:"Antipsychotics", hue:"var(--s4)"},
+  {id:"anx", name:"Anxiety Meds", hue:"var(--s2)"},
+  {id:"sleep", name:"Sleep & Wake Meds", hue:"var(--s1)"},
+  {id:"adhd", name:"ADHD Meds", hue:"var(--s11)"},
+  {id:"dem", name:"Dementia Drugs", hue:"var(--s12)"},
+  {id:"sud", name:"Substance Use & Withdrawal", hue:"var(--s9)"},
+  {id:"eps", name:"EPS & Emergency Treatments", hue:"var(--s6)"},
+  {id:"other", name:"Other Psych-Related", hue:"var(--s13)"}
+];
+
+const CLASSES = [
+/* ============ ANTIDEPRESSANTS ============ */
+{sys:"dep", name:"SSRIs (Selective Serotonin Reuptake Inhibitors)", sfx:"no single suffix; -oxetine, -pram", ch:"3, 14, 15, 16, 18",
+ drugs:[["fluoxetine","Prozac, Prozac Weekly, Sarafem","Most activating: insomnia and nervousness, so give in the morning. Very long half-life (once-weekly form exists). Only FDA drug for bulimia; also PMDD. †Longest washout: 5 weeks before an MAOI. †Least discontinuation syndrome."],
+  ["sertraline","Zoloft","Most GI upset (diarrhea). FDA approved for PTSD, panic, social anxiety, OCD. †Often chosen in pregnancy, breastfeeding and cardiac patients."],
+  ["paroxetine","Paxil, Paxil CR, Pexeva, Brisdelle","Most anticholinergic (avoid in narrow-angle glaucoma). Most calming SSRI. Avoid in pregnancy: fetal heart defects. Brisdelle treats menopausal hot flashes. †Worst discontinuation syndrome and most weight gain."],
+  ["citalopram","Celexa","Dose-dependent QT prolongation. Caution with low potassium or other QT drugs; ECG in high-risk patients. †Max 40 mg/day (20 mg/day over age 60)."],
+  ["escitalopram","Lexapro","S-enantiomer of citalopram. FDA approved for generalized anxiety disorder. †Fewest drug interactions; less QT effect than citalopram."],
+  ["fluvoxamine","Luvox","Most sedating: start at bedtime. Used for OCD. Contraindicated with ramelteon. †Many CYP interactions (raises clozapine, theophylline, warfarin levels)."]],
+ moa:"Block the reuptake of serotonin, so more serotonin stays in the synapse. Receptors slowly down-regulate, which is why the benefit is delayed.",
+ use:["Major depressive disorder (first line)","Anxiety disorders: GAD, panic disorder, social anxiety (first line)","OCD (fluoxetine, fluvoxamine, paroxetine, sertraline)","PTSD (sertraline, paroxetine)","Bulimia nervosa and PMDD (fluoxetine)"],
+ exp:["Better mood, sleep, appetite, energy and concentration; fewer anxious or obsessive thoughts","Textbook (Ch. 3): 4 to 8 weeks for onset","†Standard references: first signs in 1–3 weeks, full effect in 4–8 weeks (often quoted as 2–6 weeks). Sleep and energy improve before mood","May increase anxiety at first, especially fluoxetine and sertraline"],
+ se:["Nausea, diarrhea, dry mouth","Sexual dysfunction (anorgasmia, low libido)","Insomnia, restlessness, jitteriness, tremor","Headache, sweating, weight change","Fatigue or dizziness"],
+ ae:["SEROTONIN SYNDROME","Suicidal thinking early in treatment","Hyponatremia, †especially in older adults (SIADH)","Discontinuation syndrome if stopped abruptly: dizziness, insomnia, nervousness, irritability, nausea, agitation","Rare induction of mania","†Bleeding (impaired platelets), worse with NSAIDs or anticoagulants","QT prolongation (citalopram)"],
+ warn:["BOXED WARNING (all antidepressants): suicidal thinking and behavior in children and adolescents; †extended to young adults up to age 24","Never combine with an MAOI","Paroxetine: avoid in pregnancy","Older adults: start at half the lowest adult dose; change no more often than every 7 days","†Screen for bipolar disorder first: an antidepressant alone can trigger mania"],
+ tox:["Serotonin syndrome: hyperactivity or restlessness, tachycardia, fever, high BP, delirium, myoclonus, incoordination, rigidity, abdominal pain and diarrhea, seizures","†Classic exam clues: hyperreflexia, clonus, shivering, dilated pupils, onset within hours of a dose change or new drug","Treatment: stop the offending drug; cyproheptadine (serotonin blocker), cooling blankets, diazepam or dantrolene for rigidity, anticonvulsants, ventilation if needed","Overdose of an SSRI alone is rarely lethal. No specific antidote"],
+ int:["MAOIs: serotonin syndrome. See washout table","Other serotonergic drugs: buspirone, dextromethorphan, †triptans, tramadol, meperidine, linezolid, lithium, St. John's wort","Digoxin and warfarin: tell the provider","Alcohol: avoid","†NSAIDs, aspirin, anticoagulants: bleeding","†Fluoxetine and paroxetine inhibit CYP2D6 (raise TCA, antipsychotic and tamoxifen effects)"],
+ mon:["Suicide risk, especially in the first weeks and at dose changes","Mood, sleep, appetite, anxiety level","Signs of serotonin syndrome","Sexual side effects (ask; patients rarely volunteer)","†Weight, and falls in older adults"],
+ labs:["Liver and renal function tests and blood counts: checked periodically (textbook patient teaching)","Serum sodium: hyponatremia, †highest risk in older adults and with diuretics","ECG (QT): citalopram in high-risk patients; correct low potassium first","†INR if on warfarin"],
+ ed:["It takes weeks to work. Keep taking it even when you feel better","Do not stop suddenly. The dose is tapered","No MAOI within 14 days. No over-the-counter drugs or herbs without asking","Avoid alcohol. Do not drive until you know how it affects you","Report right away: worse depression or suicidal thoughts, rash, fever, unusual bleeding, severe headache, racing heart","Tell the provider about sexual side effects; there are fixes","†Take fluoxetine in the morning; take with food if nauseated"],
+ kid:"Serotonin is the brain's 'feel steady' messenger. Normally it gets vacuumed back up right after it is sent. An SSRI clogs the vacuum, so the message hangs around longer. It takes weeks because the brain has to slowly adjust to the louder signal.",
+ hesi:"Energy returns before mood lifts, so suicide risk is highest in the first weeks. SSRI + MAOI = serotonin syndrome. Fever, clonus and hyperreflexia after a new serotonergic drug = serotonin syndrome, not NMS."},
+
+{sys:"dep", name:"SNRIs (Serotonin Norepinephrine Reuptake Inhibitors)", sfx:"-faxine, -nacipran", ch:"3, 14, 15",
+ drugs:[["venlafaxine","Effexor, Effexor XR","Serotonin only at low doses; norepinephrine reuptake blockade starts above 150 mg/day. Raises BP. Most likely to cause discontinuation syndrome. GAD, panic, social anxiety."],
+  ["desvenlafaxine","Pristiq, Khedezla","Active metabolite of venlafaxine. Neonates exposed in utero have needed respiratory support and tube feeding."],
+  ["duloxetine","Cymbalta","Also diabetic neuropathy, fibromyalgia, chronic musculoskeletal pain. GAD (approved ages 7–17 too). †Hepatotoxic: avoid with heavy alcohol use or liver disease."],
+  ["levomilnacipran","Fetzima","Most noradrenergic SNRI. Urinary hesitancy in up to 6%. Raises heart rate; may increase anticoagulant effect."],
+  ["milnacipran","Savella","Fibromyalgia only; not approved for depression."]],
+ moa:"Block the reuptake of both serotonin and norepinephrine. Norepinephrine also turns on the descending pain-blocking pathways in the spinal cord.",
+ use:["Major depressive disorder (first line)","Generalized anxiety, panic and social anxiety disorder","Neuropathic pain, fibromyalgia, chronic musculoskeletal pain (duloxetine)","Common next step after an SSRI fails (venlafaxine)"],
+ exp:["Better mood and energy, less anxiety, less nerve pain","Textbook (Ch. 3): 4 to 8 weeks","†Standard references: 2–6 weeks, full effect up to 8 weeks"],
+ se:["Nausea, dry mouth, constipation","Excessive sweating (more than SSRIs)","Insomnia or sedation, dizziness, headache","Sexual dysfunction","Reduced appetite"],
+ ae:["Dose-dependent rise in blood pressure and heart rate","Serotonin syndrome","Suicidal thinking","Discontinuation syndrome: flu-like symptoms, insomnia, nausea, dizziness, paresthesias, anxiety (venlafaxine is worst)","†Hyponatremia; bleeding","†Liver injury (duloxetine)"],
+ warn:["BOXED WARNING: suicidal thinking in children, adolescents †and young adults","Never combine with an MAOI","Uncontrolled hypertension: use with caution","†Narrow-angle glaucoma","†Duloxetine: avoid in liver disease and heavy alcohol use"],
+ tox:["Serotonin syndrome (see SSRIs). Stop the drug, supportive care, cyproheptadine","†Overdose: tachycardia, hypertension, seizures; venlafaxine is more dangerous in overdose than SSRIs. No antidote"],
+ int:["MAOIs: serotonin syndrome and hypertensive crisis","Other serotonergic drugs","Anticoagulants: bleeding (levomilnacipran noted in the textbook)","†Alcohol with duloxetine: liver injury"],
+ mon:["Blood pressure and heart rate at baseline and periodically, especially at dose changes","Suicide risk","Pain scores when used for pain","†Urinary hesitancy (levomilnacipran)"],
+ labs:["†Serum sodium in older adults","†Liver function tests with duloxetine","†No drug level is drawn"],
+ ed:["Do not stop suddenly; the dose is tapered slowly","Check your blood pressure regularly","It takes weeks to work","†Swallow extended-release capsules whole","†Limit alcohol (duloxetine)"],
+ kid:"An SSRI turns up one messenger. An SNRI turns up two: serotonin for 'steady' and norepinephrine for 'get up and go'. Norepinephrine is also why your heart beats harder and why pain signals get quieter.",
+ hesi:"Venlafaxine = watch BP and never stop abruptly. Duloxetine = depression plus pain, watch the liver."},
+
+{sys:"dep", name:"Atypical Antidepressants", sfx:"-zodone (trazodone, nefazodone, vilazodone)", ch:"3, 14, 22",
+ drugs:[["bupropion","Wellbutrin, Aplenzin, Forfivo XL, Zyban","NDRI: blocks norepinephrine and dopamine reuptake. No serotonin effect, so little sexual dysfunction (given for SSRI-induced sexual dysfunction). Insomnia, tremor, weight loss. Seizures (0.4%). Smoking cessation as Zyban."],
+  ["mirtazapine","Remeron","NaSSA: blocks presynaptic alpha-2 and postsynaptic 5-HT2 and 5-HT3 receptors. Sedation, appetite stimulation, weight gain. Chosen for depression with insomnia and weight loss. Fewer GI and sexual effects. †Give at bedtime. Rare agranulocytosis."],
+  ["trazodone","Desyrel, Oleptro","SARI. Very sedating; used off label for insomnia at low dose (e.g., 50 mg at bedtime). Orthostatic hypotension from alpha-1 blockade. PRIAPISM."],
+  ["nefazodone","generic only (was Serzone)","SARI. Rarely used: rare life-threatening liver failure. Avoid in liver impairment. Inhibits CYP3A4. Little sexual dysfunction."],
+  ["vilazodone","Viibryd","SSRI plus 5-HT1A partial agonist (like buspirone). Take with food to absorb it. Diarrhea, nausea, insomnia."],
+  ["vortioxetine","Trintellix","Serotonin modulator: reuptake inhibitor plus actions at several serotonin receptors. Nausea, constipation, vomiting. May improve cognition; sexual dysfunction from SSRIs may improve after a switch. †21-day washout before an MAOI."]],
+ moa:"Each one raises serotonin, norepinephrine or dopamine by a different route than a plain SSRI: blocking reuptake of other transmitters (bupropion), blocking the brake receptors that hold transmitters back (mirtazapine), or blocking and stimulating specific serotonin receptors (trazodone, vilazodone, vortioxetine).",
+ use:["Major depressive disorder","Smoking cessation (bupropion)","Insomnia, off label (trazodone)","Depression with poor appetite, weight loss or insomnia (mirtazapine)","†Seasonal affective disorder (bupropion XL)"],
+ exp:["Better mood, sleep and appetite","Textbook (Ch. 3): antidepressants take 4 to 8 weeks. Mirtazapine's antidepressant effect may come faster (Ch. 14)","†Sleep (trazodone, mirtazapine) improves with the first doses"],
+ se:["Bupropion: insomnia, agitation, tremor, headache, anorexia, weight loss, nausea","Mirtazapine: sedation, increased appetite, weight gain, dizziness","Trazodone and nefazodone: sedation, dizziness, hypotension, headache, nausea, blurred vision","Vilazodone and vortioxetine: nausea, diarrhea or constipation, vomiting"],
+ ae:["Seizures (bupropion), risk rises with dose","Priapism (trazodone; nefazodone rarely)","Liver failure (nefazodone)","Serotonin syndrome (all except bupropion)","Hyponatremia and rare mania (vortioxetine)","Suicidal thinking"],
+ warn:["BOXED WARNING: suicidal thinking in children, adolescents †and young adults","Bupropion is contraindicated in seizure disorders, eating disorders (anorexia, bulimia), and during abrupt withdrawal from alcohol or sedatives including benzodiazepines","Nefazodone: avoid with pre-existing liver disease","†Bupropion maximum 450 mg/day; do not crush or double up"],
+ tox:["†Bupropion overdose: seizures, tachycardia, QRS widening. Benzodiazepines for seizures","Serotonin syndrome with the serotonergic agents: stop the drug, supportive care, cyproheptadine","†Priapism lasting more than 4 hours is a urologic emergency","No specific antidote"],
+ int:["MAOIs: contraindicated","Alcohol, benzodiazepines and other CNS depressants add to sedation (mirtazapine, trazodone)","Nefazodone raises levels of CYP3A4 drugs","†Bupropion inhibits CYP2D6 and lowers the seizure threshold with other threshold-lowering drugs (tramadol, antipsychotics, stimulants)"],
+ mon:["Suicide risk","Seizure history and eating disorder history before bupropion","Orthostatic BP and fall risk (trazodone)","Weight (mirtazapine up, bupropion down)","Sleep pattern"],
+ labs:["†Liver function tests with nefazodone","†Sodium with vortioxetine in older adults","†Lipids and weight with mirtazapine; CBC if fever or sore throat","†No drug levels"],
+ ed:["Bupropion: take the last dose early in the day to protect sleep; no alcohol binges","Mirtazapine and trazodone: take at bedtime; rise slowly","Trazodone: an erection that will not go away needs emergency care","Vilazodone: take with food","Do not stop suddenly"],
+ kid:"These are the 'different door' antidepressants. Bupropion is the wake-up one (no sleepiness, no weight gain, but can spark a seizure). Mirtazapine and trazodone are the sleepy ones. Each takes a different door to the same room.",
+ hesi:"Bupropion: seizures, no sexual side effects, never in bulimia or anorexia. Trazodone: priapism and orthostasis. Mirtazapine: sleepy and hungry."},
+
+{sys:"dep", name:"Tricyclic Antidepressants (TCAs)", sfx:"-triptyline, -pramine", ch:"3, 14, 15",
+ drugs:[["amitriptyline","Elavil (generic only)","Tertiary amine: blocks serotonin and norepinephrine reuptake. Off label for migraine and neuropathic pain. †Most sedating and anticholinergic."],
+  ["nortriptyline","Pamelor, Aventyl","Secondary amine: mainly norepinephrine. †Fewer anticholinergic effects and less orthostasis; preferred TCA in older adults. Therapeutic level 50–150 ng/mL."],
+  ["imipramine","Tofranil","Tertiary amine. †Also childhood enuresis."],
+  ["desipramine","Norpramin","Secondary amine: mainly norepinephrine. †Least sedating; most cardiotoxic in overdose."],
+  ["clomipramine","Anafranil","FDA approved for OCD (ages 10 and up). †The most serotonergic TCA; lowers the seizure threshold; high serotonin syndrome risk."],
+  ["doxepin","Sinequan; Silenor (low dose)","Low dose (Silenor) is approved for insomnia with trouble staying asleep. Strong H1 blocker."],
+  ["amoxapine","generic only","Also blocks dopamine receptors, †so it can cause EPS, tardive dyskinesia and NMS."],
+  ["protriptyline, trimipramine, maprotiline","Vivactil, Surmontil, generic","Less used. †Protriptyline is activating. Maprotiline is a tetracyclic with seizure risk."]],
+ moa:"Block the reuptake of norepinephrine and serotonin. They also block histamine (H1), alpha-1 and muscarinic (M1) receptors, which causes most of the side effects, and sodium channels in the heart, which is why overdose kills.",
+ use:["Depression (second line because of side effects and lethality in overdose)","OCD (clomipramine)","Neuropathic pain and migraine prevention, off label","Insomnia (low-dose doxepin)","May work better in melancholic depression"],
+ exp:["Better mood, sleep and appetite; less nerve pain","Textbook (Ch. 3): 4 to 8 weeks for antidepressant effect","†Sedation and anticholinergic effects appear with the first doses; pain relief often in 1–2 weeks"],
+ se:["Anticholinergic: dry mouth, blurred vision, constipation, urinary retention, tachycardia, esophageal reflux","Sedation (H1 block)","Orthostatic hypotension and dizziness (alpha-1 block)","Weight gain","Confusion or memory problems in older adults"],
+ ae:["Cardiac conduction disturbances and dysrhythmias","Seizures","Suicidal thinking","Lethal in overdose","†Mania switch in bipolar disorder"],
+ warn:["BOXED WARNING: suicidal thinking in children, adolescents †and young adults","Recent MI or other cardiovascular disease, narrow-angle glaucoma, seizure history, pregnancy: avoid or use extreme caution","Older adults: caution with cardiac disease, urinary retention, hyperthyroidism, liver or kidney dysfunction","Suicidal patients: dispense the smallest quantity possible","†On the Beers list (avoid in older adults)"],
+ tox:["Overdose: dysrhythmias, tachycardia, heart block, MI. Early CNS stimulation (hyperpyrexia, delirium, hypertension, hallucinations, seizures, hyperreflexia), then CNS depression","†Antidote for cardiotoxicity: IV sodium bicarbonate (for QRS over 100 ms or ventricular dysrhythmia)","†Continuous ECG, airway support, activated charcoal if recent, benzodiazepines for seizures","†Do not give physostigmine or flumazenil","†As little as a 1-week supply can be fatal"],
+ int:["MAOIs: used cautiously per the textbook; †most references say do not combine (hypertensive crisis, serotonin syndrome)","Alcohol and CNS depressants: more sedation","Other anticholinergic drugs: additive effects","†SSRIs (fluoxetine, paroxetine) raise TCA levels","†Other QT-prolonging drugs"],
+ mon:["Suicide risk and how many pills the patient has on hand","Orthostatic BP and heart rate","Bowel and bladder function; urinary retention and severe constipation need medical attention","Sedation and fall risk"],
+ labs:["Serum TCA levels: some may be monitored","†ECG at baseline and periodically, especially over age 40 or with heart disease (QRS and QT)","†Nortriptyline 50–150 ng/mL; any tricyclic total above 500 ng/mL is toxic, above 1000 ng/mL life-threatening","†Liver function"],
+ ed:["Take the whole daily dose at bedtime: it helps sleep and you sleep through the side effects","Rise slowly","Sugarless gum, fluids and fiber for dry mouth and constipation","Do not stop suddenly","Keep away from children; an overdose is deadly"],
+ kid:"TCAs are the old, messy antidepressants. They turn up the mood messengers but also bump into lots of other switches: the 'dry everything up' switch, the 'sleepy' switch, and the heart's electrical wiring. Too many pills and the heart wiring fails.",
+ hesi:"TCA overdose = cardiac dysrhythmias; give sodium bicarbonate. Give only a small supply to a suicidal patient. Anticholinergic side effects: can't see, can't pee, can't spit, can't poop."},
+
+{sys:"dep", name:"MAOIs (Monoamine Oxidase Inhibitors)", sfx:"—", ch:"3, 14",
+ drugs:[["phenelzine","Nardil","†Most sedating; weight gain and orthostasis."],
+  ["tranylcypromine","Parnate","†Most stimulating (amphetamine-like); insomnia."],
+  ["isocarboxazid","Marplan","†Least used."],
+  ["selegiline transdermal","Emsam","The only antidepressant patch. No strict diet restrictions at the lowest dose †(6 mg/24 h); higher doses need the tyramine diet. †Oral selegiline is a Parkinson drug."]],
+ moa:"Inhibit the enzyme monoamine oxidase, which normally breaks down serotonin, norepinephrine and dopamine. More of all three stay available. The same enzyme in the gut and liver breaks down tyramine from food, so tyramine builds up and causes vasoconstriction.",
+ use:["Depression when other drugs fail (last-line or third-line)","†Atypical depression","Suggested for PTSD if other drugs fail (phenelzine)"],
+ exp:["Better mood and energy","Textbook (Ch. 3): antidepressants take 4 to 8 weeks","†Standard references: 2–4 weeks, sometimes longer"],
+ se:["Orthostatic hypotension (expected)","Insomnia, sedation, weakness, fatigue","Weight gain, edema","Constipation, urinary hesitancy","Sexual dysfunction (anorgasmia)","Muscle twitching or cramps","Changes in heart rate and rhythm"],
+ ae:["HYPERTENSIVE CRISIS with tyramine or sympathomimetic drugs","Serotonin syndrome with serotonergic drugs","Hypomania or mania","Suicidal thinking"],
+ warn:["BOXED WARNING: suicidal thinking in children, adolescents †and young adults","Contraindicated with: cerebrovascular disease, hypertension, heart failure, liver disease, recurrent severe headaches, surgery in the previous 10 to 14 days, age under 16","Contraindicated with SSRIs and many other drugs","Keep diet and drug restrictions for 14 days after stopping","†Pheochromocytoma"],
+ tox:["Hypertensive crisis: starts 15 to 90 minutes after the food or drug. Severe headache, palpitations, tachycardia, flushing, sweating, nausea and vomiting, then fever, seizures, coma, death (stroke, intracranial bleed)","†Classic clue: sudden occipital headache with stiff neck","Treatment: emergency care. Phentolamine 5 mg IV (textbook; also nitroprusside or nitroglycerin). Cooling blankets or ice packs, fluids, IV benzodiazepines for agitation or seizures. Gastric lavage and charcoal if recent","Textbook also lists sublingual nifedipine 10 mg. †Most current references no longer recommend sublingual nifedipine (BP can drop too fast)"],
+ int:["Tyramine foods: see the tyramine table","SSRIs, SNRIs, buspirone, dextromethorphan, †meperidine, tramadol, linezolid: serotonin syndrome","Cold, allergy and congestion remedies (ephedrine, pseudoephedrine, phenylephrine), stimulants (amphetamines, cocaine): hypertensive crisis","TCAs, opioids, antihypertensives (methyldopa, reserpine), levodopa, L-tryptophan, general anesthetics, alcohol, barbiturates, benzodiazepines","†Tell the surgeon and dentist"],
+ mon:["Blood pressure, lying then sitting or standing after 1–2 minutes. Ideally monitor BP for the first 6 weeks","Headache: assume crisis until proven otherwise","Diet adherence","Suicide risk","Fall risk in older adults"],
+ labs:["†Blood glucose in diabetics (MAOIs can lower glucose)","†Liver function tests (rare hepatotoxicity with phenelzine and isocarboxazid)","BP is the priority check; there is no drug level"],
+ ed:["Avoid aged, cured, fermented, smoked or ripened foods","No cold remedies or any new drug without checking first","Go to the emergency department for a severe headache","Carry a wallet card listing the MAOI","Keep the diet and drug rules for 14 days after stopping","Rise slowly"],
+ kid:"MAO is the cleanup crew that sweeps away used-up mood messengers. The drug sends the crew home, so messengers pile up and mood lifts. But the same crew also cleans up tyramine from old cheese and cured meat. With no crew, tyramine piles up and squeezes the blood vessels until the pressure is dangerously high.",
+ hesi:"MAOI + aged cheese, cured meat, or pseudoephedrine = hypertensive crisis (severe headache). MAOI + SSRI = serotonin syndrome. 14-day rule both for washout and for the diet after stopping."},
+
+{sys:"dep", name:"Rapid-Acting & Novel Antidepressants", sfx:"—", ch:"3, 14",
+ drugs:[["esketamine","Spravato","NMDA receptor (glutamate) antagonist nasal spray for treatment-resistant depression (two failed antidepressant trials). Used with an oral antidepressant. Schedule III. Given only in a certified setting; monitor at least 2 hours after each dose."],
+  ["brexanolone","Zulresso","First drug approved for postpartum depression. Neuroactive steroid acting on GABA-A. One continuous 60-hour IV infusion. Schedule IV; restricted program. Continuous pulse oximetry."],
+  ["†zuranolone","Zurzuvae","Oral neuroactive steroid for postpartum depression. One capsule each evening with a fatty meal for 14 days. No driving for 12 hours after a dose."],
+  ["†dextromethorphan-bupropion","Auvelity","Oral NMDA antagonist combination for major depression. Effect within about 1 week. Carries bupropion's seizure warnings."],
+  ["†gepirone","Exxua","5-HT1A agonist (related to buspirone). Take with food. QT prolongation: ECG before and during. Little sexual dysfunction or weight gain."]],
+ moa:"Esketamine blocks NMDA receptors so glutamate signaling changes within hours. Brexanolone and zuranolone copy allopregnanolone, a progesterone metabolite that boosts calming GABA-A receptors; its level drops sharply after delivery.",
+ use:["Treatment-resistant depression (esketamine)","Depression with acute suicidal ideation, †approved; off label per the textbook (esketamine)","Postpartum depression (brexanolone, †zuranolone)"],
+ exp:["Esketamine: †improvement within hours to days. Dosed twice weekly for 4 weeks, weekly for 4 weeks, then every 1–2 weeks","Brexanolone: rapid relief over the 60-hour (2.5-day) infusion","†Zuranolone: improvement within days of the 14-day course"],
+ se:["Esketamine: dissociation, increased blood pressure, dizziness, sedation, vertigo, numbness, anxiety, nausea, feeling drunk, urinary urgency or dysuria","Brexanolone: sedation, dry mouth, flushing, hot flashes","†Zuranolone: sleepiness, dizziness, diarrhea, fatigue"],
+ ae:["Esketamine: marked sedation, dissociation, hypertension, misuse","Brexanolone: excessive sedation, sudden loss of consciousness, hypoxia","†Zuranolone: CNS depression and impaired driving","Suicidal thinking"],
+ warn:["†BOXED WARNING (esketamine): sedation, dissociation, abuse and misuse, suicidal thoughts. REMS program","†BOXED WARNING (brexanolone): excessive sedation and sudden loss of consciousness. REMS program","†BOXED WARNING (zuranolone): impaired ability to drive","Esketamine is not for home use","†Esketamine: avoid with aneurysmal vascular disease or history of intracerebral hemorrhage"],
+ tox:["No specific antidote. Supportive care","Brexanolone: stop the infusion for excessive sedation or hypoxia","Esketamine: manage a BP spike or prolonged dissociation in the clinic before discharge"],
+ int:["Alcohol, opioids, benzodiazepines and other CNS depressants: more sedation","†Stimulants and MAOIs raise BP further with esketamine"],
+ mon:["Esketamine: BP before and after each dose; watch for dissociation and sedation for at least 2 hours","Brexanolone: continuous pulse oximetry; stay with the mother during contact with her infant","Suicide risk","Level of sedation"],
+ labs:["†No routine labs or drug levels","†Pregnancy test before zuranolone (fetal harm; contraception during and for 1 week after)","†ECG with gepirone"],
+ ed:["Esketamine: no food for 2 hours and no liquids for 30 minutes before. Do not prime the device; blow your nose before the first spray only; recline the head at 45 degrees; rest 5 minutes between devices","No driving or hazardous activity until the next day after a full night's sleep (esketamine)","Arrange a ride home","Brexanolone: someone must be with you when you are with your baby"],
+ kid:"Most antidepressants are like planting seeds: you wait weeks. These are more like flipping a breaker switch. They act on different wiring (glutamate or GABA) and can work in hours or days, but they can make you very sleepy or 'floaty', so a nurse has to watch you.",
+ hesi:"Esketamine: monitor BP and stay 2 hours; never take home. Brexanolone: continuous pulse ox and never leave mom alone with the baby during the infusion."},
+
+/* ============ MOOD STABILIZERS ============ */
+{sys:"mood", name:"Lithium", sfx:"—", ch:"3, 13",
+ drugs:[["lithium carbonate","Eskalith, Eskalith CR, Lithobid","Gold standard mood stabilizer. FDA approved for acute mania and bipolar maintenance. Has antisuicidal properties. Narrow therapeutic index."],
+  ["†lithium citrate","generic oral solution","Liquid form for patients who cannot swallow tablets or who cheek medication."]],
+ moa:"Not fully understood. Lithium is a positive ion similar to sodium and potassium. It stabilizes electrical activity at the neuron membrane, reduces excitatory glutamate, inhibits inositol monophosphatase and enhances serotonin. The kidney handles it like sodium.",
+ use:["Acute mania","Bipolar maintenance (prevents relapse)","Best for elation, grandiosity, flight of ideas, irritability, anxiety and self-injurious behavior","Reduces suicide risk","†Augmentation in treatment-resistant depression"],
+ exp:["Calmer mood, slower speech, more sleep, less grandiosity and impulsivity","Takes 7 to 14 days (or longer) to reach a therapeutic level and effect","†An antipsychotic or benzodiazepine is often used at first to control behavior while lithium builds"],
+ se:["Fine hand tremor","Nausea, vomiting, diarrhea","Thirst and polyuria","Weight gain (up to 5 lb of water weight in the first week)","Lethargy, sedation","Acne, alopecia, psoriasis","Edema"],
+ ae:["Lithium toxicity","Hypothyroidism and goiter with long-term use","Renal toxicity with long-term use","Hyperparathyroidism","†Nephrogenic diabetes insipidus","†ECG changes (T-wave flattening), sinus node dysfunction","†Leukocytosis (benign)"],
+ warn:["†BOXED WARNING: lithium toxicity is closely related to serum levels and can occur near therapeutic doses; use only where levels can be monitored","Generally contraindicated in cardiovascular disease, brain damage, renal disease, thyroid disease, myasthenia gravis","Pregnancy: avoid when possible, †Ebstein anomaly of the tricuspid valve in the first trimester","Breastfeeding: contraindicated","Children: textbook says contraindicated under age 12; †FDA labeling now allows use from age 7","Dehydration and low sodium raise the level"],
+ tox:["Below 1.5 mEq/L (side effects): nausea, vomiting, diarrhea, thirst, polyuria, lethargy, sedation, fine hand tremor","1.5–2.0 mEq/L (early toxicity): GI upset, COARSE hand tremor, confusion, muscle hyperirritability, sedation, incoordination. Hold the drug, draw a level, re-evaluate the dose","2.0–2.5 mEq/L (advanced): ataxia, giddiness, blurred vision, clonic movements, large output of dilute urine, seizures, stupor, severe hypotension, coma. Hospitalize, stop the drug, hasten excretion; whole bowel irrigation","Above 2.5 mEq/L (severe): convulsions, oliguria, death. Hemodialysis","NO ANTIDOTE. †IV normal saline to restore volume and promote excretion"],
+ int:["Raise lithium levels: thiazide diuretics (hydrochlorothiazide), ACE inhibitors (lisinopril), NSAIDs (ibuprofen, naproxen)","Lower lithium levels: caffeine, high sodium intake","Low sodium intake, dehydration, vomiting, diarrhea, heavy sweating: raise levels","†ARBs raise levels; theophylline and osmotic diuretics lower them","†Serotonergic drugs: serotonin syndrome; antipsychotics: neurotoxicity"],
+ mon:["Tremor: fine is expected, coarse means toxicity","Fluid balance, intake and output, weight","GI losses, fever, sweating","Mental status and gait","†Pulse and ECG in cardiac patients"],
+ labs:["Serum lithium, textbook: acute mania 0.8–1.2 mEq/L (1.0–1.2 may work best); maintenance 0.6–0.8 mEq/L; 0.4–0.6 in some cases","†Serum lithium, standard references: 0.6–1.2 mEq/L overall (acute 0.8–1.2, maintenance 0.6–1.0); toxic at 1.5 and above","Draw as a 12-hour trough (12 hours after the last dose)","How often, textbook: every 2 to 3 days after starting and after any dose change until therapeutic, then every 3 to 6 months","†How often, standard references: about 5 days after starting or changing a dose (steady state), then every 1–3 months, then every 6 months when stable","Renal function (BUN, creatinine) at baseline and then yearly","Thyroid (T4 and TSH) at baseline and then yearly","Sodium: low sodium raises lithium","†Calcium (hyperparathyroidism), pregnancy test, CBC","ECG as needed for the patient's condition"],
+ ed:["Lithium is not addictive. Keep taking it after the episode ends","Drink a consistent 1500–3000 mL of fluid a day (textbook); †most references say 2–3 L","Keep salt intake consistent. Do not start a low-salt diet","Stop the drug and call if you have a lot of vomiting, diarrhea or sweating","Take with meals to limit stomach upset","No NSAIDs or other over-the-counter drugs without asking. Tell the prescriber about diuretics","Keep a list of toxic signs and a contact number","It is tapered, not stopped suddenly, to lower the risk of relapse"],
+ kid:"Lithium is a salt, and the kidneys can't tell it apart from table salt. If you get low on salt or water (sweating, throwing up, water pills), the kidneys grab extra salt back from the urine and grab the lithium with it. Then too much lithium stays in the blood.",
+ hesi:"Low sodium or dehydration = high lithium. Fine tremor is a side effect; coarse tremor, confusion and ataxia are toxicity. A level of 1.5 or above: hold the dose and call. No NSAIDs, thiazides or ACE inhibitors."},
+
+{sys:"mood", name:"Anticonvulsant Mood Stabilizers", sfx:"—", ch:"3, 13",
+ drugs:[["valproate (divalproex, valproic acid)","Depakote, Depakote ER, Depakene","FDA approved for acute mania; good for mixed episodes and rapid cycling. Sedation, weight gain, tremor. Boxed: hepatotoxicity, pancreatitis, teratogenicity. †Level 50–125 mcg/mL."],
+  ["carbamazepine","Equetro, Tegretol","Second line. Acute mania and mixed episodes. Induces CYP3A4, so it lowers other drug levels (and its own). Boxed: Stevens-Johnson syndrome and TEN. Test for HLA-B*1502 in patients of Asian descent. †Level 4–12 mcg/mL."],
+  ["lamotrigine","Lamictal","Bipolar maintenance and bipolar depression; not effective for acute mania. Slow dose titration to avoid rash. Halve the dose if valproate is added."],
+  ["†oxcarbazepine","Trileptal","Off label for bipolar. Related to carbamazepine with fewer interactions; more hyponatremia."],
+  ["†topiramate, gabapentin","Topamax, Neurontin","Not effective as mood stabilizers. Topiramate: weight loss, word-finding trouble, kidney stones. Gabapentin is used for anxiety."]],
+ moa:"Calm overexcited neurons by blocking sodium channels (all three), raising GABA (valproate) and reducing glutamate release (lamotrigine). The same membrane-stabilizing effect that stops seizures evens out mood swings.",
+ use:["Acute mania (valproate, carbamazepine)","Mixed episodes and rapid or continuous cycling","Bipolar maintenance and bipolar depression (lamotrigine)","Impulsive and aggressive behavior","Alcohol and benzodiazepine withdrawal","Seizure disorders"],
+ exp:["Mania controlled within 2 weeks; depression within 3 weeks or longer","Lamotrigine: †full effect is delayed by the 6-week or longer titration","Fewer mood episodes over time"],
+ se:["Valproate: nausea, indigestion, diarrhea, sedation, weakness, dizziness, tremor, weight gain; †hair loss","Carbamazepine: dizziness, somnolence, nausea, vomiting, ataxia, blurred vision, constipation, dry mouth, pruritus","Lamotrigine: dizziness, headache, double or blurred vision, ataxia, nausea, somnolence, rhinitis"],
+ ae:["Valproate: hepatotoxicity, pancreatitis (can be fatal and hemorrhagic), thrombocytopenia, hyperammonemia","Carbamazepine: leukopenia, aplastic anemia, hyponatremia, Stevens-Johnson syndrome and toxic epidermal necrolysis","Lamotrigine: rash in about 10% within 8 weeks; about 1% progress to Stevens-Johnson syndrome or TEN","†Suicidal thoughts (all antiepileptics)","†Valproate: polycystic ovary syndrome"],
+ warn:["BOXED WARNING (valproate): hepatotoxicity, pancreatitis, fetal harm (neural tube defects, lower IQ, autism)","BOXED WARNING (carbamazepine): serious skin reactions; †also aplastic anemia and agranulocytosis","†BOXED WARNING (lamotrigine): life-threatening rash","Pregnancy test before valproate or carbamazepine; reliable birth control during therapy","Lamotrigine rash risk is higher in children 2–16, with valproate, with fast titration and with high doses. Stop the drug if any rash appears","Asian ancestry: 10 times the TEN risk with carbamazepine; genetic testing first","†If lamotrigine is missed for about 5 days, restart the titration from the beginning"],
+ tox:["†Valproate: sedation, confusion, hyperammonemic encephalopathy, coma. L-carnitine for hyperammonemia or liver toxicity; hemodialysis in severe cases","†Carbamazepine: ataxia, nystagmus, double vision, drowsiness, dysrhythmias, seizures. Activated charcoal; supportive care","No specific antidote for lamotrigine. Stop the drug for rash"],
+ int:["Carbamazepine lowers levels of oral contraceptives, antiretrovirals, immunosuppressants and many psychotropics","Valproate sharply raises lamotrigine levels (more rash)","Valproate may raise lumateperone levels","†Oral contraceptives lower lamotrigine levels","†Grapefruit juice raises carbamazepine levels","†Alcohol and CNS depressants add sedation"],
+ mon:["Skin: any rash, blisters, mouth sores, fever","Abdominal pain, nausea, vomiting, anorexia (pancreatitis or liver injury)","Bruising, bleeding, sore throat, fever (blood dyscrasias)","Mental status and confusion (ammonia, sodium)","Mood charting and suicide risk"],
+ labs:["Valproate: liver function tests and CBC with platelets at baseline and periodically; coagulation studies; serum level; †ammonia if confused or lethargic","Valproate level: the textbook says levels are monitored but gives no range. †50–125 mcg/mL (50–100 for seizures)","Carbamazepine: LFTs, CBC, ECG and sodium at baseline and periodically. Textbook: liver enzymes at least weekly for the first 8 weeks","Carbamazepine level: the textbook says there is no established range for bipolar disorder. †4–12 mcg/mL","HLA-B*1502 genetic test before carbamazepine in patients of Asian descent","Pregnancy test before valproate or carbamazepine","Lamotrigine: †no routine level or labs"],
+ ed:["Report any rash at once (lamotrigine, carbamazepine)","Report abdominal pain, vomiting, yellow skin, dark urine, bruising, sore throat or fever","Use reliable birth control. Carbamazepine makes the pill less effective, so add a barrier method","Do not stop suddenly, †risk of seizures","†Take valproate with food; do not crush delayed-release tablets","†Take folic acid if you could become pregnant"],
+ kid:"Imagine brain cells are a crowd doing 'the wave' too fast and too hard. These drugs are the ushers who tell everyone to sit back down. Each usher has one big danger: valproate hurts the liver, pancreas and unborn babies; carbamazepine hurts the blood and skin; lamotrigine hurts the skin.",
+ hesi:"Valproate: liver, pancreas, platelets, pregnancy. Carbamazepine: CBC, sodium, rash, makes birth control fail. Lamotrigine: any rash = stop and call. None of these replaces lithium's monitoring of sodium and fluids."},
+
+/* ============ ANTIPSYCHOTICS ============ */
+{sys:"apsy", name:"First-Generation (Typical) Antipsychotics", sfx:"-azine (phenothiazines); haloperidol", ch:"3, 11, 12, 13, 27",
+ drugs:[["haloperidol","Haldol","High potency. Very high EPS; low sedation and anticholinergic effects. QT prolongation; cardiac monitoring for IV use. Most used for acute agitation. FDA approved for tics. Decanoate form every 4 weeks."],
+  ["fluphenazine","generic (was Prolixin)","High potency. Very high EPS. Decanoate form every 2–3 weeks."],
+  ["chlorpromazine","generic (was Thorazine)","Low potency. Very sedating; high orthostatic hypotension; QT prolongation; photosensitivity. Approved for acute mania."],
+  ["thioridazine","generic (was Mellaril)","Low potency. High anticholinergic and sedation. QT prolongation. Visual changes; †pigmentary retinopathy at high doses. †Boxed warning for QT."],
+  ["perphenazine","generic (was Trilafon)","Medium potency. Moderate EPS and sedation."],
+  ["loxapine","Loxitane; Adasuve (inhaled)","Medium potency. Inhaled form for agitation can cause fatal bronchospasm; restricted program."],
+  ["thiothixene, trifluoperazine","Navane, generic","High potency. High EPS."],
+  ["pimozide","Orap","High potency. FDA approved for tics (Tourette's). QT prolongation."]],
+ moa:"Block dopamine D2 receptors. In the mesolimbic pathway this reduces positive symptoms. In the nigrostriatal pathway it causes EPS. In the tuberoinfundibular pathway it raises prolactin. In the mesocortical pathway it can worsen negative and cognitive symptoms. They also block H1, M1 and alpha-1 receptors.",
+ use:["Schizophrenia: positive symptoms (hallucinations, delusions)","Acute agitation and psychosis","Acute mania (chlorpromazine)","Tic disorders (haloperidol, pimozide)","Little effect on negative symptoms"],
+ exp:["Fewer hallucinations and delusions, calmer behavior, clearer thinking","†Agitation calms within minutes to hours of an IM dose","†Psychosis improves over 1–2 weeks; full effect in 2–6 weeks or longer"],
+ se:["Sedation (worst with low potency; tolerance develops)","Anticholinergic: dry mouth, blurred vision, constipation, urinary hesitancy, tachycardia","Orthostatic hypotension and dizziness","Weight gain","Photosensitivity (chlorpromazine, thioridazine)","Sexual dysfunction, galactorrhea, amenorrhea, gynecomastia (high prolactin)","Impaired swallowing, drooling"],
+ ae:["Acute dystonia, akathisia, pseudoparkinsonism (EPS)","Tardive dyskinesia: about 25% of patients; often irreversible","NEUROLEPTIC MALIGNANT SYNDROME: 0.2% to 1% of patients on first-generation drugs","Anticholinergic toxicity","QT prolongation (chlorpromazine, haloperidol, thioridazine, pimozide)","Lowered seizure threshold","Severe neutropenia, cholestatic jaundice (rare)"],
+ warn:["BOXED WARNING: increased mortality in older adults with dementia-related psychosis (strokes and death)","Pre-existing QT prolongation: ECG before starting","Seizure disorders: caution","†Parkinson disease and Lewy body dementia: severe sensitivity, avoid","Rule: high potency = high EPS, low anticholinergic. Low potency = low EPS, high sedation, anticholinergic and hypotension"],
+ tox:["NMS: severe muscle rigidity, temperature over 103°F, unstable BP, tachycardia, diaphoresis, incontinence, reduced consciousness, delirium to coma. Hold all antipsychotics, call the prescriber stat, transfer to critical care. Bromocriptine and dantrolene; cooling; hydration; treat dysrhythmias","Anticholinergic toxicity: hot dry skin, dilated pupils, urinary retention, absent bowel sounds, delirium. Hold all medications; cooling; physostigmine may reverse it","Acute dystonia: benztropine or diphenhydramine 25–50 mg IM/IV; relief in 5–15 minutes","Overdose is unlikely to be lethal. No antidote for the antipsychotic itself"],
+ int:["Other anticholinergic drugs (diphenhydramine, benztropine, TCAs): additive, risk of toxicity","Other QT-prolonging drugs","Alcohol and CNS depressants: sedation","Antihypertensives: more hypotension","Carbamazepine lowers antipsychotic levels","†Levodopa and dopamine agonists: opposite effects","†Lithium with haloperidol: rare neurotoxicity"],
+ mon:["AIMS for abnormal movements: at least every 3 months (textbook); †guidelines commonly say every 6 months on first-generation drugs","EPS in the first days to weeks","Temperature and muscle tone (NMS)","Lying and standing BP. Hold and call if standing systolic is below 80 mm Hg","Bowel and bladder function","Cheeking; swallowing ability; fall risk"],
+ labs:["ECG before starting and as needed (QT interval)","Liver function tests every 6 months (textbook)","CBC with ANC: severe neutropenia is possible with most antipsychotics","†Prolactin if symptomatic","†In NMS: CK is very high, WBC is high, myoglobin in urine; watch renal function","†Weight, fasting glucose and lipids at baseline and periodically"],
+ ed:["Rise slowly; expect dizziness to ease in 1–2 weeks","Use sunscreen and protective clothing","Report muscle stiffness with fever, spasms of the neck, tongue or eyes, or restlessness","Sugarless gum, fluids and fiber for dry mouth and constipation","Do not stop suddenly","Avoid alcohol","†Avoid overheating and dehydration"],
+ kid:"Psychosis is like a radio stuck on full volume from too much dopamine. These drugs turn the dopamine volume down everywhere. The voices get quieter, but the 'movement' station gets turned down too, so muscles get stiff, shaky or restless.",
+ hesi:"Haloperidol = EPS. Muscle rigidity + high fever + unstable vitals = NMS: stop the drug. Neck spasm or eyes rolling up = acute dystonia: give benztropine or diphenhydramine IM. Lip smacking and tongue movements = tardive dyskinesia: do AIMS."},
+
+{sys:"apsy", name:"Second-Generation (Atypical) Antipsychotics", sfx:"-apine, -idone, -piprazole, -rasidone", ch:"3, 11, 12, 13",
+ drugs:[["risperidone","Risperdal","Potent D2 blocker: most EPS of this group at doses above 6 mg/day, and high prolactin. Orthostatic hypotension. Moderate weight gain."],
+  ["paliperidone","Invega","Active metabolite of risperidone. High prolactin. Tablet shell may appear in stool; avoid with severe GI narrowing."],
+  ["olanzapine","Zyprexa, Zyprexa Zydis","High metabolic risk: weight gain and hyperglycemia. Sedating, anticholinergic. Combined with fluoxetine as Symbyax for bipolar depression. †With samidorphan (Lybalvi) to limit weight gain."],
+  ["quetiapine","Seroquel, Seroquel XR","Very sedating. Minimal EPS and prolactin. Moderate to high metabolic risk. QT prolongation. Bipolar depression; adjunct for major depression."],
+  ["ziprasidone","Geodon","QT prolongation: contraindicated with recent MI or uncompensated heart failure. Low metabolic risk. Take each dose with a 500-calorie meal."],
+  ["aripiprazole","Abilify","D2 partial agonist. Low metabolic risk and low prolactin. Rare compulsive behaviors (gambling, shopping, sex). Adjunct for depression; approved for tics. †Akathisia is common."],
+  ["brexpiprazole","Rexulti","D2 partial agonist. Low prolactin, low metabolic and QT risk. Adjunct for depression. †Approved for agitation of Alzheimer's dementia."],
+  ["cariprazine","Vraylar","D2 partial agonist. High EPS rates. Very long half-life: effects and side effects show up weeks later. Bipolar depression."],
+  ["lurasidone","Latuda","Low metabolic and QT risk. Take with food (350 calories). Bipolar depression."],
+  ["asenapine","Saphris (sublingual), Secuado (patch)","Sublingual: no food or drink for 10 minutes; mouth numbness for up to 1 hour. Less than 2% absorbed if swallowed. Sedation, orthostasis."],
+  ["iloperidone","Fanapt","Strong alpha-1 blockade: titrate slowly for orthostatic hypotension. QT prolongation."],
+  ["lumateperone","Caplyta","Low EPS and metabolic risk. Sedating. Once daily with food. Valproate may raise its level."],
+  ["pimavanserin","Nuplazid","Blocks serotonin receptors only. Approved only for Parkinson's disease psychosis."],
+  ["†xanomeline-trospium","Cobenfy","Muscarinic agonist, not a dopamine blocker. No EPS or weight gain. Nausea, vomiting, constipation, urinary retention, fast heart rate."]],
+ moa:"Block dopamine D2 and serotonin 5-HT2A receptors, with more serotonin than dopamine blockade. Blocking 5-HT2A releases dopamine in the movement and prolactin pathways, so there is less EPS and less prolactin rise. Aripiprazole, brexpiprazole and cariprazine are D2 partial agonists (they act like a dimmer).",
+ use:["Schizophrenia: positive and negative symptoms (first line)","Acute mania and bipolar maintenance","Bipolar depression (quetiapine, lurasidone, cariprazine, olanzapine-fluoxetine)","Adjunct in major depression (aripiprazole, brexpiprazole, quetiapine)","Tics (aripiprazole); severe aggression","†Irritability in autism (risperidone, aripiprazole)"],
+ exp:["Fewer hallucinations and delusions; some improvement in motivation and social withdrawal","Sedation and calming early in treatment","†Psychosis improves over 1–2 weeks; full effect in 4–6 weeks or longer"],
+ se:["Weight gain (most in the abdomen), increased appetite","Sedation (quetiapine, olanzapine, asenapine, lumateperone)","Orthostatic hypotension, dizziness","Anticholinergic effects (olanzapine, clozapine)","Sexual dysfunction, amenorrhea, galactorrhea (risperidone, paliperidone)","†Akathisia (aripiprazole, cariprazine, lurasidone)"],
+ ae:["METABOLIC SYNDROME: weight gain, dyslipidemia, insulin resistance; diabetes and rarely ketoacidosis. Highest with clozapine and olanzapine","QT prolongation (ziprasidone, quetiapine, risperidone, paliperidone, iloperidone, asenapine)","EPS and tardive dyskinesia (less than first generation)","NMS (less likely, still possible)","Severe neutropenia","Lowered seizure threshold","Compulsive behaviors (partial agonists)"],
+ warn:["BOXED WARNING: increased mortality in older adults with dementia-related psychosis; this use is off label","†BOXED WARNING: suicidal thinking in young people for those approved for depression (aripiprazole, brexpiprazole, quetiapine, lurasidone, cariprazine, olanzapine-fluoxetine)","Ziprasidone: recent MI, uncompensated heart failure, long QT","Diabetes, obesity, dyslipidemia: choose a low-risk agent (aripiprazole, ziprasidone, lurasidone)","ECG before starting any antipsychotic"],
+ tox:["NMS: stop the drug; bromocriptine, dantrolene, cooling, fluids","†Overdose: sedation, hypotension, tachycardia, QT prolongation. Supportive care; no antidote","Acute dystonia: benztropine or diphenhydramine IM"],
+ int:["Carbamazepine lowers levels of most (CYP3A4 inducer)","Other QT-prolonging drugs","Alcohol, benzodiazepines, opioids: sedation","Antihypertensives: orthostasis","Avoid IM olanzapine with IM lorazepam","Smoking lowers olanzapine and clozapine levels (CYP1A2)"],
+ mon:["Weight, BMI and waist circumference","AIMS: at least every 3 months (textbook); †guidelines commonly say every 12 months on second-generation drugs","Orthostatic BP; fall risk","Signs of hyperglycemia: thirst, urination, hunger","Sexual side effects and menstrual changes","Temperature and rigidity (NMS)"],
+ labs:["Fasting glucose †or A1C: baseline and periodically","Fasting lipid panel: baseline and periodically","ECG at baseline (QT), especially ziprasidone, iloperidone, quetiapine","CBC with ANC","Liver function tests every 6 months (textbook)","†Prolactin if symptomatic (risperidone, paliperidone)","†ADA/APA schedule: weight at 4, 8 and 12 weeks then quarterly; glucose and lipids at 12 weeks then yearly"],
+ ed:["Diet and exercise from day one; pick low-calorie snacks","Ziprasidone and lurasidone must be taken with a meal","Asenapine: let it dissolve under the tongue; nothing by mouth for 10 minutes","Rise slowly","Report thirst and frequent urination, fever with stiffness, or new movements","Do not stop suddenly"],
+ kid:"The older drugs turned the dopamine volume down everywhere. These newer ones are smarter with the dial, so muscles stay looser. The trade-off is that they flip the 'I'm hungry' switch, so weight, sugar and cholesterol can climb.",
+ hesi:"Atypicals = metabolic syndrome: monitor weight, glucose, lipids. Olanzapine and clozapine are worst; aripiprazole, ziprasidone and lurasidone are best. Risperidone = prolactin and EPS. Ziprasidone = QT, take with food. Not for dementia psychosis."},
+
+{sys:"apsy", name:"Clozapine", sfx:"-apine", ch:"3, 12",
+ drugs:[["clozapine","Clozaril, FazaClo (ODT), Versacloz (liquid)","Most effective antipsychotic. For treatment-resistant schizophrenia (at least two failed trials) and for suicidal behavior in schizophrenia. Minimal EPS. Severe neutropenia in 0.5% to 1%."]],
+ moa:"Blocks D1 and D2 receptors mainly in the mesolimbic pathway and not the nigrostriatal pathway, plus serotonin, muscarinic, histamine and alpha-1 receptors. That gives strong antipsychotic action with almost no EPS, but many other side effects.",
+ use:["Treatment-resistant schizophrenia","Reducing suicidal behavior in schizophrenia and schizoaffective disorder","Improves negative symptoms","†Psychosis in patients with tardive dyskinesia or Parkinson disease"],
+ exp:["Improvement in patients who failed other antipsychotics","†Response can take 6–12 weeks, sometimes up to 6 months"],
+ se:["Sedation (can be severe)","Drooling (sialorrhea), †especially at night","Weight gain","Constipation and other anticholinergic effects","Orthostatic hypotension, tachycardia"],
+ ae:["SEVERE NEUTROPENIA (agranulocytosis)","Myocarditis","Seizures (dose-dependent)","Life-threatening bowel emergencies (ileus, obstruction)","Metabolic syndrome, new diabetes, rarely ketoacidosis","NMS"],
+ warn:["†BOXED WARNINGS: severe neutropenia; orthostatic hypotension, bradycardia and syncope; seizures; myocarditis and cardiomyopathy; increased mortality in dementia-related psychosis","Uncontrolled epilepsy: avoid","Benign ethnic neutropenia (common in people of African and some Middle Eastern descent): not higher risk, but needs a baseline ANC","Restricted distribution with required ANC reporting (Clozapine REMS) per the textbook. †The FDA ended the REMS requirement in 2025; ANC monitoring is still recommended in the label","†If doses are missed for 2 days or more, restart at 12.5 mg and retitrate"],
+ tox:["Neutropenia: hold the drug and call the prescriber; reverse isolation if severe. May be restarted in some cases once the ANC recovers","†Overdose: sedation, delirium, seizures, tachycardia, hypotension, respiratory depression. Supportive care; no antidote","†Constipation is treated early and aggressively (it has caused deaths)"],
+ int:["Smoking induces CYP1A2 and lowers clozapine levels. Quitting or cutting down raises levels","†Fluvoxamine and ciprofloxacin raise levels","†Carbamazepine: avoid (both suppress bone marrow)","†Benzodiazepines: respiratory and cardiovascular collapse reported","Other anticholinergics: ileus risk"],
+ mon:["Signs of infection: fever, sore throat, chills, malaise, body aches","Bowel movements every day","Chest pain, shortness of breath, tachycardia, fever in the first weeks (myocarditis)","Seizure activity","Weight; orthostatic BP","Smoking status"],
+ labs:["ANC schedule: weekly for 6 months, then every 2 weeks for 6 months, then every 4 weeks","Textbook: interrupt treatment for moderate neutropenia (ANC 500–999/µL) or severe neutropenia (ANC below 500/µL)","†Standard references: ANC must be at least 1500/µL to start (at least 1000/µL with benign ethnic neutropenia). ANC 1000–1499: continue and check 3 times a week. Below 1000: interrupt","†Older exam references: hold if WBC is below 3000 or ANC is below 1500","Fasting glucose and lipids","†Troponin, CRP and ECG if myocarditis is suspected","†Clozapine level: above 350 ng/mL is the usual target"],
+ ed:["Report fever, sore throat or any sign of infection right away","Never miss blood draws","Treat constipation early; report no bowel movement for 2–3 days","Tell the prescriber if you start or stop smoking","Rise slowly; do not drive until you know how sedated you get","†Do not stop suddenly (rebound psychosis)"],
+ kid:"Clozapine is the strongest tool in the box, saved for when nothing else works. The catch: it can wipe out the white blood cells, the body's germ-fighting soldiers. So the lab counts the soldiers on a schedule. A sore throat or fever could mean the army is gone.",
+ hesi:"Clozapine + fever or sore throat = check the ANC now. Weekly ANC for the first 6 months. Also: seizures, myocarditis, drooling, severe constipation. Smoking lowers the level."},
+
+{sys:"apsy", name:"Long-Acting Injectable Antipsychotics (LAIs)", sfx:"decanoate, palmitate, pamoate", ch:"3, 12",
+ drugs:[["haloperidol decanoate","Haldol Decanoate","Every 4 weeks. Thick oil: Z-track, deltoid or gluteal."],
+  ["fluphenazine decanoate","generic","Every 2–3 weeks. Thick oil: Z-track, deltoid or gluteal."],
+  ["risperidone microspheres","Risperdal Consta","Every 2 weeks. Deltoid or gluteal. Shake hard just before giving. †Needs 3 weeks of oral overlap."],
+  ["risperidone subcutaneous","Perseris","Every 4 weeks. Subcutaneous in the abdomen only. A lump forms and shrinks; do not rub it. †Uzedy: subcutaneous every 1–2 months."],
+  ["paliperidone palmitate","Invega Sustenna","Every 4 weeks. First two doses in the deltoid on days 1 and 8; then deltoid or gluteal. Shake hard."],
+  ["paliperidone palmitate 3-month","Invega Trinza","Every 12 weeks, only after at least 4 months on the monthly form. †Invega Hafyera: every 6 months."],
+  ["olanzapine pamoate","Zyprexa Relprevv","Every 2–4 weeks. Gluteal only. Post-injection delirium/sedation syndrome: observe for at least 3 hours after every injection."],
+  ["aripiprazole monohydrate","Abilify Maintena","Every 4 weeks. Deltoid or gluteal. †Needs 2 weeks of oral overlap. †Abilify Asimtufii: every 2 months."],
+  ["aripiprazole lauroxil","Aristada","Every 4, 6 or 8 weeks depending on strength. Deltoid for the lowest strength only, otherwise gluteal."],
+  ["aripiprazole lauroxil (starter)","Aristada Initio","One-time injection to start Aristada without 3 weeks of oral overlap, or to catch up after missed doses."]],
+ moa:"The same antipsychotic drug, packaged in oil or tiny crystals so it leaks slowly out of the muscle (or under the skin) for weeks to months.",
+ use:["Schizophrenia maintenance when daily pills are not taken reliably","Frequent hospitalizations from nonadherence","Patients who prefer not to take a daily pill","Bipolar I maintenance (†risperidone, aripiprazole forms)"],
+ exp:["Steady symptom control and fewer relapses and readmissions","†Not for acute agitation: levels build over days to weeks, so oral overlap is often needed","Side effects also last longer and cannot be taken back out"],
+ se:["Injection site pain, lump or redness","Same side effects as the oral drug: EPS (haloperidol, fluphenazine, risperidone), weight gain (olanzapine), prolactin (risperidone, paliperidone)"],
+ ae:["Post-injection delirium/sedation syndrome (olanzapine pamoate): sedation, agitation, disorientation from a sudden rise in blood level","NMS, tardive dyskinesia, metabolic syndrome as with the oral drug","A side effect cannot be stopped quickly once injected"],
+ warn:["BOXED WARNING: increased mortality in older adults with dementia-related psychosis","†BOXED WARNING (olanzapine pamoate): post-injection delirium/sedation syndrome; restricted program","†Confirm the patient tolerates the oral drug before the first injection","Never give intravenously"],
+ tox:["Post-injection syndrome: medical monitoring and supportive care until it clears","Manage EPS or NMS the same way as with oral drugs, but expect it to last longer"],
+ int:["Same as the oral drug","CNS depressants add to sedation"],
+ mon:["Olanzapine pamoate: stay with or near the patient for 3 hours; check alertness and orientation","Injection site","EPS, AIMS, weight and metabolic checks as for the oral drug","Date the next dose is due; missed-dose rules differ by product"],
+ labs:["Same as the oral drug: glucose, lipids, ECG, CBC as indicated","No drug level is needed"],
+ ed:["Keep every injection appointment","You may feel you have less control; talk about it","Olanzapine pamoate: you must stay 3 hours and someone should take you home","Do not rub or massage the Perseris lump","Report stiffness, fever, restlessness or new movements"],
+ kid:"Instead of a pill every day, it's one shot that slowly drips medicine for weeks, like a slow-release plant food spike in a flowerpot. Good if remembering pills is hard. But once it's in, you can't take it back out.",
+ hesi:"Decanoates = Z-track. Olanzapine LAI = watch 3 hours for sedation and delirium. Paliperidone Sustenna = deltoid on day 1 and day 8. LAIs are for adherence, not for acute agitation."},
+
+/* ============ ANXIETY ============ */
+{sys:"anx", name:"Benzodiazepines", sfx:"-pam, -lam", ch:"3, 15, 22, 27",
+ drugs:[["lorazepam","Ativan","PO, SL, IM, IV. Drug of choice for acute agitation; alcohol withdrawal. †No active metabolites: safer in liver disease and older adults."],
+  ["alprazolam","Xanax","GAD and panic disorder. Paradoxical reactions in personality disorders and older adults. †Short acting: worst rebound anxiety and withdrawal."],
+  ["clonazepam","Klonopin","Panic disorder. †Long acting; also a seizure drug."],
+  ["diazepam","Valium","PO, IM, IV. Fast onset, long half-life; caution in older adults. IV for alcohol withdrawal seizures; muscle relaxant."],
+  ["chlordiazepoxide","Librium","Alcohol withdrawal (tremulousness, mild to moderate agitation). Long acting."],
+  ["oxazepam, clorazepate","Serax, Tranxene","Generalized anxiety. †Oxazepam has no active metabolites."],
+  ["temazepam, triazolam, estazolam, flurazepam, quazepam","Restoril, Halcion, ProSom, Dalmane, Doral","Hypnotics for insomnia. Flurazepam and quazepam last too long and are not recommended."],
+  ["†midazolam","Versed","IV or IM for procedural sedation and status epilepticus; marked amnesia."]],
+ moa:"Bind to a site on the GABA-A receptor and make GABA work better. The chloride channel opens more often, the neuron is hyperpolarized and harder to fire. They do nothing without GABA present.",
+ use:["Short-term relief of anxiety and panic","Insomnia","Alcohol withdrawal and prevention of withdrawal seizures","Status epilepticus (treatment of choice)","Acute agitation","Akathisia; muscle spasm","†Catatonia; pre-procedure sedation"],
+ exp:["Calm within 30–60 minutes orally, within minutes IV","Works fast, unlike antidepressants and buspirone","Use only for short periods, until other treatments take effect"],
+ se:["Sedation (most common; tolerance develops)","Ataxia, slowed reflexes","Anterograde amnesia","Decreased cognitive function","Dizziness"],
+ ae:["Respiratory depression when combined with alcohol or opioids","Physical dependence and withdrawal, including seizures","Paradoxical reaction: anxiety, agitation, talkativeness, loss of impulse control (children and older adults)","Falls, fractures and delirium in older adults","Misuse"],
+ warn:["†BOXED WARNING: use with opioids can cause profound sedation, respiratory depression, coma and death","†BOXED WARNING: abuse, misuse, addiction, physical dependence and withdrawal reactions","Controlled substance (Schedule IV)","Not recommended in substance use disorders or in older adults †(Beers list)","Pregnancy: floppy infant syndrome and neonatal withdrawal near delivery; small increase in cleft lip and palate. Do not breastfeed","†Sleep apnea, severe respiratory disease, acute narrow-angle glaucoma"],
+ tox:["Overdose alone is rarely fatal. With alcohol or opioids: life-threatening CNS and respiratory depression","†Antidote: flumazenil (Romazicon) IV. It can trigger seizures in dependent patients and after TCA co-ingestion, and wears off before the benzodiazepine does","Withdrawal: anxiety, insomnia, irritability, tremor, muscle tension, confusion, seizures. Treat by tapering"],
+ int:["Alcohol, opioids, barbiturates and other CNS depressants: additive sedation and respiratory depression","Cimetidine slows benzodiazepine metabolism (more sedation)","Antacids delay absorption","Caffeine reduces the effect","IM olanzapine with IM lorazepam: avoid"],
+ mon:["Respiratory rate and level of sedation","Fall risk and gait","Signs of misuse or early refill requests","Withdrawal signs when tapering","CIWA-Ar scores in alcohol withdrawal"],
+ labs:["†No routine labs or drug level","†Liver function with long-term use; prefer lorazepam, oxazepam or temazepam (LOT) in liver disease","†Urine drug screen as indicated"],
+ ed:["Do not change the dose or stop on your own. Stopping after a month or more of daily use can cause withdrawal and seizures","No alcohol","Do not drive or use machinery until you know the effect","Avoid caffeine","Take with or after food if it upsets your stomach","Discuss pregnancy and breastfeeding with the prescriber"],
+ kid:"GABA is the brain's brake pedal. A benzodiazepine doesn't press the brake itself; it makes the pedal extra sensitive, so a light tap from GABA stops the car fast. Add alcohol or opioids and now too many feet are on the brake, and breathing can stop.",
+ hesi:"Benzodiazepine + alcohol or opioid = respiratory depression. Never stop abruptly (seizures). Antidote is flumazenil. Avoid in older adults (falls, delirium, paradoxical agitation). Lorazepam for alcohol withdrawal with liver disease."},
+
+{sys:"anx", name:"Non-Benzodiazepine Anxiolytics", sfx:"—", ch:"3, 15",
+ drugs:[["buspirone","BuSpar","5-HT1A partial agonist for generalized anxiety disorder. Not a controlled substance; no dependence, sedation or withdrawal. Taken every day, not as needed. Takes weeks to work."],
+  ["hydroxyzine","Vistaril, Atarax","Antihistamine. Safe, non-addictive alternative; good choice in substance use problems. †Works in 15–30 minutes; sedation and anticholinergic effects; avoid in older adults."],
+  ["propranolol","Inderal","Beta blocker. Reduces the physical signs of anxiety (fast heart rate, blushing); used for social or performance anxiety. Also treats akathisia. †Avoid in asthma; masks hypoglycemia."],
+  ["gabapentin, pregabalin","Neurontin, Lyrica","Anticonvulsants used for generalized and social anxiety. †Dizziness, sedation, edema; taper to stop; pregabalin is Schedule V."],
+  ["SSRIs and SNRIs","see Antidepressants","First-line long-term treatment for anxiety disorders. Take 4 to 8 weeks."]],
+ moa:"Buspirone partly stimulates serotonin 5-HT1A receptors, which over weeks increases serotonin release. It does not touch GABA. Hydroxyzine blocks histamine. Propranolol blocks the beta receptors that make the heart pound. Gabapentin and pregabalin quiet overactive nerve firing.",
+ use:["Generalized anxiety disorder (buspirone)","Anxiety in patients with substance use disorders or older adults who should avoid benzodiazepines","Performance and social anxiety (propranolol)","Add-on when first treatment is not enough","Short-term anxiety relief (hydroxyzine)"],
+ exp:["Buspirone, textbook: 2 to 4 weeks for full effect (Ch. 15); 'several weeks' (Ch. 3)","†Buspirone, standard references: first effects in 1–2 weeks, full effect in 3–6 weeks","Hydroxyzine and propranolol work with the first dose","Less worry, tension and restlessness"],
+ se:["Buspirone: dizziness, nausea, headache, nervousness, lightheadedness, excitement","Hydroxyzine: †drowsiness, dry mouth","Propranolol: †fatigue, slow pulse, low BP, cold hands","Gabapentin and pregabalin: †dizziness, sleepiness, weight gain"],
+ ae:["Buspirone: serotonin syndrome with other serotonergic drugs","†Hydroxyzine: QT prolongation, confusion in older adults","†Propranolol: bradycardia, bronchospasm, masked hypoglycemia","†Gabapentin and pregabalin: respiratory depression with opioids; misuse"],
+ warn:["Buspirone: not recommended with impaired liver or kidney function; do not combine with MAOIs","Buspirone in pregnancy and breastfeeding: only if clearly needed","Buspirone does not stop benzodiazepine withdrawal; †taper the benzodiazepine separately","†Propranolol: asthma, heart block, bradycardia","†No boxed warning on buspirone"],
+ tox:["Buspirone overdose: †nausea, dizziness, drowsiness, small pupils. Supportive care; no antidote","†Propranolol overdose: bradycardia, hypotension, hypoglycemia. Glucagon","†Hydroxyzine overdose: anticholinergic picture, sedation, QT prolongation"],
+ int:["Buspirone + MAOIs: avoid (serotonin syndrome, high BP)","Buspirone + SSRIs and other serotonergic drugs: serotonin syndrome risk","†Buspirone + grapefruit juice, erythromycin, ketoconazole: higher buspirone levels","†Hydroxyzine + other CNS depressants or anticholinergics: additive","†Gabapentin and pregabalin + opioids: respiratory depression"],
+ mon:["Anxiety level over weeks, not hours (buspirone)","Whether the patient expects instant relief and stops early","Pulse and BP before propranolol","Sedation and fall risk (hydroxyzine, gabapentin)"],
+ labs:["†No routine labs or levels for buspirone","†Renal function for gabapentin and pregabalin dosing","†Liver and renal function before buspirone"],
+ ed:["Buspirone: take it every day on a schedule; it will not work as needed","Give it 2 to 4 weeks. Do not stop because you don't feel it right away","Take it the same way each time, †always with food or always without","†Avoid large amounts of grapefruit juice","It will not make you sleepy or dependent"],
+ kid:"A benzodiazepine is like a fire extinguisher: it works right now. Buspirone is more like fireproofing the house: nothing happens the first day, but after a few weeks the fires stop starting. And it doesn't make you sleepy or hooked.",
+ hesi:"Buspirone: not PRN, takes 2–4 weeks, no sedation, no dependence, not for alcohol or benzodiazepine withdrawal. A patient who says 'it isn't working' after 3 days needs teaching, not a new drug."},
+
+/* ============ SLEEP ============ */
+{sys:"sleep", name:"Z-Hypnotics (Non-Benzodiazepine Receptor Agonists)", sfx:"zol-, zal-, -clone", ch:"3, 19",
+ drugs:[["zolpidem","Ambien, Ambien CR, Intermezzo","Onset 30 minutes. Immediate release helps falling asleep; CR also helps staying asleep. Intermezzo (sublingual) is for middle-of-the-night waking with at least 4 hours left to sleep. Women clear it more slowly, so the starting dose is lower."],
+  ["zaleplon","Sonata","Shortest half-life (about 1 hour). Onset 15–30 minutes. For trouble falling asleep only."],
+  ["eszopiclone","Lunesta","Half-life about 6 hours: helps falling and staying asleep. Bitter, unpleasant taste on waking in about one-third of patients."]],
+ moa:"Bind selectively to GABA-A receptors that contain the alpha-1 subunit. That gives the sleep and amnesia effects of a benzodiazepine without the antianxiety, anticonvulsant or muscle relaxant effects.",
+ use:["Insomnia: trouble falling asleep (all three)","Insomnia: trouble staying asleep (eszopiclone, zolpidem CR)","Short-term use; long-term sleeping pill use is discouraged"],
+ exp:["Sleep within 15–60 minutes of the dose","Shorter time to fall asleep, fewer awakenings","Shorter half-lives and no active metabolites, so less hangover than benzodiazepines"],
+ se:["Sedation, next-day drowsiness","Dizziness, ataxia","Headache","Amnesia","Bitter taste (eszopiclone)"],
+ ae:["COMPLEX SLEEP BEHAVIORS: sleepwalking, sleep-driving, cooking or eating while not fully awake, with no memory of it","Falls, fractures and delirium in older adults","Tolerance and dependence (less than benzodiazepines)","†Respiratory depression with other depressants"],
+ warn:["†BOXED WARNING: complex sleep behaviors. Do not use again if one episode has occurred (the textbook describes this as a strengthened FDA warning)","Controlled substance (Schedule IV); caution in substance use disorders","Older adults: fall and delirium risk; †Beers list","†Lower starting dose for women and older adults (zolpidem 5 mg immediate release)"],
+ tox:["†Overdose: deep sedation and respiratory depression, mostly with alcohol or other depressants. Supportive care","†Flumazenil can reverse the sedation"],
+ int:["Alcohol, opioids, benzodiazepines and other CNS depressants: more sedation and more complex sleep behaviors","†Food (especially a heavy or high-fat meal) delays onset","†CYP3A4 inhibitors raise levels"],
+ mon:["Sleep diary: time to fall asleep, awakenings, daytime sleepiness","Any report of sleepwalking or unexplained activity","Fall risk at night","How long the patient has been taking it"],
+ labs:["†No routine labs or drug levels"],
+ ed:["Take it right before getting into bed, with 7–8 hours available for sleep","†Take on an empty stomach for faster effect","No alcohol","Report any sleepwalking or things you did but cannot remember; stop the drug","Use it with sleep hygiene: regular wake time, bed only for sleep, no naps","Do not drive the next morning until fully alert"],
+ kid:"These press only the 'go to sleep' button on the brain's brake system, not the 'relax' or 'stop seizures' buttons. Sometimes the body gets up and does things while the brain is still asleep, like a robot on autopilot.",
+ hesi:"Zolpidem: take immediately before bed with a full night available; lower dose for women; sleep-driving and sleep-eating mean stop the drug."},
+
+{sys:"sleep", name:"Other Sleep Medications", sfx:"-melteon, -orexant", ch:"3, 19",
+ drugs:[["ramelteon","Rozerem","Melatonin MT1 and MT2 receptor agonist. Trouble falling asleep. Not a controlled substance; no misuse potential. Headache, dizziness. Can lower testosterone and raise prolactin. Contraindicated with fluvoxamine."],
+  ["suvorexant","Belsomra","Orexin receptor antagonist: blocks the wakefulness signal. Falling and staying asleep. Schedule IV. Contraindicated in narcolepsy."],
+  ["lemborexant","Dayvigo","Orexin receptor antagonist. Onset 15–20 minutes. Schedule IV. Contraindicated in narcolepsy. †Daridorexant (Quviviq) is a third drug in this class."],
+  ["doxepin (low dose)","Silenor","Tricyclic at a tiny dose; works by blocking H1. Trouble staying asleep only. Not a controlled substance. Avoid with severe urinary retention, glaucoma or MAOIs."],
+  ["temazepam, triazolam, estazolam","Restoril, Halcion, ProSom","Benzodiazepine hypnotics, Schedule IV. See Benzodiazepines."],
+  ["melatonin","over the counter","Natural hormone. Little data to support it for insomnia disorder; prolonged-release forms show some promise."],
+  ["trazodone","Desyrel","Antidepressant used off label at low dose (e.g., 50 mg) for insomnia. Orthostasis, priapism."],
+  ["†diphenhydramine, doxylamine","Benadryl, Unisom","Over-the-counter antihistamines. Anticholinergic; next-day grogginess; avoid in older adults."]],
+ moa:"Three different routes to sleep. Ramelteon copies melatonin at the receptors that control sleepiness (MT1) and the body clock (MT2). Orexin antagonists block orexin, the peptide that keeps you awake. Low-dose doxepin blocks histamine, another wakefulness signal.",
+ use:["Insomnia with trouble falling asleep (ramelteon, orexin antagonists)","Insomnia with trouble staying asleep (doxepin, orexin antagonists)","Patients with substance use history (ramelteon, doxepin: not controlled)"],
+ exp:["Ramelteon and suvorexant: onset about 30 minutes; lemborexant 15–20 minutes; doxepin more than 60 minutes","Shorter time to fall asleep or fewer awakenings","Non-drug treatment (CBT-I, sleep hygiene) works better long term"],
+ se:["Ramelteon: headache, dizziness, †sleepiness","Orexin antagonists: next-day sleepiness, †headache","Doxepin: †sedation, nausea","Antihistamines: †dry mouth, urinary retention, confusion"],
+ ae:["Complex sleep behaviors (FDA warning on all approved hypnotics)","Orexin antagonists: sleep paralysis, hallucinations when falling asleep or waking, cataplexy-like symptoms","Ramelteon: lower testosterone, higher prolactin (lower sex drive, fertility problems)","†Worsening depression or suicidal thoughts (orexin antagonists)"],
+ warn:["Orexin antagonists: contraindicated in narcolepsy; controlled substances","Ramelteon with fluvoxamine: contraindicated; †avoid in severe liver impairment","Doxepin: severe urinary retention, glaucoma, MAOI use","†Antihistamines and benzodiazepine hypnotics: Beers list for older adults","†No boxed warning on ramelteon, orexin antagonists or low-dose doxepin"],
+ tox:["†Overdose causes sedation. Supportive care; no antidote for ramelteon or orexin antagonists","†Antihistamine overdose: anticholinergic toxicity"],
+ int:["Alcohol and CNS depressants: additive sedation and complex sleep behaviors","Fluvoxamine sharply raises ramelteon levels","†Strong CYP3A4 inhibitors raise orexin antagonist levels","†A high-fat meal delays the effect"],
+ mon:["Sleep diary and daytime functioning","Odd nighttime behavior, sleep paralysis or hallucinations","Mood","†Libido or menstrual changes on long-term ramelteon"],
+ labs:["†No routine labs","†Prolactin and testosterone if symptoms appear on ramelteon"],
+ ed:["Take within 30 minutes of bedtime with a full night available","Do not take with or right after a heavy meal","No alcohol","Report sleepwalking, being unable to move on waking, or sudden muscle weakness","Remove nicotine patches at bedtime; avoid caffeine and alcohol near bedtime","Keep a regular wake time"],
+ kid:"Your brain has an 'awake' switch (orexin and histamine) and a 'night-time' clock (melatonin). Instead of pressing the brake like a benzodiazepine, these drugs either turn off the awake switch or tell the clock it's night.",
+ hesi:"Ramelteon: not controlled, safe choice with substance use history, not with fluvoxamine. Suvorexant and lemborexant: never in narcolepsy."},
+
+{sys:"sleep", name:"Narcolepsy & Wake-Promoting Drugs", sfx:"-afinil", ch:"19",
+ drugs:[["modafinil","Provigil","Stimulant-type wake promoter for excessive daytime sleepiness. †Schedule IV. Headache, nausea, anxiety. Rare Stevens-Johnson syndrome. Makes hormonal birth control less effective."],
+  ["armodafinil","Nuvigil","R-enantiomer of modafinil; †longer acting."],
+  ["methylphenidate, amphetamine","Ritalin, Adderall","Stimulants also approved for daytime sleepiness. See ADHD Stimulants."],
+  ["pitolisant","Wakix","Histamine-3 receptor antagonist/inverse agonist. Non-stimulant. Insomnia, nausea, anxiety. †Not a controlled substance; QT prolongation."],
+  ["solriamfetol","Sunosi","Dopamine and norepinephrine reuptake inhibitor. Non-stimulant. Contraindicated with MAOIs. Monitor BP and heart rate."],
+  ["sodium oxybate","Xyrem","CNS depressant for daytime sleepiness and cataplexy, ages 7 and up. Restores night-time sleep architecture. †Taken at bedtime and again 2.5–4 hours later, in bed."]],
+ moa:"Wake promoters raise dopamine, norepinephrine or histamine, the brain's wakefulness transmitters. Sodium oxybate works the other way: it deepens and consolidates night-time sleep so the daytime improves.",
+ use:["Excessive daytime sleepiness in narcolepsy","Cataplexy (sodium oxybate, †pitolisant)","†Shift-work sleep disorder and residual sleepiness in treated sleep apnea (modafinil, armodafinil)"],
+ exp:["More alertness and fewer sleep attacks within hours of a dose","†Sodium oxybate: cataplexy improves over weeks","Used alongside scheduled naps, exercise and a balanced diet"],
+ se:["Insomnia, nausea, anxiety (pitolisant)","†Headache, nervousness, decreased appetite (modafinil, solriamfetol)","†Sodium oxybate: nausea, dizziness, bed-wetting, sleepwalking"],
+ ae:["Raised BP and heart rate (solriamfetol, stimulants)","†Serious rash including Stevens-Johnson syndrome (modafinil, armodafinil)","†Psychiatric symptoms: mania, psychosis, suicidal thoughts","†Sodium oxybate: respiratory depression, misuse"],
+ warn:["†BOXED WARNING (sodium oxybate): CNS and respiratory depression; abuse and misuse (it is GHB). Restricted REMS program","Solriamfetol: contraindicated with MAOIs","†Sodium oxybate: never with alcohol or sedative-hypnotics","†Modafinil: stop at the first sign of rash"],
+ tox:["†Stimulant-type overdose: agitation, tachycardia, hypertension. Supportive care, benzodiazepines","†Sodium oxybate overdose: coma, respiratory depression, bradycardia. Airway support; no antidote"],
+ int:["MAOIs with solriamfetol or stimulants: hypertensive crisis","†Modafinil lowers levels of hormonal contraceptives (use another method during and for 1 month after)","†Alcohol and CNS depressants with sodium oxybate: respiratory depression"],
+ mon:["Blood pressure and heart rate (solriamfetol, stimulants)","Daytime sleepiness and number of cataplexy episodes","Sleep at night","Mood and misuse"],
+ labs:["†No routine labs","†ECG if cardiac risk (pitolisant)","†Sodium oxybate has a high sodium load: watch in heart failure and hypertension"],
+ ed:["Take wake-promoting drugs in the morning to protect night sleep","Keep scheduled short naps","†Use non-hormonal birth control with modafinil","†Sodium oxybate: take in bed, lie down right away, no food for 2 hours before","Report rash, chest pain or mood changes"],
+ kid:"In narcolepsy the brain's 'stay awake' signal keeps cutting out, like a flickering light bulb. Most of these drugs boost the power so the light stays on during the day. One (sodium oxybate) fixes the night instead, so the day goes better.",
+ hesi:"Narcolepsy + cataplexy = sodium oxybate. Orexin antagonist sleep aids are contraindicated in narcolepsy. Modafinil cancels birth control pills."},
+
+/* ============ ADHD ============ */
+{sys:"adhd", name:"ADHD Stimulants", sfx:"-phenidate, -amfetamine", ch:"3, 11, 18, 19",
+ drugs:[["methylphenidate","Ritalin, Ritalin LA, Concerta, Metadate, Quillivant XR, Jornay PM, Daytrana (patch)","Blocks norepinephrine and dopamine reuptake. Short acting 6–8 h; long acting 10–12 h once daily. Daytrana patch keeps working up to 3 hours after removal. Jornay PM is taken in the evening."],
+  ["dexmethylphenidate","Focalin, Focalin XR","Active isomer of methylphenidate. 4–5 h; XR 8–12 h."],
+  ["mixed amphetamine salts","Adderall, Adderall XR, Mydayis","Blocks reuptake and also increases release. 4–6 h; XR 10–12 h; Mydayis up to 16 h (age 13 and up)."],
+  ["dextroamphetamine","Dexedrine, ProCentra, Zenzedi","4–6 h. Approved from age 3."],
+  ["lisdexamfetamine","Vyvanse","Prodrug, 10–12 h. Also approved for moderate to severe binge-eating disorder in adults. Black box warning for abuse and dependence."],
+  ["amphetamine","Adzenys XR-ODT, Dyanavel XR, Evekeo","12 h for the XR forms."],
+  ["methamphetamine","Desoxyn","6–8 h. Rarely used."]],
+ moa:"Sympathomimetic amines that block the reuptake of norepinephrine and dopamine. Amphetamines also push more transmitter out of the neuron. In ADHD this improves attention and reduces impulsivity; the exact reason is not fully understood.",
+ use:["ADHD (first-line drug treatment)","Narcolepsy and excessive daytime sleepiness","Binge-eating disorder (lisdexamfetamine)","Aggression in children (moderate to high doses suppress it; low doses can stimulate it)"],
+ exp:["More attention and task-directed behavior; less impulsivity, restlessness and distractibility","Response is often dramatic and quick, †within 30–60 minutes of a dose","†Doses are adjusted weekly using parent and teacher ratings"],
+ se:["Insomnia","Appetite suppression, weight loss","Headache, abdominal pain","Increased blood pressure and heart rate","Irritability or agitation; lethargy","†Rebound irritability as the dose wears off"],
+ ae:["Growth suppression","New or worse psychosis or mania","Misuse and diversion","Tics may worsen","†Sudden cardiac death in patients with structural heart disease","†Priapism; Raynaud-type circulation problems (methylphenidate)","†Seizures at high doses"],
+ warn:["BOXED WARNING: high potential for abuse, misuse and dependence (the textbook cites it for lisdexamfetamine; †it applies to all CNS stimulants)","Controlled substance (Schedule II)","Contraindicated with MAOIs, †or within 14 days of one","†Structural cardiac abnormalities, serious dysrhythmias, uncontrolled hypertension, hyperthyroidism, glaucoma","Coexisting tic disorder: monitor carefully"],
+ tox:["†Overdose: agitation, tremor, hyperreflexia, tachycardia, hypertension, hyperthermia, psychosis, seizures","†Treatment: benzodiazepines, cooling, treat hypertension. No antidote"],
+ int:["MAOIs: hypertensive crisis","†Other sympathomimetics, decongestants, caffeine: more stimulation","†Acidic juices and vitamin C lower amphetamine absorption; antacids raise it","†Serotonergic drugs with amphetamines: serotonin syndrome"],
+ mon:["Height and weight (growth chart)","Blood pressure and heart rate","Sleep and appetite","Behavior and school performance","Tics, mood, psychotic symptoms","Signs of misuse or selling"],
+ labs:["†No routine labs or drug levels","†Cardiac history and exam before starting; ECG only if indicated","†Growth chart is the key measure in children"],
+ ed:["Give no later than 4:00 in the afternoon (textbook); †many references say at least 6 hours before bedtime","Use the lowest effective dose","†Give with or after breakfast and offer a good dinner when appetite returns","†Swallow extended-release forms whole; some capsules can be sprinkled on applesauce","†Daytrana patch: apply to the hip 2 hours before needed, remove after 9 hours","Store safely; never share","†Drug holidays (weekends, summer) may be ordered to catch up on growth"],
+ kid:"It seems backwards to give a 'speed-up' drug to a kid who can't sit still. But in ADHD the brain's 'pay attention' manager is half asleep. The stimulant wakes the manager up, and now the manager can keep the rest of the brain on task.",
+ hesi:"Stimulants: monitor height, weight, BP, pulse. Give in the morning. Appetite loss and insomnia are expected. Never with an MAOI. Schedule II."},
+
+{sys:"adhd", name:"ADHD Non-Stimulants", sfx:"-oxetine; -idine", ch:"3, 11",
+ drugs:[["atomoxetine","Strattera","Selective norepinephrine reuptake inhibitor. Ages 6–65. Full effect may take up to 6 weeks. Not a controlled substance. Preferred with anxiety, active substance use disorder or tics. Liver injury; small rise in BP and pulse; suicidal ideation."],
+  ["guanfacine","Intuniv (ER), Tenex","Central alpha-2 agonist. Once daily. Usually well tolerated: somnolence, fatigue, hypotension, dizziness, abdominal pain. Also used for tics."],
+  ["clonidine","Kapvay (ER), Catapres","Central alpha-2 agonist. Twice daily. More side effects than guanfacine: somnolence, fatigue, nightmares, irritability, constipation, dry mouth. Also used for tics and opioid withdrawal."],
+  ["†viloxazine","Qelbree","Selective norepinephrine reuptake inhibitor, ages 6 and up. Boxed warning for suicidal thoughts. Sleepiness, decreased appetite."]],
+ moa:"Atomoxetine (and viloxazine) block norepinephrine reuptake, which raises norepinephrine in the attention circuits of the prefrontal cortex. Guanfacine and clonidine stimulate central alpha-2 receptors, which lowers sympathetic outflow and calms impulsivity and agitation.",
+ use:["ADHD when stimulants are not tolerated, not wanted, contraindicated (such as MAOI use) or there is a substance use disorder","ADHD with anxiety or tics","Alone or added to a stimulant (alpha-2 agonists)","Agitation, rage and low frustration tolerance; tic disorders (alpha-2 agonists)"],
+ exp:["Atomoxetine: develops slowly; up to 6 weeks for full improvement","†Alpha-2 agonists: 2–4 weeks for ADHD benefit; sedation is immediate","Less effective than stimulants"],
+ se:["Atomoxetine: GI upset, decreased appetite, weight loss, fatigue, dizziness, insomnia, urinary hesitancy or retention","Alpha-2 agonists: somnolence, lethargy, fatigue, dizziness, hypotension, dry mouth, constipation, nightmares"],
+ ae:["Atomoxetine: liver injury; increased suicidal ideation; raised BP and heart rate; rare serious allergic reactions","Alpha-2 agonists: hypotension and bradycardia; REBOUND HYPERTENSION if stopped abruptly","†Atomoxetine: priapism"],
+ warn:["†BOXED WARNING (atomoxetine, viloxazine): suicidal ideation in children and adolescents","Atomoxetine: extreme caution with comorbid depression","Alpha-2 agonists: increase the dose slowly; never stop abruptly","†Atomoxetine: contraindicated with MAOIs (or within 14 days), narrow-angle glaucoma, pheochromocytoma"],
+ tox:["†Atomoxetine overdose: drowsiness, agitation, tachycardia, seizures. Supportive","†Clonidine overdose: bradycardia, hypotension, sedation, pinpoint pupils, respiratory depression (can look like opioid overdose). Supportive; naloxone sometimes helps"],
+ int:["MAOIs with atomoxetine: contraindicated","†CYP2D6 inhibitors (fluoxetine, paroxetine) raise atomoxetine levels","†Alpha-2 agonists with other antihypertensives or CNS depressants: additive","†Beta blockers worsen clonidine rebound"],
+ mon:["Vital signs: BP and heart rate throughout therapy","Suicidal thoughts, mood, irritability, especially early","Jaundice, dark urine, right-upper-quadrant pain, itching","Sedation (alpha-2 agonists)","Growth and appetite"],
+ labs:["Liver function tests: regular screening with atomoxetine","†No drug levels"],
+ ed:["It takes weeks; this is not a same-day drug","Report yellow skin or eyes, dark urine or belly pain","Report sadness or thoughts of self-harm","Do not stop clonidine or guanfacine suddenly","Rise slowly; expect sleepiness at first","†Swallow extended-release tablets whole; do not take guanfacine ER with a high-fat meal"],
+ kid:"Stimulants are like a strong cup of coffee for the brain's attention manager: fast and powerful. Atomoxetine is more like slowly charging a battery; it takes weeks. Clonidine and guanfacine are the 'calm down' helpers that lower the body's alarm system.",
+ hesi:"Atomoxetine: suicidal ideation and liver; not a controlled substance; weeks to work. Clonidine and guanfacine: taper to avoid rebound hypertension; watch BP and pulse."},
+
+/* ============ DEMENTIA ============ */
+{sys:"dem", name:"Cholinesterase Inhibitors", sfx:"-pezil, -stigmine, -tamine", ch:"3, 23",
+ drugs:[["donepezil","Aricept, Aricept ODT","Mild, moderate and severe Alzheimer's disease. Nausea, diarrhea, insomnia, muscle cramps, fatigue, anorexia. †Once daily; give in the morning if it causes vivid dreams or insomnia."],
+  ["rivastigmine","Exelon, Exelon Patch","Oral: mild to moderate AD. Patch: all stages, once a day, no food requirement, useful when swallowing is hard. Also Parkinson's disease dementia. Stop the patch if skin irritation spreads beyond the patch."],
+  ["galantamine","Razadyne, Razadyne ER","Mild to moderate AD. Nausea, vomiting, diarrhea, dizziness, headache, weight loss."]],
+ moa:"Block cholinesterase, the enzyme that breaks down acetylcholine. More acetylcholine stays in the synapse for learning and memory. As cholinergic neurons die, the drugs work less well.",
+ use:["Alzheimer's disease, mild to moderate (all); severe (donepezil, rivastigmine patch)","Parkinson's disease dementia (rivastigmine)"],
+ exp:["Slows the rate of memory loss; does not stop or reverse the disease","Minimal benefit after 1 year","†Assess after 6–12 weeks at a stable dose; stable function counts as a response"],
+ se:["Nausea, vomiting, diarrhea (usually temporary; a lower dose helps)","Anorexia, weight loss","Insomnia, fatigue","Muscle cramps","Dizziness, headache","Urinary incontinence"],
+ ae:["Bradycardia and syncope","GI bleeding and ulcers, especially with NSAIDs","Side effect risk doubles over age 85","†Worsening of asthma or COPD (bronchoconstriction); seizures"],
+ warn:["Caution with NSAIDs","Abrupt discontinuation can worsen cognition and behavior","†Sick sinus syndrome, heart block, bradycardia","†Peptic ulcer disease, asthma or COPD, seizures","†No boxed warning"],
+ tox:["†Overdose = cholinergic crisis: severe nausea and vomiting, salivation, sweating, bradycardia, hypotension, muscle weakness, respiratory depression","†Antidote: atropine. Remove any patch"],
+ int:["NSAIDs: GI bleeding","†Anticholinergic drugs (diphenhydramine, oxybutynin, TCAs) cancel the benefit","†Beta blockers, digoxin, calcium channel blockers: more bradycardia","†Succinylcholine: prolonged paralysis"],
+ mon:["Heart rate; dizziness, fainting, falls","Weight and food intake","GI bleeding: black stools, abdominal pain","Cognition and daily function over time","Skin under the patch"],
+ labs:["†No routine labs or drug levels","†ECG if bradycardia or syncope","†Hemoglobin and stool occult blood if bleeding is suspected"],
+ ed:["It may slow decline; it is not a cure","Take with food to reduce stomach upset","Patch: one a day; †new site each day, remove the old one first, do not cut","Do not stop suddenly","Report fainting, a slow pulse, black stools or vomiting that does not stop","Avoid over-the-counter sleep and allergy pills (†anticholinergic)"],
+ kid:"Acetylcholine is the brain's 'memory glue'. In Alzheimer's the glue factory is shutting down. These drugs can't rebuild the factory, but they stop the cleanup crew from wiping away the little glue that is left. The glue is the same stuff that slows the heart and speeds the gut, which explains the side effects.",
+ hesi:"Donepezil: GI upset and bradycardia; check the pulse; fall risk. It slows decline but does not cure. Never give with anticholinergics like diphenhydramine."},
+
+{sys:"dem", name:"Memantine (NMDA Receptor Antagonist)", sfx:"—", ch:"3, 23",
+ drugs:[["memantine","Namenda, Namenda XR","Moderate to severe Alzheimer's disease. Usually added after a cholinesterase inhibitor. Dizziness, headache, confusion, constipation."],
+  ["memantine + donepezil","Namzaric","Combination capsule for moderate to severe AD once the patient tolerates both drugs."]],
+ moa:"Glutamate helps memory, but in Alzheimer's there is too much of it. It over-stimulates NMDA receptors, calcium floods the neuron and damages it. Memantine sits in some of the NMDA receptor sites, so less glutamate binds and less calcium gets in.",
+ use:["Moderate to severe Alzheimer's disease","Added to a cholinesterase inhibitor as the disease progresses"],
+ exp:["Slower loss of thinking and daily function; †may ease agitation","Does not stop or reverse the disease","†Titrated weekly over about 4 weeks; assess after several weeks at full dose"],
+ se:["Dizziness","Headache","Confusion","Constipation","†Fatigue, hypertension"],
+ ae:["†Hallucinations, agitation","†Falls from dizziness","†Rare seizures; Stevens-Johnson syndrome"],
+ warn:["†Severe renal impairment: lower dose","†Conditions that make urine alkaline (renal tubular acidosis, severe UTI) raise levels","†No boxed warning"],
+ tox:["†Overdose: agitation, confusion, hallucinations, slow movements, stupor","†Supportive care; acidifying the urine speeds elimination. No antidote"],
+ int:["†Other NMDA antagonists (amantadine, dextromethorphan, ketamine): additive CNS effects","†Sodium bicarbonate and carbonic anhydrase inhibitors raise memantine levels","Safe to combine with cholinesterase inhibitors"],
+ mon:["Cognition and daily function","Dizziness and fall risk","New confusion or hallucinations","Bowel pattern"],
+ labs:["†Renal function (creatinine clearance) for dosing","†No drug levels"],
+ ed:["It may slow worsening; it does not cure","Rise slowly; make the home safe for falls","Extended-release capsule can be opened and sprinkled on applesauce; †do not crush or chew","Report new confusion or seeing things"],
+ kid:"Glutamate is like a doorbell that helps brain cells learn. In Alzheimer's the doorbell is stuck ringing nonstop, and the noise wears the cell out. Memantine is a bit of tape over the button: normal rings still get through, but the constant buzzing stops.",
+ hesi:"Memantine is for moderate to severe Alzheimer's and is often paired with donepezil. Cholinesterase inhibitors = GI and bradycardia; memantine = dizziness, confusion, constipation."},
+
+{sys:"dem", name:"†Anti-Amyloid Antibodies", sfx:"-mab", ch:"not in your files",
+ drugs:[["†lecanemab","Leqembi","IV infusion every 2 weeks for early Alzheimer's disease (mild cognitive impairment or mild dementia) with confirmed amyloid."],
+  ["†donanemab","Kisunla","IV infusion every 4 weeks; can be stopped once amyloid plaques are cleared on PET."],
+  ["†aducanumab","Aduhelm","First of the class; discontinued by the manufacturer in 2024."]],
+ moa:"†Monoclonal antibodies that bind amyloid-beta and help the immune system clear amyloid plaques from the brain. This is the first class aimed at the disease process itself instead of symptoms.",
+ use:["†Early Alzheimer's disease only: mild cognitive impairment or mild dementia, with amyloid confirmed by PET or CSF","†Not for moderate or severe disease"],
+ exp:["†Modest slowing of decline over about 18 months; no improvement or cure","†Plaque clearing shows on PET over months"],
+ se:["†Infusion reactions: fever, chills, nausea, flushing, BP changes (mostly first doses)","†Headache","†Falls"],
+ ae:["†ARIA (amyloid-related imaging abnormalities): brain swelling (ARIA-E) or small bleeds (ARIA-H). Often silent; can cause headache, confusion, dizziness, vision changes, nausea, seizures","†Intracerebral hemorrhage","†Anaphylaxis"],
+ warn:["†BOXED WARNING: ARIA. Higher risk in ApoE ε4 homozygotes; genetic testing is recommended before starting","†Anticoagulants and thrombolytics raise bleeding risk","†Brain MRI at baseline and before set infusions"],
+ tox:["†No antidote. For symptomatic ARIA: hold or stop the drug, urgent MRI, supportive care; steroids for severe cases"],
+ int:["†Anticoagulants, antiplatelets, thrombolytics (tPA): brain bleeding risk"],
+ mon:["†Infusion reactions during and after each dose","†New headache, confusion, vision change, dizziness, gait change: think ARIA and report","†Cognition and function over time"],
+ labs:["†Brain MRI: baseline and before specific early infusions","†ApoE ε4 genotype before starting","†Amyloid PET or CSF to confirm eligibility"],
+ ed:["†This slows the disease a little; it does not restore memory","†Keep every MRI appointment","†Report headache, confusion, vision changes or dizziness right away","†Tell every provider you take it, especially in an emergency (stroke treatment)"],
+ kid:"†Sticky plaques build up in the brain like gunk in a pipe. These antibodies are tags that tell the body's cleanup cells 'remove this'. Pulling the gunk out can make the pipe leak or swell a little, so doctors take brain pictures to check.",
+ hesi:"†New headache or confusion on lecanemab or donanemab = suspect ARIA; hold the infusion and get an MRI. This class is newer than most exam references, so expect few questions."},
+/* ============ SUBSTANCE USE & WITHDRAWAL ============ */
+{sys:"sud", name:"Alcohol Withdrawal Drugs", sfx:"—", ch:"22",
+ drugs:[["chlordiazepoxide","Librium","Long-acting benzodiazepine for tremulousness and mild to moderate agitation. PO or IM; tapered over 5 to 7 days. †Avoid in liver failure."],
+  ["lorazepam","Ativan","PO or IM/IV; tapered over 5 to 7 days. †Preferred with liver disease or in older adults (no active metabolites)."],
+  ["diazepam","Valium","IV for alcohol withdrawal seizures. Long acting."],
+  ["thiamine (vitamin B1)","—","Prevents and treats Wernicke's encephalopathy: large IV doses 2–3 times daily for 1–2 weeks. Korsakoff's syndrome: thiamine for 3 to 12 months. †Give BEFORE glucose."],
+  ["carbamazepine, phenobarbital","Tegretol, generic","Older withdrawal treatments still in use; others are safer and more effective."],
+  ["clonidine","Catapres","Mild to moderate withdrawal. Alpha agonist given every 4–6 h as needed. Dizziness, hypotension, fatigue, headache. †Does not prevent seizures or DTs."],
+  ["†folic acid, multivitamin, magnesium","'banana bag'","Replace nutritional deficits; low magnesium raises seizure and dysrhythmia risk."]],
+ moa:"Alcohol presses the brain's GABA brake for years, so the brain turns its own accelerator up to compensate. When alcohol stops, the accelerator is stuck down. Benzodiazepines put a foot back on the GABA brake and are then eased off slowly. Thiamine replaces a vitamin the brain needs to burn glucose.",
+ use:["Alcohol withdrawal: tremor, agitation, autonomic hyperactivity","Prevention and treatment of withdrawal seizures","Alcohol withdrawal delirium (delirium tremens)","Wernicke's encephalopathy and Korsakoff's syndrome (thiamine)"],
+ exp:["Lower CIWA-Ar score, stable vital signs, no seizures, patient calm but rousable","Timeline, textbook: tremor at 6–8 h; perceptual and psychotic symptoms at 8–10 h; seizures at 12–24 h; delirium tremens any time in the first 72 h","†Timeline, standard references: tremor 6–12 h; hallucinosis 12–24 h; seizures 6–48 h; delirium tremens 48–96 h (peak day 2–3)","Wernicke's responds rapidly to thiamine; Korsakoff's recovers in only about 20%"],
+ se:["Sedation, lower BP, less anxiety (benzodiazepines)","Dizziness, hypotension (clonidine)","†Ataxia"],
+ ae:["Oversedation and respiratory depression","Untreated withdrawal: seizures, delirium tremens, coma, death (DTs are fatal in 20% of untreated patients)","†Anaphylaxis with IV thiamine (rare)"],
+ warn:["†BOXED WARNING (benzodiazepines): respiratory depression with opioids; dependence and withdrawal","Withdrawal with psychosis is a medical emergency","†Giving glucose before thiamine can trigger Wernicke's encephalopathy","†Use lorazepam or oxazepam with significant liver disease"],
+ tox:["†Benzodiazepine oversedation: hold the dose, support the airway; flumazenil is avoided in withdrawal because it can cause seizures","Delirium tremens: tachycardia, diaphoresis, fever, hypertension, delusions, visual and tactile hallucinations. Emergency: high-dose benzodiazepines, IV fluids, quiet room"],
+ int:["Alcohol and other CNS depressants: additive sedation","†Phenobarbital with benzodiazepines: respiratory depression"],
+ mon:["CIWA-Ar score to guide dosing, per agency policy. †A score of about 8–10 or more usually triggers a dose; above 15–20 is severe","Vital signs: rising BP, pulse and temperature","Seizure precautions","Level of consciousness, orientation, hallucinations","Fluid status (diaphoresis and fever cause dehydration)","Time of the last drink"],
+ labs:["†Blood alcohol level","†Electrolytes: magnesium, potassium, phosphate, sodium","†Glucose","†Liver function tests, CBC (MCV), PT/INR","†Urine drug screen"],
+ ed:["Withdrawal can be deadly; never detox alone at home after heavy use","The benzodiazepine is short term and will be tapered","Good nutrition and vitamins matter","Plan for what comes next: rehabilitation, mutual support groups such as AA, relapse-prevention drugs"],
+ kid:"After years of drinking, the brain is like a car driven with the brake on all the time, so the driver keeps the gas floored to move. Take the brake (alcohol) away suddenly and the car shoots off: shaking, racing heart, seizures. The nurse gives a substitute brake and eases it off over days.",
+ hesi:"Alcohol withdrawal: benzodiazepines guided by CIWA-Ar, seizure precautions, thiamine before glucose. Rising pulse, BP and temperature with visual or tactile hallucinations = delirium tremens = emergency."},
+
+{sys:"sud", name:"Alcohol Relapse-Prevention Drugs", sfx:"—", ch:"22",
+ drugs:[["disulfiram","Antabuse","Aversion therapy. Drinking causes intense nausea and vomiting, headache, sweating, flushing, dyspnea and confusion. Avoid all alcohol, including cough syrup and mouthwash."],
+  ["naltrexone","ReVia, Depade (oral); Vivitrol (monthly IM)","Opioid antagonist. Reduces the pleasure of drinking and cravings. Nausea usually fades after the first month; headache, sedation. Must be opioid free first."],
+  ["acamprosate","Campral","Relapse prevention. Start on the fifth day of abstinence. One dose three times a day. Diarrhea, GI upset, appetite loss, dizziness, anxiety, trouble sleeping. Contraindicated in renal impairment."]],
+ moa:"Disulfiram blocks aldehyde dehydrogenase, so toxic acetaldehyde builds up when alcohol is taken. Naltrexone blocks opioid receptors, so alcohol stops feeling rewarding. Acamprosate †rebalances glutamate and GABA, easing the long tail of withdrawal (anxiety, insomnia) that drives relapse.",
+ use:["Maintenance of abstinence after detox","Reducing cravings and heavy drinking days (naltrexone)","Aversion therapy for motivated patients (disulfiram)","Used with counseling and mutual support groups"],
+ exp:["Longer abstinence, fewer drinking days, fewer cravings","Acamprosate works only when started after drinking has stopped","†Disulfiram reaction starts within 5–10 minutes of alcohol and lasts 30–60 minutes or more"],
+ se:["Disulfiram: †drowsiness, headache, metallic or garlic taste","Naltrexone: nausea, headache, sedation, GI distress, muscle cramps, dizziness, appetite changes; injection site pain","Acamprosate: diarrhea, GI upset, appetite loss, dizziness, anxiety, insomnia"],
+ ae:["Disulfiram-alcohol reaction: †severe cases cause hypotension, dysrhythmias, respiratory depression, seizures, death","†Disulfiram: hepatotoxicity, peripheral neuropathy, psychosis","Naltrexone: precipitated opioid withdrawal; injection site reactions (cellulitis, induration, abscess, necrosis); †liver injury at high doses","†Acamprosate: suicidal thoughts"],
+ warn:["†BOXED WARNING (disulfiram): never give to a patient who is intoxicated or without the patient's full knowledge","†Disulfiram: wait at least 12 hours after the last drink; a reaction can occur for up to 14 days after the last dose","Naltrexone: opiate free for 10 days before starting (textbook); †standard references say 7–10 days, up to 14 after methadone","Acamprosate: contraindicated in renal impairment; †severe (CrCl below 30)","†Naltrexone: acute hepatitis or liver failure; disulfiram: severe heart disease, psychosis, pregnancy"],
+ tox:["†Disulfiram-alcohol reaction: supportive care, IV fluids, oxygen; no antidote","†Naltrexone-precipitated withdrawal: supportive care","†Trying to override naltrexone with large opioid doses can cause fatal overdose"],
+ int:["Disulfiram + any alcohol: cough syrup, mouthwash, †aftershave, hand sanitizer, sauces and desserts made with alcohol","†Disulfiram + metronidazole: psychosis; raises warfarin and phenytoin levels","Naltrexone + opioids: blocks pain relief and causes withdrawal","†Metronidazole and some cephalosporins cause a disulfiram-like reaction on their own"],
+ mon:["Sobriety and cravings","Opioid use before naltrexone","Injection site (Vivitrol)","Mood and suicidal thoughts","†Jaundice, dark urine, abdominal pain"],
+ labs:["†Liver function tests at baseline and periodically (disulfiram, naltrexone)","Renal function before acamprosate","†Urine drug screen negative for opioids, or a naloxone challenge, before naltrexone","†Breath or blood alcohol of zero before disulfiram"],
+ ed:["Disulfiram: read every label; alcohol hides in mouthwash, cough syrup and food","†Carry a card or wear a bracelet saying you take disulfiram or naltrexone","Naltrexone: opioid pain medicine will not work; tell every provider","Acamprosate: keep taking it even if you slip and drink; three times a day","These drugs support recovery; they do not replace counseling and support groups"],
+ kid:"Three different helpers. Disulfiram is a booby trap: drink and you get very sick. Naltrexone takes the fun out, like eating candy with a stuffy nose. Acamprosate calms the jittery, can't-sleep feeling that makes people want to drink again.",
+ hesi:"Disulfiram: no alcohol in any form, even mouthwash; effects last up to 2 weeks. Naltrexone: must be opioid free; watch the liver. Acamprosate: start after abstinence; check the kidneys; safe for the liver."},
+
+{sys:"sud", name:"Opioid Use Disorder & Overdose Drugs", sfx:"nal- (antagonists)", ch:"22",
+ drugs:[["naloxone","Narcan","Pure opioid antagonist for overdose. Intranasal, IM, subcutaneous or IV. Breathing and pupils respond quickly. Short acting: repeat doses are often needed. Too much causes withdrawal."],
+  ["methadone","Dolophine, Methadose","Synthetic opioid, †full agonist. Eases withdrawal and blocks the euphoria of other opioids. Once daily. Dispensed only by a certified opioid treatment program. Low dose may be the safest course in pregnancy. †QT prolongation."],
+  ["buprenorphine","Subutex (SL); Sublocade (monthly subcutaneous); Probuphine (6-month implant)","Partial opioid agonist; Schedule III. Start only after 12 to 24 hours without opioids and when early withdrawal has begun, or it causes acute withdrawal. †Ceiling effect on respiratory depression; office-based prescribing."],
+  ["buprenorphine + naloxone","Suboxone, Zubsolv, Bunavail","Sublingual or buccal. †The naloxone is not absorbed by mouth; it is there to block the high if the drug is injected."],
+  ["naltrexone","ReVia (oral daily); Vivitrol (monthly IM)","Opioid antagonist for relapse prevention after detox. Blocks euphoria. Injection site reactions in about 70%."],
+  ["clonidine","Catapres","Alpha agonist. Eases sweating, hot flashes, watery eyes, restlessness and anxiety of withdrawal."],
+  ["lofexidine","Lucemyra","Alpha agonist FDA approved for opioid withdrawal symptoms. Far more expensive than clonidine. †Less hypotension."]],
+ moa:"Opioid receptors are locks. Heroin and fentanyl are keys that turn the lock all the way. Methadone is a slow, long-lasting key. Buprenorphine fits the lock but only turns it part way and holds on tightly. Naloxone and naltrexone fit the lock, do not turn it, and block every other key. Clonidine and lofexidine calm the sympathetic storm of withdrawal.",
+ use:["Opioid overdose reversal (naloxone)","Opioid withdrawal (methadone, buprenorphine, clonidine, lofexidine)","Maintenance therapy to reduce cravings (methadone, buprenorphine-naloxone)","Relapse prevention after detox (naltrexone)"],
+ exp:["Naloxone: respirations rise and pupils dilate †within 2–5 minutes; lasts 30–90 minutes","Methadone and buprenorphine: withdrawal eases within hours; cravings controlled once stabilized","Clonidine and lofexidine: fewer autonomic symptoms; withdrawal may be shortened"],
+ se:["Buprenorphine: nausea, vomiting, constipation, muscle aches and cramps, insomnia, irritability, fever","Methadone: †sedation, constipation, sweating","Naltrexone: GI distress, muscle cramps, dizziness, sedation, appetite changes","Clonidine, lofexidine: †hypotension, bradycardia, dizziness, dry mouth, sleepiness"],
+ ae:["Naloxone: abrupt withdrawal; return of respiratory depression when it wears off","Methadone: difficulty or shallow breathing, faintness, chest pain, fast or pounding heartbeat, hallucinations, confusion; †QT prolongation and torsades","Buprenorphine: precipitated withdrawal if opioids are still on board","Naltrexone: precipitated withdrawal; †overdose risk after stopping because tolerance is lost","†Neonatal opioid withdrawal syndrome"],
+ warn:["†BOXED WARNING (methadone): life-threatening respiratory depression, QT prolongation, addiction and misuse, accidental ingestion, neonatal withdrawal, danger with benzodiazepines and CNS depressants","†BOXED WARNING (Sublocade): serious harm or death if injected IV; REMS","Naltrexone: must be opioid free (10 days per the textbook; †7–10 days, up to 14 after methadone)","Methadone must eventually be tapered","†Clonidine and lofexidine: taper to avoid rebound hypertension"],
+ tox:["Opioid overdose triad: coma, pinpoint pupils, respiratory depression. Also hypothermia, hypotension, bradycardia","Treatment: open the airway, suction, ventilate; give naloxone and repeat as needed","†Buprenorphine overdose may need higher or repeated naloxone doses"],
+ int:["Benzodiazepines, alcohol and other CNS depressants with methadone or buprenorphine: respiratory depression","Naltrexone blocks all opioid analgesics","†Other QT-prolonging drugs with methadone","†CYP3A4 inducers (carbamazepine, rifampin) lower methadone levels and cause withdrawal"],
+ mon:["Respiratory rate, SpO2 and level of consciousness; keep watching after naloxone","Withdrawal signs: tachycardia, hypertension, dilated pupils, yawning, runny nose and tearing, gooseflesh, cramps, diarrhea, muscle and bone pain; †scored with COWS","BP and pulse with clonidine or lofexidine","Injection or implant site","Cravings and use"],
+ labs:["†Urine drug screen (must be opioid negative before naltrexone)","†ECG at baseline and periodically on methadone (QT)","†Liver function tests (naltrexone, buprenorphine)","†Pregnancy test; hepatitis and HIV screening"],
+ ed:["Naloxone: give it, call 911, stay with the person; a second dose may be needed","Buprenorphine: let it dissolve under the tongue; do not swallow or chew; wait until withdrawal has started for the first dose","Methadone: daily clinic dosing at first; never share take-home doses; store locked","Naltrexone: your tolerance is gone, so using your old dose can kill you","No alcohol or benzodiazepines","Medication works best with counseling and groups such as Narcotics Anonymous"],
+ kid:"Think of the opioid receptor as a chair. Heroin sits in the chair and makes you feel high but can stop your breathing. Methadone is a calm guest who sits there all day. Buprenorphine half-sits and won't get up. Naloxone shoves everyone out of the chair and sits there doing nothing, which is why breathing comes back.",
+ hesi:"Naloxone wears off before the opioid: keep monitoring respirations. Buprenorphine too early = precipitated withdrawal. Methadone = QT and respiratory depression. Clonidine helps symptoms but not cravings."},
+
+{sys:"sud", name:"Smoking Cessation Drugs", sfx:"—", ch:"19, 22",
+ drugs:[["nicotine replacement","gum, lozenge, patch, nasal spray, inhaler","Highly successful. †Patch gives a steady level; gum, lozenge, spray or inhaler cover sudden cravings. †Gum: chew until it tingles, then park it in the cheek; no food or drink for 15 minutes before."],
+  ["bupropion SR","Zyban","Antidepressant that reduces cravings and withdrawal symptoms. Lowers the seizure threshold. †Start 1–2 weeks before the quit date."],
+  ["varenicline","Chantix","Nicotinic receptor partial agonist. Mimics nicotine to reduce cravings and withdrawal, and partly blocks the receptor so smoking is less rewarding. †Start 1 week before the quit date; take after eating with a full glass of water."]],
+ moa:"Nicotine replacement gives clean nicotine without smoke so the dose can be stepped down. Varenicline half-activates the nicotine receptor and blocks nicotine from it. Bupropion raises dopamine and norepinephrine, which eases cravings.",
+ use:["Tobacco use disorder; easing nicotine withdrawal","Combined with counseling and behavioral strategies"],
+ exp:["Fewer cravings and less irritability, anxiety and restlessness","†A usual course is 12 weeks; varenicline may be extended to 24","†Combining a patch with a short-acting form works better than either alone"],
+ se:["Nicotine: †skin irritation (patch), mouth soreness, hiccups, heartburn (gum), insomnia and vivid dreams","Bupropion: insomnia, dry mouth, headache, agitation","Varenicline: †nausea, insomnia, abnormal or vivid dreams, headache, constipation"],
+ ae:["Bupropion: seizures","†Varenicline: mood changes, agitation, suicidal thoughts (monitor); rare seizures; sleepwalking","†Nicotine overdose from smoking while on replacement: nausea, palpitations, dizziness"],
+ warn:["Bupropion: contraindicated with seizure disorders and eating disorders; †boxed warning for suicidal thinking as an antidepressant","†Varenicline: the boxed warning about neuropsychiatric events was removed in 2016; monitoring is still advised","†Nicotine: caution right after MI, with serious dysrhythmias or unstable angina; avoid in pregnancy if possible","†Renal impairment: lower the varenicline dose"],
+ tox:["†Nicotine toxicity: nausea, vomiting, salivation, abdominal pain, sweating, palpitations, then weakness and seizures. Remove the patch and wash the skin; supportive care","†Bupropion overdose: seizures; benzodiazepines"],
+ int:["MAOIs with bupropion: contraindicated","†Stopping smoking raises levels of clozapine, olanzapine, theophylline and caffeine (the enzyme CYP1A2 is no longer induced)","†Alcohol tolerance may drop on varenicline"],
+ mon:["Smoking status and cravings","Mood and behavior changes","Sleep","Blood pressure (bupropion plus nicotine can raise it)","Seizure risk factors"],
+ labs:["†No routine labs","†Renal function for varenicline dosing","†Recheck clozapine or theophylline levels after quitting"],
+ ed:["Set a quit date","Do not smoke while using nicotine replacement","Remove the nicotine patch at bedtime if it disturbs sleep; rotate sites","Report mood changes, agitation or thoughts of self-harm","Take varenicline with food and water to limit nausea","Expect cravings to peak in the first days and fade over weeks"],
+ kid:"Quitting cold is like jumping off a tall step. Nicotine patches and gum build a staircase so you step down slowly. Varenicline sits in nicotine's seat so cigarettes stop feeling good. Bupropion quiets the 'I need one' feeling.",
+ hesi:"Varenicline: nausea, vivid dreams, watch mood. Bupropion (Zyban): seizure risk. When a patient on clozapine quits smoking, the clozapine level rises."},
+
+/* ============ EPS & EMERGENCY ============ */
+{sys:"eps", name:"Anticholinergics & Other Drugs for EPS", sfx:"—", ch:"12, 27",
+ drugs:[["benztropine","Cogentin","Antiparkinsonian anticholinergic. Oral for prevention or treatment of pseudoparkinsonism; IM for acute dystonia (relief usually in 5–15 minutes). Added to an IM antipsychotic to reduce EPS."],
+  ["trihexyphenidyl","Artane","Oral anticholinergic for pseudoparkinsonism. The one most often misused."],
+  ["diphenhydramine","Benadryl","Antihistamine with anticholinergic action. 25–50 mg IM/IV for acute dystonia. Added to haloperidol and lorazepam injections."],
+  ["propranolol","Inderal","Beta blocker. First choice for akathisia."],
+  ["lorazepam, diazepam","Ativan, Valium","Benzodiazepines used for akathisia."],
+  ["†amantadine","Symmetrel","Dopamine-releasing drug for pseudoparkinsonism when anticholinergic effects must be avoided (older adults). Livedo reticularis, ankle edema."]],
+ moa:"Movement depends on a balance between dopamine and acetylcholine in the basal ganglia. Antipsychotics lower dopamine, so acetylcholine is left too strong and muscles get stiff or spasm. Anticholinergics lower acetylcholine and restore the balance. They do not help tardive dyskinesia.",
+ use:["Acute dystonia (IM benztropine or diphenhydramine)","Pseudoparkinsonism (oral benztropine or trihexyphenidyl)","Akathisia (propranolol, benzodiazepines; antiparkinsonian drug as ordered)","Prevention of EPS with high-potency antipsychotics"],
+ exp:["Acute dystonia: relief in 5–15 minutes after an IM dose","†Pseudoparkinsonism and akathisia: improvement over hours to days","Tardive dyskinesia does NOT improve; †anticholinergics can make it worse"],
+ se:["Dry mouth, blurred vision, constipation, urinary retention","Tachycardia","Sedation (diphenhydramine)","Memory problems or confusion, especially in older adults","†Decreased sweating"],
+ ae:["ANTICHOLINERGIC TOXICITY","Paralytic ileus, bowel obstruction","Misuse for a euphoric effect (trihexyphenidyl most, also benztropine and diphenhydramine)","†Acute angle-closure glaucoma; heat stroke","†Propranolol: bradycardia, hypotension, bronchospasm"],
+ warn:["Older adults and patients on several anticholinergic drugs are at highest risk of toxicity","†Narrow-angle glaucoma, prostatic hypertrophy or urinary retention, bowel obstruction, myasthenia gravis, tardive dyskinesia","†Dementia: worsens confusion (Beers list)","†Propranolol: asthma, heart block; boxed warning against stopping it abruptly in heart disease","†No boxed warning on benztropine, trihexyphenidyl or diphenhydramine"],
+ tox:["Anticholinergic toxicity: hot dry skin and fever without sweating, dilated pupils, absent bowel sounds, urinary retention, tachycardia, agitation, hallucinations, delirium, seizures. It can look like worsening psychosis","Treatment: hold all medications, call the prescriber, cooling measures, catheterize as needed, benzodiazepine for agitation. Physostigmine may reverse it","†Memory aid: hot as a hare, dry as a bone, red as a beet, blind as a bat, mad as a hatter, full as a flask"],
+ int:["Other anticholinergic drugs: low-potency antipsychotics, clozapine, olanzapine, TCAs, paroxetine, over-the-counter cold and allergy medicines","†Cholinesterase inhibitors: opposite effects","†Alcohol and CNS depressants: sedation"],
+ mon:["Airway first in acute dystonia; stay with the patient","Muscle tone, tremor, gait, restlessness","Bowel sounds and last bowel movement; bladder distention","Temperature and mental status","Pulse and BP before propranolol"],
+ labs:["†No routine labs or drug levels","†ECG if tachycardia or dysrhythmia in toxicity"],
+ ed:["Acute dystonia is frightening but treatable; it does not mean the antipsychotic is poison","Sip water, use sugarless gum; fluids and fiber for constipation","Report trouble urinating, no bowel movement, fever or confusion","†Avoid overheating; you sweat less","Do not take extra doses or over-the-counter allergy pills with it","†Do not stop suddenly"],
+ kid:"Picture a seesaw with dopamine on one side and acetylcholine on the other. Antipsychotics push dopamine down, so acetylcholine flies up and the muscles lock or shake. Benztropine pushes acetylcholine back down and levels the seesaw. Too much, though, and everything dries up and overheats.",
+ hesi:"Acute dystonia (neck twisting, eyes rolling up, tongue spasm) = IM benztropine or diphenhydramine and protect the airway. Akathisia = propranolol. Tardive dyskinesia is NOT treated with benztropine."},
+
+{sys:"eps", name:"VMAT2 Inhibitors (for Tardive Dyskinesia)", sfx:"-benazine", ch:"12",
+ drugs:[["valbenazine","Ingrezza","FDA approved for tardive dyskinesia in adults. †Once daily, with or without food."],
+  ["deutetrabenazine","Austedo, Austedo XR","FDA approved for tardive dyskinesia in adults. †Twice daily with food (XR once daily). Also treats Huntington's chorea."],
+  ["†tetrabenazine","Xenazine","Older drug for Huntington's chorea; off label for tardive dyskinesia. Boxed warning for depression and suicidality."]],
+ moa:"Selectively block vesicular monoamine transporter 2 (VMAT2), the pump that loads dopamine into storage vesicles. Less dopamine is released onto the over-sensitive receptors that cause the involuntary movements.",
+ use:["Tardive dyskinesia in adults","†Chorea of Huntington's disease (deutetrabenazine, valbenazine)"],
+ exp:["Fewer and milder involuntary movements; lower AIMS score","†Improvement begins in 2 weeks and builds over about 6 weeks","†Movements return if the drug is stopped; it controls, not cures"],
+ se:["Sleepiness","†Dry mouth, fatigue","†Akathisia or restlessness","†Balance problems"],
+ ae:["QT prolongation","†Parkinson-like symptoms","†Depression and suicidal thoughts in patients with Huntington's disease","†NMS (rare)"],
+ warn:["Contraindicated with congenital or acquired long-QT syndrome and related dysrhythmias","Caution with driving and hazardous activity until the effect is known","†BOXED WARNING (deutetrabenazine, tetrabenazine; valbenazine in Huntington's): depression and suicidality in Huntington's disease","†Not with MAOIs or reserpine"],
+ tox:["†Overdose: sedation, dystonia, low BP, QT prolongation. Supportive care with ECG monitoring; no antidote"],
+ int:["Other QT-prolonging drugs","†MAOIs: contraindicated","†Strong CYP2D6 inhibitors (paroxetine, fluoxetine, bupropion) raise levels","†Alcohol and sedatives: more sleepiness"],
+ mon:["AIMS at baseline and regularly","Sleepiness and fall risk","Mood and suicidal thoughts","†New stiffness, tremor or slowness"],
+ labs:["†ECG (QT) in at-risk patients","†No drug levels"],
+ ed:["It reduces the movements but they can return if you stop","Do not drive until you know how sleepy it makes you","Keep taking your antipsychotic unless told otherwise","Report fainting, palpitations, low mood or new stiffness","†Take deutetrabenazine with food; swallow tablets whole"],
+ kid:"After years of dopamine being blocked, the receptors become extra jumpy, and the face and tongue move by themselves. These drugs pack less dopamine into each little delivery bubble, so the jumpy receptors get a gentler signal.",
+ hesi:"Tardive dyskinesia: screen with AIMS, treat with valbenazine or deutetrabenazine, not benztropine. Watch the QT interval and sleepiness."},
+
+{sys:"eps", name:"Antidotes & Rescue Drugs for Psych Emergencies", sfx:"—", ch:"12, 14, 22",
+ drugs:[["dantrolene","Dantrium, Ryanodex","NMS: direct muscle relaxant that relieves rigidity and lowers the heat made by contracting muscle. Also listed for rigidity in serotonin syndrome. †Hepatotoxic; tissue damage if it leaks from the vein."],
+  ["bromocriptine","Parlodel","NMS: dopamine agonist that restores the blocked dopamine signal. †Hypotension, nausea; can worsen psychosis."],
+  ["cyproheptadine","Periactin","Serotonin syndrome: serotonin-receptor blocker. †Oral only; sedating and anticholinergic."],
+  ["physostigmine","Antilirium","Anticholinergic toxicity: cholinesterase inhibitor that may reverse it. †Slow IV; can cause bradycardia, seizures and bronchospasm; keep atropine at hand. Not for TCA overdose."],
+  ["phentolamine","Regitine","MAOI hypertensive crisis: 5 mg IV alpha blocker (nitroprusside or nitroglycerin are alternatives)."],
+  ["†flumazenil","Romazicon","Benzodiazepine antagonist. Seizure risk in dependent patients; short acting."],
+  ["naloxone","Narcan","Opioid overdose. See Opioid Use Disorder card."],
+  ["†sodium bicarbonate","—","TCA overdose with widened QRS or ventricular dysrhythmia."],
+  ["diphenhydramine, benztropine","Benadryl, Cogentin","Acute dystonia, IM or IV."]],
+ moa:"Each rescue drug reverses one specific mechanism: dantrolene stops calcium release inside muscle; bromocriptine turns dopamine receptors back on; cyproheptadine blocks serotonin receptors; physostigmine raises acetylcholine; phentolamine opens constricted vessels; flumazenil and naloxone push the drug off its receptor.",
+ use:["Neuroleptic malignant syndrome (dantrolene, bromocriptine)","Serotonin syndrome (cyproheptadine; benzodiazepines)","Anticholinergic toxicity (physostigmine)","MAOI hypertensive crisis (phentolamine)","Benzodiazepine, opioid and TCA overdose","Acute dystonia"],
+ exp:["Dystonia: 5–15 minutes after IM treatment","Naloxone: †2–5 minutes","†Serotonin syndrome: usually clears within 24–72 hours of stopping the drug","†NMS: resolves over 1–2 weeks (longer after a long-acting injection)"],
+ se:["†Dantrolene: muscle weakness, drowsiness, diarrhea","†Bromocriptine: nausea, orthostatic hypotension","†Cyproheptadine: sedation, dry mouth","†Physostigmine: nausea, salivation, sweating"],
+ ae:["†Dantrolene: liver injury","†Physostigmine: bradycardia, asystole, seizures, bronchospasm (cholinergic crisis)","†Flumazenil: seizures, re-sedation when it wears off","Naloxone: acute withdrawal; re-sedation","†Phentolamine: sudden hypotension, tachycardia"],
+ warn:["The first step in every one of these emergencies is to stop the offending drug","NMS and serotonin syndrome need critical care transfer","†Never give physostigmine in TCA overdose (asystole)","†Avoid flumazenil in long-term benzodiazepine users, seizure disorders and mixed TCA overdose","†After NMS, wait at least 2 weeks before restarting any antipsychotic","†BOXED WARNING (oral dantrolene): hepatotoxicity"],
+ tox:["†Physostigmine overdose (cholinergic crisis): atropine","†Too much naloxone or flumazenil: withdrawal; supportive care","See the comparison table in Quick reference for telling the four syndromes apart"],
+ int:["†Dantrolene with IV calcium channel blockers (verapamil): cardiovascular collapse","†Bromocriptine opposes antipsychotics","†Cyproheptadine adds to anticholinergic load"],
+ mon:["Temperature (core), muscle tone, level of consciousness","BP, heart rate and rhythm; continuous ECG","Respiratory rate and SpO2","Intake and output; urine color (dark urine suggests rhabdomyolysis)","Cooling measures: cooling blanket, ice or cool water bath as ordered","Hydration with oral or IV fluids"],
+ labs:["†Creatine kinase (CK): very high in NMS","†WBC: elevated in NMS","†Renal function, electrolytes and urine myoglobin (rhabdomyolysis); complications of NMS include acute kidney injury","†Liver function with dantrolene","†Serum drug levels where they exist (lithium, TCA)","†ECG: QRS and QT"],
+ ed:["Teach patients and families the warning signs of each syndrome and to seek care at once","MAOI patients: severe headache means go to the emergency department","Give all providers a full medication list, including over-the-counter and herbal products","Carry naloxone if opioids are in the home"],
+ kid:"Each emergency is a different alarm, and each antidote is the right key for one alarm. Stiff as a board with a high fever (NMS) gets a muscle unlocker. Twitchy and jumpy (serotonin syndrome) gets a serotonin blocker. Hot, dry and confused (anticholinergic) gets a drug that brings the 'wet' signal back.",
+ hesi:"Match the antidote: NMS = dantrolene or bromocriptine. Serotonin syndrome = cyproheptadine. Anticholinergic toxicity = physostigmine. MAOI hypertensive crisis = phentolamine. Benzodiazepines = flumazenil. Opioids = naloxone. TCA = sodium bicarbonate. Lithium = none (dialysis)."},
+
+/* ============ OTHER ============ */
+{sys:"other", name:"Acute Agitation & Aggression Drugs", sfx:"—", ch:"11, 27",
+ drugs:[["lorazepam","Ativan","PO, SL, IM, IV. Benzodiazepine of choice. Caution with liver dysfunction. Lowers the amount of antipsychotic needed."],
+  ["haloperidol","Haldol","PO, IM, IV. Most widely used. Keep the patient hydrated, check vital signs and test for muscle rigidity (NMS). Cardiac monitoring for IV use."],
+  ["haloperidol + lorazepam + diphenhydramine or benztropine","'B52' †","Common IM combination. The anticholinergic is added to reduce EPS."],
+  ["olanzapine","Zyprexa, Zyprexa Zydis (ODT)","PO, orally disintegrating, IM. Useful when haloperidol fails. ODT dissolves in saliva almost at once. Avoid IM with IM lorazepam."],
+  ["ziprasidone","Geodon","PO, IM. Use cautiously with QT prolongation."],
+  ["chlorpromazine","Thorazine","PO, PR, IM. Very sedating. Painful injection; watch for hypotension."],
+  ["loxapine (inhaled)","Adasuve","Rapid delivery. Restricted program because of potentially fatal bronchospasm."],
+  ["alprazolam, diazepam","Xanax, Valium","Alprazolam can cause paradoxical reactions in personality disorders and older adults. Diazepam: fast calming, long half-life."],
+  ["†dexmedetomidine (sublingual film)","Igalmi","Alpha-2 agonist film for agitation in schizophrenia or bipolar disorder. Hypotension, bradycardia, sleepiness."],
+  ["†droperidol","Inapsine","IM/IV in emergency departments. Boxed warning for QT prolongation."]],
+ moa:"Antipsychotics block dopamine to calm psychotic agitation. Benzodiazepines boost GABA to sedate and relax. Used together, a lower dose of each is needed. These treat the acute episode; long-term treatment targets the underlying disorder.",
+ use:["Acute agitation, aggression or violence when de-escalation fails","Emergencies such as assaultive behavior","Patients refusing court-ordered oral antipsychotics (short-acting IM)","Long term in children: stimulants, mood stabilizers, alpha-2 agonists and, for severe aggression only, antipsychotics"],
+ exp:["Calm without loss of consciousness is the goal","†IM onset: 15–30 minutes; ODT and oral: 30–60 minutes","Offer oral medication first whenever possible"],
+ se:["Sedation","Orthostatic hypotension, dizziness","Dry mouth","Injection pain (chlorpromazine)"],
+ ae:["Acute dystonia and other EPS (haloperidol)","NMS","QT prolongation (haloperidol IV, ziprasidone, droperidol)","Respiratory depression (benzodiazepines; IM olanzapine with lorazepam)","Bronchospasm (inhaled loxapine)","Paradoxical agitation (benzodiazepines)"],
+ warn:["BOXED WARNING: antipsychotics increase mortality in older adults with dementia","†BOXED WARNING (inhaled loxapine): bronchospasm; not with asthma or COPD; REMS","†BOXED WARNING (droperidol): QT prolongation","Side effects are stronger and harder to manage by the IM route","†Medication is the least restrictive step before seclusion or restraint, and must never be used as punishment or for staff convenience"],
+ tox:["†Oversedation or respiratory depression: airway support; flumazenil for benzodiazepines if appropriate","Acute dystonia: benztropine or diphenhydramine IM","NMS: stop the antipsychotic; dantrolene, bromocriptine, cooling"],
+ int:["Alcohol or other intoxicants on board: more CNS and respiratory depression","IM olanzapine with IM lorazepam: avoid","Other QT-prolonging drugs","Other anticholinergics"],
+ mon:["Vital signs and respiratory status after every IM dose","Level of sedation and the patient's response","Muscle rigidity and temperature","ECG with IV haloperidol","Safety of the patient and others; continuous observation if restrained","†Debrief with the patient afterward"],
+ labs:["†No routine labs in the acute moment","†ECG (QT) when possible","†Urine drug screen and blood alcohol to find the cause"],
+ ed:["Explain what the medication is and why, even during a crisis","Offer choices: oral or injection","Rise slowly afterward","Teach early warning signs of anger and other ways to cope once calm"],
+ kid:"When someone is so upset they might hurt themselves or others, talking comes first. If that fails, the nurse gives medicine that works fast, like turning down a stove before the pot boils over. One drug calms the mind, one relaxes the body, and one protects the muscles from side effects.",
+ hesi:"Least restrictive first: verbal de-escalation, then offer oral medication, then IM, then seclusion or restraint. After IM haloperidol, watch for acute dystonia. Do not give IM olanzapine and IM lorazepam together."},
+
+{sys:"other", name:"PTSD, Eating Disorder & Other Targeted Uses", sfx:"—", ch:"11, 14, 15, 16, 18",
+ drugs:[["sertraline, paroxetine","Zoloft, Paxil","The only FDA-approved drugs for PTSD. Fluoxetine and venlafaxine are used off label."],
+  ["†prazosin","Minipress","Alpha-1 blocker used off label for PTSD nightmares. First-dose hypotension: give at bedtime, rise slowly."],
+  ["fluoxetine","Prozac","Only FDA-approved drug for bulimia nervosa, even without depression. Also PMDD; OCD from age 7."],
+  ["lisdexamfetamine","Vyvanse","Only FDA-approved drug for moderate to severe binge-eating disorder in adults. Dry mouth, insomnia, fast heart rate, jitteriness. Boxed warning for abuse and dependence."],
+  ["fluvoxamine, clomipramine","Luvox, Anafranil","OCD: fluoxetine, fluvoxamine, paroxetine, sertraline (SSRIs) and clomipramine (a tricyclic) are approved."],
+  ["haloperidol, pimozide, aripiprazole","Haldol, Orap, Abilify","FDA approved for tic disorders (Tourette's). Clonidine and guanfacine are slower and weaker but have fewer side effects."],
+  ["propranolol","Inderal","Performance and social anxiety; akathisia."]],
+ moa:"Most of these are drugs from other cards used for a specific disorder. SSRIs raise serotonin, which eases intrusive thoughts, hyperarousal, obsessions and binge-purge urges. Prazosin blocks norepinephrine's alpha-1 receptors in the brain, which quiets trauma nightmares.",
+ use:["PTSD (sertraline, paroxetine; †prazosin for nightmares)","Bulimia nervosa (fluoxetine)","Binge-eating disorder (lisdexamfetamine)","OCD (SSRIs, clomipramine)","Tic disorders","No drug is FDA approved for anorexia nervosa, body dysmorphic disorder, hoarding, separation anxiety or specific phobia"],
+ exp:["SSRIs: 4 to 8 weeks; †OCD often needs higher doses and 8–12 weeks","†Prazosin: fewer nightmares within days to weeks as the dose is raised","Lisdexamfetamine: fewer binge days; relapse risk lower at 6 months"],
+ se:["SSRIs: nausea, sexual dysfunction, insomnia","†Prazosin: dizziness, orthostatic hypotension, headache","Lisdexamfetamine: dry mouth, insomnia, decreased appetite, increased heart rate, constipation, jitteriness, anxiety"],
+ ae:["†Prazosin: first-dose syncope","Stimulant misuse and cardiovascular effects","SSRIs: serotonin syndrome, suicidal thinking","Bupropion is contraindicated in bulimia and anorexia (seizures)"],
+ warn:["Not recommended for PTSD (lack of benefit, known risks): atypical antipsychotics, citalopram, amitriptyline, topiramate, lamotrigine","†Benzodiazepines are not recommended for PTSD","Stimulants can worsen tics","Boxed warnings follow each drug's own class (antidepressants: suicidality; stimulants: abuse)"],
+ tox:["See the card for each drug class","†Prazosin overdose: profound hypotension; fluids and vasopressors"],
+ int:["†Prazosin with other antihypertensives or PDE-5 inhibitors (sildenafil): hypotension","See the card for each drug class"],
+ mon:["Target symptoms: nightmares, flashbacks, binge or purge episodes, obsessions and compulsions, tics","Orthostatic BP with prazosin","Weight, potassium and vital signs in eating disorders","Suicide risk"],
+ labs:["†Electrolytes (potassium) and ECG in bulimia and anorexia before and during drug treatment","†No drug levels"],
+ ed:["Medication supports therapy; trauma-focused psychotherapy is the main treatment for PTSD","Prazosin: take at bedtime; sit on the edge of the bed before standing","SSRIs take weeks; keep taking them","Lisdexamfetamine: take in the morning; store safely"],
+ kid:"Sometimes a medicine made for one problem turns out to help another. An antidepressant can quiet scary memories or the urge to binge. A blood pressure pill can turn down the body's alarm at night so nightmares fade.",
+ hesi:"PTSD: sertraline or paroxetine. Bulimia: fluoxetine (never bupropion). Binge-eating disorder: lisdexamfetamine. OCD: SSRI or clomipramine. Prazosin: nightmares, watch for first-dose hypotension."},
+
+{sys:"other", name:"Herbal & Over-the-Counter Products", sfx:"—", ch:"3, 13, 14, 15, 19",
+ drugs:[["St. John's wort","Hypericum perforatum","May raise serotonin, norepinephrine and dopamine. About as effective as antidepressants for mild to moderate depression; not established for severe depression. Interacts with other drugs, especially antidepressants."],
+  ["kava","Piper methysticum","Sedative with antianxiety effect. FDA warning for liver damage. Strongly inhibits P450 liver enzymes; worse with alcohol or CNS depressants."],
+  ["melatonin","—","Hormone from the pineal gland. Little data for insomnia disorder; prolonged-release forms show some promise."],
+  ["omega-3 fatty acids (fish oil)","EPA, DHA","No evidence for mania; strong evidence it may improve bipolar depressive symptoms."],
+  ["†valerian","Valeriana officinalis","Used for sleep and anxiety. Adds to sedatives; rare liver injury."],
+  ["†ginkgo biloba","—","Marketed for memory. Bleeding risk with anticoagulants, aspirin and NSAIDs."],
+  ["ginseng","—","With MAOIs: headache, tremulousness and mania-like reactions."]],
+ moa:"Plant and supplement products that act on the same neurotransmitters as prescription drugs. They are not regulated by the FDA like drugs, so the amount of active ingredient varies from product to product and may not match the label.",
+ use:["Self-treatment of mild depression (St. John's wort)","Anxiety (kava, valerian)","Sleep (melatonin, valerian)","Bipolar depression support (omega-3)"],
+ exp:["†St. John's wort: 4–6 weeks, like an antidepressant","†Melatonin: take 30–60 minutes (or longer) before bedtime; mainly shifts sleep timing","Evidence is mixed for most products"],
+ se:["†St. John's wort: photosensitivity, GI upset, dry mouth, dizziness","†Kava and valerian: drowsiness","†Melatonin: headache, daytime sleepiness, vivid dreams","†Fish oil: fishy aftertaste, GI upset"],
+ ae:["St. John's wort with antidepressants: serotonin syndrome","Kava: liver failure","†Ginkgo and high-dose fish oil: bleeding","†St. John's wort can trigger mania in bipolar disorder"],
+ warn:["Not FDA regulated: dose and purity vary","St. John's wort: caution in pregnancy and children (safety not established)","Kava: avoid with alcohol, liver disease or CNS depressants","Patients often believe herbs are safer than prescriptions and do not mention them","No boxed warnings exist because these products do not go through FDA drug approval"],
+ tox:["†No antidotes; stop the product and give supportive care","Kava: stop and check liver function for jaundice, dark urine or abdominal pain"],
+ int:["St. John's wort + SSRIs, SNRIs, MAOIs, TCAs, triptans: serotonin syndrome","†St. John's wort induces CYP3A4: lowers oral contraceptives, warfarin, digoxin, cyclosporine, HIV drugs","Kava + alcohol, benzodiazepines or other CNS depressants: sedation and liver injury","Ginseng, chocolate, fava beans and caffeine with MAOIs: pressor or mania-like reactions"],
+ mon:["Ask every patient about herbs, teas, vitamins and supplements by name","Mood changes after starting or stopping a product","Signs of serotonin syndrome","Jaundice with kava"],
+ labs:["†Liver function tests with kava","†INR if on warfarin with St. John's wort, ginkgo or fish oil"],
+ ed:["'Natural' does not mean safe","Tell every provider and pharmacist what you take","Do not combine St. John's wort with a prescription antidepressant","Avoid kava","†Use sunscreen with St. John's wort; use backup birth control"],
+ kid:"Herbs are medicines that grow in the ground instead of being made in a lab. They still press buttons in the brain, so they can clash with other medicines. And nobody checks each bottle, so you can't be sure how much is really inside.",
+ hesi:"St. John's wort + SSRI = serotonin syndrome; it also makes birth control pills fail. Kava = liver damage. Always ask about supplements during the medication history."}
+];
+
+const QUICK = {
+ compare: [
+  ["Caused by","SSRIs, SNRIs, MAOIs, TCAs, buspirone, †tramadol, triptans, linezolid, dextromethorphan, St. John's wort. Usually two serotonergic drugs together","Antipsychotics (mostly first generation, 0.2–1%); †also stopping a dopamine agonist suddenly","Benztropine, trihexyphenidyl, diphenhydramine, low-potency antipsychotics, clozapine, TCAs, cold and allergy products","MAOI plus tyramine food or a sympathomimetic (decongestant, stimulant)"],
+  ["Onset","†Fast: within hours (usually under 24 h) of a new drug or dose increase","Usually early in therapy, but can occur years in. †Develops over 1–3 days","†Hours after a dose or after adding another anticholinergic","15 to 90 minutes after the food or drug"],
+  ["Mental status","Restless, agitated, delirium, mood swings","Reduced consciousness, mute, stupor, delirium to coma","Agitated delirium, hallucinations; looks like worse psychosis","Anxious, restless; later seizures and coma"],
+  ["Temperature","Fever to hyperpyrexia","Hyperpyrexia: over 103°F is the main feature","High, with NO sweating","Fever develops, can become severe"],
+  ["Muscles and reflexes","Myoclonus, incoordination, tremor; †HYPERREFLEXIA and clonus, worse in the legs","Severe 'lead-pipe' rigidity; †reflexes normal or decreased; slow movement","†Normal tone; picking or repetitive movements; possible seizure","†Normal tone; neck stiffness"],
+  ["Pupils and skin","†Dilated pupils; SWEATING","†Normal pupils; diaphoresis","Dilated pupils, blurred vision; HOT, DRY, flushed skin","†Dilated pupils; flushing and sweating"],
+  ["Gut and bladder","Abdominal pain, diarrhea, †hyperactive bowel sounds","Incontinence; dysphagia","Absent bowel sounds, constipation, urinary retention","Nausea and vomiting"],
+  ["BP and pulse","Tachycardia, high BP, can go to shock","Unstable BP, tachycardia, fast breathing","Tachycardia, unstable vital signs","SEVERE hypertension, palpitations, severe (†occipital) headache"],
+  ["Key labs","†None specific","†CK very high, WBC high, myoglobin in urine","†None specific","†None; ECG and neuro checks for stroke"],
+  ["First action","Stop all serotonergic drugs","Stop all antipsychotics; call the prescriber stat; critical care","Hold all medications; call the prescriber","Emergency department; check BP"],
+  ["Treatment","Cyproheptadine; cooling blankets; diazepam or dantrolene for rigidity; anticonvulsants; ventilation. †Benzodiazepines are first line","Bromocriptine and dantrolene; cooling; IV or oral fluids; correct electrolytes; treat dysrhythmias; low-dose heparin for clots","Physostigmine may reverse it; cooling; catheterize; benzodiazepine for agitation","Phentolamine 5 mg IV (or nitroprusside, nitroglycerin); cooling; fluids; IV benzodiazepine. Textbook also lists sublingual nifedipine; †now discouraged"]
+ ],
+ eps: [
+  ["Acute dystonia","Textbook: develops over days to weeks. †Hours to 5 days after starting or raising the dose; highest risk in young males on high-potency drugs","Sudden painful muscle contraction: tongue and jaw first, neck twisting (torticollis), back arching, eyes rolled up (oculogyric crisis). Laryngeal spasm threatens the airway (rare)","Protect the airway. Benztropine (Cogentin) IM, or diphenhydramine (Benadryl) 25–50 mg IM/IV. Relief in 5–15 minutes. Stay with the patient. Consider oral prophylaxis"],
+  ["Akathisia","Textbook: days to weeks or months. †Usually 5 to 60 days","Motor restlessness: pacing, rocking, shifting foot to foot, cannot sit still. Mistaken for anxiety or agitation. Can drive suicidality","Do not give more antipsychotic. Propranolol (Inderal); lorazepam or diazepam; antiparkinsonian drug as ordered; dose reduction or drug change"],
+  ["Pseudoparkinsonism","Textbook: days to weeks or months. †Usually 5 to 30 days","Mask-like face, stiff stooped posture, shuffling gait, bradykinesia, drooling, tremor, pill-rolling, less arm swing","Benztropine (Cogentin) or trihexyphenidyl (Artane) orally; †amantadine; lower the dose or change the drug. Fall precautions"],
+  ["Tardive dyskinesia","Months to years of treatment. About 20% after more than 2 years","Involuntary tongue protrusion or writhing, lip smacking, blowing, facial grimacing; choreic or athetoid limb movements; trunk rocking and pelvic thrusts. Often irreversible","AIMS at least every 3 months. Valbenazine (Ingrezza) or deutetrabenazine (Austedo). Switch to a second-generation drug. Anticholinergics do not help"],
+  ["Neuroleptic malignant syndrome","Usually early in therapy; reported up to 20 years in. †Most cases within the first 2 weeks","Severe rigidity, temperature over 103°F, unstable BP, tachycardia, diaphoresis, altered consciousness. Fatal in about 6%","Stop the antipsychotic. Critical care. Bromocriptine, dantrolene, cooling, fluids"]
+ ],
+ levels: [
+  ["Lithium, acute mania","0.8–1.2 mEq/L","Textbook (Ch. 13). 1.0–1.2 may work best. 12-hour trough."],
+  ["Lithium, maintenance","0.6–0.8 mEq/L","Textbook (Ch. 13). 0.4–0.6 in some cases."],
+  ["†Lithium, standard references","0.6–1.2 mEq/L","†Acute 0.8–1.2; maintenance 0.6–1.0. Both sources agree toxicity starts at 1.5."],
+  ["Lithium, early toxicity","1.5–2.0 mEq/L","Coarse tremor, confusion, GI upset. Hold the dose."],
+  ["Lithium, advanced toxicity","2.0–2.5 mEq/L","Ataxia, seizures, stupor. Hospitalize."],
+  ["Lithium, severe toxicity","> 2.5 mEq/L","Convulsions, oliguria, death. Hemodialysis."],
+  ["Valproate","†50–125 mcg/mL","Textbook says levels are monitored but gives no number. †Toxic above 150."],
+  ["Carbamazepine","†4–12 mcg/mL","Textbook: no established range for bipolar disorder; levels are checked to avoid toxicity."],
+  ["†Clozapine","> 350 ng/mL","†Usual target for response; above 1000 raises seizure risk."],
+  ["†Nortriptyline","50–150 ng/mL","†The TCA with a true therapeutic window."],
+  ["†Tricyclics, toxic","> 500 ng/mL","†Above 1000 ng/mL is life-threatening; watch the QRS."],
+  ["Clozapine ANC, textbook","hold if < 1000/µL","Moderate neutropenia 500–999; severe below 500."],
+  ["†Clozapine ANC, standard","start if ≥ 1500/µL","†1000–1499: continue, check 3 times a week. Below 1000: interrupt."]
+ ],
+ antidotes: [
+  ["Benzodiazepines","†Flumazenil (Romazicon). Seizure risk in dependent patients"],
+  ["Opioids","Naloxone (Narcan). Repeat doses; it wears off first"],
+  ["Lithium","None. Stop the drug, †IV normal saline, whole bowel irrigation; hemodialysis above 2.5 mEq/L"],
+  ["Tricyclic antidepressants","†Sodium bicarbonate for QRS widening and dysrhythmias. No physostigmine"],
+  ["MAOI hypertensive crisis","Phentolamine (Regitine) 5 mg IV; nitroprusside or nitroglycerin"],
+  ["Serotonin syndrome","Cyproheptadine; †plus benzodiazepines and cooling"],
+  ["Neuroleptic malignant syndrome","Dantrolene (Dantrium) and bromocriptine (Parlodel)"],
+  ["Anticholinergic toxicity","Physostigmine (Antilirium)"],
+  ["Acute dystonia","Benztropine (Cogentin) or diphenhydramine (Benadryl) IM/IV"],
+  ["Akathisia","Propranolol; lorazepam or diazepam"],
+  ["Tardive dyskinesia","Valbenazine (Ingrezza) or deutetrabenazine (Austedo)"],
+  ["Cholinesterase inhibitors (cholinergic crisis)","†Atropine"],
+  ["Valproate (hyperammonemia, overdose)","†L-carnitine; hemodialysis if severe"],
+  ["Alcohol withdrawal","Benzodiazepines (lorazepam, chlordiazepoxide, diazepam); thiamine"],
+  ["Wernicke's encephalopathy","Thiamine IV, †before glucose"],
+  ["Clonidine overdose","†Supportive; naloxone sometimes helps"],
+  ["Stimulant overdose","†Benzodiazepines, cooling"],
+  ["SSRIs, SNRIs, bupropion, antipsychotics, Z-drugs","No specific antidote: supportive care (†flumazenil reverses Z-drug sedation)"]
+ ],
+ taper: [
+  ["SSRIs and SNRIs","Discontinuation syndrome: dizziness, insomnia, nervousness, irritability, nausea, agitation, flu-like symptoms, paresthesias. Worst with venlafaxine and †paroxetine; least with †fluoxetine"],
+  ["Tricyclic antidepressants","†Cholinergic rebound: nausea, vomiting, sweating, headache, vivid dreams"],
+  ["MAOIs","†Agitation, insomnia, rarely psychosis. Diet and drug rules continue for 14 days"],
+  ["Benzodiazepines","Withdrawal after about a month of daily use: anxiety, insomnia, tremor, confusion, SEIZURES"],
+  ["Z-hypnotics","†Rebound insomnia and withdrawal after long use"],
+  ["Lithium","Tapered gradually to lower the risk of relapse"],
+  ["Anticonvulsant mood stabilizers","†Seizures and mood relapse"],
+  ["Antipsychotics, especially clozapine","†Rebound psychosis, cholinergic rebound, withdrawal dyskinesia"],
+  ["Clonidine and guanfacine","Rebound hypertension"],
+  ["Stimulants (high dose, long term)","†Crash: fatigue, depression, increased appetite"],
+  ["Cholinesterase inhibitors","Abrupt stop can worsen cognition and behavior"],
+  ["Methadone and buprenorphine","Opioid withdrawal; tapered slowly or substituted"],
+  ["Benztropine and trihexyphenidyl","†Return of EPS; cholinergic rebound"],
+  ["Gabapentin and pregabalin","†Anxiety, insomnia, seizures"],
+  ["Propranolol and other beta blockers","†Rebound tachycardia, hypertension, angina"],
+  ["Alcohol-withdrawal benzodiazepines","Tapered over 5 to 7 days"]
+ ],
+ washout: [
+  ["SSRI → MAOI","Textbook: stop the SSRI for 2 to 5 weeks before the MAOI","†14 days for most SSRIs; 5 weeks for fluoxetine"],
+  ["MAOI → SSRI or any antidepressant","Textbook: no SSRI within 14 days of the last MAOI dose","†14 days"],
+  ["Fluoxetine → MAOI","Textbook: covered by the 2 to 5 week range","†5 weeks (long half-life and active metabolite)"],
+  ["SNRI → MAOI","Not stated in your files","†At least 7 days (venlafaxine, desvenlafaxine, levomilnacipran); 5 days for duloxetine"],
+  ["TCA → MAOI","Not stated; textbook says MAOIs are used cautiously with TCAs","†14 days"],
+  ["Vortioxetine → MAOI","Not stated in your files","†21 days"],
+  ["Bupropion, mirtazapine, trazodone ↔ MAOI","Not stated in your files","†14 days each way"],
+  ["MAOI → stimulant, atomoxetine, buspirone, meperidine, decongestant","Avoid with MAOIs","†14 days after the last MAOI dose"],
+  ["After stopping an MAOI: tyramine diet","Keep diet and drug restrictions for 14 days","†Same: the enzyme takes about 2 weeks to regenerate"],
+  ["MAOI → different MAOI","Not stated in your files","†14 days"],
+  ["SSRI → SSRI or SNRI","Not stated in your files","†No washout needed: direct switch or cross-taper (go slowly off fluoxetine)"],
+  ["Elective surgery after an MAOI","MAOIs are contraindicated with surgery in the previous 10 to 14 days","†Tell anesthesia; many stop the MAOI 2 weeks before"]
+ ],
+ tyramine: [
+  ["Cheese and dairy","Practically all cheeses (aged)","Milk, yogurt, cottage cheese, cream cheese"],
+  ["Meats","Fermented, smoked or aged meats; spoiled meats; liver unless very fresh","Meats known to be fresh (be careful in restaurants)"],
+  ["Sausages","Fermented types: bologna, pepperoni, salami","Non-fermented types"],
+  ["Fish","Dried, cured, fermented, smoked or aged fish; spoiled fish","Fresh fish; vacuum-packed fish eaten promptly"],
+  ["Vegetables","Avocados (especially overripe), fermented bean curd, fermented soybean, soybean paste","Most vegetables"],
+  ["Fruits","Figs (especially overripe); bananas in large amounts","Most fruits"],
+  ["Yeast","Yeast extract (Marmite, Bovril)","Baked goods made with yeast"],
+  ["Beer and wine","Some imported beers, Chianti wine; †tap and unpasteurized beer","Major domestic beers; most wines (in moderation)"],
+  ["Other","Protein dietary supplements, soups with protein extract, shrimp paste, soy sauce; †sauerkraut, kimchi","—"],
+  ["Non-tyramine pressors","Chocolate (large amounts), fava beans (dopamine), ginseng, caffeinated drinks (large amounts)","Small amounts of chocolate or caffeine"],
+  ["Drugs that act like tyramine","Cold, allergy and congestion remedies (ephedrine, pseudoephedrine, phenylephrine), stimulants, cocaine","Ask before taking anything over the counter"]
+ ],
+ pregnancy: [
+  ["Valproate","BOXED WARNING. Neural tube defects (spina bifida), cleft palate, small fingers and toes, autism, lower IQ and learning problems. Pregnancy test and birth control required"],
+  ["Carbamazepine","Serious birth defects; pregnancy test before starting. †Neural tube defects. Makes oral contraceptives fail"],
+  ["Lithium","Avoid when possible; may harm the fetus. Contraindicated in breastfeeding. †Ebstein anomaly (heart) in the first trimester; neonatal toxicity near delivery"],
+  ["Paroxetine","Small association with fetal heart defects. Avoid; other SSRIs are an option"],
+  ["Other SSRIs","Considered an option as a single drug at the lowest effective dose. †Late pregnancy: neonatal adaptation syndrome and persistent pulmonary hypertension of the newborn"],
+  ["SNRIs","Neonates exposed in utero have needed respiratory support and tube feeding (desvenlafaxine)"],
+  ["Tricyclic antidepressants","Not for pregnant women except with extreme caution and careful monitoring"],
+  ["Benzodiazepines","Floppy infant syndrome and neonatal withdrawal near delivery; small increase in cleft lip and palate. Do not breastfeed"],
+  ["Lamotrigine","†Lowest-risk mood stabilizer in pregnancy; levels fall during pregnancy, so doses change"],
+  ["Antipsychotics","†Third-trimester exposure: neonatal EPS and withdrawal. Haloperidol has the most data. Risperidone and paliperidone raise prolactin and reduce fertility"],
+  ["Stimulants","†Low birth weight and preterm birth; weigh risk and benefit"],
+  ["Methadone and buprenorphine","A low dose of methadone may be the safest course for a pregnant opioid user. Neonatal withdrawal is usually mild. †Do not detox in pregnancy; buprenorphine is also first line"],
+  ["Disulfiram","†Avoid in pregnancy"],
+  ["Buspirone","Use in pregnancy and breastfeeding only if clearly needed"],
+  ["St. John's wort and kava","Safety not established; use with caution or avoid"],
+  ["Zuranolone","†Fetal harm: contraception during and for 1 week after the course"],
+  ["Postpartum depression treatments","Brexanolone (60-hour infusion); †zuranolone (14-day oral course)"],
+  ["Electroconvulsive therapy","†Considered safe in pregnancy for severe depression or mania"]
+ ],
+ labmap: [
+  ["Serum lithium level","Lithium. Every 2–3 days at the start (textbook; †about 5 days after each change), then every 3–6 months"],
+  ["Sodium","Lithium (low sodium = toxicity); carbamazepine and †oxcarbazepine (hyponatremia); SSRIs and vortioxetine (hyponatremia in older adults)"],
+  ["BUN and creatinine","Lithium (baseline and yearly); acamprosate; †gabapentin, pregabalin, memantine, varenicline dosing"],
+  ["TSH and T4","Lithium (hypothyroidism): baseline and yearly"],
+  ["†Calcium and parathyroid","Lithium (hyperparathyroidism)"],
+  ["ANC (absolute neutrophil count)","Clozapine: weekly for 6 months, every 2 weeks for 6 months, then every 4 weeks. Possible with other antipsychotics"],
+  ["CBC with platelets","Valproate (thrombocytopenia); carbamazepine (leukopenia, aplastic anemia); †mirtazapine (rare agranulocytosis)"],
+  ["Liver function tests","Valproate, carbamazepine, atomoxetine, nefazodone, antipsychotics (every 6 months per the textbook); †duloxetine, naltrexone, disulfiram, kava"],
+  ["†Ammonia","Valproate, when confused or lethargic"],
+  ["†Amylase and lipase","Valproate (pancreatitis)"],
+  ["Fasting glucose or †A1C","Second-generation antipsychotics, especially clozapine and olanzapine"],
+  ["Fasting lipids","Second-generation antipsychotics; †mirtazapine"],
+  ["†Prolactin","Risperidone, paliperidone, first-generation antipsychotics; ramelteon"],
+  ["ECG (QT interval)","Citalopram, ziprasidone, haloperidol IV, thioridazine, chlorpromazine, pimozide, quetiapine, iloperidone; †methadone, hydroxyzine, VMAT2 inhibitors. Carbamazepine and lithium also get a baseline ECG"],
+  ["†ECG (QRS width)","Tricyclic antidepressants"],
+  ["†Creatine kinase (CK)","Neuroleptic malignant syndrome"],
+  ["HLA-B*1502","Carbamazepine, before starting in patients of Asian descent"],
+  ["Pregnancy test","Valproate, carbamazepine; †lithium, zuranolone"],
+  ["Serum drug level","Lithium, valproate, carbamazepine; †TCAs (nortriptyline), clozapine"],
+  ["†Urine drug screen","Before naltrexone (opioid free); with benzodiazepines and stimulants when misuse is suspected"],
+  ["Blood pressure and pulse (bedside)","Venlafaxine and other SNRIs, MAOIs, stimulants, atomoxetine, clonidine, guanfacine, esketamine, solriamfetol, †prazosin"],
+  ["Weight and height (bedside)","Stimulants in children (growth); antipsychotics, mirtazapine, lithium, valproate (weight gain)"],
+  ["Pulse oximetry (bedside)","Brexanolone (continuous); benzodiazepines with opioids"],
+  ["†Brain MRI","Lecanemab, donanemab (ARIA)"]
+ ],
+ boxed: [
+  ["All antidepressants (and atomoxetine, †viloxazine)","Suicidal thinking and behavior in children, adolescents †and young adults up to 24"],
+  ["All antipsychotics","Increased mortality in older adults with dementia-related psychosis"],
+  ["Clozapine","†Severe neutropenia; orthostatic hypotension, bradycardia, syncope; seizures; myocarditis"],
+  ["Valproate","Hepatotoxicity, pancreatitis, fetal harm"],
+  ["Carbamazepine","Stevens-Johnson syndrome and TEN (HLA-B*1502); †aplastic anemia and agranulocytosis"],
+  ["Lamotrigine","†Life-threatening rash"],
+  ["Lithium","†Toxicity close to therapeutic levels"],
+  ["Benzodiazepines","†Death with opioids; abuse, dependence and withdrawal"],
+  ["Z-hypnotics","†Complex sleep behaviors"],
+  ["Stimulants","Abuse, misuse and dependence"],
+  ["Methadone","†Respiratory depression, QT prolongation"],
+  ["Olanzapine pamoate (Zyprexa Relprevv)","†Post-injection delirium/sedation syndrome"],
+  ["Inhaled loxapine (Adasuve)","†Bronchospasm"],
+  ["Esketamine; brexanolone","†Sedation, dissociation, misuse; excessive sedation and loss of consciousness"],
+  ["Disulfiram","†Never give to an intoxicated patient or without their knowledge"],
+  ["Thioridazine; droperidol","†QT prolongation"],
+  ["Sodium oxybate","†CNS and respiratory depression; misuse"],
+  ["Lecanemab, donanemab","†ARIA (brain swelling or bleeding)"]
+ ],
+ suffixes: [
+  ["-pram, -oxetine","SSRI","citalopram, escitalopram, fluoxetine, paroxetine (duloxetine and atomoxetine are exceptions)"],
+  ["-faxine","SNRI","venlafaxine, desvenlafaxine"],
+  ["-triptyline, -pramine","Tricyclic antidepressant","amitriptyline, nortriptyline, imipramine, clomipramine"],
+  ["-zodone","Serotonin modulator","trazodone, nefazodone, vilazodone"],
+  ["-azine","Phenothiazine (first-generation antipsychotic)","chlorpromazine, fluphenazine, perphenazine"],
+  ["-peridol","Butyrophenone antipsychotic","haloperidol, droperidol"],
+  ["-apine","Atypical antipsychotic","clozapine, olanzapine, quetiapine, asenapine"],
+  ["-idone","Atypical antipsychotic","risperidone, paliperidone, ziprasidone, lurasidone, iloperidone"],
+  ["-piprazole","D2 partial agonist antipsychotic","aripiprazole, brexpiprazole"],
+  ["-pam, -lam","Benzodiazepine","lorazepam, diazepam, alprazolam"],
+  ["zol-, zal-, -clone","Z-hypnotic","zolpidem, zaleplon, eszopiclone"],
+  ["-orexant","Orexin antagonist","suvorexant, lemborexant"],
+  ["-phenidate","Stimulant","methylphenidate, dexmethylphenidate"],
+  ["-amfetamine, -amphetamine","Stimulant","lisdexamfetamine, dextroamphetamine"],
+  ["-pezil, -stigmine","Cholinesterase inhibitor","donepezil, rivastigmine"],
+  ["-benazine","VMAT2 inhibitor","valbenazine, deutetrabenazine"],
+  ["nal-","Opioid antagonist","naloxone, naltrexone"],
+  ["-afinil","Wake-promoting agent","modafinil, armodafinil"]
+ ]
+};
+
+const FIELDS = [
+  ["moa","How it works","wide"],["use","Used for"],["exp","Therapeutic response & how long it takes"],
+  ["se","Side effects"],["ae","Adverse effects (serious)"],["warn","Warnings & contraindications"],
+  ["tox","Toxicity & antidote","wide"],["int","Interactions"],["mon","Monitor / assess"],["labs","Labs to monitor","wide"],
+  ["ed","Nursing & teaching"],["kid","Like I'm 10"],["hesi","NCLEX / HESI focus"]
+];
+const SYS = Object.fromEntries(SYSTEMS.map(s=>[s.id,s]));
+CLASSES.forEach((c,i)=>{ c.id = "c"+i; });
+
+const state = { sys:"all", q:"", quiz:false, tab:"drugs", open:new Set() };
+try{ state.quiz = localStorage.getItem("pm_quiz")==="1"; const t=localStorage.getItem("pm_tab"); if(t==="quick") state.tab="quick"; }catch(e){}
+
+const $ = s=>document.querySelector(s);
+const esc = s=>String(s).replace(/[&<>"]/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[ch]));
+const norm = s=>String(s).toLowerCase().normalize("NFKD").replace(/[̀-ͯ]/g,"");
+function hl(text, q){
+  const raw = String(text); if(!q) return esc(raw);
+  const words = q.split(/\s+/).filter(w=>w.length>1).map(w=>w.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"));
+  if(!words.length) return esc(raw);
+  return raw.split(new RegExp("("+words.join("|")+")","gi")).map((p,i)=>i%2?"<mark>"+esc(p)+"</mark>":esc(p)).join("");
+}
+function fullText(c){
+  return norm([c.name,c.sfx,c.drugs.map(d=>d.join(" ")).join(" "),...FIELDS.map(([k])=>[].concat(c[k]||"").join(" "))].join(" "));
+}
+CLASSES.forEach(c=>{ c._txt = fullText(c); c._names = c.drugs.map(d=>norm(d[0]+" "+d[1])); c._parts = c.drugs.flatMap(d=>d[0].split(/,|\s\/\s|;/).map(p=>p.replace(/\(.*?\)/g,"").trim().toLowerCase()).filter(Boolean)); });
+const uniq = cs=>new Set(cs.flatMap(c=>c._parts)).size;
+
+function score(c, q){
+  if(!q) return {s:1, hits:[]};
+  const terms = norm(q).split(/\s+/).filter(Boolean);
+  let s = 0; const hits = [];
+  c.drugs.forEach((d,i)=>{
+    const n = c._names[i];
+    if(terms.every(t=>n.includes(t))){
+      hits.push(i);
+      const starts = terms.every(t=>new RegExp("(^|[\\s,/(-])"+t.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")).test(n));
+      s = Math.max(s, starts?100:80);
+    }
+  });
+  const cn = norm(c.name+" "+c.sfx);
+  if(terms.every(t=>cn.includes(t))) s = Math.max(s,70);
+  if(!s && terms.every(t=>c._txt.includes(t))) s = 20;
+  return {s, hits};
+}
+
+function renderChips(){
+  const counts = {}; SYSTEMS.forEach(s=>counts[s.id]=uniq(CLASSES.filter(c=>c.sys===s.id)));
+  const total = uniq(CLASSES);
+  const chip = (id,label,c,n)=>`<button class="chip" style="--c:${c}" aria-pressed="${state.sys===id}" data-sys="${id}">${id==="all"?"":'<span class="dot"></span>'}${esc(label)} <span class="n">${n}</span></button>`;
+  $("#chips").innerHTML = chip("all","All categories","var(--accent)",total) + SYSTEMS.map(s=>chip(s.id,s.name,s.hue,counts[s.id]||0)).join("");
+}
+
+const DG = '<span class="dg" title="From standard drug references, not your project files">†</span>';
+const dg = html=>html.replace(/†/g, DG);
+function listHTML(v){
+  if(Array.isArray(v)) return "<ul>"+v.map(x=>"<li>"+dg(hl(x,state.q))+"</li>").join("")+"</ul>";
+  return "<p>"+dg(hl(v,state.q))+"</p>";
+}
+function labsHTML(c){
+  const items = c.labs.map(x=>{
+    const d = x.startsWith("†"); const t = d ? x.slice(1) : x; const i = t.indexOf(": ");
+    const body = i>0 && i<60 ? "<b>"+hl(t.slice(0,i),state.q)+"</b>: "+hl(t.slice(i+2),state.q) : hl(t,state.q);
+    return "<li>"+(d?"†":"")+body+"</li>";
+  }).join("");
+  return dg("<ul>"+items+"</ul>");
+}
+const srcText = c=> c.ch.startsWith("not") ? "Source: standard drug references only. This class is not in your project files." : "Source: Varcarolis, Foundations of Psychiatric-Mental Health Nursing (9th ed.), Ch. "+c.ch+". † = from standard drug references, not your project files.";
+function cardHTML(c, hits, showSys){
+  const sys = SYS[c.sys];
+  const names = c.drugs.map(d=>d[0]).join(" · ");
+  const open = state.open.has(c.id);
+  const drugRows = c.drugs.map((d,i)=>`<div class="drow${hits.includes(i)&&state.q?" hit":""}"><div class="dn">${dg(hl(d[0],state.q))}</div><div class="db">${d[1]&&d[1]!=="—"?hl(d[1],state.q):""}</div>${d[2]?`<div class="dnote">${dg(hl(d[2],state.q))}</div>`:""}</div>`).join("");
+  const secs = FIELDS.filter(([k])=>c[k]).map(([k,label,w])=>`<section class="sec k-${k}${w?" wide":""}"><h4>${label}</h4><div class="ans">${k==="labs"?labsHTML(c):listHTML(c[k])}</div></section>`).join("");
+  return `<details class="mono" data-id="${c.id}" style="--c:${sys.hue}"${open?" open":""}>
+    <summary>
+      <div class="s-head">${showSys?`<span class="systag">${esc(sys.name)}</span>`:""}<div class="s-title"><h3>${hl(c.name.replace(/†/g,""),state.q)}</h3>${c.sfx&&c.sfx!=="—"?`<span class="sfx">${esc(c.sfx)}</span>`:""}</div></div>
+      <span class="chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <div class="s-drugs">${hl(names.replace(/†/g,""),state.q)}</div>
+    </summary>
+    <div class="body">
+      <div class="druglist">${drugRows}</div>
+      <div class="secs">${secs}</div>
+      <p class="srcline">${dg(esc(srcText(c)))}</p>
+      <div class="cardfoot"><button class="copybtn" data-copy="${c.id}">Copy as notes</button></div>
+    </div>
+  </details>`;
+}
+
+function renderDrugs(){
+  const view = $("#view-drugs");
+  const q = state.q.trim();
+  let items = CLASSES.filter(c=>state.sys==="all"||c.sys===state.sys).map(c=>({c,...score(c,q)})).filter(x=>x.s>0);
+  const nDrugs = uniq(items.map(x=>x.c));
+  $("#count").textContent = q ? `${items.length} class${items.length===1?"":"es"} match` : `${items.length} classes · ${nDrugs} drugs`;
+  if(!items.length){
+    view.innerHTML = `<div class="empty">No match for “${esc(q)}”${state.sys!=="all"?" in "+esc(SYS[state.sys].name):""}. Try the generic name, a brand, or a suffix like <b>-apine</b>.${state.sys!=="all"?' <br><br><button class="tbtn" id="allsys">Search all categories</button>':""}</div>`;
+    const b=$("#allsys"); if(b) b.onclick=()=>{state.sys="all";renderChips();render();};
+    return;
+  }
+  if(q){
+    items.sort((a,b)=>b.s-a.s);
+    const strong = items.filter(x=>x.s>=70);
+    if(strong.length && strong.length<=3) strong.forEach(x=>state.open.add(x.c.id));
+    const top = items.filter(x=>x.s>=70), rest = items.filter(x=>x.s<70);
+    let html = "";
+    if(top.length) html += `<div class="group">${top.map(x=>cardHTML(x.c,x.hits,true)).join("")}</div>`;
+    if(rest.length) html += `<div class="group"><h2>Also mentioned in</h2>${rest.map(x=>cardHTML(x.c,x.hits,true)).join("")}</div>`;
+    view.innerHTML = html;
+  } else {
+    view.innerHTML = SYSTEMS.filter(s=>state.sys==="all"||s.id===state.sys).map(s=>{
+      const cs = items.filter(x=>x.c.sys===s.id); if(!cs.length) return "";
+      return `<div class="group" style="--c:${s.hue}"><h2><span class="tab"></span>${esc(s.name)}</h2>${cs.map(x=>cardHTML(x.c,[],false)).join("")}</div>`;
+    }).join("");
+  }
+}
+
+function tbl(head, rows, monoCols, cls){
+  const q = norm(state.q.trim());
+  const rs = q ? rows.filter(r=>q.split(/\s+/).every(t=>norm(r.join(" ")).includes(t))) : rows;
+  if(!rs.length) return `<p class="lede">No rows match “${esc(state.q)}”.</p>`;
+  return `<div class="tablewrap"><table${cls?` class="${cls}"`:""}><thead><tr>${head.map(h=>`<th>${h}</th>`).join("")}</tr></thead><tbody>${rs.map(r=>`<tr>${r.map((v,i)=>`<td${monoCols.includes(i)?' class="mono"':""}>${dg(hl(v,state.q))}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+}
+const QSECS = [
+  ["compare","Serotonin syndrome vs NMS vs anticholinergic toxicity vs hypertensive crisis","Read across a row to tell them apart. Reflexes, skin and bowel sounds are the fastest clues.",["Feature","Serotonin syndrome","Neuroleptic malignant syndrome","Anticholinergic toxicity","MAOI hypertensive crisis"],[],"wide"],
+  ["eps","EPS types: onset and treatment","Onset times in the textbook are general; the † times are the ones most exam references use.",["Type","Onset","Looks like","Treatment and nursing care"],[],"wide"],
+  ["levels","Therapeutic drug levels","Where your textbook and standard references differ, both are listed. Ranges vary by lab.",["Drug","Range","Note"],[1],"mid"],
+  ["antidotes","Antidotes and rescue drugs","",["Problem","Antidote or treatment"],[],""],
+  ["taper","Drugs that need a taper","Never stop these abruptly. What happens if you do:",["Drug","If stopped suddenly"],[],""],
+  ["washout","Washout periods between antidepressants","The enzyme MAO takes about 2 weeks to grow back, which is where the 14-day rule comes from.",["Switch","Your textbook","†Standard references"],[],"mid"],
+  ["tyramine","Tyramine foods (MAOI diet)","From the textbook's MAOI food table (Ch. 14). Rule of thumb: aged, cured, fermented, smoked or spoiled.",["Category","Avoid (high tyramine)","Safe"],[],"mid"],
+  ["pregnancy","Pregnancy and breastfeeding risks","",["Drug","Risk"],[],""],
+  ["labmap","Which lab goes with which drug","Start from the lab value in the question and find the drugs that change it or need it checked.",["Lab / test","Drugs to think of"],[],""],
+  ["boxed","Boxed warnings at a glance","",["Drug or class","Boxed warning"],[],""],
+  ["suffixes","Suffix recognition","",["Ending","Class","Examples"],[0],"mid"]
+];
+function renderQuick(){
+  $("#count").textContent = state.q ? `Filtering tables for “${state.q}”` : "High-yield tables";
+  $("#view-quick").innerHTML = `<nav class="qnav" aria-label="Jump to table">${QSECS.map(s=>`<button type="button" data-go="q-${s[0]}">${esc(s[1].split(":")[0].replace(" vs NMS vs anticholinergic toxicity vs hypertensive crisis"," vs NMS vs others"))}</button>`).join("")}</nav>`
+  + QSECS.map(([k,title,lede,head,mono,cls])=>`<section class="qsec" id="q-${k}"><h2>${esc(title)}</h2>${lede?`<p class="lede">${dg(esc(lede))}</p>`:""}${tbl(head.map(h=>dg(esc(h))),QUICK[k],mono,cls)}</section>`).join("")
+  + `<p class="foot">Built from Varcarolis' <i>Foundations of Psychiatric-Mental Health Nursing</i> (9th ed.) in your project files, at full NCLEX-RN scope. ${DG} marks anything taken from standard drug references (FDA labeling, Lehne, nursing drug handbooks) because it is not in your files. This is a study aid, not a clinical reference; use current facility protocols and drug references in practice.</p>`;
+}
+
+function render(){
+  document.body.classList.toggle("quiz", state.quiz);
+  $("#quiz").checked = state.quiz;
+  const drugs = state.tab==="drugs";
+  $("#view-drugs").hidden = !drugs; $("#view-quick").hidden = drugs;
+  $("#tab-drugs").setAttribute("aria-selected", drugs); $("#tab-quick").setAttribute("aria-selected", !drugs);
+  $("#chips").hidden = !drugs; $("#expand").hidden = !drugs; $("#collapse").hidden = !drugs;
+  $("#q").placeholder = drugs ? "Search a drug, brand, class, suffix or finding (e.g. Zoloft, -apine, tremor)" : "Filter tables (e.g. lithium, clozapine, QT)";
+  $("#clear").hidden = !state.q;
+  drugs ? renderDrugs() : renderQuick();
+}
+
+function copyText(c){
+  const L = [];
+  L.push(c.name.toUpperCase()+"  ("+SYS[c.sys].name+")" + (c.sfx&&c.sfx!=="—" ? "  Suffix: "+c.sfx : ""));
+  L.push("DRUGS:");
+  c.drugs.forEach(d=>L.push("  • "+d[0]+(d[1]&&d[1]!=="—"?" ("+d[1]+")":"")+(d[2]?" – "+d[2]:"")));
+  FIELDS.forEach(([k,label])=>{ if(!c[k]) return; L.push(label.toUpperCase()+":"); [].concat(c[k]).forEach(x=>L.push("  • "+x)); });
+  L.push(srcText(c));
+  return L.join("\n");
+}
+
+/* Events */
+let t;
+$("#q").addEventListener("input", e=>{ clearTimeout(t); t=setTimeout(()=>{ state.q=e.target.value; if(!state.q) state.open.clear(); render(); },120); });
+$("#clear").addEventListener("click", ()=>{ state.q=""; $("#q").value=""; state.open.clear(); render(); $("#q").focus(); });
+$("#chips").addEventListener("click", e=>{ const b=e.target.closest(".chip"); if(!b) return; state.sys=b.dataset.sys; $("#view-quick").addEventListener("click", e=>{ const b=e.target.closest("[data-go]"); if(!b) return; const el=document.getElementById(b.dataset.go); if(el) el.scrollIntoView({block:"start"}); });
+
+renderChips(); render(); window.scrollTo({top:0}); });
+$("#quiz").addEventListener("change", e=>{ state.quiz=e.target.checked; try{localStorage.setItem("pm_quiz",state.quiz?"1":"0")}catch(_){} document.querySelectorAll(".sec.revealed").forEach(s=>s.classList.remove("revealed")); render(); });
+$("#expand").addEventListener("click", ()=>{ document.querySelectorAll("details.mono").forEach(d=>{d.open=true; state.open.add(d.dataset.id);}); });
+$("#collapse").addEventListener("click", ()=>{ document.querySelectorAll("details.mono").forEach(d=>d.open=false); state.open.clear(); });
+document.querySelectorAll(".tabs button").forEach(b=>b.addEventListener("click", ()=>{ state.tab = b.id==="tab-quick"?"quick":"drugs"; try{localStorage.setItem("pm_tab",state.tab)}catch(_){} render(); window.scrollTo({top:0}); }));
+$("#view-drugs").addEventListener("toggle", e=>{ const d=e.target; if(d.matches&&d.matches("details.mono")){ d.open?state.open.add(d.dataset.id):state.open.delete(d.dataset.id); } }, true);
+$("#view-drugs").addEventListener("click", e=>{
+  const sec = e.target.closest(".sec");
+  if(sec && document.body.classList.contains("quiz")){ sec.classList.toggle("revealed"); return; }
+  const btn = e.target.closest(".copybtn"); if(!btn) return;
+  const c = CLASSES.find(x=>x.id===btn.dataset.copy); const text = copyText(c);
+  const done = ()=>{ btn.textContent="Copied"; btn.classList.add("ok"); setTimeout(()=>{btn.textContent="Copy as notes";btn.classList.remove("ok");},1600); };
+  const fallback = ()=>{ const ta=document.createElement("textarea"); ta.value=text; ta.style.position="fixed"; ta.style.opacity="0"; document.body.appendChild(ta); ta.select(); try{document.execCommand("copy"); done();}catch(_){ btn.textContent="Select text manually"; } ta.remove(); };
+  try{ navigator.clipboard.writeText(text).then(done, fallback); }catch(_){ fallback(); }
+});
+
+renderChips(); render();
+</script>
+
+</body></html>
