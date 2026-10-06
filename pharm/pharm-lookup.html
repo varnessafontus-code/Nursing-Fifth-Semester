@@ -8,7 +8,7 @@
 :root{
   --paper:#EEF3F1; --card:#FFFFFF; --ink:#132029; --muted:#55646D; --line:#D2DCD9; --line-strong:#B9C7C3;
   --accent:#0A6A64; --accent-ink:#FFFFFF; --accent-soft:#DCEDEA;
-  --warn:#AD2318; --warn-soft:#FBEAE7; --tox:#663C9C; --tox-soft:#F0E9F8; --tip:#7C5300; --tip-soft:#FAF0D6;
+  --warn:#AD2318; --warn-soft:#FBEAE7; --tox:#663C9C; --tox-soft:#F0E9F8; --tip:#7C5300; --tip-soft:#FAF0D6; --lab:#1F5FA8; --lab-soft:#E4EEFA;
   --mark:#FFE07A; --mark-ink:#132029; --shadow:0 1px 2px rgba(19,32,41,.06),0 4px 14px rgba(19,32,41,.05);
   --s1:#3D5A98; --s2:#2F7D8C; --s3:#8A4E9C; --s4:#B23A48; --s5:#9C2B2B; --s6:#2E7FB8; --s7:#B07A14;
   --s8:#B5487E; --s9:#3E8E5E; --s10:#6E7F1F; --s11:#C2602B; --s12:#7A5A3A; --s13:#4F6470;
@@ -19,7 +19,7 @@
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
   --paper:#0E1517; --card:#162125; --ink:#E2ECE9; --muted:#9AABAF; --line:#26353A; --line-strong:#34474D;
   --accent:#4FC2B8; --accent-ink:#06211F; --accent-soft:#163A37;
-  --warn:#FF8A7E; --warn-soft:#3A1C1A; --tox:#C3A2F0; --tox-soft:#2A2140; --tip:#F0C35C; --tip-soft:#33290F;
+  --warn:#FF8A7E; --warn-soft:#3A1C1A; --tox:#C3A2F0; --tox-soft:#2A2140; --tip:#F0C35C; --tip-soft:#33290F; --lab:#8DBBF2; --lab-soft:#172A40;
   --mark:#7A6417; --mark-ink:#FFF6D6; --shadow:0 1px 2px rgba(0,0,0,.3);
   --s1:#8AA6E6; --s2:#6CC3D2; --s3:#C99BDA; --s4:#F08B97; --s5:#E77F7F; --s6:#7DB8E6; --s7:#E7B95A;
   --s8:#EE93BD; --s9:#80C99C; --s10:#B6C760; --s11:#F1A070; --s12:#C9A27E; --s13:#9FB3BD;
@@ -27,7 +27,7 @@
 :root[data-theme="dark"]{
   --paper:#0E1517; --card:#162125; --ink:#E2ECE9; --muted:#9AABAF; --line:#26353A; --line-strong:#34474D;
   --accent:#4FC2B8; --accent-ink:#06211F; --accent-soft:#163A37;
-  --warn:#FF8A7E; --warn-soft:#3A1C1A; --tox:#C3A2F0; --tox-soft:#2A2140; --tip:#F0C35C; --tip-soft:#33290F;
+  --warn:#FF8A7E; --warn-soft:#3A1C1A; --tox:#C3A2F0; --tox-soft:#2A2140; --tip:#F0C35C; --tip-soft:#33290F; --lab:#8DBBF2; --lab-soft:#172A40;
   --mark:#7A6417; --mark-ink:#FFF6D6; --shadow:0 1px 2px rgba(0,0,0,.3);
   --s1:#8AA6E6; --s2:#6CC3D2; --s3:#C99BDA; --s4:#F08B97; --s5:#E77F7F; --s6:#7DB8E6; --s7:#E7B95A;
   --s8:#EE93BD; --s9:#80C99C; --s10:#B6C760; --s11:#F1A070; --s12:#C9A27E; --s13:#9FB3BD;
@@ -50,6 +50,7 @@ button,input{font:inherit;color:inherit}
 .tabs button[aria-selected="true"]{background:var(--accent);color:var(--accent-ink)}
 .search{position:relative}
 .search input{width:100%;padding:11px 40px 11px 14px;border-radius:12px;border:1.5px solid var(--line-strong);background:var(--card);font-size:16px}
+.search input::-webkit-search-cancel-button{display:none}
 .search input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px var(--accent-soft)}
 .search .clear{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:none;width:32px;height:32px;border-radius:8px;cursor:pointer;color:var(--muted);font-size:1.2rem;line-height:1}
 .chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
@@ -112,6 +113,10 @@ mark{background:var(--mark);color:var(--mark-ink);border-radius:3px;padding:0 1p
 .sec.k-hesi{background:var(--tip-soft)} .sec.k-hesi h4{color:var(--tip)}
 .sec.k-kid{background:var(--accent-soft)} .sec.k-kid h4{color:var(--accent)}
 .sec.k-kid .ans{font-style:italic}
+.sec.k-labs{background:var(--lab-soft)} .sec.k-labs h4{color:var(--lab)}
+.sec.k-labs li b{font-weight:700}
+.sec.k-labs .dg{color:var(--lab);font-weight:700;margin-right:3px}
+.sec.k-labs .src{margin:8px 0 0;font-size:.78rem;color:var(--muted)}
 
 .cardfoot{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
 .copybtn{border:1px solid var(--line-strong);background:var(--card);border-radius:8px;padding:6px 12px;cursor:pointer;font-weight:700;font-size:.82rem}
@@ -2894,12 +2899,840 @@ QUICK.antidotes.push(
   ["Ifosfamide/cyclophosphamide bladder toxicity","Mesna (preventive)"]
 );
 
+/* Labs to monitor, per class. Source: Lilley, Pharmacology and the Nursing Process (chapter in `ch`).
+   Items starting with † are not listed in Lilley's lab monitoring for that chapter; they come from standard drug-label / nursing references. */
+const LABS = {
+/* ---------- Nervous system & pain ---------- */
+"Opioid Agonists": {ch:"10", labs:[
+ "Renal function (BUN, creatinine): toxicity risk rises when the kidneys can't clear the drug",
+ "Liver function (ALT, AST): the liver metabolizes opioids; poor function raises blood levels",
+ "Lab interference: opioids can falsely raise amylase, lipase, ALT, alkaline phosphatase, bilirubin, CK and LDH",
+ "No drug level is drawn. Bedside checks matter more: RR, SpO2 and sedation level",
+ "†ECG (QT interval) with methadone"]},
+"Opioid Antagonists & Partial Agonists": {ch:"10, 17", labs:[
+ "Liver function (AST, ALT): naltrexone is hepatotoxic; check before and during therapy",
+ "Renal and liver function studies and a drug screen before starting substance-use treatment",
+ "†Urine drug screen must be opioid-negative before naltrexone",
+ "No routine labs for naloxone: monitor RR, SpO2 and LOC"]},
+"Acetaminophen": {ch:"10", labs:[
+ "Liver function (ALT normal 4–36 units/L, AST): monitor often with long-term daily use",
+ "Serum acetaminophen level in overdose: guides acetylcysteine. If a level can't be obtained, treat as toxic",
+ "Renal function with long-term or high-dose use",
+ "†INR if the patient is also on warfarin and taking regular doses"]},
+"Benzodiazepines": {ch:"12", labs:[
+ "CBC: may be ordered before therapy",
+ "Renal function (BUN, creatinine) and hepatic function (ALP): rule out organ impairment that would let the drug build up",
+ "Renal and liver function are most important in older adults",
+ "No drug level is drawn routinely"]},
+"Barbiturates": {ch:"12, 14", labs:[
+ "Phenobarbital level: 10–40 mcg/mL. Above 40 = toxicity (cold clammy skin, RR under 10, CNS depression)",
+ "RBC, hemoglobin and hematocrit: anemia is a possible adverse effect",
+ "CBC before therapy",
+ "Renal (BUN, creatinine) and liver function: slower clearance raises toxicity",
+ "†INR if on warfarin (barbiturates are enzyme inducers and lower its effect)"]},
+"Nonbenzodiazepine Hypnotics": {ch:"12", labs:[
+ "Liver function before ramelteon: it is not used with liver impairment",
+ "Renal and liver function in older adults and anyone with organ impairment",
+ "No routine labs for zolpidem or eszopiclone otherwise"]},
+"Antiepileptics": {ch:"14", labs:[
+ "Serum drug levels at baseline and regularly (Lilley Table 14.6): phenytoin 10–20, carbamazepine 4–12, valproic acid 50–125, phenobarbital 10–40, primidone 5–12, levetiracetam 12–46 mcg/mL",
+ "Levetiracetam and lamotrigine levels are not routinely followed unless toxicity or nonadherence is suspected",
+ "CBC (RBC, WBC): blood dyscrasias, especially carbamazepine and phenytoin",
+ "Liver function: baseline for phenytoin and valproic acid (hepatotoxicity); note any history of pancreatitis with valproate",
+ "Clotting studies and renal function before therapy",
+ "Serum albumin with phenytoin: low albumin means more free, active drug (toxicity at a 'normal' level)",
+ "Urine output and specific gravity",
+ "†Sodium with carbamazepine and oxcarbazepine (hyponatremia); ammonia and platelets with valproate; bicarbonate with topiramate; HLA-B*1502 before carbamazepine in patients of Asian descent"]},
+"Antiparkinson Drugs": {ch:"15", labs:[
+ "Renal function (BUN, creatinine): review before and during therapy",
+ "Liver transaminases (ALT, AST) before and during tolcapone: black box warning for liver failure; stop if ALT rises",
+ "†Liver function with long-term levodopa; CBC periodically"]},
+"Skeletal Muscle Relaxants": {ch:"12", labs:[
+ "Renal function: some muscle relaxants are contraindicated with severe renal impairment",
+ "†Liver function with dantrolene and tizanidine (hepatotoxic)",
+ "†In malignant hyperthermia (dantrolene): potassium, CK, ABGs, urine myoglobin"]},
+"Anesthetics & Neuromuscular Blockers": {ch:"11", labs:[
+ "Electrolytes, especially potassium and magnesium: imbalances change the response to neuromuscular blockers",
+ "Pre-op panel: Hgb, Hct, WBC with differential, PT/INR, aPTT, platelets",
+ "Renal function (BUN, creatinine, urinalysis with specific gravity) and hepatic function (albumin, bilirubin, ALP, AST, ALT)",
+ "Pregnancy test in females of childbearing age",
+ "Serum lipids (triglycerides) with prolonged propofol infusion or propofol given with TPN",
+ "ECG and chest x-ray as ordered",
+ "†Potassium before succinylcholine (it raises K)"]},
+"CNS Stimulants & ADHD Drugs": {ch:"13", labs:[
+ "Blood glucose in patients with diabetes: stimulants increase glycogen breakdown, so tighter monitoring is needed",
+ "Height and weight on a growth chart (not a lab, but the key measurement)",
+ "†Liver function with atomoxetine; ECG if there is cardiac history"]},
+"Substance Use Treatment": {ch:"17", labs:[
+ "Renal and liver function studies: baseline for disulfiram, naltrexone and acamprosate",
+ "Blood or urine drug and alcohol screens: show recent use",
+ "†Blood alcohol must be zero before disulfiram (12 h alcohol-free)",
+ "†Magnesium, potassium, phosphate and glucose in alcohol withdrawal; thiamine before glucose"]},
+"Migraine Drugs": {ch:"13", labs:[
+ "No routine labs",
+ "†ECG and cardiovascular assessment before the first triptan dose in patients with risk factors",
+ "†Pregnancy test before ergot alkaloids; liver function with long-term preventive drugs (valproate, topiramate bicarbonate)"]},
+"Alzheimer's Drugs": {ch:"20", labs:[
+ "Baseline workup to rule out other causes of confusion: CBC, serum electrolytes, vitamin B12, liver and thyroid function tests, and MRI",
+ "No drug level is drawn",
+ "†ECG or heart rate for bradycardia; MRI monitoring for ARIA with anti-amyloid antibodies"]},
+
+/* ---------- Autonomic ---------- */
+"Adrenergic Agonists (Vasopressors)": {ch:"18", labs:[
+ "Arterial blood gases as ordered",
+ "Continuous ECG with IV infusions",
+ "Liver and renal function: document baseline results",
+ "Blood glucose: alpha-adrenergic drugs can raise glucose (and corticotropin and corticosteroid levels)",
+ "†Lactate and urine output as perfusion markers in shock"]},
+"Alpha-Adrenergic Blockers": {ch:"19, 35", labs:[
+ "No routine drug-specific labs: orthostatic BP is the key check",
+ "PSA before treating BPH if the prostate is enlarged (rules out cancer)",
+ "†Renal function in BPH with retention"]},
+"Cholinergic Agonists (Parasympathomimetics)": {ch:"20", labs:[
+ "No routine labs",
+ "Baseline Alzheimer's workup when used for dementia: CBC, electrolytes, B12, liver and thyroid function",
+ "†ECG or heart rate (bradycardia); intake and output with bethanechol"]},
+"Anticholinergics (Cholinergic Blockers)": {ch:"21", labs:[
+ "No routine labs",
+ "†ECG with IV atropine; intraocular pressure check if glaucoma is a concern; post-void residual for retention"]},
+
+/* ---------- Mental health ---------- */
+"SSRIs": {ch:"16", labs:[
+ "CBC and renal and liver function studies: often ordered before and during antidepressant therapy",
+ "†Serum sodium, especially in older adults (SIADH / hyponatremia)",
+ "†ECG (QT) with high-dose citalopram; INR if on warfarin"]},
+"SNRIs & Atypical Antidepressants": {ch:"16", labs:[
+ "Liver function: may be ordered before therapy because of liver toxicity risk (duloxetine, nefazodone)",
+ "CBC and renal function before and during therapy",
+ "†Sodium (hyponatremia); BP with venlafaxine; lipids and weight with mirtazapine"]},
+"Tricyclic Antidepressants (TCAs)": {ch:"16", labs:[
+ "CBC and renal and liver function studies before and during therapy",
+ "†ECG baseline and periodically: QRS widening and dysrhythmias (the main overdose danger)",
+ "†Serum drug level in suspected toxicity"]},
+"MAO Inhibitors": {ch:"16", labs:[
+ "CBC and renal and liver function studies: often ordered with antidepressants",
+ "BP is the priority check (hypertensive crisis)",
+ "†Blood glucose in diabetics (MAOIs can cause hypoglycemia)"]},
+"Lithium (Mood Stabilizer)": {ch:"16", labs:[
+ "Serum lithium level: therapeutic 0.6–1.2 mEq/L; toxic above 1.5 mEq/L. Check every 3–4 days at the start of therapy",
+ "Serum sodium: keep in the normal range. Hyponatremia and dehydration make lithium toxic",
+ "Albumin and uric acid: often ordered before and during therapy",
+ "Urinalysis with specific gravity: hydration status",
+ "Renal function (BUN, creatinine) and thyroid studies",
+ "†Draw the level 12 h after the last dose; then every 1–3 months once stable",
+ "†TSH every 6–12 months (hypothyroidism); calcium; pregnancy test; ECG"]},
+"Typical (1st-Gen) Antipsychotics": {ch:"16", labs:[
+ "CBC: agranulocytosis and other blood dyscrasias",
+ "Liver and renal function studies",
+ "Serum drug level when ordered: haloperidol therapeutic about 4–22 ng/mL (below 4 = symptoms return; above 22 = toxicity)",
+ "Serum electrolytes and glucose",
+ "†ECG (QT interval), especially IV haloperidol; CK if neuroleptic malignant syndrome is suspected; prolactin if symptomatic"]},
+"Atypical (2nd-Gen) Antipsychotics": {ch:"16", labs:[
+ "WBC count with clozapine: weekly for the first 6 months (agranulocytosis). Other atypicals do not need this",
+ "Blood glucose and serum lipids: insulin resistance, weight gain and lipid changes (metabolic syndrome)",
+ "CBC, electrolytes, liver and renal function studies",
+ "†Fasting glucose or A1C and lipid panel at baseline, 3 months, then yearly; weight, BMI and waist",
+ "†Absolute neutrophil count (ANC) is the value used for clozapine; ECG (QT) with ziprasidone"]},
+"Buspirone (Non-Benzo Anxiolytic)": {ch:"16", labs:[
+ "No routine labs",
+ "†Liver and renal function at baseline (the drug builds up with impairment)"]},
+
+/* ---------- Cardiovascular ---------- */
+"ACE Inhibitors": {ch:"22, 24", labs:[
+ "Serum potassium (normal 3.5–5.2 mEq/L): hyperkalemia. A baseline K of 5 or higher may rule out an ACE inhibitor",
+ "Serum creatinine and BUN: ACE inhibitors can cause renal impairment",
+ "Serum sodium",
+ "WBC count periodically (neutropenia, especially captopril)",
+ "Baseline and periodic potassium and renal function for as long as the patient is on the drug",
+ "†Pregnancy test; urine protein"]},
+"Angiotensin II Receptor Blockers (ARBs)": {ch:"22, 24", labs:[
+ "Serum potassium: hyperkalemia; monitor in all patients",
+ "Renal function (creatinine, BUN): baseline and periodic",
+ "Serum sodium",
+ "†Pregnancy test; liver function"]},
+"Beta-Adrenergic Blockers": {ch:"19, 25", labs:[
+ "Blood glucose: beta blockers can cause hypo- or hyperglycemia and mask hypoglycemia signs",
+ "Lipids: can raise triglycerides and lower HDL",
+ "ECG with IV dosing",
+ "No drug level. Apical pulse and BP before every dose",
+ "†Renal function with atenolol (renally cleared)"]},
+"Calcium Channel Blockers": {ch:"22, 23, 25", labs:[
+ "ECG with IV verapamil or diltiazem",
+ "Liver and renal function studies",
+ "†Digoxin level if also on digoxin: verapamil raises it",
+ "No routine drug-specific labs otherwise: BP, HR and edema"]},
+"Centrally Acting Alpha-2 Agonists": {ch:"22", labs:[
+ "WBC count",
+ "Serum potassium and sodium",
+ "Urine protein (proteinuria)",
+ "†Liver function, CBC and Coombs test with methyldopa (hemolytic anemia, hepatitis)"]},
+"Direct Vasodilators": {ch:"22", labs:[
+ "Electrolytes (sodium, potassium, chloride, magnesium, calcium), CBC with platelets, and renal function (BUN, creatinine)",
+ "†Thiocyanate or cyanide level and ABGs/lactate with nitroprusside lasting more than 24–48 h (metabolic acidosis = cyanide toxicity)",
+ "†ANA and CBC with long-term hydralazine (drug-induced lupus)"]},
+"Nitrates (Antianginals)": {ch:"23", labs:[
+ "No routine labs for nitroglycerin: BP and pain score before and after each dose",
+ "ECG as ordered; continuous ECG with IV nitroglycerin",
+ "Liver function before ranolazine, plus ECG for QT prolongation",
+ "If MI is suspected: troponins (rise in 4–6 h, stay up to 14 days), CK-MB, LDH, myoglobin",
+ "†Methemoglobin level with high-dose IV nitroglycerin"]},
+"Cardiac Glycoside (Digoxin)": {ch:"24", labs:[
+ "Serum digoxin level: 0.5–2 ng/mL. Narrow therapeutic index. Checked when starting, then if toxicity, nonadherence or declining renal function is suspected",
+ "Serum potassium BEFORE every dose: hypokalemia causes digoxin toxicity",
+ "Serum magnesium: hypomagnesemia also causes toxicity",
+ "Calcium, sodium and chloride (hypercalcemia raises the risk of dysrhythmias)",
+ "Renal function (BUN, creatinine): digoxin is excreted almost entirely by the kidneys",
+ "ECG",
+ "After digoxin immune Fab: serum digoxin levels read falsely high for days to weeks, so judge by symptoms; watch potassium (it can drop fast)",
+ "†Draw the level at least 6–8 h after the dose"]},
+"Other Heart Failure Drugs": {ch:"24", labs:[
+ "Serum potassium, renal function and BP: baseline and periodically with sacubitril/valsartan",
+ "Electrolytes: potassium, sodium, magnesium and calcium",
+ "Renal function (BUN, creatinine) and liver function",
+ "Milrinone: ECG for ventricular dysrhythmias; potassium, platelets and liver enzymes (hypokalemia, thrombocytopenia)",
+ "†BNP or NT-proBNP trends (BNP is not reliable on sacubitril: use NT-proBNP)"]},
+"Antidysrhythmics": {ch:"25", labs:[
+ "ECG: continuous at the start; QT interval. Dofetilide needs continuous ECG for the first 3 days in hospital",
+ "Hepatic (AST, ALT) and renal function (BUN, creatinine)",
+ "Amiodarone: thyroid function, liver function and pulmonary status (chest x-ray, PFTs)",
+ "INR if on warfarin: amiodarone raises INR about 50%",
+ "Digoxin level if on digoxin: amiodarone raises it about 50%",
+ "Blood glucose with class II drugs (beta blockers)",
+ "†Potassium and magnesium: correct before and during therapy (torsades risk)",
+ "†Lidocaine level 1.5–5 mcg/mL; creatinine clearance before dofetilide and sotalol; eye exams with amiodarone"]},
+"Statins (HMG-CoA Reductase Inhibitors)": {ch:"27", labs:[
+ "Lipid panel: total cholesterol 200 mg/dL or less, triglycerides under 150, LDL under 100, HDL 60 or higher. Checked every 6–8 weeks for the first 6 months, then every 3–6 months",
+ "Fast 12–14 hours before a lipid profile",
+ "Liver enzymes (AST, ALT): baseline and for comparison during therapy",
+ "CPK (creatine kinase): for muscle pain or weakness (myopathy to rhabdomyolysis)",
+ "Renal function: rhabdomyolysis can cause acute renal failure",
+ "†Glucose or A1C (small rise in diabetes risk); urine myoglobin if rhabdomyolysis is suspected"]},
+"Bile Acid Sequestrants": {ch:"27", labs:[
+ "Lipid panel, including triglycerides (these drugs can raise triglycerides)",
+ "Liver function: baseline, as with most antilipemics",
+ "†PT/INR and fat-soluble vitamin levels (A, D, E, K) with long-term use: these drugs block vitamin K absorption"]},
+"Niacin (Nicotinic Acid)": {ch:"27, 53", labs:[
+ "Liver function tests: abnormal results and hepatitis are known adverse effects",
+ "Uric acid: hyperuricemia and gout",
+ "Blood glucose: niacin lowers glucose tolerance",
+ "Lipid panel to judge response"]},
+"Fibric Acid Derivatives": {ch:"27", labs:[
+ "Lipid panel, especially triglycerides",
+ "Liver function tests: enzyme levels may rise",
+ "CBC: gemfibrozil can lower hemoglobin, hematocrit and WBC count",
+ "Liver and kidney function tests and prothrombin time: monitored frequently with fibrates",
+ "†CK if muscle pain, especially with a statin"]},
+"Cholesterol Absorption Inhibitor & PCSK9": {ch:"27", labs:[
+ "Liver enzymes before ezetimibe and during therapy, especially with a statin",
+ "Lipid panel to judge response",
+ "Renal and liver function before and throughout treatment"]},
+"Pulmonary Arterial Hypertension Drugs": {ch:"—", labs:[
+ "†Liver function monthly with bosentan (boxed warning for hepatotoxicity)",
+ "†Pregnancy test before, monthly during and 1 month after endothelin antagonists and riociguat (REMS)",
+ "†Hemoglobin and hematocrit: endothelin antagonists can cause anemia",
+ "†Platelets with IV prostacyclins; BNP to follow response"]},
+
+/* ---------- Blood ---------- */
+"Heparins (UFH & LMWH)": {ch:"26", labs:[
+ "aPTT for IV unfractionated heparin: target 1.5–2.5 times control (control 25–35 s; therapeutic about 45–70 s)",
+ "Draw aPTT 4–6 h after starting or changing the dose, then about every 6 h until therapeutic",
+ "aPTT is NOT monitored for prophylactic SubQ heparin (5000 units every 12 h) or routinely for LMWH",
+ "Platelet count: heparin-induced thrombocytopenia (HIT)",
+ "CBC, hemoglobin and hematocrit: a drop means bleeding; report it at once",
+ "Stool for occult blood",
+ "Renal function with enoxaparin and fondaparinux (renally cleared)",
+ "†Anti-Xa level for LMWH in renal impairment, obesity or pregnancy"]},
+"Warfarin (Vitamin K Antagonist)": {ch:"26", labs:[
+ "PT/INR: target INR 2–3 (2.5–3.5 for mechanical heart valves or recurrent clots). PT target about 1.5 times control (control 11–13 s)",
+ "INR and PT daily at the start until the dose is stable, then every 1–4 weeks",
+ "INR reflects the warfarin dose given 36–72 h earlier",
+ "CBC, hemoglobin, hematocrit and platelets",
+ "Liver function: clotting factors are made in the liver",
+ "Stool and urine for blood",
+ "Genetic testing (CYP2C9, VKORC1) can guide the starting dose",
+ "†Pregnancy test before starting"]},
+"Direct Oral Anticoagulants (DOACs)": {ch:"26", labs:[
+ "No routine coagulation monitoring is required. These drugs can falsely elevate INR",
+ "Renal function: dose depends on it (all Xa inhibitors, dabigatran, fondaparinux)",
+ "Liver function before argatroban",
+ "CBC, hemoglobin, hematocrit and platelets at baseline and for bleeding",
+ "†aPTT for IV argatroban and bivalirudin"]},
+"Antiplatelet Drugs": {ch:"26", labs:[
+ "Platelet count: with GP IIb/IIIa inhibitors, call the prescriber if below 90,000/mm³",
+ "CBC, hemoglobin and hematocrit: baseline and for bleeding",
+ "Renal function with GP IIb/IIIa inhibitors",
+ "Stool for occult blood",
+ "†CBC for TTP with clopidogrel (rare)"]},
+"Thrombolytics": {ch:"26", labs:[
+ "INR, aPTT, platelet count and fibrinogen: baseline, then starting within 2–3 h after the drug",
+ "Baseline CBC, hemoglobin and hematocrit: a drop afterward means bleeding (possible shock)",
+ "†Blood glucose and a noncontrast head CT before tPA for stroke; type and screen; troponin for MI"]},
+"Iron Preparations": {ch:"54", labs:[
+ "Hemoglobin, hematocrit and RBC count",
+ "Reticulocyte count: the first sign the iron is working",
+ "Bilirubin, and baseline folate and B-complex vitamin levels",
+ "†Ferritin, serum iron, TIBC and transferrin saturation (iron stores)",
+ "†Serum iron level in suspected overdose (children)"]},
+"B12, Folate & Erythropoiesis Stimulants": {ch:"54, 47", labs:[
+ "Hemoglobin and hematocrit: with epoetin, target hemoglobin 11 g/dL on dialysis and 10 g/dL for CKD not on dialysis",
+ "Iron stores before and during epoetin (ferritin, transferrin saturation): most patients also need iron",
+ "RBC count, reticulocyte count, bilirubin",
+ "Baseline folate and vitamin B12 levels",
+ "BP: rises as hematocrit rises",
+ "†Potassium early in B12 therapy (hypokalemia as new cells are built)"]},
+"Colony-Stimulating Factors & Platelet Boosters": {ch:"47", labs:[
+ "WBC count with differential and absolute neutrophil count (ANC): watch the nadir to time the dose",
+ "Baseline WBC and platelet counts",
+ "CBC: hemoglobin and hematocrit",
+ "†CBC twice weekly during filgrastim; stop when ANC recovers per protocol",
+ "†Platelet count weekly and liver function with romiplostim and eltrombopag"]},
+"Hemostatics & Sickle Cell Drugs": {ch:"26, 46", labs:[
+ "Clotting studies (PT/INR, aPTT), platelets, hemoglobin and hematocrit",
+ "Hydroxyurea: baseline blood cell counts, plus liver and renal function",
+ "†CBC every 2–4 weeks with hydroxyurea (hold for neutropenia or thrombocytopenia); fetal hemoglobin (HbF) and MCV show response",
+ "†Factor VIII or IX levels in hemophilia; sodium with desmopressin"]},
+
+/* ---------- Renal, fluids & electrolytes ---------- */
+"Loop Diuretics": {ch:"28", labs:[
+ "Serum potassium: hypokalemia is the main risk (normal 3.5–5 mEq/L)",
+ "Sodium, chloride, magnesium and calcium: all can drop",
+ "BUN (8–25 mg/dL) and creatinine (0.6–1.5 mg/dL): renal function and dehydration",
+ "Uric acid and blood glucose: both rise (gout; closer glucose checks in diabetics)",
+ "CBC and clotting studies with torsemide (leukopenia, neutropenia, thrombocytopenia)",
+ "Liver enzymes (ALT, AST can rise)",
+ "ABGs if ordered (metabolic alkalosis)",
+ "†Digoxin level and lithium level if on those drugs"]},
+"Thiazide & Thiazide-Like Diuretics": {ch:"28", labs:[
+ "Serum potassium: hypokalemia",
+ "Sodium and chloride (hyponatremia, hypochloremic alkalosis)",
+ "Calcium: thiazides RAISE it",
+ "Blood glucose: rises; diabetics need closer monitoring",
+ "Uric acid: rises (gout)",
+ "BUN and creatinine",
+ "†Lipids (small rise); magnesium"]},
+"Potassium-Sparing Diuretics": {ch:"28, 22", labs:[
+ "Serum potassium: hyperkalemia. Check often with impaired renal function or potassium supplements",
+ "Eplerenone is contraindicated when potassium is above 5.5 mEq/L or with severe renal impairment",
+ "Renal function (BUN, creatinine)",
+ "Sodium and chloride",
+ "ECG if potassium is high"]},
+"Osmotic Diuretics": {ch:"28", labs:[
+ "Serum electrolytes (sodium, potassium, chloride)",
+ "Renal function (BUN, creatinine) and urine output",
+ "†Serum osmolality: hold mannitol if above about 320 mOsm/kg",
+ "†Intracranial pressure when given for cerebral edema"]},
+"Carbonic Anhydrase Inhibitors": {ch:"28", labs:[
+ "Sodium and potassium: close assessment needed",
+ "Arterial blood gases / bicarbonate: metabolic acidosis",
+ "Renal and liver function: not used with a history of renal or liver dysfunction",
+ "†CBC (blood dyscrasias); intraocular pressure for glaucoma"]},
+"Potassium Replacement": {ch:"29", labs:[
+ "Serum potassium: 3.5–5 mEq/L. Monitor throughout therapy; some labs call 5.0 high and others 5.3, so check your institution's range",
+ "†Renal function and urine output before giving (at least 30 mL/h)",
+ "ECG: continuous monitoring if infusing faster than 10 mEq/h",
+ "Sodium, calcium and magnesium",
+ "†Magnesium: low magnesium makes hypokalemia hard to correct"]},
+"IV Fluids & Blood Products": {ch:"29", labs:[
+ "Serum sodium (135–145 mEq/L), potassium and chloride",
+ "Urine specific gravity, intake and output",
+ "Hematocrit, hemoglobin and serum protein (albumin) with colloids",
+ "With blood products: hemoglobin, hematocrit, RBC, WBC, platelets and clotting factors; watch for fever and blood in the urine",
+ "Serum sodium closely with hypertonic saline and tolvaptan/conivaptan: raising sodium too fast causes osmotic demyelination",
+ "†Type and crossmatch before transfusion; serum osmolality; BUN and creatinine"]},
+"Hyperkalemia Treatments": {ch:"29", labs:[
+ "Serum potassium: repeat after each treatment",
+ "Electrolytes (sodium, calcium, magnesium) with sodium polystyrene sulfonate: it can cause hypokalemia, hypocalcemia and sodium overload",
+ "ECG: continuous while potassium is high",
+ "†Blood glucose hourly after IV insulin; ABGs if bicarbonate is given"]},
+"Calcium, Phosphate & CKD Bone Drugs": {ch:"53", labs:[
+ "Serum calcium: 9–10.5 mg/dL",
+ "Magnesium: 1.7–2.2 mg/dL",
+ "Vitamin D level (12–50 ng/mL) and calcium at baseline and during vitamin D therapy",
+ "ECG baseline with cardiac disease before calcium; ECG during IV calcium",
+ "†Phosphate and PTH in CKD; ionized calcium and albumin; renal function"]},
+"Parenteral Nutrition (TPN/PPN)": {ch:"55", labs:[
+ "Blood glucose by glucometer: hyperglycemia is common; insulin may be needed",
+ "Electrolytes (potassium, sodium, magnesium, phosphate, calcium)",
+ "Albumin, total protein and transferrin: nutritional status",
+ "BUN, and urine creatinine clearance",
+ "CBC: hemoglobin, hematocrit, RBC, WBC and total lymphocyte count",
+ "Lipid profile and cholesterol (lipid emulsions)",
+ "Iron and vitamin B12 levels; urinalysis",
+ "†Liver function and triglycerides weekly; phosphate daily at the start (refeeding syndrome); prealbumin"]},
+"Urinary Tract Drugs": {ch:"21", labs:[
+ "No routine drug-specific labs",
+ "†Urinalysis and urine culture & sensitivity before treating a UTI",
+ "†Renal function (dose changes for several antimuscarinics and nitrofurantoin); post-void residual volume"]},
+
+/* ---------- Endocrine ---------- */
+"Insulins": {ch:"32", labs:[
+ "Blood glucose BEFORE every dose, so insulin is never given to a patient who is already hypoglycemic",
+ "A1C: shows control over the past several months. Normal under 5.7%; prediabetes 5.7–6.4%; diabetes 6.5% or above; goal under 7%",
+ "Fasting plasma glucose: above 126 mg/dL is diagnostic",
+ "Urinalysis and renal function yearly (diabetic nephropathy)",
+ "†Potassium with IV insulin (it shifts K into cells); ketones, ABGs and anion gap in DKA; lipid panel yearly"]},
+"Metformin (Biguanide)": {ch:"32", labs:[
+ "Renal function (creatinine clearance / eGFR): contraindicated when creatinine clearance is under 30 mL/min",
+ "Hold on the day of iodinated contrast and recheck renal function before restarting (acute renal failure and lactic acidosis)",
+ "Vitamin B12: levels fall with long-term use",
+ "Fasting glucose and A1C",
+ "†Lactate if lactic acidosis is suspected; liver function"]},
+"Sulfonylureas": {ch:"32", labs:[
+ "Baseline and ongoing blood glucose: hypoglycemia is the main risk",
+ "A1C",
+ "†Renal and liver function (the drug builds up and prolongs hypoglycemia); CBC"]},
+"Glinides (Meglitinides)": {ch:"32", labs:[
+ "Blood glucose, especially after meals",
+ "A1C",
+ "†Liver function"]},
+"Thiazolidinediones (TZDs)": {ch:"32", labs:[
+ "Blood glucose and A1C (full effect takes weeks to months)",
+ "Daily weight: edema and heart failure",
+ "†Liver enzymes (ALT) before and periodically; don't start if ALT is over 2.5 times normal",
+ "†Hemoglobin and hematocrit (dilutional drop); lipids"]},
+"Alpha-Glucosidase Inhibitors": {ch:"32", labs:[
+ "Blood glucose (post-meal) and A1C",
+ "†Liver enzymes with acarbose; renal function"]},
+"DPP-4 Inhibitors": {ch:"32", labs:[
+ "Blood glucose and A1C",
+ "†Renal function: most need a dose change (not linagliptin)",
+ "†Amylase and lipase if pancreatitis is suspected"]},
+"SGLT2 Inhibitors": {ch:"32", labs:[
+ "Renal function: FDA warning for acute kidney injury",
+ "Potassium: hyperkalemia",
+ "LDL cholesterol: can rise",
+ "Ketones if ill: FDA warning for ketoacidosis, which can occur with near-normal glucose",
+ "Blood glucose and A1C",
+ "†Urine glucose will be positive (expected); urinalysis for UTI"]},
+"GLP-1 Receptor Agonists": {ch:"32", labs:[
+ "Blood glucose and A1C",
+ "†Amylase and lipase if there is severe abdominal pain (pancreatitis)",
+ "†Renal function (dehydration from vomiting); calcitonin is not routine but thyroid nodules are evaluated"]},
+"Glucagon & Hypoglycemia Rescue": {ch:"32", labs:[
+ "Blood glucose before treatment and again in 15 minutes",
+ "Review labs, medication history and current drugs before giving a glucose-elevating drug",
+ "†Potassium (can fall after dextrose and insulin shifts)"]},
+"Thyroid Replacement": {ch:"31", labs:[
+ "TSH and free T4 (and T3): before and during therapy; frequent until stable",
+ "Recheck thyroid function more carefully after any brand or product switch",
+ "CBC and liver function at follow-up visits",
+ "Thyroid drug is usually stopped about 4 weeks before a radioactive iodine uptake scan, as prescribed",
+ "†Recheck TSH 6–8 weeks after a dose change; blood glucose in diabetics; INR if on warfarin (effect increases)"]},
+"Antithyroid Drugs": {ch:"31", labs:[
+ "T3, T4 and TSH: before and during therapy",
+ "CBC with WBC count: agranulocytosis (bone marrow toxicity)",
+ "Liver function tests: liver toxicity, especially PTU",
+ "†PT/INR (PTU can prolong it); pregnancy test before radioactive iodine"]},
+"Corticosteroids (Systemic)": {ch:"33", labs:[
+ "Blood glucose: baseline and during therapy (hyperglycemia)",
+ "Serum potassium: falls",
+ "Serum sodium: rises with fluid retention",
+ "Weight, fluid volume and electrolyte status throughout",
+ "†WBC count rises on steroids (doesn't always mean infection); calcium and bone density with long-term use; stool for occult blood"]},
+"Pituitary Drugs": {ch:"30", labs:[
+ "Growth hormone: baseline thyroid, glucose and calcium (hyperglycemia, hypothyroidism, hypercalciuria); monitor thyroid and GH levels",
+ "Octreotide: blood glucose, especially in diabetics; baseline liver and kidney function",
+ "Vasopressin in shock: ECG, arterial line and ABGs in ICU",
+ "†Serum sodium, serum and urine osmolality and urine specific gravity with desmopressin and vasopressin (water intoxication)",
+ "†Prolactin with bromocriptine and cabergoline"]},
+"Osteoporosis Drugs": {ch:"34, 53", labs:[
+ "Calcium and vitamin D (vitamin D 12–50 ng/mL): patients on bisphosphonates often need both as supplements",
+ "Bone density: also reassess after hormone therapy is stopped",
+ "†DEXA scan at baseline and every 1–2 years to follow response",
+ "†Renal function (creatinine clearance): bisphosphonates are avoided when it is low; check before each zoledronic acid dose",
+ "†Calcium before each denosumab dose; phosphate and magnesium"]},
+
+/* ---------- Reproductive ---------- */
+"Estrogens & Hormone Therapy": {ch:"34", labs:[
+ "Lipid and glucose metabolism: watch patients with altered lipid or carbohydrate metabolism",
+ "Bone density, including after hormone therapy stops",
+ "†Pregnancy test before starting",
+ "BP at each visit",
+ "†Liver function; mammogram and Pap test on schedule; calcium in breast cancer with bone metastases"]},
+"Hormonal Contraceptives": {ch:"34", labs:[
+ "Pregnancy test before starting",
+ "BP: baseline and regularly",
+ "Lipids and glucose in patients with altered lipid or carbohydrate metabolism",
+ "†Potassium with drospirenone-containing pills; bone density with long-term Depo-Provera; Pap test on schedule"]},
+"Uterine & Obstetric Drugs": {ch:"34", labs:[
+ "†Serum magnesium with magnesium sulfate: therapeutic about 4–7 mEq/L; also DTRs, RR and urine output every hour",
+ "†Blood glucose and potassium with terbutaline (hyperglycemia, hypokalemia)",
+ "Indomethacin: review coagulation history and liver function",
+ "†Blood type, Rh and antibody screen (indirect Coombs) before Rho(D) immune globulin; Kleihauer-Betke test to size the dose",
+ "†Hemoglobin and hematocrit, platelets and clotting studies in postpartum hemorrhage; sodium with prolonged oxytocin"]},
+"Androgens & Anabolic Steroids": {ch:"35", labs:[
+ "Liver function studies (LDH, CPK, bilirubin): abnormal liver function and jaundice",
+ "PSA if the prostate is enlarged",
+ "†Serum testosterone level to guide dosing",
+ "†Hemoglobin and hematocrit: polycythemia (hold if hematocrit is above 54%)",
+ "†Lipid panel (lowers HDL); calcium; blood glucose in diabetics"]},
+"BPH Drugs": {ch:"35", labs:[
+ "PSA: ordered when the prostate is enlarged, before treatment",
+ "†Finasteride and dutasteride lower PSA by about half, so the measured value is doubled when interpreting it",
+ "Baseline urinary pattern: frequency, urgency and flow",
+ "†Urinalysis; renal function if there is retention"]},
+"Erectile Dysfunction Drugs": {ch:"35", labs:[
+ "No routine labs",
+ "†Cardiovascular assessment and BP before prescribing; testosterone level if hypogonadism is suspected"]},
+"Antiandrogens & GnRH Analogs": {ch:"35, 46", labs:[
+ "Serum testosterone and prostatic acid phosphatase before and during therapy: both rise in the first week, then return to baseline by 4 weeks",
+ "†PSA to follow response; liver function with flutamide and bicalutamide",
+ "†Bone density; blood glucose and lipids with long-term GnRH therapy"]},
+"Fertility & Other Women's Health Drugs": {ch:"34", labs:[
+ "Rule out before starting: primary ovarian failure, thyroid or adrenal dysfunction, liver disease",
+ "†Pregnancy test before each cycle of clomiphene",
+ "†Serum estradiol and pelvic ultrasound during gonadotropins (ovarian hyperstimulation)",
+ "†hCG after ovulation induction; liver function"]},
+
+/* ---------- Respiratory ---------- */
+"Antihistamines (H1 Blockers)": {ch:"36", labs:[
+ "No routine labs",
+ "†Stop antihistamines about 4 days before allergy skin testing (false negatives)"]},
+"Decongestants": {ch:"36", labs:[
+ "No routine labs: BP and heart rate are the checks",
+ "†Blood glucose in diabetics (can raise it)"]},
+"Antitussives": {ch:"36", labs:[
+ "No routine labs: RR and sedation with opioid antitussives"]},
+"Expectorants & Mucolytics": {ch:"36, 10", labs:[
+ "No routine labs for guaifenesin",
+ "When acetylcysteine is the acetaminophen antidote: serum acetaminophen level, liver function (ALT, AST) and INR",
+ "†Liver function with CFTR modulators; sputum culture in cystic fibrosis"]},
+"Beta-2 Agonists (Bronchodilators)": {ch:"37, 18", labs:[
+ "Arterial blood gases (pH, oxygen, CO2, bicarbonate) as ordered",
+ "Peak flow meter readings and pulse oximetry",
+ "ECG as ordered",
+ "†Potassium (hypokalemia) and blood glucose with frequent or high doses"]},
+"Inhaled Anticholinergics": {ch:"37", labs:[
+ "No routine labs",
+ "Peak flow or pulmonary function tests to follow response"]},
+"Xanthine Derivatives": {ch:"37", labs:[
+ "Serum theophylline level: 5–15 mcg/mL (Lilley). Monitor frequently and at follow-up visits to avoid toxicity",
+ "ECG and heart rate",
+ "ABGs as ordered",
+ "†Blood glucose (hyperglycemia); liver function, since the liver clears it"]},
+"Inhaled Corticosteroids": {ch:"37", labs:[
+ "No routine labs",
+ "Peak flow readings; growth (height) in children",
+ "†Blood glucose and bone density with long-term high doses; morning cortisol if adrenal suppression is suspected"]},
+"Leukotriene Modifiers, Mast Cell Stabilizers & Asthma Biologics": {ch:"37", labs:[
+ "Peak flow readings to follow asthma control",
+ "†Liver function: baseline and periodically with zileuton and zafirlukast (not needed for montelukast)",
+ "†Serum IgE before omalizumab (sets the dose); eosinophil count before anti-IL-5 biologics",
+ "†Theophylline level and INR if zileuton or zafirlukast is added (both rise)"]},
+"Lung Surfactants & Neonatal Respiratory": {ch:"37", labs:[
+ "†Arterial blood gases and continuous pulse oximetry: oxygenation improves fast, so ventilator settings change",
+ "†Chest x-ray",
+ "†Caffeine level only if toxicity or poor response is suspected"]},
+
+/* ---------- Anti-infectives ---------- */
+"Penicillins": {ch:"38", labs:[
+ "Culture and sensitivity BEFORE the first dose",
+ "CBC with WBC count: falls back to normal as the infection clears",
+ "Renal function (BUN, creatinine) and liver function (AST, ALT)",
+ "Serum sodium and potassium: some IV penicillins carry a large sodium or potassium load (matters in cardiac or renal disease)",
+ "†INR if on warfarin; stool test for C. difficile if diarrhea develops"]},
+"Cephalosporins": {ch:"38", labs:[
+ "Culture and sensitivity before the first dose",
+ "CBC, platelets and clotting tests",
+ "Renal function (BUN, creatinine) and liver function (AST, ALT)",
+ "†PT/INR with cefotetan (bleeding); can cause a false-positive Coombs test and false-positive urine glucose on older tests"]},
+"Carbapenems & Monobactam": {ch:"38", labs:[
+ "Culture and sensitivity before the first dose",
+ "Renal function: dose is adjusted; seizure risk rises when the drug builds up",
+ "CBC and liver function",
+ "†Valproic acid level if on valproate (carbapenems drop it)"]},
+"Macrolides": {ch:"38", labs:[
+ "Culture and sensitivity",
+ "Liver function: baseline and during therapy (hepatotoxicity)",
+ "Baseline cardiac function (ECG changes, palpitations) and baseline hearing (hearing loss, tinnitus)",
+ "†Levels of interacting drugs: INR (warfarin), digoxin, theophylline, carbamazepine"]},
+"Tetracyclines": {ch:"38", labs:[
+ "Culture and sensitivity",
+ "Renal and liver function",
+ "†Pregnancy test before starting; CBC with long-term use; INR if on warfarin"]},
+"Sulfonamides": {ch:"38", labs:[
+ "Renal function (BUN, creatinine) and urinalysis with long-term or frequent use: crystalluria",
+ "CBC: agranulocytosis, aplastic and hemolytic anemia, thrombocytopenia",
+ "G6PD deficiency screen (hemolysis)",
+ "Culture and sensitivity",
+ "†Potassium (trimethoprim causes hyperkalemia); INR, phenytoin level or glucose if on warfarin, phenytoin or a sulfonylurea"]},
+"Aminoglycosides": {ch:"39", labs:[
+ "Peak and trough levels with multiple daily dosing: gentamicin and tobramycin peak 4–10 and trough 1–2 mcg/mL; amikacin peak 15–30 and trough 5–10 mcg/mL",
+ "Peak: draw 30–60 min after a 30-min infusion. Trough: draw just before the next dose",
+ "Once-daily dosing: only the trough is checked (gentamicin and tobramycin under 1 mcg/mL; amikacin under 10 mcg/mL)",
+ "Trough at the start, then every 5–7 days",
+ "Serum creatinine at least every 3 days; BUN and urinalysis (nephrotoxicity)",
+ "Baseline hearing test (ototoxicity)",
+ "Culture and sensitivity"]},
+"Fluoroquinolones": {ch:"38", labs:[
+ "Culture and sensitivity",
+ "Renal and liver function",
+ "†ECG for QT changes in patients at risk",
+ "†Blood glucose in diabetics (swings both ways); INR if on warfarin; theophylline level if on theophylline"]},
+"Vancomycin": {ch:"39", labs:[
+ "Trough level: 10–20 mcg/mL (many prescribers aim for 15–20). Peak (18–50) is no longer routinely measured",
+ "Draw the trough within 30 min before the next dose, before the 3rd or 4th dose of a new regimen",
+ "BUN, creatinine and GFR: nephrotoxicity",
+ "Baseline hearing function (ototoxicity)",
+ "Culture and sensitivity",
+ "†CBC with long courses (neutropenia)"]},
+"Other Key Antibiotics": {ch:"39", labs:[
+ "Culture and sensitivity before the first dose",
+ "CPK throughout daptomycin therapy (it raises CPK; muscle injury)",
+ "Liver function (AST, ALT) and renal function (BUN, creatinine, urinalysis)",
+ "ECG as ordered",
+ "†CBC weekly with linezolid (thrombocytopenia, bone marrow suppression)",
+ "†Stool test for C. difficile toxin with clindamycin diarrhea; INR with metronidazole plus warfarin; renal function before nitrofurantoin"]},
+"Antitubercular Drugs": {ch:"41", labs:[
+ "Liver function (bilirubin, AST, ALT): baseline and during therapy. Isoniazid, rifampin and pyrazinamide are hepatotoxic",
+ "Renal function (BUN, creatinine clearance), especially before streptomycin",
+ "CBC before isoniazid, streptomycin and rifampin",
+ "Uric acid: baseline and during pyrazinamide (hyperuricemia and gout)",
+ "Sputum culture and sensitivity and chest x-ray: confirm the infection is clearing",
+ "Tuberculin skin test (PPD) result on record; BCG vaccine causes false positives",
+ "Vision checks with ethambutol (acuity and color); isoniazid can give a false-positive urine glucose",
+ "†Blood glucose with isoniazid (hyperglycemia); hearing tests with streptomycin"]},
+"Antifungals": {ch:"42", labs:[
+ "Liver function: monitor during therapy (azoles, caspofungin, terbinafine)",
+ "Renal function, CBC and liver function before starting",
+ "Amphotericin B: renal function (BUN, creatinine), potassium and magnesium (renal toxicity, potassium loss, hypomagnesemia)",
+ "Caspofungin: liver function, RBC (Hgb, Hct) and WBC counts",
+ "Fluconazole: renal and hepatic function",
+ "†Fungal culture; ECG (QT) with azoles; voriconazole trough; INR if on warfarin"]},
+"Antivirals (Non-HIV)": {ch:"40", labs:[
+ "CBC before and during ganciclovir: bone marrow suppression",
+ "Renal function (BUN, creatinine, eGFR) with foscarnet and cidofovir",
+ "Remdesivir: liver function and renal tests before giving; held if liver enzymes exceed 5 times normal or creatinine clearance is under 30 mL/min",
+ "Entecavir: liver function, lipase and creatinine",
+ "†Renal function and hydration with IV acyclovir",
+ "†Hepatitis B and C viral load and liver function to follow response; pregnancy test before ribavirin"]},
+"Antiretrovirals (HIV)": {ch:"40", labs:[
+ "CBC and renal and liver function: baseline and at each phase of treatment",
+ "Blood counts and clotting studies before and during zidovudine (dose-limiting bone marrow suppression)",
+ "Calcium and vitamin D: bone demineralization with long-term therapy",
+ "Liver function with maraviroc and nevirapine",
+ "†HIV viral load and CD4 count: the measures of success (goal: undetectable viral load)",
+ "†Lipids and glucose with protease inhibitors; HLA-B*5701 before abacavir; resistance testing; amylase and lipase if pancreatitis is suspected"]},
+"Antimalarials, Antiprotozoals & Anthelmintics": {ch:"43", labs:[
+ "G6PD deficiency screen before primaquine and related drugs (hemolytic anemia)",
+ "Baseline hearing with mefloquine, primaquine and pyrimethamine",
+ "Baseline renal and liver function; liver function at follow-up (antimalarials concentrate in the liver)",
+ "Serum potassium, sodium and glucose as ordered (pentamidine causes hypoglycemia)",
+ "Stool specimens for parasites: keep free of water, urine and chemicals",
+ "†CBC; eye exams with chloroquine and hydroxychloroquine; blood smear for malaria"]},
+
+/* ---------- Inflammation, immune & cancer ---------- */
+"NSAIDs": {ch:"44", labs:[
+ "BUN and creatinine: renal function, before and during long-term or high-dose therapy",
+ "CBC: RBC, hemoglobin, hematocrit, WBC and platelet count (bleeding)",
+ "Liver enzymes: ALP, AST, ALT, LDH and bilirubin",
+ "†Stool for occult blood; potassium (hyperkalemia); lithium or methotrexate level if on those drugs"]},
+"Aspirin (Salicylate)": {ch:"44", labs:[
+ "Serum salicylate level in overdose: drawn 6 h or more after ingestion to judge severity",
+ "CBC and platelet count; hemoglobin and hematocrit",
+ "BUN, liver enzymes (AST, ALT) and bilirubin with high-dose or long-term use",
+ "In overdose: electrolytes, acid-base status (ABGs) and blood glucose",
+ "†Bleeding time; stool for occult blood; uric acid"]},
+"Antigout Drugs": {ch:"44", labs:[
+ "Serum uric acid: baseline and during therapy",
+ "Renal function (BUN, creatinine): colchicine and allopurinol doses are reduced with renal impairment",
+ "Liver function (AST, ALT)",
+ "Hydration status",
+ "†CBC (bone marrow suppression with colchicine and allopurinol); goal uric acid under 6 mg/dL; G6PD before pegloticase"]},
+"Immunosuppressants & DMARDs": {ch:"48, 47", labs:[
+ "Trough drug levels (cyclosporine, tacrolimus, sirolimus): too low = rejection; too high = nephrotoxicity. Monitored for life",
+ "Renal function: BUN, creatinine and electrolytes",
+ "Liver function: ALP, AST, ALT and bilirubin",
+ "WBC and platelet counts: azathioprine has a black box warning for bone marrow suppression",
+ "Methotrexate: blood cell and platelet counts before, during and after therapy",
+ "Leflunomide: liver function and blood counts before and during therapy",
+ "WBC count and signs of infection before etanercept and other TNF blockers",
+ "CBC, ESR and C-reactive protein to follow disease activity",
+ "†TB test and hepatitis B screen before biologics; potassium, magnesium, glucose and lipids with cyclosporine and tacrolimus; pregnancy test"]},
+"Antineoplastic Essentials": {ch:"45, 46", labs:[
+ "CBC with differential: WBC 5000–10,000/mm³; neutrophils above 1500. ANC under 500 = severe neutropenia. Nadir at about 10–28 days",
+ "Platelets: under 100,000/mm³ = bleeding risk",
+ "RBC, hemoglobin (M 14–18, F 12–16 g/dL) and hematocrit (M 40–54%, F 37–47%): anemia",
+ "Renal function: BUN, creatinine and creatinine clearance (cisplatin is very nephrotoxic)",
+ "Liver function: AST, ALT, LDH and bilirubin",
+ "Uric acid: rises as cells die (tumor lysis, gout)",
+ "Electrolytes: sodium, potassium, chloride, magnesium and calcium",
+ "Clotting and bleeding times; serum protein and albumin (nutrition)",
+ "Pulmonary function tests with bleomycin; cardiac enzymes and cardiac function with anthracyclines",
+ "Amylase and lipase if there is severe abdominal pain (pancreatitis)",
+ "Tumor markers (PSA, CEA, CA-125 and others) to follow response",
+ "†Phosphate with tumor lysis; echo or MUGA before doxorubicin; pregnancy test; methotrexate level with high-dose therapy"]},
+"Vaccines & Immune Globulins": {ch:"49", labs:[
+ "No routine labs before most vaccines; review any ordered lab results",
+ "†Pregnancy test before live vaccines when pregnancy is possible",
+ "†Antibody titers to confirm immunity (hepatitis B surface antibody, rubella, varicella)",
+ "†Tuberculin skin test: read induration in 48–72 h; a live vaccine can blunt the result"]},
+"Multiple Sclerosis Drugs": {ch:"47", labs:[
+ "Liver function: interferons and fingolimod raise liver enzymes",
+ "WBC and platelet counts before interferon therapy (neutropenia, thrombocytopenia)",
+ "BUN and creatinine before and during treatment",
+ "†ECG before fingolimod and for 6 h after the first dose (bradycardia)",
+ "†CBC with lymphocyte count; JC virus antibody before natalizumab; hepatitis B screen before ocrelizumab; MRI; thyroid function with interferons"]},
+"Targeted & Biologic Cancer Therapies": {ch:"47, 46", labs:[
+ "CBC with WBC and platelet counts before and during therapy",
+ "Liver function (ALP, AST) and renal function (BUN, creatinine)",
+ "ECG before and during treatment as prescribed; pulse oximetry during infusions",
+ "Liver function and eosinophils after the infusion per protocol",
+ "Immunoglobulin, serum protein and albumin levels",
+ "†Echo or MUGA (ejection fraction) with trastuzumab; urine protein and BP with bevacizumab",
+ "†TSH, liver function, glucose and cortisol with checkpoint inhibitors; hepatitis B screen before rituximab; uric acid, potassium and phosphate for tumor lysis"]},
+
+/* ---------- GI ---------- */
+"Antacids": {ch:"50", labs:[
+ "Baseline serum chemistry as prescribed",
+ "Renal function: magnesium and aluminum build up in renal failure",
+ "Fluid and electrolyte status: some antacids are high in sodium (matters in heart failure and hypertension)",
+ "†Magnesium, calcium and phosphate with long-term use"]},
+"H2 Receptor Antagonists": {ch:"50", labs:[
+ "Renal function (BUN, creatinine): the dose is reduced with impairment",
+ "Liver function (bilirubin, ALP, AST, ALT)",
+ "Level of consciousness in older adults (confusion)",
+ "†CBC (thrombocytopenia); vitamin B12 with long-term use"]},
+"Proton Pump Inhibitors (PPIs)": {ch:"50", labs:[
+ "Baseline serum chemistry as prescribed",
+ "†Magnesium with long-term use (hypomagnesemia)",
+ "†Vitamin B12 and bone density with long-term use; stool test for C. difficile if diarrhea develops; INR if on warfarin"]},
+"Mucosal Protectants & Misoprostol": {ch:"50", labs:[
+ "†Pregnancy test before misoprostol (negative within 2 weeks of starting)",
+ "†Blood glucose in diabetics on sucralfate; phosphate and aluminum in renal failure",
+ "No routine labs otherwise"]},
+"Antiemetics": {ch:"52", labs:[
+ "Serum sodium, potassium and chloride: vomiting depletes electrolytes",
+ "Hemoglobin and hematocrit; RBC and WBC counts",
+ "BUN and urinalysis with specific gravity: dehydration",
+ "INR before each chemotherapy cycle if on aprepitant plus warfarin",
+ "Continuous ECG with droperidol (QT prolongation)",
+ "†ECG, potassium and magnesium with ondansetron in patients at risk of QT prolongation"]},
+"Laxatives": {ch:"51", labs:[
+ "Serum electrolytes: baseline, and monitored with long-term use (stimulant, saline and hyperosmotic laxatives)",
+ "Renal function before magnesium-based (saline) laxatives: magnesium toxicity",
+ "Daily weight, intake and output",
+ "†Serum ammonia and mental status with lactulose for hepatic encephalopathy; potassium (lactulose diarrhea lowers it)"]},
+"Antidiarrheals": {ch:"51", labs:[
+ "Fluid and electrolyte levels, especially in older adults",
+ "†Stool culture and C. difficile toxin test before slowing the gut in infectious diarrhea",
+ "†ECG with high-dose loperamide"]},
+"Inflammatory Bowel Disease Drugs": {ch:"51, 47", labs:[
+ "†CBC: sulfasalazine and azathioprine can cause blood dyscrasias",
+ "†Renal function (BUN, creatinine) with mesalamine; liver function",
+ "†TB test and hepatitis B screen before biologics",
+ "†Folate with sulfasalazine; C-reactive protein, ESR and stool studies to follow disease activity"]},
+"Other GI Drugs": {ch:"51", labs:[
+ "†Serum ammonia and mental status with rifaximin and lactulose",
+ "†Fat-soluble vitamin levels (A, D, E, K) with orlistat and in pancreatic insufficiency",
+ "†Liver function with ursodiol; stool fat to judge pancrelipase response",
+ "No routine labs for simethicone or antispasmodics"]},
+
+/* ---------- Eye, skin & supplements ---------- */
+"Glaucoma & Eye Drugs": {ch:"57", labs:[
+ "No routine blood labs for eye drops",
+ "Intraocular pressure (tonometry): the measure of response",
+ "†Electrolytes (potassium, bicarbonate) with oral acetazolamide; heart rate with timolol"]},
+"Dermatologic Drugs": {ch:"56", labs:[
+ "Isotretinoin: two negative pregnancy tests before starting (one to enroll in iPLEDGE, one before the first dose), then a pregnancy test monthly",
+ "Tazarotene: negative pregnancy test within 2 weeks before starting",
+ "Culture and sensitivity before a topical or systemic antibacterial",
+ "WBC count: infection risk with burns and immunosuppressive skin drugs",
+ "†Lipid panel (triglycerides) and liver function with isotretinoin",
+ "†ABGs with mafenide (metabolic acidosis); CBC with silver sulfadiazine (leukopenia)"]},
+"Otic (Ear) Drugs": {ch:"58", labs:[
+ "No routine labs",
+ "†Culture of ear drainage if an infection doesn't respond; hearing test"]},
+"Herbal Supplements": {ch:"7", labs:[
+ "No labs for the herb itself: the labs depend on the drug it interacts with",
+ "†INR with garlic, ginkgo, ginger, ginseng or St. John's wort plus warfarin",
+ "†Liver function with kava and black cohosh",
+ "†Potassium with licorice; digoxin level with ginseng, hawthorn, licorice or St. John's wort",
+ "†Blood glucose with ginseng plus antidiabetic drugs; cyclosporine or tacrolimus level with St. John's wort"]},
+"Vitamins & Minerals": {ch:"53", labs:[
+ "Vitamin D level (12–50 ng/mL) and calcium: baseline and during therapy",
+ "PT/INR before vitamin K; watch urine and stool for blood",
+ "Serum calcium (9–10.5 mg/dL) and magnesium (1.7–2.2 mg/dL)",
+ "Hemoglobin, hematocrit, RBC and WBC counts; albumin and total protein (nutritional status)",
+ "Liver function with fat-soluble vitamins and niacin",
+ "Urine pH when vitamin C is used to acidify urine",
+ "ECG and knee-jerk reflexes during IV magnesium; ECG with IV calcium in cardiac patients"]}
+};
+CLASSES.forEach(c=>{ const L = LABS[c.name]; if(L){ c.labs = L.labs; c.labch = L.ch; } });
+
+/* Align earlier values with Lilley */
+(function(){
+  const row=(cn,dn)=>{ const c=CLASSES.find(x=>x.name===cn); return c && c.drugs.find(d=>d[0]===dn); };
+  let r;
+  if((r=row("Xanthine Derivatives","theophylline"))) r[2]="Oral. Level 5–15 mcg/mL per Lilley (older references use 10–20). Monitor levels often; narrow range.";
+  if((r=row("Antiepileptics","valproic acid"))) r[2]="Level 50–125 mcg/mL (Lilley; many labs report 50–100). Hepatotoxicity, pancreatitis, thrombocytopenia, hyperammonemia. Major neural-tube teratogen.";
+  if((r=row("Barbiturates","phenobarbital"))) r[2]="Long-acting. Seizures. Therapeutic level 10–40 mcg/mL; above 40 = toxicity.";
+  const set=(arr,key,vals)=>{ const i=arr.findIndex(x=>x[0]===key); if(i>=0) arr[i]=[key,...vals]; else arr.push([key,...vals]); };
+  set(QUICK.levels,"Valproic acid",["50–125 mcg/mL","Lilley Table 14.6 (many labs use 50–100). Check ammonia and LFTs"]);
+  set(QUICK.levels,"Phenobarbital",["10–40 mcg/mL","Above 40 = toxicity"]);
+  set(QUICK.levels,"Theophylline",["5–15 mcg/mL","Lilley; older references use 10–20"]);
+  set(QUICK.levels,"Vancomycin (trough)",["10–20 mcg/mL","Many aim for 15–20. Draw before the 3rd or 4th dose"]);
+  set(QUICK.levels,"Gentamicin",["Peak 4–10; trough 1–2 mcg/mL","Once-daily dosing: trough < 1. Trough just before the next dose"]);
+  set(QUICK.levels,"aPTT on heparin",["1.5–2.5× control (about 45–70 s)","Draw 4–6 h after starting or changing the dose"]);
+  QUICK.levels.push(
+    ["Amikacin","Peak 15–30; trough 5–10 mcg/mL","Once-daily dosing: trough < 10"],
+    ["Primidone","5–12 mcg/mL",""],
+    ["Levetiracetam","12–46 mcg/mL","Not routinely monitored"],
+    ["Haloperidol","4–22 ng/mL","When ordered"],
+    ["Hemoglobin on epoetin","Target 11 g/dL (dialysis); 10 g/dL (CKD, no dialysis)","Higher targets raise clot risk"]
+  );
+  set(QUICK.labs,"Potassium",["3.5–5.0 mEq/L (some labs to 5.2–5.3)"]);
+  set(QUICK.labs,"Magnesium",["1.7–2.2 mg/dL"]);
+  set(QUICK.labs,"BUN",["10–20 mg/dL (Lilley lists 8–25)"]);
+  set(QUICK.labs,"Creatinine",["0.6–1.2 mg/dL (Lilley lists 0.6–1.5)"]);
+  set(QUICK.labs,"PT",["11–13 seconds"]);
+  set(QUICK.labs,"aPTT",["25–35 seconds (control)"]);
+  QUICK.labs.push(
+    ["Hematocrit","M 40–54%; F 37–47%"],
+    ["RBC","M 4.6–6.2; F 4.2–5.4 million/mm³"],
+    ["ALT","4–36 units/L"],
+    ["AST","M 8–46; F 7–34 units/L"],
+    ["Total cholesterol","≤ 200 mg/dL"],
+    ["LDL / HDL","LDL < 100 mg/dL; HDL ≥ 60 mg/dL"],
+    ["Triglycerides","< 150 mg/dL"],
+    ["Vitamin D","12–50 ng/mL"],
+    ["INR (not on warfarin)","≈ 0.8–1.2"]
+  );
+})();
+
+/* One-glance table: which lab goes with which drugs */
+QUICK.labmap = [
+  ["Potassium ↓ (hypokalemia)","Loop and thiazide diuretics, corticosteroids, amphotericin B, insulin (IV), beta-2 agonists, laxatives, licorice. Low K + digoxin = toxicity"],
+  ["Potassium ↑ (hyperkalemia)","ACE inhibitors, ARBs, potassium-sparing diuretics, potassium supplements, trimethoprim, heparin, NSAIDs, cyclosporine/tacrolimus, SGLT2 inhibitors, succinylcholine"],
+  ["Sodium","Lithium (low Na = toxicity), desmopressin/vasopressin, SSRIs and SNRIs, carbamazepine/oxcarbazepine, thiazides, tolvaptan, hypertonic saline"],
+  ["Magnesium","Digoxin (low Mg = toxicity), loop diuretics, amphotericin B, PPIs (long-term), magnesium sulfate, cisplatin"],
+  ["Calcium","Thiazides (↑), loop diuretics (↓), vitamin D and calcium, bisphosphonates, denosumab, cinacalcet, digoxin"],
+  ["BUN / creatinine (kidneys)","Aminoglycosides, vancomycin, amphotericin B, NSAIDs, ACE inhibitors/ARBs, metformin, lithium, cisplatin, cyclosporine/tacrolimus, acyclovir IV, digoxin, DOACs, contrast dye"],
+  ["Liver enzymes (AST, ALT)","Acetaminophen, statins, isoniazid/rifampin/pyrazinamide, azole antifungals, valproate, methotrexate, amiodarone, tolcapone, niacin, PTU, ketoconazole, leflunomide, androgens, zileuton, bosentan"],
+  ["CBC / WBC (bone marrow)","Clozapine (weekly WBC × 6 months), carbamazepine, antithyroid drugs, chemotherapy, methotrexate, azathioprine, ganciclovir, zidovudine, linezolid, sulfonamides, colchicine, hydroxyurea"],
+  ["Platelets","Heparin (HIT), GP IIb/IIIa inhibitors (< 90,000 = call), chemotherapy, valproate, linezolid"],
+  ["PT / INR","Warfarin. Also rises with amiodarone, many antibiotics, azoles, metronidazole; checked with aprepitant, bile acid sequestrants, vitamin K"],
+  ["aPTT","IV unfractionated heparin, argatroban, bivalirudin"],
+  ["Blood glucose / A1C","Insulin and all antidiabetics, corticosteroids, thiazides, beta blockers, atypical antipsychotics, niacin, octreotide, TPN, fluoroquinolones, pentamidine, protease inhibitors"],
+  ["Lipid panel","Statins and other antilipemics, atypical antipsychotics, protease inhibitors, isotretinoin, propofol (long infusion), androgens"],
+  ["Uric acid","Loop and thiazide diuretics, pyrazinamide, niacin, chemotherapy (tumor lysis), antigout drugs (to follow response)"],
+  ["CK / CPK","Statins, fibrates, daptomycin; also suspected NMS or malignant hyperthermia"],
+  ["Thyroid (TSH, T4)","Levothyroxine, antithyroid drugs, amiodarone, lithium, growth hormone, interferons"],
+  ["Serum drug levels","Digoxin, lithium, phenytoin, carbamazepine, valproate, phenobarbital, theophylline, aminoglycosides, vancomycin, cyclosporine, tacrolimus"],
+  ["Culture & sensitivity","All antibiotics, antifungals: collect BEFORE the first dose"],
+  ["Pregnancy test","Isotretinoin, methotrexate, warfarin, statins, ACE inhibitors/ARBs, misoprostol, live vaccines, endothelin antagonists, thalidomide, hormonal contraceptives, ribavirin"],
+  ["ECG (QT interval)","Antidysrhythmics, haloperidol, ziprasidone, methadone, macrolides, fluoroquinolones, ondansetron, droperidol, citalopram, TCAs, azoles"],
+  ["Hearing test","Aminoglycosides, vancomycin, loop diuretics (IV high dose), cisplatin, mefloquine"],
+  ["Eye exam","Ethambutol, hydroxychloroquine/chloroquine, amiodarone, corticosteroids (long-term), topiramate"],
+  ["Bone density","Corticosteroids (long-term), Depo-Provera, aromatase inhibitors, GnRH analogs, PPIs (long-term), osteoporosis drugs (to follow response)"]
+];
+
 
 
 const FIELDS = [
   ["moa","How it works","wide"],["use","Used for"],["exp","Therapeutic response / expected findings"],
   ["se","Side effects"],["ae","Adverse effects (serious)"],["warn","Warnings & contraindications"],
-  ["tox","Toxicity & antidote","wide"],["int","Interactions"],["mon","Monitor / assess"],
+  ["tox","Toxicity & antidote","wide"],["int","Interactions"],["mon","Monitor / assess"],["labs","Labs to monitor","wide"],
   ["ed","Nursing & teaching"],["kid","Like I'm 10"],["hesi","HESI focus"]
 ];
 const SYS = Object.fromEntries(SYSTEMS.map(s=>[s.id,s]));
@@ -2952,12 +3785,23 @@ function listHTML(v){
   if(Array.isArray(v)) return "<ul>"+v.map(x=>"<li>"+hl(x,state.q)+"</li>").join("")+"</ul>";
   return "<p>"+hl(v,state.q)+"</p>";
 }
+function labsHTML(c){
+  let any = false;
+  const items = c.labs.map(x=>{
+    const dag = x.startsWith("†"); if(dag) any = true;
+    const t = dag ? x.slice(1) : x; const i = t.indexOf(": ");
+    const body = i>0 ? "<b>"+hl(t.slice(0,i),state.q)+"</b>: "+hl(t.slice(i+2),state.q) : hl(t,state.q);
+    return "<li>"+(dag?'<span class="dg" title="Not in Lilley\'s lab list for this chapter">†</span>':"")+body+"</li>";
+  }).join("");
+  const src = c.labch && c.labch!=="—" ? "Source: Lilley, Ch. "+esc(c.labch)+"." : "This class is not covered in Lilley.";
+  return "<ul>"+items+"</ul><p class=\"src\">"+src+(any?" † = from standard drug references; not in Lilley's lab monitoring for this class.":"")+"</p>";
+}
 function cardHTML(c, hits, showSys){
   const sys = SYS[c.sys];
   const names = c.drugs.map(d=>d[0]).join(" · ");
   const open = state.open.has(c.id);
   const drugRows = c.drugs.map((d,i)=>`<div class="drow${hits.includes(i)&&state.q?" hit":""}"><div class="dn">${hl(d[0],state.q)}</div><div class="db">${d[1]&&d[1]!=="—"?hl(d[1],state.q):""}</div>${d[2]?`<div class="dnote">${hl(d[2],state.q)}</div>`:""}</div>`).join("");
-  const secs = FIELDS.filter(([k])=>c[k]).map(([k,label,w])=>`<section class="sec k-${k}${w?" wide":""}"><h4>${label}</h4><div class="ans">${listHTML(c[k])}</div></section>`).join("");
+  const secs = FIELDS.filter(([k])=>c[k]).map(([k,label,w])=>`<section class="sec k-${k}${w?" wide":""}"><h4>${label}</h4><div class="ans">${k==="labs"?labsHTML(c):listHTML(c[k])}</div></section>`).join("");
   return `<details class="mono" data-id="${c.id}" style="--c:${sys.hue}"${open?" open":""}>
     <summary>
       <div class="s-head">${showSys?`<span class="systag">${esc(sys.name)}</span>`:""}<div class="s-title"><h3>${hl(c.name,state.q)}</h3>${c.sfx&&c.sfx!=="—"?`<span class="sfx">${esc(c.sfx)}</span>`:""}</div></div>
@@ -3011,11 +3855,12 @@ function renderQuick(){
   $("#view-quick").innerHTML = `
   <section class="qsec"><h2>Antidotes & reversal agents</h2>${tbl(["Drug / toxin","Antidote"],QUICK.antidotes,[])}</section>
   <section class="qsec"><h2>Therapeutic drug levels</h2><p class="lede">Ranges vary by lab and edition; use your facility's reference range on the job.</p>${tbl(["Drug","Range","Note"],QUICK.levels,[1])}</section>
+  <section class="qsec"><h2>Which lab goes with which drug</h2><p class="lede">Start from the lab value in the question and find the drugs that change it or need it checked.</p>${tbl(["Lab / test","Drugs to think of"],QUICK.labmap,[])}</section>
   <section class="qsec"><h2>Hold parameters (check before giving)</h2>${tbl(["Drug","Hold / call provider if"],QUICK.hold,[])}</section>
   <section class="qsec"><h2>High-alert medications</h2><p class="lede">ISMP high-alert list: errors with these cause the most harm. Expect independent double-checks.</p>${tbl(["Drug","Main danger / safeguard"],QUICK.highalert,[])}</section>
   <section class="qsec"><h2>Avoid in pregnancy</h2>${tbl(["Drug","Risk"],QUICK.pregnancy,[])}</section>
   <section class="qsec"><h2>Food & drug interactions</h2>${tbl(["Food / substance","Drugs affected"],QUICK.food,[])}</section>
-  <section class="qsec"><h2>Lab normals that come up with meds</h2>${tbl(["Lab","Normal"],QUICK.labs,[1])}</section>
+  <section class="qsec"><h2>Lab normals that come up with meds</h2><p class="lede">Values follow Lilley where the textbook gives one. Ranges vary by lab.</p>${tbl(["Lab","Normal"],QUICK.labs,[1])}</section>
   <section class="qsec"><h2>Suffix recognition</h2>${tbl(["Ending","Class","Example"],QUICK.suffixes,[0])}</section>
   <p class="foot">Built from Lilley, <i>Pharmacology and the Nursing Process</i>, and the NCLEX-RN pharmacology content areas. This is a study aid, not a clinical reference; use current facility protocols and drug references in practice.</p>`;
 }
