@@ -34,6 +34,7 @@ h1{font-family:var(--f-display);font-weight:700;font-size:clamp(34px,7vw,48px);l
 .lede{margin:4px 0 0;color:var(--muted);max-width:60ch}
 .roles{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
 .role{font-family:var(--f-mono);font-size:12px;padding:3px 8px;border-radius:999px;border:1px solid currentColor}
+.ab{font-weight:400;color:var(--muted)}
 .r-rn{color:var(--rn);font-weight:600}.r-lpn{color:var(--lpn);font-weight:600}.r-uap{color:var(--uap);font-weight:600}
 
 .setup{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:end;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
@@ -116,7 +117,7 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid 
     <div class="eyebrow">NUR206 · Trends · Delegation quiz prep</div>
     <h1>Delegation Drill</h1>
     <p class="lede">Pick an answer. If it's wrong, you'll see why, and you go again. Your score counts first tries only.</p>
-    <div class="roles"><span class="role r-rn">RN · TAPE, unstable, high-risk</span><span class="role r-lpn">LPN · stable, routine, reinforce</span><span class="role r-uap">UAP · ADLs, measure, report</span></div>
+    <div class="roles" id="roles"></div>
   </header>
 
   <section class="setup" aria-label="Quiz setup">
@@ -168,11 +169,46 @@ const TOPICS = {
     hint:"ABCs, then acute over chronic, then unexpected over expected. If a UAP reports something abnormal, the RN goes and assesses.",
     plain:"If the smoke alarm goes off while you're doing the dishes, you deal with the smoke first. New, sudden, and breathing problems are the smoke alarm. Everything that is expected or routine is the dishes."}
 };
+TOPICS.tape.name="TAPE (teach, assess, plan, evaluate)";
 const KEY="delegation-drill-v1";
 const $=s=>document.querySelector(s);
 const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 const roleify=s=>esc(s).replace(/\b(RN|LPN|UAP)(s?)\b/g,(m,r,p)=>`<span class="r-${r.toLowerCase()}">${r}${p}</span>`);
+// abbreviation → [concept, written-out form]
+const ABBR={
+  "RN":["RN","registered nurse"],"RNs":["RN","registered nurses"],
+  "LPN":["LPN","licensed practical nurse"],"LPNs":["LPN","licensed practical nurses"],
+  "UAP":["UAP","unlicensed assistive personnel"],"UAPs":["UAP","unlicensed assistive personnel"],
+  "TAPE":["TAPE","teach, assess, plan, evaluate"],
+  "IV":["IV","intravenous"],"SubQ":["SubQ","subcutaneous"],"IM":["IM","intramuscular"],
+  "NG":["NG","nasogastric"],"PEG":["PEG","percutaneous endoscopic gastrostomy"],
+  "I&O":["I&O","intake and output"],"ADL":["ADL","activity of daily living"],"ADLs":["ADL","activities of daily living"],
+  "PRN":["PRN","as needed"],"BP":["BP","blood pressure"],"HR":["HR","heart rate"],"RR":["RR","respiratory rate"],
+  "SpO2":["SpO2","peripheral oxygen saturation"],"ABCs":["ABCs","airway, breathing, circulation"],
+  "COPD":["COPD","chronic obstructive pulmonary disease"],"DKA":["DKA","diabetic ketoacidosis"],
+  "PE":["PE","pulmonary embolism"],"GI":["GI","gastrointestinal"],"PACU":["PACU","post-anesthesia care unit"],
+  "CBC":["CBC","complete blood count"],"ABG":["ABG","arterial blood gas"],"BMP":["BMP","basic metabolic panel"],
+  "aPTT":["aPTT","activated partial thromboplastin time"],"PICC":["PICC","peripherally inserted central catheter"],
+  "PPE":["PPE","personal protective equipment"],"SBAR":["SBAR","situation, background, assessment, recommendation"],
+  "NCLEX":["NCLEX","National Council Licensure Examination"],
+  "mL/hr":["mL/hr","milliliters per hour"],"mL":["mL","milliliters"],"mg/dL":["mg/dL","milligrams per deciliter"],
+  "mmHg":["mmHg","millimeters of mercury"],"2 L":["L","liters"]
+};
+const ABBR_RE=new RegExp("(?<![A-Za-z0-9])("+Object.keys(ABBR).sort((a,b)=>b.length-a.length).map(k=>k.replace(/[.*+?^${}()|[\]\\\/&]/g,"\\$&")).join("|")+")(?![A-Za-z0-9])","g");
+// fmt: escapes text, colors RN/LPN/UAP, and writes each abbreviation out the first time it appears in `seen`
+function fmt(s,seen){
+  let out="",last=0;
+  s.replace(ABBR_RE,(m,k,i)=>{
+    out+=esc(s.slice(last,i));last=i+m.length;
+    const[c,full]=ABBR[k];
+    const role=/^(RN|LPN|UAP)$/.test(c)?` class="r-${c.toLowerCase()}"`:"";
+    let piece=role?`<span${role}>${esc(m)}</span>`:esc(m);
+    if(!seen.has(c)){seen.add(c);piece+=` <span class="ab">(${esc(full)})</span>`}
+    out+=piece;return m});
+  return out+esc(s.slice(last));
+}
 const isMulti=q=>q.ans.length>1;
+{const seen=new Set();document.querySelector("#roles").innerHTML=[["rn","RN: TAPE, unstable, high-risk"],["lpn","LPN: stable, routine, reinforce"],["uap","UAP: ADLs, measure, report"]].map(([r,x])=>`<span class="role r-${r}">${fmt(x,seen)}</span>`).join("")}
 function load(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return{}}}
 function save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
 function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
@@ -181,7 +217,7 @@ let store=load();
 let run=null; // {ids, idx, res:{id:{tries,done,picked:[],wrong:[]}}, order:{id:[optidx]}, opts}
 
 const topicSel=$("#topic");
-topicSel.innerHTML=`<option value="all">All topics</option>`+Object.entries(TOPICS).map(([k,t])=>`<option value="${k}">${t.name}</option>`).join("");
+topicSel.innerHTML=`<option value="all">All topics</option>`+Object.entries(TOPICS).map(([k,t])=>`<option value="${k}">${esc(t.name)}</option>`).join("");
 
 function pool(){
   const set=$("#set").value, topic=topicSel.value;
@@ -227,26 +263,28 @@ function render(){
   const r=run.res[id]||(run.res[id]={tries:0,done:false,picked:[],wrong:[]});
   const ord=run.order[id];
   const letters="ABCDEF";
+  const seen=new Set();const stemH=fmt(q.stem,seen);
   const opts=ord.map((oi,pos)=>{
+    const text=fmt(q.opts[oi],seen);
     let cls="opt"+(multi?" multi":"");
     const isRight=q.ans.includes(oi), isWrong=r.wrong.includes(oi);
     let why="";
     if(r.done){cls+=" done";if(isRight)cls+=" right";else if(isWrong)cls+=" wrong";
-      why=`<span class="why"><b>${isRight?"Right:":"Not this:"}</b> ${roleify(q.why[oi])}</span>`}
-    else if(isWrong){cls+=" wrong";why=`<span class="why"><b>Why not:</b> ${roleify(q.why[oi])}</span>`}
+      why=`<span class="why"><b>${isRight?"Right:":"Not this:"}</b> ${fmt(q.why[oi],seen)}</span>`}
+    else if(isWrong){cls+=" wrong";why=`<span class="why"><b>Why not:</b> ${fmt(q.why[oi],seen)}</span>`}
     else if(r.picked.includes(oi))cls+=" sel";
     const dis=r.done||isWrong;
-    return `<li><button type="button" class="${cls}" data-oi="${oi}" ${dis?"disabled":""} ${multi?`aria-pressed="${r.picked.includes(oi)}"`:""}><span class="key">${letters[pos]}</span><span class="body"><span>${roleify(q.opts[oi])}</span>${why}</span></button></li>`}).join("");
+    return `<li><button type="button" class="${cls}" data-oi="${oi}" ${dis?"disabled":""} ${multi?`aria-pressed="${r.picked.includes(oi)}"`:""}><span class="key">${letters[pos]}</span><span class="body"><span>${text}</span>${why}</span></button></li>`}).join("");
   let status="";
   if(r.done){status=r.tries===1?`<div class="status ok">Right on the first try.</div>`:`<div class="status warn">Got it on try ${r.tries}. Read every line below before you move on.</div>`}
   else if(r.msg){status=`<div class="status bad">${r.msg}</div>`}
   const t0=q.topics[0];
-  const hint=(!r.done&&r.hint)?`<div class="hint"><span class="lbl">Think it through</span>${roleify(q.topics.map(t=>TOPICS[t].hint).join(" "))}</div>`:"";
-  const plain=r.done?`<div class="plain"><span class="lbl">Plain version · ${TOPICS[t0].name}</span>${esc(TOPICS[t0].plain)}</div>`:"";
+  const hint=(!r.done&&r.hint)?`<div class="hint"><span class="lbl">Think it through</span>${q.topics.map(t=>fmt(TOPICS[t].hint,seen)).join(" ")}</div>`:"";
+  const plain=r.done?`<div class="plain"><span class="lbl">Plain version · ${TOPICS[t0].name}</span>${fmt(TOPICS[t0].plain,seen)}</div>`:"";
   const last=run.idx===run.ids.length-1;
   main.innerHTML=`<article class="card" aria-live="polite">
-    <div class="meta"><span class="qnum">Q ${run.idx+1} of ${run.ids.length}</span><span class="chip src">${q.src==="guide"?"Study guide #"+q.num:"New #"+q.num}</span>${q.topics.map(t=>`<span class="chip">${TOPICS[t].name}</span>`).join("")}</div>
-    <p class="stem">${roleify(q.stem)}</p>
+    <div class="meta"><span class="qnum">Q ${run.idx+1} of ${run.ids.length}</span><span class="chip src">${q.src==="guide"?"Study guide #"+q.num:"New #"+q.num}</span>${q.topics.map(t=>`<span class="chip">${esc(TOPICS[t].name)}</span>`).join("")}</div>
+    <p class="stem">${stemH}</p>
     ${multi?`<span class="sata">Select all that apply</span>`:""}
     <ul class="opts">${opts}</ul>
     ${status}${hint}${plain}
@@ -315,7 +353,7 @@ function renderResults(){
   $("#main").innerHTML=`<article class="card results">
     <div><span class="lbl">First-try score</span><div class="big">${pct}%</div><div class="score">${s.first} of ${s.total} right on the first try${s.done<s.total?` · ${s.total-s.done} skipped`:""}</div></div>
     <div><span class="lbl">By topic</span><div class="bars" style="margin-top:8px">${Object.entries(byT).filter(([k,v])=>v.n).map(([k,v])=>`<div class="bar"><span>${TOPICS[k].name}</span><div class="track"><div class="fill" style="width:${Math.round(100*v.f/v.n)}%"></div></div><span class="n">${v.f}/${v.n}</span></div>`).join("")}</div></div>
-    <div><span class="lbl">Took more than one try</span>${missed.length?`<ul class="missed" style="margin-top:8px">${missed.map(q=>`<li><span class="qnum">${q.src==="guide"?"Guide #":"New #"}${q.num}</span>${roleify(q.stem)}</li>`).join("")}</ul>`:`<p class="empty">Nothing. Every question right on the first try.</p>`}</div>
+    <div><span class="lbl">Took more than one try</span>${missed.length?`<ul class="missed" style="margin-top:8px">${missed.map(q=>`<li><span class="qnum">${q.src==="guide"?"Guide #":"New #"}${q.num}</span>${fmt(q.stem,new Set())}</li>`).join("")}</ul>`:`<p class="empty">Nothing. Every question right on the first try.</p>`}</div>
     <div class="actions"><button type="button" class="btn ghost" id="review">Back to last question</button>${missed.length?`<button type="button" class="btn" id="redo">Drill these ${missed.length} again</button>`:""}</div>
   </article>`;
   $("#review").addEventListener("click",()=>{run.idx=run.ids.length-1;persist();render()});
