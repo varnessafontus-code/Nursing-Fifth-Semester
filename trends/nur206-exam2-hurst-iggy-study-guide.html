@@ -1,0 +1,390 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Hurst + Iggy Study Guide</title>
+<meta content="cover" name="claude:viewport-fit-sides"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&amp;family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&amp;family=IBM+Plex+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<style>
+/* Layout: a chart binder of colored section cards; within each, colored chips tag every fact by type. */
+:root {
+  --paper: #f6f7fb; --sheet: #ffffff; --ink: #1b2330; --muted: #5a6577; --rule: #d9dee6;
+  --kid-bg: #fff6dc; --kid-edge: #d4a017; --iggy: #1f7a68; --warn: #c62828; --tab-text: #ffffff;
+  --s-deleg: #c2185b; --s-ch17: #3949ab; --s-ch18: #5b8a1e; --s-ch19: #d84315; --s-ch21: #1976d2; --s-ch15: #00838f; --s-seq: #5e35b1; --s-renal: #b8741a; --s-cardio: #c2363b; --s-gi: #3d7d4f; --s-endo: #7a4bb0; --k-def: #3f5a8a; --k-sign: #c75f00; --k-lab: #00738c; --k-pri: #c62828; --k-med: #7b1fa2; --k-do: #2e7d32; --k-teach: #1565c0; --k-tip: #9a6b00; --k-trap: #ad1457;
+  --display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --body: "Public Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #11151c; --sheet: #191f28; --ink: #e7eaef; --muted: #a3acba; --rule: #2e3644;
+  --kid-bg: #2b2414; --kid-edge: #e2b84a; --iggy: #6cc3b0; --warn: #ff8a80; --tab-text: #11151c; --s-deleg: #f48fb1; --s-ch17: #9fa8da; --s-ch18: #aed581; --s-ch19: #ffab91; --s-ch21: #90caf9; --s-ch15: #4dd0e1; --s-seq: #b39ddb; --s-renal: #e0a050; --s-cardio: #f07a7e; --s-gi: #78bf8c; --s-endo: #b591e3; --k-def: #9db7e6; --k-sign: #ffb170; --k-lab: #6fd3e8; --k-pri: #ff8a80; --k-med: #d59bf0; --k-do: #8fd694; --k-teach: #90c2ff; --k-tip: #f2c75c; --k-trap: #f48fb1; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #11151c; --sheet: #191f28; --ink: #e7eaef; --muted: #a3acba; --rule: #2e3644;
+  --kid-bg: #2b2414; --kid-edge: #e2b84a; --iggy: #6cc3b0; --warn: #ff8a80; --tab-text: #11151c; --s-deleg: #f48fb1; --s-ch17: #9fa8da; --s-ch18: #aed581; --s-ch19: #ffab91; --s-ch21: #90caf9; --s-ch15: #4dd0e1; --s-seq: #b39ddb; --s-renal: #e0a050; --s-cardio: #f07a7e; --s-gi: #78bf8c; --s-endo: #b591e3; --k-def: #9db7e6; --k-sign: #ffb170; --k-lab: #6fd3e8; --k-pri: #ff8a80; --k-med: #d59bf0; --k-do: #8fd694; --k-teach: #90c2ff; --k-tip: #f2c75c; --k-trap: #f48fb1; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 15.5px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 24px 64px; }
+.wrap { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
+header.top { display: flex; flex-direction: column; gap: 10px; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0; }
+h1 { font-family: var(--display); font-weight: 800; font-size: clamp(28px, 7vw, 40px); line-height: 1.05; margin: 0; text-wrap: balance; }
+h2 { font-family: var(--display); font-weight: 800; font-size: 24px; line-height: 1.15; margin: 0; text-wrap: balance; }
+h3 { font-family: var(--display); font-weight: 600; font-size: 18px; margin: 18px 0 6px; text-wrap: balance; }
+p { margin: 0 0 8px; max-width: 70ch; }
+ul, ol { margin: 0 0 10px; padding-left: 22px; }
+li { margin: 3px 0; }
+nav.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+nav.toc a { font-size: 14px; font-weight: 600; text-decoration: none; border-radius: 999px; padding: 6px 12px;
+  border: 1px solid var(--c); border-left-width: 5px; background: color-mix(in srgb, var(--c) 12%, var(--sheet)); color: color-mix(in srgb, var(--c) 70%, var(--ink)); }
+a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+#deleg, nav.toc a[href="#deleg"] { --c: var(--s-deleg); }
+#ch17, nav.toc a[href="#ch17"] { --c: var(--s-ch17); }
+#ch18, nav.toc a[href="#ch18"] { --c: var(--s-ch18); }
+#ch19, nav.toc a[href="#ch19"] { --c: var(--s-ch19); }
+#ch21, nav.toc a[href="#ch21"] { --c: var(--s-ch21); }
+#ch15, nav.toc a[href="#ch15"] { --c: var(--s-ch15); }
+#seq, nav.toc a[href="#seq"] { --c: var(--s-seq); }
+#renal, nav.toc a[href="#renal"] { --c: var(--s-renal); }
+#cardio, nav.toc a[href="#cardio"] { --c: var(--s-cardio); }
+#gi, nav.toc a[href="#gi"] { --c: var(--s-gi); }
+#endo, nav.toc a[href="#endo"] { --c: var(--s-endo); }
+section.part { background: color-mix(in srgb, var(--c) 4%, var(--sheet)); border: 1.5px solid color-mix(in srgb, var(--c) 40%, var(--rule)); border-radius: 8px; overflow: hidden; }
+.tab { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; padding: 12px 18px; background: var(--c); color: var(--tab-text); }
+.tab h2 { color: var(--tab-text); }
+.tab .src { font-family: var(--mono); font-size: 12px; opacity: .9; }
+.body { padding: 4px 18px 18px; min-width: 0; }
+.body h3 { color: color-mix(in srgb, var(--c) 85%, var(--ink)); border-left: 5px solid var(--c); padding: 3px 8px 3px 10px;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--c) 14%, transparent), transparent 75%); border-radius: 0 4px 4px 0; }
+.body strong { color: color-mix(in srgb, var(--c) 65%, var(--ink)); }
+ul.facts { list-style: none; padding-left: 0; }
+ul.facts li { padding: 6px 0 6px 2px; border-bottom: 1px dashed color-mix(in srgb, var(--c) 25%, var(--rule)); }
+ul.facts li:last-child { border-bottom: 0; }
+ol.steps li::marker { color: var(--c); font-weight: 800; }
+.chip { display: inline-block; font: 700 11px/1 var(--mono); letter-spacing: .05em; text-transform: uppercase; padding: 4px 7px; margin-right: 6px; border-radius: 4px; vertical-align: 1px;
+  color: var(--k); background: color-mix(in srgb, var(--k) 14%, var(--sheet)); border: 1px solid color-mix(in srgb, var(--k) 55%, transparent); white-space: nowrap; }
+.chip.def { --k: var(--k-def); }
+.chip.sign { --k: var(--k-sign); }
+.chip.lab { --k: var(--k-lab); }
+.chip.pri { --k: var(--k-pri); }
+.chip.med { --k: var(--k-med); }
+.chip.do { --k: var(--k-do); }
+.chip.teach { --k: var(--k-teach); }
+.chip.tip { --k: var(--k-tip); }
+.chip.trap { --k: var(--k-trap); }
+.ig { color: var(--iggy); font-weight: 600; }
+.tbl { overflow-x: auto; margin: 6px 0 12px; }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; }
+th, td { text-align: left; vertical-align: top; padding: 7px 9px; border-bottom: 1px solid var(--rule); }
+th { font-weight: 700; font-size: 12.5px; text-transform: uppercase; letter-spacing: .04em; background: color-mix(in srgb, var(--c) 16%, var(--sheet)); color: color-mix(in srgb, var(--c) 75%, var(--ink)); border-bottom: 2px solid var(--c); }
+tbody tr:nth-child(even) td { background: color-mix(in srgb, var(--c) 6%, transparent); }
+td.v { font-family: var(--mono); font-size: 13px; white-space: nowrap; }
+td .chip { margin-bottom: 3px; }
+.kid { background: var(--kid-bg); border: 1.5px dashed var(--kid-edge); border-radius: 8px; padding: 10px 14px; margin: 14px 0 4px; }
+.kid p { margin: 0; }
+.kid strong { color: inherit; }
+.lbl { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; color: color-mix(in srgb, var(--kid-edge) 75%, var(--ink)); margin-bottom: 4px !important; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 4px 18px; }
+.grid h3 { font-size: 16px; }
+#seq .grid > div:nth-child(6n+1) { --c: var(--s-cardio); } #seq .grid > div:nth-child(6n+2) { --c: var(--s-renal); }
+#seq .grid > div:nth-child(6n+3) { --c: var(--s-gi); } #seq .grid > div:nth-child(6n+4) { --c: var(--s-ch21); }
+#seq .grid > div:nth-child(6n+5) { --c: var(--s-endo); } #seq .grid > div:nth-child(6n+6) { --c: var(--s-deleg); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 4px; align-items: center; margin: 0; }
+.legend .lg-h { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-right: 6px; }
+.note { font-size: 14px; color: var(--muted); }
+@media (max-width: 480px) { .body { padding: 4px 14px 16px; } h2 { font-size: 21px; } }
+
+</style>
+<div class="wrap">
+<header class="top">
+<p class="eyebrow">NUR206 Trends · Exam 2 · Hurst workbook + Iggy</p>
+<h1>Hurst + Iggy Study Guide</h1>
+<p>Renal, cardio, gastrointestinal (GI), and endo from your Hurst pages, filled in with Iggy. Each system has its own color; each fact is tagged by type.</p>
+<p class="legend"><span class="lg-h">Color key</span><span class="chip def">What / define</span><span class="chip sign">Signs</span><span class="chip lab">Labs / tests</span><span class="chip pri">Priority</span><span class="chip med">Meds / treat</span><span class="chip do">Nursing</span><span class="chip teach">Teach</span><span class="chip tip">Exam tip</span><span class="ig" style="font-size:13px;margin-left:4px">(Iggy: …) = Iggy's version where it differs from Hurst</span></p>
+<nav aria-label="Sections" class="toc"><a href="#renal">Renal</a><a href="#cardio">Cardio</a><a href="#gi">GI</a><a href="#endo">Endo</a><a href="#seq">Orders and positions</a></nav>
+</header>
+<!-- RENAL -->
+<section class="part" id="renal">
+<div class="tab"><h2>Renal</h2><span class="src">Hurst pp. 128–141 · Iggy</span></div>
+<div class="body">
+<h3>Glomerulonephritis vs. nephrotic syndrome</h3>
+<div class="tbl"><table>
+<thead><tr><th></th><th>Glomerulonephritis</th><th>Nephrotic syndrome</th></tr></thead>
+<tbody>
+<tr><td><span class="chip def">What</span></td><td>Inflamed, clogged filter. Cause: <strong>strep</strong> 1–3 weeks earlier</td><td>Filter with big holes → massive protein loss</td></tr>
+<tr><td><span class="chip sign">Signs</span></td><td>Cola-colored urine, low output, periorbital edema, high blood pressure (BP), flank pain, high blood urea nitrogen (BUN) and creatinine</td><td>Proteinuria, albumin under 3, <strong>anasarca</strong>, high lipids, clot risk</td></tr>
+<tr><td><span class="chip med">Treat</span></td><td>Antibiotics (finish all), diuretics, blood pressure (BP) control</td><td>Diuretics, angiotensin-converting enzyme (ACE) inhibitors, prednisone, cyclophosphamide, anticoagulant</td></tr>
+<tr><td><span class="chip do">Diet</span></td><td>Low sodium, <strong>low protein</strong>; fluid = last 24-hr output + 500 mL <span class="ig">(Iggy: + 500–600)</span></td><td>Low sodium, <strong>moderate protein</strong> (1–2 g/kg) because they're losing it</td></tr>
+<tr><td><span class="chip pri">Watch</span></td><td>Progression to chronic disease; older adults can look like heart failure (HF)</td><td><strong>Infection</strong> (immunosuppressed), skin breakdown</td></tr>
+</tbody>
+</table></div>
+<p><span class="chip tip">Hurst rule</span> Limit protein in kidney disease <strong>except</strong> nephrotic syndrome.</p>
+<h3>Acute kidney injury</h3>
+<ul class="facts">
+<li><span class="chip def">Types</span> <strong>Prerenal</strong> = no blood to the kidney (shock, hypovolemia, low cardiac output) · <strong>Intrarenal</strong> = damage inside (glomerulonephritis (GN), contrast, aminoglycosides, nonsteroidal anti-inflammatory drugs (NSAIDs) <span class="ig">(Iggy: NSAIDs = prerenal)</span>) · <strong>Postrenal</strong> = can't get out (prostate, stones, clotted catheter).</li>
+<li><span class="chip def">Phases</span> Initiation → <strong>oliguric</strong> (output falls, can reach 100 mL/24 hr or less; about 10–14 days) <span class="ig">(Iggy: oliguria = under 400 mL/day; 100 or less = anuria)</span> → <strong>diuretic</strong> (large output; replace fluid and electrolytes) → <strong>recovery</strong> (3–12 months).</li>
+<li><span class="chip sign">Signs</span> Blood urea nitrogen (BUN) and creatinine up · fixed specific gravity · fluid overload (hypertension (HTN), crackles) · uremia (nausea and vomiting (N/V), confusion, itching) · phosphorus up, calcium down · anemia · <strong>high potassium (K)</strong> · metabolic acidosis.</li>
+<li><span class="chip pri">High K first</span> Intravenous (IV) calcium gluconate (protects the heart, doesn't lower potassium (K)) → IV insulin + glucose (shifts K in) → K binder (removes K) → diuretic or dialysis.</li>
+<li><span class="chip do">Nursing</span> Hourly output, daily weight (1 kg = 1,000 mL), fluid = output + 500 mL, smallest intravenous (IV) volumes, no nephrotoxins, infection prevention, bed rest.</li>
+<li><span class="chip do">Diet</span> High carbs and fats; low protein (0.6 g/kg; 1–1.5 g/kg on dialysis); low potassium (K) and phosphate.</li>
+<li><span class="chip trap">Contrast</span> Check creatinine first; hydrate before and after; hold metformin, restart after 48 hr only if creatinine is normal.</li>
+</ul>
+<h3>Dialysis</h3>
+<div class="tbl"><table>
+<thead><tr><th>Hemodialysis</th><th>Continuous renal replacement therapy (CRRT)</th><th>Peritoneal dialysis</th></tr></thead>
+<tbody><tr>
+<td>3–4×/week; heparin → bleeding precautions; watch blood pressure (BP) (fast fluid shifts); depression risk. Access arm: <strong>no BP, sticks, intravenous lines (IVs)</strong>; feel the thrill, hear the bruit</td>
+<td>Intensive care unit (ICU), continuous, slow shifts (no more than about 80 mL of blood outside the body). For unstable cardiovascular status</td>
+<td>Warm dialysate in by gravity, dwell, drain. Clear straw-colored = normal; <strong>cloudy = peritonitis</strong>. Poor outflow → turn side to side. More protein and fiber</td>
+</tr></tbody>
+</table></div>
+<h3>Kidney stones</h3>
+<ul class="facts">
+<li><span class="chip sign">Signs</span> Severe flank pain, nausea and vomiting (N/V), hematuria.</li>
+<li><span class="chip med">Treat</span> Pain meds right away · ondansetron · tamsulosin (relaxes the ureter) · <strong>increase fluids</strong> · strain all urine. After lithotripsy, sand-like sediment = it worked.</li>
+<li><span class="chip do">24-hour urine</span> Discard the first void and start the clock · save everything · keep the last void · miss one = start over.</li>
+</ul>
+<h3>Renal labs</h3>
+<div class="tbl"><table>
+<thead><tr><th>Lab</th><th>Normal</th><th>Kidney failure</th></tr></thead>
+<tbody>
+<tr><td>Blood urea nitrogen (BUN) · creatinine</td><td class="v">10–20 · 0.5–1.2 mg/dL</td><td>Up</td></tr>
+<tr><td>Potassium</td><td class="v">3.5–5.0 mEq/L</td><td>Up (dysrhythmias)</td></tr>
+<tr><td>Phosphorus · calcium</td><td class="v">3.0–4.5 · 9.0–10.5 mg/dL</td><td>Phosphorus up, calcium down</td></tr>
+<tr><td>Urine output</td><td class="v">≥ 0.5 mL/kg/hr (≥ 30 mL/hr)</td><td>Low</td></tr>
+</tbody>
+</table></div>
+<div class="kid"><p class="lbl">Kid version</p><p>Kidneys are coffee filters. Prerenal: no water poured in. Intrarenal: the filter is torn. Postrenal: the cup underneath is blocked. Nephrotic syndrome is a filter with big holes, so the "sponge" protein that holds water in your blood leaks out and you puff up everywhere.</p></div>
+</div>
+</section>
+<!-- CARDIO -->
+<section class="part" id="cardio">
+<div class="tab"><h2>Cardiovascular</h2><span class="src">Hurst pp. 79–100 · Iggy</span></div>
+<div class="body">
+<h3>Cardiac output basics</h3>
+<ul class="facts">
+<li><span class="chip def">Terms</span> Preload = blood returning and stretch · afterload = resistance the left ventricle pumps against (hypertension (HTN) raises it → heart failure (HF)) · cardiac output (CO) = heart rate (HR) × stroke volume.</li>
+<li><span class="chip sign">Low CO</span> Level of consciousness (LOC) down · chest pain · crackles · cool, clammy skin · output under 30 mL/hr · weak pulses.</li>
+<li><span class="chip med">Drugs</span> Lower preload: diuretics, nitrates · lower afterload: angiotensin-converting enzyme (ACE) inhibitors, angiotensin II receptor blockers (ARBs), hydralazine · contractility: dobutamine, milrinone, digoxin · rate: beta blockers, calcium channel blockers.</li>
+<li><span class="chip pri">No output</span> Pulseless ventricular tachycardia (VT), ventricular fibrillation (VF), asystole → cardiopulmonary resuscitation (CPR). VF: <strong>defibrillate first</strong>, then epinephrine; amiodarone or lidocaine if it persists.</li>
+</ul>
+<h3>Stable angina vs. acute coronary syndrome</h3>
+<div class="tbl"><table>
+<thead><tr><th></th><th>Stable angina</th><th>Acute coronary syndrome (ACS) (unstable angina, myocardial infarction (MI))</th></tr></thead>
+<tbody>
+<tr><td><span class="chip def">Trigger</span></td><td>Exertion, cold, big meals</td><td>Can happen at rest</td></tr>
+<tr><td><span class="chip sign">Relief</span></td><td>Rest or nitroglycerin (NTG)</td><td><strong>Not</strong> relieved; unstable angina = impending myocardial infarction (MI)</td></tr>
+<tr><td><span class="chip lab">Troponin</span></td><td>Normal</td><td>Up in myocardial infarction (MI)</td></tr>
+</tbody>
+</table></div>
+<ul class="facts">
+<li><span class="chip sign">ACS signs</span> Crushing pressure radiating to jaw, arm, back; sweating, nausea and vomiting (N/V). <strong>Women</strong>: indigestion, fatigue, can't catch their breath. <strong>Older adults</strong>: shortness of breath. Diabetics and women delay care.</li>
+<li><span class="chip pri">ED</span> 12-lead within 10 min · oxygen (O₂) only if oxygen saturation (SpO₂) under 90% · chew aspirin · nitroglycerin (NTG) (if systolic blood pressure (SBP) ≥ 100, no phosphodiesterase-5 (PDE-5) drug) · morphine if pain persists · head of bed (HOB) up. ST-elevation myocardial infarction (STEMI) → percutaneous coronary intervention (PCI) within <strong>90 min</strong>.</li>
+<li><span class="chip med">NTG</span> 1 sublingual (SL) every 5 min × 3; sit first. Home: 1 tablet → not better in 5 min → call 911. Expect headache, blood pressure (BP) drop. Dark glass bottle; replace tablets every 6 months <span class="ig">(Iggy: 3–5 months)</span>. <strong>No sildenafil or tadalafil</strong> within 24–48 hr. Patch off 12–14 hr a day.</li>
+<li><span class="chip med">Other drugs</span> Beta blockers (hold if heart rate (HR) under 50–60 or systolic blood pressure (SBP) under 100) · calcium channel blockers · statin for every acute coronary syndrome (ACS) patient.</li>
+<li><span class="chip teach">Teach</span> Rest, small low-fat meals, no isometric exercise, stop smoking, nitroglycerin (NTG) before exertion, wait 2 hr after eating to exercise.</li>
+</ul>
+<h3>Cardiac markers</h3>
+<div class="tbl"><table>
+<thead><tr><th>Marker</th><th>Rises</th><th>Peaks</th><th>Normal again</th></tr></thead>
+<tbody>
+<tr><td><strong>Troponin</strong> (best; I &lt; 0.03, T &lt; 0.10 ng/mL)</td><td>3–4 hr</td><td>10–24 hr</td><td>Up to 3 weeks (best for late arrivals)</td></tr>
+<tr><td>Creatine kinase-MB (CK-MB)</td><td>6 hr</td><td>12–24 hr</td><td>24–36 hr</td></tr>
+<tr><td>Myoglobin</td><td>2 hr</td><td>3–15 hr</td><td>Fast</td></tr>
+</tbody>
+</table></div>
+<h3>Cath, reperfusion, and coronary artery bypass graft (CABG)</h3>
+<ul class="facts">
+<li><span class="chip do">Cath before</span> Allergy to iodine/shellfish <span class="ig">(Iggy: ask about prior contrast reactions instead)</span> · kidney function · hold metformin · mark pulses.</li>
+<li><span class="chip pri">Cath after</span> Site bleeding/hematoma (major complication) · 5 Ps · leg straight, flat 4–6 hr <span class="ig">(Iggy: 2–6 hr, head of bed (HOB) up to 30°)</span> · report site pain.</li>
+<li><span class="chip med">Fibrinolytics</span> Alteplase, tenecteplase: door-to-drug 30 min, within 12 hr of onset. Major risk = <strong>bleeding</strong>; new headache or confusion = brain bleed. No intramuscular injections (IMs) or arterial blood gases (ABGs). Worked = pain stops, reperfusion dysrhythmias, ST normalizes.</li>
+<li><span class="chip pri">After PCI</span> Chest pain = reocclusion → call at once.</li>
+<li><span class="chip pri">After CABG</span> Chest tube over 150 mL/hr → report · heavy drainage that <strong>suddenly stops</strong> → tamponade · atelectasis is #1 · atrial fibrillation (A-fib) on days 2–3.</li>
+<li><span class="chip teach">Rehab</span> Walking, gradual activity, no straining (stool softener), sex in about 1 week to 10 days.</li>
+</ul>
+<h3>Heart failure</h3>
+<div class="tbl"><table>
+<thead><tr><th>Left = Lungs</th><th>Right = the Rest of the body</th></tr></thead>
+<tbody><tr><td>Crackles, dyspnea, orthopnea, pink frothy sputum, third heart sound (S3), restlessness</td><td>Jugular venous distention (JVD), dependent edema, ascites, big liver, weight gain</td></tr></tbody>
+</table></div>
+<ul class="facts">
+<li><span class="chip lab">Tests</span> B-type natriuretic peptide (BNP) (turn nesiritide off 2 hr before drawing) · echo (ejection fraction) · New York Heart Association (NYHA) class I–intravenous (IV).</li>
+<li><span class="chip med">Drugs</span> <strong>Angiotensin-converting enzyme (ACE) inhibitor</strong> = drug of choice (cough, high potassium (K), first-dose hypotension; never with an angiotensin II receptor blocker (ARB)) · beta blocker (start low, go slow) · loop diuretic in the morning (low K; intravenous (IV) push over 1–2 min) · spironolactone (high K, no salt substitutes).</li>
+<li><span class="chip med">Digoxin</span> Apical pulse 1 full min; hold if under 60. Level 0.5–2.0. Toxicity: early nausea and vomiting (N/V), anorexia; late vision changes, dysrhythmias. <strong>Low potassium (K) or magnesium (Mg) → toxicity.</strong></li>
+<li><span class="chip teach">Teach</span> Weigh daily, same time and scale; report <strong>2–3 lb in a day</strong> <span class="ig">(Iggy: 1–2 lb overnight or 3 lb in a week)</span> · low sodium · watch canned food and over-the-counter (OTC) drugs · report shortness of breath (SOB), swelling, cough.</li>
+</ul>
+<h3>Pacemakers</h3>
+<ul class="facts">
+<li><span class="chip def">Rule</span> Rate may go above the set rate, <strong>never below</strong>. Loss of capture = spike with no beat; failure to sense = fires at the wrong time.</li>
+<li><span class="chip pri">After</span> Most common complication = lead displacement: don't raise that arm over the shoulder (Iggy: and no lifting over 10 lb, about 4 weeks).</li>
+<li><span class="chip teach">Teach</span> Pulse daily · identification (ID) card · avoid strong magnets, magnetic resonance imaging (MRI) · phone on the opposite side · household appliances are fine.</li>
+</ul>
+<h3>Pulmonary edema and tamponade</h3>
+<div class="tbl"><table>
+<thead><tr><th>Pulmonary edema</th><th>Cardiac tamponade</th></tr></thead>
+<tbody><tr>
+<td><span class="chip sign">Signs</span> Sudden, anxious, pink frothy sputum, crackles, often at night<br/><span class="chip pri">Do</span> Sit up, legs down · <strong>high-flow oxygen (O₂)</strong> · intravenous (IV) furosemide slowly · morphine · IV nitroglycerin (NTG) · hourly output</td>
+<td><span class="chip sign">Signs</span> <strong>Beck triad</strong>: jugular venous distention (JVD) with clear lungs, muffled heart sounds, low blood pressure (BP) · central venous pressure (CVP) up · narrowed pulse pressure · pulsus paradoxus over 10<br/><span class="chip pri">Do</span> Call at once, intravenous (IV) fluids, pericardiocentesis</td>
+</tr></tbody>
+</table></div>
+<div class="kid"><p class="lbl">Kid version</p><p>The heart is two pumps. When the left one gets tired, blood backs up into the lungs (Left = Lungs). When the right one gets tired, it backs up into the body: puffy legs and big neck veins. Tamponade is the heart squeezed by a water balloon so it can't fill.</p></div>
+</div>
+</section>
+<!-- GI -->
+<section class="part" id="gi">
+<div class="tab"><h2>Gastrointestinal</h2><span class="src">Hurst pp. 142–158 · Iggy</span></div>
+<div class="body">
+<h3>Pancreatitis</h3>
+<ul class="facts">
+<li><span class="chip def">What</span> Enzymes digest the pancreas. Causes: #1 gallstones, #2 alcohol.</li>
+<li><span class="chip sign">Signs</span> Severe epigastric pain to the back, <strong>worse with eating</strong> · rigid, board-like abdomen · Cullen (navel) and Grey Turner (flank) bruising = bleeding · low blood pressure (BP).</li>
+<li><span class="chip lab">Labs</span> <strong>Lipase</strong> (most specific) and amylase up · glucose up · hemoglobin and hematocrit (H&amp;H) down = bleeding, up = dehydration · calcium may drop.</li>
+<li><span class="chip pri">Treat</span> Pain control · keep the stomach "empty and dry": nothing by mouth (NPO), nasogastric (NG) to suction, bed rest <span class="ig">(Iggy: NPO + intravenous (IV) fluids for all; NG only for severe vomiting or ileus)</span> · proton pump inhibitors (PPIs), histamine-2 (H2) blockers · insulin.</li>
+<li><span class="chip teach">Chronic</span> Pancreatic enzymes with meals; no alcohol, smoking, or high-fat meals.</li>
+</ul>
+<h3>Cirrhosis, encephalopathy, and varices</h3>
+<ul class="facts">
+<li><span class="chip def">Liver's jobs</span> Clotting factors, albumin, drug breakdown, ammonia → urea. Scarring → portal hypertension → ascites, big spleen, varices.</li>
+<li><span class="chip pri">Hurst rules</span> Sick liver = <strong>bleeding</strong> is concern #1 · lower drug doses · <strong>no acetaminophen</strong> · avoid narcotics and sedatives.</li>
+<li><span class="chip do">Care</span> Daily weight and girth · low sodium · less protein <span class="ig">(Iggy: moderate protein)</span> · bleeding precautions · no alcohol.</li>
+<li><span class="chip do">Procedures</span> Liver biopsy: supine, right arm up, exhale and hold → after, <strong>lie on the right side</strong>. Paracentesis: <strong>void first</strong>, sit up; watch for shock.</li>
+<li><span class="chip sign">Encephalopathy</span> Ammonia up → confusion, <strong>asterixis</strong>, fetor, handwriting changes. Triggers: gastrointestinal (GI) bleed, constipation, low potassium (K), infection, sedatives.</li>
+<li><span class="chip med">Lactulose</span> Goal 2–3 soft stools a day; too many → low potassium (K) and dehydration. Rifaximin kills ammonia-making bacteria.</li>
+<li><span class="chip pri">Bleeding varices</span> Alcohol use + gastrointestinal (GI) bleed = varices until proven otherwise. Airway, breathing, circulation (ABCs), oxygen (O₂), 2 large-bore intravenous lines (IVs), blood, octreotide, <strong>banding first-line</strong>, balloon tamponade 12 hr max (airway emergency → deflate and remove), beta blockers to prevent rebleeding.</li>
+</ul>
+<h3>Peptic ulcer disease</h3>
+<div class="tbl"><table>
+<thead><tr><th>Gastric</th><th>Duodenal</th></tr></thead>
+<tbody><tr><td>Malnourished · pain 30–60 min after meals · food hurts, vomiting helps · vomits blood</td><td>Well-nourished · pain 2–3 hr after meals and at night · <strong>food helps</strong> · blood in stool</td></tr></tbody>
+</table></div>
+<ul class="facts">
+<li><span class="chip pri">Complications</span> Hemorrhage (most common) · <strong>perforation</strong>: sudden severe pain, rigid abdomen → surgery · pyloric obstruction.</li>
+<li><span class="chip med">Meds</span> H. pylori: proton pump inhibitor (PPI) + 2 antibiotics, 10–14 days · liquid antacids on an empty stomach and at bedtime · sucralfate coats the ulcer.</li>
+<li><span class="chip do">EGD</span> Nothing by mouth (NPO) before; NPO until the <strong>gag reflex</strong> returns; watch for perforation.</li>
+</ul>
+<h3>Hiatal hernia vs. dumping syndrome</h3>
+<div class="tbl"><table>
+<thead><tr><th>Hiatal hernia: keep the stomach DOWN</th><th>Dumping syndrome: keep food IN</th></tr></thead>
+<tbody><tr>
+<td>Heartburn, regurgitation · small meals · <strong>sit up 1 hr after eating</strong> · head of bed (HOB) up · lose weight</td>
+<td>After gastric surgery: weakness, palpitations, diarrhea (early 20–30 min; late 1–3 hr = low glucose) · <strong>lie on the left side</strong> after meals <span class="ig">(Iggy: lie down, no side named)</span> · no fluids with meals · low carb, high protein and fat</td>
+</tr></tbody>
+</table></div>
+<h3>Bowel: inflammatory bowel disease (IBD), ostomies, appendicitis</h3>
+<ul class="facts">
+<li><span class="chip def">IBD</span> Ulcerative colitis = large intestine only, cured by colectomy · Crohn's = mostly ileum, anywhere; avoid surgery. Low-residue diet in flares.</li>
+<li><span class="chip do">Colonoscopy</span> Clear liquids 12–24 hr · ice-cold percutaneous endoscopic gastrostomy (PEG) prep until clear · nothing by mouth (NPO) 6–8 hr · after: watch for <strong>perforation</strong>.</li>
+<li><span class="chip do">Ostomies</span> Ileostomy = liquid, never irrigated, dehydration and kidney stones · colostomy farther down = more formed; irrigate descending/sigmoid only, same time daily, left side. Healthy stoma = pink and moist.</li>
+<li><span class="chip pri">Appendicitis</span> Pain first, then nausea and vomiting (N/V); right lower quadrant (RLQ) (McBurney point). #1 worry = <strong>rupture</strong>: no enemas, laxatives, or heat. After surgery: Fowler's.</li>
+</ul>
+<h3>Total parenteral nutrition (TPN) and central lines</h3>
+<ul class="facts">
+<li><span class="chip do">TPN</span> Central line, filter, pump, <strong>dedicated line</strong> · bag hangs 24 hr max, new tubing each bag · glucose every 6 hr · daily weight · taper off · infection = #1 complication. Refeeding syndrome (low phosphorus and potassium (K)) → call.</li>
+<li><span class="chip pri">Central lines</span> Insert in Trendelenburg · chest x-ray before use · tubing change: clamp or Valsalva · <strong>air embolism → left side, Trendelenburg</strong>.</li>
+</ul>
+<h3>Gastrointestinal (GI) labs</h3>
+<div class="tbl"><table>
+<thead><tr><th>Lab</th><th>Normal</th><th>Changes in</th></tr></thead>
+<tbody>
+<tr><td>Lipase · amylase</td><td class="v">0–160 · 30–220 U/L</td><td>Up in pancreatitis</td></tr>
+<tr><td>Aspartate aminotransferase (AST) · alanine aminotransferase (ALT)</td><td class="v">0–35 · 4–36 U/L</td><td>Up in liver damage</td></tr>
+<tr><td>Hemoglobin (M · F)</td><td class="v">14–18 · 12–16 g/dL</td><td>Down = bleeding</td></tr>
+<tr><td>Ammonia</td><td class="v">10–80 mcg/dL</td><td>Up in encephalopathy</td></tr>
+</tbody>
+</table></div>
+<div class="kid"><p class="lbl">Kid version</p><p>Pancreatitis is the pancreas eating itself with its own soap, and every meal squirts more soap. The liver is a cleaning factory; when it's scarred, ammonia piles up and fogs the brain, and traffic backs up onto thin side roads (varices) that can burst.</p></div>
+</div>
+</section>
+<!-- ENDO -->
+<section class="part" id="endo">
+<div class="tab"><h2>Endocrine</h2><span class="src">Hurst pp. 55–78 · Iggy</span></div>
+<div class="body">
+<h3>Thyroid</h3>
+<div class="tbl"><table>
+<thead><tr><th>Hyperthyroid (Graves): gas pedal stuck</th><th>Hypothyroid: foot off the gas</th></tr></thead>
+<tbody><tr>
+<td>Hot, sweaty, weight loss, fast heart rate (HR), exophthalmos · thyroxine (T₄) up, thyroid-stimulating hormone (TSH) down</td>
+<td>Cold, tired, weight gain, slow heart rate (HR), constipated · thyroxine (T₄) down, thyroid-stimulating hormone (TSH) up · often has coronary artery disease (CAD)</td>
+</tr></tbody>
+</table></div>
+<ul class="facts">
+<li><span class="chip med">Hyper meds</span> Methimazole (infection risk, birth defects) · propylthiouracil (PTU) (liver toxicity) · saturated solution of potassium iodide (SSKI) in juice with a straw, <strong>1 hr after</strong> the antithyroid drug · propranolol for symptoms · radioactive iodine (RAI): rule out pregnancy, no babies or kissing for 1 week, becomes hypothyroid.</li>
+<li><span class="chip pri">Thyroid storm</span> Fever, heart rate (HR) way up, agitation → airway, antithyroid drug then iodide, propranolol, cooling + <strong>acetaminophen (no aspirin)</strong>, steroids. Never palpate the gland.</li>
+<li><span class="chip med">Levothyroxine</span> Empty stomach, 30–60 min before breakfast; separate from calcium and iron by 4 hr; start low (CAD). Chest fullness before a dose → <strong>hold and call</strong>.</li>
+<li><span class="chip pri">Myxedema coma</span> Level of consciousness (LOC) way down, low temp, heart rate (HR), blood pressure (BP), sodium (Na), glucose → airway first, intravenous (IV) thyroid hormone, warm blankets; avoid sedatives.</li>
+<li><span class="chip pri">Thyroidectomy</span> Priority = <strong>hemorrhage</strong>: check the dressing <em>and behind the neck</em>. Then airway (trach set at bedside), hoarseness (nerve damage), hypocalcemia (tingling, Chvostek). Head of bed (HOB) up.</li>
+</ul>
+<h3>Parathyroid and adrenal medulla</h3>
+<ul class="facts">
+<li><span class="chip def">Parathyroid</span> Secretes <strong>parathyroid hormone (PTH)</strong>, which pulls calcium from bone. Hyper = calcium (Ca) up, phosphorus down, "sedated," kidney stones, fragile bones. Hypo = Ca down, phosphorus up, "not sedated" (twitching, tetany) → intravenous (IV) calcium.</li>
+<li><span class="chip def">Pheochromocytoma</span> Epinephrine bursts: headache, fast heart rate (HR), sweating, high blood pressure (BP). 24-hr urine (vanillylmandelic acid (VMA), metanephrines). <strong>Don't palpate the abdomen.</strong> Surgery.</li>
+</ul>
+<h3>Addison vs. Cushing</h3>
+<div class="tbl"><table>
+<thead><tr><th></th><th>Addison: too little steroid</th><th>Cushing: too much steroid</th></tr></thead>
+<tbody>
+<tr><td><span class="chip sign">Signs</span></td><td>Fatigue, weight loss, low blood pressure (BP), bronze skin, salt craving</td><td>Moon face, buffalo hump, thin skin, bruising, high blood pressure (BP), edema</td></tr>
+<tr><td><span class="chip lab">Labs</span></td><td>Sodium (Na) ↓ · potassium (K) ↑ · glucose ↓ · adrenocorticotropic hormone (ACTH) stimulation test</td><td>Sodium (Na) ↑ · potassium (K) ↓ · glucose ↑ · calcium (Ca) ↓ · dexamethasone suppression test</td></tr>
+<tr><td><span class="chip do">Care</span></td><td><strong>More sodium</strong>, intake and output (I&amp;O), daily weight · steroids ⅔ in the morning, ⅓ in the evening, with food · fludrocortisone</td><td>Low sodium (Na), high potassium (K), high protein and calcium (Ca) · prevent <strong>infection</strong> (signs are masked) and injury</td></tr>
+<tr><td><span class="chip pri">Crisis</span></td><td>Addisonian crisis (stopping steroids, stress): rapid intravenous (IV) normal saline (NS), IV hydrocortisone, treat high potassium (K) and low glucose</td><td>Most common cause = long-term steroid therapy</td></tr>
+</tbody>
+</table></div>
+<p><span class="chip teach">Steroid rule</span> Never stop abruptly · more during illness · vomiting 24–36 hr → intramuscular (IM) hydrocortisone and emergency department (ED).</p>
+<h3>Diabetes</h3>
+<ul class="facts">
+<li><span class="chip def">Types</span> Type 1 = no insulin, abrupt, first sign may be diabetic ketoacidosis (DKA) · Type 2 = resistance, gradual · Gestational = screen at 24–28 weeks.</li>
+<li><span class="chip lab">Diagnosis</span> (2 abnormal tests) glycated hemoglobin (A1C) ≥ 6.5% · fasting glucose ≥ 126 · oral glucose tolerance test (OGTT) ≥ 200. Goal A1C ≤ 7%.</li>
+<li><span class="chip do">Diet and exercise</span> Plate method · high fiber · exercise at the same time daily when glucose is highest; eat first.</li>
+<li><span class="chip med">Metformin</span> No hypoglycemia alone; hold for contrast, restart after 48 hr if creatinine is normal. Glucagon-like peptide-1 (GLP-1) drugs: report severe pain to the back (pancreatitis).</li>
+<li><span class="chip med">Insulin</span> Rapid (lispro) within 10 min of a meal · regular = the intravenous (IV) insulin · neutral protamine Hagedorn (NPH) cloudy, peaks 6–14 hr · glargine: no peak, never mix or give IV · <strong>clear before cloudy</strong>. Nothing by mouth (NPO): still give basal, hold mealtime insulin. Sick: never skip insulin.</li>
+</ul>
+<h3>Glucose emergencies</h3>
+<div class="tbl"><table>
+<thead><tr><th></th><th>Hypoglycemia</th><th>Diabetic ketoacidosis (DKA) (type 1)</th><th>Hyperosmolar hyperglycemic state (HHS) (type 2)</th></tr></thead>
+<tbody>
+<tr><td><span class="chip lab">Glucose</span></td><td>≤ 70</td><td>Over 300, ketones, pH under 7.35</td><td>Over 600, no ketones</td></tr>
+<tr><td><span class="chip sign">Signs</span></td><td>Shaky, sweaty, cool, confused</td><td>Kussmaul breathing, fruity breath, dehydration</td><td>Severe dehydration, confusion; no Kussmaul</td></tr>
+<tr><td><span class="chip pri">Treat</span></td><td>15 g fast carb (no chocolate) → recheck in 15 min → snack. Unconscious: 50% dextrose in water (D50W) intravenous (IV) or glucagon (turn on side)</td><td colspan="2"><strong>Normal saline (NS) first</strong> → intravenous (IV) regular insulin → hourly glucose and potassium (K) (replace K once under 5.0 and output ≥ 30 mL/hr) → add 5% dextrose in water (D5W) at about 250–300</td></tr>
+</tbody>
+</table></div>
+<ul class="facts">
+<li><span class="chip tip">Hurst rules</span> Unconscious diabetic → treat as <strong>hypoglycemic</strong> · illness = diabetic ketoacidosis (DKA) · polyuria → think shock.</li>
+<li><span class="chip do">Complications</span> Retinopathy (yearly eye exam), nephropathy, neuropathy · foot care: inspect daily, cut nails straight, never barefoot.</li>
+<li><span class="chip def">DI vs. SIADH</span> Diabetes insipidus (DI) = too little antidiuretic hormone (ADH): huge dilute output, low specific gravity, high sodium (Na) → desmopressin · syndrome of inappropriate antidiuretic hormone (SIADH) = too much ADH: low output, low Na → fluid restriction, seizure precautions.</li>
+</ul>
+<div class="kid"><p class="lbl">Kid version</p><p>Insulin is the key that opens the cell door so sugar can get in, and potassium sneaks in through the same door. That's why fixing diabetic ketoacidosis (DKA) with insulin can drop potassium fast. Addison = not enough steroid, so everything runs low except potassium. Cushing = too much, so you get a puffy "cushion" body that catches infections.</p></div>
+</div>
+</section>
+<!-- ORDERS -->
+<section class="part" id="seq">
+<div class="tab"><h2>Orders and positions to know</h2><span class="src">Put-in-order practice</span></div>
+<div class="body">
+<div class="grid">
+<div><h3>Diabetic ketoacidosis (DKA)</h3><ol class="steps"><li>Normal saline (NS) first</li><li>Intravenous (IV) regular insulin</li><li>Hourly glucose and potassium (K)</li><li>Add 5% dextrose in water (D5W) at 250–300</li></ol></div>
+<div><h3>High potassium (K) with electrocardiogram (ECG) changes</h3><ol class="steps"><li>Intravenous (IV) calcium gluconate</li><li>Insulin + glucose</li><li>Potassium (K) binder</li><li>Diuretic or dialysis</li></ol></div>
+<div><h3>Chest pain at home</h3><ol class="steps"><li>1 nitroglycerin (NTG)</li><li>Wait 5 min</li><li>Not better → 911</li><li>Repeat nitroglycerin (NTG) every 5 min (3 total)</li></ol></div>
+<div><h3>Acute kidney injury (AKI) phases</h3><ol class="steps"><li>Initiation</li><li>Oliguric</li><li>Diuretic</li><li>Recovery</li></ol></div>
+<div><h3>Conscious hypoglycemia</h3><ol class="steps"><li>15 g fast carb</li><li>Recheck in 15 min</li><li>Repeat if under 70</li><li>Snack with protein</li></ol></div>
+<div><h3>Colonoscopy prep</h3><ol class="steps"><li>Clear liquids 12–24 hr</li><li>Prep until clear</li><li>Nothing by mouth (NPO) 6–8 hr</li><li>After: watch for perforation</li></ol></div>
+</div>
+<h3>Positions</h3>
+<div class="tbl"><table>
+<thead><tr><th>Situation</th><th>Position</th></tr></thead>
+<tbody>
+<tr><td>Pulmonary edema</td><td>Upright, legs down</td></tr>
+<tr><td>After femoral cath</td><td>Flat, leg straight</td></tr>
+<tr><td>After liver biopsy</td><td>Right side</td></tr>
+<tr><td>Paracentesis</td><td>Sitting up (void first)</td></tr>
+<tr><td>Hiatal hernia</td><td>Upright 1 hr after meals</td></tr>
+<tr><td>Dumping syndrome</td><td>Lie on left side after meals</td></tr>
+<tr><td>Colostomy irrigation, enema</td><td>Left side</td></tr>
+<tr><td>After appendectomy</td><td>Fowler's</td></tr>
+<tr><td>Central line insertion</td><td>Trendelenburg</td></tr>
+<tr><td>Air embolism</td><td>Left side, Trendelenburg</td></tr>
+<tr><td>After thyroidectomy</td><td>Semi-Fowler's, neck supported</td></tr>
+<tr><td>After glucagon (unconscious)</td><td>Side-lying</td></tr>
+</tbody>
+</table></div>
+</div>
+</section>
+</div>
+
+</body></html>

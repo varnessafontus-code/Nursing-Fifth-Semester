@@ -21,7 +21,9 @@ BACK = '<a class="back" href="../index.html">← All study guides</a>'
 
 def clean_html(h):
     # "Not affiliated with <school> or Elsevier." -> "Not affiliated with Elsevier."
-    return re.sub(r"Not affiliated with [^<.]{1,80}? or Elsevier\.", "Not affiliated with Elsevier.", h)
+    h = re.sub(r"Not affiliated with [^<.]{1,80}? or Elsevier\.", "Not affiliated with Elsevier.", h)
+    # SBAR examples written in the first person: swap the speaker's name for a neutral one
+    return re.sub(r"\bThis is [A-Z][a-z]+, registered nurse", "This is Jordan, registered nurse", h)
 
 
 def pandoc_wrap(body_html, title):

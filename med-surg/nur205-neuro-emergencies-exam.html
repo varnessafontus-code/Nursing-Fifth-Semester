@@ -1,0 +1,894 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Neuro Emergencies Exam</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one-column testing station — sticky EHR-style header, unfolding chart above the item, rationale below. */
+:root{
+  --bg:#EEF2F5; --surface:#FFFFFF; --ink:#16212B; --muted:#56656F; --line:#D3DCE3;
+  --accent:#1E5A86; --accent-ink:#FFFFFF; --accent-soft:#E2EDF6;
+  --ok:#2C7A4B; --ok-soft:#E3F3EA; --bad:#B0281F; --bad-soft:#FBE8E6; --warn:#8A6100; --warn-soft:#FFF4D6;
+  --mark:#FFE07A; --mark-ink:#16212B; --chart:#F7FAFC;
+  --display:'Barlow Condensed','Arial Narrow',Arial,sans-serif;
+  --body:'Source Sans 3','Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1720; --surface:#17222D; --ink:#E6EDF2; --muted:#9AAAB6; --line:#2B3A47;
+  --accent:#6FB0DF; --accent-ink:#0B1520; --accent-soft:#1D3347;
+  --ok:#5CC48A; --ok-soft:#173326; --bad:#F2867D; --bad-soft:#3A1C1A; --warn:#E6BE5A; --warn-soft:#352B12;
+  --mark:#C9A227; --mark-ink:#0F1720; --chart:#132029; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1720; --surface:#17222D; --ink:#E6EDF2; --muted:#9AAAB6; --line:#2B3A47;
+  --accent:#6FB0DF; --accent-ink:#0B1520; --accent-soft:#1D3347;
+  --ok:#5CC48A; --ok-soft:#173326; --bad:#F2867D; --bad-soft:#3A1C1A; --warn:#E6BE5A; --warn-soft:#352B12;
+  --mark:#C9A227; --mark-ink:#0F1720; --chart:#132029; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:16px 120px}
+header.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+header .in{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:10px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.brand{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:.02em;text-transform:uppercase;margin-right:auto}
+.brand small{display:block;font-family:var(--body);font-weight:400;text-transform:none;letter-spacing:0;font-size:13px;color:var(--muted)}
+.pill{font-family:var(--mono);font-size:13px;padding:4px 10px;border-radius:999px;background:var(--accent-soft);color:var(--ink);border:1px solid var(--line)}
+.prog{height:4px;background:var(--line)}
+.prog i{display:block;height:100%;background:var(--accent);transition:width .2s}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:10px 16px;cursor:pointer;font-weight:600;min-height:44px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.ghost{background:transparent}
+h1,h2{font-family:var(--display);font-weight:700;letter-spacing:.01em;text-wrap:balance;margin:0}
+h1{font-size:34px;line-height:1.1}
+h2{font-size:24px}
+.muted{color:var(--muted)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px}
+.stack{display:flex;flex-direction:column;gap:14px}
+.meta{display:flex;flex-wrap:wrap;gap:6px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.meta span{border:1px solid var(--line);border-radius:4px;padding:2px 6px}
+.meta .cj{color:var(--accent);border-color:var(--accent)}
+.stem{font-size:18px;font-weight:600;margin:0}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;border:1.5px solid var(--line);background:var(--surface);border-radius:10px;padding:12px 14px;cursor:pointer;min-height:48px}
+.opt .key{flex:none;width:26px;height:26px;border:1.5px solid var(--muted);display:grid;place-items:center;font-family:var(--mono);font-size:13px}
+.opt.radio .key{border-radius:50%}
+.opt.check .key{border-radius:5px}
+.opt[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.opt[aria-pressed="true"] .key{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.opt.right{border-color:var(--ok);background:var(--ok-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt.missed{border-style:dashed;border-color:var(--ok)}
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--accent-soft);font-weight:600}
+td.num,.mono{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:14px}
+.mx td.c{text-align:center;width:1%;white-space:nowrap}
+.mx input{width:22px;height:22px;accent-color:var(--accent)}
+.mx tr.right td:first-child{box-shadow:inset 4px 0 var(--ok)}
+.mx tr.wrong td:first-child{box-shadow:inset 4px 0 var(--bad)}
+.passage{background:var(--chart);border:1px solid var(--line);border-radius:10px;padding:14px;font-family:var(--mono);font-size:14.5px;line-height:2}
+.hl{cursor:pointer;border-radius:3px;padding:1px 2px;border-bottom:1px dotted var(--muted);background:none;border-top:0;border-left:0;border-right:0;font:inherit;color:inherit}
+.hl[aria-pressed="true"]{background:var(--mark);color:var(--mark-ink);border-bottom-color:transparent}
+.hl.right{outline:2px solid var(--ok)}
+.hl.wrong{outline:2px solid var(--bad)}
+.hl.missed{outline:2px dashed var(--ok)}
+.cloze{line-height:2.4}
+.cloze select{font:inherit;font-size:16px;padding:6px 8px;border:1.5px solid var(--accent);border-radius:6px;background:var(--surface);color:var(--ink);max-width:100%}
+.cloze select.right{border-color:var(--ok);background:var(--ok-soft)}
+.cloze select.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.dnd{display:grid;gap:14px}
+.slot{border:1.5px dashed var(--muted);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:6px;cursor:pointer;background:var(--surface);text-align:left;min-height:64px}
+.slot b{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.slot.filled{border-style:solid;border-color:var(--accent)}
+.slot.armed{background:var(--accent-soft)}
+.slot.right{border-color:var(--ok);background:var(--ok-soft)}
+.slot.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1.5px solid var(--line);border-radius:8px;padding:8px 10px;background:var(--chart);cursor:pointer;text-align:left;min-height:44px}
+.chip[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.chip.used{opacity:.4}
+.order li{display:flex;gap:10px;align-items:center;border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;background:var(--surface);margin-bottom:8px}
+.order ol{list-style:none;padding:0;margin:0}
+.order .n{font-family:var(--mono);width:22px;flex:none;color:var(--muted)}
+.order .t{flex:1;min-width:0}
+.order .mv{display:flex;flex-direction:column;gap:4px}
+.order .mv button{width:40px;height:32px;border:1px solid var(--line);border-radius:6px;background:var(--chart);cursor:pointer}
+.order li.right{border-color:var(--ok)}
+.order li.wrong{border-color:var(--bad)}
+.tags{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;font-size:13.5px}
+.tags dt{color:var(--muted);font-weight:600}
+.tags dd{margin:0}
+.rat{border-radius:10px;padding:14px;border:1px solid var(--line);background:var(--chart)}
+.rat .score{font-family:var(--display);font-size:22px;font-weight:700}
+.rat.good .score{color:var(--ok)}
+.rat.part .score{color:var(--warn)}
+.rat.zero .score{color:var(--bad)}
+.chart{border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+.chart .head{padding:10px 14px;background:var(--accent);color:var(--accent-ink);font-family:var(--display);font-size:18px;font-weight:600;letter-spacing:.02em}
+.tabs{display:flex;overflow-x:auto;border-bottom:1px solid var(--line);background:var(--chart)}
+.tab{flex:none;border:0;background:none;padding:10px 14px;cursor:pointer;font-weight:600;font-size:14px;color:var(--muted);border-bottom:3px solid transparent;min-height:44px}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.tabbody{padding:12px 14px;font-size:15px;display:flex;flex-direction:column;gap:8px}
+.entry.new{border-left:3px solid var(--warn);padding-left:8px}
+.new-tag{font-family:var(--mono);font-size:11px;background:var(--warn-soft);color:var(--warn);padding:1px 5px;border-radius:4px;margin-right:6px}
+.foot{position:fixed;left:0;right:0;bottom:0;z-index:5;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.foot .in{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:10px;display:flex;gap:8px;align-items:center}
+.foot .grow{flex:1}
+.flag[aria-pressed="true"]{background:var(--warn-soft);border-color:var(--warn);color:var(--warn)}
+.navgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(46px,1fr));gap:6px}
+.navgrid button{height:44px;border:1.5px solid var(--line);border-radius:8px;background:var(--surface);cursor:pointer;font-family:var(--mono);font-size:14px;position:relative}
+.navgrid .ans{background:var(--accent-soft);border-color:var(--accent)}
+.navgrid .ok{background:var(--ok-soft);border-color:var(--ok)}
+.navgrid .no{background:var(--bad-soft);border-color:var(--bad)}
+.navgrid .part{background:var(--warn-soft);border-color:var(--warn)}
+.navgrid .cur{outline:3px solid var(--ink)}
+.navgrid .fl::after{content:"";position:absolute;top:3px;right:3px;width:7px;height:7px;border-radius:50%;background:var(--warn)}
+.overlay{position:fixed;inset:0;z-index:20;background:color-mix(in srgb,var(--ink) 45%,transparent);display:flex;align-items:flex-end;justify-content:center}
+.overlay[hidden]{display:none}
+.sheet{background:var(--surface);width:100%;max-width:760px;max-height:85vh;overflow:auto;border-radius:16px 16px 0 0;padding:18px max(16px,env(safe-area-inset-left,0px)) calc(18px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:14px}
+.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px;margin-right:4px;border:1px solid var(--line)}
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mode{border:1.5px solid var(--line);border-radius:10px;padding:14px;text-align:left;cursor:pointer;background:var(--surface)}
+.mode[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.mode b{display:block;font-family:var(--display);font-size:20px}
+.types{display:flex;flex-direction:column;gap:8px}
+.type{display:flex;align-items:center;gap:12px}
+.type .tick{flex:none;width:26px;height:26px;border:1.5px solid var(--muted);border-radius:5px;display:grid;place-items:center;font-weight:700}
+.type[aria-pressed="true"] .tick{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.type .tt{flex:1;min-width:0;display:flex;flex-direction:column}
+.type .cnt{flex:none;font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:15px;color:var(--muted)}
+@media (max-width:480px){.modes{grid-template-columns:1fr}h1{font-size:28px}}
+.big{font-family:var(--display);font-size:64px;font-weight:700;line-height:1}
+.bars{display:flex;flex-direction:column;gap:8px}
+.barrow{display:grid;grid-template-columns:minmax(0,1fr) 120px 58px;gap:10px;align-items:center;font-size:14px}
+.barrow .track{height:10px;background:var(--line);border-radius:5px;overflow:hidden}
+.barrow .track i{display:block;height:100%;background:var(--accent)}
+.barrow .v{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right}
+.break{text-align:center;align-items:center}
+.hint{font-size:14px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header class="bar">
+  <div class="in">
+    <div class="brand">Neuro Emergencies Exam<small>Iggy Ch. 38 • NUR205</small></div>
+    <span class="pill" id="pos">Start</span>
+    <span class="pill" id="modePill">Tutor</span>
+    <button class="btn ghost" id="navBtn" aria-label="Open question navigator">Questions</button>
+  </div>
+  <div class="prog"><i id="progBar" style="width:0%"></i></div>
+</header>
+
+<main class="wrap" id="app"></main>
+
+<div class="foot" id="foot" hidden>
+  <div class="in">
+    <button class="btn" id="prevBtn">Back</button>
+    <button class="btn flag" id="flagBtn" aria-pressed="false">Flag</button>
+    <span class="grow"></span>
+    <button class="btn" id="checkBtn">Check</button>
+    <button class="btn primary" id="nextBtn">Next</button>
+  </div>
+</div>
+
+<div class="overlay" id="navOverlay" hidden>
+  <div class="sheet" role="dialog" aria-label="Question navigator">
+    <div style="display:flex;align-items:center;gap:10px"><h2 style="margin-right:auto">Questions</h2><button class="btn" id="navClose">Close</button></div>
+    <div class="legend"><span><i style="background:var(--accent-soft);border-color:var(--accent)"></i>Answered</span><span><i style="background:var(--ok-soft);border-color:var(--ok)"></i>Full credit</span><span><i style="background:var(--warn-soft);border-color:var(--warn)"></i>Partial</span><span><i style="background:var(--bad-soft);border-color:var(--bad)"></i>Zero</span><span><i style="background:var(--warn)"></i>Flagged</span></div>
+    <div class="navgrid" id="navGrid"></div>
+    <button class="btn primary" id="finishBtn">Finish and score exam</button>
+    <p class="hint" id="finishHint"></p>
+  </div>
+</div>
+
+<script>
+// Chapter 38 exam bank. Every answer option verified against Iggy 11e Ch. 38.
+// types: mcq, sata, matrix, highlight, cloze, dnd, order
+const CASE = {
+  title: '71-year-old client, emergency department → stroke unit',
+  tabs: [
+    { name: 'History & Physical', entries: [
+      { s: 1, t: '71-year-old male. Right-handed. Retired bus driver; lives with wife.' },
+      { s: 1, t: 'History: atrial fibrillation (diagnosed 1 year ago; declined anticoagulation), hypertension, type 2 diabetes mellitus.' },
+      { s: 1, t: 'Home medications: metoprolol, lisinopril, metformin.' },
+      { s: 1, t: 'Weight 80 kg (measured on emergency department bed scale).' }
+    ] },
+    { name: 'Nurses’ Notes', entries: [
+      { s: 1, t: '0815 — Brought by wife. Last known well at 0700. Right facial droop. Right arm drifts to bed within 10 seconds. Follows two-step commands. Attempts to answer questions but produces only a few words and appears frustrated. Pupils equal and reactive. Pulse irregularly irregular at 104. BP 196/104. SpO2 96% on room air. Temperature 98.6°F (37°C). Fingerstick glucose 142 mg/dL. Stroke scale (NIHSS) score 9. Wife at bedside, tearful.' },
+      { s: 2, t: '0850 — CT of head without contrast: no hemorrhage. Labetalol 10 mg IV given 0840 per protocol. BP now 178/100. Wife signed consent for alteplase. Bedside swallow screen not yet done.' },
+      { s: 3, t: '0935 — Alteplase bolus given 0855; infusion started 0856 by pump. Client grimaces, points to head, and says "head… bad." Vomited once. BP 194/112, HR 110 irregular. Right arm now has no movement.' },
+      { s: 4, t: '0950 — Stat CT: small area of hemorrhage, left parietal region. Alteplase not resumed. Neurosurgery consulted. Transferred to neuro critical care.' },
+      { s: 4, t: 'Day 2, 0900 — Assessment findings recorded for evaluation (see question).' }
+    ] },
+    { name: 'Vital Signs', table: true, cols: ['Time', 'BP', 'HR', 'RR', 'SpO2', 'Temp'], entries: [
+      { s: 1, r: ['0815', '196/104', '104 irreg', '18', '96%', '98.6°F'] },
+      { s: 2, r: ['0850', '178/100', '98 irreg', '18', '97%', '98.6°F'] },
+      { s: 3, r: ['0935', '194/112', '110 irreg', '22', '95%', '98.8°F'] },
+      { s: 4, r: ['Day 2 0900', '162/88', '84 irreg', '18', '97%', '99.0°F'] }
+    ] },
+    { name: 'Labs & Imaging', entries: [
+      { s: 1, t: 'Glucose 142 mg/dL • Hgb 15.2 g/dL • Platelets 240,000/mm³' },
+      { s: 1, t: 'PT 12 sec • INR 1.0 • aPTT 30 sec' },
+      { s: 2, t: 'CT head without contrast (0845): no intracranial hemorrhage.' },
+      { s: 4, t: 'Stat CT head (0945): small left parietal hemorrhage.' }
+    ] },
+    { name: 'Orders', entries: [
+      { s: 1, t: 'NPO. Continuous cardiac monitoring. Neuro checks per stroke protocol.' },
+      { s: 1, t: 'Alteplase 0.9 mg/kg IV per stroke protocol after CT confirms no hemorrhage.' },
+      { s: 1, t: 'Labetalol 10 mg IV PRN for SBP ≥ 185 or DBP ≥ 110.' },
+      { s: 1, t: 'Aspirin 325 mg PO daily, start today.' }
+    ] }
+  ]
+};
+
+const Q = [
+/* ---------- CASE STUDY (NCJMM 1–6) ---------- */
+{ id: 1, type: 'highlight', case: true, stage: 1, cj: 'Recognize Cues', topic: 'Stroke',
+  stem: 'Read the 0815 nurses’ note. Click to highlight the findings that require immediate follow-up.',
+  passage: ['0815 — Brought by wife. ', { h: 'Last known well at 0700', k: 1 }, '. ', { h: 'Right facial droop', k: 1 }, '. ',
+    { h: 'Right arm drifts to bed within 10 seconds', k: 1 }, '. ', { h: 'Follows two-step commands' }, '. ',
+    { h: 'Attempts to answer questions but produces only a few words and appears frustrated', k: 1 }, '. ',
+    { h: 'Pupils equal and reactive' }, '. ', { h: 'Pulse irregularly irregular at 104', k: 1 }, '. ', { h: 'BP 196/104', k: 1 }, '. ',
+    { h: 'SpO2 96% on room air' }, '. ', { h: 'Temperature 98.6°F (37°C)' }, '. ', { h: 'Fingerstick glucose 142 mg/dL' }, '. ',
+    { h: 'Stroke scale (NIHSS) score 9', k: 1 }, '. ', { h: 'Wife at bedside, tearful' }, '.'],
+  rat: 'Time last known well decides fibrinolytic eligibility (3 hours FDA; up to 4.5 hours with exclusions). Facial droop, arm drift, and halting speech with intact comprehension are acute focal deficits. Irregularly irregular pulse = atrial fibrillation, the usual embolic source. BP 196/104 is above the 185/110 ceiling for alteplase. The stroke scale score is one assessment used to decide eligibility. Glucose 142 and SpO2 96% matter because they rule OUT the two mimics (hypoglycemia, hypoxia) — they do not need follow-up. Following commands is intact comprehension. A tearful spouse needs support but is not an immediate clinical cue.' },
+
+{ id: 2, type: 'cloze', case: true, stage: 1, cj: 'Analyze Cues', topic: 'Stroke',
+  stem: 'Complete the statement using the chart.',
+  parts: ['The client’s findings are most consistent with ', { o: ['acute ischemic stroke', 'hypoglycemia', 'subarachnoid hemorrhage', 'epidural hematoma'], a: 0 },
+    ' as evidenced by ', { o: ['right-sided weakness with difficulty producing words', 'a temperature of 98.6°F', 'a glucose of 142 mg/dL', 'pupils that are equal and reactive'], a: 0 },
+    '. The most likely source of the occlusion is ', { o: ['atrial fibrillation', 'a ruptured aneurysm', 'head trauma', 'uncontrolled diabetes mellitus'], a: 0 }, '.'],
+  rat: 'Sudden focal deficits with preserved consciousness fit an ischemic (embolic) stroke; hemorrhagic strokes typically cause deepening lethargy and a "worst headache of my life" (subarachnoid hemorrhage). Glucose 142 rules out hypoglycemia as a mimic. No trauma history makes epidural hematoma unlikely. Iggy names the heart — especially atrial fibrillation — as the usual source of emboli. Contralateral findings (right body) and expressive aphasia point to the dominant left hemisphere, middle cerebral artery territory.' },
+
+{ id: 3, type: 'cloze', case: true, stage: 1, cj: 'Prioritize Hypotheses', topic: 'Stroke',
+  stem: 'Complete the statement.',
+  parts: ['Before alteplase can be started, the nurse’s priority is to address the client’s ', { o: ['blood pressure', 'heart rate', 'blood glucose', 'stroke scale score'], a: 0 },
+    ', because it must be below ', { o: ['185/110 mm Hg', '220/120 mm Hg', '140/90 mm Hg', '160/100 mm Hg'], a: 0 }, ' before the drug is given.'],
+  rat: 'Iggy: the patient receives a rapid-acting antihypertensive until BP is below 185/110 mm Hg, and that level is maintained during fibrinolytic therapy. The heart rate reflects known atrial fibrillation; glucose 142 is acceptable; a score of 9 does not exclude treatment (exclusion in the extended window is a score > 25). 220 systolic is the permissive ceiling only for clients NOT receiving alteplase or embolectomy.' },
+
+{ id: 4, type: 'matrix', case: true, stage: 2, cj: 'Generate Solutions', topic: 'Stroke drugs',
+  stem: 'CT shows no hemorrhage and BP is 178/100. For each potential action, indicate whether it is indicated or contraindicated for this client at this time.',
+  cols: ['Indicated', 'Contraindicated'],
+  rows: [
+    ['Have a second nurse double-check the calculated alteplase dose', 0],
+    ['Give 10% of the alteplase dose as an IV bolus over 1 minute', 0],
+    ['Manually push the remaining dose if the pump alarms', 1],
+    ['Give the scheduled aspirin 325 mg with the alteplase', 1],
+    ['Perform neuro checks every 10 to 15 minutes during the infusion', 0],
+    ['Insert a nasogastric tube for medications during the next 24 hours', 1],
+    ['Keep the client NPO until a swallow screen is performed', 0],
+    ['Calculate the dose from the weight the wife reports from his last office visit', 1]
+  ],
+  rat: 'Box 38.4: double check; programmable pump, 10% bolus over 1 minute, remainder over 60 minutes, never pushed manually; neuro checks every 10–15 minutes during infusion; no invasive tubes such as nasogastric tubes or urinary catheters until stable (usually 24 hours). Aspirin is never given within 24 hours of a fibrinolytic, and a follow-up CT is required before any antiplatelet — the aspirin order must be clarified. Dose is 0.9 mg/kg of ACTUAL weight (the bed-scale weight). Every stroke client stays NPO until swallowing is assessed.' },
+
+{ id: 5, type: 'mcq', case: true, stage: 3, cj: 'Take Action', topic: 'Stroke drugs',
+  stem: 'Review the 0935 note. Which action will the nurse take first?',
+  o: ['Stop the alteplase infusion', 'Give labetalol 10 mg IV per the PRN order', 'Perform a full stroke scale reassessment', 'Turn the client to the side to prevent aspiration'], a: 0,
+  rat: 'Severe headache (by gesture), vomiting, severe hypertension, and new loss of arm movement during alteplase signal intracerebral hemorrhage. Box 38.4: discontinue the infusion if the patient has severe headache, severe hypertension, bleeding, nausea, or vomiting, and notify the provider immediately. Every other action is reasonable afterward, but continuing to run a "clot buster" into a bleeding brain is the active harm — remove it first.' },
+
+{ id: 6, type: 'matrix', case: true, stage: 4, cj: 'Evaluate Outcomes', topic: 'Stroke',
+  stem: 'Day 2. The client remains in neuro critical care after a small hemorrhagic conversion. For each finding, indicate whether it shows improvement or decline.',
+  cols: ['Improving', 'Declining'],
+  rows: [
+    ['BP 162/88 mm Hg', 0],
+    ['Now arouses only to a repeated loud voice; was alert yesterday', 1],
+    ['Right arm lifts against gravity; had no movement at 0935 yesterday', 0],
+    ['Left pupil now larger than the right and sluggish to light', 1],
+    ['Passed bedside swallow screen', 0],
+    ['Follows commands and speaks in short phrases', 0]
+  ],
+  rat: 'After alteplase the BP target is < 180/105, so 162/88 is on target. A decline in level of consciousness is the earliest sign of increased intracranial pressure. A new unilateral dilated, sluggish pupil on the side of the lesion suggests cranial nerve III compression (uncal herniation) — report immediately. Motor return, a passed swallow screen, and improving speech are improvement.' },
+
+/* ---------- STANDALONE NGN ---------- */
+{ id: 7, type: 'matrix', cj: 'Analyze Cues (Trend)', topic: 'Traumatic brain injury',
+  stem: 'A 68-year-old client taking clopidogrel fell at home 9 days ago and was admitted for a fractured wrist. Flow sheet:',
+  table: { cols: ['', 'Day 1', 'Day 2', 'Day 3'], rows: [
+    ['GCS', '15', '14', '13'], ['BP', '132/80', '148/78', '168/72'], ['HR', '84', '70', '58'],
+    ['Pupils', 'Equal, brisk', 'Equal, brisk', 'Right 5 mm, sluggish'], ['Temp', '98.6°F', '98.8°F', '99.0°F'],
+    ['SpO2', '97%', '97%', '96%'], ['Wrist pain', '4/10', '3/10', '3/10']] },
+  cols: ['Indicates worsening', 'Not clinically significant'],
+  rows: [['GCS trend', 0], ['Pulse pressure trend', 0], ['Heart rate trend', 0], ['Pupil trend', 0], ['Temperature trend', 1], ['SpO2 trend', 1], ['Wrist pain trend', 1]],
+  rat: 'A GCS drop of 2 points is clinically important. Pulse pressure widened from 52 to 96 with falling heart rate and rising systolic pressure — the Cushing triad (very late sign). A new unilateral sluggish pupil signals cranial nerve III compression. An older adult on an antiplatelet drug after a fall, worsening over days, fits a subacute subdural hematoma (48 hours to 2 weeks). Temperature, SpO2, and wrist pain are stable.' },
+
+{ id: 8, type: 'cloze', cj: 'Analyze Cues', topic: 'Traumatic brain injury',
+  stem: 'A 22-year-old was struck on the side of the head by a baseball, was unconscious for about 1 minute, and is now awake and talking in the emergency department. CT shows a temporal bone fracture.',
+  parts: ['The nurse recognizes the client is at risk for ', { o: ['an epidural hematoma', 'a chronic subdural hematoma', 'postconcussion syndrome', 'a subarachnoid hemorrhage'], a: 0 },
+    ' from bleeding of the ', { o: ['middle meningeal artery', 'bridging veins', 'subcortical white matter vessels', 'carotid artery'], a: 0 },
+    ' and will perform neurologic checks every ', { o: ['5 to 10 minutes', '1 hour', '4 hours', 'shift'], a: 0 }, '.'],
+  rat: 'Epidural hematoma = arterial bleeding between dura and skull, often from a temporal bone fracture tearing the middle meningeal artery. A brief loss of consciousness followed by a "lucid interval" is the classic picture; deterioration can be rapid, so Iggy says monitor every 5 to 10 minutes. Bridging veins tear in subdural hematomas, which bleed more slowly.' },
+
+{ id: 9, type: 'highlight', cj: 'Recognize Cues', topic: 'Brain tumor / craniotomy',
+  stem: 'A client returned 2 hours ago from an infratentorial (posterior fossa) tumor resection. Click the findings or actions in the note that require follow-up.',
+  passage: ['1400 — ', { h: 'Head of bed at 30 degrees, supine', k: 1 }, '. ', { h: 'Bilateral periorbital edema' }, '. ',
+    { h: 'Dressing has a 2-cm drainage spot, marked' }, '. ', { h: 'Drain output 20 mL since surgery' }, '. ',
+    { h: 'Drowsy; given ice chips for dry mouth', k: 1 }, '. ', { h: 'Vomited once at 1345', k: 1 }, '. ',
+    { h: 'Reports extreme thirst', k: 1 }, '. ', { h: 'Urine 450 mL in the last hour, very pale', k: 1 }, '. ',
+    { h: 'Pupils equal and reactive' }, '. ', { h: 'Headache 3/10' }, '.'],
+  rat: 'Infratentorial surgery: keep the client flat or at 10 degrees and side-lying (alternate every 2 hours for 24–48 hours) — 30 degrees supine is the supratentorial position. Keep NPO until awake and alert because edema near the medulla and lower cranial nerves causes vomiting and aspiration — ice chips for a drowsy client and the episode of vomiting both need follow-up. Extreme thirst with large volumes of very dilute urine suggests central diabetes insipidus. Periorbital edema, a small marked spot, and 20 mL of drainage (typical is 30–50 mL per 8 hours) are expected.' },
+
+{ id: 10, type: 'dnd', cj: 'Analyze Cues', topic: 'Stroke',
+  stem: 'Drag the finding that best matches each artery affected by stroke. Not all findings will be used.',
+  slots: ['Middle cerebral artery', 'Anterior cerebral artery', 'Vertebrobasilar artery', 'Internal carotid artery'],
+  pool: ['Homonymous hemianopsia with unilateral neglect', 'Leg weaker than arm with bladder incontinence', 'Vertigo with flaccid paresis of all four extremities', 'Carotid bruit with contralateral hemiparesis', 'Perseveration with loss of deep sensation', 'Cheyne-Stokes respirations with pinpoint reactive pupils'],
+  a: [0, 1, 2, 3],
+  rat: 'Box 38.3: middle cerebral (most common) — homonymous hemianopsia, unilateral neglect, aphasia, contralateral arm-dominant weakness. Anterior cerebral — leg more than arm, bladder incontinence, personality change. Vertebrobasilar — headache, vertigo, flaccid quadriparesis, ataxia. Internal carotid — contralateral hemiparesis, carotid bruit. Perseveration and loss of deep sensation belong to the posterior cerebral artery. Cheyne-Stokes with pinpoint pupils is central herniation, not an arterial territory.' },
+
+{ id: 11, type: 'order', cj: 'Take Action', topic: 'Stroke drugs',
+  stem: 'Place the nurse’s actions for IV alteplase in an eligible client in the correct order. All steps are used.',
+  items: ['Confirm CT shows no intracranial hemorrhage', 'Confirm BP is below 185/110 mm Hg', 'Double-check the 0.9 mg/kg actual-weight dose with a second nurse', 'Give 10% of the dose as an IV bolus over 1 minute', 'Infuse the remaining dose over 60 minutes by pump', 'Obtain a follow-up CT before the first antiplatelet dose'],
+  meta: { 'Client Needs': 'Physiological Integrity — Pharmacological and Parenteral Therapies', 'Clinical Judgment': 'Take Action', 'Cognitive Ability': 'Applying', 'Content Area': 'Neurologic — Stroke', 'Integrated Process': 'Nursing Process — Implementation', 'Priority Concept': 'Perfusion', 'Strategy': 'Sequence: confirm safety → verify drug → administer → follow up' },
+  rat: 'Imaging must exclude hemorrhage first (alteplase into a bleed is lethal). BP must be below 185/110 before the drug. Box 38.4: double-check, then pump delivery — 10% bolus over 1 minute, remainder over 60 minutes. A follow-up CT or MRI is obtained after fibrinolytic therapy and before antiplatelet or anticoagulant drugs.' },
+
+{ id: 12, type: 'matrix', cj: 'Generate Solutions', topic: 'Traumatic brain injury',
+  stem: 'A client with a mild traumatic brain injury is being discharged from the emergency department with his roommate. Indicate whether each instruction is indicated or not indicated.',
+  cols: ['Indicated', 'Not indicated'],
+  rows: [
+    ['Take acetaminophen every 4 hours as needed for headache', 0],
+    ['Avoid alcohol and sleeping pills for at least 24 hours', 0],
+    ['Return immediately for clear drainage from the nose', 0],
+    ['Resume weightlifting at the gym tomorrow morning', 1],
+    ['Increasing sleepiness over the first night is expected', 1],
+    ['Call 911 if the pupils become unequal in size', 0]
+  ],
+  rat: 'Box 38.8: acetaminophen every 4 hours as needed; no sedatives, sleeping pills, or alcohol for at least 24 hours; no strenuous activity for at least 48 hours. Return or call 911 for seizure, worsening headache, persistent vomiting, blurred vision, clear ear/nose drainage, increasing weakness, slurred speech, progressive sleepiness, or unequal pupils.' },
+
+{ id: 13, type: 'cloze', cj: 'Take Action', topic: 'Increased ICP drugs',
+  stem: 'A client with a severe traumatic brain injury is prescribed mannitol IV push.',
+  parts: ['The nurse draws up mannitol through a ', { o: ['filter needle', 'large-bore blunt needle', 'tuberculin syringe', 'needleless vial adapter'], a: 0 },
+    ', measures urine output every ', { o: ['hour', '4 hours', '8 hours', 'shift'], a: 0 },
+    ', and recognizes the goal serum osmolarity is ', { o: ['310 to 320 mOsm/L', '275 to 295 mOsm/L', '340 to 360 mOsm/L', '250 to 270 mOsm/L'], a: 0 }, '.'],
+  rat: 'Mannitol can form microscopic crystals — give through a filter in the tubing or draw up through a filter needle for IV push. Maintain strict hourly output. Serum electrolytes and osmolarity are measured every 6 hours; mannitol is used to reach a serum osmolarity of 310–320 mOsm/L.' },
+
+{ id: 14, type: 'matrix', cj: 'Generate Solutions', topic: 'Brain tumor / craniotomy',
+  stem: 'Indicate whether each postoperative action or finding applies to supratentorial or infratentorial surgery.',
+  cols: ['Supratentorial', 'Infratentorial'],
+  rows: [
+    ['Head of bed at 30 degrees or as tolerated', 0],
+    ['Keep flat or at 10 degrees per prescription', 1],
+    ['Side-lying, alternating every 2 hours for 24 to 48 hours', 1],
+    ['NPO until awake and alert because of vomiting and aspiration risk', 1],
+    ['Bone pieces often not replaced to allow room for edema', 1],
+    ['Major complications are increased ICP from edema or hydrocephalus and hemorrhage', 0],
+    ['Tumor presentation with ataxia, drooling, and hearing loss', 1]
+  ],
+  rat: 'Supratentorial (cerebral): HOB 30 degrees, head midline, avoid extreme hip/neck flexion; major complications are increased ICP (edema, hydrocephalus) and hemorrhage. Infratentorial (brainstem/cerebellum): usually a craniectomy with bone not replaced; flat or 10 degrees; side-lying alternating every 2 hours for 24–48 hours; NPO until awake and alert. Infratentorial tumors produce ataxia, autonomic dysfunction, vomiting, drooling, hearing and vision loss.' },
+
+/* ---------- TRADITIONAL ---------- */
+{ id: 15, type: 'mcq', cj: 'Prioritize Hypotheses', topic: 'Priority',
+  stem: 'The nurse receives report on four clients on the neuroscience unit. Which client will the nurse see first?',
+  o: ['Client with a traumatic brain injury whose GCS fell from 14 to 12 in the last hour', 'Client on day 3 after subarachnoid hemorrhage receiving nimodipine who reports headache 6/10 and light sensitivity', 'Client 1 day after supratentorial craniotomy with bilateral periorbital edema and bruising', 'Client after a right-hemisphere stroke who laughs and then cries without apparent reason'], a: 0,
+  rat: 'A drop of 2 or more GCS points is clinically important and must be reported — decreasing consciousness is the earliest sign of increased ICP. Headache and photophobia are expected after subarachnoid hemorrhage; periorbital edema is expected after craniotomy; emotional lability is an expected effect of right or frontal brain injury.' },
+
+{ id: 16, type: 'mcq', cj: 'Analyze Cues', topic: 'Traumatic brain injury',
+  stem: 'An 81-year-old client taking warfarin fell 3 weeks ago. Her daughter reports worsening headaches and new confusion over the past week. Which condition does the nurse suspect?',
+  o: ['Chronic subdural hematoma', 'Epidural hematoma', 'Postconcussion syndrome', 'Second-impact syndrome'], a: 0,
+  rat: 'Chronic subdural hematoma presents 2 weeks to several months after injury; it nearly doubles in incidence after 65 and is commonly caused by falls plus anticoagulant or antiplatelet therapy. Signs: worsening headache, paresis, acute confusion, seizures. Epidural hematoma deteriorates within minutes to hours. Postconcussion syndrome (headache, dizziness, impaired cognition ≥ 4 weeks) does not explain progressive confusion in an anticoagulated older adult. Second-impact syndrome requires a second hit before recovery.' },
+
+{ id: 17, type: 'mcq', cj: 'Take Action', topic: 'Delegation',
+  stem: 'A client has right-sided hemiplegia with a flaccid right arm after a stroke. Which instruction will the nurse give the assistive personnel?',
+  o: ['“Support his right arm on a pillow whenever he sits in the chair.”', '“Help him up in bed by lifting under his right arm.”', '“Give him small sips of water to see how well he swallows.”', '“Approach him from his right side so he notices that arm.”'], a: 0,
+  rat: 'Support the flaccid arm and position it on a pillow when sitting to prevent shoulder subluxation; teach assistive personnel to avoid pulling on it. Swallow screening is a nursing assessment — the client stays NPO until it is done. Always approach from the unaffected side.' },
+
+{ id: 18, type: 'mcq', cj: 'Analyze Cues', topic: 'Stroke',
+  stem: 'A client after a stroke nods appropriately to questions and follows commands but struggles to form words and becomes angry when he cannot answer. The nurse recognizes injury to which area?',
+  o: ['Broca area of the frontal lobe', 'Wernicke area of the temporoparietal region', 'The cerebellum', 'The occipital visual cortex'], a: 0,
+  rat: 'Expressive (Broca, motor) aphasia: the patient understands but cannot speak, is aware of the deficit, and may become frustrated. Receptive (Wernicke) aphasia: cannot understand spoken or written words; speech may be fluent but meaningless.' },
+
+{ id: 19, type: 'mcq', cj: 'Evaluate Outcomes', topic: 'Stroke',
+  stem: 'A client has homonymous hemianopsia after a stroke. Which statement indicates a need for further teaching?',
+  o: ['“Wearing a patch over one eye will bring back the missing half of my vision.”', '“I will turn my head from side to side when I eat.”', '“I will keep my phone and glasses where I can see them.”', '“I will scan the hallway with my head when I walk.”'], a: 0,
+  rat: 'Homonymous hemianopsia = blindness in the same half of both eyes; teach scanning (turning the head side to side) when eating and walking, and place objects in the visual field. An eye patch is used for diplopia (double vision), changed every 2–4 hours — it does not restore a lost field.' },
+
+{ id: 20, type: 'sata', cj: 'Generate Solutions', topic: 'Increased ICP',
+  stem: 'Which actions will the nurse include to prevent increased intracranial pressure in a client after an acute stroke? Select all that apply.',
+  o: ['Keep the head in a midline, neutral position', 'Elevate the head of the bed per protocol', 'Give the bath and change the linens back to back so the client can rest longer afterward', 'Hyperoxygenate before and after suctioning', 'Keep room lights low', 'Flex the hips sharply when boosting the client up in bed'], a: [0, 1, 3, 4],
+  rat: 'Midline neutral head promotes venous drainage; HOB elevation improves perfusion pressure; hyperoxygenation prevents transient hypoxemia that dilates cerebral arteries; low lights accommodate photophobia. Clustering procedures (bath then linens) can dramatically raise ICP. Extreme hip flexion raises intrathoracic pressure and decreases cerebral venous outflow.' },
+
+{ id: 21, type: 'mcq', cj: 'Analyze Cues', topic: 'Stroke drugs',
+  stem: 'A client arrives 4 hours after onset of an acute ischemic stroke. Which finding makes the client ineligible for IV alteplase in the extended (3- to 4.5-hour) window?',
+  o: ['History of both a prior stroke and diabetes mellitus', 'Age of 78 years', 'Stroke scale (NIHSS) score of 18', 'BP of 178/96 mm Hg'], a: 0,
+  rat: 'The American Stroke Association extends the window to 4.5 hours unless the client is older than 80, takes an anticoagulant regardless of INR, has imaging showing injury to more than one-third of the middle cerebral artery territory, has a score greater than 25, has a history of BOTH stroke and diabetes, or has active bleeding. BP 178/96 is already below 185/110.' },
+
+{ id: 22, type: 'mcq', cj: 'Take Action', topic: 'Stroke drugs',
+  stem: 'A client who weighs 176 lb (80 kg) is prescribed alteplase 0.9 mg/kg. How much will the nurse give as the initial IV bolus?',
+  o: ['7.2 mg', '72 mg', '15.8 mg', '6.5 mg'], a: 0,
+  rat: '80 kg × 0.9 mg/kg = 72 mg total. 10% is given as a bolus over 1 minute = 7.2 mg; the remaining 64.8 mg runs over 60 minutes. Using pounds (176 × 0.9 × 0.1 = 15.8 mg) is the classic weight-unit error.' },
+
+{ id: 23, type: 'mcq', cj: 'Take Action', topic: 'Stroke drugs',
+  stem: 'Eight hours after an alteplase infusion was completed, a client has an order for aspirin 81 mg PO now. The client passed a swallow screen. What will the nurse do?',
+  o: ['Hold the aspirin and contact the provider', 'Give the aspirin with a full glass of water', 'Give the aspirin crushed in applesauce', 'Give the aspirin and increase neuro checks to hourly'], a: 0,
+  rat: 'Aspirin should not be given within 24 hours of fibrinolytic administration, and a follow-up CT or MRI must be obtained before starting antiplatelet or anticoagulant drugs. Passing the swallow screen does not make the order safe — the red herring is the swallow screen.' },
+
+{ id: 24, type: 'sata', cj: 'Take Action', topic: 'Stroke drugs',
+  stem: 'A client is receiving IV alteplase. Which findings require the nurse to discontinue the infusion and notify the provider? Select all that apply.',
+  o: ['New severe headache', 'Vomiting', 'BP 224/118 mm Hg', 'Heart rate 96 beats/min', 'SpO2 95% on room air', 'Blood oozing from the gums'], a: [0, 1, 2, 5],
+  rat: 'Box 38.4: discontinue the infusion if the patient reports severe headache or has severe hypertension, bleeding, nausea, or vomiting, and notify the provider immediately. HR 96 and SpO2 95% do not meet stopping criteria.' },
+
+{ id: 25, type: 'mcq', cj: 'Take Action', topic: 'Stroke',
+  stem: 'A client with an acute ischemic stroke arrived 9 hours after onset and did not receive alteplase or embolectomy. BP is 204/108 mm Hg. The client is alert with stable deficits. What is the nurse’s best action?',
+  o: ['Continue monitoring; this pressure is acceptable at this time', 'Give PRN IV labetalol to lower the BP to 140/90', 'Activate the Rapid Response Team', 'Lower the head of the bed to flat'], a: 0,
+  rat: 'For ischemic strokes without alteplase or embolectomy, BP is initially allowed to rise above 220 mm Hg systolic to keep perfusion past the occlusion. A sudden systolic drop below 120 may cause brain ischemia. The 180 systolic notification threshold applies AFTER alteplase or embolectomy.' },
+
+{ id: 26, type: 'mcq', cj: 'Generate Solutions', topic: 'Stroke drugs',
+  stem: 'The spouse of a client with a subarachnoid hemorrhage from a ruptured aneurysm asks why nimodipine was prescribed. What is the nurse’s best response?',
+  o: ['“It helps prevent spasm of the brain’s arteries, which usually happens 4 to 14 days after the bleed.”', '“It dissolves the clot that formed around the aneurysm.”', '“It pulls fluid out of the swollen brain tissue.”', '“It prevents seizures caused by blood on the brain.”'], a: 0,
+  rat: 'Nimodipine, a calcium channel blocker that crosses the blood–brain barrier, treats or prevents cerebral vasospasm after subarachnoid hemorrhage (usually days 4–14) by relaxing vessel smooth muscle and dilating collateral vessels. Clot dissolving = fibrinolytic; pulling fluid = mannitol/hypertonic saline; seizure prevention = antiepileptics.' },
+
+{ id: 27, type: 'mcq', cj: 'Recognize Cues', topic: 'Stroke',
+  stem: 'A client reports a sudden “worst headache of my life” with neck stiffness and light sensitivity. Which additional finding will the nurse anticipate?',
+  o: ['Deepening lethargy', 'Stepwise improvement between episodes', 'Clear cerebrospinal fluid', 'Preserved level of consciousness with gradual onset over hours'], a: 0,
+  rat: 'This presentation fits a hemorrhagic stroke (subarachnoid). Table 38.1: hemorrhagic strokes produce deepening lethargy/stupor or coma, bloody cerebrospinal fluid, and usually seizures. Stepwise improvement and gradual onset with preserved consciousness describe thrombotic ischemic strokes.' },
+
+{ id: 28, type: 'sata', cj: 'Take Action', topic: 'Traumatic brain injury',
+  stem: 'A client with blunt head trauma awaits cervical spine clearance. Which spine precautions will the nurse implement? Select all that apply.',
+  o: ['Bed rest', 'Log-roll to reposition', 'Place a small pillow under the neck for comfort', 'Manually control the cervical spine whenever the collar is off', 'Raise the head of the bed with the knees gatched to prevent sliding', 'Assess the skin under the rigid collar'], a: [0, 1, 3, 5],
+  rat: 'Spine precautions: bed rest; no neck flexion with a pillow or roll; no thoracic or lumbar flexion; manual control of the cervical spine anytime the rigid collar is removed; log-roll to reposition; frequent skin checks under the collar.' },
+
+{ id: 29, type: 'mcq', cj: 'Recognize Cues', topic: 'Increased ICP',
+  stem: 'Which set of vital signs in a client with a severe traumatic brain injury indicates a very late sign of increased intracranial pressure?',
+  o: ['BP 188/70, HR 52', 'BP 88/56, HR 128', 'BP 152/98, HR 112', 'BP 132/84, HR 76'], a: 0,
+  rat: 'Cushing triad = severe hypertension, widened pulse pressure (188 − 70 = 118), and bradycardia. It is a classic but very late sign that usually indicates imminent death. Hypotension with tachycardia suggests shock.' },
+
+{ id: 30, type: 'mcq', cj: 'Prioritize Hypotheses', topic: 'Traumatic brain injury',
+  stem: 'A client with a left temporal contusion becomes rapidly less responsive. The left pupil is 7 mm and nonreactive with a drooping left eyelid. Which complication is most likely?',
+  o: ['Uncal herniation compressing the oculomotor nerve', 'Central herniation of the brainstem', 'Slowly progressive hydrocephalus', 'Postconcussion syndrome'], a: 0,
+  rat: 'Uncal herniation shifts the temporal lobe (uncus) onto cranial nerve III: dilated nonreactive pupil, ptosis, rapidly deteriorating consciousness. Central herniation begins with Cheyne-Stokes respirations and pinpoint reactive pupils. Slowly progressive hydrocephalus causes headache, decreased consciousness, irritability, blurred vision, and urinary incontinence.' },
+
+{ id: 31, type: 'mcq', cj: 'Recognize Cues', topic: 'Traumatic brain injury',
+  stem: 'After a fall, a client has clear drainage from the right nostril. Which finding most strongly supports a cerebrospinal fluid leak?',
+  o: ['A yellowish ring forms around a central blood spot on white gauze', 'Purplish discoloration around both eyes', 'The drainage is thick and yellow', 'Bright red drainage that clots on the gauze'], a: 0,
+  rat: 'The halo sign — a clear or yellowish ring around a spot of blood on white absorbent material — distinguishes cerebrospinal fluid from other fluids (fluid can also be sent for glucose and electrolytes). Raccoon eyes suggest a basilar skull fracture but do not by themselves prove a leak.' },
+
+{ id: 32, type: 'mcq', cj: 'Analyze Cues', topic: 'Increased ICP',
+  stem: 'Within the first 24 hours after a severe traumatic brain injury, an intubated client’s PaCO2 falls to 28 mm Hg after aggressive manual ventilation during suctioning. What is the nurse’s primary concern?',
+  o: ['Cerebral vasoconstriction causing ischemia', 'Cerebral vasodilation raising intracranial pressure', 'Absorptive atelectasis', 'Development of diabetes insipidus'], a: 0,
+  rat: 'Hypocarbia from hyperventilation causes profound vasoconstriction and ischemia, so hyperventilation is usually avoided in the first 24 hours and overly aggressive hyperventilation is avoided during suctioning. High CO2 (hypercarbia) is what dilates vessels and raises ICP.' },
+
+{ id: 33, type: 'mcq', cj: 'Take Action', topic: 'Traumatic brain injury',
+  stem: 'The nurse raises the head of the bed of a client with a traumatic brain injury from 15 to 30 degrees. MAP falls from 92 to 62 mm Hg. What is the nurse’s best action?',
+  o: ['Lower the head of the bed and notify the provider', 'Keep the head of the bed at 30 degrees because it lowers intracranial pressure', 'Raise the head of the bed to 45 degrees to improve venous drainage', 'Flex the client’s knees to reduce intra-abdominal pressure'], a: 0,
+  rat: 'HOB elevation is generally 30–45 degrees, but if raising the head significantly lowers systemic BP, the client does not benefit and may be harmed. A MAP of 62 is below the 70 mm Hg threshold Iggy uses to define hypotension in traumatic brain injury.' },
+
+{ id: 34, type: 'sata', cj: 'Take Action', topic: 'Increased ICP drugs',
+  stem: 'Which nursing actions are appropriate for a client receiving mannitol? Select all that apply.',
+  o: ['Administer through a filter', 'Measure urine output every hour', 'Monitor serum electrolytes and osmolarity every 6 hours', 'Give as a continuous infusion for best effect', 'Monitor for acute renal failure', 'Expect weight gain from fluid retention'], a: [0, 1, 2, 4],
+  rat: 'Mannitol is most effective in boluses, not continuous infusion. It pulls water out of brain tissue (osmotic diuresis), so watch for dehydration and acute renal failure, not fluid retention. Filter administration, hourly output, and electrolytes/osmolarity every 6 hours are all in Iggy.' },
+
+{ id: 35, type: 'mcq', cj: 'Recognize Cues', topic: 'Increased ICP drugs',
+  stem: 'A client with heart failure is receiving 3% hypertonic saline for increased intracranial pressure. Which finding requires immediate follow-up?',
+  o: ['New crackles and SpO2 89%', 'Urine output 60 mL/hr', 'Intracranial pressure 14 mm Hg', 'Pupils equal and briskly reactive'], a: 0,
+  rat: 'Hypertonic saline nursing implications: continual neuro assessments, serial sodium levels, fluid status, and monitoring for pulmonary edema, especially with a history of cardiac or renal disease. New crackles with falling SpO2 in a client with heart failure signal pulmonary edema. ICP of 14 is within the normal 10–15 range; output 60 mL/hr is adequate; equal brisk pupils are reassuring.' },
+
+{ id: 36, type: 'mcq', cj: 'Generate Solutions', topic: 'Increased ICP drugs',
+  stem: 'Why is fentanyl often preferred over morphine for a mechanically ventilated client with a traumatic brain injury?',
+  o: ['It has fewer effects on blood pressure and heart rate', 'It provides deeper sedation than propofol', 'It lowers intracranial pressure by osmotic diuresis', 'It prevents posttraumatic seizures'], a: 0,
+  rat: 'Iggy: fentanyl has fewer effects on blood pressure and heart rate than morphine and may be safer for managing pain in traumatic brain injury. Propofol and midazolam provide sedation; osmotic effects come from mannitol; seizure prevention comes from antiepileptic drugs.' },
+
+{ id: 37, type: 'mcq', cj: 'Take Action', topic: 'Increased ICP drugs',
+  stem: 'A ventilated client with a traumatic brain injury is receiving propofol. During turning, the client grimaces, HR rises from 84 to 112, and the client becomes restless. Which prescription does the nurse anticipate?',
+  o: ['Fentanyl', 'An increased propofol dose', 'A mannitol bolus', 'Levetiracetam'], a: 0,
+  rat: 'Propofol and midazolam sedate and lower ICP but are not as effective for pain. Restlessness caused by pain is treated with an opioid such as fentanyl. Most ventilated clients receive a combination.' },
+
+{ id: 38, type: 'mcq', cj: 'Take Action', topic: 'Delegation',
+  stem: 'Which task can the nurse delegate to assistive personnel for a client with a traumatic brain injury on spine precautions?',
+  o: ['Help the nurse log-roll the client to change the linens', 'Check pupil size and reaction every hour', 'Calculate the hourly Glasgow Coma Scale score', 'Determine whether nasal drainage is cerebrospinal fluid'], a: 0,
+  rat: 'Assisting with a log-roll while the nurse controls the cervical spine is a task with a predictable outcome. Pupil checks, GCS scoring, and deciding whether drainage is cerebrospinal fluid require nursing assessment and judgment.' },
+
+{ id: 39, type: 'mcq', cj: 'Analyze Cues', topic: 'Traumatic brain injury',
+  stem: 'A team is preparing to determine brain death in a client with a severe traumatic brain injury. Which finding must be corrected before the determination can proceed?',
+  o: ['Core temperature 95.9°F (35.5°C)', 'Systolic BP 108 mm Hg', 'Coma from a known cause confirmed by CT', 'One neurologic examination already completed'], a: 0,
+  rat: 'Prerequisites: coma of known cause, normal or near-normal core temperature higher than 96.8°F (36°C), systolic BP ≥ 100 mm Hg, and at least one neurologic examination. 95.9°F does not meet the temperature prerequisite.' },
+
+{ id: 40, type: 'mcq', cj: 'Take Action', topic: 'Psychosocial / ethics',
+  stem: 'A client with a severe traumatic brain injury is deteriorating, and brain death has not yet been declared. What is the nurse’s most appropriate action regarding organ donation?',
+  o: ['Contact the local organ-procurement organization', 'Ask the family to sign the donation consent form', 'Wait until brain death is declared before any donation discussion', 'Tell the family that their wishes override the client’s driver’s license designation'], a: 0,
+  rat: 'Before brain death is declared, contact the local organ-procurement organization and determine whether the client consented (driver’s license, state card, advance directive). The organ donor agency representative and/or provider discusses procurement with the family; the client’s wishes are followed unless a medical condition prevents donation.' },
+
+{ id: 41, type: 'sata', cj: 'Evaluate Outcomes', topic: 'Traumatic brain injury',
+  stem: 'Which findings will the nurse teach the caregiver of a client with a mild traumatic brain injury to report by returning to the emergency department or calling 911? Select all that apply.',
+  o: ['A seizure', 'Clear fluid draining from one ear', 'A mild headache relieved by acetaminophen', 'Unequal pupil size', 'Increasing sleepiness that is harder to interrupt', 'Feeling tired at bedtime after a long day'], a: [0, 1, 3, 4],
+  rat: 'Box 38.8 return precautions: seizure, severe or worsening headache, persistent or severe nausea/vomiting, blurred vision, clear drainage from ear or nose, increasing weakness, slurred speech, progressive sleepiness, unequal pupils. A controlled mild headache and ordinary tiredness are not on the list.' },
+
+{ id: 42, type: 'mcq', cj: 'Recognize Cues', topic: 'Brain tumor / craniotomy',
+  stem: 'A client is being evaluated for a possible brain tumor. Which headache pattern is most consistent with this diagnosis?',
+  o: ['Headache that is most severe on awakening in the morning', 'Sudden “worst headache of my life” with neck stiffness', 'Headache that begins in the evening after screen use', 'Headache that resolves completely within 72 hours of a blow to the head'], a: 0,
+  rat: 'Iggy lists headaches that are usually more severe on awakening in the morning among common brain tumor symptoms. A sudden worst-ever headache with stiff neck suggests subarachnoid hemorrhage; resolution within 72 hours after a blow fits mild traumatic brain injury.' },
+
+{ id: 43, type: 'mcq', cj: 'Take Action', topic: 'Brain tumor / craniotomy',
+  stem: 'Eight hours after a craniotomy, the client’s Jackson-Pratt drain has collected 65 mL. The dressing is dry. What will the nurse do?',
+  o: ['Report the drainage to the surgeon now', 'Document it as expected output', 'Reinforce the dressing and recheck in 4 hours', 'Empty the drain and increase suction'], a: 0,
+  rat: 'Typical drainage is 30–50 mL every 8 hours. Report a saturated head dressing or drainage greater than 50 mL in 8 hours to the surgeon immediately. A dry dressing does not cancel abnormal drain output, and suction is maintained per the surgeon’s and manufacturer’s instructions — not adjusted on the nurse’s own initiative.' },
+
+{ id: 44, type: 'mcq', cj: 'Analyze Cues', topic: 'Brain tumor / craniotomy',
+  stem: 'After surgery for a tumor near the pituitary gland, a client reports extreme thirst. Urine output is 600 mL/hr and very pale, and serum sodium is 152 mEq/L. The nurse suspects which complication?',
+  o: ['Arginine vasopressin deficiency (central diabetes insipidus)', 'Syndrome of inappropriate antidiuretic hormone', 'Fluid volume overload', 'Neurogenic pulmonary edema'], a: 0,
+  rat: 'Large amounts of very dilute urine with increasing serum osmolarity and sodium, extreme thirst, and dry mouth indicate central diabetes insipidus. Untreated hypernatremia can cause seizures. SIADH produces hyponatremia from water retention.' },
+
+{ id: 45, type: 'mcq', cj: 'Generate Solutions', topic: 'Brain tumor / craniotomy',
+  stem: 'Two days after craniotomy for a pituitary-area tumor, a client is newly confused with serum sodium 126 mEq/L and low urine output. Which order does the nurse anticipate?',
+  o: ['Restrict fluids to 1500 mL per day', 'Encourage oral fluids of 3 L per day', 'Increase the dexamethasone dose', 'Position flat for 24 hours'], a: 0,
+  rat: 'Hyponatremia after craniotomy can result from SIADH, fluid overload, or steroid administration. Iggy: anticipate fluid restriction to 1500 mL daily if pituitary involvement leads to SIADH. Extra fluids worsen dilution; steroids can contribute to hyponatremia.' },
+
+{ id: 46, type: 'mcq', cj: 'Evaluate Outcomes', topic: 'Brain tumor / craniotomy',
+  stem: 'A client is scheduled for CyberKnife stereotactic radiosurgery for a brain tumor. Which statement shows understanding of the procedure?',
+  o: ['“I can go back to my normal activities right after the treatment.”', '“A frame will be attached to my skull so I cannot move.”', '“I will need general anesthesia and an overnight stay.”', '“The beams come from cobalt-60 inside the machine.”'], a: 0,
+  rat: 'CyberKnife uses a linear accelerator, is noninvasive, requires no frame or general anesthesia, accommodates movement, and patients resume normal activity immediately. The skull frame, possible general anesthesia with overnight stay, and cobalt-60 describe the Gamma Knife.' },
+
+{ id: 47, type: 'mcq', cj: 'Generate Solutions', topic: 'Brain tumor drugs',
+  stem: 'Tumor Treating Fields are approved for a client with recurrent glioblastoma multiforme in combination with which drug?',
+  o: ['Temozolomide', 'Bevacizumab', 'Vincristine', 'Carmustine wafers'], a: 0,
+  rat: 'In 2011 the FDA approved Tumor Treating Fields in combination with temozolomide for recurrent glioblastoma refractory to surgery and radiation. Bevacizumab is molecularly targeted; vincristine is given IV in combination regimens; carmustine wafers are placed in the surgical cavity.' },
+
+{ id: 48, type: 'mcq', cj: 'Prioritize Hypotheses', topic: 'Transient ischemic attack',
+  stem: 'Which client with a transient ischemic attack whose symptoms have resolved is most likely to be admitted to the hospital?',
+  o: ['Client with new-onset atrial fibrillation', 'Client whose symptoms resolved in 40 minutes', 'Client with BP 132/84 mm Hg', 'Client with 40% carotid stenosis'], a: 0,
+  rat: 'A client with new-onset atrial fibrillation with the transient ischemic attack, or carotid stenosis greater than 70%, will most likely be admitted. Symptoms typically resolve in 30–60 minutes; BP below 140/90 does not add ABCD2 risk; 40% stenosis is below the 70% threshold.' },
+
+{ id: 49, type: 'sata', cj: 'Generate Solutions', topic: 'Psychosocial / ethics',
+  stem: 'The nurse is planning stroke-prevention care for a Black client with uncontrolled hypertension who smokes. Which actions are appropriate? Select all that apply.',
+  o: ['Determine whether the client’s needs for housing and food are being met', 'Ask about transportation and internet access before recommending resources', 'Provide information on low-cost or free smoking-cessation resources', 'Teach the ABCS: aspirin when appropriate, BP control, cholesterol management, smoking cessation', 'Explain that hemorrhagic strokes are less common in Black adults', 'Delay screening for depression until after discharge'], a: [0, 1, 2, 3],
+  rat: 'Health equity box: first determine whether basic needs are met (if not, they are the priority), then teach risk factors, check transportation and internet access, and provide accessible cessation resources. Black adults have strokes twice as often as White adults, especially hemorrhagic strokes from hypertension. Depression screening is a best practice, not something to delay.' },
+
+{ id: 50, type: 'mcq', cj: 'Take Action', topic: 'Psychosocial / ethics',
+  stem: 'The spouse of a client recovering from a moderate traumatic brain injury reports frequent temper outbursts at home and says, “I can’t leave him alone for a minute.” What is the nurse’s best advice?',
+  o: ['“Keep a structured, consistent daily routine, reinforce positive behaviors, and arrange regular respite care.”', '“Point out each outburst right away so he learns which behaviors to stop.”', '“Change his routine often so he stays mentally stimulated.”', '“Avoid support groups until his behavior is under control.”'], a: 0,
+  rat: 'Patients with personality and behavior problems respond best to a structured, consistent, repetitive environment; reinforce positive rather than negative behaviors. Teach the importance of regular respite care and encourage brain-injury support groups (Brain Injury Association of America) for caregiver isolation and depression.' }
+];
+
+if (typeof module !== 'undefined') module.exports = { CASE, Q };
+
+(function(){
+const $ = (s, r=document) => r.querySelector(s);
+const el = (tag, attrs={}, ...kids) => { const e=document.createElement(tag); for (const [k,v] of Object.entries(attrs)) { if (k==='class') e.className=v; else if (k==='text') e.textContent=v; else if (k.startsWith('on')) e.addEventListener(k.slice(2), v); else if (v!==false && v!=null) e.setAttribute(k, v===true?'':v); } for (const c of kids.flat()) if (c!=null) e.append(c.nodeType?c:document.createTextNode(c)); return e; };
+
+// Seeded shuffle so answer positions are scrambled but stable for review
+function rng(seed){ return function(){ seed|=0; seed=seed+0x6D2B79F5|0; let t=Math.imul(seed^seed>>>15,1|seed); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+function perm(n, seed){ const r=rng(seed), p=[...Array(n).keys()]; for (let i=n-1;i>0;i--){ const j=Math.floor(r()*(i+1)); [p[i],p[j]]=[p[j],p[i]]; } return p; }
+const P = {};
+// Single-answer items: rotate the keyed position through A–D so no letter is favored
+const ROT = [2,0,3,1,1,3,0,2];
+let mcqN = 0;
+Q.forEach(q => {
+  const s = q.id*7919+13;
+  if (q.type==='mcq'){ const target = ROT[mcqN++ % ROT.length] % q.o.length; const others = perm(q.o.length, s).filter(i=>i!==q.a); others.splice(target, 0, q.a); P[q.id] = others; }
+  if (q.type==='sata') P[q.id] = perm(q.o.length, s);
+  if (q.type==='cloze') P[q.id] = q.parts.filter(x=>typeof x==='object').map((b,i)=>perm(b.o.length, s+i*31));
+  if (q.type==='dnd') P[q.id] = perm(q.pool.length, s);
+  if (q.type==='order') { let p=perm(q.items.length, s), k=1; while (p.every((v,i)=>v===i)) p=perm(q.items.length, s+k++); P[q.id]=p; }
+});
+
+const KEY = 'ch38-exam-v1';
+let S = { view:'start', mode:'tutor', idx:0, ans:{}, checked:{}, flags:{}, breaks:{}, tab:1, armed:null, chip:null };
+try { const saved = JSON.parse(localStorage.getItem(KEY)||'null'); if (saved && saved.ans) S = Object.assign(S, saved, { armed:null, chip:null }); } catch(e) {}
+function save(){ try { const {armed,chip,...rest}=S; localStorage.setItem(KEY, JSON.stringify(rest)); } catch(e) {} }
+
+const TYPE_LABEL = { mcq:'Multiple choice', sata:'Select all that apply', matrix:'Matrix', highlight:'Highlight', cloze:'Drop-down cloze', dnd:'Extended drag and drop', order:'Ordered response' };
+
+function maxPts(q){
+  switch(q.type){
+    case 'mcq': case 'order': return 1;
+    case 'sata': return q.a.length;
+    case 'matrix': return q.rows.length;
+    case 'highlight': return q.passage.filter(x=>x.k).length;
+    case 'cloze': return q.parts.filter(x=>typeof x==='object').length;
+    case 'dnd': return q.slots.length;
+  }
+}
+function score(q, r){
+  if (r==null) return 0;
+  switch(q.type){
+    case 'mcq': return r===q.a ? 1 : 0;
+    case 'sata': { let s=0; r.forEach(i => s += q.a.includes(i) ? 1 : -1); return Math.max(0,s); }
+    case 'matrix': return q.rows.reduce((s,row,i)=>s+(r[i]===row[1]?1:0),0);
+    case 'highlight': { let s=0; r.forEach(i => s += q.passage[i].k ? 1 : -1); return Math.max(0,s); }
+    case 'cloze': { const bl=q.parts.filter(x=>typeof x==='object'); return bl.reduce((s,b,i)=>s+(r[i]===b.a?1:0),0); }
+    case 'dnd': return q.a.reduce((s,a,i)=>s+(r[i]===a?1:0),0);
+    case 'order': return r.every((v,i)=>v===i) ? 1 : 0;
+  }
+}
+function answered(q){
+  const r=S.ans[q.id]; if (r==null) return false;
+  if (q.type==='mcq') return true;
+  if (q.type==='sata'||q.type==='highlight') return r.length>0;
+  if (q.type==='matrix') return r.filter(x=>x!=null).length===q.rows.length;
+  if (q.type==='cloze'||q.type==='dnd') return r.every(x=>x!=null);
+  if (q.type==='order') return true;
+}
+function initResp(q){
+  if (S.ans[q.id]!=null) return;
+  if (q.type==='order') { S.ans[q.id]=P[q.id].slice(); }
+}
+const GROUPS = [
+  { k:'mcq',  name:'Multiple choice',       desc:'Single best answer, 0/1 scoring' },
+  { k:'sata', name:'Select all that apply', desc:'+/− scoring' },
+  { k:'ngn',  name:'Next Generation (NGN)', desc:'Stroke case study, matrix, highlight, drop-down, drag and drop, ordered response' }
+];
+const ALL_KEY = GROUPS.map(g=>g.k).join('+');
+const grp = q => (q.case || !['mcq','sata'].includes(q.type)) ? 'ngn' : q.type;
+if (!Array.isArray(S.sets) || !S.sets.length) S.sets = GROUPS.map(g=>g.k);
+const setKey = () => GROUPS.map(g=>g.k).filter(k=>S.sets.includes(k)).join('+');
+const setName = () => GROUPS.filter(g=>S.sets.includes(g.k)).map(g=>g.name).join(' + ');
+let L = [];
+function buildList(){ L = Q.filter(q=>S.sets.includes(grp(q))); if (S.idx>=L.length) S.idx=0; }
+buildList();
+const isFinished = () => S.finished===setKey();
+const revealed = q => S.view==='review' || (S.mode==='tutor' && S.checked[q.id]);
+
+/* ---------- views ---------- */
+function render(){
+  const app=$('#app'); app.innerHTML='';
+  $('#foot').hidden = !(S.view==='q'||S.view==='review');
+  $('#modePill').textContent = S.view==='review' ? 'Review' : (S.mode==='tutor'?'Tutor':'Exam');
+  const answeredN = L.filter(answered).length;
+  $('#progBar').style.width = (answeredN/L.length*100)+'%';
+  if (S.view==='start') return startView(app);
+  if (S.view==='break') return breakView(app);
+  if (S.view==='results') return resultsView(app);
+  questionView(app);
+}
+
+function startView(app){
+  $('#pos').textContent = `${L.length} items`;
+  const any = L.some(q=>S.ans[q.id]!=null);
+  const count = k => Q.filter(q=>grp(q)===k).length;
+  app.append(el('div',{class:'stack'},
+    el('h1',{text:'Chapter 38: Critical Care of Patients With Neurologic Emergencies'}),
+    el('p',{class:'muted',text:'Built like your unit exam. Pick the question types you want to drill, or keep all three for the full 50-item exam. Every answer choice is verifiable in Iggy Chapter 38.'}),
+    el('div',{class:'card stack'},
+      el('h2',{text:'Choose question types'}),
+      el('div',{class:'types'}, GROUPS.map(g=>el('button',{class:'mode type',id:'set-'+g.k,'aria-pressed':String(S.sets.includes(g.k)),onclick:()=>{
+          const i=S.sets.indexOf(g.k); i>=0 ? S.sets.splice(i,1) : S.sets.push(g.k);
+          S.idx=0; buildList(); save(); render(); }},
+        el('span',{class:'tick',text:S.sets.includes(g.k)?'✓':''}),
+        el('span',{class:'tt'}, el('b',{text:g.name}), el('span',{class:'hint',text:g.desc})),
+        el('span',{class:'cnt',text:String(count(g.k))})))),
+      el('p',{class:'hint',style:'margin:0',text: L.length ? `${L.length} items selected` + (setKey()===ALL_KEY?' — full exam':'') : 'Select at least one question type to begin.'})
+    ),
+    el('div',{class:'card stack'},
+      el('h2',{text:'Choose a mode'}),
+      el('div',{class:'modes'},
+        el('button',{class:'mode','aria-pressed':String(S.mode==='tutor'),onclick:()=>{S.mode='tutor';save();render();}}, el('b',{text:'Tutor'}), 'Check each item and read the rationale immediately. Break prompts every 10 items.'),
+        el('button',{class:'mode','aria-pressed':String(S.mode==='exam'),onclick:()=>{S.mode='exam';save();render();}}, el('b',{text:'Exam'}), 'No feedback until you finish. Same scoring as the real test.')
+      )
+    ),
+    el('div',{class:'card stack'},
+      el('h2',{text:'How scoring works'}),
+      el('table',{}, el('tbody',{},
+        el('tr',{}, el('th',{text:'Multiple choice, ordered response'}), el('td',{text:'0/1. Ordered response must be fully correct.'})),
+        el('tr',{}, el('th',{text:'Select all that apply, highlight'}), el('td',{text:'+/− : +1 per correct pick, −1 per wrong pick, never below 0. Read every option before you stop.'})),
+        el('tr',{}, el('th',{text:'Matrix, drop-down, drag and drop'}), el('td',{text:'0/1 per row, blank, or slot.'}))
+      ))
+    ),
+    el('div',{style:'display:flex;gap:10px;flex-wrap:wrap'},
+      isFinished()
+        ? el('button',{class:'btn primary',onclick:()=>{ S.view='results'; save(); render(); }}, 'View last results')
+        : el('button',{class:'btn primary',disabled:!L.length,onclick:()=>{ S.view='q'; save(); render(); }}, any?'Resume':'Begin'),
+      Object.keys(S.ans).length ? el('button',{class:'btn',id:'resetBtn',onclick:confirmReset}, 'Start over') : null
+    ),
+    el('p',{class:'hint',id:'resetMsg'})
+  ));
+}
+function confirmReset(){
+  const b=$('#resetBtn');
+  if (b.dataset.armed){ S={ view:'start', mode:S.mode, sets:S.sets, finished:false, idx:0, ans:{}, checked:{}, flags:{}, breaks:{}, tab:1, armed:null, chip:null }; buildList(); save(); render(); return; }
+  b.dataset.armed='1'; b.textContent='Tap again to erase all answers'; $('#resetMsg').textContent='Your saved answers on this device will be cleared.';
+}
+
+function breakView(app){
+  $('#pos').textContent = `Break`;
+  const done = S.idx;
+  app.append(el('div',{class:'card stack break'},
+    el('h2',{text:`${done} items done. Take 3 minutes.`}),
+    el('p',{class:'muted',text:'Stand up, drink water, look at something far away. No scrolling. Your answers are saved.'}),
+    el('button',{class:'btn primary',onclick:()=>{ S.view='q'; save(); render(); }}, 'Continue to item '+(done+1))
+  ));
+}
+
+function chartView(q){
+  const box=el('section',{class:'chart','aria-label':'Client chart'}, el('div',{class:'head',text:'Electronic health record — '+CASE.title}));
+  const tabs=el('div',{class:'tabs',role:'tablist'});
+  CASE.tabs.forEach((t,i)=>{
+    const hasNew = t.entries.some(e=>e.s===q.stage && q.stage>1);
+    tabs.append(el('button',{class:'tab',role:'tab','aria-selected':String(S.tab===i),onclick:()=>{S.tab=i;render();}}, t.name, hasNew?el('span',{class:'new-tag',style:'margin-left:6px',text:'NEW'}):null));
+  });
+  box.append(tabs);
+  const t=CASE.tabs[S.tab]||CASE.tabs[0]; const body=el('div',{class:'tabbody'});
+  const vis=t.entries.filter(e=>e.s<=q.stage);
+  if (t.table){
+    body.append(el('div',{class:'tablewrap'}, el('table',{}, el('thead',{}, el('tr',{}, t.cols.map(c=>el('th',{text:c})))),
+      el('tbody',{}, vis.map(e=>el('tr',{class:e.s===q.stage&&q.stage>1?'entry new':''}, e.r.map((c,i)=>el('td',{class:i?'num':'',text:c}))))))));
+  } else {
+    vis.forEach(e=> body.append(el('div',{class:'entry'+(e.s===q.stage&&q.stage>1?' new':'')}, e.s===q.stage&&q.stage>1?el('span',{class:'new-tag',text:'NEW'}):null, e.t)));
+  }
+  box.append(body); return box;
+}
+
+function questionView(app){
+  const q=L[S.idx]; initResp(q);
+  $('#pos').textContent = `${S.idx+1} / ${L.length}`;
+  const rev=revealed(q), r=S.ans[q.id];
+  const card=el('article',{class:'card stack'});
+  card.append(el('div',{class:'meta'}, el('span',{text:q.case?`Case study ${Q.filter(x=>x.case).indexOf(q)+1} of 6`:`Item ${q.id}`}), el('span',{text:TYPE_LABEL[q.type]}), el('span',{class:'cj',text:q.cj}), el('span',{text:q.topic})));
+  card.append(el('p',{class:'stem',text:q.stem}));
+  if (q.table) card.append(el('div',{class:'tablewrap'}, el('table',{}, el('thead',{}, el('tr',{}, q.table.cols.map(c=>el('th',{text:c})))), el('tbody',{}, q.table.rows.map(row=>el('tr',{}, row.map((c,i)=>i?el('td',{class:'num',text:c}):el('th',{text:c}))))))));
+  card.append(responseUI(q, r, rev));
+  if (q.meta && rev) card.append(el('dl',{class:'tags'}, Object.entries(q.meta).flatMap(([k,v])=>[el('dt',{text:k}), el('dd',{text:v})])));
+  if (rev){
+    const pts=score(q,r), mx=maxPts(q);
+    card.append(el('div',{class:'rat '+(pts===mx?'good':pts>0?'part':'zero')},
+      el('div',{class:'score',text:`${pts} / ${mx} ${mx===1?'point':'points'}`}),
+      el('p',{style:'margin:.4em 0 0',text:q.rat})));
+  }
+  if (q.case){ app.append(chartView(q)); app.append(el('div',{style:'height:14px'})); }
+  app.append(card);
+  // footer state
+  $('#prevBtn').disabled = S.idx===0;
+  $('#flagBtn').setAttribute('aria-pressed', String(!!S.flags[q.id]));
+  $('#checkBtn').hidden = !(S.view==='q' && S.mode==='tutor');
+  $('#checkBtn').disabled = !answered(q) || !!S.checked[q.id];
+  $('#nextBtn').textContent = S.idx===L.length-1 ? (S.view==='review'?'Results':'Finish') : 'Next';
+}
+
+function setResp(q,v){ if (revealed(q)) return; S.ans[q.id]=v; save(); render(); }
+
+function responseUI(q, r, rev){
+  const lock=rev;
+  if (q.type==='mcq'||q.type==='sata'){
+    const multi=q.type==='sata', p=P[q.id], box=el('div',{class:'opts',role:multi?'group':'radiogroup'});
+    p.forEach((oi,pos)=>{
+      const sel = multi ? (r||[]).includes(oi) : r===oi;
+      const correct = multi ? q.a.includes(oi) : q.a===oi;
+      let cls='opt '+(multi?'check':'radio');
+      if (rev){ if (sel&&correct) cls+=' right'; else if (sel&&!correct) cls+=' wrong'; else if (!sel&&correct) cls+=' missed'; }
+      box.append(el('button',{class:cls,'aria-pressed':String(sel),disabled:lock,onclick:()=>{
+        if (multi){ const cur=(r||[]).slice(); const k=cur.indexOf(oi); k>=0?cur.splice(k,1):cur.push(oi); setResp(q,cur); } else setResp(q,oi);
+      }}, el('span',{class:'key',text:multi?(sel?'✓':''):String.fromCharCode(65+pos)}), el('span',{text:q.o[oi]})));
+    });
+    if (rev && multi) box.append(el('p',{class:'hint',text:'Solid green = correct pick • red = wrong pick (−1) • dashed green = correct answer you missed'}));
+    return box;
+  }
+  if (q.type==='matrix'){
+    const cur=r||Array(q.rows.length).fill(null);
+    const tb=el('tbody');
+    q.rows.forEach((row,i)=>{
+      const tr=el('tr',{class:rev?(cur[i]===row[1]?'right':'wrong'):''}, el('td',{}, row[0], rev&&cur[i]!==row[1]?el('div',{class:'hint',text:'Correct: '+q.cols[row[1]]}):null));
+      q.cols.forEach((c,j)=> tr.append(el('td',{class:'c'}, el('input',{type:'radio',name:`m${q.id}r${i}`,id:`m${q.id}r${i}c${j}`,'aria-label':`${row[0]}: ${c}`,checked:cur[i]===j,disabled:lock,onchange:()=>{ const n=cur.slice(); n[i]=j; setResp(q,n); }}))));
+      tb.append(tr);
+    });
+    return el('div',{class:'tablewrap mx'}, el('table',{}, el('thead',{}, el('tr',{}, el('th',{text:'Finding / action'}), q.cols.map(c=>el('th',{text:c})))), tb));
+  }
+  if (q.type==='highlight'){
+    const cur=r||[]; const box=el('div',{class:'passage'});
+    q.passage.forEach((seg,i)=>{
+      if (typeof seg==='string') return box.append(seg);
+      const sel=cur.includes(i); let cls='hl';
+      if (rev){ if (sel&&seg.k) cls+=' right'; else if (sel) cls+=' wrong'; else if (seg.k) cls+=' missed'; }
+      box.append(el('button',{class:cls,'aria-pressed':String(sel),disabled:lock,onclick:()=>{ const n=cur.slice(); const k=n.indexOf(i); k>=0?n.splice(k,1):n.push(i); setResp(q,n); }}, seg.h));
+    });
+    const wrap=el('div',{class:'stack'}, box, el('p',{class:'hint',text:'Tap a phrase to highlight it; tap again to remove. Scored +/−.'}));
+    if (rev) wrap.append(el('p',{class:'hint',text:'Green outline = correct highlight • red = should not be highlighted (−1) • dashed = missed'}));
+    return wrap;
+  }
+  if (q.type==='cloze'){
+    const cur=r||[]; let bi=0; const p=el('p',{class:'cloze'});
+    q.parts.forEach(part=>{
+      if (typeof part==='string') return p.append(part);
+      const i=bi++, order=P[q.id][i];
+      let cls=''; if (rev) cls = cur[i]===part.a?'right':'wrong';
+      const s=el('select',{id:`c${q.id}b${i}`,class:cls,disabled:lock,'aria-label':'Select option '+(i+1),onchange:(e)=>{ const n=cur.slice(); n.length=q.parts.filter(x=>typeof x==='object').length; n[i]=e.target.value===''?null:+e.target.value; setResp(q,n); }},
+        el('option',{value:'',text:'Select…'}), order.map(oi=>el('option',{value:oi,selected:cur[i]===oi,text:part.o[oi]})));
+      p.append(s);
+      if (rev && cur[i]!==part.a) p.append(el('span',{class:'hint',text:` [${part.o[part.a]}] `}));
+    });
+    return p;
+  }
+  if (q.type==='dnd'){
+    const cur=r||Array(q.slots.length).fill(null); const wrap=el('div',{class:'dnd'});
+    wrap.append(el('p',{class:'hint',text:'Tap a finding, then tap the box where it belongs. Tap a filled box to empty it.'}));
+    const chips=el('div',{class:'chips'});
+    P[q.id].forEach(pi=>{
+      const used=cur.includes(pi);
+      chips.append(el('button',{class:'chip'+(used?' used':''),'aria-pressed':String(S.chip===pi),disabled:lock||used,onclick:()=>{ S.chip = S.chip===pi?null:pi; render(); }}, q.pool[pi]));
+    });
+    wrap.append(chips);
+    q.slots.forEach((sl,i)=>{
+      let cls='slot'+(cur[i]!=null?' filled':'')+(S.chip!=null&&cur[i]==null?' armed':'');
+      if (rev) cls+= cur[i]===q.a[i]?' right':' wrong';
+      wrap.append(el('button',{class:cls,disabled:lock,onclick:()=>{
+        const n=cur.slice();
+        if (S.chip!=null){ n[i]=S.chip; S.chip=null; setResp(q,n); }
+        else if (n[i]!=null){ n[i]=null; setResp(q,n); }
+      }}, el('b',{text:sl}), el('span',{text:cur[i]!=null?q.pool[cur[i]]:'Empty'}), rev&&cur[i]!==q.a[i]?el('span',{class:'hint',text:'Correct: '+q.pool[q.a[i]]}):null));
+    });
+    return wrap;
+  }
+  if (q.type==='order'){
+    const cur=r; const ol=el('ol');
+    cur.forEach((it,pos)=>{
+      const li=el('li',{class:rev?(it===pos?'right':'wrong'):''}, el('span',{class:'n',text:pos+1}), el('span',{class:'t',text:q.items[it]}),
+        el('span',{class:'mv'},
+          el('button',{'aria-label':'Move up',disabled:lock||pos===0,onclick:()=>{ const n=cur.slice(); [n[pos-1],n[pos]]=[n[pos],n[pos-1]]; setResp(q,n); }},'▲'),
+          el('button',{'aria-label':'Move down',disabled:lock||pos===cur.length-1,onclick:()=>{ const n=cur.slice(); [n[pos+1],n[pos]]=[n[pos],n[pos+1]]; setResp(q,n); }},'▼')));
+      ol.append(li);
+    });
+    const wrap=el('div',{class:'order stack'}, el('p',{class:'hint',text:'Use the arrows to arrange every step. Scored all-or-nothing.'}), ol);
+    if (rev && !cur.every((v,i)=>v===i)) wrap.append(el('div',{class:'hint'}, 'Correct order: ', q.items.map((t,i)=>`${i+1}) ${t}`).join('  ')));
+    return wrap;
+  }
+}
+
+function resultsView(app){
+  $('#pos').textContent='Results';
+  let pts=0, mx=0; const byTopic={}, byCj={};
+  L.forEach(q=>{ const p=score(q,S.ans[q.id]), m=maxPts(q); pts+=p; mx+=m;
+    const t=byTopic[q.topic]||(byTopic[q.topic]={p:0,m:0}); t.p+=p; t.m+=m;
+    const ck=q.cj.replace(/ \(.*\)/,''); const c=byCj[ck]||(byCj[ck]={p:0,m:0}); c.p+=p; c.m+=m; });
+  const pct=Math.round(pts/mx*100);
+  const bars=(obj)=>el('div',{class:'bars'}, Object.entries(obj).sort((a,b)=>a[1].p/a[1].m-b[1].p/b[1].m).map(([k,v])=>el('div',{class:'barrow'}, el('span',{text:k}), el('span',{class:'track'}, el('i',{style:`width:${Math.round(v.p/v.m*100)}%`})), el('span',{class:'v',text:`${v.p}/${v.m}`}))));
+  const missed=L.filter(q=>score(q,S.ans[q.id])<maxPts(q));
+  app.append(el('div',{class:'stack'},
+    el('div',{class:'card stack'},
+      el('div',{class:'meta'}, el('span',{text:'Points-based score'}), el('span',{text:setName()})),
+      el('div',{class:'big',text:pct+'%'}),
+      el('p',{class:'muted',style:'margin:0',text:`${pts} of ${mx} points • ${L.length-missed.length} of ${L.length} items at full credit. Course target: 85%.`})),
+    el('div',{class:'card stack'}, el('h2',{text:'By topic (weakest first)'}), bars(byTopic)),
+    el('div',{class:'card stack'}, el('h2',{text:'By clinical judgment step'}), bars(byCj)),
+    el('div',{class:'card stack'}, el('h2',{text:`Items to restudy (${missed.length})`}),
+      missed.length? el('div',{class:'navgrid'}, missed.map(q=>el('button',{class:score(q,S.ans[q.id])>0?'part':'no',onclick:()=>{ S.view='review'; S.idx=L.indexOf(q); S.tab=1; save(); render(); }}, String(q.id)))) : el('p',{text:'None. Every item earned full credit.'})),
+    el('div',{style:'display:flex;gap:10px;flex-wrap:wrap'},
+      el('button',{class:'btn primary',onclick:()=>{ S.view='review'; S.idx=0; save(); render(); }}, 'Review all items'),
+      el('button',{class:'btn',onclick:()=>{ S.view='start'; save(); render(); }}, 'Back to start'))
+  ));
+  window.scrollTo(0,0);
+}
+
+/* ---------- nav ---------- */
+function go(i){ S.idx=Math.max(0,Math.min(L.length-1,i)); S.chip=null; if (L[S.idx].case && !L[S.idx-1]?.case) S.tab=1; save(); render(); window.scrollTo(0,0); }
+$('#prevBtn').onclick=()=>go(S.idx-1);
+$('#nextBtn').onclick=()=>{
+  if (S.idx===L.length-1){ if (S.view==='review'){ S.view='results'; save(); render(); } else openNav(); return; }
+  const n=S.idx+1;
+  if (S.view==='q' && S.mode==='tutor' && n%10===0 && !S.breaks[setKey()+n]){ S.breaks[setKey()+n]=1; S.idx=n; S.view='break'; save(); render(); window.scrollTo(0,0); return; }
+  go(n);
+};
+$('#checkBtn').onclick=()=>{ const q=L[S.idx]; if (!answered(q)) return; S.checked[q.id]=true; save(); render(); };
+$('#flagBtn').onclick=()=>{ const q=L[S.idx]; S.flags[q.id]=!S.flags[q.id]; save(); render(); };
+function openNav(){
+  const g=$('#navGrid'); g.innerHTML='';
+  L.forEach((q,i)=>{
+    let cls='';
+    const shown = S.view==='review' || S.view==='results' || (S.mode==='tutor' && S.checked[q.id]);
+    if (shown && answered(q)){ const p=score(q,S.ans[q.id]), m=maxPts(q); cls = p===m?'ok':p>0?'part':'no'; }
+    else if (answered(q)) cls='ans';
+    if (i===S.idx && (S.view==='q'||S.view==='review')) cls+=' cur';
+    if (S.flags[q.id]) cls+=' fl';
+    g.append(el('button',{class:cls,'aria-label':`Item ${i+1}`,onclick:()=>{ closeNav(); if (S.view!=='review') S.view='q'; go(i); }}, String(i+1)));
+  });
+  const left=L.length-L.filter(answered).length;
+  $('#finishHint').textContent = left ? `${left} item${left>1?'s':''} unanswered — unanswered items score 0.` : 'All items answered.';
+  $('#finishBtn').hidden = S.view==='review' || S.view==='results';
+  $('#navOverlay').hidden=false;
+}
+function closeNav(){ $('#navOverlay').hidden=true; }
+$('#navBtn').onclick=openNav; $('#navClose').onclick=closeNav;
+$('#navOverlay').addEventListener('click',e=>{ if (e.target.id==='navOverlay') closeNav(); });
+$('#finishBtn').onclick=()=>{ L.forEach(q=>S.checked[q.id]=true); S.finished=setKey(); S.view='results'; closeNav(); save(); render(); };
+document.addEventListener('keydown',e=>{ if (e.key==='Escape') closeNav(); });
+
+// Always open on the start page; saved answers stay available through Resume / View last results
+S.view='start';
+// Answers saved by the earlier version had no finished flag: treat a fully scored exam as finished
+if (S.finished===true) S.finished=ALL_KEY;
+if (!S.finished && Q.every(q=>S.checked[q.id]) && Object.keys(S.ans).length) S.finished=ALL_KEY;
+render();
+})();
+</script>
+
+</body></html>

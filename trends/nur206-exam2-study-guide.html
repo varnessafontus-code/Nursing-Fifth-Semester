@@ -1,0 +1,1410 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>NUR206 Exam 2 Study Guide</title>
+<meta content="cover" name="claude:viewport-fit-sides"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&amp;family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+/* Layout: a chart binder — one column of sections, each opened by a colored divider tab like a patient-chart section. */
+:root {
+  --paper: #f7f8fa;
+  --sheet: #ffffff;
+  --ink: #1b2330;
+  --muted: #5a6577;
+  --rule: #d9dee6;
+  --kid-bg: #fff8e6;
+  --kid-edge: #c99a2e;
+  --bloom-bg: #eef3fb;
+  --bloom-edge: #4a6fa5;
+  --warn: #b3261e;
+  --renal: #b8741a;
+  --cardio: #c2363b;
+  --gi: #3d7d4f;
+  --endo: #7a4bb0;
+  --trends: #2f6690;
+  --tab-text: #ffffff;
+  --iggy-bg: #ecf6f3;
+  --iggy-edge: #2b7a69;
+  --display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --body: "Public Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #12161d; --sheet: #1a2029; --ink: #e6e9ee; --muted: #a3acba; --rule: #2e3644;
+    --kid-bg: #2a2416; --kid-edge: #d9b25a; --bloom-bg: #1b2433; --bloom-edge: #7e9fd0; --warn: #ff8a80;
+    --renal: #e0a050; --cardio: #f07a7e; --gi: #78bf8c; --endo: #b591e3; --trends: #74a9d6; --tab-text: #12161d;
+    --iggy-bg: #142826; --iggy-edge: #6cc3b0;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #12161d; --sheet: #1a2029; --ink: #e6e9ee; --muted: #a3acba; --rule: #2e3644;
+  --kid-bg: #2a2416; --kid-edge: #d9b25a; --bloom-bg: #1b2433; --bloom-edge: #7e9fd0; --warn: #ff8a80;
+  --renal: #e0a050; --cardio: #f07a7e; --gi: #78bf8c; --endo: #b591e3; --trends: #74a9d6; --tab-text: #12161d;
+  --iggy-bg: #142826; --iggy-edge: #6cc3b0;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--paper); color: var(--ink);
+  font-family: var(--body); font-size: 16px; line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 24px 64px;
+}
+.wrap { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+header.top { display: flex; flex-direction: column; gap: 10px; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0; }
+h1 { font-family: var(--display); font-weight: 800; font-size: clamp(30px, 7vw, 44px); line-height: 1.05; margin: 0; text-wrap: balance; }
+h2 { font-family: var(--display); font-weight: 800; font-size: 26px; line-height: 1.15; margin: 0; text-wrap: balance; }
+h3 { font-family: var(--display); font-weight: 600; font-size: 19px; margin: 18px 0 4px; text-wrap: balance; }
+p { margin: 0 0 10px; max-width: 68ch; }
+ul, ol { margin: 0 0 12px; padding-left: 22px; }
+li { margin: 3px 0; }
+strong { font-weight: 700; }
+.note { font-size: 14px; color: var(--muted); border-left: 3px solid var(--rule); padding-left: 12px; }
+nav.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+nav.toc a {
+  font-size: 14px; font-weight: 600; text-decoration: none; color: var(--ink);
+  border: 1px solid var(--rule); background: var(--sheet); border-radius: 999px; padding: 6px 12px;
+}
+nav.toc a:focus-visible, a:focus-visible { outline: 2px solid var(--trends); outline-offset: 2px; }
+section.part { background: var(--sheet); border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
+.tab { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; padding: 12px 18px; color: var(--tab-text); }
+.tab h2 { color: var(--tab-text); }
+.tab .src { font-family: var(--mono); font-size: 12px; opacity: .9; }
+.renal .tab { background: var(--renal); }
+.cardio .tab { background: var(--cardio); }
+.gi .tab { background: var(--gi); }
+.endo .tab { background: var(--endo); }
+.trends .tab { background: var(--trends); }
+.versus .tab { background: var(--iggy-edge); }
+.body { padding: 6px 18px 18px; min-width: 0; }
+.kid { background: var(--kid-bg); border: 1px dashed var(--kid-edge); border-radius: 6px; padding: 10px 14px; margin: 12px 0; }
+.kid p { margin: 0; }
+.kid p + p { margin-top: 6px; }
+.kid .lbl, .bloom .lbl, .iggy .lbl { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; font-weight: 500; }
+.bloom { background: var(--bloom-bg); border-left: 4px solid var(--bloom-edge); padding: 10px 14px; margin: 14px 0 4px; border-radius: 0 6px 6px 0; }
+.bloom ol { margin: 6px 0 0; }
+.bloom .lvl { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.iggy { background: var(--iggy-bg); border-left: 4px solid var(--iggy-edge); padding: 10px 14px; margin: 12px 0 14px; border-radius: 0 6px 6px 0; }
+.iggy .lbl { color: var(--iggy-edge); margin: 0; }
+.iggy ul { margin: 6px 0 0; }
+.ig { color: var(--iggy-edge); font-weight: 600; }
+.ans { margin-top: 10px; border-top: 1px dashed var(--bloom-edge); padding-top: 8px; }
+.ans summary { cursor: pointer; font-weight: 700; color: var(--bloom-edge); font-size: 14.5px; }
+.ans summary:focus-visible { outline: 2px solid var(--bloom-edge); outline-offset: 2px; }
+.ans ol { margin-top: 8px; }
+.ans li { margin: 6px 0; }
+.red { color: var(--warn); font-weight: 700; }
+.tbl { overflow-x: auto; margin: 8px 0 14px; }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; }
+th, td { text-align: left; vertical-align: top; padding: 7px 9px; border-bottom: 1px solid var(--rule); }
+th { font-weight: 700; font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+td.v, .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 13.5px; white-space: nowrap; }
+.formula { font-family: var(--mono); background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: 8px 12px; margin: 6px 0 10px; font-size: 14px; overflow-x: auto; }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+@media (max-width: 480px) { .body { padding: 4px 14px 16px; } h2 { font-size: 22px; } }
+
+/* Color coding: every section carries its own accent (--c), used for the tab, headings, bold terms, bullets, table headers and striping. */
+:root { --deleg: #c2185b; --ch15: #00838f; --ch17: #3949ab; --ch18: #5b8a1e; --ch19: #d84315; --ch21: #1976d2; --how: #546e7a; --seq: #455a64; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --deleg: #f48fb1; --ch15: #4dd0e1; --ch17: #9fa8da; --ch18: #aed581; --ch19: #ffab91; --ch21: #90caf9; --how: #b0bec5; --seq: #b0bec5; } }
+:root[data-theme="dark"] { --deleg: #f48fb1; --ch15: #4dd0e1; --ch17: #9fa8da; --ch18: #aed581; --ch19: #ffab91; --ch21: #90caf9; --how: #b0bec5; --seq: #b0bec5; }
+#how, nav.toc a[href="#how"] { --c: var(--how); }
+#delegation, nav.toc a[href="#delegation"] { --c: var(--deleg); }
+#ch15, nav.toc a[href="#ch15"] { --c: var(--ch15); }
+#ch17, nav.toc a[href="#ch17"] { --c: var(--ch17); }
+#ch18, nav.toc a[href="#ch18"] { --c: var(--ch18); }
+#ch19, nav.toc a[href="#ch19"] { --c: var(--ch19); }
+#ch21, nav.toc a[href="#ch21"] { --c: var(--ch21); }
+#versus, nav.toc a[href="#versus"] { --c: var(--iggy-edge); }
+#renal, nav.toc a[href="#renal"] { --c: var(--renal); }
+#cardio, nav.toc a[href="#cardio"] { --c: var(--cardio); }
+#gi, nav.toc a[href="#gi"] { --c: var(--gi); }
+#endo, nav.toc a[href="#endo"] { --c: var(--endo); }
+#sequences, nav.toc a[href="#sequences"] { --c: var(--seq); }
+nav.toc a { border: 1px solid var(--c); border-left-width: 5px; background: color-mix(in srgb, var(--c) 12%, var(--sheet)); color: color-mix(in srgb, var(--c) 70%, var(--ink)); }
+section.part { background: color-mix(in srgb, var(--c) 4%, var(--sheet)); border: 1.5px solid color-mix(in srgb, var(--c) 40%, var(--rule)); }
+section.part .tab { background: var(--c); }
+section.part .body h3 { color: color-mix(in srgb, var(--c) 85%, var(--ink)); border-left: 5px solid var(--c); padding: 3px 8px 3px 10px; background: linear-gradient(90deg, color-mix(in srgb, var(--c) 14%, transparent), transparent 75%); border-radius: 0 4px 4px 0; }
+section.part .body strong { color: color-mix(in srgb, var(--c) 65%, var(--ink)); }
+section.part li::marker { color: var(--c); font-weight: 700; }
+section.part th { background: color-mix(in srgb, var(--c) 16%, var(--sheet)); color: color-mix(in srgb, var(--c) 75%, var(--ink)); border-bottom: 2px solid var(--c); }
+section.part tbody tr:nth-child(even) td { background: color-mix(in srgb, var(--c) 6%, transparent); }
+section.part .note { border-left-color: var(--c); }
+section.part .formula { background: color-mix(in srgb, var(--c) 8%, var(--sheet)); border-color: color-mix(in srgb, var(--c) 45%, var(--rule)); }
+.kid strong { color: color-mix(in srgb, var(--kid-edge) 70%, var(--ink)); }
+.iggy strong { color: color-mix(in srgb, var(--iggy-edge) 70%, var(--ink)); }
+.bloom .lbl, .ans summary { color: var(--bloom-edge); }
+.kid .lbl { color: color-mix(in srgb, var(--kid-edge) 80%, var(--ink)); }
+.red { background: color-mix(in srgb, var(--warn) 12%, transparent); padding: 0 4px; border-radius: 3px; }
+/* sequence drills: each drill gets its own color */
+#sequences h3:nth-of-type(6n+1), #sequences h3:nth-of-type(6n+1) + ol { --c: var(--cardio); }
+#sequences h3:nth-of-type(6n+2), #sequences h3:nth-of-type(6n+2) + ol { --c: var(--renal); }
+#sequences h3:nth-of-type(6n+3), #sequences h3:nth-of-type(6n+3) + ol { --c: var(--gi); }
+#sequences h3:nth-of-type(6n+4), #sequences h3:nth-of-type(6n+4) + ol { --c: var(--ch21); }
+#sequences h3:nth-of-type(6n+5), #sequences h3:nth-of-type(6n+5) + ol { --c: var(--endo); }
+#sequences h3:nth-of-type(6n+6), #sequences h3:nth-of-type(6n+6) + ol { --c: var(--deleg); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; font-size: 13px; margin: 0; }
+.legend .lg-h { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.legend span.sw { display: inline-flex; align-items: center; gap: 6px; }
+.legend span.sw::before { content: ""; width: 14px; height: 14px; border-radius: 3px; background: var(--b); border: 2px solid var(--e); }
+</style>
+<div class="wrap">
+<header class="top">
+<p class="eyebrow">NUR206 Trends · Exam 2 · Fall 2026</p>
+<h1>Exam 2 Study Guide</h1>
+<p>Hurst: renal, cardio, gastrointestinal (GI), endo. Trends: delegation plus Cherry Ch 15, 17, 18, 19, 21 (Ch 20 for delegation).</p>
+<p class="note">Renal, cardio, gastrointestinal (GI), and endo follow your Hurst pages (pp. 55–100, 128–158). Green <strong>Iggy adds</strong> boxes and green <span class="ig">(Iggy: …)</span> tags come from your Iggy-based guide. LaCharity items are labeled. Where Hurst and Iggy disagree, both are shown; the <a href="#versus">Hurst vs. Iggy</a> table collects them.</p>
+<p class="legend"><span class="lg-h">Color key</span><span class="sw" style="--b: var(--kid-bg); --e: var(--kid-edge)">Kid version</span><span class="sw" style="--b: var(--bloom-bg); --e: var(--bloom-edge)">Bloom's check</span><span class="sw" style="--b: var(--iggy-bg); --e: var(--iggy-edge)">Iggy adds</span><span class="sw" style="--b: color-mix(in srgb, var(--warn) 15%, var(--sheet)); --e: var(--warn)"><span class="red" style="padding:0">Red</span>&nbsp;= priority or danger</span><span>Each section has its own color, matching the buttons below.</span></p>
+<nav aria-label="Sections" class="toc">
+<a href="#how">How to use</a>
+<a href="#delegation">Delegation</a>
+<a href="#ch15">Ch 15 IT</a>
+<a href="#ch17">Ch 17 Leadership</a>
+<a href="#ch18">Ch 18 Budget</a>
+<a href="#ch19">Ch 19 Communication</a>
+<a href="#ch21">Ch 21 Staffing</a>
+<a href="#versus">Hurst vs. Iggy</a>
+<a href="#renal">Renal</a>
+<a href="#cardio">Cardio</a>
+<a href="#gi">GI</a>
+<a href="#endo">Endo</a>
+<a href="#sequences">Sequence drills</a>
+</nav>
+</header>
+<!-- HOW TO USE -->
+<section class="part trends" id="how">
+<div class="tab"><h2>How to use this guide</h2><span class="src">Bloom's Taxonomy</span></div>
+<div class="body">
+<p>Each topic has three layers. Read the content, then the <strong>Kid version</strong> (the simple explanation), then do the <strong>Bloom's check</strong> without looking. Each check points to the page where the answer lives. Tap <strong>Answers</strong> at the end of each check only after you've written your own.</p>
+<div class="tbl"><table>
+<thead><tr><th>Bloom's level</th><th>What the question asks you to do</th><th>Exam example</th></tr></thead>
+<tbody>
+<tr><td>Remember</td><td>Recall a fact or definition</td><td>"Which is a capital budget item?"</td></tr>
+<tr><td>Understand</td><td>Explain why or in your own words</td><td>"The assistive personnel (AP) asks why the patient has so much urine. Best response?"</td></tr>
+<tr><td>Apply</td><td>Use the rule in a new situation</td><td>"Which task can go to the assistive personnel (AP)?"</td></tr>
+<tr><td>Analyze</td><td>Compare cues and pick the priority</td><td>"Which patient do you see first?"</td></tr>
+<tr><td>Evaluate</td><td>Judge whether an action was right</td><td>"Which action by the new registered nurse (RN) needs intervention?"</td></tr>
+<tr><td>Create</td><td>Build a plan or sequence</td><td>"Put these actions in order."</td></tr>
+</tbody>
+</table></div>
+<p>Most NCLEX-style and LaCharity questions sit at Apply and Analyze. Your professor likes ordered-response questions, which are Create-level. The <a href="#sequences">Sequence drills</a> section at the end collects the orders most likely to show up.</p>
+</div>
+</section>
+<!-- DELEGATION -->
+<section class="part trends" id="delegation">
+<div class="tab"><h2>Delegation and supervision</h2><span class="src">Cherry Ch 20 · LaCharity Ch 1 · NCSBN/ANA 2019</span></div>
+<div class="body">
+<h3>Core definitions</h3>
+<ul>
+<li><strong>Delegation</strong> (ANA): transferring responsibility for performing an activity to another person <strong>while keeping accountability for the outcome</strong>. The registered nurse (RN) can hand off the task. The RN cannot hand off the nursing process or nursing judgment.</li>
+<li><strong>Assignment</strong>: the distribution of work each staff member is responsible for during a shift, within their job description and scope. Assistive personnel (APs) are assigned <em>to a registered nurse (RN)</em>, not to their own group of patients. Licensed practical nurses (LPNs) can be assigned specific patients, but the RN keeps assessment, care planning, and teaching.</li>
+<li><strong>Supervision</strong>: directing, guiding, and influencing how a task gets done. Whenever you delegate or assign, you supervise. It includes guidance, inspection, follow-up, and corrective action.</li>
+</ul>
+<h3>Who is accountable for what</h3>
+<div class="tbl"><table>
+<thead><tr><th>Registered nurse (RN) (delegator)</th><th>Delegatee (assistive personnel (AP), licensed practical nurse (LPN))</th></tr></thead>
+<tbody><tr>
+<td>Deciding patient needs and when to delegate · being available · assessing and evaluating the outcome · stepping in to correct problems</td>
+<td>Their own actions · accepting only tasks within their competency · communicating back to the registered nurse (RN) · completing and documenting the task</td>
+</tr></tbody>
+</table></div>
+<h3>The five rights of delegation</h3>
+<ol>
+<li><strong>Right task</strong>: allowed by policy and state law for that person.</li>
+<li><strong>Right circumstances</strong>: the patient is stable and the task needs no independent nursing judgment.</li>
+<li><strong>Right person</strong>: qualified and competent (verified, not assumed).</li>
+<li><strong>Right direction and communication</strong>: clear instructions, expected results, and <em>when and what to report back</em>.</li>
+<li><strong>Right supervision and evaluation</strong>: follow up, check the result, give feedback.</li>
+</ol>
+<h3>Who does what (LaCharity patterns)</h3>
+<div class="tbl"><table>
+<thead><tr><th>Assistive personnel (AP)</th><th>Licensed practical nurse (LPN)/licensed vocational nurse (LVN)</th><th>Registered nurse (RN) only</th></tr></thead>
+<tbody><tr>
+<td>Vital signs on stable patients · I&amp;O · daily weights · activities of daily living (ADLs), hygiene, oral care · ambulating, positioning, turning · feeding (no swallow problem) · stool specimens · <strong>reminding</strong> patients of what the registered nurse (RN) already taught · reporting objective data (a blood pressure (BP) below a set number)</td>
+<td>By mouth (PO), subcutaneous (SubQ), intramuscular (IM) meds · dressing changes · wound cultures · data collection on stable patients (lung sounds, edema) · reinforcing teaching · tube feedings · stable, predictable patients</td>
+<td>Admission and initial assessment · care plans · initial and discharge teaching · evaluating response · unstable or new patients · intravenous (IV) push and blood transfusions · high-alert meds for unstable patients · interpreting labs and electrocardiograms (ECGs) · triage</td>
+</tr></tbody>
+</table></div>
+<p><strong>Trap words.</strong> Assistive personnel (AP) can <em>remind</em> but cannot <em>teach</em>. AP can <em>measure</em> but cannot <em>assess</em>, <em>monitor</em>, or <em>evaluate</em>. A newly hired AP who was never trained on a glucometer cannot do fingersticks until the registered nurse (RN) verifies the skill.</p>
+<h3>Supervision levels (Cherry p. 866)</h3>
+<ul>
+<li><strong>Unsupervised</strong>: registered nurse (RN) working with another RN as peers.</li>
+<li><strong>Initial direction and/or periodic inspection</strong>: the registered nurse (RN) knows this staff member's skills and has worked with them before.</li>
+<li><strong>Continuous</strong>: new working relationship, complex task, or a delegatee who is inexperienced or has not shown competence.</li>
+</ul>
+<h3>Assigning float and new nurses</h3>
+<ul>
+<li>Give a float nurse the patient that matches the skills from their <strong>home unit</strong>: a post-anesthesia care unit (PACU) float gets the post-colonoscopy patient under sedation; a surgical intensive care unit (SICU) float gets the fresh post-op renal stent patient; a med-surg float to coronary care unit (CCU) gets the heart failure (HF) patient on intravenous (IV) furosemide.</li>
+<li>Give a new graduate or orienting registered nurse (RN) <strong>stable patients with predictable outcomes</strong>. Keep new admissions, fresh post-ops, unstable patients, and heavy teaching with experienced nurses.</li>
+<li>A pregnant nurse avoids patients with airborne illnesses (varicella, shingles, tuberculosis (TB), measles). Contact-precaution patients (methicillin-resistant Staphylococcus aureus (MRSA), vancomycin-resistant Enterococcus (VRE)) are fine.</li>
+</ul>
+<div class="kid">
+<p class="lbl">Kid version</p>
+<p>Delegation is like a coach sending a player into the game. The player runs the play, but the coach still owns the score. If the coach sends in a player who never learned the play, that is the coach's fault. The coach also has to watch the game, not leave the stadium.</p>
+</div>
+<div class="bloom">
+<p class="lbl">Bloom's check</p>
+<ol>
+<li><span class="lvl">Remember</span> What are the barriers to delegation inside the registered nurse (RN), and which are outside? (Cherry Ch 25, p. 1062)</li>
+<li><span class="lvl">Apply</span> A patient with acute kidney injury (AKI) has fluid overload. Name three tasks for the assistive personnel (AP) and two that stay with the registered nurse (RN). (LaCharity Ch 16 Q28)</li>
+<li><span class="lvl">Evaluate</span> The registered nurse (RN) tells the assistive personnel (AP) "watch the post-dialysis patient." Which of the five rights did that direction break, and how would you rewrite it?</li>
+</ol>
+<details class="ans">
+<summary>Answers</summary>
+<ol>
+<li><strong>Inside the registered nurse (RN):</strong> wanting things done your own way, needing to know every detail, believing no one else can do it as well, little experience delegating, insecurity, fear of being disliked, lack of confidence in others, perfectionism and over-control, poor organization, not giving authority to match the responsibility, indecision, poor communication, no commitment to developing others. <strong>Outside, in the situation:</strong> strict policies on who can do what, low tolerance for mistakes, high-stakes decisions, managing by crisis, unclear roles, understaffing. <strong>Outside, in the delegatee:</strong> inexperience, lack of competence, avoiding responsibility, overdependence, disorganization, procrastination, work overload, getting lost in trivia.</li>
+<li><strong>Assistive personnel (AP):</strong> vital signs every 4 hours, daily standing-scale weight, reminding the patient to save all urine for I&amp;O, keeping the urinal within reach. <strong>Registered nurse (RN):</strong> assessing breath sounds, and evaluating the response to furosemide (giving the by mouth (PO) furosemide is licensed-nurse work, RN or licensed practical nurse (LPN), never the AP).</li>
+<li>It broke <strong>right direction and communication</strong>: no task details, no time, no numbers to report. Better: "At 1400 and 1600, take Mr. J's blood pressure (BP) and pulse in his right arm. Tell me right away if the systolic is under 100 or over 160 or the pulse is under 50. Otherwise, chart them and let me know when you're done."</li>
+</ol>
+</details>
+</div>
+</div>
+</section>
+<!-- CH 15 -->
+<section class="part trends" id="ch15">
+<div class="tab"><h2>Ch 15 · Information technology</h2><span class="src">Cherry pp. 651–678</span></div>
+<div class="body">
+<h3>Electronic health record (EHR)</h3>
+<p>A <strong>longitudinal</strong> electronic record of patient information from encounters in any setting. It also supports decision support, quality management, and outcomes reporting.</p>
+<p><strong>The Institute of Medicine (IOM)'s eight core electronic health record (EHR) functions:</strong></p>
+<ol>
+<li>Health information and data capture</li>
+<li>Results management</li>
+<li>Order entry and order management (CPOE)</li>
+<li>Clinical decision support</li>
+<li>Electronic communication and connectivity</li>
+<li>Patient support</li>
+<li>Administrative processes</li>
+<li>Reporting and population health management</li>
+</ol>
+<h3>Key terms</h3>
+<ul>
+<li><strong>Computerized provider order entry (CPOE)</strong> (computerized provider order entry): the provider types orders directly. It removes illegible handwriting and lost orders, generates related orders automatically (like a lab test for a drug level), flags duplicate or conflicting orders, and speeds up filling.</li>
+<li><strong>Clinical decision support</strong>: reminders (immunizations), drug dosing and interaction alerts, help interpreting data.</li>
+<li><strong>Meaningful use</strong>: a defined set of electronic health record (EHR) capabilities hospitals and providers must meet to qualify for Medicare incentive payments.</li>
+<li><strong>Interoperability</strong>: systems share data across settings in a standard, secure way.</li>
+<li><strong>Point-of-care technology</strong>: data retrieval and documentation at the bedside (computers on wheels (COWs), tablets, smartphones). Shifts nursing from relying on memory to using as-needed resources.</li>
+<li><strong>Health Insurance Portability and Accountability Act (HIPAA)</strong> (1996): privacy and security of protected health information. Every facility names a privacy officer. Compliance was required by April 2005. Violations carry civil and criminal penalties.</li>
+<li><strong>Biometrics</strong>: fingerprints, retina, iris, voice, or face used to grant access to data.</li>
+</ul>
+<h3>Judging health websites</h3>
+<p>Check the domain first: <span class="mono">.edu</span> education, <span class="mono">.org</span> nonprofit, <span class="mono">.com</span> commercial, <span class="mono">.net</span> internet provider, <span class="mono">.gov</span> government, <span class="mono">.mil</span> military. Then rate the site on authority (who wrote it), accuracy, objectivity (who pays for it), currency (date), and coverage.</p>
+<div class="kid">
+<p class="lbl">Kid version</p>
+<p>The electronic health record (EHR) is a shared notebook that every doctor and nurse can write in, and it is smart enough to tap you on the shoulder ("this drug fights with that drug"). Computerized provider order entry (CPOE) means the doctor types the order instead of scribbling it, so nobody has to guess at messy handwriting.</p>
+</div>
+<div class="bloom">
+<p class="lbl">Bloom's check</p>
+<ol>
+<li><span class="lvl">Understand</span> Explain how computerized provider order entry (CPOE) improves safety in two specific ways. (p. 658)</li>
+<li><span class="lvl">Analyze</span> A nurse scans a med but the barcode won't read, so she types the number in by hand. What is the safety risk of this workaround?</li>
+<li><span class="lvl">Evaluate</span> A patient brings a printout from a <span class="mono">.com</span> site selling supplements. What do you check before trusting it? (Table 15.3, p. 673)</li>
+</ol>
+<details class="ans">
+<summary>Answers</summary>
+<ol>
+<li>Any two: it removes illegible handwriting and lost orders; it creates related orders automatically (like a drug-level lab); it flags duplicate or conflicting orders; it shortens the time to fill orders.</li>
+<li>Typing the number by hand skips the scanner's check that this is the right drug and dose for the right patient, so a wrong number goes through unchecked. That's a workaround. Stop, re-verify against the medication administration record (MAR) manually, get the label fixed by pharmacy, and report the scanning problem so it gets solved for everyone.</li>
+<li>A <span class="mono">.com</span> site is commercial and selling supplements, so bias is likely. Check <strong>authority</strong> (who wrote it and their credentials), <strong>accuracy</strong> (cites evidence, matches trusted sources), <strong>objectivity</strong> (who pays for it, is it selling something), <strong>currency</strong> (when it was last updated), and <strong>coverage</strong> (complete or one-sided).</li>
+</ol>
+</details>
+</div>
+</div>
+</section>
+<!-- CH 17 -->
+<section class="part trends" id="ch17">
+<div class="tab"><h2>Ch 17 · Leadership and management</h2><span class="src">Cherry pp. 714–760</span></div>
+<div class="body">
+<h3>Leadership vs. management</h3>
+<p><strong>Leadership</strong> is the ability to guide or influence others. <strong>Management</strong> is coordinating resources (time, people, supplies) to reach outcomes. People are led; things and activities are managed. A manager has an appointed position and formal authority. A leader may have neither.</p>
+<p><strong>Authority</strong> is the legitimate right to direct others, given by the organization. <strong>Power</strong> is the ability to get things done, with or without that right.</p>
+<h3>Sources of power</h3>
+<div class="tbl"><table>
+<thead><tr><th>Power</th><th>Comes from</th></tr></thead>
+<tbody>
+<tr><td>Reward</td><td>Ability to give raises, good assignments, recognition</td></tr>
+<tr><td>Coercive</td><td>Fear of punishment: warnings, bad assignments, firing</td></tr>
+<tr><td>Legitimate</td><td>Official position in the organization</td></tr>
+<tr><td>Referent</td><td>People admire you and want to be like you</td></tr>
+<tr><td>Expert</td><td>Knowledge and skill</td></tr>
+<tr><td>Information</td><td>You have information others need</td></tr>
+<tr><td>Connection</td><td>You know powerful people</td></tr>
+</tbody>
+</table></div>
+<h3>Transformational vs. transactional leaders</h3>
+<div class="tbl"><table>
+<thead><tr><th>Transformational</th><th>Transactional</th></tr></thead>
+<tbody><tr>
+<td>Shares a vision · empowers the team · gives work meaning · admired · mentors individuals · linked to higher staff satisfaction</td>
+<td>Day-to-day operations · comfortable with status quo · "I'll do X if you do Y" · monitors and corrects, or waits for problems</td>
+</tr></tbody>
+</table></div>
+<h3>Management styles</h3>
+<div class="tbl"><table>
+<thead><tr><th>Style</th><th>What it looks like</th><th>Works best</th></tr></thead>
+<tbody>
+<tr><td>Autocratic</td><td>Makes all decisions, little feedback, fast</td><td>Emergencies (a code) · staff with little training</td></tr>
+<tr><td>Democratic (participative)</td><td>Involves staff, regular feedback</td><td>Competent, motivated staff · today's preferred style</td></tr>
+<tr><td>Laissez-faire</td><td>No direction, avoids decisions</td><td>Highly professional, self-directed groups</td></tr>
+</tbody>
+</table></div>
+<h3>Five management functions (in order)</h3>
+<ol>
+<li><strong>Planning</strong>: deciding what to do (mission, goals, policies).</li>
+<li><strong>Organizing</strong>: arranging structure and resources.</li>
+<li><strong>Staffing</strong>: hiring, scheduling, orienting.</li>
+<li><strong>Directing</strong>: leading, motivating, delegating, communicating.</li>
+<li><strong>Controlling</strong>: measuring performance against standards and correcting (evaluations, budget review, quality improvement (QI)).</li>
+</ol>
+<p>Manager roles: customer service provider, team builder, resource manager, change agent, clinical consultant, staff developer, mentor, corporate supporter.</p>
+<div class="kid">
+<p class="lbl">Kid version</p>
+<p>A leader is the kid everyone follows on the playground because they have a great idea for a game. A manager is the one holding the clipboard, making sure there are enough balls and that everyone gets a turn. The best charge nurse is both.</p>
+<p>The five functions go Plan → Organize → Staff → Direct → Control. Like a birthday party: decide on the party, set up the room, invite helpers, run the games, then check what went well.</p>
+</div>
+<div class="bloom">
+<p class="lbl">Bloom's check</p>
+<ol>
+<li><span class="lvl">Remember</span> Which power does a staff nurse with no title use when coworkers ask her to check their intravenous (IV) starts? (p. 722)</li>
+<li><span class="lvl">Apply</span> Which management style fits a cardiac arrest, and which fits building the holiday schedule? (p. 729)</li>
+<li><span class="lvl">Analyze</span> A manager reviews monthly fall rates and retrains staff. Which management function is that?</li>
+</ol>
+<details class="ans">
+<summary>Answers</summary>
+<ol>
+<li><strong>Expert power.</strong> It comes from her skill, not a title. (Not referent: coworkers want her intravenous (IV) skill, not to be like her.)</li>
+<li>Cardiac arrest: <strong>autocratic</strong>, because fast decisions from one leader are needed. Holiday schedule: <strong>democratic (participative)</strong>, because staff input builds buy-in and there's time for it.</li>
+<li><strong>Controlling</strong>: measuring performance against a standard and correcting it.</li>
+</ol>
+</details>
+</div>
+</div>
+</section>
+<!-- CH 18 -->
+<section class="part trends" id="ch18">
+<div class="tab"><h2>Ch 18 · Budgeting basics</h2><span class="src">Cherry pp. 763–787</span></div>
+<div class="body">
+<h3>Four functions of a budget</h3>
+<p>Planning · communicating and coordinating · monitoring progress · evaluating performance.</p>
+<h3>Three types of budgets</h3>
+<div class="tbl"><table>
+<thead><tr><th>Budget</th><th>Covers</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td><strong>Operating</strong></td><td>Daily revenue and expenses</td><td>Salaries, utilities, repairs, patient supplies</td></tr>
+<tr><td><strong>Labor</strong> (subset of operating)</td><td>Salaries, overtime, benefits, staff education</td><td>Always the largest expense</td></tr>
+<tr><td><strong>Capital</strong></td><td>Long-life items: useful life <strong>over 1 year</strong> AND cost over a set minimum (often $500–$2,000)</td><td>Cardiac monitors, defibrillators, computers, construction</td></tr>
+</tbody>
+</table></div>
+<p><strong>Revenue</strong> sources: Medicare, Medicaid, private insurance, self-pay, grants, donations.</p>
+<h3>Budget methods</h3>
+<ul>
+<li><strong>Incremental</strong>: last period's budget plus or minus an adjustment. Most common, simple.</li>
+<li><strong>Zero-based</strong>: start from zero and justify every item each period.</li>
+</ul>
+<h3>Variance</h3>
+<p>Variance is the difference between budgeted and actual. <strong>Favorable</strong> = better than expected. <strong>Unfavorable</strong> = worse than expected. Quantitative analysis looks at the numbers. Qualitative analysis asks why (for example, patient acuity rose, so nursing hours per patient-day went from 5 to 7).</p>
+<h3>Cost types</h3>
+<div class="tbl"><table>
+<thead><tr><th>Cost</th><th>Meaning</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td>Direct</td><td>Traced to the unit of service; rises with volume</td><td>Nursing care, patient supplies</td></tr>
+<tr><td>Indirect ("overhead")</td><td>Needed to run the place, not tied to one patient</td><td>Admin salaries, security, housekeeping, utilities</td></tr>
+<tr><td>Fixed</td><td>Does not change with volume</td><td>Admin salaries</td></tr>
+<tr><td>Variable</td><td>Changes directly with volume</td><td>Immunizations given in a clinic</td></tr>
+<tr><td>Full</td><td>Direct + indirect</td><td>Total cost of a patient-day</td></tr>
+</tbody>
+</table></div>
+<h3>Formula frameworks (fill in the numbers yourself)</h3>
+<p><strong>1 full-time equivalent (FTE)</strong> = 40 hours/week = 2,080 hours/year = 173.33 hours/month.</p>
+<div class="formula">FTE = (hours worked per week) ÷ 40</div>
+<div class="formula">Hours per patient-day (HPPD) = (total nursing hours worked) ÷ (number of patient-days)</div>
+<div class="formula">Variance = (budgeted amount) − (actual amount)</div>
+<p>Low productivity = many nursing hours with a low census (expensive). High productivity = few hours with a high census (may be unsafe).</p>
+<h3>The nurse's role</h3>
+<p>Prevent complications, readmissions, and hospital-acquired conditions (Medicare won't pay for "never events"). Use supplies wisely. Report frontline equipment needs for capital planning.</p>
+<div class="kid">
+<p class="lbl">Kid version</p>
+<p>The operating budget is your family's grocery and electric money every month. The labor budget is the part that pays everyone's paychecks. The capital budget is saving up for a car: it costs a lot and lasts for years.</p>
+<p>Fixed costs are like rent, the same no matter how many people live in the house. Variable costs are like pizza, more people means more pizza.</p>
+</div>
+<div class="bloom">
+<p class="lbl">Bloom's check</p>
+<ol>
+<li><span class="lvl">Remember</span> A new intravenous (IV) pump costs $1,800 and lasts 7 years. Which budget is it in, and what two conditions decide that? (p. 776)</li>
+<li><span class="lvl">Apply</span> A nurse works three 12-hour shifts a week. Set up the full-time equivalent (FTE) formula with her numbers and solve it.</li>
+<li><span class="lvl">Analyze</span> The unit spent more on overtime than planned because three ventilator patients were admitted. Is this variance favorable or unfavorable, and is the explanation quantitative or qualitative?</li>
+</ol>
+<details class="ans">
+<summary>Answers</summary>
+<ol>
+<li><strong>Capital budget.</strong> It lasts more than 1 year AND costs more than the organization's minimum (often $500–$2,000). Both conditions must be met.</li>
+<li>Hours per week = 3 shifts × 12 hours = 36. Full-time equivalent (FTE) = 36 ÷ 40 = <strong>0.9 FTE</strong>.</li>
+<li><strong>Unfavorable</strong> (spent more than planned). The dollar difference is the quantitative part; the reason (three ventilator patients raised acuity) is the <strong>qualitative</strong> explanation.</li>
+</ol>
+</details>
+</div>
+</div>
+</section>
+<!-- CH 19 -->
+<section class="part trends" id="ch19">
+<div class="tab"><h2>Ch 19 · Communication and conflict</h2><span class="src">Cherry pp. 789–839</span></div>
+<div class="body">
+<h3>Positive communication</h3>
+<p>Building trust · "I" messages · eye contact · keeping promises · empathy · open-ended questions · clarifying · open body language · active listening.</p>
+<h3>Negative communication</h3>
+<ul>
+<li><strong>Blocking</strong>: a noncommittal or general answer that shuts the patient down. ("Many people feel that way. It'll be okay.")</li>
+<li><strong>False assurance</strong>: promising an outcome you can't promise.</li>
+<li><strong>Conflicting messages</strong>: words say one thing, body language another.</li>
+<li>Closed (yes/no) questions and closed body language (crossed arms, turning away).</li>
+</ul>
+<h3>Handoff report</h3>
+<p>Poor handoff communication is a leading contributor to sentinel events (The Joint Commission). Use a standard tool, allow time for questions, and include the patient and family when possible (bedside report).</p>
+<p><strong>Situation, Background, Assessment, Recommendation (SBAR)</strong>, always in this order:</p>
+<ol>
+<li><strong>S</strong>ituation: who you are, the patient, what is happening now.</li>
+<li><strong>B</strong>ackground: diagnosis, history, meds.</li>
+<li><strong>A</strong>ssessment: the data and your read of it.</li>
+<li><strong>R</strong>ecommendation: what you think needs to happen.</li>
+</ol>
+<p><strong>Closed-loop communication</strong> in a code: after giving the drug, say it out loud to the leader ("Epinephrine 1 mg intravenous (IV) given").</p>
+<h3>Social media</h3>
+<p>No patient names <em>and</em> no other identifiers: room number, facility, location, or age plus diagnosis. Deleted posts still exist and can be used in court. Board actions can include unprofessional conduct, unethical conduct, and revealing privileged communication. In the textbook case, a student posted a photo with the room number visible: the hospital was charged with a Health Insurance Portability and Accountability Act (HIPAA) violation, the program lost the clinical site, and the student was expelled.</p>
+<h3>Conflict resolution styles</h3>
+<div class="tbl"><table>
+<thead><tr><th>Style</th><th>What happens</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td>Avoidance</td><td>Withdraws</td><td>Neither person reaches goals</td></tr>
+<tr><td>Accommodation</td><td>Gives up own goals to please the other</td><td>Lose–win</td></tr>
+<tr><td>Force (competing)</td><td>Wins at the other's expense</td><td>Win–lose</td></tr>
+<tr><td>Compromise</td><td>Both give something up</td><td>Partial win for each</td></tr>
+<tr><td><strong>Collaboration</strong></td><td>Both work to find a solution that satisfies both</td><td>Win–win (best long-term)</td></tr>
+</tbody>
+</table></div>
+<p>Rules: don't make it personal, use "I" messages, focus on the issue not the person, listen actively, treat the conflict as a shared problem. Conflict can be good: it brings out new ideas and shows where problems are.</p>
+<p><strong>Supportive environments</strong> (Gibb): empathy, equality, openness, positivity, supportiveness.</p>
+<div class="kid">
+<p class="lbl">Kid version</p>
+<p>Blocking is when you tell a friend "everyone gets scared, it's fine" and walk away. They feel more alone. Better: "Tell me what scares you about it."</p>
+<p>Two kids want the same swing. Avoiding = both walk away sad. Accommodating = one gives up. Forcing = one shoves. Compromising = each gets 5 minutes. Collaborating = they find a way to both have fun, like taking turns pushing each other.</p>
+</div>
+<div class="bloom">
+<p class="lbl">Bloom's check</p>
+<ol>
+<li><span class="lvl">Apply</span> Rewrite "Don't worry, the surgery will be fine" so it is no longer blocking or false assurance. (p. 806)</li>
+<li><span class="lvl">Create</span> Write a four-line Situation, Background, Assessment, Recommendation (SBAR) to call the provider about a heart failure patient with new crackles and a 3-lb weight gain.</li>
+<li><span class="lvl">Evaluate</span> Two nurses disagree about holiday shifts, and the manager splits them evenly without discussion. Which style is that, and what does each nurse lose?</li>
+</ol>
+<details class="ans">
+<summary>Answers</summary>
+<ol>
+<li>Example: "You seem worried about the surgery. Tell me what's on your mind." It opens the conversation and validates the feeling without promising an outcome.</li>
+<li><strong>S:</strong> "This is Jordan, registered nurse (RN) on 4 West. Mr. T in room 12 has new crackles and is more short of breath." <strong>B:</strong> "He was admitted 2 days ago with heart failure and takes furosemide 40 mg by mouth (PO) daily." <strong>A:</strong> "Crackles in both bases and he's up 3 lb since yesterday. I think he's fluid overloaded." <strong>R:</strong> "I'd like you to see him, and I'm asking for intravenous (IV) furosemide." (Your wording can differ; the order cannot.)</li>
+<li><strong>Compromise</strong>: each gets half of what she wanted. Each nurse loses part of the holiday. Because the manager imposed it without discussion, they also lose the chance to collaborate on a solution that might fully satisfy both (for example, one takes Thanksgiving, the other takes Christmas).</li>
+</ol>
+</details>
+</div>
+</div>
+</section>
+<!-- CH 21 -->
+<section class="part trends" id="ch21">
+<div class="tab"><h2>Ch 21 · Staffing and care delivery models</h2><span class="src">Cherry pp. 874–902</span></div>
+<div class="body">
+<h3>Staffing</h3>
+<p>Counting patients alone is a poor way to staff. Consider patient needs (number, <strong>acuity</strong>, setting, technology), nurse characteristics (education, competency, experience), and organizational needs (finances, licensing and accreditation such as The Joint Commission (TJC)).</p>
+<p><strong>Patient classification systems</strong> group patients by care needs to measure acuity. The higher the acuity, the more intense the care. American Nurses Association (ANA) factors include age and function, complexity, communication, cultural and language needs, severity, scheduled procedures, and psychosocial support.</p>
+<p>Scheduling options: 8-, 10-, or 12-hour shifts, part-time weekend staff, job sharing, flextime, self-scheduling. Long consecutive shifts raise fatigue errors. Involving nurses in scheduling improves satisfaction and retention.</p>
+<h3>Care delivery models</h3>
+<div class="tbl"><table>
+<thead><tr><th>Model</th><th>How it works</th><th>Pro / con</th><th>Common setting</th></tr></thead>
+<tbody>
+<tr><td><strong>Total patient care</strong></td><td>One registered nurse (RN) does all care for the patient during the shift</td><td>Continuity, expert care / costly, registered nurse (RN) does tasks others could</td><td>Intensive care unit (ICU), post-anesthesia care unit (PACU)</td></tr>
+<tr><td><strong>Functional</strong></td><td>Staff assigned by <em>task</em> (registered nurse (RN) does all assessments and intravenous lines (IVs), licensed practical nurse (LPN) all by mouth (PO) meds, assistive personnel (AP) all vitals)</td><td>Efficient, cheap / fragmented, patient confused, staff bored</td><td>Emergency department (ED), long-term care</td></tr>
+<tr><td><strong>Team</strong></td><td>Registered nurse (RN) team leader directs a small team (RN, licensed practical nurse (LPN), assistive personnel (AP))</td><td>Uses support staff, shared decisions / continuity suffers if teams change, depends on leader skill</td><td>Med-surg</td></tr>
+<tr><td><strong>Modular (pod)</strong></td><td>Smaller team assigned to one geographic area of the unit</td><td>More registered nurse (RN) involvement, supplies close by</td><td>Large units</td></tr>
+<tr><td><strong>Primary</strong></td><td>Registered nurse (RN) has <strong>24-hour responsibility</strong> from admission to discharge; associate nurses follow the plan when the primary nurse is off</td><td>Relationship-based, autonomous / needs high judgment, more registered nurses (RNs), costly</td><td>Home health, hospice, oncology, long-term care (LTC)</td></tr>
+<tr><td><strong>Partnership</strong> (co-primary)</td><td>Registered nurse (RN) paired consistently with the same licensed practical nurse (LPN) or assistive personnel (AP)</td><td>Registered nurse (RN) freed for assessment and teaching</td><td>Acute care</td></tr>
+<tr><td><strong>Case management</strong></td><td>Registered nurse (RN) case manager coordinates the whole episode of illness across settings, focused on quality, outcomes, and cost; usually no direct care</td><td>Smooth transitions, controls cost</td><td>Hospitals, insurers</td></tr>
+</tbody>
+</table></div>
+<p><strong>Patient-centered care</strong>: patient and family are part of the team, take part in handoffs, and get education when they need it to make decisions.</p>
+<p><strong>Clinical pathway</strong> (critical path, care map): a timeline that sets the timing and order of care for one diagnosis or procedure to standardize care. When a patient falls off the expected path, that is a <strong>variance</strong> and it is tracked.</p>
+<div class="kid">
+<p class="lbl">Kid version</p>
+<p>Total patient care is one chef cooking your whole meal. Functional nursing is an assembly line: one person only flips burgers, one only adds cheese. Team nursing is a kitchen with a head chef telling helpers what to do. Primary nursing is having your own chef who wrote your menu and is "on call" for it even at home. A case manager is a travel agent who books every stop of your trip: hospital, rehab, then home.</p>
+</div>
+<div class="bloom">
+<p class="lbl">Bloom's check</p>
+<ol>
+<li><span class="lvl">Remember</span> What separates primary nursing from total patient care? (p. 891)</li>
+<li><span class="lvl">Analyze</span> A patient says, "Four different people came in today and nobody knows what's going on with me." Which model is the unit probably using, and why does that cause this problem?</li>
+<li><span class="lvl">Apply</span> A hip replacement patient is supposed to walk on post-op day 1 but can't until day 3. What is that called on a clinical pathway? (p. 897)</li>
+</ol>
+<details class="ans">
+<summary>Answers</summary>
+<ol>
+<li>In <strong>primary nursing</strong>, one registered nurse (RN) holds <strong>24-hour responsibility</strong> for the plan from admission to discharge, and associate nurses follow that plan when the primary nurse is off. In <strong>total patient care</strong>, the RN gives all care but only for the shift.</li>
+<li><strong>Functional nursing.</strong> Staff are assigned by task, so many people each do one piece and no one sees the whole patient. Care becomes fragmented and the patient gets confused.</li>
+<li>A <strong>variance</strong>: any deviation from the expected timeline on a clinical pathway. It gets tracked.</li>
+</ol>
+</details>
+</div>
+</div>
+</section>
+<!-- VERSUS -->
+<section class="part versus" id="versus">
+<div class="tab"><h2>Hurst vs. Iggy: where they disagree</h2><span class="src">Hurst workbook · your Iggy-based guide</span></div>
+<div class="body">
+<p>The system sections below follow Hurst. Iggy gives a different number or rule in these spots. Your Iggy guide's rule: <strong>know both. Default to Hurst, but if a question uses Iggy's wording or numbers, answer with Iggy.</strong> If only one version shows up in the options, pick that one.</p>
+<div class="tbl"><table>
+<thead><tr><th>Topic</th><th>Hurst</th><th>Iggy</th><th>On the exam</th></tr></thead>
+<tbody>
+<tr><td><strong>Acute kidney injury (AKI) oliguria</strong></td><td>Oliguric phase: output can fall to ≤100 mL/24 hr</td><td>Oliguria = &lt;400 mL/day; ≤100 mL/day = anuria</td><td>A "&lt;400 mL/day" option is the Iggy definition of oliguria</td></tr>
+<tr><td><strong>Nonsteroidal anti-inflammatory drugs (NSAIDs) in acute kidney injury (AKI)</strong></td><td>Intrarenal (nephrotoxic)</td><td>Prerenal (reduce kidney perfusion)</td><td>Either way: avoid nonsteroidal anti-inflammatory drugs (NSAIDs)</td></tr>
+<tr><td><strong>Glomerulonephritis (GN) fluid allowance</strong></td><td>Previous 24-hr output + 500 mL</td><td>Output + 500–600 mL</td><td>Same idea; 500 is safe for math</td></tr>
+<tr><td><strong>Nephrotic protein</strong></td><td>Moderate, 1–2 g/kg/day</td><td>Set by glomerular filtration rate (GFR)</td><td>Both: don't restrict it hard</td></tr>
+<tr><td><strong>Nitroglycerin (NTG) tablets</strong></td><td>Replace about every 6 months</td><td>Replace every 3–5 months</td><td>Both say it expires; "2 years" is the spray</td></tr>
+<tr><td><strong>Cath allergy</strong></td><td>Ask about iodine or shellfish allergy</td><td>Shellfish isn't cross-reactive; ask about prior contrast reactions</td><td>Old-style exams still list shellfish</td></tr>
+<tr><td><strong>Cath bed rest</strong></td><td>Flat, leg straight 4–6 hr</td><td>Leg straight 2–6 hr; head of bed (HOB) up to 30° if allowed</td><td>"Keep the leg straight" is right in both</td></tr>
+<tr><td><strong>Heart failure (HF) weight gain</strong></td><td>Report 2–3 lb (1–2 kg) in a day</td><td>Report 1–2 lb overnight or 3 lb in a week</td><td>Match the numbers in the options</td></tr>
+<tr><td><strong>Pacemaker arm</strong></td><td>Don't raise the arm above the shoulder</td><td>Same, plus no lifting &gt;10 lb for about 4 weeks; phone on the opposite side</td><td>Iggy adds details, no conflict</td></tr>
+<tr><td><strong>Metformin + contrast</strong></td><td>Hold; resume 48 hr after if creatinine is normal</td><td>Hold (some protocols 24 hr before); resume after kidney function is checked</td><td>Kidney check before restarting is the key</td></tr>
+<tr><td><strong>Hypoglycemia carbs</strong></td><td>15 g simple carb</td><td>15 g; 30 g if glucose &lt;50; in hospital avoid orange juice (potassium)</td><td>Default to 15 g</td></tr>
+<tr><td><strong>Pancreatitis</strong></td><td>Nothing by mouth (NPO) + nasogastric (NG) tube to suction for all</td><td>Nothing by mouth (NPO) + intravenous (IV) fluids for all; nasogastric (NG) only for severe vomiting or ileus</td><td>If nasogastric (NG) isn't an option, nothing by mouth (NPO) + intravenous (IV) fluids is the answer</td></tr>
+<tr><td><strong>Cirrhosis protein</strong></td><td>Decrease protein</td><td>Moderate protein; no strict restriction (they need it to heal)</td><td>Encephalopathy present → lean toward less</td></tr>
+<tr><td><strong>Dumping position</strong></td><td>Lie on the LEFT side after meals</td><td>Lie down after meals (no side named)</td><td>Left side is never wrong</td></tr>
+<tr><td><strong>Dumping diet</strong></td><td>Small meals, low carbs, no fluids with meals</td><td>High protein, high fat, low-to-moderate carb, no fluids with meals</td><td>No conflict on carbs or fluids</td></tr>
+<tr><td><strong>Levothyroxine + chest fullness</strong></td><td>Hold the dose; call the provider</td><td>Chest-pain protocol may add a 12-lead electrocardiogram (ECG) within 10 minutes</td><td>Pick "hold and call" over anything that delays care</td></tr>
+</tbody>
+</table></div>
+<p class="note"><strong>Workbook fixes from your Iggy guide:</strong> the parathyroids secrete <strong>parathyroid hormone (PTH)</strong>, not calcium (p. 59). High alanine aminotransferase (ALT), aspartate aminotransferase (AST), and bilirubin = liver = <strong>right upper quadrant</strong> (p. 158); on a front-facing diagram the patient's right is on your left.</p>
+<div class="bloom">
+<p class="lbl">Bloom's check</p>
+<ol>
+<li><span class="lvl">Evaluate</span> A heart failure (HF) patient says, "I'll call if I gain 3 pounds in a week." Which source backs this, and what would Hurst have him say?</li>
+<li><span class="lvl">Analyze</span> A pancreatitis question lists "nothing by mouth (NPO) with intravenous (IV) fluids" and "clear liquids as tolerated" but no nasogastric (NG) tube option. Which do you pick, and why?</li>
+<li><span class="lvl">Apply</span> A patient in acute kidney injury (AKI) made 320 mL of urine in 24 hours. Using Iggy's definitions, what is this called?</li>
+</ol>
+<details class="ans">
+<summary>Answers</summary>
+<ol>
+<li><strong>Iggy</strong> (report 1–2 lb overnight or 3 lb in a week). Hurst's version: report a gain of <strong>2–3 lb in a day</strong>. Both are correct teaching for their source, so read what the options give you.</li>
+<li><strong>Nothing by mouth (NPO) with intravenous (IV) fluids.</strong> Both sources keep the pancreas at rest (NPO). Iggy uses IV fluids for everyone and saves the nasogastric (NG) tube for severe vomiting or ileus. Clear liquids still stimulate enzyme release.</li>
+<li><strong>Oliguria</strong> (under 400 mL/day). It would be anuria only at 100 mL/day or less.</li>
+</ol>
+</details>
+</div>
+</div>
+</section>
+<!-- RENAL -->
+<section class="part renal" id="renal">
+<div class="tab"><h2>Renal</h2><span class="src">Hurst pp. 128–141 · LaCharity Ch 16</span></div>
+<div class="body">
+<h3>Glomerulonephritis (Hurst p. 128)</h3>
+<p>Inflammation in the glomerulus. Antibodies lodge there, scar it, and filtering drops. Main cause: <strong>strep</strong>. Acute can become chronic.</p>
+<ul>
+<li><strong>Signs:</strong> flank (CVA) tenderness, low urine output, hematuria, proteinuria, periorbital edema that spreads, high blood pressure (BP), fluid volume excess, high urine specific gravity, high blood urea nitrogen (BUN) and creatinine (azotemia), malaise and headache. Older adults may show fluid overload or confusion, sleepiness, and seizures that look neurologic.</li>
+<li><strong>Care:</strong> treat the strep, I&amp;O, daily weights, diuretics, blood pressure (BP) checks, rest balanced with activity, dialysis if needed.</li>
+<li><strong>Fluid restriction:</strong> replacement = previous 24-hour losses + 500 mL. <span class="ig">(Iggy: 500–600 mL)</span></li>
+<li><strong>Diet:</strong> more carbs, less sodium, less protein.</li>
+<li><strong>Teaching:</strong> diuresis starts 1–3 weeks after onset. Blood and protein can stay in the urine for months. Report signs of renal failure (malaise, headache, anorexia, N/V, less urine, weight gain).</li>
+</ul>
+<h3>Nephrotic syndrome (Hurst pp. 129–131)</h3>
+<p>Inflammation opens big holes in the glomerulus. Protein leaks into the urine → low albumin in the blood → fluid can't stay in the vessels and moves into tissue → the kidneys sense low volume → aldosterone holds sodium and water → that fluid also goes to tissue → <strong>anasarca</strong> (total body edema).</p>
+<ul>
+<li><strong>Signs:</strong> massive proteinuria, hypoalbuminemia, anasarca, hyperlipidemia. Loss of clotting-control proteins raises <strong>clot (thrombosis) risk</strong>.</li>
+<li><strong>Causes:</strong> infections, nonsteroidal anti-inflammatory drugs (NSAIDs), cancer, genetics, lupus, diabetes.</li>
+<li><strong>Treatment:</strong> diuretics, angiotensin-converting enzyme (ACE) inhibitors (block aldosterone), prednisone, cyclophosphamide (immunosuppresses, so <strong>infection is the major complication</strong>), lipid-lowering drugs, anticoagulation up to 6 months, dialysis.</li>
+<li><strong>Diet:</strong> moderate protein 1–2 g/kg/day (they get malnourished fast), low sodium. <span class="ig">(Iggy: protein amount depends on glomerular filtration rate (GFR))</span></li>
+<li><strong>Nursing:</strong> daily weights, I&amp;O, abdominal girth or limb size, skin care.</li>
+</ul>
+<p class="note"><strong>Hurst rule:</strong> limit protein in kidney problems <strong>except</strong> nephrotic syndrome.</p>
+<div class="iggy">
+<p class="lbl">Iggy adds · glomerulonephritis (GN) and nephrotic syndrome</p>
+<ul>
+<li>Glomerulonephritis (GN) antibiotics: penicillin, erythromycin, or azithromycin. Finish all of them.</li>
+<li>Older adults with glomerulonephritis (GN) can look like they have heart failure (HF) (dyspnea, jugular venous distention (JVD), crackles) or a neuro problem (confusion, seizures).</li>
+<li>Nephrotic: albumin under 3 g/dL; cholesterol and triglycerides rise because the liver overcompensates; fat in the urine; <strong>renal vein thrombosis</strong> is a clot risk.</li>
+<li>Nephrotic skin is edematous and breaks down easily: meticulous skin care, infection precautions.</li>
+</ul>
+</div>
+<h3>Acute kidney injury (Hurst pp. 131–134)</h3>
+<div class="tbl"><table>
+<thead><tr><th>Type</th><th>Problem</th><th>Causes</th></tr></thead>
+<tbody>
+<tr><td>Prerenal</td><td>Blood can't get to the kidneys</td><td>Hypotension, slow or irregular heart rate, hypovolemia, any shock</td></tr>
+<tr><td>Intrarenal</td><td>Damage inside the kidney</td><td>Glomerulonephritis, nephrotic syndrome, malignant hypertension (HTN), diabetes, acute tubular necrosis (hypotension, sepsis, drugs), contrast dye, aminoglycosides, nonsteroidal anti-inflammatory drugs (NSAIDs) <span class="ig">(Iggy: NSAIDs listed as prerenal)</span></td></tr>
+<tr><td>Postrenal</td><td>Urine can't get out</td><td>Enlarged prostate, stones, tumors, ureteral obstruction, swollen ileal-conduit stoma</td></tr>
+</tbody>
+</table></div>
+<p><strong>Phases</strong>, in order: initiation (injury) → <strong>oliguric</strong> (output can fall to 100 mL/24 hr or less; ends in about 10–14 days) <span class="ig">(Iggy: oliguria = under 400 mL/day; 100 or less = anuria)</span> → <strong>diuretic</strong> (output rises; replace fluid and electrolytes based on labs) → <strong>recovery</strong> (3–12 months; increase protein and calories, resume activity).</p>
+<p><strong>Signs:</strong> blood urea nitrogen (BUN) and creatinine up · specific gravity up, then <strong>fixed</strong> (kidney can't concentrate or dilute) · hypertension (HTN) and heart failure (HF) from fluid retention · anorexia, N/V from toxins · uremic frost (skin care) · phosphorus up, calcium down (pulled from bone) · anemia (not enough erythropoietin) · hyperkalemia (lethal dysrhythmias) · metabolic acidosis (can't excrete H<sup>+</sup> or keep bicarb).</p>
+<p><strong>Goals:</strong> prevent complications, manage symptoms, remove the cause. <strong>Assess:</strong> hourly output, central venous pressure (CVP), urinary tract infection (UTI) signs, blood pressure (BP), nephrotoxic meds.</p>
+<ul>
+<li><strong>Nursing:</strong> bed rest (lowers metabolism), turn-cough-deep breathe, I&amp;O, daily weights (<strong>1 kg = 1,000 mL</strong>), close vitals.</li>
+<li><strong>Meds:</strong> loop or osmotic diuretics · high potassium (K) → intravenous (IV) glucose + insulin, IV calcium gluconate for dysrhythmias, sodium polystyrene sulfonate · phosphate binders (prevent low calcium (Ca)) · IV meds in the smallest volume allowed.</li>
+<li><strong>Diet:</strong> more carbs and fats (calories), low protein, avoid phosphate, avoid high-K foods (bananas, citrus, coffee).</li>
+<li><strong>Infection prevention:</strong> aseptic technique, skin and mouth care, prevent pressure injuries, avoid catheters, keep away from infectious people.</li>
+</ul>
+<p>Contrast dye: hold <strong>metformin</strong> and resume 48 hours after the procedure only if kidney function and creatinine are normal (Hurst p. 72).</p>
+<div class="iggy">
+<p class="lbl">Iggy adds · acute kidney injury (AKI)</p>
+<ul>
+<li>Diuretic-phase polyuria can be the first sign of recovery. Watch for dehydration, low potassium (K), and low sodium (Na).</li>
+<li><strong>Hyperkalemia, in order:</strong> intravenous (IV) calcium gluconate (protects the heart; does <em>not</em> lower potassium (K)) → IV regular insulin + glucose (shifts K into cells) → a K binder like polystyrene sulfonate (removes K) → loop diuretic or dialysis. Continuous electrocardiogram (ECG). No K supplements or K-sparing diuretics.</li>
+<li>Fluid allowance = urine output + 500 mL.</li>
+<li>Protein: about 0.6 g/kg/day if not on dialysis; 1–1.5 g/kg/day on dialysis. Avoid phosphate (dairy, colas) and potassium.</li>
+<li>Contrast risk is highest with creatinine ≥1.5 or glomerular filtration rate (GFR) under 60, diabetes, heart failure (HF), dehydration, older age, nonsteroidal anti-inflammatory drugs (NSAIDs), metformin, or contrast in the past 72 hours. Hydrate before and after; acetylcysteine may be ordered; goal output about 150 mL/hr for 6 hours afterward.</li>
+</ul>
+</div>
+<h3>Renal replacement therapy (Hurst pp. 135–139)</h3>
+<p><strong>Start when:</strong> blood urea nitrogen (BUN) and creatinine can't be lowered · fluid overload is compromising heart and lungs · hyperkalemia or metabolic acidosis won't respond to treatment.</p>
+<p><strong>Hemodialysis</strong> (the machine acts as the glomerulus; 3–4 times a week):</p>
+<ul>
+<li>Watch what they eat and drink between treatments. Assess fluid status before starting. Watch electrolytes and blood pressure (BP) throughout.</li>
+<li>Heparin during hemodialysis (HD) → <strong>bleeding precautions</strong>, avoid invasive procedures.</li>
+<li>Watch for depression (suicide risk). Unstable cardiovascular patients can't tolerate hemodialysis (HD).</li>
+<li><strong>Access:</strong> arteriovenous (AV) fistula (artery joined to vein) or AV graft (synthetic). Both need surgery and weeks to mature. Blood flows 300–800 mL/min. Arterial end pulls blood out; venous end returns it. Temporary catheters go in the internal jugular or femoral vein.</li>
+<li><strong>Access arm:</strong> no blood pressure (BP), no needle sticks, no intravenous lines (IVs) or blood draws, no constriction. <strong>Feel the thrill, hear the bruit</strong> to confirm it's patent.</li>
+</ul>
+<p><strong>Continuous renal replacement therapy (CRRT):</strong> intensive care unit (ICU), continuous, never more than 80 mL of blood outside the body, so no big fluid shifts. For fragile cardiovascular status with acute kidney injury (AKI).</p>
+<p><strong>Peritoneal dialysis:</strong> the peritoneum is the filter. 2,000–2,500 mL of warmed dialysate runs in by gravity (about 10 minutes) through a Tenckhoff catheter, dwells, then drains with the toxins. One cycle = an <strong>exchange</strong>. Warm it so vessels dilate.</p>
+<ul>
+<li>Outflow should be <strong>clear, straw-colored</strong> (you can read newsprint through it). <span class="red">Cloudy = infection.</span></li>
+<li>Not draining? <strong>Turn the patient side to side.</strong></li>
+<li><strong>Continuous ambulatory peritoneal dialysis (CAPD):</strong> 4 exchanges a day, 7 days a week; needs a motivated patient who can learn. Not for disc disease or arthritis (back pressure) or a colostomy (infection).</li>
+<li><strong>Automated peritoneal dialysis (APD):</strong> cycler runs overnight while asleep.</li>
+<li>Complications: exit-site infection; <strong>peritonitis</strong> is the major one (abdominal pain, cloudy effluent).</li>
+<li>Diet: <strong>more fiber</strong> (fluid slows peristalsis) and <strong>more protein</strong> (lost with each exchange).</li>
+</ul>
+<h3>Kidney stones (Hurst p. 140)</h3>
+<ul>
+<li>Pain with N/V, white blood cells (WBCs) in urine, hematuria. Suspect a stone → get a urine specimen for red blood cells (RBCs) right away, and give pain medication right away.</li>
+<li>Treatment: ondansetron, nonsteroidal anti-inflammatory drugs (NSAIDs) or opioids, alpha blockers (relax the ureter), <strong>increase fluids</strong>, lithotripsy (ESWL) or surgery, <strong>strain urine</strong> and send the stone.</li>
+<li>After lithotripsy, the best sign it worked: <strong>sand-like sediment</strong> in the urine bag.</li>
+<li>Iggy: <strong>tamsulosin</strong> (alpha blocker) relaxes the ureter so the stone passes.</li>
+<li>Workbook triage: a patient with blood pressure (BP) 90/40 is seen before a stone patient with 8/10 pain (perfusion beats pain).</li>
+</ul>
+<p><strong>24-hour urine:</strong> discard the first void and start the clock, save every void after, collect the final void at the 24-hour mark. Missed one = start over. Keep stool and toilet paper out.</p>
+<h3>Chronic kidney disease (CKD) and dialysis extras (LaCharity Ch 16)</h3>
+<ul>
+<li>Fluid restriction about 500–700 mL plus the previous day's output. Phosphate binders (sevelamer) with meals.</li>
+<li><strong>Epoetin alfa</strong> subcutaneous (SubQ): check blood pressure (BP) first; hold for severe hypertension (HTN). Risk rises when Hgb goes above 11.</li>
+<li>After hemodialysis (HD), <strong>decreased level of consciousness (LOC)</strong> may be dialysis disequilibrium syndrome → call the provider.</li>
+<li>Transplant <strong>acute rejection</strong>: fever, hypertension (HTN), graft pain, falling output → increase immunosuppressants.</li>
+<li>Gentamicin: watch blood urea nitrogen (BUN) and creatinine.</li>
+</ul>
+<h3>Lab values</h3>
+<div class="tbl"><table>
+<thead><tr><th>Lab</th><th>Typical normal</th><th>Why it matters</th></tr></thead>
+<tbody>
+<tr><td>Blood urea nitrogen (BUN)</td><td class="v">10–20 mg/dL</td><td>Up in acute kidney injury (AKI), glomerulonephritis (GN)</td></tr>
+<tr><td>Creatinine</td><td class="v">0.5–1.2 mg/dL</td><td>Best kidney-function lab</td></tr>
+<tr><td>Potassium</td><td class="v">3.5–5.0 mEq/L</td><td>High in acute kidney injury (AKI)/chronic kidney disease (CKD) → dysrhythmias</td></tr>
+<tr><td>Phosphorus</td><td class="v">3.0–4.5 mg/dL</td><td>High in kidney failure</td></tr>
+<tr><td>Calcium</td><td class="v">9.0–10.5 mg/dL</td><td>Low in kidney failure</td></tr>
+<tr><td>Albumin</td><td class="v">3.5–5.0 g/dL</td><td>Low in nephrotic syndrome</td></tr>
+<tr><td>Urine specific gravity</td><td class="v">1.003–1.030</td><td>Up in glomerulonephritis (GN) and early acute kidney injury (AKI), then fixed</td></tr>
+<tr><td>Urine output</td><td class="v">≥0.5 mL/kg/hr</td><td>Under that for 2 hr → report</td></tr>
+</tbody>
+</table></div>
+<div class="kid">
+<p class="lbl">Kid version</p>
+<p>Kidneys are coffee filters. Prerenal: no water poured in. Intrarenal: the filter is torn. Postrenal: the cup underneath is blocked. In acute kidney injury (AKI) the filter clogs first (almost no pee), then the floodgates open (tons of watery pee), then it slowly heals.</p>
+<p>In nephrotic syndrome the filter has big holes, so protein (albumin) falls through. Albumin is the sponge that keeps water inside your blood vessels. Without the sponge, water leaks into your whole body and you swell everywhere.</p>
+<p>Peritoneal dialysis uses your belly lining as the filter. Pour warm fluid in, let it soak up the trash, then drain it out. Clear means clean. Cloudy means germs.</p>
+</div>
+<div class="bloom">
+<p class="lbl">Bloom's check</p>
+<ol>
+<li><span class="lvl">Apply</span> A patient with glomerulonephritis lost 1,200 mL in the last 24 hours. What is today's fluid allowance? (Hurst p. 129)</li>
+<li><span class="lvl">Understand</span> Why does a patient with nephrotic syndrome get a moderate-protein diet when other kidney patients get low protein? (Hurst pp. 129–131)</li>
+<li><span class="lvl">Analyze</span> A continuous ambulatory peritoneal dialysis (CAPD) patient's outflow is cloudy and her abdomen hurts. A second patient's dialysate isn't draining. What do you suspect for the first, and what do you do first for the second? (Hurst pp. 138–139)</li>
+<li><span class="lvl">Evaluate</span> After lithotripsy, which finding best shows the treatment worked: no pain, a freely draining catheter, no rebound tenderness, or sand-like sediment in the bag? (Hurst p. 141)</li>
+<li><span class="lvl">Apply</span> A patient in acute kidney injury (AKI) has potassium (K) 6.8 and peaked T waves. Order these: K binder, intravenous (IV) calcium gluconate, IV insulin + glucose. Why does the first one come first? (Iggy)</li>
+</ol>
+<details class="ans">
+<summary>Answers</summary>
+<ol>
+<li>1,200 + 500 = <strong>1,700 mL</strong> for the next 24 hours (fluid replacement = previous 24-hour losses + 500 mL).</li>
+<li>Nephrotic syndrome is <strong>losing</strong> protein through big holes in the glomerulus, so albumin is low and the patient becomes malnourished fast. Moderate protein (1–2 g/kg/day) replaces what's lost. Hurst's rule: limit protein in kidney problems except nephrotic syndrome.</li>
+<li>First patient: <strong>peritonitis</strong> (cloudy effluent + abdominal pain), the major peritoneal dialysis (PD) complication; report it. Second patient: <strong>turn her side to side</strong> to help the fluid drain.</li>
+<li><strong>Sand-like sediment in the bag.</strong> That's the crushed stone passing. No pain or a draining catheter doesn't prove the stone was broken up.</li>
+<li><strong>Calcium gluconate → insulin + glucose → potassium (K) binder.</strong> Calcium doesn't lower K at all; it stabilizes the heart muscle so the peaked T waves don't become a lethal rhythm while the other two work. Insulin moves K into cells fast but temporarily. The binder actually removes K, but slowly.</li>
+</ol>
+</details>
+</div>
+</div>
+</section>
+<!-- CARDIO -->
+<section class="part cardio" id="cardio">
+<div class="tab"><h2>Cardiovascular</h2><span class="src">Hurst pp. 79–100 · LaCharity Ch 7</span></div>
+<div class="body">
+<h3>Terms and cardiac output (Hurst pp. 79–81)</h3>
+<ul>
+<li><strong>Preload:</strong> blood returning to the right side and the stretch it causes (stretch releases atrial natriuretic peptide (ANP)).</li>
+<li><strong>Afterload:</strong> the pressure (resistance) in the aorta and arteries that the left ventricle pumps against. Hypertension (HTN) raises afterload, lowers forward flow, and wears the heart out → heart failure (HF).</li>
+<li><strong>Cardiac output = heart rate (HR) × stroke volume.</strong> Affected by heart rate and rhythm, blood volume (less volume = less cardiac output (CO)), and contractility (myocardial infarction (MI), meds, cardiomyopathy).</li>
+</ul>
+<div class="tbl"><table>
+<thead><tr><th>Goal</th><th>Drugs</th></tr></thead>
+<tbody>
+<tr><td>Lower preload</td><td>Diuretics (furosemide), nitrates</td></tr>
+<tr><td>Lower afterload</td><td>Angiotensin-converting enzyme (ACE) inhibitors, angiotensin II receptor blockers (ARBs), hydralazine, nitrates</td></tr>
+<tr><td>Improve contractility</td><td>Inotropes (dopamine, dobutamine, milrinone), digoxin</td></tr>
+<tr><td>Rate control</td><td>Beta blockers, calcium channel blockers, digoxin</td></tr>
+<tr><td>Rhythm control</td><td>Antiarrhythmics (amiodarone)</td></tr>
+</tbody>
+</table></div>
+<p><strong>Low cardiac output shows up everywhere:</strong> level of consciousness (LOC) down · chest pain · wet lungs and short of breath · cool, clammy skin · urine output down · weak pulses. Arrhythmias don't matter until they drop cardiac output (CO). Three always do: <strong>pulseless ventricular tachycardia (VT), ventricular fibrillation (VF), asystole</strong> (no output → cardiopulmonary resuscitation (CPR) now).</p>
+<h3>Chronic stable angina (Hurst pp. 81–84)</h3>
+<p>Temporary ischemia from low oxygen (O₂) during exertion. Relieved by <strong>rest and/or nitroglycerin</strong>.</p>
+<ul>
+<li><strong>Nitroglycerin sublingual (SL):</strong> dilates veins and arteries (lowers preload and afterload) and coronary arteries. 1 every 5 minutes, up to 3. Dissolve, don't swallow. Dark glass bottle, cool and dry. It may burn or fizz. Expect a <strong>headache</strong> and a blood pressure (BP) drop. Replace tablets about every 6 months, spray every 2 years. <span class="ig">(Iggy: tablets every 3–5 months)</span></li>
+<li><strong>Nitroglycerin (NTG) algorithm:</strong> take 1 sublingual (SL); if pain is the same or worse after 5 minutes, activate emergency response.</li>
+<li><strong>Beta blockers</strong> (propranolol, metoprolol, atenolol, carvedilol): lower blood pressure (BP), heart rate (HR), and contractility → less cardiac work. Check BP and pulse first; they can drop cardiac output (CO) too far.</li>
+<li><strong>Calcium channel blockers</strong> (nifedipine, verapamil, amlodipine, diltiazem): dilate arteries and coronaries → lower afterload, more oxygen (O₂) to the heart.</li>
+<li><strong>Aspirin</strong> 81–325 mg per provider.</li>
+<li><strong>Teaching:</strong> rest often, don't overeat (low fat, high fiber), limit caffeine, wait 2 hours after eating to exercise, dress warmly in cold, take nitroglycerin (NTG) before exertion, stop smoking, lose weight, <strong>avoid isometric exercise</strong>, reduce stress. Testing rule: <em>do everything you can to decrease the heart's workload.</em></li>
+</ul>
+<div class="iggy">
+<p class="lbl">Iggy adds · angina drugs</p>
+<ul>
+<li><strong>Nitroglycerin (NTG) at home:</strong> take 1 → wait 5 minutes → not better or worse → call 911, then keep taking 1 every 5 minutes (3 total) while waiting.</li>
+<li><strong>Nitroglycerin (NTG) in the hospital:</strong> recheck pain and vitals 5 minutes after each dose. Systolic blood pressure (SBP) under 100, or 25 mm Hg below the last reading → lower the head of bed (HOB) and notify the provider.</li>
+<li><span class="red">No sildenafil, tadalafil, or vardenafil within 24–48 hours</span> of nitrates: profound, possibly fatal hypotension.</li>
+<li>Nitroglycerin (NTG) patch: clean, hairless skin; rotate sites; take it off 12–14 hours a day (prevents tolerance); remove before defibrillation.</li>
+<li>Beta blockers: hold and call if heart rate (HR) is under 50–60 or systolic blood pressure (SBP) under 100. Avoid in asthma (bronchospasm); they can mask hypoglycemia.</li>
+<li>New chest pain at home: <strong>chew aspirin 325 mg</strong> and call 911.</li>
+<li>High-intensity statin (atorvastatin, rosuvastatin) for every acute coronary syndrome (ACS) patient before discharge, whatever the lipid results.</li>
+</ul>
+</div>
+<h3>Cardiac catheterization (Hurst pp. 84–85)</h3>
+<ul>
+<li><strong>Before:</strong> ask about iodine or shellfish allergy <span class="ig">(Iggy: shellfish isn't cross-reactive; ask about any prior reaction to contrast dye)</span>, check kidney function (dye leaves through the kidneys; acetylcysteine may be ordered). A warm "hot shot" and palpitations during dye injection are normal.</li>
+<li><strong>After:</strong> vital signs (VS), watch the site for <strong>bleeding and hematoma</strong>, check the limb for the 5 Ps (pulselessness, pallor, pain, paresthesia, paralysis), bed rest flat with the leg straight 4–6 hours <span class="ig">(Iggy: leg straight 2–6 hours, head of bed (HOB) up to 30° if allowed)</span>, report pain at the site at once. Hold metformin 48 hours.</li>
+<li>Iggy timing: clear liquids up to 2 hours before, solids 6 hours. After: vitals every 15 min × 1 hr, every 30 min × 2 hr, then every 4 hr. Encourage fluids to flush the dye.</li>
+<li>Major complication: <strong>hemorrhage</strong>. Earliest sign: rising heart rate (HR) (LaCharity).</li>
+</ul>
+<h3>Acute coronary syndrome (Hurst pp. 85–90)</h3>
+<p><strong>Unstable angina = impending myocardial infarction (MI).</strong> Acute coronary syndrome (ACS) pain comes without exertion and is <strong>not</strong> relieved by rest or nitroglycerin (NTG).</p>
+<ul>
+<li>Crushing pressure radiating to neck, jaw, arms, or shoulder blades; dizziness, sweating, N/V; cold and clammy; blood pressure (BP) drops.</li>
+<li><strong>Women:</strong> gastrointestinal (GI) symptoms, indigestion or fullness, unusual fatigue, can't catch their breath, jaw ache. <strong>Older adults:</strong> shortness of breath. Women, older adults, and diabetics often deny symptoms and delay care.</li>
+<li><strong>ST-elevation myocardial infarction (STEMI)</strong> is the one to worry about: cath lab for percutaneous coronary intervention (PCI) within <strong>90 minutes</strong>.</li>
+<li><strong>In the emergency department (ED):</strong> oxygen if oxygen saturation (SpO₂) is under 90%, aspirin (chewable), nitroglycerin, morphine. Head of bed up to lower workload. (LaCharity: hold nitro and morphine if hypotensive.)</li>
+<li><strong>Fibrinolytics</strong> (alteplase, tenecteplase, reteplase, streptokinase): door-to-drug 30 minutes, give within <strong>12 hours</strong> of pain onset. Major complication: <strong>bleeding</strong>. Absolute contraindications: intracranial tumor or bleed, suspected aortic dissection, internal bleeding. Take a bleeding history; draw labs when starting intravenous lines (IVs) to limit punctures; no arterial blood gases (ABGs); bleeding precautions (watch gums, urine, stools; electric razor, soft toothbrush, no intramuscular (IM) injections).</li>
+<li><strong>Percutaneous coronary intervention (PCI)</strong> (angioplasty, stents): major complication is <strong>myocardial infarction (MI) from reocclusion</strong>, plus site bleeding. Chest pain after PCI → call the provider at once.</li>
+<li><strong>Coronary artery bypass graft (CABG):</strong> for multivessel disease or left main occlusion ("widow maker": sudden death risk).</li>
+<li><strong>Cardiac rehab:</strong> stop smoking, increase activity gradually, low fat, salt, and cholesterol, no isometrics, no Valsalva or straining (docusate, no suppositories). Sex after about 1 week to 10 days if no complications, in the morning when rested. Walking is the best exercise.</li>
+</ul>
+<div class="iggy">
+<p class="lbl">Iggy adds · acute coronary syndrome (ACS), fibrinolytics, coronary artery bypass graft (CABG)</p>
+<ul>
+<li>12-lead electrocardiogram (ECG) within <strong>10 minutes</strong> of a chest-pain report. Repeat troponin in 3–6 hours.</li>
+<li>More absolute contraindications to fibrinolytics: ischemic stroke within 3 months, significant head or face trauma within 3 months.</li>
+<li>Signs a fibrinolytic worked: pain stops abruptly, reperfusion dysrhythmias, ST segments return toward baseline, markers peak early.</li>
+<li>After coronary artery bypass graft (CABG): report chest-tube drainage over <strong>150 mL/hr</strong>. Heavy drainage that suddenly <strong>stops</strong> → think clot and <strong>tamponade</strong>. Atelectasis is the #1 complication (splint, cough, deep breathe, walk). Atrial fibrillation (A-fib) often shows up on days 2–3.</li>
+</ul>
+</div>
+<h3>Cardiac markers (Hurst pp. 86–87)</h3>
+<div class="tbl"><table>
+<thead><tr><th>Marker</th><th>Rises</th><th>Peaks</th><th>Back to normal</th><th>Normal</th></tr></thead>
+<tbody>
+<tr><td>Troponin</td><td>3–4 hr</td><td>10–24 hr</td><td>Elevated up to 3 weeks</td><td class="v">Trop I &lt;0.03 · Trop T &lt;0.10 ng/mL</td></tr>
+<tr><td>Creatine kinase-MB (CK-MB)</td><td>6 hr</td><td>12–24 hr</td><td>24–36 hr</td><td class="v">Cardiac isoenzyme</td></tr>
+<tr><td>Myoglobin</td><td>2 hr</td><td>3–15 hr</td><td>Fast</td><td class="v">Negative result is good</td></tr>
+</tbody>
+</table></div>
+<p><strong>Troponin</strong> is the most sensitive marker and the most useful when the patient delayed care.</p>
+<h3>Lethal arrhythmias (Hurst p. 87)</h3>
+<ul>
+<li>Ventricular fibrillation (VF): <strong>defibrillate</strong> first. If that fails, the first drug is <strong>epinephrine</strong>.</li>
+<li>Amiodarone and lidocaine are for ventricular fibrillation (VF) or pulseless ventricular tachycardia (VT) that resists shocks and epinephrine. Amiodarone: watch for <strong>hypotension</strong>. Lidocaine toxicity: any <strong>neuro</strong> change.</li>
+</ul>
+<h3>Heart failure (Hurst pp. 91–96)</h3>
+<p>Causes: coronary artery disease (CAD), cardiomyopathy, valve disease, endocarditis, myocardial infarction (MI), <strong>hypertension</strong>. Systolic heart failure (HF) = can't contract and eject. Diastolic heart failure (HF) = can't relax and fill.</p>
+<div class="tbl"><table>
+<thead><tr><th>Left-sided ("Left = Lungs")</th><th>Right-sided (backs up into veins)</th></tr></thead>
+<tbody><tr>
+<td>Pulmonary congestion, dyspnea, cough, blood-tinged frothy sputum, restlessness, tachycardia, third heart sound (S3), orthopnea, nocturnal dyspnea</td>
+<td>Distended neck veins, edema, enlarged organs, weight gain, ascites</td>
+</tr></tbody>
+</table></div>
+<ul>
+<li><strong>Diagnosis:</strong> B-type natriuretic peptide (BNP) (sensitive; can be positive before the chest x-ray shows anything; turn nesiritide off 2 hours before drawing it), chest x-ray (CXR) (big heart, infiltrates), echo (ejection fraction, valves), New York Heart Association (NYHA) class 1–4 (4 is worst).</li>
+<li><strong>Angiotensin-converting enzyme (ACE) inhibitors</strong> are the drug of choice: block angiotensin I → II, dilate arteries. <strong>Angiotensin II receptor blockers (ARBs)</strong> block angiotensin II receptors. Both block aldosterone → lose sodium (Na) and water, <strong>keep potassium (K)</strong>.</li>
+<li><strong>Beta blockers</strong> are first-line alongside angiotensin-converting enzyme (ACE) inhibitors. Core measure: discharge on an ACE inhibitor and/or beta blocker to lower afterload and keep blood moving forward.</li>
+<li><strong>Digoxin</strong> (0.5–2.0 ng/mL): stronger contraction, slower rate → cardiac output (CO) and kidney perfusion go up. Check the <strong>apical pulse</strong> first. Toxicity: early anorexia, N/V; late arrhythmias and <strong>vision changes</strong>. <strong>Low potassium (K) + digoxin = toxicity</strong>; any electrolyte imbalance raises the risk.</li>
+<li><strong>Diuretics</strong> (furosemide, hydrochlorothiazide (HCTZ), bumetanide, triamterene-HCTZ, spironolactone) lower preload. Give in the <strong>morning</strong>. Diuresis is good in heart failure (HF).</li>
+<li>Severe or decompensated heart failure (HF): intravenous (IV) inotropes (milrinone, dobutamine), vasodilators (nitroprusside, nesiritide, nitroglycerin).</li>
+<li><strong>Low-sodium diet</strong> lowers preload. Salt substitutes can be loaded with <strong>potassium</strong>; canned foods and over-the-counter (OTC) meds hide sodium. Head of bed (HOB) up. Weigh daily; report a gain of <strong>2–3 lb (1–2 kg) in a day</strong> <span class="ig">(Iggy: report 1–2 lb overnight or 3 lb in a week)</span>. Testing rule: fluid retention → think heart first.</li>
+</ul>
+<div class="iggy">
+<p class="lbl">Iggy adds · heart failure (HF) drugs</p>
+<ul>
+<li><strong>Angiotensin-converting enzyme (ACE) inhibitors:</strong> first-dose hypotension, dry cough, high potassium (K), kidney function. Never combine with an angiotensin II receptor blocker (ARB). Angiotensin II receptor blockers (ARBs): high K, but no cough.</li>
+<li><strong>Beta blockers:</strong> start low, go slow; heart failure (HF) can look worse at first, so weigh daily. Resting heart rate (HR) goal about 55–60.</li>
+<li><strong>Furosemide intravenous (IV) push:</strong> 40 mg over 1–2 minutes (too fast → hypotension, ototoxicity). Diuresis starts within about 5 minutes. Older adults: dehydration and falls.</li>
+<li><strong>Spironolactone:</strong> keeps potassium (K) → high K; no salt substitutes (they're potassium chloride (KCl)).</li>
+<li><strong>Digoxin:</strong> apical pulse for a full minute; hold per parameters (commonly under 60). Late toxicity: blurred or yellow-green vision, premature ventricular contractions (PVCs) (most common), heart block; older adults get confused. Low magnesium (Mg) also raises toxicity; antacids lower absorption. It's working when output rises (more urine, less edema and dyspnea).</li>
+</ul>
+</div>
+<h3>Pacemakers (Hurst pp. 96–97)</h3>
+<ul>
+<li>For symptomatic bradycardia. Demand pacers fire only when needed; fixed pacers fire constantly. The rate can go above the set rate, but <strong>worry if it drops below</strong>.</li>
+<li><strong>After placement:</strong> watch the incision. Most common complication: <strong>electrode displacement</strong>. Immobilize the arm, no lifting it above the shoulder, passive range of motion (ROM) to prevent frozen shoulder.</li>
+<li><strong>Malfunction:</strong> loss of capture (stimulus with no contraction), failure to sense (fires at the wrong time). Causes: bad programming, dislodged electrode, depleted battery. Watch for low cardiac output (CO) or a falling rate.</li>
+<li><strong>Teaching:</strong> check pulse daily, carry an identification (ID) card, avoid strong electromagnetic fields and magnetic resonance imaging (MRI). Implantable cardioverter-defibrillator (ICD) care is the same.</li>
+</ul>
+<div class="iggy">
+<p class="lbl">Iggy adds · pacemakers</p>
+<ul>
+<li>No raising the arm above the shoulder <em>and</em> no lifting more than 10 lb for about 4 weeks.</li>
+<li>Check the pulse daily for a full minute; report a rate below the set rate.</li>
+<li>Cell phone on the opposite side; household appliances are fine; avoid strong magnets and transmitters; magnetic resonance imaging (MRI) is usually contraindicated.</li>
+<li>Don't press on or twist the generator; avoid tight clothing over it. Wear a medical alert bracelet.</li>
+</ul>
+</div>
+<h3>Pulmonary edema (Hurst pp. 98–99)</h3>
+<ul>
+<li>At risk: fast intravenous (IV) fluids, very young or very old, heart or kidney disease. Often happens at night after lying down.</li>
+<li>Sudden breathlessness, restless and anxious, severe hypoxia, pink frothy sputum. Iggy: older adults may show only new confusion.</li>
+<li><strong>Priority: high-flow oxygen</strong>, keep oxygen saturation (SpO₂) above 90%. Sit <strong>upright with legs down</strong> (pools blood in the legs).</li>
+<li>Furosemide 40 mg intravenous (IV) push over 1–2 minutes (too fast → hypotension, ototoxicity). Bumetanide 1–2 mg IV over 1–2 minutes. IV nitroglycerin (lowers afterload). Morphine 2 mg IV (dilates vessels). Nesiritide infusion no longer than 48 hours.</li>
+<li>Prevent it: check lung sounds often, avoid fluid overload.</li>
+</ul>
+<h3>Cardiac tamponade (Hurst p. 100)</h3>
+<p>Blood or fluid fills the pericardial sac and squeezes the heart. Causes: chest trauma (car crash), right ventricle (RV) biopsy, myocardial infarction (MI), pericarditis, bleeding after coronary artery bypass graft (CABG).</p>
+<ul>
+<li><strong>Hallmarks:</strong> central venous pressure (CVP) up, blood pressure (BP) down. Muffled heart sounds, distended neck veins, shock, equal pressures in all 4 chambers, <strong>narrowed pulse pressure</strong>. (Widened pulse pressure → think increased intracranial pressure (ICP).)</li>
+<li>Treatment: pericardiocentesis, surgery.</li>
+</ul>
+<div class="iggy">
+<p class="lbl">Iggy adds · tamponade</p>
+<ul>
+<li><strong>Beck triad:</strong> jugular venous distention (JVD) (with clear lungs), muffled heart sounds, hypotension.</li>
+<li><strong>Pulsus paradoxus</strong> over 10 mm Hg: systolic blood pressure (BP) drops more than 10 during inspiration.</li>
+<li>After coronary artery bypass graft (CABG): heavy mediastinal chest-tube drainage that suddenly stops = clotted tube, blood collecting around the heart.</li>
+<li>Notify the provider at once; intravenous (IV) fluids support output while the diagnosis is confirmed. After pericardiocentesis, watch for it to come back.</li>
+</ul>
+</div>
+<h3>Anticoagulants (LaCharity Ch 7 · high-alert: two-nurse check)</h3>
+<div class="tbl"><table>
+<thead><tr><th>Drug</th><th>Lab</th><th>Antidote</th><th>Key teaching</th></tr></thead>
+<tbody>
+<tr><td>Warfarin</td><td>International normalized ratio (INR) (goal 2–3)</td><td>Vitamin K</td><td>Keep vitamin K foods consistent</td></tr>
+<tr><td>Heparin</td><td>Activated partial thromboplastin time (aPTT) (1.5–2.5× control)</td><td>Protamine sulfate</td><td>Bleeding precautions; no nonsteroidal anti-inflammatory drugs (NSAIDs)</td></tr>
+<tr><td>Enoxaparin</td><td>Platelets</td><td>Protamine (partial)</td><td>New confusion = possible brain bleed</td></tr>
+</tbody>
+</table></div>
+<h3>Lab values</h3>
+<div class="tbl"><table>
+<thead><tr><th>Lab</th><th>Typical normal</th></tr></thead>
+<tbody>
+<tr><td>Troponin I · T</td><td class="v">&lt;0.03 · &lt;0.10 ng/mL (Hurst)</td></tr>
+<tr><td>B-type natriuretic peptide (BNP)</td><td class="v">&lt;100 pg/mL</td></tr>
+<tr><td>Digoxin level</td><td class="v">0.5–2.0 ng/mL</td></tr>
+<tr><td>International normalized ratio (INR) (no warfarin)</td><td class="v">0.8–1.1 · therapeutic 2–3</td></tr>
+<tr><td>Activated partial thromboplastin time (aPTT)</td><td class="v">25–35 sec</td></tr>
+<tr><td>Potassium</td><td class="v">3.5–5.0 mEq/L</td></tr>
+<tr><td>Magnesium</td><td class="v">1.5–2.5 mEq/L</td></tr>
+</tbody>
+</table></div>
+<h3>Cardio delegation (LaCharity)</h3>
+<p>Licensed practical nurse (LPN): attach monitor leads, obtain a 12-lead electrocardiogram (ECG), give by mouth (PO) aspirin and sublingual (SL) nitro to a stable patient. Registered nurse (RN): intravenous (IV) heparin and IV morphine for an unstable patient, history, teaching. Assistive personnel (AP): vitals before and after ambulating, weights, measuring ankle and brachial pressures.</p>
+<div class="kid">
+<p class="lbl">Kid version</p>
+<p>Preload is how much water fills a balloon before you squeeze it. Afterload is how hard it is to push the water out through a tiny straw. High blood pressure makes the straw tinier, so the heart works harder and gets tired.</p>
+<p>"Left = Lungs." When the left side is weak, blood backs up into the lungs like a traffic jam, so the person sounds wet. When the right side is weak, the jam backs up into the body: puffy legs and big neck veins.</p>
+<p>Tamponade is like the heart wrapped in a water balloon that keeps filling. The heart can't open up to fill, so blood pressure falls while the neck veins bulge.</p>
+</div>
+<div class="bloom">
+<p class="lbl">Bloom's check</p>
+<ol>
+<li><span class="lvl">Remember</span> Which cardiac marker is best for a patient who waited 3 days to seek care, and why? (Hurst p. 87)</li>
+<li><span class="lvl">Apply</span> A patient takes one nitroglycerin for chest pain. Five minutes later the pain is unchanged. What's next? (Hurst p. 82)</li>
+<li><span class="lvl">Analyze</span> After cardiac surgery a patient has blood pressure (BP) 82/64 (was 118/70), central venous pressure (CVP) rising, muffled heart sounds, and distended neck veins. What's happening, and what is the treatment? (Hurst p. 100)</li>
+<li><span class="lvl">Evaluate</span> A patient with heart failure (HF) takes digoxin and furosemide. Potassium (K) is 3.1 and he has nausea and no appetite. Is this expected? (Hurst p. 95)</li>
+<li><span class="lvl">Analyze</span> Four hours after coronary artery bypass graft (CABG), mediastinal chest-tube output was 180 mL/hr and suddenly drops to 0. Blood pressure (BP) is falling and neck veins are distended. What's happening, and which two other findings would complete Beck triad? (Iggy)</li>
+</ol>
+<details class="ans">
+<summary>Answers</summary>
+<ol>
+<li><strong>Troponin.</strong> It rises in 3–4 hours and stays elevated up to 3 weeks, so it still shows the myocardial infarction (MI) days later. Creatine kinase-MB (CK-MB) is back to normal in 24–36 hours and myoglobin even sooner.</li>
+<li>Pain unchanged or worse after 5 minutes → <strong>activate emergency response</strong> (call 911 or the rapid response team). Then follow the provider's orders for more nitroglycerin (NTG).</li>
+<li><strong>Cardiac tamponade</strong> (bleeding after coronary artery bypass graft (CABG) is a cause): high central venous pressure (CVP) + low blood pressure (BP), muffled sounds, jugular venous distention (JVD). Treatment: <strong>pericardiocentesis</strong> or surgery. Expect a narrowed pulse pressure too.</li>
+<li><strong>No.</strong> Anorexia and nausea are <strong>early digoxin toxicity</strong>, and potassium (K) 3.1 (normal 3.5–5.0) makes toxicity more likely (furosemide is losing his K). Hold the digoxin, check the apical pulse, and call the provider; expect a digoxin level and K replacement.</li>
+<li><strong>Cardiac tamponade</strong>: the tube clotted, so blood is now collecting around the heart. Beck triad = jugular venous distention (JVD) (already present) + <strong>hypotension</strong> (already present) + <strong>muffled heart sounds</strong>; also look for pulsus paradoxus over 10 mm Hg. (Also, 180 mL/hr was already above Iggy's 150 mL/hr report threshold.)</li>
+</ol>
+</details>
+</div>
+</div>
+</section>
+<!-- GI -->
+<section class="part gi" id="gi">
+<div class="tab"><h2>Gastrointestinal</h2><span class="src">Hurst pp. 142–158 · LaCharity Ch 12 · Case Study 9</span></div>
+<div class="body">
+<h3>Pancreatitis: the pancreas digesting itself (Hurst pp. 142–144)</h3>
+<p>The pancreas makes insulin (endocrine) and digestive enzymes (exocrine). #1 cause: <strong>gallbladder disease</strong>. #2: <strong>alcohol</strong>.</p>
+<ul>
+<li><strong>Signs:</strong> pain that <strong>gets worse with eating</strong> · distention and ascites (protein-rich fluid leaking into the belly) · swollen pancreas mass · <strong>rigid, board-like abdomen</strong> with guarding (bleeding → peritonitis) · <strong>Cullen sign</strong> (bruising around the navel) and <strong>Grey Turner sign</strong> (flank bruising) · fever · N/V · jaundice · hypotension from bleeding or ascites.</li>
+<li><strong>Labs:</strong> <strong>lipase</strong> (most specific) and amylase up · white blood cell count (WBC) up · glucose up · alanine aminotransferase (ALT)/aspartate aminotransferase (AST) up · prothrombin time (PT)/activated partial thromboplastin time (aPTT) longer · bilirubin up · H&amp;H <em>down</em> if bleeding, <em>up</em> if dehydrated.</li>
+<li><strong>Goal: control pain.</strong> Keep the stomach <strong>empty and dry</strong>: nothing by mouth (NPO), nasogastric (NG) tube to suction, bed rest. <span class="ig">(Iggy: NPO + intravenous (IV) fluids for everyone; NG to suction only for severe vomiting or ileus)</span></li>
+<li><strong>Meds:</strong> patient-controlled analgesia (PCA) opioids (morphine, hydromorphone), fentanyl patch · anticholinergics to dry the stomach (benztropine, diphenoxylate/atropine) · gastrointestinal (GI) protectants (pantoprazole, famotidine, cimetidine, antacids).</li>
+<li>Fluid and electrolyte balance · ease back into a diet · <strong>insulin</strong> (the pancreas is sick, and total parenteral nutrition (TPN) adds glucose) · daily weights · no alcohol; refer to Alcoholics Anonymous (AA) if alcohol is the cause.</li>
+<li>LaCharity: watch for <strong>hypocalcemia</strong> (Chvostek, Trousseau) and shock. In Case Study 9 the pancreatitis patient has the highest acuity.</li>
+</ul>
+<div class="iggy">
+<p class="lbl">Iggy adds · pancreatitis</p>
+<ul>
+<li>Life-threatening complications: hemorrhagic pancreatitis, hypovolemic shock, acute kidney injury (AKI), acute respiratory distress syndrome (ARDS), multiorgan failure.</li>
+<li>Calcium and magnesium may need intravenous (IV) replacement.</li>
+<li><strong>Chronic pancreatitis:</strong> pancreatic enzymes with every meal; avoid alcohol, nicotine, high-fat foods, and large meals.</li>
+</ul>
+</div>
+<h3>Cirrhosis (Hurst pp. 144–146)</h3>
+<p>The liver detoxifies the body, helps blood <strong>clot</strong>, breaks down <strong>drugs</strong>, and makes <strong>albumin</strong>. In cirrhosis, scar tissue replaces liver cells and blocks blood flow through the liver → <strong>portal hypertension</strong>.</p>
+<ul>
+<li><strong>Signs:</strong> firm, nodular liver · jaundice · abdominal pain (stretched capsule) · chronic indigestion · bowel changes · ascites · enlarged spleen · fatigue · peripheral edema · anemia · can progress to hepatic encephalopathy and coma.</li>
+<li><strong>Testing strategies:</strong> sick liver → #1 concern is <strong>bleeding</strong> · lower medication doses · <span class="red">never give acetaminophen</span> (antidote: acetylcysteine) · avoid narcotics (giving one is like double dosing) · enlarged spleen = immune system involved.</li>
+<li><strong>Diagnosis:</strong> low albumin, high alanine aminotransferase (ALT) and aspartate aminotransferase (AST), ultrasound, computed tomography (CT)/magnetic resonance imaging (MRI), liver biopsy (confirms).</li>
+<li><strong>Liver biopsy:</strong> check prothrombin time (PT), international normalized ratio (INR), activated partial thromboplastin time (aPTT) and vitals first. Position <strong>supine with the right arm behind the head</strong>; patient exhales and holds the breath (moves the diaphragm out of the way). After: <strong>lie on the right side</strong> (pressure on the site); watch vitals for hemorrhage.</li>
+<li><strong>Treatment:</strong> antacids, vitamins, diuretics · no alcohol · I&amp;O and daily weights (ascites = fluid problem) · rest · bleeding precautions · measure abdominal girth · skin care for jaundice · diet: <strong>less protein</strong>, low sodium. <span class="ig">(Iggy: moderate protein, no strict restriction)</span></li>
+<li><strong>Paracentesis</strong> (removing ascites fluid): have the patient <strong>void first</strong>, position <strong>sitting up</strong>, check vitals. Pulling off fluid can cause shock: blood pressure (BP) drops, pulse rises.</li>
+</ul>
+<h3>Hepatic encephalopathy / coma (Hurst pp. 146–147)</h3>
+<p>Normally: protein → ammonia → the liver turns it into urea → kidneys excrete urea. A failing liver can't convert it, so <strong>ammonia builds up and level of consciousness (LOC) drops</strong>.</p>
+<ul>
+<li><strong>Signs:</strong> mild mental and motor changes · hard to wake · <strong>asterixis</strong> (hand-flapping tremor) · handwriting changes · decreased reflexes · slow electroencephalogram (EEG) · <strong>fetor</strong> (breath smells like ammonia). Anything that raises ammonia (like protein) makes it worse. Liver patients tend to be gastrointestinal (GI) bleeders.</li>
+<li><strong>Treatment:</strong> <strong>lactulose</strong> (lowers ammonia), enemas, monitor serum ammonia.</li>
+</ul>
+<div class="iggy">
+<p class="lbl">Iggy adds · cirrhosis and encephalopathy</p>
+<ul>
+<li>Most common cause of cirrhosis in the U.S.: hepatitis C. Alcohol and fatty liver disease are also big causes.</li>
+<li>Paracentesis: voiding first is the most important pre-step (prevents bladder puncture). Weigh before and after; measure and describe the fluid.</li>
+<li>Ammonia triggers: gastrointestinal (GI) bleeding (blood is a protein load), infection, hypovolemia, low potassium (K), constipation, sedatives and opioids.</li>
+<li>The ammonia level doesn't always match the symptoms: <strong>treat the patient</strong>, not the number.</li>
+<li><strong>Lactulose goal:</strong> 2–3 soft stools a day and less confusion. Too many stools → low potassium (K) and dehydration; protect perineal skin.</li>
+<li><strong>Rifaximin or neomycin</strong> kill the gut bacteria that make ammonia (neomycin is nephrotoxic, not long-term).</li>
+<li>Safety first for the confused patient: falls, aspiration. Check level of consciousness (LOC) and asterixis often.</li>
+</ul>
+</div>
+<h3>Bleeding esophageal varices (Hurst pp. 147–148)</h3>
+<p>Portal hypertension forces new veins to form in the stomach, esophagus, and rectum. They cause no trouble until they <strong>rupture</strong>. A patient with alcohol use disorder who is gastrointestinal (GI) bleeding usually has varices.</p>
+<ul>
+<li>Replace blood · monitor vitals and central venous pressure (CVP) · <strong>oxygen</strong> (anemic patients need it) · octreotide (lowers liver pressure) · beta blockers (lower portal pressure, prevent rebleeding).</li>
+<li><strong>Esophageal variceal ligation (banding)</strong> is first-line; endoscopic sclerotherapy injects a sclerosing agent.</li>
+<li><strong>Balloon tamponade</strong> (Sengstaken-Blakemore tube): emergency only, holds pressure on bleeding varices, no more than 12 hours.</li>
+<li>Enemas to clear blood from the gut, lactulose (blood is protein → ammonia), saline lavage to clear the stomach.</li>
+<li>Iggy: <strong>two large-bore intravenous lines (IVs)</strong> for an upper gastrointestinal (GI) bleed; <strong>transjugular intrahepatic portosystemic shunt (TIPS)</strong> for recurrent bleeding or ascites.</li>
+</ul>
+<h3>Peptic ulcer disease (Hurst pp. 148–150)</h3>
+<p>Erosion in the esophagus, stomach, or duodenum; a common cause of gastrointestinal (GI) bleeding. Burning mid-epigastric or back pain, heartburn.</p>
+<div class="tbl"><table>
+<thead><tr><th>Gastric ulcer</th><th>Duodenal ulcer</th></tr></thead>
+<tbody><tr>
+<td>Looks malnourished · pain 30 min–1 hr after meals · food doesn't help, <strong>vomiting does</strong> · vomits blood</td>
+<td>Looks well-nourished · pain 2–3 hr after meals and <strong>at night</strong> · <strong>food helps</strong> · blood in stools</td>
+</tr></tbody>
+</table></div>
+<ul>
+<li><strong>Esophagogastroduodenoscopy (EGD):</strong> nothing by mouth (NPO) before, sedated, <strong>NPO until the gag reflex returns</strong>. Watch for <strong>perforation</strong>: pain, bleeding, trouble swallowing.</li>
+<li><strong>Upper gastrointestinal (GI) series:</strong> nothing by mouth (NPO) after midnight; no smoking, gum, mints, or nicotine patches (they speed motility and raise secretions → aspiration).</li>
+<li><strong>Meds:</strong> antacids as <strong>liquid</strong> (coats better), on an empty stomach and at bedtime · proton pump inhibitors (PPIs) (pantoprazole, esomeprazole, omeprazole, lansoprazole) · famotidine · gastrointestinal (GI) cocktail · antibiotics for H. pylori (clarithromycin, amoxicillin, tetracycline, metronidazole) · <strong>sucralfate</strong> (coats the ulcer like a bandage).</li>
+<li><strong>Teaching:</strong> reduce stress, stop smoking, avoid caffeine, temperature extremes, and very spicy foods; keep follow-up.</li>
+<li>LaCharity: a <strong>board-like abdomen with shoulder pain</strong> = perforation, the most lethal complication.</li>
+</ul>
+<div class="iggy">
+<p class="lbl">Iggy adds · peptic ulcer disease</p>
+<ul>
+<li><strong>H. pylori triple therapy:</strong> proton pump inhibitor (PPI) + 2 antibiotics for 10–14 days. Finish every dose.</li>
+<li>Gastric ulcers: usually ages 50–70, acid normal or low, slightly higher cancer risk. Duodenal: ages 20–50, too much acid, no added cancer risk.</li>
+<li>Hemorrhage is the most common complication: coffee-ground or bright red vomit, melena, blood pressure (BP) down, heart rate (HR) up, H&amp;H down, dizziness.</li>
+<li>Perforation: sudden sharp pain spreading across the abdomen, rigid board-like belly, patient curls into the fetal position → surgical emergency.</li>
+<li>Pyloric obstruction: vomiting, metabolic alkalosis, low potassium (K).</li>
+</ul>
+</div>
+<h3>Hiatal hernia vs. dumping syndrome (Hurst pp. 150–151)</h3>
+<div class="tbl"><table>
+<thead><tr><th>Hiatal hernia</th><th>Dumping syndrome</th></tr></thead>
+<tbody>
+<tr><td>Stomach slides up through a too-large hole in the diaphragm. Cause: large abdomen (lose weight), congenital, trauma, straining.</td><td>Stomach empties too fast after gastric bypass, gastrectomy, or gallbladder disease.</td></tr>
+<tr><td>Heartburn, fullness after eating, regurgitation, dysphagia</td><td>Fullness, weakness, palpitations, cramping, faintness, diarrhea</td></tr>
+<tr><td><strong>Keep the stomach DOWN:</strong> small frequent meals, <strong>sit up 1 hour after eating</strong>, head of bed (HOB) up, surgery, healthy diet</td><td><strong>Keep food IN:</strong> semi-recumbent with meals, <strong>lie on the LEFT side after meals</strong> <span class="ig">(Iggy: lie down after meals; no side named)</span>, no fluids with meals (drink between), small frequent meals, avoid high-carb and high-electrolyte foods (they empty fast)</td></tr>
+</tbody>
+</table></div>
+<p class="note">Hurst memory trick: <strong>left</strong> side lying <strong>leaves</strong> it in; <strong>right</strong> side lying <strong>releases</strong> it.</p>
+<div class="iggy">
+<p class="lbl">Iggy adds · dumping syndrome</p>
+<ul>
+<li><strong>Early</strong> dumping (within 20–30 minutes): fullness, weakness, tachycardia, dizziness, sweating, cramping, diarrhea. <strong>Late</strong> dumping (1–3 hours): hypoglycemia from an insulin surge.</li>
+<li>Diet: <strong>high protein, high fat, low-to-moderate carbohydrate</strong>; no liquids with meals.</li>
+<li>Severe cases: octreotide before meals; acarbose.</li>
+</ul>
+</div>
+<h3>Inflammatory bowel disease (Hurst pp. 152–154)</h3>
+<ul>
+<li><strong>Ulcerative colitis:</strong> large intestine only. <strong>Crohn's</strong> (regional enteritis): mostly the ileum, but anywhere in the small or large intestine.</li>
+<li><strong>Signs:</strong> diarrhea, rectal bleeding, vomiting, weight loss, cramping, dehydration, blood in stools, anemia, fever, <strong>rebound tenderness</strong> (push in, let go, it hurts = peritoneal inflammation).</li>
+<li><strong>Colonoscopy</strong> (most common test): clear liquids 12–24 hours before, nothing by mouth (NPO) 6–8 hours, no nonsteroidal anti-inflammatory drugs (NSAIDs), laxatives or enemas <strong>until clear</strong>, polyethylene glycol prep (serve it <strong>ice cold</strong>), sedated. After: assume the worst and watch for <strong>perforation</strong> (pain or unusual discomfort). Barium enema if the colonoscopy is incomplete.</li>
+<li><strong>Diet:</strong> <strong>low residue</strong> (slows motility, saves fluid); avoid cold foods and smoking (both speed motility).</li>
+<li><strong>Meds:</strong> antibiotics, steroids, biologics (infliximab, adalimumab), aminosalicylates (sulfasalazine, mesalamine).</li>
+<li><strong>Surgery:</strong> ulcerative colitis (UC) → total proctocolectomy with an ileostomy, or a Kock pouch (nipple valve, no external bag) or ileal pouch–anal anastomosis (IPAA) (ileum attached to rectum; most popular). Crohn's → avoid surgery; remove only the affected section.</li>
+</ul>
+<h3>Ostomy care (Hurst p. 154)</h3>
+<ul>
+<li><strong>Ileostomy:</strong> drains <strong>liquid</strong> constantly; never irrigated. Avoid hard-to-digest, rough foods. Electrolyte drinks in summer. Always slightly dehydrated → <strong>kidney stone</strong> risk.</li>
+<li><strong>Colostomy:</strong> the farther along the colon, the more water is absorbed and the more formed the stool. Ascending/transverse → semi-liquid. Descending/sigmoid → semi-formed or formed.</li>
+<li><strong>Irrigate descending and sigmoid colostomies</strong> for regularity: same time every day, after a meal, left side like an enema. Cramping → stop the flow, lower the bag, check the fluid temperature.</li>
+<li>Hurst practice item: a colostomy has <strong>no swimming restrictions</strong>; previous activities can resume.</li>
+</ul>
+<h3>Appendicitis (Hurst p. 155)</h3>
+<ul>
+<li>#1 worry: <strong>rupture</strong>.</li>
+<li>Pain starts generalized, then settles in the right lower quadrant (RLQ) (<strong>McBurney point</strong>); rebound tenderness; anorexia. History: <strong>pain first, then N/V</strong>.</li>
+<li>White blood cell count (WBC) up; ultrasound, computed tomography (CT). <span class="red">No enemas, laxatives, or heat</span> (rupture). Sudden pain relief followed by worse, spreading pain = rupture.</li>
+<li>Usually laparoscopic surgery. After abdominal surgery: <strong>Fowler's</strong> position; never put pressure on a suture line.</li>
+</ul>
+<h3>Total nutrient admixture (TNA) / total parenteral nutrition (TPN) (Hurst p. 156)</h3>
+<ul>
+<li>Refrigerate; let it sit out a few minutes before hanging. Central line, filter, <strong>dedicated line</strong> (nothing else through it), on a pump.</li>
+<li>Hang no longer than <strong>24 hours</strong>; new tubing with each bag; may cover with a dark bag. Mixed daily to match electrolytes, so don't mix ahead.</li>
+<li>Glucose checks every 6 hours, urine for glucose and ketones, may need insulin, daily weights.</li>
+<li><strong>Taper off gradually</strong> to avoid hypoglycemia. (If a bag runs out before the next arrives, hang 10% dextrose in water (D10W).)</li>
+<li>Most frequent complication: <strong>infection</strong>. Home total nutrient admixture (TNA): hand washing.</li>
+<li><strong>Iggy rescue:</strong> refeeding syndrome (low phosphorus, low potassium (K), heart failure (HF), edema, seizures, breathing problems) → call the provider. Fat emulsion overload (fever, high triglycerides, clotting problems) → stop the infusion.</li>
+<li><strong>Percutaneous endoscopic gastrostomy (PEG) tube:</strong> after insertion, bed rest 6 hours; watch vitals, temperature, level of consciousness (LOC), bleeding, abdominal pain. Clean and check the site daily.</li>
+</ul>
+<h3>Central line insertion (Hurst p. 157)</h3>
+<ul>
+<li>Have saline flush ready. Position <strong>Trendelenburg</strong> (distends neck veins). No fluids until the <strong>chest x-ray</strong> confirms placement and rules out <strong>pneumothorax</strong>.</li>
+<li><strong>Air in the line</strong> → <strong>left side, Trendelenburg</strong> (traps air in the heart's apex).</li>
+<li>Changing tubing: clamp it, or have the patient do the Valsalva (deep breath and hum).</li>
+</ul>
+<h3>Lab values (Hurst p. 143)</h3>
+<div class="tbl"><table>
+<thead><tr><th>Lab</th><th>Normal</th><th>Changes in</th></tr></thead>
+<tbody>
+<tr><td>Amylase</td><td class="v">30–220 U/L</td><td>↑ pancreatitis</td></tr>
+<tr><td>Lipase</td><td class="v">0–160 U/L</td><td>↑ pancreatitis (most specific)</td></tr>
+<tr><td>Aspartate aminotransferase (AST)</td><td class="v">0–35 U/L</td><td>↑ liver damage, pancreatitis</td></tr>
+<tr><td>Alanine aminotransferase (ALT)</td><td class="v">4–36 U/L</td><td>↑ liver damage, pancreatitis</td></tr>
+<tr><td>Hemoglobin (M · F)</td><td class="v">14–18 · 12–16 g/dL</td><td>↓ bleeding · ↑ dehydration</td></tr>
+<tr><td>Hematocrit (M · F)</td><td class="v">42–52% · 37–47%</td><td>↓ bleeding · ↑ dehydration</td></tr>
+<tr><td>Albumin</td><td class="v">3.5–5.0 g/dL</td><td>↓ cirrhosis</td></tr>
+<tr><td>Ammonia</td><td class="v">10–80 mcg/dL</td><td>↑ hepatic encephalopathy</td></tr>
+</tbody>
+</table></div>
+<p class="note">Ammonia and albumin ranges aren't on your Hurst pages; they're common textbook values.</p>
+<h3>Gastrointestinal (GI) delegation (LaCharity Case Study 9)</h3>
+<p>Assistive personnel (AP): perineal care after diarrhea, vitals every 2 hours, transporting a stable patient, cleaning the nares around a nasogastric (NG) tube, oral care, reinforcing a clear liquid diet before colonoscopy. AP reports objective data: blood pressure (BP) below a set number, pain complaints. Registered nurse (RN) or licensed practical nurse (LPN): removing surgical dressings, describing NG drainage, assessing skin.</p>
+<div class="kid">
+<p class="lbl">Kid version</p>
+<p>Pancreatitis is the pancreas eating itself with its own digestive juices. Every time you eat, the pancreas squirts more juice, so it hurts more. That's why we keep the stomach empty and dry: no food, nasogastric (NG) tube sucking out what's there.</p>
+<p>The liver is a cleaning factory. In cirrhosis the factory is scarred. It can't clean ammonia, so the brain gets foggy. Lactulose is a trash bag that grabs ammonia in the gut and carries it out with the poop. The jammed factory also backs up traffic (portal hypertension), so new side roads (varices) form. They're thin and can burst.</p>
+<p>Hiatal hernia: the stomach is trying to climb up, so stay sitting up. Dumping: food is racing out of the stomach, so lie down on your left side to slow it down.</p>
+</div>
+<div class="bloom">
+<p class="lbl">Bloom's check</p>
+<ol>
+<li><span class="lvl">Understand</span> Why is the pancreatitis goal "keep the stomach empty and dry," and which three orders accomplish it? (Hurst p. 143)</li>
+<li><span class="lvl">Apply</span> Position a patient for a liver biopsy, and position them afterward. Why each? (Hurst p. 145)</li>
+<li><span class="lvl">Analyze</span> One patient had a gastrectomy; another has a hiatal hernia. What does each do after eating, and why are they opposite? (Hurst pp. 150–151)</li>
+<li><span class="lvl">Evaluate</span> Air enters a patient's central line during a tubing change. A new nurse lays the patient flat on the right side. Is that right? (Hurst p. 157)</li>
+<li><span class="lvl">Evaluate</span> A patient with hepatic encephalopathy on lactulose has had 7 watery stools today and potassium (K) is 3.1. Is the lactulose doing its job? (Iggy)</li>
+</ol>
+<details class="ans">
+<summary>Answers</summary>
+<ol>
+<li>Food and gastric acid trigger the pancreas to release more enzymes, and those enzymes are digesting the pancreas, which drives the pain. Orders: <strong>nothing by mouth (NPO), nasogastric (NG) tube to suction, bed rest</strong> (plus anticholinergics and gastrointestinal (GI) protectants to dry the stomach).</li>
+<li>Before: <strong>supine, right arm behind the head</strong>, and have the patient <strong>exhale and hold the breath</strong> during the needle insertion; this moves the diaphragm out of the way. After: <strong>lie on the right side</strong> to put pressure on the site, and watch vitals for hemorrhage. Check prothrombin time (PT)/international normalized ratio (INR)/activated partial thromboplastin time (aPTT) beforehand because the sick liver doesn't clot well.</li>
+<li><strong>Gastrectomy (dumping):</strong> lie down on the <strong>left side</strong> after meals, no fluids with meals, small meals, low carbs; the goal is to slow emptying. <strong>Hiatal hernia:</strong> <strong>sit up 1 hour</strong> after eating, head of bed (HOB) up, small meals; the goal is to keep the stomach down below the diaphragm. One problem is food leaving too fast, the other is the stomach rising up.</li>
+<li><strong>No.</strong> Turn the patient onto the <strong>left side in Trendelenburg</strong> so the air rises into the apex of the right ventricle and stays out of the pulmonary artery. Then notify the provider (the patient may go to the cath lab to remove it).</li>
+<li><strong>Too much of it.</strong> The goal is 2–3 soft stools a day. Seven watery stools have caused low potassium (K) and risk dehydration, and low K itself raises ammonia. Report it; expect the dose to be lowered and K replaced.</li>
+</ol>
+</details>
+</div>
+</div>
+</section>
+<!-- ENDO -->
+<section class="part endo" id="endo">
+<div class="tab"><h2>Endocrine</h2><span class="src">Hurst pp. 55–78 · LaCharity Ch 13, 14</span></div>
+<div class="body">
+<h3>Thyroid basics (Hurst p. 55)</h3>
+<p>The thyroid makes three hormones: T<sub>3</sub>, T<sub>4</sub>, and calcitonin (calcitonin lowers serum calcium by pushing it back into bone). It needs dietary iodine. Thyroid hormone = energy. All endocrine glands are very vascular.</p>
+<div class="tbl"><table>
+<thead><tr><th>Hyperthyroid (Graves): too much energy</th><th>Hypothyroid: no energy</th></tr></thead>
+<tbody><tr>
+<td>Nervous, irritable, short attention span · appetite up, weight down · hot and sweaty · exophthalmos · gastrointestinal (GI) fast · blood pressure (BP) and pulse up, palpitations, arrhythmias · enlarged thyroid<br/><strong>Labs:</strong> T<sub>4</sub> up, thyroid-stimulating hormone (TSH) down</td>
+<td>Fatigue, no expression · slow, slurred speech · weight up · gastrointestinal (GI) slow · cold · amenorrhea · may be totally immobile<br/><strong>Labs:</strong> T<sub>4</sub> down, thyroid-stimulating hormone (TSH) up (the opposite)</td>
+</tr></tbody>
+</table></div>
+<h3>Hyperthyroid diagnosis and treatment (Hurst pp. 55–57)</h3>
+<ul>
+<li><strong>Thyroid scan:</strong> stop iodine-containing meds 1 week before; wait 6 weeks to restart. Ultrasound, magnetic resonance imaging (MRI), or computed tomography (CT) may be used. (Amiodarone is high in iodine and can affect the thyroid.)</li>
+<li><strong>Eye care for exophthalmos:</strong> sunglasses, cool compresses, lubricating drops, head of bed (HOB) up.</li>
+<li><strong>Antithyroid drugs:</strong> methimazole (once daily, fewer side effects) and propylthiouracil (PTU) stop hormone production. Used pre-op. Goal: euthyroid.</li>
+<li><strong>Iodine (saturated solution of potassium iodide (SSKI), Lugol's):</strong> shrinks the gland and its blood supply. Give in milk or juice <strong>through a straw</strong> (stains teeth).</li>
+<li><strong>Propranolol:</strong> supportive; lowers heart rate (HR), blood pressure (BP), and anxiety. Testing strategy: avoid beta blockers in asthma or diabetes.</li>
+<li><strong>Radioactive iodine:</strong> one by mouth (PO) dose. <strong>Rule out pregnancy first.</strong> Destroys thyroid cells → patient becomes hypothyroid. Radiation precautions: stay away from babies and don't kiss anyone for 1 week.</li>
+<li><strong>Thyroid storm</strong> = hyperthyroidism × 100; can rebound after radioactive iodine.</li>
+</ul>
+<div class="iggy">
+<p class="lbl">Iggy adds · hyperthyroidism and thyroid storm</p>
+<ul>
+<li><strong>Methimazole:</strong> avoid crowds and sick people (low immunity); causes birth defects. Weight gain, slow heart rate (HR), or cold intolerance = dose too high. <strong>Propylthiouracil (PTU):</strong> liver toxicity (dark urine, jaundice).</li>
+<li>Give iodine (saturated solution of potassium iodide (SSKI), Lugol's) <strong>1 hour after</strong> the thionamide.</li>
+<li><span class="red">Never palpate the thyroid</span> of a hyperthyroid patient: it can dump hormone and trigger storm.</li>
+<li>Radioactive iodine: relief takes 6–8 weeks; sit to urinate and flush 2–3 times; don't share utensils or toothbrushes.</li>
+<li><strong>Storm signs:</strong> fever (even 1°F above baseline → report), tachycardia and dysrhythmias, agitation → psychosis, seizures, coma; abdominal pain, N/V/D.</li>
+<li><strong>Storm actions:</strong> airway first → antithyroid drug, then iodide → propranolol with continuous cardiac monitoring → cooling blanket plus <strong>acetaminophen</strong> (no aspirin: it frees more thyroid hormone) → glucocorticoids and normal saline (NS).</li>
+</ul>
+</div>
+<h3>Thyroidectomy (Hurst p. 57)</h3>
+<p>For a large goiter, cancer, or failed drug therapy.</p>
+<ul>
+<li><strong>Post-op priority: hemorrhage.</strong> Report pressure in the neck; check for bleeding at the incision <strong>and behind the neck</strong>.</li>
+<li><strong>Recurrent laryngeal nerve damage:</strong> listen for hoarseness. Both cords paralyzed → airway obstruction → emergency trach.</li>
+<li><strong>Trach set at bedside</strong> for swelling, nerve damage, or hypocalcemia.</li>
+<li><strong>Hypocalcemia</strong> from parathyroid removal (tingling, Chvostek, Trousseau: the "not sedated" picture).</li>
+<li>Teach how to support the neck, keep items close, <strong>head of bed (HOB) up</strong> to reduce edema, more calories pre- and post-op.</li>
+<li>Hurst practice item: shortness of breath (SOB) and neck pressure after thyroidectomy → elevate the head of bed (HOB), remove the dressing to look for bleeding, and stay with the patient.</li>
+</ul>
+<h3>Hypothyroid treatment (Hurst p. 58)</h3>
+<p>Levothyroxine or liothyronine on an <strong>empty stomach</strong>, for life. Energy goes up as it works. These patients often have coronary artery disease (CAD), so <strong>watch for myocardial infarction (MI) when starting</strong>. Hurst practice item: a patient on levothyroxine reports chest fullness → don't give it; call the provider. <span class="ig">(Iggy: a chest-pain protocol may also get a 12-lead within 10 minutes)</span></p>
+<div class="iggy">
+<p class="lbl">Iggy adds · hypothyroidism</p>
+<ul>
+<li><strong>Levothyroxine:</strong> water only, <strong>30–60 minutes before breakfast</strong>, same time daily. Separate from iron, calcium, antacids, and fiber by about <strong>4 hours</strong>. Start low, go slow in older adults and coronary artery disease (CAD). Too much = hyperthyroid signs (insomnia, tachycardia, heat intolerance).</li>
+<li>Most common cause: Hashimoto (autoimmune). Also after thyroidectomy or radioactive iodine (RAI), amiodarone, lithium.</li>
+<li>Avoid sedatives and opioids when possible: these patients are very sensitive, and respiratory failure is the top cause of death in myxedema coma.</li>
+<li><strong>Myxedema coma:</strong> level of consciousness (LOC) way down, respiratory failure, hypotension, bradycardia, hypothermia, low sodium (Na), low glucose. Actions: <strong>airway first</strong>, intravenous (IV) fluids, IV thyroid hormone, IV glucose, steroids, warm blankets, aspiration precautions.</li>
+</ul>
+</div>
+<h3>Parathyroid (Hurst p. 59)</h3>
+<p>Parathyroid hormone (PTH) pulls calcium out of bone into the blood. Too much PTH → high calcium. No PTH → low calcium.</p>
+<div class="tbl"><table>
+<thead><tr><th>Hyperparathyroidism</th><th>Hypoparathyroidism</th></tr></thead>
+<tbody><tr>
+<td>High calcium (Ca), <strong>low phosphorus</strong> · "sedated" (weak, sluggish) · partial parathyroidectomy → then watch for <strong>hypocalcemia</strong> (tight, rigid muscles)</td>
+<td>Low calcium (Ca), <strong>high phosphorus</strong> · "not sedated" (twitching, tetany) · <strong>intravenous (IV) calcium</strong> and phosphate binders</td>
+</tr></tbody>
+</table></div>
+<div class="iggy">
+<p class="lbl">Iggy adds · parathyroid</p>
+<ul>
+<li>The parathyroids secrete <strong>parathyroid hormone (PTH)</strong>, not calcium (fix for the p. 59 blank).</li>
+<li>Hyper: kidney stones, bone pain, fractures, osteoporosis; calcium (Ca) over 12 → confusion, psychosis. Hydrate; lift with a sheet (fragile bones); <strong>cinacalcet</strong> lowers parathyroid hormone (PTH); avoid lithium.</li>
+<li>Hypo: seizure precautions, airway; long-term calcium carbonate and vitamin D (calcitriol); medical alert bracelet.</li>
+</ul>
+</div>
+<h3>Adrenal medulla: pheochromocytoma (Hurst pp. 60–61)</h3>
+<ul>
+<li>Benign tumor that releases epinephrine and norepinephrine in bursts. Runs in families; screen relatives.</li>
+<li><strong>Triad:</strong> pounding headache, tachycardia, profuse sweating. Also high blood pressure (BP), palpitations, flushing.</li>
+<li><strong>Tests:</strong> vanillylmandelic acid (VMA) (avoid vanilla, vitamin B, fruit juice, bananas) or metanephrine (more common; altered by caffeine). <strong>24-hour urine</strong> for catecholamines: discard the first void, keep the last. Computed tomography (CT) or magnetic resonance imaging (MRI).</li>
+<li>Avoid anything that triggers epi release (stress). <span class="red">Don't palpate the abdomen</span> (can cause a hypertensive crisis). Treatment: surgical removal.</li>
+</ul>
+<h3>Adrenal cortex: steroids (Hurst pp. 61–62)</h3>
+<ul>
+<li><strong>Glucocorticoids:</strong> change mood (depression, psychosis, euphoria, insomnia) · suppress immunity (<strong>infection risk</strong>) · break down fats and proteins · inhibit insulin (<strong>hyperglycemia</strong>; monitor glucose).</li>
+<li><strong>Mineralocorticoids</strong> (aldosterone): keep sodium and water, lose potassium.</li>
+<li><strong>Sex hormones:</strong> too many → hirsutism, acne, irregular menses; too few → less body hair, low libido.</li>
+<li>Adrenocorticotropic hormone (ACTH) (pituitary) stimulates cortisol. Whatever word the question uses, think "steroids."</li>
+</ul>
+<div class="tbl"><table>
+<thead><tr><th>Addison (not enough steroids)</th><th>Cushing (too many steroids)</th></tr></thead>
+<tbody><tr>
+<td>Extreme fatigue · N/V/D · anorexia, weight loss · hypotension · confusion · <strong>low sodium (Na), high potassium (K), low glucose</strong> · bronzed skin and mucous membranes · vitiligo · fluid volume deficit<br/><strong>Care:</strong> combat shock, <strong>increase sodium</strong> in the diet (processed juice, broth), I&amp;O, daily weights<br/><strong>Meds:</strong> corticosteroids (prednisone, hydrocortisone, cortisone) twice daily, <strong>⅔ in the morning, ⅓ in the evening</strong>; fludrocortisone (synthetic aldosterone). Monitor weight and blood pressure (BP); doses change.</td>
+<td><strong>Glucocorticoid excess:</strong> growth arrest, thin skin and limbs, infection, hyperglycemia, mood changes, moon face, truncal obesity, buffalo hump · <strong>sex hormone excess:</strong> oily skin, acne, male traits in women · <strong>mineralocorticoid excess:</strong> high blood pressure (BP), heart failure (HF), weight gain, fluid excess, <strong>low potassium (K)</strong> · high 24-hour urine cortisol<br/><strong>Care:</strong> adrenalectomy (both removed → lifelong replacement), quiet room, avoid infection, diet high K, low sodium (Na), high protein, high calcium (Ca)</td>
+</tr></tbody>
+</table></div>
+<p><strong>Addisonian crisis</strong> = severe hypotension and vascular collapse. Triggers: infection, emotional stress, physical exertion, <strong>stopping steroids abruptly</strong>.</p>
+<p><strong>Weight rule for these meds</strong> (Hurst p. 64): keep weight within 2–3 lb (1–2 kg) of normal; report a gain over 5 lb (2.27 kg) in a week. Watch blood pressure (BP) too.</p>
+<p>Long-term steroids show up in urine as <strong>glucose</strong> (high blood sugar) and <strong>ketones</strong> (fat breakdown).</p>
+<div class="iggy">
+<p class="lbl">Iggy adds · Addison and Cushing</p>
+<ul>
+<li><strong>Addison primary vs. secondary:</strong> primary = the adrenal gland fails (autoimmune most often), all hormones low, high adrenocorticotropic hormone (ACTH) → bronze skin. Secondary = pituitary problem; most common cause is <strong>stopping long-term steroids suddenly</strong>; aldosterone is kept; no bronzing.</li>
+<li><strong>Addison labs:</strong> sodium (Na) ↓, potassium (K) ↑, glucose ↓, blood urea nitrogen (BUN) ↑, calcium (Ca) ↑, cortisol ↓. <strong>Adrenocorticotropic hormone (ACTH) stimulation test</strong> is the most definitive (cortisol fails to rise).</li>
+<li><strong>Addisonian crisis:</strong> rapid intravenous (IV) normal saline (NS) or 5% dextrose in normal saline (D5NS) · IV hydrocortisone bolus then infusion · treat high potassium (K) (insulin + dextrose, IV calcium, K binder) · IV glucose · IV histamine-2 (H2) blocker.</li>
+<li>Steroid teaching: take with food; more is needed during illness or stress; vomiting for 24–36 hours → call or go to the emergency department (ED); learn intramuscular (IM) hydrocortisone. Prednisone and prednisolone are not interchangeable.</li>
+<li><strong>Cushing:</strong> most common cause is long-term steroid therapy. Labs also show calcium (Ca) ↓ and lymphocytes ↓. <strong>Dexamethasone suppression test:</strong> cortisol doesn't suppress → Cushing.</li>
+<li>Infection signs are masked (no fever, pus, or redness). A rise of even 1°F = infection until proven otherwise.</li>
+<li>Iggy's three Cushing priorities: <strong>fluid overload</strong> (daily weight, sodium (Na) 2–4 g/day), <strong>injury</strong> (lift sheet, fall precautions, gastrointestinal (GI) bleed prevention), <strong>infection</strong>.</li>
+<li>Ketoconazole blocks cortisol: watch liver function; teratogenic. Adrenalectomy: steroids before, during, and after surgery; one side removed → replacement until the other gland catches up (up to 2 years).</li>
+</ul>
+</div>
+<h3>Diabetes types (Hurst pp. 67–69)</h3>
+<div class="tbl"><table>
+<thead><tr><th>Type 1</th><th>Type 2</th><th>Gestational</th></tr></thead>
+<tbody><tr>
+<td>Little or no insulin · autoimmune or idiopathic · usually childhood · appears abruptly · <strong>first sign may be diabetic ketoacidosis (DKA)</strong> · 3 Ps · oral agents won't work; must have insulin</td>
+<td>Not enough insulin, or it doesn't work · usually overweight · gradual; found by accident (wound won't heal, repeat infections) · check for metabolic syndrome · diet and exercise → oral agents → maybe insulin</td>
+<td>Like type 2 · mom needs 2–3× more insulin · screen all at 24–28 weeks (at first visit if at risk) · baby: large birth weight, <strong>hypoglycemia</strong></td>
+</tr></tbody>
+</table></div>
+<p><strong>Why the 3 Ps:</strong> no insulin → glucose stays in the blood → blood pulls in fluid → kidneys dump glucose and water (polyuria → polydipsia; <em>polyuria: think shock first</em>) → starving cells break down fat and protein (polyphagia) → fat breakdown makes ketones → <strong>metabolic acidosis</strong> → Kussmaul breathing.</p>
+<p><strong>Metabolic syndrome</strong> (3 or more): waist &gt;40 in (men) or &gt;35 in (women) · triglycerides &gt;150 · high-density lipoprotein (HDL) &lt;40 (men) or &lt;50 (women) · blood pressure (BP) &gt;130/85 · fasting glucose &gt;100. Raises risk for type 2 diabetes and heart disease.</p>
+<h3>Diagnosis (Hurst p. 70): needs 2 abnormal tests</h3>
+<div class="tbl"><table>
+<thead><tr><th></th><th>Glycated hemoglobin (A1C)</th><th>Fasting glucose</th><th>Oral glucose tolerance test (OGTT)</th></tr></thead>
+<tbody>
+<tr><td>Diabetes</td><td class="v">≥6.5%</td><td class="v">≥126 mg/dL</td><td class="v">≥200 mg/dL</td></tr>
+<tr><td>Prediabetes</td><td class="v">5.7–6.4%</td><td class="v">100–125</td><td class="v">140–199</td></tr>
+<tr><td>Normal</td><td class="v">about 5%</td><td class="v">≤99</td><td class="v">≤139</td></tr>
+</tbody>
+</table></div>
+<p>Prediabetes has no symptoms, raises type 2 and heart risk; screen yearly. Glycated hemoglobin (A1C) reflects the last 3–4 months; goal with diabetes ≤7%.</p>
+<h3>Diet, exercise, and drugs (Hurst pp. 70–74)</h3>
+<ul>
+<li><strong>Diet:</strong> count carbs; high fiber (slows absorption, smooths spikes). <strong>Plate method</strong> on a 9-inch plate: ½ non-starchy vegetables, ¼ carbs, ¼ protein, plus water or a low-calorie drink.</li>
+<li><strong>Exercise:</strong> regular, same time and amount daily, when blood sugar is at its <strong>highest</strong>; wait until glucose is normal; eat something first to prevent hypoglycemia.</li>
+<li><strong>Metformin:</strong> first choice for type 2; lowers liver glucose production and helps glucose into cells; doesn't cause hypoglycemia. Stop for contrast dye or surgery; resume 48 hours later if creatinine is normal. <span class="ig">(Iggy: hold 24 hours before; lactic acidosis risk with kidney impairment)</span></li>
+<li><strong>Non-insulin injectables</strong> (dulaglutide, semaglutide, pramlintide): daily, every 2 days, or weekly dosing; some weight loss.</li>
+<li><strong>Insulin:</strong> required for all type 1. Starting dose by body weight, about 0.4–1 unit/kg/day, adjusted until glucose is normal and urine has no glucose or ketones.</li>
+<li><strong>Mixing:</strong> regular is clear, neutral protamine Hagedorn (NPH) is cloudy → draw up <strong>clear first</strong>. Long-acting insulins are clear; never mix them or give intravenous (IV). <strong>Regular</strong> is the standard IV insulin.</li>
+<li><strong>Basal-bolus:</strong> long-acting once daily + rapid-acting divided before meals. No snacks required, but food must be available with rapid-acting. Pre-meal goal 80–130. Eat when insulin peaks (that's when sugar is lowest).</li>
+<li><strong>Pumps</strong> use only rapid-acting insulin (basal + meal boluses). Rotate sites within one area first. Illness raises blood sugar (testing strategy: <strong>illness = diabetic ketoacidosis (DKA)</strong>).</li>
+</ul>
+<h3>Hypoglycemia (Hurst p. 75): ≤70 mg/dL</h3>
+<p>Cool, clammy, shaky, confused, headache, nervous, nausea, fast pulse, hungry. Give <strong>15 g simple carb</strong> (skim milk, apple juice, raisins; not chocolate or cookies, because fat slows absorption) → recheck in 15 minutes → repeat if needed → then complex carb or protein.</p>
+<p><strong>Unconscious diabetic patient: treat as hypoglycemic.</strong> 50% dextrose in water (D50W) intravenous (IV) (large-bore IV) or glucagon subcutaneous (SubQ), intramuscular (IM), or IV if there's no IV access. Prevention: eat, take insulin regularly, know the signs, check glucose.</p>
+<p>Iggy: give 30 g if glucose is under 50; in the hospital, skip orange juice (potassium). After glucagon, <strong>turn the patient on the side</strong> (it can cause vomiting); repeat in 10 minutes if still unconscious.</p>
+<h3>Diabetic ketoacidosis (DKA) vs. Hyperosmolar hyperglycemic state (HHS) (Hurst pp. 76–77)</h3>
+<div class="tbl"><table>
+<thead><tr><th></th><th>Diabetic ketoacidosis (DKA) (type 1)</th><th>Hyperosmolar hyperglycemic state (HHS) / hyperosmolar hyperglycemic nonketotic syndrome (HHNK) (type 2)</th></tr></thead>
+<tbody>
+<tr><td>Insulin</td><td>Little or none → fat breakdown</td><td>Just enough to stop fat breakdown</td></tr>
+<tr><td>Ketones / acidosis</td><td>Yes: Kussmaul, falling level of consciousness (LOC)</td><td>No ketones, no acidosis, no Kussmaul</td></tr>
+<tr><td>Shared</td><td colspan="2">Hyperglycemia and dehydration (both hyperosmolar)</td></tr>
+</tbody>
+</table></div>
+<p><strong>Diabetic ketoacidosis (DKA) triggers:</strong> illness, infection, skipped insulin. <strong>Treatment:</strong> find the cause · intravenous (IV) fluids, <strong>normal saline (NS) first</strong> (polyuria causes shock) · <strong>IV insulin</strong> (drives both glucose and potassium into cells) · <strong>hourly glucose and potassium (K)</strong> (watch for low K and low glucose) · electrocardiogram (ECG) for K · hourly output · arterial blood gases (ABGs) for metabolic acidosis · switch to <strong>5% dextrose in water (D5W) when glucose reaches about 250–300</strong> · expect K to be added to the IV.</p>
+<div class="iggy">
+<p class="lbl">Iggy adds · diabetes</p>
+<ul>
+<li><strong>Numbers:</strong> diabetic ketoacidosis (DKA) glucose over 300, pH under 7.35, bicarbonate (HCO₃) under 15, ketones positive. Hyperosmolar hyperglycemic state (HHS) glucose over 600, osmolality over 320, no ketones.</li>
+<li><strong>Diabetic ketoacidosis (DKA) potassium:</strong> starts normal or high, then crashes once insulin works. Replace once potassium (K) is under 5.0 and urine output is at least 30 mL/hr. Bicarbonate only if pH ≤7.0.</li>
+<li><strong>Diabetic ketoacidosis (DKA) resolved:</strong> glucose under 200, bicarbonate (HCO₃) over 18, pH over 7.30, anion gap under 12. Start subcutaneous (SubQ) insulin once the patient can drink and ketosis has stopped.</li>
+<li><strong>Insulin times:</strong> rapid (lispro, aspart) onset 10–30 min, give within 10 min of a meal · regular onset 30–60 min · neutral protamine Hagedorn (NPH) peak 6–14 hr (cloudy; bedtime snack) · glargine has no peak.</li>
+<li><strong>Nothing by mouth (NPO) patient:</strong> still give basal insulin (often reduced); hold rapid-acting and premixed.</li>
+<li><strong>Sick days:</strong> never skip insulin; glucose every 2–4 hr; check urine ketones; 8–12 oz sugar-free fluid every hour awake. Call if glucose stays over 250, ketones are moderate or large, fluids won't stay down, or illness lasts over 1–2 days.</li>
+<li>Type 1 vigorous exercise only when glucose is 100–250 with no urine ketones.</li>
+<li>Glucagon-like peptide-1 (GLP-1) agonists (semaglutide, dulaglutide) and dipeptidyl peptidase-4 (DPP-4) inhibitors: report severe abdominal pain radiating to the back (pancreatitis). Pramlintide never goes in the same syringe as insulin.</li>
+</ul>
+</div>
+<h3>Long-term complications (Hurst p. 78)</h3>
+<ul>
+<li>Vessel damage everywhere: <strong>retinopathy</strong> (blindness), <strong>nephropathy</strong> (kidney damage).</li>
+<li><strong>Neuropathy:</strong> impotence; foot pain, paresthesia, numbness; neurogenic bladder (incontinence or retention); gastroparesis (aspiration risk).</li>
+<li><strong>Foot care:</strong> cut nails straight across, dry well between toes, well-fitting shoes, inspect feet daily, no harsh chemicals.</li>
+<li>Higher infection risk.</li>
+</ul>
+<h3>Pituitary: diabetes insipidus (DI) and syndrome of inappropriate antidiuretic hormone (SIADH) (LaCharity Ch 14; not in your Hurst endo pages)</h3>
+<div class="tbl"><table>
+<thead><tr><th>Diabetes insipidus (too little antidiuretic hormone (ADH))</th><th>Syndrome of inappropriate antidiuretic hormone (SIADH) (too much antidiuretic hormone (ADH))</th></tr></thead>
+<tbody><tr>
+<td>Huge dilute urine output, <strong>low</strong> specific gravity, high serum sodium (Na), thirst · desmopressin · <span class="red">never restrict fluids more than 4 hours</span></td>
+<td>Water retained, <strong>dilutional low sodium (Na)</strong>, concentrated urine (<strong>high</strong> specific gravity (SG)), low output, weight gain · fluid restriction · seizure precautions</td>
+</tr></tbody>
+</table></div>
+<h3>Lab values</h3>
+<div class="tbl"><table>
+<thead><tr><th>Lab</th><th>Normal (Hurst where given)</th></tr></thead>
+<tbody>
+<tr><td>Blood glucose, no diabetes</td><td class="v">70–99 mg/dL</td></tr>
+<tr><td>Glucose goal with diabetes</td><td class="v">80–130 pre-meal · &lt;140 mg/dL</td></tr>
+<tr><td>Hypoglycemia</td><td class="v">≤70 mg/dL</td></tr>
+<tr><td>Glycated hemoglobin (A1C)</td><td class="v">≤5.7% normal · ≥6.5% diabetes · goal ≤7%</td></tr>
+<tr><td>Sodium · Potassium</td><td class="v">135–145 · 3.5–5.0 mEq/L</td></tr>
+<tr><td>Calcium · Phosphorus</td><td class="v">9.0–10.5 · 3.0–4.5 mg/dL</td></tr>
+<tr><td>Urine specific gravity</td><td class="v">1.003–1.030</td></tr>
+</tbody>
+</table></div>
+<h3>Endo delegation (LaCharity)</h3>
+<p>Assistive personnel (AP): vitals on a hyperthyroid patient, reminding an adrenal patient to change positions slowly, I&amp;O, weights, recording tray intake, helping to ambulate. Not AP: checking shoe fit (foot assessment), teaching, drawing labs, intravenous (IV) insulin. Licensed practical nurse (LPN): subcutaneous (SubQ) insulin to a stable patient. In a developing diabetic ketoacidosis (DKA), have the unit clerk page the provider so the nurse stays with the patient.</p>
+<div class="kid">
+<p class="lbl">Kid version</p>
+<p>The thyroid is the body's gas pedal. Hyper = pedal stuck down: hot, fast, skinny, jittery. Hypo = foot off the gas: cold, slow, tired, gaining weight.</p>
+<p>Insulin is a key that unlocks the cell door so sugar can go in. Potassium sneaks in through the same door. That's why giving lots of insulin in diabetic ketoacidosis (DKA) drops potassium fast.</p>
+<p>Addison = not enough steroid: everything runs low (blood pressure (BP), sugar, sodium) except potassium. Cushing = too much steroid: a puffy "cushion" body that bruises, gets infections, and runs high on sugar and BP.</p>
+<p>Hyperparathyroid = too much calcium, so the body feels "sedated," sleepy and weak. Hypoparathyroid = not enough calcium, so muscles twitch and cramp.</p>
+</div>
+<div class="bloom">
+<p class="lbl">Bloom's check</p>
+<ol>
+<li><span class="lvl">Apply</span> A patient is going home after radioactive iodine. What two safety points and one long-term change do you teach? (Hurst p. 56)</li>
+<li><span class="lvl">Analyze</span> A patient with Addison disease is admitted. Which interventions fit: monitor for low potassium (K), low-sodium diet, give fludrocortisone, I&amp;O, daily weight? (Hurst p. 66)</li>
+<li><span class="lvl">Apply</span> You find a patient with diabetes unconscious and can't check glucose yet. How do you treat, and with what? (Hurst p. 75)</li>
+<li><span class="lvl">Create</span> Put diabetic ketoacidosis (DKA) treatment in order: switch to 5% dextrose in water (D5W) · start normal saline (NS) · start intravenous (IV) insulin · hourly glucose and potassium (K). (Hurst p. 77)</li>
+<li><span class="lvl">Evaluate</span> A patient says, "I take my levothyroxine with breakfast and my calcium pill so I don't forget." What do you correct? (Iggy)</li>
+<li><span class="lvl">Analyze</span> A patient in thyroid storm has a temperature of 104°F. Why does the nurse expect acetaminophen and not aspirin? (Iggy)</li>
+</ol>
+<details class="ans">
+<summary>Answers</summary>
+<ol>
+<li>Safety: <strong>rule out pregnancy</strong> before the dose, and for 1 week <strong>stay away from babies and don't kiss anyone</strong> (radiation). Long-term: it destroys thyroid cells, so expect to <strong>become hypothyroid</strong> and need lifelong thyroid replacement. Also watch for thyroid storm as a rebound.</li>
+<li><strong>Give fludrocortisone, I&amp;O, daily weight.</strong> Not low potassium (K) monitoring (Addison causes <em>high</em> K) and not a low-sodium diet (they're losing sodium and need <em>more</em>).</li>
+<li><strong>Treat as hypoglycemic.</strong> 50% dextrose in water (D50W) through a large-bore intravenous (IV), or glucagon subcutaneous (SubQ)/intramuscular (IM)/IV if there's no IV access. Low sugar kills brain cells fast; a little extra sugar in a hyperglycemic patient does little harm.</li>
+<li><strong>1. Start normal saline (NS)</strong> → <strong>2. Start intravenous (IV) insulin</strong> → <strong>3. Hourly glucose and potassium (K)</strong> → <strong>4. Switch to 5% dextrose in water (D5W) when glucose is about 250–300</strong> (and expect K to be added).</li>
+<li>Take it on an <strong>empty stomach with water, 30–60 minutes before breakfast</strong>, and keep calcium (and iron, antacids, fiber) about <strong>4 hours</strong> away. Food and calcium both block absorption.</li>
+<li>Aspirin <strong>frees more thyroid hormone</strong> from its carrier proteins, which feeds the storm. Acetaminophen plus a cooling blanket lowers the fever without that effect.</li>
+</ol>
+</details>
+</div>
+</div>
+</section>
+<!-- SEQUENCES -->
+<section class="part trends" id="sequences">
+<div class="tab"><h2>Sequence drills</h2><span class="src">Ordered-response practice</span></div>
+<div class="body">
+<p>These are the orders most likely to show up as "put in order" questions. Cover the list and say each one out loud before checking.</p>
+<h3>Situation, Background, Assessment, Recommendation (SBAR)</h3>
+<ol><li>Situation</li><li>Background</li><li>Assessment</li><li>Recommendation</li></ol>
+<h3>Management functions</h3>
+<ol><li>Planning</li><li>Organizing</li><li>Staffing</li><li>Directing</li><li>Controlling</li></ol>
+<h3>National Council of State Boards of Nursing (NCSBN) delegation process</h3>
+<ol><li>Assess and plan</li><li>Communicate</li><li>Surveillance and supervision</li><li>Evaluation and feedback</li></ol>
+<h3>Cardiac surgery patient's heart rate (HR) jumps to 146 while walking (Ch 7 Q35)</h3>
+<ol><li>Have the patient sit down</li><li>Give as needed (PRN) oxygen</li><li>Check blood pressure (BP)</li><li>Call the provider</li></ol>
+<h3>After a medication error (LaCharity Ch 5 Q31)</h3>
+<ol><li>Assess the patient</li><li>Notify the provider</li><li>Find out how the error happened</li><li>Complete the incident report</li></ol>
+<h3>Diabetic ketoacidosis (DKA) treatment (Hurst p. 77)</h3>
+<ol><li>Intravenous (IV) fluids: normal saline (NS) first</li><li>Intravenous (IV) regular insulin</li><li>Hourly glucose and potassium (replace potassium (K))</li><li>Switch to 5% dextrose in water (D5W) when glucose is about 250–300</li></ol>
+<h3>Chest pain with nitroglycerin (Hurst p. 82)</h3>
+<ol><li>Take 1 nitroglycerin (NTG) sublingual (SL)</li><li>Wait 5 minutes</li><li>Pain same or worse → activate emergency response</li></ol>
+<h3>24-hour urine (Hurst pp. 60, 141)</h3>
+<ol><li>Void and discard; start the clock</li><li>Save every void for 24 hours (missed one = start over)</li><li>Void at the 24-hour mark and keep it</li></ol>
+<h3>Acute kidney injury (AKI) phases (Hurst p. 132)</h3>
+<ol><li>Initiation</li><li>Oliguric</li><li>Diuretic</li><li>Recovery (3–12 months)</li></ol>
+<h3>Conscious hypoglycemia</h3>
+<ol><li>Give 15 g fast-acting carbs</li><li>Recheck glucose in 15 minutes</li><li>Repeat if still under 70</li><li>Give a snack with protein</li></ol>
+<h3>Liver biopsy (Hurst p. 145)</h3>
+<ol><li>Check prothrombin time (PT), international normalized ratio (INR), activated partial thromboplastin time (aPTT) and vitals</li><li>Supine, right arm behind the head</li><li>Exhale and hold the breath for the needle</li><li>Afterward, lie on the right side; watch vitals for hemorrhage</li></ol>
+<h3>Paracentesis (Hurst p. 145)</h3>
+<ol><li>Have the patient void</li><li>Position sitting up</li><li>Remove fluid</li><li>Check vitals for shock (blood pressure (BP) down, pulse up)</li></ol>
+<h3>Colonoscopy prep (Hurst p. 152)</h3>
+<ol><li>Clear liquids 12–24 hours before</li><li>Laxative prep (ice-cold percutaneous endoscopic gastrostomy (PEG)) until stool is clear</li><li>Nothing by mouth (NPO) 6–8 hours before</li><li>After: watch for perforation (pain, unusual discomfort)</li></ol>
+<h3>Air in a central line (Hurst p. 157)</h3>
+<ol><li>Clamp the line</li><li>Turn to the left side</li><li>Trendelenburg</li><li>Notify the provider</li></ol>
+<h3>Pulseless ventricular fibrillation (VF) / ventricular tachycardia (VT) (Hurst p. 87)</h3>
+<ol><li>Defibrillate</li><li>Resume cardiopulmonary resuscitation (CPR) right away</li><li>Epinephrine (after the second shock)</li></ol>
+<h3>Hyperkalemia with electrocardiogram (ECG) changes (Iggy)</h3>
+<ol><li>Intravenous (IV) calcium gluconate (protect the heart)</li><li>Intravenous (IV) regular insulin + glucose (shift potassium (K) into cells)</li><li>Potassium (K) binder (remove K)</li><li>Loop diuretic or dialysis</li></ol>
+<h3>Thyroid storm (Iggy)</h3>
+<ol><li>Airway and ventilation</li><li>Antithyroid drug (methimazole or propylthiouracil (PTU))</li><li>Iodide about 1 hour later</li><li>Propranolol, cooling, acetaminophen, glucocorticoids, normal saline (NS)</li></ol>
+<h3>Nitroglycerin (NTG) at home (Iggy)</h3>
+<ol><li>Take 1 nitroglycerin (NTG)</li><li>Wait 5 minutes</li><li>Not better → call 911</li><li>Repeat every 5 minutes (3 total) while waiting</li></ol>
+<h3>Addisonian crisis</h3>
+<ol><li>Notify the provider</li><li>Start intravenous (IV) fluids (combat shock)</li><li>Intravenous (IV) hydrocortisone</li><li>Treat low glucose and high potassium (K)</li></ol>
+</div>
+</section>
+</div>
+
+</body></html>
