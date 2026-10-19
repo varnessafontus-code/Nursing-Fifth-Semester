@@ -52,6 +52,7 @@ h2{font-size:24px}
 .meta{display:flex;flex-wrap:wrap;gap:6px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
 .meta span{border:1px solid var(--line);border-radius:4px;padding:2px 6px}
 .meta .cj{color:var(--accent);border-color:var(--accent)}
+.meta .lec{color:var(--warn);border-color:var(--warn);background:var(--warn-soft)}
 .stem{font-size:18px;font-weight:600;margin:0}
 .opts{display:flex;flex-direction:column;gap:8px}
 .opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;border:1.5px solid var(--line);background:var(--surface);border-radius:10px;padding:12px 14px;cursor:pointer;min-height:48px}
@@ -388,8 +389,8 @@ const Q = [
 
 { id: 20, type: 'sata', cj: 'Generate Solutions', topic: 'Increased ICP',
   stem: 'Which actions will the nurse include to prevent increased intracranial pressure in a client after an acute stroke? Select all that apply.',
-  o: ['Keep the head in a midline, neutral position', 'Elevate the head of the bed per protocol', 'Give the bath and change the linens back to back so the client can rest longer afterward', 'Hyperoxygenate before and after suctioning', 'Keep room lights low', 'Flex the hips sharply when boosting the client up in bed'], a: [0, 1, 3, 4],
-  rat: 'Midline neutral head promotes venous drainage; HOB elevation improves perfusion pressure; hyperoxygenation prevents transient hypoxemia that dilates cerebral arteries; low lights accommodate photophobia. Clustering procedures (bath then linens) can dramatically raise ICP. Extreme hip flexion raises intrathoracic pressure and decreases cerebral venous outflow.' },
+  o: ['Keep the head in a midline, neutral position', 'Elevate the head of the bed per protocol', 'Give the bath and change the linens back to back so the client can rest longer afterward', 'Hyperoxygenate before and after suctioning', 'Keep room lights low', 'Flex the hips sharply when boosting the client up in bed', 'Maintain a quiet environment'], a: [0, 1, 3, 4, 6],
+  rat: 'Midline neutral head promotes venous drainage; HOB elevation improves perfusion pressure; hyperoxygenation prevents transient hypoxemia that dilates cerebral arteries; low lights accommodate photophobia; a quiet environment helps the headache common with hemorrhage or increased ICP. Clustering procedures (bath then linens) can dramatically raise ICP. Extreme hip flexion raises intrathoracic pressure and decreases cerebral venous outflow.' },
 
 { id: 21, type: 'mcq', cj: 'Analyze Cues', topic: 'Stroke drugs',
   stem: 'A client arrives 4 hours after onset of an acute ischemic stroke. Which finding makes the client ineligible for IV alteplase in the extended (3- to 4.5-hour) window?',
@@ -408,7 +409,7 @@ const Q = [
 
 { id: 24, type: 'sata', cj: 'Take Action', topic: 'Stroke drugs',
   stem: 'A client is receiving IV alteplase. Which findings require the nurse to discontinue the infusion and notify the provider? Select all that apply.',
-  o: ['New severe headache', 'Vomiting', 'BP 224/118 mm Hg', 'Heart rate 96 beats/min', 'SpO2 95% on room air', 'Blood oozing from the gums'], a: [0, 1, 2, 5],
+  o: ['New severe headache', 'Vomiting', 'BP 224/118 mm Hg', 'Heart rate 96 beats/min', 'SpO2 95% on room air', 'Blood oozing from the gums', 'Nausea'], a: [0, 1, 2, 5, 6],
   rat: 'Box 38.4: discontinue the infusion if the patient reports severe headache or has severe hypertension, bleeding, nausea, or vomiting, and notify the provider immediately. HR 96 and SpO2 95% do not meet stopping criteria.' },
 
 { id: 25, type: 'mcq', cj: 'Take Action', topic: 'Stroke',
@@ -428,8 +429,8 @@ const Q = [
 
 { id: 28, type: 'sata', cj: 'Take Action', topic: 'Traumatic brain injury',
   stem: 'A client with blunt head trauma awaits cervical spine clearance. Which spine precautions will the nurse implement? Select all that apply.',
-  o: ['Bed rest', 'Log-roll to reposition', 'Place a small pillow under the neck for comfort', 'Manually control the cervical spine whenever the collar is off', 'Raise the head of the bed with the knees gatched to prevent sliding', 'Assess the skin under the rigid collar'], a: [0, 1, 3, 5],
-  rat: 'Spine precautions: bed rest; no neck flexion with a pillow or roll; no thoracic or lumbar flexion; manual control of the cervical spine anytime the rigid collar is removed; log-roll to reposition; frequent skin checks under the collar.' },
+  o: ['Bed rest', 'Log-roll to reposition', 'Place a small pillow under the neck for comfort', 'Manually control the cervical spine whenever the collar is off', 'Raise the head of the bed with the knees gatched to prevent sliding', 'Help the client sit upright in a chair for meals'], a: [0, 1, 3],
+  rat: 'Spine precautions: bed rest; no neck flexion with a pillow or roll; no thoracic or lumbar flexion; manual control of the cervical spine anytime the rigid collar is removed; log-roll to reposition; frequent skin checks under the collar. Sitting in a chair flexes the thoracic and lumbar spine.' },
 
 { id: 29, type: 'mcq', cj: 'Recognize Cues', topic: 'Increased ICP',
   stem: 'Which set of vital signs in a client with a severe traumatic brain injury indicates a very late sign of increased intracranial pressure?',
@@ -458,7 +459,7 @@ const Q = [
 
 { id: 34, type: 'sata', cj: 'Take Action', topic: 'Increased ICP drugs',
   stem: 'Which nursing actions are appropriate for a client receiving mannitol? Select all that apply.',
-  o: ['Administer through a filter', 'Measure urine output every hour', 'Monitor serum electrolytes and osmolarity every 6 hours', 'Give as a continuous infusion for best effect', 'Monitor for acute renal failure', 'Expect weight gain from fluid retention'], a: [0, 1, 2, 4],
+  o: ['Administer through a filter', 'Measure urine output every hour', 'Monitor serum electrolytes and osmolarity every 6 hours', 'Give as a continuous infusion for best effect', 'Monitor for acute renal failure', 'Expect weight gain from fluid retention', 'Observe for signs of dehydration'], a: [0, 1, 2, 4, 6],
   rat: 'Mannitol is most effective in boluses, not continuous infusion. It pulls water out of brain tissue (osmotic diuresis), so watch for dehydration and acute renal failure, not fluid retention. Filter administration, hourly output, and electrolytes/osmolarity every 6 hours are all in Iggy.' },
 
 { id: 35, type: 'mcq', cj: 'Recognize Cues', topic: 'Increased ICP drugs',
@@ -539,7 +540,77 @@ const Q = [
 { id: 50, type: 'mcq', cj: 'Take Action', topic: 'Psychosocial / ethics',
   stem: 'The spouse of a client recovering from a moderate traumatic brain injury reports frequent temper outbursts at home and says, “I can’t leave him alone for a minute.” What is the nurse’s best advice?',
   o: ['“Keep a structured, consistent daily routine, reinforce positive behaviors, and arrange regular respite care.”', '“Point out each outburst right away so he learns which behaviors to stop.”', '“Change his routine often so he stays mentally stimulated.”', '“Avoid support groups until his behavior is under control.”'], a: 0,
-  rat: 'Patients with personality and behavior problems respond best to a structured, consistent, repetitive environment; reinforce positive rather than negative behaviors. Teach the importance of regular respite care and encourage brain-injury support groups (Brain Injury Association of America) for caregiver isolation and depression.' }
+  rat: 'Patients with personality and behavior problems respond best to a structured, consistent, repetitive environment; reinforce positive rather than negative behaviors. Teach the importance of regular respite care and encourage brain-injury support groups (Brain Injury Association of America) for caregiver isolation and depression.' },
+/* ---------- LECTURE-FOCUS ITEMS (added from the Chapter 38 lecture slides; every option verified in Iggy Ch. 38) ---------- */
+{ id: 51, type: 'sata', lec: true, cj: 'Recognize Cues', topic: 'Stroke',
+  stem: 'A right-handed client has a stroke in the left cerebral hemisphere. Which findings will the nurse anticipate? Select all that apply.',
+  o: ['Aphasia', 'Agraphia', 'Difficulty with math calculations', 'Deficits in the right visual field', 'Impulsive behavior with poor judgment', 'Unaware of own deficits', 'Alexia (difficulty reading)'], a: [0, 1, 2, 3, 6],
+  rat: 'The left hemisphere (dominant in right-handed people) controls speech, language, math, and analytic thinking: aphasia, alexia, agraphia, acalculia. Deficits are contralateral, so the right visual field is affected. Impulsivity, poor judgment, and being unaware of deficits are right hemisphere findings.' },
+
+{ id: 52, type: 'sata', lec: true, cj: 'Recognize Cues', topic: 'Stroke',
+  stem: 'A client has a stroke in the right cerebral hemisphere. Which findings will the nurse anticipate? Select all that apply.',
+  o: ['Disorientation to time and place', 'Neglect of the left side of the body', 'Impulsiveness and poor judgment', 'Difficulty judging depth and distance', 'Expressive aphasia', 'Inability to perform math calculations', 'Slow, cautious, hesitant behavior'], a: [0, 1, 2, 3],
+  rat: 'The right hemisphere manages visual and spatial awareness and proprioception. Right-sided strokes cause disorientation, unawareness of deficits, impulsivity and poor judgment, depth and distance problems, and unilateral neglect (most common after a right stroke) of the LEFT side. Aphasia, acalculia, and a slow, cautious, hesitant style (apraxia) are left hemisphere findings.' },
+
+{ id: 53, type: 'mcq', lec: true, cj: 'Take Action', topic: 'Stroke',
+  stem: 'At an urgent care clinic, a client develops sudden right arm weakness and slurred speech that began 40 minutes ago. The clinic is not a stroke center. What is the nurse’s first priority?',
+  o: ['Arrange immediate transport to a stroke center', 'Obtain a complete medication and social history', 'Give aspirin 325 mg by mouth', 'Have the client lie flat and rest until symptoms resolve'], a: 0,
+  rat: 'Iggy: although an accurate history is important, the first priority is to ensure the client is transported to a stroke center, and obtaining a history should not delay arrival. Aspirin is not given before hemorrhage is ruled out by imaging, and the client stays NPO until a swallow screen. Waiting for symptoms to resolve wastes the treatment window.' },
+
+{ id: 54, type: 'mcq', lec: true, cj: 'Recognize Cues', topic: 'Stroke',
+  stem: 'While a client with suspected stroke is being transferred, the nurse has time for one question. Which question is most important to ask the spouse?',
+  o: ['“What time did his symptoms begin?”', '“Has anyone in the family had a stroke?”', '“What kind of work does he do?”', '“When did he last eat?”'], a: 0,
+  rat: 'The time of symptom onset is essential for treatment decisions — it determines alteplase eligibility (3 hours FDA; up to 4.5 hours with exclusions). Family, occupational, and diet history are part of a full history but do not change emergency treatment.' },
+
+{ id: 55, type: 'mcq', lec: true, cj: 'Analyze Cues', topic: 'Stroke',
+  stem: 'Which history finding most suggests a hemorrhagic rather than an ischemic stroke?',
+  o: ['Symptoms began abruptly while the client was lifting weights at the gym', 'The client woke up early in the morning with the symptoms', 'Symptoms came on gradually over several hours', 'Symptoms improved, then worsened again over the day'], a: 0,
+  rat: 'Iggy: hemorrhagic strokes tend to occur during activity and begin abruptly. Ischemic strokes tend to occur early in the morning; thrombotic strokes progress more gradually; waxing and waning suggests an incomplete stroke dependent on perfusion.' },
+
+{ id: 56, type: 'mcq', lec: true, cj: 'Analyze Cues', topic: 'Traumatic brain injury',
+  stem: 'A client with a traumatic brain injury has pinpoint pupils that do not respond to light. The nurse recognizes dysfunction in which area?',
+  o: ['The brainstem at the level of the pons', 'The occipital lobe', 'The frontal lobe', 'The Wernicke area'], a: 0,
+  rat: 'Iggy: pinpoint and nonresponsive pupils indicate brainstem dysfunction at the level of the pons. Loss of vision usually comes from direct eye injury or occipital lobe injury. The frontal lobe and Wernicke area relate to behavior/motor speech and language comprehension.' },
+
+{ id: 57, type: 'mcq', lec: true, cj: 'Analyze Cues', topic: 'Increased ICP',
+  stem: 'A client with a head injury now has both pupils fixed and dilated. How does the nurse interpret this finding?',
+  o: ['Brain herniation from increased intracranial pressure, a poor prognostic sign', 'An early sign of increased intracranial pressure', 'Brainstem dysfunction at the level of the pons', 'Vision loss from occipital lobe injury'], a: 0,
+  rat: 'Asymmetric pupils, loss of light reaction, or dilated pupils are treated as herniation from increased ICP until proven otherwise; fixed, dilated ("blown") pupils are a poor prognostic sign. Pupil changes are late — decreased level of consciousness is the early sign. Pinpoint pupils point to the pons.' },
+
+{ id: 58, type: 'mcq', lec: true, cj: 'Recognize Cues', topic: 'Increased ICP',
+  stem: 'The nurse is caring for a client with a head injury. Which finding requires immediate intervention?',
+  o: ['New restlessness and disorientation to place', 'Headache 3/10 relieved by acetaminophen', 'BP 138/84 mm Hg, up from 132/80', 'Pupils 3 mm, equal, and brisk'], a: 0,
+  rat: 'Early indicators of a change in level of consciousness — restlessness, irritability, disorientation — are often subtle and are the first sign of increased ICP; report immediately. A controlled mild headache, a small BP change, and normal pupils do not require immediate intervention.' },
+
+{ id: 59, type: 'mcq', lec: true, cj: 'Take Action', topic: 'Stroke',
+  stem: 'A client with a right hemisphere stroke, left-sided neglect, and impulsive behavior keeps trying to climb out of bed. The spouse must leave for 2 hours. Which nursing action is most appropriate?',
+  o: ['Keep the bed in the lowest position and place the call light on the client’s right side', 'Apply bilateral wrist restraints until the spouse returns', 'Place the call light on the client’s left side so he learns to use that side', 'Position the bed so the client’s left side faces the door'], a: 0,
+  rat: 'Right hemisphere stroke = impulsivity, poor judgment, and left neglect, so fall prevention is the priority: a low bed and items within the visual field on the unaffected (right) side. Restraints are a last resort after alternatives. Iggy: the unaffected side should face the door. A call light on the neglected side will not be found.' },
+
+{ id: 60, type: 'mcq', lec: true, cj: 'Take Action', topic: 'Delegation',
+  stem: 'A client with a left hemisphere stroke passed a swallow evaluation and needs help eating. Which task can the nurse delegate to assistive personnel?',
+  o: ['Help the client eat lunch', 'Perform the bedside swallow screen before the next meal', 'Check the client’s gag and cough reflexes', 'Teach the spouse safe feeding techniques'], a: 0,
+  rat: 'Feeding a client who swallows safely is within the scope of assistive personnel. Swallow screening and checking gag and cough reflexes are nursing assessments; family teaching is an RN responsibility.' },
+
+{ id: 61, type: 'sata', lec: true, cj: 'Generate Solutions', topic: 'Stroke',
+  stem: 'Which are core measures for the care of clients with ischemic stroke? Select all that apply.',
+  o: ['Venous thromboembolism prophylaxis', 'Discharge on a statin', 'Stroke education provided and documented', 'Discharge on prophylactic levetiracetam', 'Discharge on nimodipine', 'Indwelling urinary catheter for the first 24 hours', 'Fluid restriction to 1500 mL per day'], a: [0, 1, 2],
+  rat: 'The eight core measures: VTE prophylaxis; discharge with antithrombotic therapy; anticoagulation for atrial fibrillation/flutter; thrombolytic therapy as indicated; antithrombotic therapy reevaluated by end of day 2; discharge on a statin; stroke education provided and documented; assessment for rehabilitation. Antiepileptics are not a core measure. Nimodipine treats vasospasm after subarachnoid hemorrhage; invasive tubes are avoided for 24 hours after alteplase; fluid restriction is for SIADH after craniotomy.' },
+
+{ id: 62, type: 'sata', lec: true, cj: 'Recognize Cues', topic: 'Traumatic brain injury',
+  stem: 'Which findings are consistent with a mild traumatic brain injury? Select all that apply.',
+  o: ['Sensitivity to light', 'Feeling mentally foggy', 'Irritability', 'Glasgow Coma Scale score of 7', 'Loss of consciousness for 2 hours', 'Glasgow Coma Scale score of 10'], a: [0, 1, 2],
+  rat: 'Box 38.7 mild TBI: dazed, loss of consciousness (if any) under 30 minutes, headache, nausea, vomiting, balance problems, light and noise sensitivity; mentally foggy, slowed down, poor concentration; sleep changes; irritability, sadness, depression. Loss of consciousness of 30 minutes to 6 hours and a GCS of 9–12 define MODERATE injury; GCS 3–8 is SEVERE.' },
+
+{ id: 63, type: 'sata', lec: true, cj: 'Generate Solutions', topic: 'Brain tumor / craniotomy',
+  stem: 'A client is being discharged after debulking of a malignant brain tumor. Which teaching will the nurse include for the family? Select all that apply.',
+  o: ['What to do if a seizure occurs', 'Keep the home environment safe and free of hazards', 'Contact a brain tumor support group', 'Seek hospice services if the tumor becomes untreatable and the client is terminally ill', 'Stop the antiepileptic drug once headaches resolve', 'Expect headaches to be worst in the evening'], a: [0, 1, 2, 3],
+  rat: 'Lecture slide 30 and Iggy: maintain quality of life, a safe environment, and monitor for seizures; support groups and home care are resources; families should seek hospice and palliative care if the tumor is untreatable or metastatic and the client is terminally ill. Antiepileptics are not stopped on the family’s own judgment, and brain tumor headaches are usually worse on awakening in the morning.' },
+
+{ id: 64, type: 'sata', lec: true, cj: 'Analyze Cues', topic: 'Stroke drugs',
+  stem: 'A client with an acute ischemic stroke arrives 4 hours after symptoms began. Which findings make the client ineligible for IV alteplase in this extended window? Select all that apply.',
+  o: ['Age 84', 'Takes warfarin with an INR of 1.4', 'Stroke scale (NIHSS) score of 22', 'History of both a prior stroke and diabetes mellitus', 'Age 76', 'Stroke scale (NIHSS) score of 12'], a: [0, 1, 3],
+  rat: 'The American Stroke Association extends the window to 4.5 hours EXCEPT for: age older than 80; anticoagulation regardless of INR; imaging showing injury to more than one-third of the middle cerebral artery territory; NIHSS greater than 25; history of both stroke and diabetes; active bleeding. Age 76 and scores of 12 or 22 (not above 25) do not exclude the client.' }
 ];
 
 if (typeof module !== 'undefined') module.exports = { CASE, Q };
@@ -595,7 +666,8 @@ function score(q, r){
 }
 function answered(q){
   const r=S.ans[q.id]; if (r==null) return false;
-  if (q.type==='mcq') return true;
+  if (q.type==='mcq') return typeof r==='number';
+  if (!Array.isArray(r)) { delete S.ans[q.id]; return false; }
   if (q.type==='sata'||q.type==='highlight') return r.length>0;
   if (q.type==='matrix') return r.filter(x=>x!=null).length===q.rows.length;
   if (q.type==='cloze'||q.type==='dnd') return r.every(x=>x!=null);
@@ -618,7 +690,7 @@ const setName = () => GROUPS.filter(g=>S.sets.includes(g.k)).map(g=>g.name).join
 let L = [];
 function buildList(){ L = Q.filter(q=>S.sets.includes(grp(q))); if (S.idx>=L.length) S.idx=0; }
 buildList();
-const isFinished = () => S.finished===setKey();
+const isFinished = () => S.finished===setKey() && L.every(q=>S.checked[q.id]);
 const revealed = q => S.view==='review' || (S.mode==='tutor' && S.checked[q.id]);
 
 /* ---------- views ---------- */
@@ -640,7 +712,7 @@ function startView(app){
   const count = k => Q.filter(q=>grp(q)===k).length;
   app.append(el('div',{class:'stack'},
     el('h1',{text:'Chapter 38: Critical Care of Patients With Neurologic Emergencies'}),
-    el('p',{class:'muted',text:'Built like your unit exam. Pick the question types you want to drill, or keep all three for the full 50-item exam. Every answer choice is verifiable in Iggy Chapter 38.'}),
+    el('p',{class:'muted',text:`Built like your unit exam and your professor’s lecture slides. Pick the question types you want to drill, or keep all three for all ${Q.length} items. Items marked “Lecture focus” test what her slides and in-class questions emphasize. Every answer choice is verifiable in Iggy Chapter 38.`}),
     el('div',{class:'card stack'},
       el('h2',{text:'Choose question types'}),
       el('div',{class:'types'}, GROUPS.map(g=>el('button',{class:'mode type',id:'set-'+g.k,'aria-pressed':String(S.sets.includes(g.k)),onclick:()=>{
@@ -669,7 +741,7 @@ function startView(app){
     el('div',{style:'display:flex;gap:10px;flex-wrap:wrap'},
       isFinished()
         ? el('button',{class:'btn primary',onclick:()=>{ S.view='results'; save(); render(); }}, 'View last results')
-        : el('button',{class:'btn primary',disabled:!L.length,onclick:()=>{ S.view='q'; save(); render(); }}, any?'Resume':'Begin'),
+        : el('button',{class:'btn primary',disabled:!L.length,onclick:()=>{ if (answered(L[S.idx])) { const f=L.findIndex(q=>!answered(q)); if (f>=0) S.idx=f; } S.view='q'; save(); render(); }}, any?'Resume':'Begin'),
       Object.keys(S.ans).length ? el('button',{class:'btn',id:'resetBtn',onclick:confirmReset}, 'Start over') : null
     ),
     el('p',{class:'hint',id:'resetMsg'})
@@ -715,7 +787,7 @@ function questionView(app){
   $('#pos').textContent = `${S.idx+1} / ${L.length}`;
   const rev=revealed(q), r=S.ans[q.id];
   const card=el('article',{class:'card stack'});
-  card.append(el('div',{class:'meta'}, el('span',{text:q.case?`Case study ${Q.filter(x=>x.case).indexOf(q)+1} of 6`:`Item ${q.id}`}), el('span',{text:TYPE_LABEL[q.type]}), el('span',{class:'cj',text:q.cj}), el('span',{text:q.topic})));
+  card.append(el('div',{class:'meta'}, el('span',{text:q.case?`Case study ${Q.filter(x=>x.case).indexOf(q)+1} of 6`:`Item ${q.id}`}), el('span',{text:TYPE_LABEL[q.type]}), el('span',{class:'cj',text:q.cj}), el('span',{text:q.topic}), q.lec?el('span',{class:'lec',text:'Lecture focus'}):null));
   card.append(el('p',{class:'stem',text:q.stem}));
   if (q.table) card.append(el('div',{class:'tablewrap'}, el('table',{}, el('thead',{}, el('tr',{}, q.table.cols.map(c=>el('th',{text:c})))), el('tbody',{}, q.table.rows.map(row=>el('tr',{}, row.map((c,i)=>i?el('td',{class:'num',text:c}):el('th',{text:c}))))))));
   card.append(responseUI(q, r, rev));
