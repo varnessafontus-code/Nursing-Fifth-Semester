@@ -1,5 +1,5 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>Neuro Emergencies Exam</title>
+<title>NUR205 Emergencies Exam</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -141,6 +141,7 @@ td.num,.mono{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size
 .mode b{display:block;font-family:var(--display);font-size:20px}
 .types{display:flex;flex-direction:column;gap:8px}
 .type{display:flex;align-items:center;gap:12px}
+.type .tick.radio{border-radius:50%}
 .type .tick{flex:none;width:26px;height:26px;border:1.5px solid var(--muted);border-radius:5px;display:grid;place-items:center;font-weight:700}
 .type[aria-pressed="true"] .tick{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 .type .tt{flex:1;min-width:0;display:flex;flex-direction:column}
@@ -159,7 +160,7 @@ td.num,.mono{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size
 
 <header class="bar">
   <div class="in">
-    <div class="brand">Neuro Emergencies Exam<small>Iggy Ch. 38 • NUR205</small></div>
+    <div class="brand">Emergencies Exam<small>Iggy Ch. 26 + 38 • NUR205</small></div>
     <span class="pill" id="pos">Start</span>
     <span class="pill" id="modePill">Tutor</span>
     <button class="btn ghost" id="navBtn" aria-label="Open question navigator">Questions</button>
@@ -192,7 +193,7 @@ td.num,.mono{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size
 <script>
 // Chapter 38 exam bank. Every answer option verified against Iggy 11e Ch. 38.
 // types: mcq, sata, matrix, highlight, cloze, dnd, order
-const CASE = {
+const CASE38 = {
   title: '71-year-old client, emergency department → stroke unit',
   tabs: [
     { name: 'History & Physical', entries: [
@@ -229,7 +230,7 @@ const CASE = {
   ]
 };
 
-const Q = [
+const Q38 = [
 /* ---------- CASE STUDY (NCJMM 1–6) ---------- */
 { id: 1, type: 'highlight', case: true, stage: 1, cj: 'Recognize Cues', topic: 'Stroke',
   stem: 'Read the 0815 nurses’ note. Click to highlight the findings that require immediate follow-up.',
@@ -322,7 +323,7 @@ const Q = [
   rat: 'Box 38.3: middle cerebral (most common) — homonymous hemianopsia, unilateral neglect, aphasia, contralateral arm-dominant weakness. Anterior cerebral — leg more than arm, bladder incontinence, personality change. Vertebrobasilar — headache, vertigo, flaccid quadriparesis, ataxia. Internal carotid — contralateral hemiparesis, carotid bruit. Perseveration and loss of deep sensation belong to the posterior cerebral artery. Cheyne-Stokes with pinpoint pupils is central herniation, not an arterial territory.' },
 
 { id: 11, type: 'order', cj: 'Take Action', topic: 'Stroke drugs',
-  stem: 'Place the nurse’s actions for IV alteplase in an eligible client in the correct order. All steps are used.',
+  stem: 'Place the steps for IV alteplase in an eligible client in the correct order. All steps are used.',
   items: ['Confirm CT shows no intracranial hemorrhage', 'Confirm BP is below 185/110 mm Hg', 'Double-check the 0.9 mg/kg actual-weight dose with a second nurse', 'Give 10% of the dose as an IV bolus over 1 minute', 'Infuse the remaining dose over 60 minutes by pump', 'Obtain a follow-up CT before the first antiplatelet dose'],
   meta: { 'Client Needs': 'Physiological Integrity — Pharmacological and Parenteral Therapies', 'Clinical Judgment': 'Take Action', 'Cognitive Ability': 'Applying', 'Content Area': 'Neurologic — Stroke', 'Integrated Process': 'Nursing Process — Implementation', 'Priority Concept': 'Perfusion', 'Strategy': 'Sequence: confirm safety → verify drug → administer → follow up' },
   rat: 'Imaging must exclude hemorrhage first (alteplase into a bleed is lethal). BP must be below 185/110 before the drug. Box 38.4: double-check, then pump delivery — 10% bolus over 1 minute, remainder over 60 minutes. A follow-up CT or MRI is obtained after fibrinolytic therapy and before antiplatelet or anticoagulant drugs.' },
@@ -610,10 +611,1010 @@ const Q = [
 { id: 64, type: 'sata', lec: true, cj: 'Analyze Cues', topic: 'Stroke drugs',
   stem: 'A client with an acute ischemic stroke arrives 4 hours after symptoms began. Which findings make the client ineligible for IV alteplase in this extended window? Select all that apply.',
   o: ['Age 84', 'Takes warfarin with an INR of 1.4', 'Stroke scale (NIHSS) score of 22', 'History of both a prior stroke and diabetes mellitus', 'Age 76', 'Stroke scale (NIHSS) score of 12'], a: [0, 1, 3],
-  rat: 'The American Stroke Association extends the window to 4.5 hours EXCEPT for: age older than 80; anticoagulation regardless of INR; imaging showing injury to more than one-third of the middle cerebral artery territory; NIHSS greater than 25; history of both stroke and diabetes; active bleeding. Age 76 and scores of 12 or 22 (not above 25) do not exclude the client.' }
+  rat: 'The American Stroke Association extends the window to 4.5 hours EXCEPT for: age older than 80; anticoagulation regardless of INR; imaging showing injury to more than one-third of the middle cerebral artery territory; NIHSS greater than 25; history of both stroke and diabetes; active bleeding. Age 76 and scores of 12 or 22 (not above 25) do not exclude the client.' },
+/* ---------- TESTED IN CLASS, NOT IN IGGY OR SLIDES ---------- */
+{ id: 65, type: 'sata', ext: true, cj: 'Recognize Cues', topic: 'Stroke',
+  stem: 'The nurse teaches the family of a client who had a transient ischemic attack to use BE FAST. Which sudden findings should prompt the family to call 911? Select all that apply.',
+  o: ['Loss of balance and trouble walking', 'Blurred or double vision in one eye', 'One side of the face droops when smiling', 'Slurred speech', 'Knee pain that gradually worsens over a week', 'Tiredness at the end of a busy day', 'Mild headache that goes away with acetaminophen'], a: [0, 1, 2, 3],
+  rat: 'BE FAST: Balance (sudden dizziness, loss of balance or coordination), Eyes (sudden vision loss or change in one or both eyes), Face drooping, Arm weakness, Speech difficulty, Time to call 911. Iggy teaches FAST; the B and E match two of Iggy’s five most common stroke symptoms (sudden trouble seeing; sudden dizziness, trouble walking, or loss of balance). Gradual joint pain, ordinary fatigue, and a mild relieved headache are not sudden stroke signs.' },
+
+{ id: 66, type: 'mcq', ext: true, cj: 'Evaluate Outcomes', topic: 'Stroke',
+  stem: 'After BE FAST teaching, which statement by the spouse of a client who had a transient ischemic attack shows correct understanding?',
+  o: ['“If he suddenly can’t keep his balance or loses vision in one eye, I’ll call 911 and note the time it started.”', '“If his face droops, I’ll wait an hour to see whether it goes away before calling anyone.”', '“The T stands for taking an aspirin as soon as symptoms start.”', '“I only need to call 911 if his face, arm, and speech are all affected at once.”'], a: 0,
+  rat: 'Any one sudden BE FAST sign — Balance, Eyes, Face, Arms, Speech — means call 911, and Time means act now and note when symptoms began (onset time decides alteplase eligibility). Waiting wastes the 3–4.5 hour treatment window. Aspirin is not given before imaging rules out hemorrhage. One sign is enough; they do not all need to appear together.' },
+/* ---------- FROM CLASS (lecture transcript, Ch. 38) ---------- */
+{ id: 67, type: 'mcq', lec: true, cj: 'Take Action', topic: 'Stroke',
+  stem: 'A client on a medical-surgical unit suddenly develops a right facial droop and right arm drift. What is the nurse’s first action?',
+  o: ['Call the Rapid Response Team', 'Activate a stroke code', 'Give aspirin 325 mg by mouth', 'Finish documenting the assessment, then notify the provider'], a: 0,
+  rat: 'Said in class, and she stressed it: “If you see it on an exam, you call the rapid response first, not the stroke code.” In her hospital only a provider or PA calls the stroke code; the team decides. Aspirin is never given before imaging rules out hemorrhage.' },
+
+{ id: 68, type: 'mcq', lec: true, cj: 'Recognize Cues', topic: 'Stroke',
+  stem: 'A client with an ischemic stroke had a stroke scale (NIHSS) score of 2 at 0800. At 1200 the score is 5. What will the nurse do?',
+  o: ['Call the Rapid Response Team', 'Recheck the score at the next scheduled neuro check', 'Document the score; changes under 5 points are expected', 'Lower the head of the bed and recheck in 1 hour'], a: 0,
+  rat: 'In class: a lower score is better (0 = no deficits). If the stroke scale worsens by more than 2 points, call a rapid response. A rise from 2 to 5 is a 3-point decline.' },
+
+{ id: 69, type: 'sata', lec: true, cj: 'Generate Solutions', topic: 'Brain tumor / craniotomy',
+  stem: 'A client with a brain tumor is placed on seizure precautions. Which actions will the nurse take? Select all that apply.',
+  o: ['Keep the bed in the lowest position', 'Pad the side rails', 'Maintain an IV access (saline lock)', 'Use a bed or chair alarm', 'Raise all four side rails', 'Tape a padded tongue blade to the headboard', 'Apply wrist restraints'], a: [0, 1, 2, 3],
+  rat: 'In class: bed in lowest position, padded side rails, IV access so a drug such as lorazepam can be given right away, bed or chair alarm, and give antiepileptics as ordered. Only three side rails — four side rails up counts as a restraint. [Background] Nothing is placed in the mouth during a seizure; restraints cause injury.' },
+
+{ id: 70, type: 'mcq', lec: true, cj: 'Recognize Cues', topic: 'Stroke',
+  stem: 'A client was seen watching television and talking normally at 2300. The night nurse finds the client at 0500 with left-sided weakness. What is the client’s “last known well” time?',
+  o: ['2300', '0500', 'The time the client arrives at CT', 'The time the provider examines the client'], a: 0,
+  rat: 'In class and on her Neuro Nuggets sheet: last known well = the exact date and time the client was last seen acting normally or without symptoms — not the time symptoms were discovered. It decides fibrinolytic eligibility (3 hours; up to 4.5 hours with exclusions).' },
+
+{ id: 71, type: 'mcq', lec: true, cj: 'Generate Solutions', topic: 'Stroke drugs',
+  stem: 'A client received IV alteplase for an acute ischemic stroke 2 hours ago. Which venous thromboembolism prophylaxis does the nurse expect?',
+  o: ['Sequential compression devices', 'Enoxaparin started now', 'Aspirin 325 mg now', 'Heparin bolus followed by an infusion'], a: 0,
+  rat: 'In class: if the client received tPA, the client must have sequential compression devices. Iggy: no antiplatelet or anticoagulant within 24 hours after a fibrinolytic, and a follow-up CT is required first.' },
+
+{ id: 72, type: 'mcq', lec: true, cj: 'Take Action', topic: 'Stroke',
+  stem: 'A 59-year-old began having trouble finding words 8 hours ago and has worsened. He now has right hemiparesis and urinary incontinence. What is the nurse’s priority intervention?',
+  o: ['Elevate the head of the bed', 'Change the linens and gown', 'Prepare to give IV alteplase', 'Teach the wife about stroke risk factors'], a: 0,
+  rat: 'Her case study: elevate the head of the bed — protect the airway; stroke clients may have no gag reflex. The linen change is done, but not first. At 8 hours he is outside the alteplase window. Teaching comes later.' },
+
+{ id: 73, type: 'mcq', lec: true, cj: 'Take Action', topic: 'Stroke',
+  stem: 'Same client. His wife asks for a glass of water because he says he is thirsty. What is the nurse’s best response?',
+  o: ['“He needs a swallow screen before he has anything to drink.”', '“Small sips of water are fine if he sits up.”', '“Use a straw so he can control the amount.”', '“Give him ice chips instead of water.”'], a: 0,
+  rat: 'Her case and Iggy: before any liquids, food, or medication, the client is screened for the ability to swallow, and gag and cough reflexes are checked. Ice chips, sips, and straws are all oral intake.' }
 ];
 
-if (typeof module !== 'undefined') module.exports = { CASE, Q };
+// Chapter 26 exam bank. Every answer option verified against Iggy 11e Ch. 26 and Prof Gallotta’s Ch. 26 slides.
+// Items from another chapter or general nursing knowledge say so in the rationale.
+const CASE26 = {
+  title: '58-year-old client, orthopedic unit → intensive care unit',
+  tabs: [
+    { name: 'History & Physical', entries: [
+      { s: 1, t: '58-year-old female. Right total knee replacement 3 days ago.' },
+      { s: 1, t: 'History: obesity (BMI 36), hypertension. Smokes 1 pack of cigarettes per day. Takes estrogen hormone replacement therapy.' },
+      { s: 1, t: 'Home medications: lisinopril, conjugated estrogen.' },
+      { s: 1, t: 'Weight 98 kg (bed scale).' }
+    ] },
+    { name: 'Nurses’ Notes', entries: [
+      { s: 1, t: '0630 — Woke with sudden shortness of breath. Reports sharp right-sided chest pain when she breathes in. States, “Something is wrong. I feel like I am going to die.” Restless and diaphoretic. Crackles in the right lower lobe. Right calf warm, swollen, and tender. Has refused pneumatic compression devices since surgery and has not walked since yesterday morning. Knee incision clean and dry, staples intact. Knee pain 4/10. Voided 300 mL at 0500.' },
+      { s: 2, t: '0700 — Rapid Response Team at bedside. Oxygen 4 L by nasal cannula: SpO2 now 91%. Head of bed raised to high-Fowler’s. Telemetry: sinus tachycardia. Second IV access placed. Neck veins distended at 45 degrees.' },
+      { s: 3, t: '1500 — Heparin infusion running since 0830 per protocol. Client suddenly more short of breath and anxious. BP 84/50 at 1440 and 82/48 at 1500. HR 134. SpO2 85% on 6 L by nasal cannula. Skin cool and clammy. Lungs: crackles right base, unchanged.' },
+      { s: 4, t: 'Day 4 — Received systemic alteplase in the intensive care unit on day 1, then resumed heparin. Warfarin started day 2. Assessment findings recorded for evaluation (see question).' }
+    ] },
+    { name: 'Vital Signs', table: true, cols: ['Time', 'BP', 'HR', 'RR', 'SpO2', 'Temp'], entries: [
+      { s: 1, r: ['0400', '132/78', '88', '18', '96% RA', '99.0°F'] },
+      { s: 1, r: ['0630', '108/70', '124', '30', '87% RA', '99.5°F'] },
+      { s: 2, r: ['0700', '104/68', '120', '28', '91% 4 L', '99.5°F'] },
+      { s: 3, r: ['1440', '84/50', '130', '32', '87% 6 L', '99.4°F'] },
+      { s: 3, r: ['1500', '82/48', '134', '34', '85% 6 L', '99.4°F'] },
+      { s: 4, r: ['Day 4', '124/76', '92', '20', '95% 2 L', '98.8°F'] }
+    ] },
+    { name: 'Labs & Imaging', entries: [
+      { s: 1, t: '0500 — Hemoglobin 11.2 g/dL • Platelets 210,000/mm³ • Creatinine 0.9 mg/dL' },
+      { s: 2, t: '0650 — Arterial blood gas on 4 L: pH 7.49 • PaCO2 30 mm Hg • PaO2 62 mm Hg • HCO3 24 mEq/L' },
+      { s: 2, t: '0650 — D-dimer elevated • Troponin mildly elevated • Brain natriuretic peptide (BNP) elevated' },
+      { s: 2, t: '0745 — CT pulmonary angiography: emboli in right lower lobe pulmonary arteries; right ventricle enlarged.' },
+      { s: 4, t: 'Day 4 — aPTT 2.1 × control • INR 1.4 • Platelets 198,000/mm³ • Hemoglobin 11.0 g/dL' }
+    ] },
+    { name: 'Orders', entries: [
+      { s: 2, t: 'Continuous pulse oximetry and telemetry. Oxygen to keep SpO2 above 90%.' },
+      { s: 2, t: 'Heparin IV per weight-based protocol (bolus, then continuous infusion). aPTT per protocol.' },
+      { s: 2, t: 'Bed rest. Bleeding precautions.' },
+      { s: 4, t: 'Warfarin daily. INR daily. Continue heparin per protocol.' }
+    ] }
+  ]
+};
+
+const Q26 = [
+/* ---------- CASE STUDY (NCJMM 1–6) ---------- */
+{ id: 101, type: 'highlight', case: true, stage: 1, cj: 'Recognize Cues', topic: 'Pulmonary embolism',
+  stem: 'Review the 0630 nurses’ note and vital signs. Click to highlight the findings that require immediate follow-up.',
+  passage: ['0630 — ', { h: 'Woke with sudden shortness of breath', k: 1 }, '. ', { h: 'Sharp right-sided chest pain when she breathes in', k: 1 }, '. ',
+    { h: '“I feel like I am going to die”', k: 1 }, '. ', { h: 'Restless and diaphoretic', k: 1 }, '. ', { h: 'Crackles in the right lower lobe', k: 1 }, '. ',
+    { h: 'Right calf warm, swollen, and tender', k: 1 }, '. ', { h: 'Knee incision clean and dry, staples intact' }, '. ', { h: 'Knee pain 4/10' }, '. ',
+    { h: 'Voided 300 mL at 0500' }, '. ', { h: 'HR 124', k: 1 }, '. ', { h: 'RR 30', k: 1 }, '. ', { h: 'SpO2 87% on room air', k: 1 }, '. ', { h: 'Temperature 99.5°F' }, '.'],
+  rat: 'Box 26.2 key features of pulmonary embolism: sudden dyspnea, pleuritic (sharp, stabbing on inspiration) chest pain, apprehension and a sense of impending doom, restlessness, diaphoresis, crackles, tachycardia, tachypnea, and hypoxemia. A warm, swollen, tender calf suggests the deep vein thrombosis that is the usual source. The incision, controlled knee pain, urine output, and a low-grade temperature on post-op day 3 are not the emergency (Iggy lists low-grade fever with pulmonary embolism, but it is not what needs immediate action).' },
+
+{ id: 102, type: 'cloze', case: true, stage: 1, cj: 'Analyze Cues', topic: 'Pulmonary embolism',
+  stem: 'Complete the statement using the chart.',
+  parts: ['The client’s findings are most consistent with ', { o: ['pulmonary embolism', 'postoperative atelectasis', 'acute coronary syndrome', 'surgical site infection'], a: 0 },
+    '. Her risk factors include recent joint replacement surgery, immobility, ', { o: ['smoking while taking estrogen', 'hypertension treated with lisinopril', 'a hemoglobin of 11.2 g/dL', 'a creatinine of 0.9 mg/dL'], a: 0 },
+    ', and ', { o: ['obesity', 'female sex', 'age 58', 'knee pain 4/10'], a: 0 }, '.'],
+  rat: 'Sudden dyspnea, pleuritic pain, doom, tachycardia, hypoxemia, and a swollen tender calf after knee replacement fit pulmonary embolism. Iggy risk factors: surgery (hip/knee replacement), prolonged immobility, obesity, smoking, and estrogen — her slides stress smoking cessation especially with hormone replacement therapy or oral contraceptives. Lisinopril, a post-op hemoglobin of 11.2, and normal creatinine are not clot risks. Iggy cites age (60% of venous thromboembolism occurs after age 70), not age 58.' },
+
+{ id: 103, type: 'cloze', case: true, stage: 2, cj: 'Prioritize Hypotheses', topic: 'Pulmonary embolism',
+  stem: 'Review the 0650 labs and 0745 imaging. Complete the statement.',
+  parts: ['The arterial blood gas shows ', { o: ['respiratory alkalosis', 'respiratory acidosis', 'metabolic acidosis', 'metabolic alkalosis'], a: 0 },
+    ' caused by ', { o: ['hyperventilation from hypoxia and pain', 'retained carbon dioxide', 'lactic acid buildup', 'vomiting'], a: 0 },
+    '. The most urgent risk the nurse must monitor for is ', { o: ['obstructive shock from right ventricular failure', 'surgical wound dehiscence', 'heparin-induced thrombocytopenia', 'pneumonia from immobility'], a: 0 },
+    ', supported by ', { o: ['the enlarged right ventricle and elevated BNP and troponin', 'the hemoglobin of 11.2 g/dL', 'the platelet count of 210,000/mm³', 'the temperature of 99.5°F'], a: 0 }, '.'],
+  rat: 'Iggy: hyperventilation triggered by hypoxia and pain first causes respiratory alkalosis (low PaCO2); later shunting causes respiratory acidosis and lactic acid causes metabolic acidosis. Pulmonary embolism raises pulmonary pressure; right ventricular dysfunction and failure can lead to obstructive shock. Elevated BNP and troponin are associated with more severe disease and higher risk of death, and the CT shows an enlarged right ventricle. Heparin-induced thrombocytopenia is a later heparin risk; the platelet count is normal.' },
+
+{ id: 104, type: 'matrix', case: true, stage: 2, cj: 'Generate Solutions', topic: 'Pulmonary embolism',
+  stem: 'Pulmonary embolism is confirmed. For each potential nursing action, indicate whether it is indicated or contraindicated at this time.',
+  cols: ['Indicated', 'Contraindicated'],
+  rows: [
+    ['Stay with the client and speak calmly while explaining care', 0],
+    ['Massage the right calf to relieve the swelling', 1],
+    ['Have a second nurse double-check the heparin dose and pump settings', 0],
+    ['Walk the client to the bathroom with a gait belt', 1],
+    ['Compare blood pressure in both arms', 0],
+    ['Use an electric razor and a soft-bristle toothbrush for hygiene', 0],
+    ['Remove the oxygen for 10 minutes to obtain a room-air SpO2 reading', 1]
+  ],
+  rat: 'Box 26.3: reassure, high-Fowler’s, telemetry and pulse oximetry, compare BP in both arms, check trachea and neck veins, give anticoagulants, handle gently, bleeding precautions. Heparin is a high-alert drug (National Patient Safety Goal: double check, pump). Never massage legs (Box 26.1) — it can dislodge more clot. Her slides: a hypoxemic client stays on continuous oxygen and does not walk — use a bedpan and stay. Removing oxygen from a client at 87% on room air causes harm.' },
+
+{ id: 105, type: 'mcq', case: true, stage: 3, cj: 'Take Action', topic: 'Pulmonary embolism',
+  stem: 'Review the 1500 note and vital signs. Which action will the nurse take first?',
+  o: ['Increase the oxygen and call the Rapid Response Team', 'Increase the heparin infusion rate', 'Place the client flat with the legs elevated', 'Give the PRN antianxiety drug and recheck vital signs in 15 minutes'], a: 0,
+  rat: 'BP below 90 systolic for at least 15 minutes with worsening hypoxemia = massive pulmonary embolism with obstructive shock (Table 26.2). Critical rescue: support oxygenation and call the Rapid Response Team; the team will anticipate systemic thrombolysis, vasopressors, and inotropes. The heparin rate is set by protocol and aPTT, not by symptoms. Lying flat worsens dyspnea (Iggy: high-Fowler’s). Anxiety here is from hypoxemia — sedating and waiting delays rescue.' },
+
+{ id: 106, type: 'matrix', case: true, stage: 4, cj: 'Evaluate Outcomes', topic: 'Pulmonary embolism',
+  stem: 'Day 4. For each finding, indicate whether it shows the plan of care is effective or needs follow-up.',
+  cols: ['Effective', 'Needs follow-up'],
+  rows: [
+    ['SpO2 95% on 2 L by nasal cannula', 0],
+    ['BP 124/76 mm Hg, HR 92', 0],
+    ['aPTT 2.1 times the control value', 0],
+    ['INR 1.4 — client asks to stop the heparin today because she is now taking warfarin', 1],
+    ['Black, tarry stool this morning', 1],
+    ['States, “I will keep eating about the same amount of green vegetables every day.”', 0]
+  ],
+  rat: 'Expected outcomes: adequate gas exchange, no shock, no bleeding. SpO2 95% and stable vital signs show improvement. aPTT 1.5–2.5 times control is therapeutic heparin (Ch. 30; her case Q5). Heparin continues at least 5 days and until the INR is above 2 for 24 hours — target INR 2–3 — so 1.4 means heparin must continue. A black, tarry stool is a bleeding sign. A consistent vitamin K intake is correct warfarin teaching.' },
+
+/* ---------- STANDALONE NGN ---------- */
+{ id: 107, type: 'matrix', cj: 'Analyze Cues', topic: 'Mechanical ventilation',
+  stem: 'For each cause, indicate which ventilator alarm it would most likely trigger.',
+  cols: ['High-pressure alarm', 'Low exhaled volume (low-pressure) alarm'],
+  rows: [
+    ['Mucus plug in the endotracheal tube', 0],
+    ['Ventilator tubing disconnected from the endotracheal tube', 1],
+    ['Client biting on the oral endotracheal tube', 0],
+    ['Pilot balloon is flat and the client is able to make sounds', 1],
+    ['Water collected in the ventilator tubing', 0],
+    ['New bronchospasm with wheezing', 0],
+    ['Client on SIMV stops breathing spontaneously after a sedative dose', 1]
+  ],
+  rat: 'Table 26.4. High-pressure alarm (peak inspiratory pressure reaches the limit): secretions or mucus plug, coughing/gagging/biting, fighting the ventilator, bronchospasm, pneumothorax, tube slipped into the right mainstem bronchus, kinks or water in the tubing, decreasing lung compliance. Low exhaled volume alarm: disconnection or leak in the circuit, cuff leak (client can talk, pilot balloon flat), or the client stops spontaneous breathing in SIMV, CPAP, or pressure support (consider oversedation).' },
+
+{ id: 108, type: 'cloze', cj: 'Analyze Cues', topic: 'Acute respiratory failure',
+  stem: 'A client found unresponsive after taking extra oxycodone has these arterial blood gas results: pH 7.28, PaCO2 58 mm Hg, PaO2 84 mm Hg, HCO3 25 mEq/L.',
+  parts: ['The nurse recognizes ', { o: ['ventilatory (type II, hypercapnic) failure', 'oxygenation (type I, hypoxemic) failure', 'metabolic acidosis', 'acute respiratory distress syndrome'], a: 0 },
+    ' from an ', { o: ['extrapulmonary', 'intrapulmonary', 'cardiac', 'infectious'], a: 0 }, ' cause. A finding the nurse expects with this problem is ',
+    { o: ['decreased level of consciousness with flushed skin', 'clear lungs with refractory hypoxemia', 'paradoxical chest movement', 'petechiae over the chest'], a: 0 }, '.'],
+  rat: 'Ventilatory failure = PaCO2 above 50 with pH below 7.35 and a normal PaO2. Opioids depress the central nervous system respiratory drive — an extrapulmonary cause (Box 26.6; her ARS 2). Hypercapnia causes decreased level of consciousness, headache, drowsiness, and flushed skin. Refractory hypoxemia is acute respiratory distress syndrome; paradoxical movement is flail chest.' },
+
+{ id: 109, type: 'highlight', cj: 'Recognize Cues', topic: 'Acute respiratory distress syndrome',
+  stem: 'A client admitted 2 days ago with acute pancreatitis now has this note. Click the findings that require follow-up.',
+  passage: ['0900 — ', { h: 'RR 34, breathing noisy and labored', k: 1 }, '. ', { h: 'Intercostal and substernal retractions', k: 1 }, '. ',
+    { h: 'SpO2 86% on 100% nonrebreather mask', k: 1 }, '. ', { h: 'Lungs clear to auscultation' }, '. ', { h: 'Pale with circumoral cyanosis', k: 1 }, '. ',
+    { h: 'Chest x-ray: bilateral ground-glass infiltrates, heart size normal', k: 1 }, '. ', { h: 'Abdominal pain 5/10, down from 8/10' }, '. ', { h: 'Bowel sounds hypoactive' }, '.'],
+  rat: 'Pancreatitis is a cause of acute respiratory distress syndrome (Box 26.7). Early signs: dyspnea and tachypnea, hyperpnea, noisy labored breathing, retractions, pallor, and cyanosis. SpO2 86% on 100% oxygen = refractory hypoxemia, the cardinal feature. Bilateral infiltrates without cardiomegaly = noncardiac pulmonary edema. Clear lungs are NOT reassuring here — Iggy notes edema starts in the interstitium, so breath sounds may be clear — but they are not themselves the finding to act on. Improving pain and hypoactive bowel sounds are expected with pancreatitis.' },
+
+{ id: 110, type: 'dnd', cj: 'Analyze Cues', topic: 'Tracheostomy',
+  stem: 'Drag the finding that best matches each tracheostomy complication. Not all findings will be used.',
+  slots: ['Tracheoinnominate artery fistula', 'Subcutaneous emphysema', 'Tracheoesophageal fistula', 'Tube obstruction'],
+  pool: ['Tube pulsates with the heartbeat and bright red blood pours from the stoma', 'Puffy neck skin with a crackling sensation when pressed', 'Food particles in tracheal secretions and coughing while eating', 'Noisy respirations and difficulty passing the suction catheter', 'Small amount of blood at the incision on the first postoperative day', 'Hoarseness and sore throat for 2 days'],
+  a: [0, 1, 2, 3],
+  rat: 'Table 26.6 and Iggy text: tracheoinnominate fistula — tube pulsates in synchrony with the heartbeat with heavy stoma bleeding (remove tube, apply pressure, emergency surgery). Subcutaneous emphysema — air in the neck tissues, puffy with crackling (notify the surgeon). Tracheoesophageal fistula — food in secretions, coughing/choking while eating. Obstruction — difficulty breathing, noisy respirations, trouble inserting a suction catheter, thick dry secretions. Small incision bleeding the first few days is expected; hoarseness and sore throat are expected after extubation.' },
+
+{ id: 111, type: 'order', cj: 'Take Action', topic: 'Tracheostomy',
+  stem: 'Place the steps for suctioning a client’s tracheostomy in the hospital in the correct order. All steps are used.',
+  items: ['Assess for coarse crackles or noisy secretions to confirm the need', 'Set wall suction between 80 and 120 mm Hg', 'Preoxygenate with 100% oxygen for 30 seconds to 3 minutes', 'Insert the sterile catheter without suction until resistance is met', 'Withdraw 1–2 cm, then apply continuous suction while rotating out, for no more than 10–15 seconds', 'Hyperoxygenate until heart rate and SpO2 return to baseline'],
+  meta: { 'Client Needs': 'Physiological Integrity — Reduction of Risk Potential', 'Clinical Judgment': 'Take Action', 'Cognitive Ability': 'Applying', 'Content Area': 'Respiratory — Artificial airway', 'Integrated Process': 'Nursing Process — Implementation', 'Priority Concept': 'Gas Exchange', 'Strategy': 'Assess → prepare → protect oxygen → act → recover' },
+  rat: 'Box 26.13: assess the need (her slide: by cues, never a schedule); set suction 80–120 mm Hg; preoxygenate with 100% oxygen for 30 seconds to 3 minutes; insert without suction until resistance; pull back 1–2 cm, apply continuous suction with a twirling motion while withdrawing, never longer than 10–15 seconds; hyperoxygenate 1–5 minutes until baseline; repeat up to 3 passes.' },
+
+{ id: 112, type: 'order', cj: 'Take Action', topic: 'Mechanical ventilation',
+  stem: 'The client is ready for extubation. Place the actions in the correct order. All steps are used.',
+  items: ['Bring the ordered oxygen device and emergency reintubation equipment to the bedside', 'Hyperoxygenate the client', 'Suction the endotracheal tube and then the oral cavity', 'Instruct a deep breath and rapidly deflate the cuff', 'Remove the tube during exhalation', 'Instruct the client to cough, then apply oxygen by face mask or nasal cannula'],
+  meta: { 'Client Needs': 'Physiological Integrity — Physiological Adaptation', 'Clinical Judgment': 'Take Action', 'Cognitive Ability': 'Applying', 'Content Area': 'Respiratory — Mechanical ventilation', 'Integrated Process': 'Nursing Process — Implementation', 'Priority Concept': 'Gas Exchange', 'Strategy': 'Equipment → oxygen reserve → clear secretions → remove → support' },
+  rat: 'Iggy and her slide: set up oxygen and reintubation equipment; hyperoxygenate; thoroughly suction the endotracheal tube and the oral cavity; deep breath, rapidly deflate the cuff; remove the tube during (peak) exhalation; cough immediately; oxygen by face mask or nasal cannula (FiO2 usually 10% higher); vital signs every 5 minutes at first, watching for distress and stridor.' },
+
+{ id: 113, type: 'matrix', cj: 'Analyze Cues', topic: 'Chest trauma',
+  stem: 'For each assessment finding, indicate which chest injury it most supports.',
+  cols: ['Tension pneumothorax', 'Hemothorax', 'Flail chest', 'Pulmonary contusion'],
+  rows: [
+    ['Segment of the chest wall moves in on inspiration and out on expiration', 2],
+    ['Dull sound on percussion over the injured side', 1],
+    ['Trachea shifted toward the unaffected side with distended neck veins and hypotension', 0],
+    ['No symptoms on arrival; crackles and wheezes over a bruised area develop hours later', 3]
+  ],
+  rat: 'Flail chest = paradoxical chest wall movement (her slide: 3 or more adjacent ribs fractured in 2 or more places). Hemothorax = blood in the chest, dull to percussion. Tension pneumothorax = tracheal deviation away from the injured side, distended neck veins, tachycardia, hypotension, extreme distress. Pulmonary contusion may be asymptomatic at first, then decreased breath sounds or crackles and wheezes over the area and respiratory failure.' },
+
+{ id: 114, type: 'matrix', cj: 'Evaluate Outcomes', topic: 'Mechanical ventilation',
+  stem: 'A client was extubated 45 minutes ago. For each finding, indicate whether it is expected or requires immediate follow-up.',
+  cols: ['Expected', 'Requires immediate follow-up'],
+  rows: [
+    ['Hoarse voice and sore throat', 0],
+    ['Large amount of oral secretions right after removal', 0],
+    ['High-pitched crowing sound on inspiration', 1],
+    ['Mild dyspnea, coughing, and unable to expectorate secretions', 1],
+    ['Sitting in semi-Fowler’s position using the incentive spirometer', 0],
+    ['SpO2 drops from 95% to 88%', 1]
+  ],
+  rat: 'Iggy: large oral secretions at removal are normal; hoarseness and sore throat for a few days are common; semi-Fowler’s and incentive spirometry every 2 hours while awake are taught. Early airway obstruction: mild dyspnea, coughing, inability to expectorate. Stridor is a LATE sign of a narrowed airway — call the Rapid Response Team before the airway closes (racemic epinephrine, glucocorticoid, possible reintubation). A desaturation below 90% needs action.' },
+
+{ id: 115, type: 'cloze', cj: 'Analyze Cues', topic: 'Mechanical ventilation',
+  stem: 'A client on assist-control ventilation has a set rate of 12 breaths/min. After repositioning, the client grimaces and the total rate rises to 28 breaths/min. Arterial blood gas: pH 7.52, PaCO2 28 mm Hg.',
+  parts: ['The arterial blood gas shows ', { o: ['respiratory alkalosis', 'respiratory acidosis', 'metabolic alkalosis', 'a normal result'], a: 0 }, ' because in assist-control mode ',
+    { o: ['every breath the client triggers receives the full preset tidal volume', 'spontaneous breaths use the client’s own small tidal volume', 'no tidal volume is set', 'the ventilator ignores client-triggered breaths'], a: 0 },
+    '. The nurse should first ', { o: ['assess for pain or anxiety', 'lower the FiO2 to 21%', 'increase the set rate', 'deflate the endotracheal cuff'], a: 0 }, '.'],
+  rat: 'Iggy: assist-control delivers the preset tidal volume whether the breath is mandatory or patient-initiated, so a rising spontaneous rate can cause hyperventilation and respiratory alkalosis. Investigate and correct causes such as pain, anxiety, or acid-base imbalance. In SIMV, spontaneous breaths use the client’s own volume; pressure support has no set tidal volume.' },
+
+{ id: 116, type: 'matrix', cj: 'Analyze Cues (Trend)', topic: 'Mechanical ventilation',
+  stem: 'A client has been on the ventilator for 6 days. Flow sheet (daily minimum settings):',
+  table: { cols: ['', 'Day 3', 'Day 4', 'Day 5', 'Day 6'], rows: [
+    ['FiO2', '40%', '40%', '40%', '65%'], ['PEEP (cm H2O)', '5', '5', '5', '8'], ['Temperature', '98.8°F', '98.6°F', '99.0°F', '101.8°F'],
+    ['Secretions', 'Scant white', 'Scant white', 'Moderate yellow', 'Copious green'], ['BP', '118/70', '120/72', '116/70', '118/68'], ['Head of bed', '35°', '35°', '35°', '35°']] },
+  cols: ['Indicates worsening', 'Not clinically significant'],
+  rows: [['FiO2 trend', 0], ['PEEP trend', 0], ['Temperature trend', 0], ['Secretion trend', 0], ['Blood pressure trend', 1], ['Head of bed position', 1]],
+  rat: 'A ventilator-associated event is a sustained decline in oxygenation after at least 2 stable days — more than a 20% increase in the daily minimum FiO2 or an increase of at least 3 cm H2O in daily minimum PEEP. Fever and purulent secretions with that decline move up the tiers toward ventilator-associated pneumonia (Table 26.5). BP is stable; head of bed above 30 degrees is correct bundle care.' },
+
+{ id: 117, type: 'cloze', cj: 'Generate Solutions', topic: 'Severe COVID-19',
+  stem: 'A 66-year-old man with COVID-19 has SpO2 92% on room air, RR 32, and bilateral infiltrates. He is alert and not intubated.',
+  parts: ['The client meets criteria for ', { o: ['severe COVID-19', 'mild COVID-19', 'acute respiratory distress syndrome', 'ventilatory failure'], a: 0 },
+    '. The nurse anticipates ', { o: ['awake prone positioning for at least 6 to 8 hours in 24 hours', 'a nebulized bronchodilator every 4 hours', 'withholding anticoagulants until discharge', 'droplet precautions only'], a: 0 },
+    ' and ', { o: ['dexamethasone', 'tocilizumab with baricitinib', 'nimodipine', 'protamine sulfate'], a: 0 }, '.'],
+  rat: 'Severe COVID-19: SpO2 94% or less on room air (her slide), RR above 30, infiltrates above 50%; male sex and age raise risk. Awake proning is encouraged for nonintubated clients, at least 6–8 hours in 24, and may prevent intubation. Dexamethasone is the preferred glucocorticoid. A metered-dose inhaler is preferred over a nebulizer (aerosolization); every hospitalized client gets thromboprophylaxis; aerosol-generating care needs airborne precautions. Tocilizumab is not given with baricitinib.' },
+
+/* ---------- TRADITIONAL: PULMONARY EMBOLISM ---------- */
+{ id: 118, type: 'mcq', cj: 'Take Action', topic: 'Pulmonary embolism',
+  stem: 'A client 2 days after hip surgery suddenly reports shortness of breath and chest pain and says, “I feel like something terrible is happening.” SpO2 is 88% on room air. What is the nurse’s first action?',
+  o: ['Apply oxygen and call the Rapid Response Team', 'Draw a D-dimer level', 'Give the prescribed PRN analgesic for incisional pain', 'Reassure the client that anxiety after surgery is common'], a: 0,
+  rat: 'Critical rescue: sudden dyspnea, chest pain, and doom in an at-risk client = suspected pulmonary embolism. Start oxygen (SpO2 below 90%) and call the Rapid Response Team; Iggy says management starts before diagnostic testing is complete. Labs follow. Analgesics and reassurance alone miss a life-threatening problem.' },
+
+{ id: 119, type: 'mcq', cj: 'Take Action', topic: 'Delegation',
+  stem: 'Which action by assistive personnel caring for a client 1 day after abdominal surgery requires the nurse to intervene?',
+  o: ['Places a pillow under the client’s knees for comfort', 'Walks with the client in the hallway as ordered', 'Reapplies the pneumatic compression devices after the bath', 'Encourages the client to drink the fluids on the meal tray'], a: 0,
+  rat: 'Box 26.1: do not place a pillow under the knees (it compresses the popliteal veins); no tight garters; do not cross the legs. Early ambulation, compression devices, and hydration (her travel slide) all lower venous thromboembolism risk.' },
+
+{ id: 120, type: 'mcq', cj: 'Analyze Cues', topic: 'Pulmonary embolism',
+  stem: 'A client with a suspected pulmonary embolism has an arterial blood gas of pH 7.48, PaCO2 31 mm Hg, PaO2 64 mm Hg, HCO3 24 mEq/L. How does the nurse interpret these results?',
+  o: ['Respiratory alkalosis from hyperventilation, the expected early finding', 'Respiratory acidosis from carbon dioxide retention', 'Metabolic acidosis from lactic acid buildup', 'Normal results that rule out pulmonary embolism'], a: 0,
+  rat: 'Iggy and her slide: the initial arterial blood gas shows respiratory alkalosis with a low PaCO2 from hyperventilation triggered by hypoxia and pain. Respiratory acidosis (from shunting) and metabolic acidosis (lactic acid) come later. A PaO2 of 64 is hypoxemia, not normal.' },
+
+{ id: 121, type: 'mcq', cj: 'Evaluate Outcomes', topic: 'Pulmonary embolism drugs',
+  stem: 'A client receiving a continuous heparin infusion has an aPTT of 66 seconds. The control value is 30 seconds. What is the nurse’s best action?',
+  o: ['Continue the infusion at the current rate and recheck per protocol', 'Stop the infusion and notify the provider', 'Increase the infusion rate per protocol', 'Prepare to give protamine sulfate'], a: 0,
+  rat: '66 ÷ 30 = 2.2 times control, inside the therapeutic range of 1.5–2.5 times control (Ch. 30; her case Q5). No change is needed. Protamine reverses heparin only for bleeding or overdose.' },
+
+{ id: 122, type: 'mcq', cj: 'Generate Solutions', topic: 'Pulmonary embolism drugs',
+  stem: 'A client on day 3 of a heparin infusion started warfarin yesterday. The INR is 1.6. The client asks, “Why am I still on the IV if I’m taking the pill?” What is the nurse’s best response?',
+  o: ['“Heparin continues until your INR has been above 2 for 24 hours, because warfarin takes days to work.”', '“The heparin will be stopped today because both drugs together cause bleeding.”', '“The pill works only after the IV medicine dissolves the clot completely.”', '“Your INR needs to be above 4 before warfarin protects you.”'], a: 0,
+  rat: 'Iggy: warfarin starts on day 1–2 of heparin; heparin continues at least 5 days and for 24 hours after the INR exceeds 2. Target INR is 2–3. Anticoagulants prevent new clots; they do not dissolve the existing clot (fibrinolytics do).' },
+
+{ id: 123, type: 'mcq', cj: 'Take Action', topic: 'Pulmonary embolism drugs',
+  stem: 'A client taking dabigatran for a pulmonary embolism is admitted with active gastrointestinal bleeding. Which drug does the nurse prepare to give?',
+  o: ['Idarucizumab', 'Protamine sulfate', 'Vitamin K1 (phytonadione)', 'Andexanet alfa'], a: 0,
+  rat: 'Iggy Ch. 26 reversal agents: idarucizumab for dabigatran; andexanet alfa for factor Xa inhibitors; protamine for heparin (partial for low-molecular-weight heparin); vitamin K1 plus fresh frozen plasma for warfarin.' },
+
+{ id: 124, type: 'mcq', cj: 'Take Action', topic: 'Pulmonary embolism drugs',
+  stem: 'A client taking warfarin has an INR of 6.2 and is bleeding from the gums and nose. Which prescription does the nurse anticipate?',
+  o: ['Vitamin K1 (phytonadione)', 'Protamine sulfate', 'Idarucizumab', 'Enoxaparin'], a: 0,
+  rat: 'Warfarin is a vitamin K antagonist; Iggy names vitamin K1 (phytonadione), with fresh frozen plasma, for reversal. Protamine reverses heparin; idarucizumab reverses dabigatran; enoxaparin is another anticoagulant.' },
+
+{ id: 125, type: 'mcq', cj: 'Generate Solutions', topic: 'Pulmonary embolism',
+  stem: 'A client with a confirmed pulmonary embolism has a systolic BP of 82–86 mm Hg for the last 20 minutes despite IV fluids. Which treatment does the nurse anticipate?',
+  o: ['Systemic thrombolysis', 'Oral apixaban', 'Subcutaneous enoxaparin only', 'Discharge with outpatient follow-up'], a: 0,
+  rat: 'Table 26.2: massive pulmonary embolism = systolic BP below 90 for at least 15 minutes; treatment includes systemic thrombolysis, embolectomy, and unfractionated heparin. Oral agents and low-molecular-weight heparin alone are for nonmassive pulmonary embolism, where fibrinolytics are not warranted.' },
+
+{ id: 126, type: 'mcq', cj: 'Generate Solutions', topic: 'Pulmonary embolism',
+  stem: 'A client with a new deep vein thrombosis and pulmonary embolism has a bleeding gastric ulcer and cannot receive anticoagulants. Which intervention does the nurse anticipate?',
+  o: ['Placement of an inferior vena cava filter', 'Systemic thrombolysis', 'Warfarin with a target INR of 2 to 3', 'Massage of the affected leg every 4 hours'], a: 0,
+  rat: 'Iggy: an inferior vena cava filter is used when anticoagulation cannot be given because of bleeding, or when clots recur despite therapy. Thrombolytics and warfarin would worsen the bleeding. Never massage a leg with a clot.' },
+
+{ id: 127, type: 'mcq', cj: 'Analyze Cues', topic: 'Pulmonary embolism',
+  stem: 'Which client with suspected pulmonary embolism does the nurse expect to have a V/Q scan instead of CT pulmonary angiography?',
+  o: ['A client who is 24 weeks pregnant', 'A client with a history of asthma', 'A client with a heart rate of 118', 'A client with a D-dimer that is elevated'], a: 0,
+  rat: 'Iggy: a V/Q scan is used when CT pulmonary angiography is contraindicated — pregnancy, kidney disease, or contrast allergy — though it gives only a probability. Asthma, tachycardia, and an elevated D-dimer do not prevent CT angiography.' },
+
+{ id: 128, type: 'mcq', cj: 'Analyze Cues', topic: 'Pulmonary embolism',
+  stem: 'A client with mild chest discomfort and a low Wells score has a normal D-dimer. How does the nurse interpret this result?',
+  o: ['Pulmonary embolism is unlikely and can be ruled out', 'Pulmonary embolism is confirmed', 'The client needs systemic thrombolysis', 'The test must be repeated after heparin is started'], a: 0,
+  rat: 'Iggy: there is no single lab test that diagnoses pulmonary embolism, but a normal or low D-dimer can rule it out because D-dimer rises with fibrinolysis. An elevated D-dimer supports — but does not confirm — the diagnosis.' },
+
+{ id: 129, type: 'mcq', lec: true, cj: 'Generate Solutions', topic: 'Pulmonary embolism',
+  stem: 'A client with a history of deep vein thrombosis is going on a 7-hour flight. Which statement indicates the need for more teaching?',
+  o: ['“I’ll cross my ankles instead of my knees so blood still flows.”', '“I’ll walk the aisle for at least 5 minutes every hour.”', '“I’ll drink plenty of water during the trip.”', '“I’m going to quit smoking since I take birth control pills.”'], a: 0,
+  rat: 'Her education slide: avoid crossing the legs at the knees OR the ankles; stand and walk at least 5 minutes of every hour spent sitting; drink plenty of water; stop smoking, especially with hormone replacement therapy or oral contraceptives.' },
+
+/* ---------- ARF / ARDS / COVID ---------- */
+{ id: 130, type: 'mcq', cj: 'Recognize Cues', topic: 'Acute respiratory failure',
+  stem: 'A client with myasthenia gravis has SpO2 95% on 2 L by nasal cannula. End-tidal CO2 has risen from 38 to 56 mm Hg over 2 hours, and the client is harder to wake. Which interpretation is correct?',
+  o: ['The client is developing ventilatory failure despite an acceptable SpO2', 'The SpO2 confirms adequate gas exchange', 'The rising end-tidal CO2 is expected with oxygen therapy', 'The client is sleeping normally after a tiring day'], a: 0,
+  rat: 'Iggy: end-tidal CO2 may be more valuable than pulse oximetry in acute respiratory failure — SpO2 may look adequate while rising CO2 shows the client is near respiratory failure. Myasthenia gravis is a neuromuscular (extrapulmonary) cause; decreased level of consciousness is a hypercapnia sign.' },
+
+{ id: 131, type: 'mcq', cj: 'Analyze Cues', topic: 'Acute respiratory failure',
+  stem: 'Which group of findings most indicates hypercapnia rather than hypoxemia?',
+  o: ['Headache, drowsiness, and flushed skin', 'Restlessness, tachycardia, and cyanosis', 'Irritability, agitation, and tachypnea', 'Pallor, anxiety, and diaphoresis'], a: 0,
+  rat: 'Iggy: hypercapnic failure — decreased level of consciousness, headache, drowsiness, lethargy, flushed skin, nausea, seizures. Hypoxemic failure — restlessness, irritability or agitation, confusion, tachycardia, tachypnea, cyanosis (late).' },
+
+{ id: 132, type: 'mcq', lec: true, cj: 'Analyze Cues', topic: 'Acute respiratory failure',
+  stem: 'Which client condition is an extrapulmonary cause of ventilatory failure?',
+  o: ['Guillain-Barré syndrome', 'Chronic obstructive pulmonary disease', 'Massive pulmonary embolism', 'Pulmonary edema'], a: 0,
+  rat: 'Box 26.6: extrapulmonary causes are outside the lung tissue — neuromuscular disorders (Guillain-Barré, myasthenia gravis, spinal cord injury), central nervous system depression (opioids, stroke), and chest wall problems. Chronic obstructive pulmonary disease, massive pulmonary embolism, and pulmonary edema are intrapulmonary. Her ARS 2 used opioid overdose as the extrapulmonary answer.' },
+
+{ id: 133, type: 'mcq', cj: 'Analyze Cues', topic: 'Acute respiratory distress syndrome',
+  stem: 'A client with sepsis has SpO2 84% on a 100% nonrebreather mask. Chest x-ray shows bilateral infiltrates with a normal heart size. The nurse recognizes this as which feature?',
+  o: ['Refractory hypoxemia from acute respiratory distress syndrome', 'Heart failure with cardiogenic pulmonary edema', 'Hypoxemia that will correct with a higher oxygen flow', 'Ventilatory failure from an extrapulmonary cause'], a: 0,
+  rat: 'Hypoxemia that persists even on 100% oxygen is refractory hypoxemia, the cardinal feature of acute respiratory distress syndrome. Sepsis is the most common cause. Bilateral infiltrates without cardiomegaly point to noncardiac edema; an ECG/echocardiogram rules out a cardiac cause.' },
+
+{ id: 134, type: 'mcq', cj: 'Take Action', topic: 'Acute respiratory distress syndrome',
+  stem: 'A client with acute respiratory distress syndrome on PEEP of 15 cm H2O suddenly has absent breath sounds on the right, the trachea shifted to the left, BP 78/50, and distended neck veins. What is the nurse’s priority?',
+  o: ['Call the Rapid Response Team and prepare for needle decompression', 'Increase the PEEP to improve oxygenation', 'Suction the endotracheal tube and recheck in 30 minutes', 'Place the client in the prone position'], a: 0,
+  rat: 'Iggy: a side effect of PEEP is tension pneumothorax, so lung sounds are assessed hourly. Tracheal deviation away from the affected side, distended neck veins, and hypotension = tension pneumothorax, which is quickly fatal. Immediate needle decompression (2nd intercostal space, midclavicular line) by the provider, then a chest tube. More PEEP worsens it; proning delays rescue.' },
+
+{ id: 135, type: 'mcq', cj: 'Generate Solutions', topic: 'Acute respiratory distress syndrome',
+  stem: 'Four ventilated clients have moderate-to-severe acute respiratory distress syndrome. For which client should the nurse question an order for prone positioning?',
+  o: ['A client with increased intracranial pressure after a head injury', 'A client with sepsis from pneumonia', 'A client receiving tube feedings', 'A client who developed the syndrome after pancreatitis'], a: 0,
+  rat: 'Iggy: avoid prone positioning in acute bleeding, elevated intracranial pressure, or unstable fractures of the spine, femur, pelvis, or face. Sepsis, pneumonia, and pancreatitis are causes of the syndrome, not contraindications to proning.' },
+
+{ id: 136, type: 'mcq', cj: 'Generate Solutions', topic: 'Acute respiratory distress syndrome',
+  stem: 'Which prescription for a client with acute respiratory distress syndrome should the nurse clarify?',
+  o: ['Infuse 0.9% sodium chloride at 200 mL/hr continuously to keep CVP above 12 mm Hg', 'Tidal volume 6 mL/kg of ideal body weight', 'Start enteral tube feedings today', 'Pantoprazole IV daily'], a: 0,
+  rat: 'Iggy: conservative fluid therapy (target CVP below 4 mm Hg, smaller IV volumes and diuretics) improves lung function and shortens ventilator time; liberal fluids increase edema. Low tidal volume (6 mL/kg), early nutrition with a dietitian, and GI ulcer prophylaxis are all part of supportive care.' },
+
+{ id: 137, type: 'mcq', lec: true, cj: 'Recognize Cues', topic: 'Acute respiratory distress syndrome',
+  stem: 'Which client is at greatest risk for developing acute respiratory distress syndrome?',
+  o: ['A 31-year-old with a pulmonary contusion who aspirated gastric contents at the crash scene', 'A 45-year-old with well-controlled asthma admitted for a fractured wrist', 'A 62-year-old receiving 1 unit of packed red blood cells after knee surgery', 'A 79-year-old receiving oral antibiotics for a urinary tract infection'], a: 0,
+  rat: 'Her ARS 1: a direct lung injury (chest trauma/contusion) combined with documented gastric aspiration carries the highest immediate risk. Box 26.7 lists multiple transfusions — not a single unit — as a risk. Sepsis is the most common cause overall.' },
+
+{ id: 138, type: 'mcq', lec: true, cj: 'Recognize Cues', topic: 'Severe COVID-19',
+  stem: 'Four clients have COVID-19. Which client meets the criteria for severe illness?',
+  o: ['SpO2 93% on room air with bilateral infiltrates', 'SpO2 97% on room air with fever and cough', 'SpO2 96% on room air with loss of taste and smell', 'SpO2 98% on room air with headache and body aches'], a: 0,
+  rat: 'Her slide and Iggy: severe COVID-19 is hypoxemia with SpO2 94% or less on room air and the need for oxygen or ventilatory support, with extensive bilateral infiltrates.' },
+
+{ id: 139, type: 'mcq', cj: 'Take Action', topic: 'Severe COVID-19',
+  stem: 'Which prescription for a client with severe COVID-19 should the nurse question?',
+  o: ['Albuterol by nebulizer every 4 hours', 'Enoxaparin subcutaneously daily', 'Dexamethasone IV daily', 'Remdesivir IV daily'], a: 0,
+  rat: 'Iggy: when inhaled drugs are needed, a metered-dose inhaler is preferred over a nebulizer to prevent aerosolization. All hospitalized COVID-19 clients receive thromboprophylaxis; dexamethasone (preferred glucocorticoid) and remdesivir are recommended therapies.' },
+
+{ id: 140, type: 'mcq', cj: 'Take Action', topic: 'Severe COVID-19',
+  stem: 'A client with critical COVID-19 received baricitinib this morning. A new order arrives for tocilizumab. What will the nurse do?',
+  o: ['Hold the tocilizumab and contact the provider', 'Give the tocilizumab as a single dose', 'Give the tocilizumab daily for 5 days', 'Give the tocilizumab by nebulizer'], a: 0,
+  rat: 'Iggy: tocilizumab (IL-6 inhibitor) is given as a single dose and is not administered to clients receiving baricitinib (JAK inhibitor). Clarify before giving.' },
+
+/* ---------- INTUBATION / VENTILATION ---------- */
+{ id: 141, type: 'mcq', cj: 'Analyze Cues', topic: 'Mechanical ventilation',
+  stem: 'Immediately after intubation, the nurse hears breath sounds on the right but none on the left, and only the right chest rises. What does the nurse suspect?',
+  o: ['The tube is in the right mainstem bronchus', 'The tube is in the esophagus', 'The client has a right pneumothorax', 'The cuff is overinflated'], a: 0,
+  rat: 'Iggy: if breath sounds and chest movement are absent on the left, the tube may be in the right mainstem bronchus; the provider can pull it back without full reintubation. An esophageal tube causes absent end-tidal CO2 and gastric sounds. A right pneumothorax would reduce RIGHT-sided sounds.' },
+
+{ id: 142, type: 'mcq', cj: 'Take Action', topic: 'Mechanical ventilation',
+  stem: 'After intubation, no carbon dioxide is detected, the abdomen is distending, and gurgling is heard over the epigastrium. What does the nurse anticipate?',
+  o: ['Reintubation, then gastric decompression with a nasogastric tube', 'Pulling the tube back 2 cm', 'A chest x-ray before any other action', 'Increasing the cuff pressure to 40 cm H2O'], a: 0,
+  rat: 'Iggy: a tube in the stomach or esophagus causes abdominal distension and absent end-tidal CO2; reintubation is required, and the stomach is decompressed with a nasogastric tube after the tube is correctly placed. Waiting for an x-ray delays ventilation; cuff pressure stays 20–30 cm H2O.' },
+
+{ id: 143, type: 'mcq', lec: true, cj: 'Evaluate Outcomes', topic: 'Mechanical ventilation',
+  stem: 'Per her lecture, which finding gives definitive confirmation of endotracheal tube placement?',
+  o: ['Chest x-ray showing the tip above the carina', 'Condensation inside the tube', 'Equal chest rise during bagging', 'The client can no longer speak'], a: 0,
+  rat: 'Her slide: immediate checks are end-tidal CO2, symmetric chest rise, bilateral breath sounds, and no epigastric sounds; definitive confirmation is a chest x-ray showing the tip above the carina (Iggy: about 2 cm above). Condensation and lack of speech do not confirm placement.' },
+
+{ id: 144, type: 'mcq', cj: 'Recognize Cues', topic: 'Mechanical ventilation',
+  stem: 'A client intubated 1 hour ago is receiving a neuromuscular blocking agent. The nurse notes tears, HR 128, and BP 172/98. What do these findings most likely indicate?',
+  o: ['Pain or awareness needing more sedation', 'An expected response to the paralytic', 'Ventilator-associated pneumonia', 'Fluid overload from the ventilator'], a: 0,
+  rat: 'Iggy Action Alert: paralytics have no analgesic, amnestic, or sedative effect; the paralyzed client can hear and feel pain. Tachycardia, hypertension, and tears may signal pain or awareness — ensure sedation is given.' },
+
+{ id: 145, type: 'mcq', cj: 'Take Action', topic: 'Mechanical ventilation',
+  stem: 'A ventilated client’s high-pressure alarm sounds. The client is biting the oral endotracheal tube. Which action is most appropriate?',
+  o: ['Insert an oral airway or bite block', 'Increase the high-pressure alarm limit', 'Deflate the cuff', 'Silence the alarm and recheck in 10 minutes'], a: 0,
+  rat: 'Table 26.4: for coughing, gagging, or biting on the oral tube, insert an oral airway to prevent biting and provide pain control and sedation as prescribed. Alarms are never turned off or ignored; deflating the cuff causes a leak and lost tidal volume.' },
+
+{ id: 146, type: 'mcq', cj: 'Take Action', topic: 'Mechanical ventilation',
+  stem: 'A ventilator alarm sounds. The client is cyanotic, and the nurse cannot find the cause. What should the nurse do?',
+  o: ['Ventilate the client manually with a resuscitation bag', 'Silence the alarm until the respiratory therapist arrives', 'Increase the FiO2 on the ventilator to 100% and wait', 'Obtain an arterial blood gas'], a: 0,
+  rat: 'National Patient Safety Goal: ventilator alarms are always on. If the cause cannot be found, ventilate manually with a resuscitation bag until another professional corrects the problem. Iggy also teaches DOPE (displaced, obstructed, pneumothorax, equipment) when gas exchange drops.' },
+
+{ id: 147, type: 'mcq', cj: 'Recognize Cues', topic: 'Mechanical ventilation',
+  stem: 'Which finding meets the definition of a ventilator-associated event in a client who was stable for 3 days?',
+  o: ['Daily minimum PEEP increased from 5 to 8 cm H2O and stayed there', 'FiO2 decreased from 50% to 40%', 'Peak pressure briefly rose during coughing', 'Secretions changed from clear to white'], a: 0,
+  rat: 'Iggy: a ventilator-associated event is a sustained decline in oxygenation after at least 2 stable days — greater than 20% increase in daily minimum FiO2 or at least a 3 cm H2O increase in daily minimum PEEP.' },
+
+{ id: 148, type: 'mcq', cj: 'Generate Solutions', topic: 'Mechanical ventilation',
+  stem: 'A ventilated client with chronic obstructive pulmonary disease has a new enteral feeding order. Which formula consideration does the nurse anticipate?',
+  o: ['A higher-fat, lower-carbohydrate formula', 'A high-carbohydrate formula for quick energy', 'Clear liquids only until extubation', 'Withholding nutrition until the client is weaned'], a: 0,
+  rat: 'Iggy: carbohydrate metabolism produces carbon dioxide, which a client with chronic obstructive pulmonary disease may not exhale, risking hypercarbic failure; higher-fat formulas are used. Nutrition usually starts within 48 hours — malnutrition weakens the diaphragm and causes failure to wean.' },
+
+{ id: 149, type: 'mcq', cj: 'Generate Solutions', topic: 'Mechanical ventilation',
+  stem: 'A client being weaned with a T-piece tolerates 2 hours off the ventilator during the day. The family asks whether the client can stay off the ventilator overnight. What is the nurse’s best response?',
+  o: ['“Nighttime weaning usually starts only after breathing alone for most of the day.”', '“Yes, sleep is the best time to wean because the body needs less oxygen.”', '“Weaning is not possible on a T-piece.”', '“The ventilator is never removed at night once weaning begins.”'], a: 0,
+  rat: 'Box 26.9 (T-piece technique): periods off the ventilator lengthen as tolerated; nighttime weaning is not usually attempted until the client can maintain spontaneous respirations for most of the day.' },
+
+{ id: 150, type: 'mcq', cj: 'Take Action', topic: 'Mechanical ventilation',
+  stem: 'A client extubated 20 minutes ago now has a high-pitched crowing sound on inspiration and is anxious. What is the nurse’s priority?',
+  o: ['Call the Rapid Response Team immediately', 'Encourage the client to use the incentive spirometer', 'Reassure the client that hoarseness is expected', 'Reassess in 30 minutes'], a: 0,
+  rat: 'Stridor is a late sign of a narrowed airway (laryngospasm or glottic edema). Iggy critical rescue: immediately call the Rapid Response Team and/or provider before the airway becomes completely obstructed; racemic epinephrine, a glucocorticoid, and reintubation with a smaller tube may be needed.' },
+
+{ id: 151, type: 'mcq', cj: 'Evaluate Outcomes', topic: 'Mechanical ventilation',
+  stem: 'Which statement by a client extubated this morning indicates a need for more teaching?',
+  o: ['“I should talk as much as I can today to get my voice back.”', '“I’ll take deep breaths every half hour.”', '“I’ll use the incentive spirometer every 2 hours while I’m awake.”', '“I’ll stay sitting up in semi-Fowler’s position.”'], a: 0,
+  rat: 'Iggy: teach semi-Fowler’s, deep breaths every half-hour, incentive spirometry every 2 hours while awake, and LIMIT speaking — this reduces laryngeal edema and vocal cord irritation.' },
+
+{ id: 152, type: 'mcq', cj: 'Take Action', topic: 'Mechanical ventilation',
+  stem: 'A confused intubated client keeps reaching for the endotracheal tube despite reorientation and a sitter’s redirection. Soft wrist restraints are ordered. Which action meets The Joint Commission requirements?',
+  o: ['Reassess the need daily and obtain a new order each day the restraints continue', 'Keep the same order for the entire intubation', 'Remove the restraints only when the family visits', 'Apply restraints before trying other measures'], a: 0,
+  rat: 'Iggy: confusion and agitation are the most common causes of unplanned extubation. Restraints are a last resort; reassess the need daily and obtain a new order daily (National Patient Safety Goal). Adequate sedation may be needed.' },
+
+/* ---------- TRACHEOSTOMY ---------- */
+{ id: 153, type: 'mcq', cj: 'Take Action', topic: 'Tracheostomy',
+  stem: 'A client’s tracheostomy tube comes out 24 hours after surgery, and the client is in distress. What is the nurse’s priority action?',
+  o: ['Ventilate with a bag-valve-mask while another nurse calls the Rapid Response Team and the surgical team', 'Reinsert the tube immediately with the obturator', 'Insert a suction catheter into the stoma', 'Place the client flat and wait for the surgeon'], a: 0,
+  rat: 'Iggy: dislodgment in the first 72 hours is an emergency — the tract is immature and the tube can enter a false passage. Ventilate with a manual resuscitation bag and facemask while another nurse calls the Rapid Response Team and the surgical service; gentle tension on stay sutures can reopen the trachea. Reinsertion with the obturator is the approach AFTER 72 hours.' },
+
+{ id: 154, type: 'mcq', cj: 'Take Action', topic: 'Tracheostomy',
+  stem: 'The tracheostomy tube of a client 10 days after surgery is pulsating with the heartbeat, and bright red blood is pouring from the stoma. What does the nurse anticipate first?',
+  o: ['Removing the tube and applying direct pressure at the stoma while preparing for emergency surgery', 'Increasing cuff pressure to stop the bleeding', 'Suctioning the blood until it clears', 'Packing gauze into the tube'], a: 0,
+  rat: 'Table 26.6: tracheoinnominate artery fistula — a tube that pulsates with the heartbeat and heavy stoma bleeding. Remove the tracheostomy tube immediately, apply direct pressure to the innominate artery at the stoma, and prepare for immediate surgical repair. This is a medical emergency.' },
+
+{ id: 155, type: 'mcq', cj: 'Take Action', topic: 'Tracheostomy',
+  stem: 'A client with a cuffed fenestrated tracheostomy tube is ready to have the tube capped. What must the nurse do before applying the decannulation cap?',
+  o: ['Deflate the cuff', 'Inflate the cuff to 30 cm H2O', 'Insert the obturator', 'Connect the tube to the ventilator'], a: 0,
+  rat: 'Iggy Action Alert: always deflate the cuff before capping the tube with the decannulation cap; otherwise the client has no airway.' },
+
+{ id: 156, type: 'mcq', lec: true, cj: 'Take Action', topic: 'Tracheostomy',
+  stem: 'Which statement by a nursing student about the tracheostomy obturator is correct?',
+  o: ['“It is used only to guide insertion and is removed right after the tube is in place.”', '“It stays inside the tube to keep the airway open.”', '“It is the removable liner that is cleaned every 8 hours.”', '“It inflates the cuff.”'], a: 0,
+  rat: 'Her slide: the obturator is a rigid, blunt-tipped guide used strictly during insertion to prevent mucosal tearing and removed immediately after placement. Iggy: keep one of the correct size at the bedside. The inner cannula is the removable liner; the pilot balloon inflates the cuff.' },
+
+{ id: 157, type: 'mcq', cj: 'Take Action', topic: 'Tracheostomy',
+  stem: 'While changing tracheostomy ties, which technique prevents accidental decannulation?',
+  o: ['Keep the old ties in place until the new ties are secured', 'Remove the old ties first so the new ones lie flat', 'Tie the new ties loosely enough to fit three fingers', 'Remove the inner cannula before changing ties'], a: 0,
+  rat: 'Iggy Action Alert: keep the old ties or holder on while applying new ones, or keep a hand on the tube, ideally with a coworker. A properly secured tie allows only one finger between the tie and the neck.' },
+
+{ id: 158, type: 'mcq', cj: 'Recognize Cues', topic: 'Tracheostomy',
+  stem: 'Which finding best indicates that a client with a tracheostomy needs suctioning?',
+  o: ['Coarse crackles heard over the trachea', 'Last suctioned 3 hours ago', 'Temperature 101°F (38.3°C)', 'Serous drainage on the dressing'], a: 0,
+  rat: 'Iggy: the most common indicator of the need for suctioning is coarse crackles over the trachea; others are noisy secretions, restlessness, rising pulse or RR, visible mucus, or a rising peak pressure. Her slide: suction by assessment cues, never on a schedule. Fever and serous drainage are not suction cues.' },
+
+{ id: 159, type: 'mcq', cj: 'Take Action', topic: 'Tracheostomy',
+  stem: 'Which action by a new graduate nurse suctioning a tracheostomy requires the preceptor to intervene?',
+  o: ['Instills 5 mL of normal saline into the tube before suctioning', 'Preoxygenates with 100% oxygen', 'Applies suction only while withdrawing the catheter', 'Limits each pass to 10 seconds'], a: 0,
+  rat: 'Box 26.13: routine instillation of normal saline is not supported — it impairs gas exchange and raises infection risk. Preoxygenation, suction only on withdrawal (continuous, with twirling), and 10–15 seconds maximum are correct.' },
+
+{ id: 160, type: 'mcq', lec: true, cj: 'Take Action', topic: 'Tracheostomy',
+  stem: 'While the nurse suctions a client’s tracheostomy, the heart rate drops from 88 to 44 and the BP falls. What is the nurse’s immediate action?',
+  o: ['Stop suctioning and manually oxygenate with 100% oxygen', 'Finish the pass quickly, then give oxygen', 'Instruct the client to cough forcefully', 'Raise the client to high-Fowler’s position'], a: 0,
+  rat: 'Her ARS 3 and Iggy: vagal stimulation during suctioning causes bradycardia, hypotension, heart block, ventricular tachycardia, or other dysrhythmias. Stop suctioning immediately and oxygenate manually with 100% oxygen.' },
+
+{ id: 161, type: 'mcq', lec: true, cj: 'Generate Solutions', topic: 'Tracheostomy',
+  stem: 'A client with a tracheostomy has just finished lunch. Which instruction does the nurse give to prevent aspiration?',
+  o: ['Keep the head of the bed elevated for at least 30 minutes', 'Lie flat for 30 minutes to rest', 'Drink thin liquids through a straw to clear the throat', 'Inflate the cuff fully during every meal'], a: 0,
+  rat: 'Her slide and Iggy: keep the head of the bed elevated at least 30 minutes after eating. Box 26.12: avoid thin liquids and straws; when possible deflate (not inflate) the cuff during meals because an inflated cuff can press on the esophagus.' },
+
+{ id: 162, type: 'mcq', cj: 'Take Action', topic: 'Delegation',
+  stem: 'The nurse is caring for a stable client with a long-term tracheostomy. Which task is appropriate to delegate to assistive personnel?',
+  o: ['Provide mouth care with a soft toothbrush moistened in water', 'Assess breath sounds before and after suctioning', 'Teach the spouse how to clean the inner cannula', 'Evaluate the stoma for signs of infection'], a: 0,
+  rat: '[Delegation principles are background from fundamentals.] Hygiene for a stable client is within the scope of assistive personnel; Iggy specifies a soft-bristle toothbrush or sponge moistened in water (no alcohol mouthwash or glycerin). Assessment, teaching, and evaluation are RN responsibilities.' },
+
+/* ---------- CHEST TRAUMA ---------- */
+{ id: 163, type: 'mcq', cj: 'Generate Solutions', topic: 'Chest trauma',
+  stem: 'A client with three uncomplicated rib fractures takes shallow breaths and refuses to cough. Which nursing action best prevents pneumonia?',
+  o: ['Give the prescribed analgesic so the client can deep breathe and cough', 'Tape the chest wall to stabilize the ribs', 'Keep the client flat in bed to rest the ribs', 'Hold opioids to avoid respiratory depression'], a: 0,
+  rat: 'Iggy and her slide: fractured ribs heal on their own and are not taped; the main focus is decreasing pain so ventilation stays adequate and atelectasis and pneumonia are prevented. Opioids are effective (monitor for respiratory depression); nerve blocks, NSAIDs, epidurals, and patient-controlled analgesia are options.' },
+
+{ id: 164, type: 'mcq', cj: 'Take Action', topic: 'Chest trauma',
+  stem: 'The provider is preparing to treat a client with a tension pneumothorax. Where does the nurse expect the initial large-bore needle to be inserted?',
+  o: ['Second intercostal space, midclavicular line, on the affected side', 'Fourth intercostal space, midaxillary line, on the unaffected side', 'Fifth intercostal space at the sternal border', 'Directly over the trachea'], a: 0,
+  rat: 'Iggy: immediate needle decompression with a 14- to 16-gauge needle into the 2nd intercostal space, midclavicular line, of the affected side changes a tension pneumothorax to a simple pneumothorax. A chest tube is then placed in the 4th or 5th intercostal space to water seal.' },
+
+{ id: 165, type: 'mcq', cj: 'Recognize Cues', topic: 'Chest trauma',
+  stem: 'A client with a hemothorax had 600 mL of drainage when the chest tube was placed. Which subsequent finding requires the nurse to notify the surgeon about a possible thoracotomy?',
+  o: ['Drainage of 180 mL/hr for the past 3 hours', 'Drainage of 40 mL in the past hour', 'Tidaling in the water seal chamber', 'Pain 5/10 at the insertion site'], a: 0,
+  rat: 'Iggy: open thoracotomy is needed for an initial blood loss of 1000 mL or persistent bleeding of 150–200 mL/hr over 3–4 hours. Ch. 24 also lists drainage above 70 mL/hr as a reason to notify. Tidaling is expected; insertion pain is managed.' },
+
+{ id: 166, type: 'mcq', cj: 'Take Action', topic: 'Chest trauma',
+  stem: 'A client’s chest tube falls out while the client is repositioning. What is the nurse’s first action?',
+  o: ['Cover the site with dry sterile gauze', 'Reinsert the tube', 'Place the tube end in sterile water', 'Clamp the drainage system'], a: 0,
+  rat: 'Ch. 24 chest tube box: if the chest tube falls out, first cover the area with dry, sterile gauze, then notify the surgeon or Rapid Response Team. Placing the tube end in sterile water is for a DISCONNECTION from the drainage system. Nurses do not reinsert chest tubes.' },
+
+{ id: 167, type: 'mcq', lec: true, cj: 'Recognize Cues', topic: 'Chest trauma',
+  stem: 'A client was in a high-speed car crash. Which assessment finding is most consistent with flail chest?',
+  o: ['A section of the chest wall sinks in during inspiration and bulges out during expiration', 'Both sides of the chest rise equally with deep breaths', 'A dull sound when the injured side is percussed', 'Bruising over the sternum with clear breath sounds'], a: 0,
+  rat: 'Her slide: flail chest = 3 or more adjacent ribs fractured in 2 or more places, causing paradoxical motion — inward on inspiration, outward on expiration. Dullness suggests hemothorax.' },
+
+{ id: 168, type: 'mcq', cj: 'Recognize Cues', topic: 'Chest trauma',
+  stem: 'A client was admitted 2 hours ago after a car crash with a bruise across the chest. Breath sounds were clear on arrival. Which finding now requires follow-up because it suggests a developing pulmonary contusion?',
+  o: ['New crackles and wheezes over the bruised area with rising RR', 'Pain 4/10 at the bruise', 'SpO2 97% on room air', 'Heart rate 82'], a: 0,
+  rat: 'Iggy and her slide: pulmonary contusion may be asymptomatic at first, then decreased breath sounds or crackles and wheezes over the area, tachypnea, tachycardia, and dyspnea develop — respiratory failure can develop over time.' },
+
+/* ---------- PRIORITY / DELEGATION / ETHICS ---------- */
+{ id: 169, type: 'mcq', cj: 'Prioritize Hypotheses', topic: 'Priority',
+  stem: 'The nurse receives report on four clients. Which client should the nurse see first?',
+  o: ['A client extubated 30 minutes ago who has new high-pitched noisy breathing on inspiration', 'A client on heparin with an aPTT of 2.4 times control and a small bruise at a lab draw site', 'A client 5 days after tracheostomy with thick secretions and SpO2 93%', 'A client with two rib fractures who reports pain 7/10 and is splinting'], a: 0,
+  rat: 'Every client has an abnormal finding, but stridor after extubation is a late sign of airway narrowing that can progress to complete obstruction — airway first. The aPTT is therapeutic and a small bruise is minor; the tracheostomy client needs suctioning soon; the rib-fracture client needs analgesia soon. Neither is losing an airway.' },
+
+{ id: 170, type: 'mcq', cj: 'Prioritize Hypotheses', topic: 'Priority',
+  stem: 'Which client should the nurse assess first?',
+  o: ['A client 1 day after tracheostomy whose neck skin is puffy and crackles when pressed', 'A client on a ventilator whose oral endotracheal tube was moved to the other side of the mouth this morning', 'A client 3 days after a pulmonary embolism with INR 1.8 on warfarin and heparin', 'A client with severe COVID-19 lying prone with SpO2 93%'], a: 0,
+  rat: 'Subcutaneous emphysema around a new tracheostomy means air is escaping through a tear and can track into the neck and chest — Iggy says notify the surgeon immediately. Moving the oral tube every 24 hours is routine; an INR below 2 is expected while heparin continues; SpO2 93% in a prone severe COVID-19 client is acceptable and being treated.' },
+
+{ id: 171, type: 'mcq', cj: 'Take Action', topic: 'Psychosocial / ethics',
+  stem: 'A client is likely to remain ventilator dependent. The client’s advance directive refuses long-term ventilation, but a son insists on continuing it. What is the nurse’s most appropriate action?',
+  o: ['Support a plan based on the client’s verified wishes and involve the ethics committee as needed', 'Follow the son’s request because family members make the final decision', 'Avoid discussing it with the family until the client can decide', 'Tell the son that the nurse will decide what is best'], a: 0,
+  rat: 'Iggy Legal/Ethical box: family always has input, but the most ethical plan supports the client’s verified wishes; advance directives guide decisions. Collaborate with the ethics committee, provider, social worker, and clergy; the nurse confirms understanding, ensures no coercion, and supports the family.' },
+
+{ id: 172, type: 'mcq', cj: 'Recognize Cues', topic: 'Mechanical ventilation',
+  stem: 'A 79-year-old ventilated client with chronic obstructive pulmonary disease is being weaned. Which finding is the best early indicator that gas exchange is worsening in this client?',
+  o: ['New confusion and restlessness', 'Cyanosis of the lips', 'Clubbing of the fingers', 'Barrel chest'], a: 0,
+  rat: 'Iggy Older Adult box: hypoxemia and hypercarbia may be less obvious in older adults — use other measures such as a change in mental status. Cyanosis is a late sign; clubbing and barrel chest are chronic obstructive pulmonary disease findings.' },
+
+/* ---------- LECTURE CASE (her slides) ---------- */
+{ id: 173, type: 'mcq', lec: true, cj: 'Analyze Cues', topic: 'Pulmonary embolism',
+  stem: 'A client 5 days after hysterectomy has stayed in bed since discharge. BP 80/44, HR 130, RR 28 and labored, SpO2 86% on room air, bilateral crackles, and petechiae across the upper chest and axillae. Which condition does the nurse anticipate?',
+  o: ['Pulmonary embolism', 'Postoperative pneumonia', 'Acute coronary syndrome', 'Hypovolemia from surgical bleeding'], a: 0,
+  rat: 'Her case Q2: pulmonary embolism. Pneumonia is an important differential (immobility, bilateral crackles), but her key states petechiae and severe tachycardia point heavily to pulmonary embolism. Note: Iggy says petechiae are usually seen with fat embolism; on her exam, use her slide.' },
+
+{ id: 174, type: 'mcq', lec: true, cj: 'Take Action', topic: 'Pulmonary embolism',
+  stem: 'Same client. Orders: oxygen 2 L by nasal cannula; stat CBC, BMP, D-dimer, aPTT, INR; stat CT of the chest; insert saline lock. Which order does the nurse complete first?',
+  o: ['Oxygen 2 L by nasal cannula', 'Stat D-dimer and coagulation studies', 'Stat CT of the chest', 'Insert a saline lock'], a: 0,
+  rat: 'Her case Q3: oxygen. She is hypoxemic at 86% on room air — gas exchange first. Access, labs, and imaging follow immediately.' },
+
+{ id: 175, type: 'mcq', lec: true, cj: 'Take Action', topic: 'Pulmonary embolism',
+  stem: 'Same client. In the treatment bay she says she needs to use the bathroom. What is the safest action?',
+  o: ['Place her on a bedpan and stay with her', 'Walk her to the bathroom with a gait belt', 'Remove the oxygen so she can walk to the bathroom more easily', 'Ask her to wait until the CT scan is finished'], a: 0,
+  rat: 'Her case Q4: place her on a bedpan and stay with her. She is too short of breath to walk and must stay on continuous oxygen; walking or stopping oxygen increases the risk of immediate cardiovascular collapse. Making her wait ignores a basic need.' },
+
+{ id: 176, type: 'mcq', lec: true, cj: 'Evaluate Outcomes', topic: 'Pulmonary embolism drugs',
+  stem: 'Same client is started on a weight-based heparin infusion. Which finding indicates the infusion is therapeutic?',
+  o: ['aPTT 1.5 to 2.5 times the control value', 'INR 2 to 3', 'Platelet count above 150,000/mm³', 'D-dimer below the reference range'], a: 0,
+  rat: 'Her case Q5: aPTT 1.5–2.5 times control. INR 2–3 is the warfarin target. Platelets are monitored for heparin-induced thrombocytopenia, not effectiveness.' },
+
+/* ---------- SATA ---------- */
+{ id: 177, type: 'sata', lec: true, cj: 'Recognize Cues', topic: 'Pulmonary embolism',
+  stem: 'Which clients have risk factors for venous thromboembolism and pulmonary embolism? Select all that apply.',
+  o: ['A client with a central venous catheter for chemotherapy', 'A client who smokes and takes oral contraceptives', 'A client who gave birth 6 weeks ago', 'A client with factor V Leiden', 'A 30-year-old marathon runner with a BMI of 21', 'A client with seasonal allergies', 'A client admitted for an ankle sprain who walks independently'], a: [0, 1, 2, 3],
+  rat: 'Iggy and her slide: central venous catheters, smoking with estrogen (oral contraceptives, hormone replacement therapy), pregnancy and up to 3 months postpartum, and thrombophilia such as factor V Leiden (3–5 times the risk). Normal weight, activity, allergies, and independent walking are not risk factors.' },
+
+{ id: 178, type: 'sata', cj: 'Take Action', topic: 'Pulmonary embolism',
+  stem: 'A client has a suspected pulmonary embolism. Which actions will the nurse take? Select all that apply.',
+  o: ['Raise the head of the bed to high-Fowler’s position', 'Start continuous pulse oximetry', 'Check the position of the trachea', 'Compare blood pressure in both arms', 'Stay with the client and provide reassurance', 'Massage the calf to locate the clot', 'Place the client flat to improve blood pressure'], a: [0, 1, 2, 3, 4],
+  rat: 'Box 26.3: oxygen; reassure; high-Fowler’s; telemetry; IV access; continuous pulse oximetry; lung sounds; trachea position; compare BP in both arms; neck veins; labs; petechiae; anticoagulants; bleeding precautions. Never massage the legs. Lying flat worsens dyspnea.' },
+
+{ id: 179, type: 'sata', cj: 'Recognize Cues', topic: 'Pulmonary embolism drugs',
+  stem: 'A client is receiving heparin and warfarin. Which findings would the nurse report as possible bleeding? Select all that apply.',
+  o: ['Bleeding gums after brushing', 'Black, tarry stool', 'Pink-tinged urine', 'New abdominal pain with distension', 'Mild bruise at an injection site from yesterday that is fading', 'Clubbing of the fingers'], a: [0, 1, 2, 3],
+  rat: 'Iggy bleeding assessment: gums, puncture sites, skin (petechiae, bruising), stool, urine, emesis, and the abdomen for pain or distension. A small fading bruise is minor and expected with subcutaneous injections; clubbing is a chronic hypoxia finding.' },
+
+{ id: 180, type: 'sata', lec: true, cj: 'Generate Solutions', topic: 'Pulmonary embolism drugs',
+  stem: 'Which points will the nurse include in discharge teaching for a client starting warfarin? Select all that apply.',
+  o: ['Keep every follow-up INR appointment', 'Report bruising or bleeding right away', 'Keep vitamin K intake consistent from day to day', 'Use a soft-bristle toothbrush', 'Shave with an electric razor', 'Stop eating all green leafy vegetables', 'Take a double dose if a dose is missed'], a: [0, 1, 2, 3, 4],
+  rat: 'Her case Q6: INR follow-up, report bruising or bleeding, consistent (not zero) vitamin K, soft-bristle toothbrush, electric razor. Eliminating greens makes INR unstable; doubling doses raises bleeding risk [background].' },
+
+{ id: 181, type: 'sata', cj: 'Recognize Cues', topic: 'Acute respiratory failure',
+  stem: 'Which findings does the nurse expect in a client with early hypoxemic respiratory failure? Select all that apply.',
+  o: ['Restlessness', 'Irritability', 'Tachycardia', 'Tachypnea', 'Bradycardia', 'Flushed skin', 'Cyanosis as the first sign'], a: [0, 1, 2, 3],
+  rat: 'Iggy: hypoxemic respiratory failure — restlessness, irritability or agitation, fatigue, confusion, tachycardia, tachypnea, and cyanosis as a LATE sign. Flushed skin is a hypercapnia finding; bradycardia is an acidosis effect.' },
+
+{ id: 182, type: 'sata', cj: 'Analyze Cues', topic: 'Acute respiratory distress syndrome',
+  stem: 'Which features define acute respiratory distress syndrome? Select all that apply.',
+  o: ['Hypoxemia that persists on 100% oxygen', 'Decreased lung compliance', 'Bilateral ground-glass infiltrates', 'Enlarged heart on chest x-ray', 'Hypoxemia that corrects with a nonrebreather mask', 'Pulmonary edema caused by left-sided heart failure'], a: [0, 1, 2],
+  rat: 'Iggy: refractory hypoxemia (cardinal), decreased pulmonary compliance (stiff lungs), dyspnea, noncardiac bilateral pulmonary edema, and dense bilateral ground-glass infiltrates. The heart is not enlarged, and the edema is not cardiac; an ECG rules out a cardiac cause.' },
+
+{ id: 183, type: 'sata', cj: 'Generate Solutions', topic: 'Mechanical ventilation',
+  stem: 'Which nursing actions are part of the ventilator bundle to prevent ventilator-associated pneumonia? Select all that apply.',
+  o: ['Keep the head of the bed at least 30 degrees', 'Brush teeth with a suction toothbrush at least every 12 hours', 'Use chlorhexidine oral rinse', 'Assess daily for readiness to extubate', 'Keep cuff pressure 20–30 cm H2O', 'Instill saline before each suctioning pass', 'Keep the client deeply sedated to prevent tube movement'], a: [0, 1, 2, 3, 4],
+  rat: 'Iggy bundle: head of bed at least 30 degrees, oral care (suction toothbrush at least every 12 hours with an antimicrobial rinse; her slide: chlorhexidine), ulcer prophylaxis, aspiration prevention, subglottic suctioning, pulmonary hygiene, MINIMIZE sedation, daily assessment for extubation, cuff pressure 20–30 cm H2O. Routine saline instillation is not supported.' },
+
+{ id: 184, type: 'sata', cj: 'Analyze Cues', topic: 'Mechanical ventilation',
+  stem: 'Which situations would trigger a ventilator high-pressure alarm? Select all that apply.',
+  o: ['A mucus plug in the endotracheal tube', 'The client lying on kinked ventilator tubing', 'A pneumothorax', 'Disconnection of the tubing from the endotracheal tube', 'A leak in the endotracheal tube cuff', 'The client stops breathing spontaneously in SIMV'], a: [0, 1, 2],
+  rat: 'Table 26.4: high-pressure — secretions/mucus plug, biting, fighting the ventilator, bronchospasm, pneumothorax, right mainstem displacement, kinks or water in the tubing, decreased compliance. Disconnection, cuff leak, and stopping spontaneous breathing trigger the low exhaled volume alarm.' },
+
+{ id: 185, type: 'sata', cj: 'Generate Solutions', topic: 'Severe COVID-19',
+  stem: 'Which actions are appropriate for a client with critical COVID-19? Select all that apply.',
+  o: ['Perform intubation in an airborne infection isolation room', 'Use a metered-dose inhaler instead of a nebulizer', 'Give venous thromboembolism prophylaxis unless contraindicated', 'Identify a health care surrogate on admission', 'Place the phone and call light within reach', 'Use droplet precautions only during intubation', 'Hold anticoagulants because of bleeding risk from the virus'], a: [0, 1, 2, 3, 4],
+  rat: 'Iggy: aerosolizing procedures in an airborne (negative-pressure) room with full airborne and contact protection including eye protection; metered-dose inhaler preferred; thromboprophylaxis because COVID-19 is hypercoagulable; advance care planning and a surrogate on admission; reduce isolation with phone, call light, updates, and video calls.' },
+
+{ id: 186, type: 'sata', cj: 'Generate Solutions', topic: 'Tracheostomy',
+  stem: 'Which products are appropriate for oral care for a client with a tracheostomy? Select all that apply.',
+  o: ['A sponge tooth cleaner moistened in water', 'A soft-bristle toothbrush moistened in water', 'Alcohol-based mouthwash', 'Glycerin swabs', 'Full-strength hydrogen peroxide rinses every 2 hours'], a: [0, 1],
+  rat: 'Iggy and her slide: use a sponge tooth cleaner or soft-bristle toothbrush moistened in water. Avoid glycerin swabs and alcohol mouthwash — they dry the mouth, change its pH, and promote bacterial growth. Diluted hydrogen peroxide only if ordered (it can break down healing tissue).' },
+
+{ id: 187, type: 'sata', cj: 'Generate Solutions', topic: 'Tracheostomy',
+  stem: 'A client is going home with a permanent tracheostomy. Which teaching points will the nurse include? Select all that apply.',
+  o: ['Use a shower shield over the tube when bathing', 'Wear a medical alert bracelet stating that you cannot speak', 'Increase humidity in the home', 'Sterile technique is required for suctioning at home', 'Keep the stoma uncovered at all times', 'Use alcohol mouthwash to prevent infection'], a: [0, 1, 2],
+  rat: 'Iggy: shower shield; loosely cover the stoma with a small cotton cloth (filters air, keeps humidity); increase home humidity; medical alert bracelet. Clean technique can be used at home. Alcohol mouthwash dries the mouth.' },
+
+{ id: 188, type: 'sata', cj: 'Take Action', topic: 'Chest trauma',
+  stem: 'Which interventions are appropriate for a client with flail chest? Select all that apply.',
+  o: ['Give humidified oxygen', 'Manage pain with IV, epidural, or nerve block analgesia', 'Encourage deep breathing and position for lung expansion', 'Suction secretions as needed', 'Tape the chest wall to stop the paradoxical motion', 'Restrict all analgesics to protect the respiratory drive'], a: [0, 1, 2, 3],
+  rat: 'Iggy: humidified oxygen, pain management, lung expansion through deep breathing and positioning, secretion clearance by coughing and tracheal suction; positive-pressure ventilation if respiratory failure or shock develops. The chest wall is not taped; surgical stabilization only in extreme cases.' },
+
+{ id: 189, type: 'sata', cj: 'Recognize Cues', topic: 'Chest trauma',
+  stem: 'Which findings support a left tension pneumothorax? Select all that apply.',
+  o: ['Trachea deviated to the right', 'Distended neck veins', 'Hypotension', 'Absent breath sounds on the left', 'Hyperresonance on the left', 'Dull percussion on the left', 'Trachea deviated to the left'], a: [0, 1, 2, 3, 4],
+  rat: 'Iggy: pneumothorax — reduced or absent breath sounds and hyperresonance on the affected side; when severe, the trachea shifts AWAY from the injury toward the unaffected side. Tension adds extreme distress, cyanosis, distended neck veins, tachycardia, and hypotension. Dullness = hemothorax.' },
+
+{ id: 190, type: 'sata', cj: 'Analyze Cues', topic: 'Chest trauma',
+  stem: 'Which findings in a client with rib fractures suggest a deep chest injury and a poorer prognosis? Select all that apply.',
+  o: ['Fractures of the first or second ribs', 'Seven or more fractured ribs', 'A flail chest', 'A single fractured rib with pain 6/10', 'Bruising over the fracture site'], a: [0, 1, 2],
+  rat: 'Iggy: clients with injuries to the first or second ribs, flail chest, seven or more fractured ribs, or expired volumes below 15 mL/kg often have a deep chest injury and a poor prognosis.' },
+
+{ id: 191, type: 'sata', lec: true, cj: 'Recognize Cues', topic: 'Pulmonary embolism',
+  stem: 'Her case: a 61-year-old 5 days after hysterectomy, in bed since discharge, now short of breath. Which venous thromboembolism risk factors does the nurse identify? Select all that apply.',
+  o: ['Prolonged immobility', 'Advancing age', 'Recent major surgery', 'Temperature of 99.4°F', 'Bilateral crackles', 'Female sex'], a: [0, 1, 2],
+  rat: 'Her case Q1 key: prolonged immobility, advancing age, and recent major surgery (hysterectomy 5 days ago). A low-grade temperature and crackles are assessment findings, not risk factors.' },
+
+{ id: 192, type: 'sata', cj: 'Recognize Cues', topic: 'Mechanical ventilation',
+  stem: 'A ventilated client’s SpO2 drops to 84% and end-tidal CO2 rises. Using DOPE, what will the nurse check? Select all that apply.',
+  o: ['Whether the tube is displaced', 'Whether the tube is obstructed with secretions', 'Signs of a pneumothorax', 'Problems with the ventilator equipment', 'The client’s last bowel movement', 'Whether the client ate breakfast'], a: [0, 1, 2, 3],
+  rat: 'Iggy critical rescue: with cyanosis, falling SpO2, rising end-tidal CO2, or anxiety, check DOPE — Displaced tube, Obstructed tube (most often secretions), Pneumothorax, Equipment problems.' },
+/* ---------- FROM CLASS (lecture transcript, Ch. 26) ---------- */
+{ id: 193, type: 'mcq', lec: true, cj: 'Evaluate Outcomes', topic: 'Mechanical ventilation',
+  stem: 'A client was just extubated. How often will the nurse reassess the client’s breathing pattern for respiratory distress or stridor at first?',
+  o: ['Every 5 minutes', 'Every 30 minutes', 'Every 3 hours', 'Once per shift'], a: 0,
+  rat: 'Her slide and Iggy: after extubation, monitor vital signs every 5 minutes at first and assess for respiratory distress and stridor. In class she said the question will ask HOW OFTEN — the answer is every 5 minutes.' },
+
+{ id: 194, type: 'mcq', lec: true, cj: 'Take Action', topic: 'Pulmonary embolism',
+  stem: 'A client becomes suddenly short of breath with SpO2 86% on room air. There is no oxygen order. What will the nurse do?',
+  o: ['Apply oxygen and contact the provider for an order at the same time', 'Wait for the provider to return the call before applying oxygen', 'Apply oxygen; an order is not needed because oxygen is not a drug', 'Apply oxygen for 2 hours, then remove it if the client is comfortable'], a: 0,
+  rat: 'In class: oxygen requires an order and is not a standing order at most facilities — but you never let a hypoxemic client wait. Put the oxygen on based on your assessment and obtain the order at the same time. Removing it on your own schedule without an order is not acceptable.' },
+
+{ id: 195, type: 'mcq', lec: true, cj: 'Take Action', topic: 'Priority',
+  stem: 'A client’s daughter sees her father suddenly struggling to breathe while the nurse is in another room. She asks the nurse later, “Was I allowed to call the Rapid Response Team myself?” What is the nurse’s best response?',
+  o: ['“Yes. Anyone, including family members, can call a rapid response.”', '“No. Only the registered nurse can activate the team.”', '“No. Only a physician can call a rapid response.”', '“Only if the nurse cannot be found within 10 minutes.”'], a: 0,
+  rat: 'In class: anyone can call a rapid response — family, visitors, patient care technicians. The team brings more people faster and speeds up testing.' },
+
+{ id: 196, type: 'mcq', lec: true, cj: 'Take Action', topic: 'Priority',
+  stem: 'The Rapid Response Team arrives and asks the nurse why the team was called. Which report is best?',
+  o: ['“His SpO2 dropped from 95% to 82%, respirations are 34, and he is newly confused.”', '“He just doesn’t look right to me.”', '“He was eating breakfast and then he seemed off.”', '“I’m not sure, but the family was worried.”'], a: 0,
+  rat: 'In class: know why you are calling and give OBJECTIVE information — measurable findings — not subjective impressions.' },
+
+{ id: 197, type: 'mcq', lec: true, cj: 'Take Action', topic: 'Pulmonary embolism drugs',
+  stem: 'A client with a pulmonary embolism is to start a weight-based heparin infusion. Which action is most important before the nurse programs the pump?',
+  o: ['Verify the client’s current, accurate weight and compare it with previous weights', 'Draw a D-dimer level', 'Check the client’s INR', 'Ask the client to rate chest pain'], a: 0,
+  rat: 'In class: heparin is weight-based, and a weight that is off by even 5–15 pounds can over- or under-anticoagulate the client. Check the weight, and look back at prior weights, before you start. Heparin is a high-alert drug (National Patient Safety Goal).' },
+
+{ id: 198, type: 'mcq', lec: true, cj: 'Take Action', topic: 'Tracheostomy',
+  stem: 'A confused client pulls out the tracheostomy tube and throws it on the floor. There is no emergency tracheostomy kit at the bedside. What is the nurse’s priority action?',
+  o: ['Call the Rapid Response Team', 'Rinse the tube with sterile saline and reinsert it', 'Leave the room to find a tracheostomy kit', 'Wait for the surgeon to make rounds'], a: 0,
+  rat: 'In class: nurses do not insert tracheostomies, and a tube from the floor is never reinserted. If no emergency kit is at the bedside, do not run down the hall looking for one — call a rapid response. (Iggy: ventilate with a bag-valve-mask while another person calls; keep a spare tube and obturator at the bedside at all times.)' },
+
+{ id: 199, type: 'mcq', lec: true, cj: 'Generate Solutions', topic: 'Mechanical ventilation',
+  stem: 'A new nurse wants to start chlorhexidine oral rinses for a ventilated client because “it prevents ventilator-associated pneumonia.” What should the preceptor tell the new nurse?',
+  o: ['“Chlorhexidine needs a prescription, usually through the ventilator bundle order set.”', '“Any antiseptic mouthwash can be used without an order.”', '“Oral care is not part of pneumonia prevention.”', '“Use alcohol-based mouthwash instead; it kills more bacteria.”'], a: 0,
+  rat: 'In class: you need an order for chlorhexidine. Iggy: chlorhexidine oral rinse reduces ventilator-associated pneumonia and is part of the bundle; alcohol mouthwash dries the mouth and promotes bacterial growth.' },
+
+{ id: 200, type: 'sata', lec: true, cj: 'Generate Solutions', topic: 'Pulmonary embolism',
+  stem: 'A client is on bed rest after abdominal surgery. Which actions help prevent deep vein thrombosis and pulmonary embolism? Select all that apply.',
+  o: ['Sequential compression devices', 'Ankle pumps and range-of-motion exercises', 'Enoxaparin as prescribed while not ambulating', 'Ambulation as soon as it is ordered', 'A pillow under the knees for comfort', 'Massaging the calves to improve circulation'], a: [0, 1, 2, 3],
+  rat: 'In class: circulation, compression, ambulation — and if they cannot walk, anticoagulants (enoxaparin is usual until the client is up and moving) with sequential compression devices. Box 26.1: no pillow under the knees and never massage the legs.' }
+];
+
+/* ---------- MED MATH (5 questions on her exam: military time, abbreviations, drip rates) ---------- */
+const QM = [
+{ id: 301, type: 'mcq', cj: 'Take Action', topic: 'Military time',
+  stem: 'A medication is due at 2:30 PM. How does the nurse document this time in military (24-hour) time?',
+  o: ['1430', '0230', '1230', '2230'], a: 0,
+  rat: 'For PM times from 1:00 to 11:59, add 12 to the hour: 2 + 12 = 14 → 1430. AM times keep the hour with a leading zero (2:30 AM = 0230).' },
+{ id: 302, type: 'mcq', cj: 'Take Action', topic: 'Military time',
+  stem: 'A prescription was written at 0045. What time is this?',
+  o: ['12:45 AM', '12:45 PM', '4:50 AM', '10:45 PM'], a: 0,
+  rat: 'The 00 hour is the midnight hour, so 0045 = 12:45 AM. 12:45 PM = 1245.' },
+{ id: 303, type: 'mcq', cj: 'Take Action', topic: 'Military time',
+  stem: 'The nurse gives a medication at 9:15 PM. Which time is documented?',
+  o: ['2115', '0915', '1915', '2015'], a: 0,
+  rat: '9 + 12 = 21 → 2115. 0915 is 9:15 AM.' },
+{ id: 304, type: 'mcq', cj: 'Take Action', topic: 'Military time',
+  stem: 'A drug is ordered every 6 hours, starting at 0600. Which schedule is correct?',
+  o: ['0600, 1200, 1800, 2400', '0600, 1000, 1400, 1800', '0600, 1800', '0600, 1300, 2000, 0300'], a: 0,
+  rat: 'Add 6 hours each time: 0600 → 1200 → 1800 → 2400 (midnight, also written 0000).' },
+{ id: 305, type: 'mcq', cj: 'Take Action', topic: 'Military time',
+  stem: 'A client’s IV was started at 2200 and is to run for 8 hours. At what time will it finish?',
+  o: ['0600', '3000', '1800', '1000'], a: 0,
+  rat: '2200 + 8 hours crosses midnight: 2200 → 2400 is 2 hours, plus 6 more = 0600 the next day. There is no 3000 in military time.' },
+{ id: 306, type: 'mcq', cj: 'Take Action', topic: 'Abbreviations',
+  stem: 'Regular insulin is prescribed “ac.” When will the nurse give it?',
+  o: ['Before meals', 'After meals', 'At bedtime', 'As needed'], a: 0,
+  rat: 'ac = ante cibum = before meals. pc = after meals. hs = hour of sleep (bedtime). prn = as needed.' },
+{ id: 307, type: 'mcq', cj: 'Take Action', topic: 'Abbreviations',
+  stem: 'A prescription reads “furosemide 20 mg PO qod.” How often is the drug given?',
+  o: ['Every other day', 'Every day', 'Four times a day', 'Every hour'], a: 0,
+  rat: 'qod = every other day; qd = every day; qid = four times a day; qh = every hour. [Background] The Joint Commission’s “Do Not Use” list includes qd and qod because they are easily confused — write “daily” and “every other day.” Know the meanings for her exam.' },
+{ id: 308, type: 'mcq', cj: 'Take Action', topic: 'Abbreviations',
+  stem: 'A sleep aid is prescribed “qhs.” When does the nurse give it?',
+  o: ['Every night at bedtime', 'Every hour while awake', 'Every 4 hours', 'Once, immediately'], a: 0,
+  rat: 'hs = hour of sleep (bedtime); qhs = every night at bedtime. stat = immediately; q4h = every 4 hours.' },
+{ id: 309, type: 'mcq', cj: 'Take Action', topic: 'Abbreviations',
+  stem: 'Which abbreviation means “three times a day”?',
+  o: ['tid', 'bid', 'qid', 'qd'], a: 0,
+  rat: 'bid = twice a day; tid = three times a day; qid = four times a day; qd = every day.' },
+{ id: 310, type: 'mcq', cj: 'Take Action', topic: 'Abbreviations',
+  stem: 'An antacid is ordered “pc.” When will the nurse give it?',
+  o: ['After meals', 'Before meals', 'At bedtime', 'Before breakfast only'], a: 0,
+  rat: 'pc = post cibum = after meals. ac = before meals.' },
+{ id: 311, type: 'sata', cj: 'Take Action', topic: 'Abbreviations',
+  stem: 'Which abbreviations are matched with the correct meaning? Select all that apply.',
+  o: ['bid — twice a day', 'prn — as needed', 'NPO — nothing by mouth', 'stat — immediately', 'qid — every other day', 'pc — before meals', 'hs — every hour'], a: [0, 1, 2, 3],
+  rat: 'qid = four times a day (qod = every other day); pc = after meals (ac = before meals); hs = hour of sleep / bedtime (qh = every hour).' },
+{ id: 312, type: 'mcq', cj: 'Take Action', topic: 'Drip rates',
+  stem: 'Order: 1,000 mL 0.9% sodium chloride IV over 8 hours by infusion pump. At what rate will the nurse set the pump?',
+  o: ['125 mL/hr', '80 mL/hr', '100 mL/hr', '150 mL/hr'], a: 0,
+  rat: 'mL/hr = total volume ÷ hours = 1,000 ÷ 8 = 125 mL/hr.' },
+{ id: 313, type: 'mcq', cj: 'Take Action', topic: 'Drip rates',
+  stem: 'Order: 1,000 mL lactated Ringer’s over 8 hours. The tubing drop factor is 15 gtt/mL. How many drops per minute will the nurse count? (Round to the nearest whole number.)',
+  o: ['31 gtt/min', '125 gtt/min', '21 gtt/min', '42 gtt/min'], a: 0,
+  rat: 'gtt/min = (volume in mL × drop factor) ÷ time in minutes = (1,000 × 15) ÷ 480 = 31.25 → 31 gtt/min.' },
+{ id: 314, type: 'mcq', cj: 'Take Action', topic: 'Drip rates',
+  stem: 'An antibiotic in 100 mL is to infuse over 30 minutes using tubing with a drop factor of 10 gtt/mL. How many drops per minute? (Round to the nearest whole number.)',
+  o: ['33 gtt/min', '30 gtt/min', '50 gtt/min', '300 gtt/min'], a: 0,
+  rat: '(100 × 10) ÷ 30 = 33.3 → 33 gtt/min.' },
+{ id: 315, type: 'mcq', cj: 'Take Action', topic: 'Drip rates',
+  stem: 'Heparin 25,000 units in 250 mL is infusing. The prescribed dose is 1,000 units/hr. At what rate will the nurse set the pump?',
+  o: ['10 mL/hr', '25 mL/hr', '100 mL/hr', '4 mL/hr'], a: 0,
+  rat: 'Concentration = 25,000 ÷ 250 = 100 units/mL. 1,000 units/hr ÷ 100 units/mL = 10 mL/hr. Heparin is high-alert — have a second nurse check.' },
+{ id: 316, type: 'mcq', cj: 'Take Action', topic: 'Drip rates',
+  stem: 'A 50-mL IV piggyback is to infuse over 20 minutes by pump. At what rate in mL/hr will the nurse set the pump?',
+  o: ['150 mL/hr', '50 mL/hr', '100 mL/hr', '250 mL/hr'], a: 0,
+  rat: 'mL/hr = (volume ÷ minutes) × 60 = (50 ÷ 20) × 60 = 150 mL/hr.' },
+{ id: 317, type: 'mcq', cj: 'Take Action', topic: 'Drip rates',
+  stem: 'A microdrip set (60 gtt/mL) is used to infuse 75 mL/hr by gravity. How many drops per minute?',
+  o: ['75 gtt/min', '60 gtt/min', '125 gtt/min', '45 gtt/min'], a: 0,
+  rat: 'With a 60 gtt/mL microdrip, gtt/min equals mL/hr: (75 × 60) ÷ 60 = 75 gtt/min.' },
+{ id: 318, type: 'mcq', cj: 'Take Action', topic: 'Dosage',
+  stem: 'A client weighs 176 lb. The weight-based heparin protocol needs the weight in kilograms. What weight will the nurse use?',
+  o: ['80 kg', '387 kg', '88 kg', '70 kg'], a: 0,
+  rat: 'kg = lb ÷ 2.2 = 176 ÷ 2.2 = 80 kg. In class she stressed verifying an accurate weight before weight-based heparin.' },
+{ id: 319, type: 'mcq', cj: 'Take Action', topic: 'Dosage',
+  stem: 'Order: 0.5 g of a drug by mouth. Available: 250-mg tablets. How many tablets will the nurse give?',
+  o: ['2 tablets', '0.5 tablet', '1 tablet', '20 tablets'], a: 0,
+  rat: '0.5 g = 500 mg. 500 mg ÷ 250 mg per tablet = 2 tablets.' }
+];
+
+/* ---------- HIGH-LEVEL MOCK: Bloom’s Analyze / Evaluate / Create (multiple choice + SATA + med math) ---------- */
+const QH = [
+/* ===== CHAPTER 26 ===== */
+{ id: 401, hl: true, ch: 26, bloom: 'Evaluate', type: 'mcq', cj: 'Prioritize Hypotheses', topic: 'Priority',
+  stem: 'Which client should the nurse see first?',
+  o: ['Day 2 after hip replacement: HR 118, RR 28, restless, says “something bad is happening”', 'Chronic obstructive pulmonary disease: SpO2 89% on 2 L, baseline 88–90%', 'Heparin infusion: aPTT 2.6 times control, no bleeding noted', 'Three rib fractures: pain 7/10, splinting, due for an analgesic in 20 minutes'], a: 0,
+  rat: 'Every client is abnormal. The post-op orthopedic client has new tachycardia, tachypnea, restlessness, and a sense of impending doom — the Box 26.2 picture of pulmonary embolism, which is acute and unstable (Iggy: begin management before diagnostics are done). The COPD saturation is at baseline (chronic, stable). An aPTT slightly above range is adjusted by protocol and there is no bleeding. Rib pain matters for ventilation but is not a life threat right now.' },
+
+{ id: 402, hl: true, ch: 26, bloom: 'Analyze', type: 'mcq', cj: 'Analyze Cues (Trend)', topic: 'Pulmonary embolism',
+  stem: 'A client with a confirmed pulmonary embolism had an arterial blood gas at 0800 of pH 7.48, PaCO2 30 mm Hg, HCO3 24. At 1100: pH 7.31, PaCO2 52 mm Hg, HCO3 24. The client is drowsier. What is the best interpretation?',
+  o: ['Worsening gas exchange — shunting is now causing carbon dioxide retention', 'Improvement — the alkalosis has resolved', 'Metabolic compensation for the earlier alkalosis', 'An expected effect of the heparin infusion'], a: 0,
+  rat: 'Iggy: pulmonary embolism first causes respiratory alkalosis (low PaCO2 from hyperventilation); as shunting worsens, PaCO2 rises and respiratory acidosis develops — a sign of deterioration, made clear by the falling level of consciousness (a hypercapnia sign). The HCO3 is unchanged, so there is no metabolic process. A pH moving through normal on the way to acidosis is not improvement.' },
+
+{ id: 404, hl: true, ch: 26, bloom: 'Create', type: 'mcq', cj: 'Generate Solutions', topic: 'Pulmonary embolism',
+  stem: 'The nurse is writing the plan of care for a client admitted 1 hour ago with a pulmonary embolism. HR 124, SpO2 88% on 4 L, BP 98/60. Which expected outcome has the highest priority?',
+  o: ['Maintains SpO2 of at least 90% with unlabored breathing', 'Remains free of bleeding while on anticoagulants', 'States three ways to prevent venous thromboembolism at home', 'Walks in the hallway three times a day'], a: 0,
+  rat: 'Iggy’s three outcomes for pulmonary embolism: adequate gas exchange, no hypovolemia/shock, no bleeding. Gas exchange comes first (airway/breathing). Bleeding prevention is a real but potential problem; teaching and ambulation come later — ambulation is unsafe while hypoxemic (her case Q4).' },
+
+{ id: 405, hl: true, ch: 26, bloom: 'Analyze', type: 'mcq', cj: 'Analyze Cues', topic: 'Pulmonary embolism',
+  stem: 'A client with a pulmonary embolism has BP 112/70 (stable for 6 hours), elevated troponin and BNP, and right ventricular dilation on imaging. How does the nurse classify this pulmonary embolism, and what treatment is anticipated?',
+  o: ['Submassive; anticoagulation with close monitoring', 'Massive; immediate systemic thrombolysis', 'Nonmassive; discharge on an oral anticoagulant today', 'Massive; inferior vena cava filter instead of anticoagulation'], a: 0,
+  rat: 'Table 26.2: massive = SBP below 90 for at least 15 minutes (systemic thrombolysis); submassive = normal BP but right ventricular dysfunction or elevated BNP/troponin; nonmassive = no right ventricular strain. An inferior vena cava filter is for clients who cannot receive anticoagulation or who clot despite it.' },
+
+{ id: 406, hl: true, ch: 26, bloom: 'Evaluate', type: 'sata', cj: 'Evaluate Outcomes', topic: 'Pulmonary embolism drugs',
+  stem: 'A client is on day 6 of a heparin infusion with warfarin. Which findings require the nurse to follow up? Select all that apply.',
+  o: ['aPTT 3.4 times control', 'Platelet count fell from 250,000 to 95,000/mm³', 'Black, tarry stool', 'New abdominal pain with distension', 'INR 2.4', 'Small fading bruise at yesterday’s blood draw site'], a: [0, 1, 2, 3],
+  rat: 'aPTT therapeutic range is 1.5–2.5 times control (Ch. 30) — 3.4 is supratherapeutic. A large platelet drop on heparin suggests heparin-induced thrombocytopenia (Iggy names it as a risk and a reason to prefer low-molecular-weight heparin). Tarry stool and abdominal pain/distension are Iggy bleeding cues. INR 2.4 is in the 2–3 target (heparin can stop once INR > 2 for 24 hours). A small fading bruise is minor.' },
+
+{ id: 407, hl: true, ch: 26, bloom: 'Analyze', type: 'mcq', cj: 'Analyze Cues', topic: 'Acute respiratory failure',
+  stem: 'A post-op client using opioid patient-controlled analgesia has RR 8, SpO2 94% on 3 L by nasal cannula, end-tidal CO2 58 mm Hg, and is hard to arouse. Which conclusion is best supported?',
+  o: ['Ventilatory failure; the oxygen is masking the problem on pulse oximetry', 'Oxygenation failure from a pulmonary embolism', 'Adequate gas exchange because SpO2 is above 92%', 'Expected postoperative sleepiness'], a: 0,
+  rat: 'Iggy: end-tidal CO2 may be more valuable than pulse oximetry — SpO2 can look adequate while CO2 rises toward failure. Opioids are an extrapulmonary cause of ventilatory (hypercapnic) failure (her ARS 2); decreased level of consciousness is a hypercapnia sign. Supplemental oxygen keeps SpO2 up even while ventilation fails.' },
+
+{ id: 408, hl: true, ch: 26, bloom: 'Evaluate', type: 'mcq', cj: 'Take Action', topic: 'Acute respiratory distress syndrome',
+  stem: 'A client with sepsis has SpO2 85% on a 100% nonrebreather mask, RR 36, retractions, and bilateral infiltrates with a normal heart size. The provider says, “Increase the oxygen flow and recheck in an hour.” What is the nurse’s best response?',
+  o: ['Request evaluation for intubation and mechanical ventilation with PEEP', 'Increase the oxygen flow and recheck in 1 hour', 'Give furosemide for cardiogenic pulmonary edema', 'Place the client flat to reduce the work of breathing'], a: 0,
+  rat: 'Hypoxemia that persists on 100% oxygen is refractory hypoxemia — the cardinal feature of acute respiratory distress syndrome (sepsis is the most common cause). More oxygen will not correct a shunt. Iggy: the client often needs intubation and mechanical ventilation with PEEP. Normal heart size argues against cardiogenic edema; upright positioning eases breathing.' },
+
+{ id: 409, hl: true, ch: 26, bloom: 'Analyze', type: 'mcq', cj: 'Analyze Cues', topic: 'Mechanical ventilation',
+  stem: 'A client with acute respiratory distress syndrome on PEEP 14 cm H2O suddenly has a high-pressure alarm, absent breath sounds on the left, the trachea shifted to the right, and BP 78/48. Which mechanism best explains these findings?',
+  o: ['Barotrauma causing a tension pneumothorax', 'Endotracheal tube in the right mainstem bronchus', 'A mucus plug in the endotracheal tube', 'Disconnection of the ventilator circuit'], a: 0,
+  rat: 'Iggy: barotrauma (pressure injury) can rupture alveoli and cause pneumothorax; PEEP raises the risk, so lung sounds are checked hourly. Tracheal shift away from the silent side plus hypotension = tension pneumothorax. A right mainstem tube does not shift the trachea or drop BP this way; a mucus plug causes high pressure without tracheal deviation; a disconnection triggers the LOW exhaled volume alarm.' },
+
+{ id: 410, hl: true, ch: 26, bloom: 'Create', type: 'sata', cj: 'Generate Solutions', topic: 'Acute respiratory distress syndrome',
+  stem: 'The nurse is planning prone positioning for a ventilated client with moderate acute respiratory distress syndrome. Which actions belong in the plan? Select all that apply.',
+  o: ['Have at least four staff members coordinate the turn', 'Secure the endotracheal tube and all lines before turning', 'Move ECG leads from the chest to the back', 'Inspect the face and pressure points for injury', 'Plan for at least 12 hours a day in the prone position', 'Limit proning to 1 hour because longer periods increase mortality', 'Delay proning until the client fails all other therapy'], a: [0, 1, 2, 3, 4],
+  rat: 'Iggy: proning reduces mortality in moderate–severe disease on low tidal volume; start early, at least 12 hours a day; at least four people; risks include dislodged tubes and lines, airway obstruction, pressure injury, facial edema, hypotension, arrhythmia, brachial plexus injury. ECG leads go on the back (COVID-19 section). Delaying until other therapy fails and 1-hour limits contradict the evidence.' },
+
+{ id: 413, hl: true, ch: 26, bloom: 'Evaluate', type: 'mcq', cj: 'Take Action', topic: 'Mechanical ventilation',
+  stem: 'Right after intubation, end-tidal CO2 is detected, but breath sounds are louder on the right, the left chest rises less, and SpO2 is 89%. What is the nurse’s best action?',
+  o: ['Notify the provider to reposition the tube before it is secured, then confirm with chest x-ray', 'Secure the tube at the current depth because CO2 confirms tracheal placement', 'Remove the tube and reintubate', 'Increase the FiO2 and reassess in 30 minutes'], a: 0,
+  rat: 'CO2 confirms the trachea, not depth. Unequal breath sounds and chest rise point to the right mainstem bronchus; Iggy: the provider can pull the tube back without a full reintubation, and placement is confirmed by chest x-ray (tip about 2 cm above the carina). Securing it in the wrong position or just raising FiO2 leaves the left lung unventilated.' },
+
+{ id: 414, hl: true, ch: 26, bloom: 'Analyze', type: 'mcq', cj: 'Analyze Cues (Trend)', topic: 'Mechanical ventilation',
+  stem: 'A ventilated client’s peak inspiratory pressure has risen slowly from 24 to 38 cm H2O over 2 days. Secretions are scant, the tube position is unchanged, and the tubing is clear. What does this trend most likely indicate?',
+  o: ['Decreasing lung compliance from worsening lung disease', 'An acute mucus plug', 'A leak in the endotracheal tube cuff', 'Disconnection from the ventilator'], a: 0,
+  rat: 'Table 26.4: a gradual increase in peak pressure over hours to a day reflects decreased compliance (stiff lungs), as in acute respiratory distress syndrome or pneumonia. A plug causes a sudden rise; cuff leaks and disconnections LOWER pressure and trigger the low exhaled volume alarm.' },
+
+{ id: 415, hl: true, ch: 26, bloom: 'Analyze', type: 'mcq', cj: 'Analyze Cues', topic: 'Mechanical ventilation',
+  stem: 'An intubated client becomes anxious; SpO2 falls to 84%, end-tidal CO2 rises, peak pressure is high, breath sounds are equal, and the nurse cannot pass a suction catheter. Using DOPE, which cause is most likely?',
+  o: ['Obstructed tube', 'Displaced tube', 'Pneumothorax', 'Equipment failure'], a: 0,
+  rat: 'Iggy DOPE: displaced, obstructed (most often secretions), pneumothorax, equipment. Iggy also lists difficulty inserting a suction catheter and high peak pressures as indicators of tube obstruction. Equal breath sounds argue against displacement and pneumothorax.' },
+
+{ id: 416, hl: true, ch: 26, bloom: 'Evaluate', type: 'mcq', cj: 'Take Action', topic: 'Delegation',
+  stem: 'Which task is appropriate for the nurse to assign to a licensed practical nurse?',
+  o: ['Suction the established tracheostomy of a stable client', 'Assess a client extubated 15 minutes ago for stridor', 'Teach a family how to care for a new tracheostomy', 'Evaluate a client’s first spontaneous breathing trial'], a: 0,
+  rat: '[Delegation rules are background from fundamentals.] Routine care for a stable client with an established airway fits the practical nurse’s scope. A just-extubated client is unstable (stridor is a late sign needing immediate rescue), and initial teaching and evaluating a weaning trial require RN assessment and judgment.' },
+
+{ id: 417, hl: true, ch: 26, bloom: 'Evaluate', type: 'mcq', cj: 'Evaluate Outcomes', topic: 'Mechanical ventilation',
+  stem: 'Forty minutes into a spontaneous breathing trial, a client has RR 34, HR 128, SpO2 86%, diaphoresis, and accessory muscle use. What should the nurse do?',
+  o: ['End the trial, return to the prior ventilator support, and notify the provider and respiratory therapist', 'Continue to 60 minutes so the arterial blood gas can be drawn', 'Give a sedative so the client can finish the trial', 'Prepare for extubation because the client is breathing spontaneously'], a: 0,
+  rat: 'Box 26.9: hemodynamic and pulmonary status are monitored during a spontaneous breathing trial; this client is failing (tachypnea, tachycardia, desaturation, distress). Iggy: promptly coordinate with the provider and respiratory therapist when the client does not respond. Pushing on, sedating, or extubating risks respiratory arrest.' },
+
+{ id: 418, hl: true, ch: 26, bloom: 'Evaluate', type: 'sata', cj: 'Recognize Cues', topic: 'Mechanical ventilation',
+  stem: 'A client was extubated 30 minutes ago. Which findings require immediate action? Select all that apply.',
+  o: ['High-pitched crowing sound on inspiration', 'Unable to cough up secretions with mild dyspnea', 'SpO2 88% on face mask', 'Hoarse voice', 'Sore throat', 'Large amount of oral secretions at the moment of removal'], a: [0, 1, 2],
+  rat: 'Iggy: early obstruction = mild dyspnea, coughing, inability to expectorate; stridor = late sign → call the Rapid Response Team before the airway closes. SpO2 below 90% needs action. Hoarseness, sore throat, and large oral secretions at removal are expected.' },
+
+{ id: 419, hl: true, ch: 26, bloom: 'Evaluate', type: 'mcq', cj: 'Prioritize Hypotheses', topic: 'Tracheostomy',
+  stem: 'A client is 1 day after tracheostomy. Which finding is the nurse’s priority?',
+  o: ['Puffy skin around the stoma that crackles when pressed and is spreading up the neck', 'A small amount of blood on the tracheostomy dressing', 'Thick secretions in the inner cannula', 'The client is frustrated about not being able to talk'], a: 0,
+  rat: 'Subcutaneous emphysema means air is escaping through a tear into the tissues; when it spreads into the neck, the airway can be affected — Iggy: notify the surgeon immediately. Small bleeding the first days is expected; inner cannula secretions are handled with care and suctioning; communication needs matter but are not the airway threat.' },
+
+{ id: 420, hl: true, ch: 26, bloom: 'Analyze', type: 'mcq', cj: 'Analyze Cues', topic: 'Tracheostomy',
+  stem: 'A client with a cuffed tracheostomy and a nasogastric tube now coughs and chokes when eating, food particles appear in tracheal secretions, and more air is needed in the cuff to keep a seal. Which complication is most likely?',
+  o: ['Tracheoesophageal fistula', 'Tracheoinnominate artery fistula', 'Tracheal stenosis', 'Subcutaneous emphysema'], a: 0,
+  rat: 'Table 26.6: excessive cuff pressure erodes the posterior tracheal wall into the esophagus; highest risk with a nasogastric tube. Signs: food in secretions, coughing/choking while eating, more cuff air needed, set tidal volume not delivered. Tracheoinnominate fistula = pulsating tube and heavy bleeding; stenosis appears after cuff deflation or tube removal; subcutaneous emphysema = crackling skin.' },
+
+{ id: 421, hl: true, ch: 26, bloom: 'Evaluate', type: 'sata', cj: 'Take Action', topic: 'Tracheostomy',
+  stem: 'A nurse is supervising a student giving tracheostomy care. Which actions require the nurse to intervene? Select all that apply.',
+  o: ['Cuts a gauze pad to fit around the tube', 'Removes the old ties before the new ties are secured', 'Plans to suction every 2 hours on schedule', 'Uses an alcohol-based mouthwash for oral care', 'Cleans the stoma site and then the faceplate', 'Leaves room for one finger under the new ties'], a: [0, 1, 2, 3],
+  rat: 'Iggy: never cut gauze (fibers can be aspirated); keep old ties on until new ties are secure (prevents decannulation); suction by assessment cues, not a schedule (her slide); avoid alcohol mouthwash and glycerin (a “staple question,” per class). Cleaning stoma then faceplate and a one-finger fit are correct.' },
+
+{ id: 422, hl: true, ch: 26, bloom: 'Analyze', type: 'mcq', cj: 'Analyze Cues', topic: 'Chest trauma',
+  stem: 'After a car crash, a client has left chest pain, absent breath sounds and hyperresonance on the left, trachea midline, BP 128/76, HR 104, SpO2 92% on 2 L. Which conclusion is best supported?',
+  o: ['Simple pneumothorax; prepare for chest tube placement and watch for tension', 'Tension pneumothorax needing immediate needle decompression', 'Hemothorax requiring thoracotomy', 'Flail chest requiring positive-pressure ventilation'], a: 0,
+  rat: 'Absent breath sounds and hyperresonance on one side = pneumothorax. Tension adds tracheal deviation away from the injured side, distended neck veins, and hemodynamic instability — none are present yet. Hemothorax is dull to percussion; flail chest shows paradoxical movement. Iggy: more severe pneumothorax is treated with a chest tube; keep assessing for tension.' },
+
+{ id: 423, hl: true, ch: 26, bloom: 'Evaluate', type: 'mcq', cj: 'Evaluate Outcomes', topic: 'Chest trauma',
+  stem: 'A client with flail chest was intubated and placed on positive-pressure ventilation. Which finding best shows this treatment is effective?',
+  o: ['The injured segment now moves with the rest of the chest and PaO2 has risen to 88 mm Hg', 'Pain is rated 3/10 after an epidural', 'The client no longer coughs', 'Bruising over the chest is fading'], a: 0,
+  rat: 'Iggy: flail chest is usually stabilized by positive-pressure ventilation; monitor ABGs. Loss of paradoxical motion plus better oxygenation shows the intervention worked. Pain control and bruising do not measure stabilization; loss of cough is not a goal.' },
+
+/* ===== CHAPTER 38 ===== */
+{ id: 425, hl: true, ch: 38, bloom: 'Evaluate', type: 'mcq', cj: 'Prioritize Hypotheses', topic: 'Priority',
+  stem: 'Which client should the nurse see first?',
+  o: ['Alteplase infusing for 30 minutes; new severe headache and vomiting', 'Right hemisphere stroke; keeps trying to get out of bed', 'Left hemisphere stroke; crying and frustrated when trying to speak', 'Mild traumatic brain injury; GCS 15, headache 4/10'], a: 0,
+  rat: 'Every client needs attention, but headache and vomiting during alteplase signal intracerebral hemorrhage — Box 38.4: stop the infusion and notify immediately. The impulsive right-hemisphere client is a fall risk (safety), and the aphasic client needs support, but neither is actively bleeding into the brain. A GCS of 15 with a mild headache is stable.' },
+
+{ id: 426, hl: true, ch: 38, bloom: 'Analyze', type: 'mcq', cj: 'Analyze Cues', topic: 'Stroke',
+  stem: 'A right-handed client has sudden right arm weakness, cannot name common objects, and has lost the right half of the visual field in both eyes. Which additional finding does the nurse anticipate?',
+  o: ['Difficulty reading and writing', 'Neglect of the left side of the body', 'Impulsive behavior with poor judgment', 'Unaware of having any deficits'], a: 0,
+  rat: 'Right body weakness, aphasia, and a right homonymous field cut localize to the dominant LEFT hemisphere (middle cerebral artery territory). Left-hemisphere strokes cause aphasia, alexia, agraphia, and acalculia. Left neglect, impulsivity, and unawareness of deficits are right-hemisphere findings.' },
+
+{ id: 427, hl: true, ch: 38, bloom: 'Evaluate', type: 'mcq', cj: 'Analyze Cues', topic: 'Stroke drugs',
+  stem: 'A client woke at 0630 with left-sided weakness. Her husband last saw her acting normally when she went to bed at 2200. CT shows no hemorrhage. It is now 0715. How does the nurse evaluate eligibility for IV alteplase?',
+  o: ['Not eligible; last known well was more than 4.5 hours ago', 'Eligible; symptoms were discovered less than 1 hour ago', 'Eligible; CT shows no hemorrhage', 'Not eligible; ischemic strokes do not receive alteplase'], a: 0,
+  rat: 'Time is counted from LAST KNOWN WELL (2200), not discovery — over 9 hours. Iggy: alteplase within 3 hours (up to 4.5 hours with exclusions). A negative CT is necessary but not sufficient. In class: endovascular clot removal may still be considered up to 24 hours for selected large-vessel occlusions.' },
+
+{ id: 428, hl: true, ch: 38, bloom: 'Evaluate', type: 'mcq', cj: 'Take Action', topic: 'Stroke drugs',
+  stem: 'Two hours after alteplase was completed, a client’s BP is 188/108 mm Hg. The neurologic exam is unchanged. What will the nurse do?',
+  o: ['Give the prescribed IV antihypertensive per protocol and notify the provider', 'Document it; BP is expected to be high after a stroke', 'Start aspirin 325 mg to prevent another clot', 'Lower the head of the bed to flat'], a: 0,
+  rat: 'Iggy: after alteplase the BP goal is below 180/105 — this exceeds it and raises the risk of hemorrhagic conversion; labetalol is the protocol drug, avoiding a sudden drop. No antiplatelet within 24 hours of a fibrinolytic and not before follow-up imaging.' },
+
+{ id: 429, hl: true, ch: 38, bloom: 'Create', type: 'sata', cj: 'Generate Solutions', topic: 'Stroke',
+  stem: 'The nurse is developing the plan for a client with a right hemisphere stroke, left unilateral neglect, and left homonymous hemianopsia. Which interventions belong in the plan? Select all that apply.',
+  o: ['Teach the client to turn the head from side to side to scan the environment', 'Dress the affected side first', 'Keep the bed low and the call light within the client’s visual field', 'Position the bed so the unaffected side faces the door', 'Place all items on the left side so the client is forced to use it', 'Apply bilateral wrist restraints while the family is away'], a: [0, 1, 2, 3],
+  rat: 'Iggy: teach scanning for homonymous hemianopsia; dress the affected side first with neglect; impulsivity makes fall prevention the priority; items and the call light go where the client can see them; the unaffected side faces the door (also stressed in class). Putting needed items only on the neglected side means the client will not find them; restraints are a last resort.' },
+
+{ id: 430, hl: true, ch: 38, bloom: 'Analyze', type: 'mcq', cj: 'Analyze Cues', topic: 'Stroke',
+  stem: 'While lifting weights, a 48-year-old develops a sudden severe headache, vomits, and becomes progressively drowsy. BP is 210/118. Which conclusion and action are best supported?',
+  o: ['Probable hemorrhagic stroke; prepare for immediate CT and give no antithrombotic drugs', 'Probable ischemic stroke; give aspirin now', 'Probable transient ischemic attack; observe for 24 hours', 'Probable migraine; give an analgesic and dim the lights'], a: 0,
+  rat: 'Iggy: hemorrhagic strokes tend to occur during activity, begin abruptly, and cause decreasing level of consciousness (with headache and vomiting from rising pressure); ischemic strokes usually leave the client awake. Imaging must rule out bleeding before any antiplatelet, anticoagulant, or fibrinolytic.' },
+
+{ id: 431, hl: true, ch: 38, bloom: 'Evaluate', type: 'mcq', cj: 'Take Action', topic: 'Delegation',
+  stem: 'Which assignment to assistive personnel on a stroke unit requires the nurse to intervene?',
+  o: ['Feeding breakfast to a client admitted overnight who has not yet had a swallow screen', 'Taking vital signs on a client who had a stroke 3 days ago', 'Helping a client who passed a swallow screen eat lunch', 'Turning a client with left hemiparesis every 2 hours'], a: 0,
+  rat: 'Every stroke client is NPO until swallowing is assessed (Iggy; her case: “before the client is given any liquids, food, or medication, he must be screened”). Feeding a client who swallows safely, routine vital signs on a stable client, and turning are within the scope of assistive personnel.' },
+
+{ id: 432, hl: true, ch: 38, bloom: 'Evaluate', type: 'mcq', ext: true, cj: 'Evaluate Outcomes', topic: 'Stroke',
+  stem: 'After stroke teaching, which statement by a client’s wife shows she understands when to call 911?',
+  o: ['“If his face droops or he loses his balance, I’ll call 911 right away and note the time, even if it goes away.”', '“If his symptoms go away within an hour, I’ll mention it at his next appointment.”', '“I’ll give him an aspirin first and call 911 if it doesn’t help.”', '“I’ll call 911 only if his arm, face, and speech are all affected.”'], a: 0,
+  rat: 'BE FAST (taught and tested in class; Iggy teaches FAST): any one sign — Balance, Eyes, Face, Arms, Speech — means call 911, and Time means note when it started (onset time decides treatment). A resolved episode can be a transient ischemic attack, a warning of stroke. Aspirin is not given before imaging rules out hemorrhage.' },
+
+{ id: 433, hl: true, ch: 38, bloom: 'Analyze', type: 'mcq', cj: 'Analyze Cues', topic: 'Stroke',
+  stem: 'Six days after a subarachnoid hemorrhage, a client who had been improving becomes newly confused and develops right-sided weakness. What is the most likely cause?',
+  o: ['Cerebral vasospasm', 'Expected postictal confusion', 'Hypoglycemia from NPO status', 'Transient ischemic attack unrelated to the hemorrhage'], a: 0,
+  rat: 'Iggy: vasospasm after subarachnoid hemorrhage typically occurs days 4–14 and causes new ischemic deficits; nimodipine is used to prevent and treat it. No seizure was described; a glucose check rules out a mimic but does not explain the timing.' },
+
+{ id: 434, hl: true, ch: 38, bloom: 'Analyze', type: 'mcq', cj: 'Analyze Cues (Trend)', topic: 'Traumatic brain injury',
+  stem: 'A client hit in the temple with a baseball was unconscious briefly, then alert and talking for 2 hours. Now the client is drowsy and the right pupil is larger and sluggish. What is happening?',
+  o: ['An expanding epidural hematoma with compression of cranial nerve III', 'A concussion with expected post-injury fatigue', 'A chronic subdural hematoma', 'Postconcussion syndrome'], a: 0,
+  rat: 'Iggy: epidural hematoma (often middle meningeal artery with a temporal fracture) classically shows brief loss of consciousness, a lucid interval, then rapid deterioration — monitor every 5–10 minutes. A unilateral dilated, sluggish pupil = cranial nerve III compression (herniation). This is a surgical emergency. Chronic subdural bleeding develops over weeks.' },
+
+{ id: 435, hl: true, ch: 38, bloom: 'Evaluate', type: 'mcq', cj: 'Take Action', topic: 'Increased intracranial pressure',
+  stem: 'A client with a head injury has this trend over 4 hours: GCS 13 → 10; BP 148/80 → 184/62; HR 82 → 52; RR 18 → irregular. What is the nurse’s priority?',
+  o: ['Notify the provider immediately — these are late signs of increased intracranial pressure', 'Give the PRN antihypertensive for BP above 180', 'Recheck in 1 hour; the heart rate is within normal limits', 'Give the PRN analgesic for a likely headache'], a: 0,
+  rat: 'Falling GCS (a 2-point drop is significant), widening pulse pressure (68 → 122), bradycardia, and irregular respirations = Cushing triad: very late, herniation may be imminent. Treating the BP alone misses the brain; a heart rate of 52 is not reassuring in this context.' },
+
+{ id: 436, hl: true, ch: 38, bloom: 'Evaluate', type: 'mcq', cj: 'Evaluate Outcomes', topic: 'Traumatic brain injury',
+  stem: 'Twelve hours after a severe traumatic brain injury, the respiratory therapist increased the ventilator rate. The new arterial blood gas shows PaCO2 26 mm Hg and PaO2 92 mm Hg. How does the nurse evaluate this?',
+  o: ['A concern — hyperventilation causes cerebral vasoconstriction and ischemia in the first 24 hours', 'Ideal — low carbon dioxide lowers intracranial pressure safely', 'Ideal — the PaO2 is in the target range so no change is needed', 'A concern only because the PaO2 is too high'], a: 0,
+  rat: 'Iggy: carbon dioxide is a potent vasodilator, but avoid hyperventilation in the first 24 hours — low PaCO2 constricts cerebral vessels and causes ischemia (secondary injury). PaO2 80–100 is the target, so oxygenation is fine; the problem is the PaCO2.' },
+
+{ id: 437, hl: true, ch: 38, bloom: 'Create', type: 'sata', cj: 'Generate Solutions', topic: 'Increased intracranial pressure',
+  stem: 'The nurse is planning care to prevent increases in intracranial pressure for a ventilated client with a traumatic brain injury. Which interventions belong in the plan? Select all that apply.',
+  o: ['Head of bed at least 30 degrees', 'Head and neck in midline', 'Avoid hip and neck flexion', 'Hyperoxygenate before and after suctioning', 'Give lidocaine as prescribed to suppress coughing', 'Place in Trendelenburg position during turns', 'Hyperventilate during every suctioning pass'], a: [0, 1, 2, 3, 4],
+  rat: 'Iggy: HOB at least 30 degrees, head midline, log roll, avoid hip and neck flexion (they impede venous drainage); hyperoxygenate around suctioning but avoid aggressive hyperventilation; lidocaine (IV or endotracheal) suppresses cough, which raises pressure. Head-down positioning raises intracranial pressure.' },
+
+{ id: 438, hl: true, ch: 38, bloom: 'Evaluate', type: 'mcq', cj: 'Evaluate Outcomes', topic: 'Increased intracranial pressure',
+  stem: 'A client is receiving mannitol every 6 hours. Before the next dose, which finding should the nurse report and question the dose?',
+  o: ['Serum osmolarity 328 mOsm/L', 'Serum osmolarity 314 mOsm/L', 'Urine output 160 mL in the hour after the last dose', 'Intracranial pressure decreased from 24 to 15 mm Hg'], a: 0,
+  rat: 'Iggy: the osmolarity goal with mannitol is 310–320 mOsm/L; above that, the risk of dehydration and renal failure rises. 314 is on target, diuresis after a dose is expected, and a falling pressure shows the drug is working.' },
+
+{ id: 439, hl: true, ch: 38, bloom: 'Analyze', type: 'mcq', cj: 'Analyze Cues', topic: 'Traumatic brain injury',
+  stem: 'A ventilated client with a brain injury is on a propofol infusion and appears sedated, but grimaces, and HR and BP rise each time the client is turned. What does the nurse conclude?',
+  o: ['The client has unrelieved pain; propofol provides no analgesia, so an opioid such as fentanyl is needed', 'The propofol dose is too high', 'These are expected responses that need no treatment', 'The client needs a neuromuscular blocking agent'], a: 0,
+  rat: 'Iggy: propofol and midazolam sedate but are not effective for pain; fentanyl is used for pain with fewer blood pressure and heart rate effects than morphine. Pain raises intracranial pressure. A paralytic would hide the signs without treating pain.' },
+
+{ id: 440, hl: true, ch: 38, bloom: 'Analyze', type: 'mcq', cj: 'Analyze Cues', topic: 'Traumatic brain injury',
+  stem: 'After a fall, clear fluid drips from a client’s nose. On white gauze it forms a yellow ring around a blood spot. Which interpretation and action are correct?',
+  o: ['Cerebrospinal fluid leak from a basilar skull fracture; report it and avoid inserting anything through the nose', 'Sinus drainage; give a decongestant', 'Epistaxis; pack the nose and apply ice', 'Normal mucus; continue routine neuro checks'], a: 0,
+  rat: 'Iggy: the halo sign suggests a cerebrospinal fluid leak from a basilar skull fracture; the fluid can be tested for glucose. Iggy Ch. 26: the nasal route is avoided with possible basilar skull fracture. Packing or nasal devices risk infection and further injury.' },
+
+{ id: 441, hl: true, ch: 38, bloom: 'Analyze', type: 'mcq', cj: 'Analyze Cues', topic: 'Brain tumor / craniotomy',
+  stem: 'After a pituitary tumor resection, a client reports extreme thirst. Urine output is 450 mL/hr for 2 hours and is very pale; serum sodium is 151 mEq/L. Which complication is most likely?',
+  o: ['Central diabetes insipidus (arginine vasopressin deficiency)', 'Syndrome of inappropriate antidiuretic hormone', 'Expected diuresis from IV fluids given in surgery', 'Acute kidney injury'], a: 0,
+  rat: 'Iggy: pituitary involvement can cause central diabetes insipidus — large volumes of very dilute urine, rising serum osmolarity and sodium, extreme thirst. SIADH is the opposite (low sodium, little urine). Report promptly; untreated it causes dehydration and seizures.' },
+
+{ id: 442, hl: true, ch: 38, bloom: 'Create', type: 'mcq', cj: 'Generate Solutions', topic: 'Brain tumor / craniotomy',
+  stem: 'Two days after craniotomy for a pituitary tumor, a client has serum sodium 126 mEq/L, low urine output, and a 2-kg weight gain. Which prescription does the nurse anticipate adding to the plan?',
+  o: ['Restrict fluids to about 1500 mL per day', 'Increase IV fluids to 200 mL/hr', 'Encourage at least 3 liters of oral fluid daily', 'Hold all antiepileptic drugs'], a: 0,
+  rat: 'Low sodium, low urine output, and weight gain = SIADH (water retention). Iggy: anticipate fluid restriction to 1500 mL/day if SIADH develops with pituitary involvement. Extra fluids worsen dilutional hyponatremia; antiepileptics continue.' },
+
+{ id: 443, hl: true, ch: 38, bloom: 'Evaluate', type: 'mcq', cj: 'Evaluate Outcomes', topic: 'Traumatic brain injury',
+  stem: 'The nurse teaches the roommate of a client discharged after a mild traumatic brain injury. Which statement indicates a need for more teaching?',
+  o: ['“A couple of beers tonight will help him sleep.”', '“I’ll bring him back if clear fluid drains from his nose or ear.”', '“He can take acetaminophen every 4 hours for the headache.”', '“I’ll call 911 if his pupils look different sizes or he gets harder to wake.”'], a: 0,
+  rat: 'Iggy mild TBI teaching: acetaminophen every 4 hours as needed; no alcohol or sedatives for 24 hours; return or call 911 for clear ear/nose drainage, unequal pupils, progressive sleepiness, seizure, worsening headache, vomiting, weakness, or slurred speech.' },
+
+{ id: 444, hl: true, ch: 38, bloom: 'Create', type: 'mcq', cj: 'Generate Solutions', topic: 'Stroke',
+  stem: 'A client with a left hemisphere stroke understands speech but cannot form words (expressive aphasia). Which goal is most appropriate for the plan of care?',
+  o: ['The client will communicate basic needs using a picture or communication board within 48 hours', 'The client will speak in full sentences by discharge tomorrow', 'The client will write a paragraph describing symptoms', 'The family will answer questions for the client'], a: 0,
+  rat: 'Iggy and her lecture: communication boards and speech therapy support aphasia; goals must be realistic and client-centered. Full sentences by tomorrow is unrealistic; left-hemisphere strokes also cause agraphia, so writing is not reliable; having the family answer removes the client’s voice.' },
+
+{ id: 445, hl: true, ch: 38, bloom: 'Analyze', type: 'mcq', cj: 'Analyze Cues', topic: 'Traumatic brain injury',
+  stem: 'An 81-year-old taking warfarin has had increasing confusion and headaches for 1 week. Her daughter recalls a minor fall about 3 weeks ago. Which explanation should the nurse consider first?',
+  o: ['Chronic subdural hematoma', 'Progression of dementia', 'Epidural hematoma', 'Expected aging changes'], a: 0,
+  rat: 'Iggy: chronic subdural hematomas develop over weeks, especially in older adults on anticoagulants, after even minor falls (venous bleeding from torn bridging veins is slow). Labeling new confusion as dementia or aging misses a treatable bleed. Epidural hematoma is acute arterial bleeding.' },
+
+{ id: 451, hl: true, ch: 26, bloom: 'Evaluate', type: 'sata', cj: 'Recognize Cues', topic: 'Mechanical ventilation',
+  stem: 'A ventilated client was stable on FiO2 40% and PEEP 5 for 3 days. Which findings today suggest a ventilator-associated event progressing toward pneumonia? Select all that apply.',
+  o: ['Daily minimum FiO2 has been 65% for 2 days', 'Daily minimum PEEP increased to 8 cm H2O', 'Temperature 101.8°F (38.8°C)', 'Thick green secretions', 'Peak pressure rose briefly during coughing, then returned to baseline', 'Head of bed at 35 degrees'], a: [0, 1, 2, 3],
+  rat: 'Iggy: a ventilator-associated event is a sustained decline in oxygenation after at least 2 stable days — more than a 20% increase in daily minimum FiO2 or at least a 3 cm H2O increase in daily minimum PEEP. Fever and purulent secretions move it up the tiers toward ventilator-associated pneumonia (Table 26.5). A brief pressure spike with coughing is transient; HOB above 30 degrees is correct bundle care.' },
+
+{ id: 452, hl: true, ch: 26, bloom: 'Create', type: 'sata', cj: 'Generate Solutions', topic: 'Chest trauma',
+  stem: 'The nurse is planning care for a stable client with four rib fractures and a right pulmonary contusion. Which interventions belong in the plan? Select all that apply.',
+  o: ['Give analgesics so the client can breathe deeply and cough', 'Encourage incentive spirometer use', 'Position in moderate-Fowler’s', 'Use the left-side-down (“good lung down”) position when side-lying', 'Tape the chest wall to splint the fractures', 'Withhold opioids to prevent respiratory depression', 'Keep the client flat to rest the ribs'], a: [0, 1, 2, 3],
+  rat: 'Iggy: rib fractures are not taped; the focus is pain control so ventilation stays adequate and atelectasis and pneumonia are prevented (opioids are effective — monitor for respiratory depression). Pulmonary contusion: oxygen, IV fluids as ordered, moderate-Fowler’s, and the good lung down when side-lying (the right lung is injured, so the left side goes down).' },
+
+{ id: 453, hl: true, ch: 38, bloom: 'Evaluate', type: 'sata', cj: 'Evaluate Outcomes', topic: 'Stroke',
+  stem: 'A client received alteplase yesterday for an acute ischemic stroke. Which findings today indicate improvement? Select all that apply.',
+  o: ['Stroke scale (NIHSS) score fell from 12 to 7', 'BP 162/86 mm Hg', 'Passed the bedside swallow screen', 'Left pupil now larger than the right', 'GCS fell from 15 to 13', 'New headache rated 8/10', 'Now needs a louder voice to arouse'], a: [0, 1, 2],
+  rat: 'A lower stroke scale score is better (in class: change of more than 2 points worse → rapid response). After alteplase the BP goal is below 180/105. A passed swallow screen allows safe intake. New pupil asymmetry, a 2-point GCS drop, severe new headache, and harder arousal are signs of hemorrhage or increased intracranial pressure.' },
+
+{ id: 454, hl: true, ch: 38, bloom: 'Analyze', type: 'sata', cj: 'Recognize Cues', topic: 'Increased intracranial pressure',
+  stem: 'A client with a traumatic brain injury is being monitored for increased intracranial pressure. Which findings are EARLY indicators? Select all that apply.',
+  o: ['New restlessness', 'Irritability', 'Cushing triad', 'Fixed, dilated pupils', 'Decorticate posturing', 'Loss of reflexes'], a: [0, 1],
+  rat: 'Iggy: the earliest sign is a change in level of consciousness — often subtle restlessness, irritability, or confusion. Cushing triad, fixed and dilated (“blown”) pupils, abnormal posturing, and loss of reflexes are very late signs.' },
+
+/* ===== MED MATH (analyze/evaluate level) ===== */
+{ id: 446, hl: true, ch: 0, bloom: 'Evaluate', type: 'mcq', cj: 'Evaluate Outcomes', topic: 'Drip rates',
+  stem: 'Heparin 25,000 units in 500 mL is infusing at 18 mL/hr. The prescription is 1,000 units/hr. How does the nurse evaluate the infusion?',
+  o: ['Underdosing — the client is getting 900 units/hr; the rate should be 20 mL/hr', 'Correct — 18 mL/hr delivers 1,000 units/hr', 'Overdosing — the client is getting 1,800 units/hr', 'Underdosing — the rate should be 10 mL/hr'], a: 0,
+  rat: 'Concentration = 25,000 ÷ 500 = 50 units/mL. 18 mL/hr × 50 = 900 units/hr. Needed: 1,000 ÷ 50 = 20 mL/hr. High-alert drug — clarify, correct per protocol, and double-check.' },
+
+{ id: 447, hl: true, ch: 0, bloom: 'Evaluate', type: 'mcq', cj: 'Evaluate Outcomes', topic: 'Drip rates',
+  stem: '1,000 mL is ordered over 10 hours by gravity with tubing of 20 gtt/mL. The nurse counts 25 gtt/min. What is the nurse’s evaluation?',
+  o: ['Running too slowly — it should be about 33 gtt/min', 'Running correctly', 'Running too fast — it should be about 17 gtt/min', 'Running too slowly — it should be 100 gtt/min'], a: 0,
+  rat: '(1,000 × 20) ÷ 600 minutes = 33.3 → 33 gtt/min. At 25 gtt/min the bag will finish late.' },
+
+{ id: 448, hl: true, ch: 0, bloom: 'Analyze', type: 'mcq', cj: 'Analyze Cues', topic: 'Military time',
+  stem: 'A drug is ordered every 8 hours; the first dose was given at 2200. Which entries for the next two doses are correct?',
+  o: ['0600 and 1400', '3000 and 3800', '0600 and 1600', '1000 and 1800'], a: 0,
+  rat: '2200 + 8 hours crosses midnight = 0600; 0600 + 8 = 1400. Military time never exceeds 2400.' },
+
+{ id: 449, hl: true, ch: 0, bloom: 'Evaluate', type: 'mcq', cj: 'Take Action', topic: 'Abbreviations',
+  stem: 'A handwritten prescription reads “metoprolol 25 mg PO qd.” The transcribed MAR reads “metoprolol 25 mg PO qid.” What is the nurse’s evaluation and action?',
+  o: ['The MAR is wrong and would give four times the intended daily dose; clarify the order as “daily”', 'The MAR is correct; qd and qid mean the same thing', 'The MAR is wrong; qd means every other day', 'The MAR is correct because metoprolol is always given four times a day'], a: 0,
+  rat: 'qd = every day; qid = four times a day; qod = every other day. This exact mix-up is why The Joint Commission’s “Do Not Use” list bans qd and qod [background] — write “daily.” Clarify before giving.' },
+
+{ id: 450, hl: true, ch: 0, bloom: 'Evaluate', type: 'mcq', cj: 'Take Action', topic: 'Dosage',
+  stem: 'A heparin protocol orders a bolus of 80 units/kg. The chart lists a weight of 80 kg from last month; today’s bed-scale weight is 198 lb. Which bolus dose is correct?',
+  o: ['7,200 units, based on today’s 90-kg weight', '6,400 units, based on the 80-kg chart weight', '15,840 units, based on 198', '3,600 units, based on half the weight'], a: 0,
+  rat: '[The 80 units/kg value is a background protocol example.] 198 ÷ 2.2 = 90 kg; 90 × 80 = 7,200 units. In class she stressed verifying an accurate current weight before weight-based heparin — the old chart weight would underdose by 800 units.' }
+];
+
+const CASES = { 38: CASE38, 26: CASE26 };
+const QALL = [...Q38.map(q=>Object.assign(q,{ch:38})), ...Q26.map(q=>Object.assign(q,{ch:26})), ...QM.map(q=>Object.assign(q,{ch:0})), ...QH];
+const Q = QALL.filter(q=>!q.case && (q.type==='mcq'||q.type==='sata'));
 
 (function(){
 const $ = (s, r=document) => r.querySelector(s);
@@ -635,10 +1636,27 @@ Q.forEach(q => {
   if (q.type==='order') { let p=perm(q.items.length, s), k=1; while (p.every((v,i)=>v===i)) p=perm(q.items.length, s+k++); P[q.id]=p; }
 });
 
-const KEY = 'ch38-exam-v1';
-let S = { view:'start', mode:'tutor', idx:0, ans:{}, checked:{}, flags:{}, breaks:{}, tab:1, armed:null, chip:null };
-try { const saved = JSON.parse(localStorage.getItem(KEY)||'null'); if (saved && saved.ans) S = Object.assign(S, saved, { armed:null, chip:null }); } catch(e) {}
-function save(){ try { const {armed,chip,...rest}=S; localStorage.setItem(KEY, JSON.stringify(rest)); } catch(e) {} }
+const SCOPES = [
+  { k:'26',   name:'Chapter 26 — Respiratory emergencies', short:'Ch. 26', store:'ch26-exam-v1', desc:'Pulmonary embolism, respiratory failure, ARDS, COVID-19, ventilator, tracheostomy, chest trauma' },
+  { k:'38',   name:'Chapter 38 — Neurologic emergencies', short:'Ch. 38', store:'ch38-exam-v1', desc:'TIA, stroke, BE FAST, traumatic brain injury, increased ICP, brain tumors' },
+  { k:'both', name:'Both chapters — drill by question type', short:'Ch. 26 + 38', store:'ch26-38-exam-v1', desc:'Every item from both chapters' },
+  { k:'math', name:'Med math & abbreviations', short:'Med math', store:'math-exam-v1', desc:'Military time, abbreviations, drip rates — 5 questions on her exam' },
+  { k:'hl',   name:'High-level mock — Analyze / Evaluate / Create', short:'High-level mock', store:'hl-exam-v1', desc:'50 NCLEX items at Bloom’s analyze, evaluate, and create levels — 22 Ch. 26, 23 Ch. 38, 5 math' },
+  { k:'mock', name:'50-question mock exam', short:'Mock exam', store:'mock-exam-v1', desc:'45 multiple choice and SATA from both chapters + 5 med math' }
+];
+const PREF = 'nur205-exam-scope';
+let scope = (()=>{ try { const v=localStorage.getItem(PREF); if (SCOPES.some(x=>x.k===v)) return v; if (localStorage.getItem('ch38-exam-v1')) return '38'; } catch(e) {} return '26'; })();
+const SC = () => SCOPES.find(x=>x.k===scope);
+let S;
+function loadState(){
+  S = { view:'start', mode: scope==='mock'?'exam':'tutor', idx:0, ans:{}, checked:{}, flags:{}, breaks:{}, tab:1, armed:null, chip:null };
+  try { const saved = JSON.parse(localStorage.getItem(SC().store)||'null'); if (saved && saved.ans) S = Object.assign(S, saved, { armed:null, chip:null }); } catch(e) {}
+  if (scope==='mock' && !S.seed) S.seed = 1 + Math.floor(Math.random()*1e9);
+  // Question order is scrambled per attempt; older saves that already have answers keep their original order
+  if (S.oseed==null) S.oseed = Object.keys(S.ans).length ? 0 : 1 + Math.floor(Math.random()*1e9);
+}
+function save(){ try { const {armed,chip,...rest}=S; localStorage.setItem(SC().store, JSON.stringify(rest)); localStorage.setItem(PREF, scope); } catch(e) {} }
+loadState();
 
 const TYPE_LABEL = { mcq:'Multiple choice', sata:'Select all that apply', matrix:'Matrix', highlight:'Highlight', cloze:'Drop-down cloze', dnd:'Extended drag and drop', order:'Ordered response' };
 
@@ -679,16 +1697,46 @@ function initResp(q){
 }
 const GROUPS = [
   { k:'mcq',  name:'Multiple choice',       desc:'Single best answer, 0/1 scoring' },
-  { k:'sata', name:'Select all that apply', desc:'+/− scoring' },
-  { k:'ngn',  name:'Next Generation (NGN)', desc:'Stroke case study, matrix, highlight, drop-down, drag and drop, ordered response' }
+  { k:'sata', name:'Select all that apply', desc:'+/− scoring' }
 ];
 const ALL_KEY = GROUPS.map(g=>g.k).join('+');
 const grp = q => (q.case || !['mcq','sata'].includes(q.type)) ? 'ngn' : q.type;
-if (!Array.isArray(S.sets) || !S.sets.length) S.sets = GROUPS.map(g=>g.k);
-const setKey = () => GROUPS.map(g=>g.k).filter(k=>S.sets.includes(k)).join('+');
-const setName = () => GROUPS.filter(g=>S.sets.includes(g.k)).map(g=>g.name).join(' + ');
+const fixed = () => scope==='mock' || scope==='math' || scope==='hl';
+const setKey = () => scope==='mock' ? 'mock:'+S.seed : (scope==='math'||scope==='hl') ? scope : GROUPS.map(g=>g.k).filter(k=>S.sets.includes(k)).join('+');
+const setName = () => fixed() ? SC().short : SC().short+' • '+GROUPS.filter(g=>S.sets.includes(g.k)).map(g=>g.name).join(' + ');
+const chName = q => q.ch===0 ? 'Med math' : 'Ch. '+q.ch;
+// Mock exam: fixed blueprint, seeded so the same mock is stable until "New mock"
+function mockList(seed){
+  const take=(arr,n,k)=>perm(arr.length, seed+k).slice(0,Math.min(n,arr.length)).map(i=>arr[i]);
+  const out=[]; let k=1;
+  [[26,17,6],[38,16,6]].forEach(([ch,nm,ns])=>{
+    const st=Q.filter(q=>q.ch===ch && !q.hl);
+    out.push(...take(st.filter(q=>grp(q)==='mcq'),nm,k++), ...take(st.filter(q=>grp(q)==='sata'),ns,k++));
+  });
+  const M=Q.filter(q=>q.ch===0 && !q.hl), mt=t=>M.filter(q=>q.topic===t);
+  const m=[...take(mt('Military time'),1,k++), ...take(mt('Abbreviations'),2,k++), ...take(mt('Drip rates'),1,k++)];
+  m.push(...take(M.filter(q=>!m.includes(q)),1,k++)); out.push(...m);
+  return perm(out.length, seed+99).map(i=>out[i]);
+}
+function pool(){
+  const base = Q.filter(q=>!q.hl);
+  if (scope==='26') return base.filter(q=>q.ch===26);
+  if (scope==='38') return base.filter(q=>q.ch===38);
+  if (scope==='both') return base.filter(q=>q.ch===26||q.ch===38);
+  if (scope==='math') return base.filter(q=>q.ch===0);
+  if (scope==='hl') { const H=Q.filter(q=>q.hl); return perm(H.length, 4242).map(i=>H[i]); }
+  return mockList(S.seed);
+}
 let L = [];
-function buildList(){ L = Q.filter(q=>S.sets.includes(grp(q))); if (S.idx>=L.length) S.idx=0; }
+function buildList(){ if (Array.isArray(S.sets)) S.sets = S.sets.filter(k=>GROUPS.some(g=>g.k===k)); if (!Array.isArray(S.sets) || !S.sets.length) S.sets = GROUPS.map(g=>g.k); L = fixed() ? pool() : pool().filter(q=>S.sets.includes(grp(q))); if (S.oseed) L = perm(L.length, S.oseed).map(i=>L[i]); if (S.idx>=L.length) S.idx=0; }
+function boot(){
+  S.view='start';
+  // Answers saved by an earlier version had no finished flag: treat a fully scored exam as finished
+  if (S.finished===true) S.finished=ALL_KEY;
+  buildList();
+  if (!S.finished && L.length && L.every(q=>S.checked[q.id]) && Object.keys(S.ans).length) S.finished=setKey();
+}
+function switchScope(k){ save(); scope=k; loadState(); boot(); save(); render(); window.scrollTo(0,0); }
 buildList();
 const isFinished = () => S.finished===setKey() && L.every(q=>S.checked[q.id]);
 const revealed = q => S.view==='review' || (S.mode==='tutor' && S.checked[q.id]);
@@ -709,11 +1757,29 @@ function render(){
 function startView(app){
   $('#pos').textContent = `${L.length} items`;
   const any = L.some(q=>S.ans[q.id]!=null);
-  const count = k => Q.filter(q=>grp(q)===k).length;
+  const P0 = pool();
+  const count = k => P0.filter(q=>grp(q)===k).length;
+  const B0=Q.filter(q=>!q.hl);
+  const scopeCount = k => k==='26'?B0.filter(q=>q.ch===26).length : k==='38'?B0.filter(q=>q.ch===38).length : k==='both'?B0.filter(q=>q.ch).length : k==='math'?B0.filter(q=>q.ch===0).length : k==='hl'?Q.filter(q=>q.hl).length : 50;
+  const H = { '26':'Chapter 26: Critical Care of Patients With Respiratory Emergencies', '38':'Chapter 38: Critical Care of Patients With Neurologic Emergencies', 'both':'Chapters 26 + 38: Respiratory and Neurologic Emergencies', 'math':'Med Math and Abbreviations', 'hl':'High-Level Mock: Analyze, Evaluate, Create', 'mock':'50-Question Mock Exam' };
+  const INTRO = {
+    '26':`Built from Iggy Chapter 26 and Prof Gallotta’s slides and lecture. Multiple choice and select all that apply. Items marked “Lecture focus” test what she emphasized in class, including her case study and clicker questions.`,
+    '38':`Built from Iggy Chapter 38 and Prof Gallotta’s slides and lecture. Multiple choice and select all that apply. Items marked “Lecture focus” test what she emphasized in class. Items marked “Tested in class — not in Iggy” cover BE FAST.`,
+    'both':`Every item from both chapters. Drill multiple choice or select all that apply on their own, or keep both.`,
+    'math':`She said 5 questions on the exam will be basic math: military time, nursing abbreviations (ac, pc, bid, tid, qid, qd, qod, hs, qhs), and drip rates.`,
+    'hl':`50 NCLEX items written above recall and application — Bloom’s analyze (interpret cues and trends), evaluate (judge priorities, outcomes, and others’ actions), and create (build the plan, goals, or outcomes). Every client in “see first” items is abnormal; select-all items have 6–7 options with varied numbers correct. Multiple choice and select all that apply only, plus 5 med math. Exam mode is recommended.`,
+    'mock':`50 items: 45 multiple choice and select all that apply drawn from both chapters (about half each), plus 5 med math. Exam mode is recommended. Tap “New mock” for a different set.` };
   app.append(el('div',{class:'stack'},
-    el('h1',{text:'Chapter 38: Critical Care of Patients With Neurologic Emergencies'}),
-    el('p',{class:'muted',text:`Built like your unit exam and your professor’s lecture slides. Pick the question types you want to drill, or keep all three for all ${Q.length} items. Items marked “Lecture focus” test what her slides and in-class questions emphasize. Every answer choice is verifiable in Iggy Chapter 38.`}),
+    el('h1',{text:H[scope]}),
+    el('p',{class:'muted',text:INTRO[scope]}),
     el('div',{class:'card stack'},
+      el('h2',{text:'Choose what to study'}),
+      el('div',{class:'types'}, SCOPES.map(sc=>el('button',{class:'mode type',id:'scope-'+sc.k,'aria-pressed':String(scope===sc.k),onclick:()=>{ if (scope!==sc.k) switchScope(sc.k); }},
+        el('span',{class:'tick radio',text:scope===sc.k?'●':''}),
+        el('span',{class:'tt'}, el('b',{text:sc.name}), el('span',{class:'hint',text:sc.desc})),
+        el('span',{class:'cnt',text:String(scopeCount(sc.k))}))))
+    ),
+    fixed() ? null : el('div',{class:'card stack'},
       el('h2',{text:'Choose question types'}),
       el('div',{class:'types'}, GROUPS.map(g=>el('button',{class:'mode type',id:'set-'+g.k,'aria-pressed':String(S.sets.includes(g.k)),onclick:()=>{
           const i=S.sets.indexOf(g.k); i>=0 ? S.sets.splice(i,1) : S.sets.push(g.k);
@@ -721,7 +1787,7 @@ function startView(app){
         el('span',{class:'tick',text:S.sets.includes(g.k)?'✓':''}),
         el('span',{class:'tt'}, el('b',{text:g.name}), el('span',{class:'hint',text:g.desc})),
         el('span',{class:'cnt',text:String(count(g.k))})))),
-      el('p',{class:'hint',style:'margin:0',text: L.length ? `${L.length} items selected` + (setKey()===ALL_KEY?' — full exam':'') : 'Select at least one question type to begin.'})
+      el('p',{class:'hint',style:'margin:0',text: L.length ? `${L.length} items selected` + (setKey()===ALL_KEY?' — every item':'') : 'Select at least one question type to begin.'})
     ),
     el('div',{class:'card stack'},
       el('h2',{text:'Choose a mode'}),
@@ -733,24 +1799,24 @@ function startView(app){
     el('div',{class:'card stack'},
       el('h2',{text:'How scoring works'}),
       el('table',{}, el('tbody',{},
-        el('tr',{}, el('th',{text:'Multiple choice, ordered response'}), el('td',{text:'0/1. Ordered response must be fully correct.'})),
-        el('tr',{}, el('th',{text:'Select all that apply, highlight'}), el('td',{text:'+/− : +1 per correct pick, −1 per wrong pick, never below 0. Read every option before you stop.'})),
-        el('tr',{}, el('th',{text:'Matrix, drop-down, drag and drop'}), el('td',{text:'0/1 per row, blank, or slot.'}))
+        el('tr',{}, el('th',{text:'Multiple choice'}), el('td',{text:'0/1.'})),
+        el('tr',{}, el('th',{text:'Select all that apply'}), el('td',{text:'+/− : +1 per correct pick, −1 per wrong pick, never below 0. Read every option before you stop.'}))
       ))
     ),
     el('div',{style:'display:flex;gap:10px;flex-wrap:wrap'},
       isFinished()
         ? el('button',{class:'btn primary',onclick:()=>{ S.view='results'; save(); render(); }}, 'View last results')
         : el('button',{class:'btn primary',disabled:!L.length,onclick:()=>{ if (answered(L[S.idx])) { const f=L.findIndex(q=>!answered(q)); if (f>=0) S.idx=f; } S.view='q'; save(); render(); }}, any?'Resume':'Begin'),
-      Object.keys(S.ans).length ? el('button',{class:'btn',id:'resetBtn',onclick:confirmReset}, 'Start over') : null
+      (Object.keys(S.ans).length || scope==='mock') ? el('button',{class:'btn',id:'resetBtn',onclick:confirmReset}, scope==='mock'?'New mock':'Start over')
+        : el('button',{class:'btn',id:'shuffleBtn',onclick:()=>{ S.oseed=1+Math.floor(Math.random()*1e9); S.idx=0; buildList(); save(); render(); }}, 'Shuffle order')
     ),
     el('p',{class:'hint',id:'resetMsg'})
   ));
 }
 function confirmReset(){
   const b=$('#resetBtn');
-  if (b.dataset.armed){ S={ view:'start', mode:S.mode, sets:S.sets, finished:false, idx:0, ans:{}, checked:{}, flags:{}, breaks:{}, tab:1, armed:null, chip:null }; buildList(); save(); render(); return; }
-  b.dataset.armed='1'; b.textContent='Tap again to erase all answers'; $('#resetMsg').textContent='Your saved answers on this device will be cleared.';
+  if (b.dataset.armed){ S={ view:'start', mode:S.mode, sets:S.sets, finished:false, idx:0, ans:{}, checked:{}, flags:{}, breaks:{}, tab:1, armed:null, chip:null, seed: scope==='mock' ? 1+Math.floor(Math.random()*1e9) : undefined, oseed: 1+Math.floor(Math.random()*1e9) }; buildList(); save(); render(); return; }
+  b.dataset.armed='1'; b.textContent= scope==='mock' ? 'Tap again for a new set of 50' : 'Tap again to erase answers and reshuffle'; $('#resetMsg').textContent= scope==='mock' ? 'This mock’s answers will be cleared and new questions drawn in a new order.' : 'Your saved answers for this section will be cleared and the questions will come in a new order.';
 }
 
 function breakView(app){
@@ -764,6 +1830,7 @@ function breakView(app){
 }
 
 function chartView(q){
+  const CASE = CASES[q.ch];
   const box=el('section',{class:'chart','aria-label':'Client chart'}, el('div',{class:'head',text:'Electronic health record — '+CASE.title}));
   const tabs=el('div',{class:'tabs',role:'tablist'});
   CASE.tabs.forEach((t,i)=>{
@@ -786,8 +1853,8 @@ function questionView(app){
   const q=L[S.idx]; initResp(q);
   $('#pos').textContent = `${S.idx+1} / ${L.length}`;
   const rev=revealed(q), r=S.ans[q.id];
-  const card=el('article',{class:'card stack'});
-  card.append(el('div',{class:'meta'}, el('span',{text:q.case?`Case study ${Q.filter(x=>x.case).indexOf(q)+1} of 6`:`Item ${q.id}`}), el('span',{text:TYPE_LABEL[q.type]}), el('span',{class:'cj',text:q.cj}), el('span',{text:q.topic}), q.lec?el('span',{class:'lec',text:'Lecture focus'}):null));
+  const card=el('article',{class:'card stack','data-qid':q.id});
+  card.append(el('div',{class:'meta'}, el('span',{text:q.case?`Case study ${Q.filter(x=>x.case&&x.ch===q.ch).indexOf(q)+1} of 6`:`Item ${S.idx+1}`}), (scope==='both'||scope==='mock')?el('span',{text:chName(q)}):null, el('span',{text:TYPE_LABEL[q.type]}), el('span',{class:'cj',text:q.cj}), el('span',{text:q.topic}), q.bloom?el('span',{class:'cj',text:'Bloom: '+q.bloom}):null, q.lec?el('span',{class:'lec',text:'Lecture focus'}):null, q.ext?el('span',{class:'lec',text:'Tested in class — not in Iggy'}):null));
   card.append(el('p',{class:'stem',text:q.stem}));
   if (q.table) card.append(el('div',{class:'tablewrap'}, el('table',{}, el('thead',{}, el('tr',{}, q.table.cols.map(c=>el('th',{text:c})))), el('tbody',{}, q.table.rows.map(row=>el('tr',{}, row.map((c,i)=>i?el('td',{class:'num',text:c}):el('th',{text:c}))))))));
   card.append(responseUI(q, r, rev));
@@ -899,7 +1966,10 @@ function responseUI(q, r, rev){
 function resultsView(app){
   $('#pos').textContent='Results';
   let pts=0, mx=0; const byTopic={}, byCj={};
+  const byCh={}, byBloom={};
   L.forEach(q=>{ const p=score(q,S.ans[q.id]), m=maxPts(q); pts+=p; mx+=m;
+    const h=byCh[chName(q)]||(byCh[chName(q)]={p:0,m:0}); h.p+=p; h.m+=m;
+    if (q.bloom){ const b=byBloom[q.bloom]||(byBloom[q.bloom]={p:0,m:0}); b.p+=p; b.m+=m; }
     const t=byTopic[q.topic]||(byTopic[q.topic]={p:0,m:0}); t.p+=p; t.m+=m;
     const ck=q.cj.replace(/ \(.*\)/,''); const c=byCj[ck]||(byCj[ck]={p:0,m:0}); c.p+=p; c.m+=m; });
   const pct=Math.round(pts/mx*100);
@@ -910,10 +1980,12 @@ function resultsView(app){
       el('div',{class:'meta'}, el('span',{text:'Points-based score'}), el('span',{text:setName()})),
       el('div',{class:'big',text:pct+'%'}),
       el('p',{class:'muted',style:'margin:0',text:`${pts} of ${mx} points • ${L.length-missed.length} of ${L.length} items at full credit. Course target: 85%.`})),
+    Object.keys(byCh).length>1 ? el('div',{class:'card stack'}, el('h2',{text:'By chapter'}), bars(byCh)) : null,
+    Object.keys(byBloom).length ? el('div',{class:'card stack'}, el('h2',{text:'By Bloom’s level'}), bars(byBloom)) : null,
     el('div',{class:'card stack'}, el('h2',{text:'By topic (weakest first)'}), bars(byTopic)),
     el('div',{class:'card stack'}, el('h2',{text:'By clinical judgment step'}), bars(byCj)),
     el('div',{class:'card stack'}, el('h2',{text:`Items to restudy (${missed.length})`}),
-      missed.length? el('div',{class:'navgrid'}, missed.map(q=>el('button',{class:score(q,S.ans[q.id])>0?'part':'no',onclick:()=>{ S.view='review'; S.idx=L.indexOf(q); S.tab=1; save(); render(); }}, String(q.id)))) : el('p',{text:'None. Every item earned full credit.'})),
+      missed.length? el('div',{class:'navgrid'}, missed.map(q=>el('button',{class:score(q,S.ans[q.id])>0?'part':'no',onclick:()=>{ S.view='review'; S.idx=L.indexOf(q); S.tab=1; save(); render(); }}, String(L.indexOf(q)+1)))) : el('p',{text:'None. Every item earned full credit.'})),
     el('div',{style:'display:flex;gap:10px;flex-wrap:wrap'},
       el('button',{class:'btn primary',onclick:()=>{ S.view='review'; S.idx=0; save(); render(); }}, 'Review all items'),
       el('button',{class:'btn',onclick:()=>{ S.view='start'; save(); render(); }}, 'Back to start'))
@@ -922,7 +1994,7 @@ function resultsView(app){
 }
 
 /* ---------- nav ---------- */
-function go(i){ S.idx=Math.max(0,Math.min(L.length-1,i)); S.chip=null; if (L[S.idx].case && !L[S.idx-1]?.case) S.tab=1; save(); render(); window.scrollTo(0,0); }
+function go(i){ S.idx=Math.max(0,Math.min(L.length-1,i)); S.chip=null; if (L[S.idx].case && !(L[S.idx-1]?.case && L[S.idx-1].ch===L[S.idx].ch)) S.tab=1; save(); render(); window.scrollTo(0,0); }
 $('#prevBtn').onclick=()=>go(S.idx-1);
 $('#nextBtn').onclick=()=>{
   if (S.idx===L.length-1){ if (S.view==='review'){ S.view='results'; save(); render(); } else openNav(); return; }
@@ -955,10 +2027,7 @@ $('#finishBtn').onclick=()=>{ L.forEach(q=>S.checked[q.id]=true); S.finished=set
 document.addEventListener('keydown',e=>{ if (e.key==='Escape') closeNav(); });
 
 // Always open on the start page; saved answers stay available through Resume / View last results
-S.view='start';
-// Answers saved by the earlier version had no finished flag: treat a fully scored exam as finished
-if (S.finished===true) S.finished=ALL_KEY;
-if (!S.finished && Q.every(q=>S.checked[q.id]) && Object.keys(S.ans).length) S.finished=ALL_KEY;
+boot();
 render();
 })();
 </script>
