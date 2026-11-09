@@ -16,6 +16,9 @@ and prints CHANGED/UNCHANGED per page. Exits 2 (and restores nothing written) if
 import json, os, re, shutil, subprocess, sys, base64, tempfile
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SITE_LINKS = {
+    "https://claude.ai/artifact/KL3ZLkdgABQLE57xeYbEXL": "nur206-exam3-practice-bank.html",
+}
 BACK = '<a class="back" href="../index.html">← All study guides</a>'
 
 
@@ -23,7 +26,11 @@ def clean_html(h):
     # "Not affiliated with <school> or Elsevier." -> "Not affiliated with Elsevier."
     h = re.sub(r"Not affiliated with [^<.]{1,80}? or Elsevier\.", "Not affiliated with Elsevier.", h)
     # SBAR examples written in the first person: swap the speaker's name for a neutral one
-    return re.sub(r"\bThis is [A-Z][a-z]+, registered nurse", "This is Jordan, registered nurse", h)
+    h = re.sub(r"\bThis is [A-Z][a-z]+, registered nurse", "This is Jordan, registered nurse", h)
+    # links between guides that are both on the site: point at the site copy, not the private artifact
+    for url, page in SITE_LINKS.items():
+        h = h.replace(url, page)
+    return h
 
 
 def pandoc_wrap(body_html, title):
