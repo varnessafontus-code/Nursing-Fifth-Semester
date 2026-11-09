@@ -1,0 +1,600 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>ECG Strip Lab</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: one task at a time — tabbed stations (Label → Measure → Identify) over real-scale ECG paper */
+:root{
+  --bg:#fbf7f6; --surface:#ffffff; --fg:#1f1a1c; --muted:#6b5f63; --line:#e6dcdd;
+  --paper:#fff6f5; --grid-minor:#f3c9c9; --grid-major:#e48f92; --trace:#1d1517;
+  --accent:#b3263a; --accent-ink:#ffffff; --ok:#1f7a4d; --ok-bg:#e5f4ec; --bad:#b3261e; --bad-bg:#fbe6e4;
+  --mark:#2457c5; --qrs:#6b3fc4; --seg:#2457c5; --int:#0f7a6a; --hid:#d4502a;
+  --f-display:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --f-body:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0d1110; --surface:#151b19; --fg:#e7efec; --muted:#93a39d; --line:#26302d;
+  --paper:#050807; --grid-minor:#0f2a20; --grid-major:#1d4d3a; --trace:#4dff9a;
+  --accent:#ff6b7d; --accent-ink:#1a0005; --ok:#5fe0a0; --ok-bg:#10291e; --bad:#ff8a80; --bad-bg:#2e1412; --mark:#7fb0ff; --qrs:#b49cff; --seg:#7fb0ff; --int:#4fd1b8; --hid:#ff8a65; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0d1110; --surface:#151b19; --fg:#e7efec; --muted:#93a39d; --line:#26302d;
+  --paper:#050807; --grid-minor:#0f2a20; --grid-major:#1d4d3a; --trace:#4dff9a;
+  --accent:#ff6b7d; --accent-ink:#1a0005; --ok:#5fe0a0; --ok-bg:#10291e; --bad:#ff8a80; --bad-bg:#2e1412; --mark:#7fb0ff; --qrs:#b49cff; --seg:#7fb0ff; --int:#4fd1b8; --hid:#ff8a65; color-scheme:dark}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--fg);font:15px/1.55 var(--f-body)}
+.wrap{max-width:980px;margin:0 auto;padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:20px}
+h1{font:600 2rem/1.15 var(--f-display);margin:0;text-wrap:balance}
+h2{font:600 1.3rem/1.2 var(--f-display);margin:0;text-wrap:balance}
+h3{font:600 .78rem/1.2 var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0}
+p{margin:0;max-width:68ch}
+.lede{color:var(--muted)}
+header{display:grid;gap:8px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+.tab{font:600 .95rem var(--f-body);background:none;border:0;border-bottom:3px solid transparent;color:var(--muted);padding:10px 12px;cursor:pointer}
+.tab[aria-selected="true"]{color:var(--fg);border-color:var(--accent)}
+.tab .sc{font:500 .78rem var(--f-mono);margin-left:6px;color:var(--muted)}
+.tab:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--mark);outline-offset:2px}
+section.panel{display:grid;gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:grid;gap:12px;min-width:0}
+.strip{overflow-x:auto;border:1px solid var(--grid-major);border-radius:4px;background:var(--paper)}
+.strip svg{display:block;min-width:720px;width:100%;height:auto;cursor:crosshair;touch-action:manipulation}
+.strip.big svg{min-width:520px;cursor:default}
+.trace{fill:none;stroke:var(--trace);stroke-width:1.6;stroke-linejoin:round}
+.big .trace{stroke-width:2.6}
+.tick{stroke:var(--fg);stroke-width:1.5}
+.ticklbl{font:600 11px var(--f-mono);fill:var(--muted)}
+.cal line{stroke:var(--mark);stroke-width:1.5;stroke-dasharray:4 3}
+.cal text{font:700 12px var(--f-mono);fill:var(--mark)}
+.bk{stroke:var(--mark);stroke-width:2;fill:none}
+.pin circle{fill:var(--mark)}
+.pin text{fill:var(--surface);font:700 13px var(--f-mono);text-anchor:middle;dominant-baseline:central}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.btn{font:600 .9rem var(--f-body);border-radius:8px;padding:9px 14px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn:disabled{opacity:.45;cursor:default}
+select,input{font:500 .95rem var(--f-body);padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--fg);min-width:0}
+input{font-family:var(--f-mono);width:7.5em}
+.grid-labels{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+.lbl{display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:center;padding:8px;border-radius:8px;border:1px solid var(--line)}
+.lbl .num{width:26px;height:26px;border-radius:50%;background:var(--mark);color:var(--surface);display:grid;place-items:center;font:700 .85rem var(--f-mono)}
+.lbl.ok{background:var(--ok-bg);border-color:var(--ok)} .lbl.bad{background:var(--bad-bg);border-color:var(--bad)}
+.lbl .why{grid-column:1/-1;font-size:.86rem;color:var(--muted)}
+.fields{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
+.field{display:grid;gap:4px;padding:8px;border-radius:8px;border:1px solid var(--line)}
+.field label{font-size:.85rem;color:var(--muted)}
+.field.ok{background:var(--ok-bg);border-color:var(--ok)} .field.bad{background:var(--bad-bg);border-color:var(--bad)}
+.field .key{font:600 .82rem var(--f-mono)}
+.feedback{display:grid;gap:10px;border-top:1px solid var(--line);padding-top:12px}
+.verdict{font:700 1rem var(--f-body)} .verdict.ok{color:var(--ok)} .verdict.bad{color:var(--bad)}
+.feedback ul{margin:0;padding-left:1.2em;display:grid;gap:3px}
+.kid{border-left:3px solid var(--mark);padding-left:10px}
+.act{border-left:3px solid var(--accent);padding-left:10px}
+.meta{font:500 .8rem var(--f-mono);color:var(--muted)}
+.hint{font-size:.85rem;color:var(--muted)}
+details{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 16px}
+summary{cursor:pointer;font-weight:600}
+.cheat-img{margin-top:12px}
+.flow{margin-top:10px}
+.gval{font:500 12.5px var(--f-mono);fill:var(--muted)}
+.cheat{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:12px}
+.cheat table{border-collapse:collapse;width:100%;font-size:.88rem}
+.cheat td{padding:4px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.cheat td:last-child{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+ol.steps{margin:0;padding-left:1.3em;font-size:.88rem;display:grid;gap:2px}
+.gb{fill:none;stroke-width:2.6}
+.gb.seg{stroke:var(--seg)} .gb.int{stroke:var(--int)} .gb.qrsb{stroke:var(--qrs);stroke-width:3.2} .gb.hid{stroke:var(--hid);stroke-width:3}
+.trace.qrs{stroke:var(--qrs);stroke-width:4}
+.glbl{font:600 14px var(--f-body);fill:var(--fg)} .glbl.q{fill:var(--qrs);font-weight:700}
+.gl{stroke:var(--muted);stroke-width:1}
+.qpill rect{fill:var(--hid)} .qpill text{fill:var(--surface);font:700 15px var(--f-mono);text-anchor:middle;dominant-baseline:central}
+.qpin{stroke:var(--hid);stroke-width:2;fill:none}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.85rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:18px;height:4px;border-radius:2px;display:inline-block}
+.err{font-size:.85rem;color:var(--bad)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <pattern id="gs" width="6" height="6" patternUnits="userSpaceOnUse"><path d="M6 0H0V6" style="fill:none;stroke:var(--grid-minor);stroke-width:.6"/></pattern>
+  <pattern id="gl" width="30" height="30" patternUnits="userSpaceOnUse"><rect width="30" height="30" fill="url(#gs)"/><path d="M30 0H0V30" style="fill:none;stroke:var(--grid-major);stroke-width:1.1"/></pattern>
+  <pattern id="gs2" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" style="fill:none;stroke:var(--grid-minor);stroke-width:.8"/></pattern>
+  <pattern id="gl2" width="100" height="100" patternUnits="userSpaceOnUse"><rect width="100" height="100" fill="url(#gs2)"/><path d="M100 0H0V100" style="fill:none;stroke:var(--grid-major);stroke-width:1.4"/></pattern>
+</defs></svg>
+
+<div class="wrap">
+  <header>
+    <h3>NUR 205 · Chapter 28 Dysrhythmias</h3>
+    <h1>Electrocardiogram Strip Lab</h1>
+    <p class="lede">Four stations. Label the waveform, name the missing piece, measure real strips, then identify the rhythm and the priority nursing action. Paper speed is 25 mm/sec: one small box = 0.04 sec, one large box = 0.20 sec. Tap any strip twice to drop calipers.</p>
+  </header>
+
+  <details>
+    <summary>Cheat sheet (open only when stuck)</summary>
+    <div class="strip big cheat-img" id="cheatImg"></div>
+    <p class="hint flow"><strong>Follow the signal:</strong> P = top rooms squeeze → PR = doorman waits → QRS = bottom rooms squeeze → ST = hold → T = recharge. QT = the bottom rooms' whole shift.</p>
+  </details>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" id="t-label" aria-selected="true" data-tab="label">1 · Label<span class="sc" id="sc-label"></span></button>
+    <button class="tab" role="tab" id="t-gap" aria-selected="false" data-tab="gap">2 · Fill the gap<span class="sc" id="sc-gap"></span></button>
+    <button class="tab" role="tab" id="t-measure" aria-selected="false" data-tab="measure">3 · Measure<span class="sc" id="sc-measure"></span></button>
+    <button class="tab" role="tab" id="t-identify" aria-selected="false" data-tab="identify">4 · Identify<span class="sc" id="sc-identify"></span></button>
+  </div>
+
+  <!-- STATION 1 -->
+  <section class="panel" id="p-label">
+    <div class="card">
+      <h2>Label the complex</h2>
+      <p class="hint">Match each numbered marker to its name. The QRS is traced in purple; blue brackets under the baseline mark the segment and intervals. Grid here is enlarged; scale is unchanged (small box = 0.04 s).</p>
+      <div class="strip big" id="labelStrip"></div>
+      <div class="grid-labels" id="labelFields"></div>
+      <div class="row"><button class="btn primary" id="labelCheck">Check labels</button><button class="btn" id="labelReset">Clear</button><span class="meta" id="labelScore"></span></div>
+    </div>
+  </section>
+
+  <!-- STATION 2 -->
+  <section class="panel" id="p-gap" hidden>
+    <div class="card">
+      <div class="row" style="justify-content:space-between"><h2>Fill the gap</h2><span class="meta" id="gCount"></span></div>
+      <div class="row"><label class="hint" for="gMode">Answer by</label><select id="gMode"><option value="type">Typing it (harder)</option><option value="choose">Choosing it</option></select></div>
+      <p id="gStem"></p>
+      <div class="strip" id="gStrip"></div>
+      <div class="legend" id="gLegend">
+        <span><i style="background:var(--qrs)"></i>QRS complex</span>
+        <span><i style="background:var(--seg)"></i>Segment (flat baseline only)</span>
+        <span><i style="background:var(--int)"></i>Interval (wave + segment)</span>
+        <span><i style="background:var(--hid)"></i>Missing label</span>
+      </div>
+      <div class="row">
+        <input id="gText" style="width:15em" autocomplete="off" aria-label="Your answer" placeholder="Type the name">
+        <select id="gChoice" aria-label="Your answer" hidden></select>
+        <button class="btn primary" id="gCheck">Check</button>
+        <button class="btn" id="gPrev">Previous</button>
+        <button class="btn" id="gNext">Next</button>
+        <button class="btn" id="gShuffle">Shuffle</button>
+      </div>
+      <p class="err" id="gErr" hidden>Enter an answer first.</p>
+      <div class="feedback" id="gFeedback" hidden></div>
+    </div>
+  </section>
+
+  <!-- STATION 3 -->
+  <section class="panel" id="p-measure" hidden>
+    <div class="card">
+      <div class="row" style="justify-content:space-between"><h2 id="mTitle">Strip</h2><span class="meta" id="mCount"></span></div>
+      <p class="hint">6-second strip (tick marks every 3 s). Tap the start of the P wave, then the start of the QRS, to read the PR interval off the calipers.</p>
+      <div class="strip" id="mStrip"></div>
+      <div class="fields">
+        <div class="field" id="f-hr"><label for="in-hr">Heart rate (beats/min)</label><input id="in-hr" inputmode="numeric" placeholder="e.g. 80"><span class="key"></span></div>
+        <div class="field" id="f-pr"><label for="in-pr">PR interval (sec)</label><input id="in-pr" inputmode="decimal" placeholder="0.16"><span class="key"></span></div>
+        <div class="field" id="f-qrs"><label for="in-qrs">QRS duration (sec)</label><input id="in-qrs" inputmode="decimal" placeholder="0.08"><span class="key"></span></div>
+        <div class="field" id="f-reg"><label for="in-reg">Rhythm</label><select id="in-reg"><option value="">Choose…</option><option value="r">Regular</option><option value="i">Irregular</option></select><span class="key"></span></div>
+      </div>
+      <div class="row"><button class="btn primary" id="mCheck">Check</button><button class="btn" id="mPrev">Previous</button><button class="btn" id="mNext">Next strip</button><button class="btn" id="mClear">Clear calipers</button></div>
+      <div class="feedback" id="mFeedback" hidden></div>
+    </div>
+  </section>
+
+  <!-- STATION 3 -->
+  <section class="panel" id="p-identify" hidden>
+    <div class="card">
+      <div class="row" style="justify-content:space-between"><h2>Name this rhythm</h2><span class="meta" id="iCount"></span></div>
+      <p class="hint" id="iStem"></p>
+      <div class="strip" id="iStrip"></div>
+      <div class="row">
+        <select id="in-rhythm" aria-label="Rhythm"></select>
+        <button class="btn primary" id="iCheck">Check</button>
+        <button class="btn" id="iPrev">Previous</button>
+        <button class="btn" id="iNext">Next strip</button>
+        <button class="btn" id="iShuffle">Shuffle</button>
+      </div>
+      <div class="feedback" id="iFeedback" hidden></div>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+const NS='http://www.w3.org/2000/svg';
+const g=(t,c,w,a)=>a*Math.exp(-((t-c)*(t-c))/(2*w*w));
+const TAU=Math.PI*2;
+
+/* ---------- beat models (amplitudes in mV, time in sec) ---------- */
+function sinus(t0,o){o=o||{};const pr=o.pr??0.16,qrs=o.qrs??0.08,tOff=o.tOff??0.2;
+  return t=>{let y=0;
+    if(o.p!==false) y+=g(t,t0-pr+0.05,o.pw??0.022,o.pAmp??0.15);
+    y+=g(t,t0+0.012,0.007,-0.12);
+    y+=g(t,t0+qrs*0.45,qrs/7,o.rAmp??1.1);
+    y+=g(t,t0+qrs-0.012,0.008,-0.25);
+    y+=g(t,t0+qrs+tOff,0.05,o.tAmp??0.3);
+    if(o.u) y+=g(t,t0+qrs+tOff+0.2,0.03,0.06);
+    if(o.st) y+=g(t,t0+qrs+0.09,0.065,o.st);
+    return y;};}
+function pvc(t0,pol){return t=>g(t,t0+0.06,0.032,1.3*pol)+g(t,t0+0.13,0.025,-0.45*pol)+g(t,t0+0.34,0.07,-0.42*pol);}
+function vtBeat(t0){return t=>g(t,t0+0.06,0.04,1.35)+g(t,t0+0.19,0.05,-0.95);}
+
+/* ---------- rhythm builders: return {fn, beats} ---------- */
+function regular(rr,o,start){const beats=[];for(let t=start??0.25;t<6.4;t+=(typeof rr==='function'?rr(beats.length):rr))beats.push(t);
+  return {fn:sum(beats.map(b=>sinus(b,o))),beats};}
+function sum(parts,extra){return t=>{let y=extra?extra(t):0;for(const p of parts)y+=p(t);return y;};}
+function withPVCs(R,map){const parts=[],beats=[];for(let k=0;;k++){const tk=0.25+k*R;if(tk>6.4)break;
+    if(map[k]!==undefined){const tp=0.25+(k-1)*R+0.5;parts.push(pvc(tp,map[k]));beats.push(tp);}
+    else{parts.push(sinus(tk));beats.push(tk);}}
+  return {fn:sum(parts),beats};}
+function rngSeq(seed){let s=seed;return()=>{s=(s*1664525+1013904223)%4294967296;return s/4294967296;};}
+
+const R={
+ nsr:{name:'Normal sinus rhythm',build:()=>regular(0.8),
+  crit:['Rate 60–100 (here 70–80)','Regular R-R','One upright P before every QRS, all P waves look alike','PR 0.12–0.20 s, constant','QRS 0.06–0.10 s'],
+  kid:'The drummer (sinoatrial node) is keeping a steady, normal beat and every signal follows the right path.',
+  act:'No treatment. Document it as the baseline rhythm and keep comparing future strips to it.'},
+ brady:{name:'Sinus bradycardia',build:()=>regular(1.15,{pr:0.18}),
+  crit:['Rate below 60','Regular','Normal P before every QRS','PR and QRS normal'],
+  kid:'Same drummer, same song, just playing slow.',
+  act:'Assess the patient, not the monitor: dizziness, hypotension, chest pain, change in level of consciousness. Asymptomatic (athletes, sleep) may need nothing. Symptomatic: atropine per order and prepare for transcutaneous pacing. Check for meds that slow the rate (beta blockers, digoxin, calcium channel blockers).'},
+ tach:{name:'Sinus tachycardia',build:()=>regular(0.52,{pr:0.13,tOff:0.16}),
+  crit:['Rate above 100','Regular','Normal P before every QRS','PR and QRS normal (P may crowd the previous T)'],
+  kid:'Same drummer playing fast because the body is asking for more (fever, pain, fear, low volume).',
+  act:'Find and treat the cause: fever, pain, anxiety, hypovolemia, hypoxia, anemia. Fast rates shorten filling time and raise myocardial oxygen demand, which is dangerous in coronary artery disease/ACS.'},
+ sarr:{name:'Sinus arrhythmia',build:()=>regular(i=>0.8+0.22*Math.sin(i*1.1)),
+  crit:['Rate 60–100','Irregular: shortest and longest R-R differ by 0.12 s or more','Normal P before every QRS','PR and QRS normal'],
+  kid:'The drummer speeds up when you breathe in and slows down when you breathe out.',
+  act:'Normal variant caused by changes in intrathoracic pressure with breathing. Usually no treatment.'},
+ pac:{name:'Sinus rhythm with a premature atrial complex (PAC)',build:()=>{const parts=[],beats=[];let t=0.25;
+   for(let k=0;t<6.4;k++){if(k===4){t=beats[3]+0.52;parts.push(sinus(t,{pr:0.13,pAmp:0.1,pw:0.014}));}else parts.push(sinus(t));beats.push(t);t+=0.8;}
+   return {fn:sum(parts),beats};},
+  crit:['Underlying sinus rhythm','One beat comes early','The early beat has a P wave that looks different','QRS of the early beat is narrow and normal','Short pause after it'],
+  kid:'Someone in the atria clapped before the drummer was ready.',
+  act:'Usually harmless. Look for triggers: stress, fatigue, anxiety, caffeine, nicotine, alcohol, infection, certain drugs. Teach the patient to limit them.'},
+ svt:{name:'Supraventricular tachycardia (SVT)',build:()=>regular(0.33,{p:false,tOff:0.12,tAmp:0.22}),
+  crit:['Rate 100–280 (here ~180)','Regular','P waves hidden or buried in the T wave','QRS narrow'],
+  kid:'A short circuit above the ventricles keeps looping the signal so the heart races.',
+  act:'Assess stability (blood pressure, level of consciousness, chest pain, SOB). Oxygen, vagal maneuvers, then adenosine rapid intravenous push followed by a normal saline flush per order. Unstable: synchronized cardioversion. Recurrent supraventricular tachycardia: radiofrequency catheter ablation.'},
+ af:{name:'Atrial fibrillation (AF)',build:()=>{const r=rngSeq(7),beats=[];for(let t=0.2;t<6.4;t+=0.42+r()*0.55)beats.push(t);
+   const fib=t=>0.05*Math.sin(TAU*5.3*t+1)+0.04*Math.sin(TAU*7.1*t+2)+0.03*Math.sin(TAU*3.7*t);
+   return {fn:sum(beats.map(b=>sinus(b,{p:false})),fib),beats};},
+  crit:['No clear P waves; wavy, chaotic baseline','Irregularly irregular R-R','PR not measurable','QRS narrow','Loss of atrial kick'],
+  kid:'The atria are quivering like a bag of worms instead of squeezing, so blood sits still and can clot.',
+  act:'Priority problems: embolus formation (stroke, PE) and heart failure. Anticoagulation and rate control (e.g. beta blocker, diltiazem) per order. Count the apical pulse for a full minute and check for a pulse deficit. Teach stroke signs.'},
+ flutter:{name:'Atrial flutter',build:()=>{const beats=[];for(let t=0.25;t<6.4;t+=0.8)beats.push(t);
+   const saw=t=>{const ph=((t*5)%1+1)%1;return 0.18*(ph<0.8?-(ph/0.8)+0.5:(ph-0.8)/0.2-0.5);};
+   return {fn:sum(beats.map(b=>sinus(b,{p:false})),saw),beats};},
+  crit:['Sawtooth flutter (F) waves instead of P waves, atrial rate about 250–350','Here 4 flutter waves for every QRS (4:1)','Ventricular rhythm usually regular','QRS narrow'],
+  kid:'One tiny loop in the atria spins super fast and makes a sawtooth; the atrioventricular node only lets every few signals through.',
+  act:'Same dangers as atrial fibrillation: clot formation and heart failure if the ventricular rate is fast. Rate control and anticoagulation per order; cardioversion or radiofrequency ablation may be planned.'},
+ avb1:{name:'First-degree atrioventricular (AV) block',build:()=>regular(0.85,{pr:0.28}),
+  crit:['Sinus rhythm, regular','One P before every QRS','PR interval longer than 0.20 s and CONSTANT','Every P is followed by a QRS'],
+  kid:'The doorman (atrioventricular node) is slow, but he always lets everyone through.',
+  act:'Usually no treatment. Monitor for progression, keep measuring the PR, and review meds that slow atrioventricular conduction (digoxin, beta blockers, calcium channel blockers).'},
+ avb2a:{name:'Second-degree atrioventricular (AV) block, type I (Wenckebach)',build:()=>{const parts=[],beats=[],prs=[0.16,0.24,0.31,null];
+   for(let k=0;;k++){const pOn=0.1+k*0.8;if(pOn>6.4)break;const pr=prs[k%4];parts.push(t=>g(t,pOn+0.05,0.022,0.15));
+     if(pr!==null){const t0=pOn+pr;parts.push(sinus(t0,{p:false}));beats.push(t0);}}
+   return {fn:sum(parts),beats};},
+  crit:['P waves march out regularly','PR gets longer, longer, longer… then a P with no QRS (dropped beat)','Cycle repeats','R-R irregular in a grouped pattern'],
+  kid:'The doorman gets more and more tired with each person, then skips one to rest, then starts over.',
+  act:'Usually benign and often transient. Monitor, assess for symptoms (dizziness, hypotension). Symptomatic: atropine per order, pacing if needed. Check digoxin and beta blocker use.'},
+ avb2b:{name:'Second-degree atrioventricular (AV) block, type II (Mobitz II)',build:()=>{const parts=[],beats=[];
+   for(let k=0;;k++){const pOn=0.1+k*0.8;if(pOn>6.4)break;parts.push(t=>g(t,pOn+0.05,0.022,0.15));
+     if(k%3!==2){const t0=pOn+0.18;parts.push(sinus(t0,{p:false,qrs:0.12}));beats.push(t0);}}
+   return {fn:sum(parts),beats};},
+  crit:['P waves regular','PR CONSTANT on the conducted beats (no lengthening)','Sudden P with no QRS','QRS often wide'],
+  kid:'The doorman looks fine, then suddenly slams the door with no warning.',
+  act:'Dangerous: can progress to third-degree block. Notify the provider, apply transcutaneous pacing pads and be ready to pace, anticipate a permanent pacemaker.'},
+ avb3:{name:'Third-degree (complete) heart block',build:()=>{const parts=[],beats=[];
+   for(let k=0;;k++){const pOn=0.05+k*0.68;if(pOn>6.4)break;parts.push(t=>g(t,pOn+0.05,0.022,0.15));}
+   for(let t=0.45;t<6.4;t+=1.55){parts.push(sinus(t,{p:false,qrs:0.14,tAmp:-0.25,tOff:0.24}));beats.push(t);}
+   return {fn:sum(parts),beats};},
+  crit:['P waves regular (P-P constant) at a faster rate','QRS regular (R-R constant) at a slow rate, here under 40','P waves have NO relationship to the QRS: PR is all over the place, some P waves hide in the QRS or T','Escape QRS often wide'],
+  kid:'The doorman locked the door. The atria and ventricles each keep their own beat and ignore each other.',
+  act:'Usually symptomatic with low cardiac output. Assess level of consciousness and blood pressure, apply transcutaneous pacing, atropine per order (often ineffective), prepare for transvenous then permanent pacemaker.'},
+ pvcu:{name:'Sinus rhythm with unifocal premature ventricular complexes (PVCs)',build:()=>withPVCs(0.85,{2:1,5:1}),
+  crit:['Underlying sinus rhythm','Early, wide, bizarre QRS with no P wave','T wave points opposite to the QRS','Pause after each premature ventricular complex','All premature ventricular complexes look the same (one focus)'],
+  kid:'One grumpy spot in the ventricle fires early on its own.',
+  act:'Check the pulse and perfusion with the premature ventricular complex. Check potassium and magnesium, give oxygen if hypoxic, look for ischemia. Report if new or increasing.'},
+ pvcm:{name:'Sinus rhythm with multifocal premature ventricular complexes (PVCs)',build:()=>withPVCs(0.85,{2:-1,6:1}),
+  crit:['Underlying sinus rhythm','Early wide QRS complexes with no P wave','Premature ventricular complexes have different shapes (one negative, one positive)','More than one irritable focus'],
+  kid:'Several grumpy spots in the ventricle are firing. More troublemakers means more risk.',
+  act:'Higher risk of deteriorating to ventricular tachycardia/ventricular fibrillation. Notify the provider, check potassium and magnesium, assess for ischemia, keep the patient on continuous monitoring.'},
+ big:{name:'Ventricular bigeminy',build:()=>withPVCs(0.85,{1:1,3:1,5:1,7:1,9:1}),
+  crit:['Every other beat is a premature ventricular complex','Pattern: normal, premature ventricular complex, normal, premature ventricular complex','Pause after each premature ventricular complex'],
+  kid:'Normal beat, troublemaker beat, normal beat, troublemaker beat.',
+  act:'Premature ventricular complexes may not make a palpable pulse, so the radial rate can be half the monitor rate. Compare apical and radial pulses. Check electrolytes and digoxin level if applicable.'},
+ vt:{name:'Ventricular tachycardia (VT)',build:()=>{const beats=[];for(let t=0.08;t<6.4;t+=0.36)beats.push(t);return {fn:sum(beats.map(vtBeat)),beats};},
+  crit:['Rate 140–180 or more (here ~166)','Regular','No P waves','Wide, bizarre QRS complexes'],
+  kid:'The ventricles took over and are beating so fast they cannot fill.',
+  act:'CHECK FOR A PULSE FIRST. Pulseless: call a code, cardiopulmonary resuscitation, defibrillate. Pulse but unstable: synchronized cardioversion. Pulse and stable: oxygen and an antidysrhythmic such as amiodarone per order.'},
+ vf:{name:'Ventricular fibrillation (VF)',build:()=>({fn:t=>(0.35+0.22*Math.sin(TAU*0.4*t))*Math.sin(TAU*4.6*t+1.5*Math.sin(TAU*0.7*t))+0.15*Math.sin(TAU*6.9*t+1),beats:[]}),
+  crit:['No identifiable P, QRS or T','Chaotic wavy line','No rate to count','No pulse, no cardiac output'],
+  kid:'Electrical chaos. The ventricles quiver and pump nothing.',
+  act:'Life-threatening. Confirm unresponsive and pulseless, call the code, start cardiopulmonary resuscitation, defibrillate as soon as possible (an automated external defibrillator shortens time to first shock). Then advanced cardiac life support.'},
+ asys:{name:'Ventricular asystole',build:()=>({fn:t=>0.02*Math.sin(TAU*0.3*t)+0.012*Math.sin(TAU*9*t)+g(t,3.45,0.04,-0.4)+g(t,3.6,0.05,0.5),beats:[]}),
+  crit:['Flat line (one stray idioventricular complex here)','No ventricular activity','No pulse'],
+  kid:'The drummer and every backup quit. Nothing is happening.',
+  act:'Confirm in a second lead and check that leads are attached, check for a pulse. Cardiopulmonary resuscitation and epinephrine per advanced cardiac life support. NOT a shockable rhythm.'}
+};
+Object.assign(R,{
+ junc:{name:'Junctional rhythm',build:()=>regular(1.25,{pr:0.09,pAmp:-0.12}),
+  crit:['Rate 40–60','Regular','P waves inverted and before the QRS (PR under 0.12 s), hidden in the QRS, or after it','QRS narrow and normal'],
+  kid:'The drummer (sinoatrial node) stopped, so the backup drummer in the atrioventricular junction takes over at a slower beat. The signal travels backward into the atria, so the P wave flips upside down.',
+  act:'Correct the underlying cause. Atropine for a symptomatic slow rate; pacemaker if it does not respond to drugs. Hold digoxin if toxicity is suspected.',
+  cause:'Inferior wall myocardial infarction or ischemia, hypoxia, vagal stimulation, sick sinus syndrome, acute rheumatic fever, valve surgery, digoxin toxicity.'},
+ pjc:{name:'Sinus rhythm with a premature junctional complex (PJC)',build:()=>{const parts=[],beats=[];let t=0.25;
+   for(let k=0;t<6.4;k++){if(k===4){t=beats[3]+0.55;parts.push(sinus(t,{pr:0.08,pAmp:-0.12}));}else parts.push(sinus(t));beats.push(t);t+=0.8;}
+   return {fn:sum(parts),beats};},
+  crit:['Underlying sinus rhythm','One beat comes early','Early beat has an INVERTED P wave (before, hidden in, or after the QRS)','QRS narrow and normal'],
+  kid:'The backup drummer in the atrioventricular junction hits early once. The signal goes backward into the atria, so its P wave is upside down.',
+  act:'Usually no treatment. Correct the underlying cause. Discontinue digoxin if toxicity is suspected.',
+  cause:'Myocardial infarction or ischemia, digoxin toxicity, excessive caffeine or amphetamine use.'},
+ sa:{name:'Sinoatrial (SA) arrest',build:()=>{const beats=[0.25,1.1,1.95,2.8,4.25,5.1,5.95];return {fn:sum(beats.map(b=>sinus(b))),beats};},
+  crit:['Underlying sinus rhythm with normal P before each QRS','A whole P-QRS-T is missing, leaving a pause','The pause is NOT an exact multiple of the normal R-R'],
+  kid:'The drummer skips a beat completely, then starts again.',
+  act:'Assess for symptoms (dizziness, syncope, hypotension). Atropine intravenous for symptoms; temporary or permanent pacemaker if episodes repeat.',
+  cause:'Infection, coronary artery disease, degenerative heart disease, acute inferior wall myocardial infarction, vagal stimulation (Valsalva, carotid sinus massage), digoxin toxicity.'},
+ stE:{name:'Sinus rhythm with ST elevation',build:()=>regular(0.85,{st:0.3,tAmp:0.38}),
+  crit:['Underlying sinus rhythm','ST segment sits ABOVE the baseline instead of flat on it','On a 12-lead: elevation of 1 mm or more in 2 contiguous leads','Rest of the complex normal'],
+  kid:'The ST segment should lie flat on the floor. When a heart artery is completely blocked, the injured muscle lifts it up.',
+  act:'Possible ST-elevation myocardial infarction. Time is myocardium. Notify the provider immediately (activate the cath lab per protocol), get a 12-lead electrocardiogram, draw troponins, give aspirin, oxygen if hypoxic, nitroglycerin, morphine if indicated, continuous cardiac monitoring. Prepare for urgent reperfusion (percutaneous coronary intervention).',
+  cause:'Complete coronary artery occlusion (ST-elevation myocardial infarction). Also seen with pericarditis.'},
+ stD:{name:'Sinus rhythm with ST depression',build:()=>regular(0.85,{st:-0.18,tAmp:0.12}),
+  crit:['Underlying sinus rhythm','ST segment sits BELOW the baseline','T wave may be flattened or inverted','Rest of the complex normal'],
+  kid:'Heart muscle that is not getting enough oxygen pulls the ST segment down below the floor.',
+  act:'Possible ischemia (unstable angina or non-ST-elevation myocardial infarction). Get a 12-lead electrocardiogram and troponins: positive troponin with no ST elevation means non-ST-elevation myocardial infarction. Assess chest pain, aspirin, nitroglycerin, oxygen if hypoxic, continuous cardiac monitoring.',
+  cause:'Myocardial ischemia (unstable angina, non-ST-elevation myocardial infarction), digoxin effect, hypokalemia.'},
+ wap:{name:'Wandering atrial pacemaker',build:()=>{const P=[{a:0.15,pr:0.18},{a:0.08,pr:0.14},{a:-0.07,pr:0.12},{a:0.11,pr:0.16}],parts=[],beats=[];let t=0.25;
+   for(let k=0;t<6.4;k++){const p=P[k%4];parts.push(sinus(t,{pr:p.pr,pAmp:p.a,pw:0.018+(k%2)*0.008}));beats.push(t);t+=[0.78,0.86,0.82,0.9][k%4];}
+   return {fn:sum(parts),beats};},
+  crit:['P waves change shape from beat to beat (upright, flat, inverted)','PR interval varies','R-R varies slightly','QRS narrow and uniform'],
+  kid:'The job of drummer keeps passing between different spots in the atria, so every P wave looks a little different.',
+  act:'No treatment if asymptomatic. Treat the underlying cause if symptomatic.',
+  cause:'Rheumatic carditis involving the sinoatrial node, digoxin toxicity, sick sinus syndrome.'}
+});
+const CAUSE={
+ brady:'Athletes and sleep (normal), increased vagal tone (straining at stool, vomiting, suctioning, intubation), increased intracranial pressure, inferior myocardial infarction, beta blockers, digoxin, calcium channel blockers.',
+ tach:'Fever, exercise, anxiety, pain, dehydration, shock, left-sided heart failure, cardiac tamponade, hyperthyroidism, anemia; atropine, epinephrine, caffeine, nicotine, alcohol.',
+ sarr:'Normal breathing variation (athletes, children, older adults); digoxin toxicity and inferior wall myocardial infarction.',
+ pac:'Stress, fatigue, anxiety, inflammation, infection, caffeine, nicotine, alcohol, certain drugs, hyperthyroidism, chronic obstructive pulmonary disease. Can precede supraventricular tachycardia.',
+ svt:'Physical exertion, emotion, stimulants (caffeine, marijuana), digoxin toxicity, an abnormal atrioventricular conduction pathway.',
+ af:'Hypertension, heart failure, coronary artery disease, chronic obstructive pulmonary disease, thyrotoxicosis, pulmonary embolus, mitral valve disease, after coronary artery bypass graft or valve surgery.',
+ flutter:'Heart failure, tricuspid or mitral valve disease, pulmonary embolism, cor pulmonale, inferior wall myocardial infarction, digoxin toxicity.',
+ avb1:'Inferior wall myocardial infarction or ischemia, hypothyroidism, hypokalemia or hyperkalemia, digoxin, beta blockers, calcium channel blockers.',
+ avb2a:'Coronary artery disease and myocardial infarction, acute myocarditis, digoxin toxicity, beta blockers, increased vagal tone.',
+ avb2b:'Anterior wall myocardial infarction, severe coronary artery disease, degenerative disease of the conduction system.',
+ avb3:'Inferior or anterior wall myocardial infarction, congenital abnormality, rheumatic fever, digoxin toxicity.',
+ pvcu:'Heart failure, myocardial infarction or ischemia, hypokalemia, hypomagnesemia, hypocalcemia, hypercapnia, digoxin toxicity, caffeine, tobacco, alcohol, stress, pain.',
+ vt:'Myocardial ischemia or myocardial infarction, coronary artery disease, heart failure, cardiomyopathy, hypokalemia, hypomagnesemia, pulmonary embolism, digoxin toxicity.',
+ vf:'Myocardial infarction or ischemia, untreated ventricular tachycardia, R-on-T premature ventricular complex, hypokalemia, hyperkalemia, hypercalcemia, hypothermia, electric shock, drug toxicity.',
+ asys:'Myocardial infarction, hypoxemia, severe acidosis, hyperkalemia, electric shock, pulmonary embolism, cardiac tamponade, cocaine overdose.'};
+CAUSE.pvcm=CAUSE.big=CAUSE.pvcu;
+for(const k in CAUSE)R[k].cause=CAUSE[k];
+R.pvcu.act+=' If ordered: potassium chloride intravenous for hypokalemia, magnesium sulfate intravenous for hypomagnesemia, amiodarone or lidocaine if warranted.';
+R.vf.act='Life-threatening. Confirm unresponsive and pulseless, call the code, start cardiopulmonary resuscitation, defibrillate as soon as possible (an automated external defibrillator shortens time to first shock). Advanced cardiac life support drugs: epinephrine, then amiodarone or lidocaine; magnesium sulfate if refractory.';
+const ORDER=Object.keys(R);
+
+/* ---------- strip rendering ---------- */
+const S={pxs:150,pxmv:60,base:120,w:900,h:180};
+function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+function tracePath(fn,sc,t0,t1,ox){ox=ox??t0;let d='';for(let t=t0;t<=t1+1e-9;t+=0.003){const x=(t-ox)*sc.pxs,y=sc.base-fn(t)*sc.pxmv;d+=(d?'L':'M')+x.toFixed(1)+' '+y.toFixed(1);}return d;}
+function drawStrip(host,fn){host.innerHTML='';
+  const svg=el('svg',{viewBox:`0 0 ${S.w} ${S.h}`,role:'img','aria-label':'6-second electrocardiogram strip'});
+  el('rect',{width:S.w,height:S.h,fill:'url(#gl)'},svg);
+  [0,3,6].forEach(s=>{const x=Math.min(s*S.pxs,S.w-1);el('line',{x1:x,y1:2,x2:x,y2:14,class:'tick'},svg);});
+  const lbl=el('text',{x:S.w/2-24,y:14,class:'ticklbl'},svg);lbl.textContent='3 sec';
+  const lbl2=el('text',{x:S.w*0.75-24,y:14,class:'ticklbl'},svg);lbl2.textContent='3 sec';
+  el('path',{d:tracePath(fn,S,0,6),class:'trace'},svg);
+  const cal=el('g',{class:'cal'},svg);
+  host.appendChild(svg);attachCaliper(svg,cal);}
+function attachCaliper(svg,cal){let pts=[];
+  svg.addEventListener('click',e=>{const m=svg.getScreenCTM();if(!m)return;const p=svg.createSVGPoint();p.x=e.clientX;p.y=e.clientY;const x=p.matrixTransform(m.inverse()).x;
+    if(pts.length>=2){pts=[];cal.innerHTML='';}
+    pts.push(x);el('line',{x1:x,y1:18,x2:x,y2:S.h,class:''},cal);
+    if(pts.length===2){const dt=Math.abs(pts[1]-pts[0])/S.pxs,boxes=dt/0.04;const mid=Math.min(Math.max((pts[0]+pts[1])/2,70),S.w-70);
+      const t=el('text',{x:mid,y:S.h-8,'text-anchor':'middle'},cal);t.textContent=`${dt.toFixed(2)} s · ${boxes.toFixed(1)} small boxes`;}});
+  svg._clear=()=>{pts=[];cal.innerHTML='';};}
+
+/* ---------- STATION 1: labeling ---------- */
+const LB={pxs:500,pxmv:150,base:200};
+const LABELS=[
+ {k:'P wave',why:'Atrial depolarization. The boss (sinoatrial node) sends the message and the top rooms (atria) squeeze. Missing or odd-looking P wave = something other than the boss started the beat.'},
+ {k:'PR interval',why:'Start of the P wave to start of the QRS. The doorman (atrioventricular node) holds the door so the atria finish pushing blood down. Normal 0.12–0.20 s. Longer = slow doorman (heart block).'},
+ {k:'QRS complex',why:'Ventricular depolarization. The message races down the hallways (bundle branches, Purkinje fibers) and the bottom rooms (ventricles) squeeze. This is the pulse you feel. Normal 0.06–0.10 s. Wide = the message took a slow back route.'},
+ {k:'ST segment',why:'The ventricles hold their squeeze, so the line should be flat on the baseline. Raised = muscle being damaged now (possible ST-elevation myocardial infarction). Lowered = muscle starving for oxygen (ischemia).'},
+ {k:'T wave',why:'Ventricular repolarization. The ventricles recharge for the next beat. Changes can point to ischemia or potassium problems.'},
+ {k:'QT interval',why:'Start of the QRS to end of the T wave: the ventricles\' whole work shift (fire + recharge). Too long = a new signal can hit before they recharge and trigger a deadly rhythm.'}
+];
+// marker number -> correct label index (scrambled so position does not give it away)
+const PINS=[{n:1,ans:'T wave'},{n:2,ans:'PR interval'},{n:3,ans:'P wave'},{n:4,ans:'ST segment'},{n:5,ans:'QT interval'},{n:6,ans:'QRS complex'}];
+function drawLabel(){const host=document.getElementById('labelStrip');host.innerHTML='';
+  const W=560,H=310;const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'Single enlarged PQRST complex with numbered markers'});
+  el('rect',{width:W,height:H,fill:'url(#gl2)'},svg);
+  const t0=0.22,fn=sinus(t0,{pr:0.16,qrs:0.08,tOff:0.2,pAmp:0.17,tAmp:0.33});
+  el('path',{d:tracePath(fn,LB,0,1.1),class:'trace'},svg);
+  el('path',{d:tracePath(fn,LB,0.205,0.302,0),class:'trace qrs'},svg);
+  const X=t=>t*LB.pxs,Y=v=>LB.base-v*LB.pxmv;
+  const pin=(n,x,y)=>{const gg=el('g',{class:'pin'},svg);el('circle',{cx:x,cy:y,r:13},gg);const tx=el('text',{x:x,y:y+0.5},gg);tx.textContent=n;};
+  const br=(n,a,b,y)=>{el('path',{d:`M${X(a)} ${y-6}V${y}H${X(b)}V${y-6}`,class:'bk'},svg);pin(n,(X(a)+X(b))/2,y+14);};
+  // points
+  pin(3,X(0.11),Y(0.17)-24);            // P wave
+  pin(1,X(0.50),Y(0.33)-24);            // T wave
+  // brackets
+  el('path',{d:`M${X(0.22)} 220V226H${X(0.30)}V220`,class:'gb qrsb'},svg);pin(6,(X(0.22)+X(0.30))/2,240); br(4,0.30,0.40,226);
+  br(2,0.06,0.22,252);
+  br(5,0.22,0.62,278);
+  host.appendChild(svg);}
+function buildLabelFields(){const box=document.getElementById('labelFields');box.innerHTML='';
+  PINS.forEach(p=>{const d=document.createElement('div');d.className='lbl';d.id='lbl-'+p.n;
+    d.innerHTML=`<span class="num">${p.n}</span><select id="sel-${p.n}" aria-label="Marker ${p.n}"><option value="">Choose…</option>${LABELS.map(l=>`<option>${l.k}</option>`).join('')}</select><span class="why" hidden></span>`;
+    box.appendChild(d);});}
+let labelBest=null;
+document.getElementById('labelCheck').onclick=()=>{let ok=0;
+  PINS.forEach(p=>{const d=document.getElementById('lbl-'+p.n),v=document.getElementById('sel-'+p.n).value,why=d.querySelector('.why');
+    const right=v===p.ans;if(right)ok++;d.classList.toggle('ok',right);d.classList.toggle('bad',!right);
+    why.hidden=false;why.textContent=(right?'':`Answer: ${p.ans}. `)+LABELS.find(l=>l.k===p.ans).why;});
+  document.getElementById('labelScore').textContent=`${ok} / ${PINS.length} correct`;labelBest=ok;
+  document.getElementById('sc-label').textContent=`${ok}/${PINS.length}`;};
+document.getElementById('labelReset').onclick=()=>{buildLabelFields();document.getElementById('labelScore').textContent='';};
+
+/* ---------- STATION 2: measuring ---------- */
+const MS=[
+ {title:'Strip A',rr:0.75,o:{pr:0.16,qrs:0.08},reg:'r',note:'Normal sinus rhythm. Everything is inside normal limits.'},
+ {title:'Strip B',rr:1.2,o:{pr:0.20,qrs:0.08},reg:'r',note:'Sinus bradycardia. PR 0.20 is the top of normal, not prolonged.'},
+ {title:'Strip C',rr:0.55,o:{pr:0.12,qrs:0.08,tOff:0.16},reg:'r',note:'Sinus tachycardia. PR 0.12 is the bottom of normal.'},
+ {title:'Strip D',rr:0.9,o:{pr:0.26,qrs:0.12},reg:'r',note:'Sinus rhythm with a PR over 0.20 s (prolonged, first-degree atrioventricular block pattern) and a QRS over 0.10 s (wide, delayed ventricular conduction). Report both.'},
+ {title:'Strip E',af:true,reg:'i',note:'Irregularly irregular with no P waves: atrial fibrillation. PR cannot be measured. When the rhythm is irregular, the 6-second method is the correct way to count.'}
+];
+MS.forEach(m=>{if(m.af){const b=R.af.build();m.fn=b.fn;m.beats=b.beats;m.pr=null;m.qrs=0.08;}else{const b=regular(m.rr,m.o);m.fn=b.fn;m.beats=b.beats;m.pr=m.o.pr;m.qrs=m.o.qrs;}
+  m.hr=m.beats.filter(t=>t>=0&&t<6).length*10;});
+let mi=0;const mScore={};
+function showMeasure(){const m=MS[mi];document.getElementById('mTitle').textContent=m.title;document.getElementById('mCount').textContent=`${mi+1} / ${MS.length}`;
+  drawStrip(document.getElementById('mStrip'),m.fn);
+  ['hr','pr','qrs','reg'].forEach(k=>{const f=document.getElementById('f-'+k);f.classList.remove('ok','bad');f.querySelector('.key').textContent='';document.getElementById('in-'+k).value='';});
+  document.getElementById('in-pr').placeholder=m.pr===null?'or type n/a':'0.16';
+  document.getElementById('mFeedback').hidden=true;
+  document.getElementById('mPrev').disabled=mi===0;document.getElementById('mNext').disabled=mi===MS.length-1;}
+document.getElementById('mCheck').onclick=()=>{const m=MS[mi];let ok=0;
+  const res=(k,right,key)=>{const f=document.getElementById('f-'+k);f.classList.toggle('ok',right);f.classList.toggle('bad',!right);f.querySelector('.key').textContent=key;if(right)ok++;};
+  const hr=parseFloat(document.getElementById('in-hr').value);res('hr',Math.abs(hr-m.hr)<=10,`Key: ${m.hr} (${m.hr/10} QRS × 10)`);
+  const prRaw=document.getElementById('in-pr').value.trim().toLowerCase(),pr=parseFloat(prRaw);
+  if(m.pr===null)res('pr',/n\/?a|none|no|cannot|0/.test(prRaw)&&!(pr>0),'Key: not measurable (no P waves)');
+  else res('pr',Math.abs(pr-m.pr)<=0.03,`Key: ${m.pr.toFixed(2)} s (${Math.round(m.pr/0.04)} small boxes)`);
+  const q=parseFloat(document.getElementById('in-qrs').value);res('qrs',Math.abs(q-m.qrs)<=0.02,`Key: ${m.qrs.toFixed(2)} s (${Math.round(m.qrs/0.04)} small boxes)`);
+  res('reg',document.getElementById('in-reg').value===m.reg,`Key: ${m.reg==='r'?'Regular':'Irregular'}`);
+  mScore[mi]=ok;const fb=document.getElementById('mFeedback');fb.hidden=false;
+  fb.innerHTML=`<div class="verdict ${ok===4?'ok':'bad'}">${ok} / 4</div><p>${m.note}</p><p class="hint">Tolerance: rate ±10, PR ±0.03 s, QRS ±0.02 s.</p>`;
+  const tot=Object.values(mScore).reduce((a,b)=>a+b,0);document.getElementById('sc-measure').textContent=`${tot}/${Object.keys(mScore).length*4}`;};
+document.getElementById('mPrev').onclick=()=>{if(mi>0){mi--;showMeasure();}};
+document.getElementById('mNext').onclick=()=>{if(mi<MS.length-1){mi++;showMeasure();}};
+document.getElementById('mClear').onclick=()=>{const s=document.querySelector('#mStrip svg');s&&s._clear&&s._clear();};
+
+/* ---------- STATION 3: identify ---------- */
+const STEMS=['Telemetry alarm. Interpret the strip.','The patient was admitted for chest pain. Interpret the strip.','Interpret the strip, then decide what you do first.'];
+let deck=ORDER.slice(),ii=0;const iRes={};const built={};
+const sel=document.getElementById('in-rhythm');
+sel.innerHTML='<option value="">Choose a rhythm…</option>'+ORDER.slice().sort((a,b)=>R[a].name.localeCompare(R[b].name)).map(k=>`<option value="${k}">${R[k].name}</option>`).join('');
+function showIdentify(){const k=deck[ii];built[k]=built[k]||R[k].build();
+  document.getElementById('iCount').textContent=`${ii+1} / ${deck.length}`;document.getElementById('iStem').textContent=STEMS[ii%STEMS.length];
+  drawStrip(document.getElementById('iStrip'),built[k].fn);sel.value='';document.getElementById('iFeedback').hidden=true;
+  document.getElementById('iPrev').disabled=ii===0;document.getElementById('iNext').disabled=ii===deck.length-1;}
+document.getElementById('iCheck').onclick=()=>{const k=deck[ii],v=sel.value;if(!v)return;const right=v===k,r=R[k];iRes[k]=right;
+  const fb=document.getElementById('iFeedback');fb.hidden=false;
+  fb.innerHTML=`<div class="verdict ${right?'ok':'bad'}">${right?'Correct':'Not quite'}: ${r.name}</div>
+   <div><h3>What proves it</h3><ul>${r.crit.map(c=>`<li>${c}</li>`).join('')}</ul></div>
+   <p class="kid"><strong>Kid version.</strong> ${r.kid}</p>
+   <p class="act"><strong>Priority nursing action.</strong> ${r.act}</p>
+   ${r.cause?`<p><strong>Common causes.</strong> ${r.cause}</p>`:''}`;
+  const vals=Object.values(iRes);document.getElementById('sc-identify').textContent=`${vals.filter(Boolean).length}/${vals.length}`;};
+document.getElementById('iPrev').onclick=()=>{if(ii>0){ii--;showIdentify();}};
+document.getElementById('iNext').onclick=()=>{if(ii<deck.length-1){ii++;showIdentify();}};
+document.getElementById('iShuffle').onclick=()=>{for(let i=deck.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[deck[i],deck[j]]=[deck[j],deck[i]];}ii=0;showIdentify();};
+
+/* ---------- STATION 2: fill the gap ---------- */
+const norm=s=>(s||'').toLowerCase().replace(/[^a-z0-9]/g,'');
+const ALIAS={'P wave':['pwave','p'],'PR segment':['prsegment','prseg'],'PR interval':['printerval','print','pri','printer'],
+ 'QRS complex':['qrscomplex','qrs','qrscomp'],'J point':['jpoint','j','jjunction','junction'],'ST segment':['stsegment','stseg','st'],
+ 'T wave':['twave','t'],'U wave':['uwave','u'],'QT interval':['qtinterval','qt','qtint']};
+function pill(svg,x,y){const gg=el('g',{class:'qpill'},svg);el('rect',{x:x-16,y:y-13,width:32,height:26,rx:5},gg);const t=el('text',{x:x,y:y},gg);t.textContent='?';return gg;}
+function drawGapComplex(host,hide){host.innerHTML='';const W=560,H=372;
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'PQRST complex with one label missing'});
+  el('rect',{width:W,height:H,fill:'url(#gl2)'},svg);
+  const fn=sinus(0.22,{pr:0.16,qrs:0.08,tOff:0.2,pAmp:0.17,tAmp:0.33});
+  el('path',{d:tracePath(fn,LB,0,1.1),class:'trace'},svg);
+  if(hide!=='QRS complex')el('path',{d:tracePath(fn,LB,0.205,0.302,0),class:'trace qrs'},svg);
+  const X=t=>t*LB.pxs,Y=v=>LB.base-v*LB.pxmv;
+  const txt=(name,x,y,anchor)=>{if(name===hide){pill(svg,anchor==='start'?x+16:x,y-5);return;}
+    const t=el('text',{x:x,y:y,'text-anchor':anchor||'middle',class:'glbl'+(name==='QRS complex'?' q':'')},svg);t.textContent=name;};
+  const br=(name,a,b,y,cls,lx,anchor)=>{el('path',{d:`M${X(a)} ${y-7}V${y}H${X(b)}V${y-7}`,class:'gb '+(name===hide?'hid':cls)},svg);txt(name,lx??(X(a)+X(b))/2,y+19,anchor);};
+  txt('P wave',X(0.11),Y(0.17)-14);
+  txt('T wave',X(0.50),Y(0.33)-14);
+  br('ST segment',0.30,0.40,250,'seg');
+  br('PR interval',0.06,0.22,298,'int');br('QRS complex',0.22,0.30,298,'qrsb',X(0.22)+4,'start');
+  br('QT interval',0.22,0.62,346,'int');
+  host.appendChild(svg);}
+function drawCheat(host){host.innerHTML='';const W=560,H=440;
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'Fully labeled PQRST complex with normal values'});
+  el('rect',{width:W,height:H,fill:'url(#gl2)'},svg);
+  const fn=sinus(0.22,{pr:0.16,qrs:0.08,tOff:0.2,pAmp:0.17,tAmp:0.33});
+  el('path',{d:tracePath(fn,LB,0,1.1),class:'trace'},svg);
+  el('path',{d:tracePath(fn,LB,0.205,0.302,0),class:'trace qrs'},svg);
+  const X=t=>t*LB.pxs,Y=v=>LB.base-v*LB.pxmv;
+  const T=(str,x,y,cls,anchor)=>{const t=el('text',{x:x,y:y,'text-anchor':anchor||'middle',class:cls},svg);t.textContent=str;};
+  const br=(a,b,y,cls,name,val,lx,anchor,ncls)=>{el('path',{d:`M${X(a)} ${y-7}V${y}H${X(b)}V${y-7}`,class:'gb '+cls},svg);
+    const x=lx??(X(a)+X(b))/2;T(name,x,y+19,ncls||'glbl',anchor);T(val,x,y+36,'gval',anchor);};
+  T('1 small box = 0.04 s · 1 large box = 0.20 s',W-12,22,'gval','end');
+  T('P wave',X(0.11),Y(0.17)-30,'glbl');T('atria fire',X(0.11),Y(0.17)-14,'gval');
+  T('QRS complex',X(0.26)+22,Y(1.1)+16,'glbl q','start');T('ventricles fire',X(0.26)+22,Y(1.1)+32,'gval','start');
+  T('T wave',X(0.50),Y(0.33)-30,'glbl');T('ventricles reset',X(0.50),Y(0.33)-14,'gval');
+  el('path',{d:`M${X(0.30)} 245V252H${X(0.40)}V245`,class:'gb seg'},svg);T('ST segment',X(0.40)+10,250,'glbl','start');T('flat on baseline',X(0.40)+10,267,'gval','start');
+  br(0.22,0.30,252,'qrsb','QRS duration','0.06–0.10 s',null,null,'glbl q');
+  br(0.06,0.22,320,'int','PR interval','0.12–0.20 s');
+  br(0.22,0.62,384,'int','QT interval','QTc ≤ 0.44 s men · ≤ 0.46 s women');
+  host.appendChild(svg);}
+const GB={};const gb=k=>GB[k]||(GB[k]=R[k].build());
+const STRIP_ITEMS=[
+ {rk:'af',q:'Atrial fibrillation strip. What is the wavy baseline under the ?',ans:'Fibrillatory waves',accept:['fibrillatorywaves','fibrillatory','fibrillationwaves','fwaves','fwave','fibwaves'],choices:['P waves','Fibrillatory waves','Flutter waves','U waves'],
+  pin:b=>({t:(b.beats[1]+b.beats[2])/2,mv:0.1}),why:'Atrial fibrillation has no organized P waves. The atria quiver and make small chaotic fibrillatory (f) waves, so there is no PR interval and no atrial kick.'},
+ {rk:'flutter',q:'Atrial flutter strip. What are the waves under the ?',ans:'Flutter waves',accept:['flutterwaves','flutter','sawtooth','sawtoothwaves','fwaves'],choices:['P waves','Fibrillatory waves','Flutter waves','T waves'],
+  pin:b=>({t:b.beats[1]+0.52,mv:0.2}),why:'Sawtooth flutter (F) waves at about 250–350/min. Here 4 F waves for every QRS (4:1 conduction).'},
+ {rk:'pvcu',q:'Name the beat under the ?',ans:'Premature ventricular complex (PVC)',accept:['pvc','prematureventricularcontraction','prematureventricularcomplex','prematureventricular'],choices:['Premature atrial complex (PAC)','Premature junctional complex (PJC)','Premature ventricular complex (PVC)','Escape beat'],
+  pin:b=>({t:b.beats[2]+0.06,mv:1.3}),why:'Early, wide, bizarre QRS with no P wave, T wave opposite the QRS, then a full compensatory pause.'},
+ {rk:'pac',q:'Name the beat under the ?',ans:'Premature atrial complex (PAC)',accept:['pac','prematureatrialcontraction','prematureatrialcomplex','prematureatrial'],choices:['Premature atrial complex (PAC)','Premature junctional complex (PJC)','Premature ventricular complex (PVC)','Sinus beat'],
+  pin:b=>({t:b.beats[4]+0.04,mv:1.1}),why:'Early beat with its own differently shaped upright P wave and a normal narrow QRS.'},
+ {rk:'pjc',q:'Name the beat under the ?',ans:'Premature junctional complex (PJC)',accept:['pjc','prematurejunctionalcontraction','prematurejunctionalcomplex','prematurejunctional'],choices:['Premature atrial complex (PAC)','Premature junctional complex (PJC)','Premature ventricular complex (PVC)','Sinus beat'],
+  pin:b=>({t:b.beats[4]+0.04,mv:1.1}),why:'Early beat with an INVERTED P wave and a short PR (under 0.12 s), narrow QRS. The impulse started in the atrioventricular junction and traveled backward into the atria.'},
+ {rk:'avb2a',q:'Wenckebach strip. What is the waveform under the ?',ans:'Nonconducted P wave',accept:['nonconductedpwave','nonconducted','nonconductedp','blockedpwave','blockedp','blocked','droppedbeat','dropped','droppedqrs','pwave','p'],choices:['Nonconducted P wave','Premature ventricular complex (PVC)','U wave','T wave'],
+  pin:()=>({t:0.1+3*0.8+0.05,mv:0.15}),why:'The PR stretches longer each beat until a P wave arrives and no QRS follows. That P was blocked at the atrioventricular node. The cycle then restarts with a shorter PR.'},
+ {rk:'avb1',q:'Name the bracketed measurement on this strip.',ans:'PR interval (prolonged)',accept:['printervalprolonged','printerval','prolongedprinterval','prolongedpr','longpr','pri','pr'],choices:['PR interval (prolonged)','PR segment','QT interval','QRS duration'],
+  bracket:b=>({a:b.beats[1]-0.274,b:b.beats[1]}),why:'Start of P to start of QRS is 0.28 s (7 small boxes). Over 0.20 s and constant on every beat means first-degree atrioventricular block.'},
+ {rk:'avb3',q:'Complete heart block. The ? sits on a P wave. What is its relationship to the QRS?',ans:'None (AV dissociation)',accept:['noneavdissociation','none','avdissociation','dissociation','norelationship','independent','unrelated','nothing'],choices:['None (AV dissociation)','Every P conducts','Every other P conducts','PR lengthens each beat'],
+  pin:()=>({t:0.05+4*0.68+0.05,mv:0.15}),why:'P waves march out at their own regular rate and the QRS complexes at their own slower rate. The PR is never constant because the atria and ventricles are not connected.'}
+];
+STRIP_ITEMS.push(
+ {rk:'stE',q:'What is abnormal at the ?',ans:'ST elevation',accept:['stelevation','stsegmentelevation','elevatedst','elevatedstsegment','elevation','stemi'],choices:['ST elevation','ST depression','Tall T wave','Normal ST segment'],
+  pin:b=>({t:b.beats[1]+0.17,mv:0.36}),why:'The ST segment is raised above the baseline. With chest pain this is a possible ST-elevation myocardial infarction: complete occlusion that needs urgent reperfusion.'},
+ {rk:'stD',q:'What is abnormal at the ?',ans:'ST depression',accept:['stdepression','stsegmentdepression','depressedst','depressedstsegment','depression'],choices:['ST elevation','ST depression','Inverted P wave','Normal ST segment'],
+  pin:b=>({t:b.beats[1]+0.17,mv:-0.2}),why:'The ST segment sits below the baseline. This points to ischemia: think unstable angina or non-ST-elevation myocardial infarction and check troponins.'});
+const GAP=[...LABELS.map(l=>({kind:'c',key:l.k})),...STRIP_ITEMS.map(s=>Object.assign({kind:'s'},s))];
+let gdeck=GAP.map((_,i)=>i),gi=0;const gRes={};
+const gText=document.getElementById('gText'),gChoice=document.getElementById('gChoice'),gMode=document.getElementById('gMode');
+function drawGapStrip(host,it){const b=gb(it.rk);drawStrip(host,b.fn);const svg=host.querySelector('svg');
+  if(it.pin){const p=it.pin(b),x=p.t*S.pxs,y=S.base-p.mv*S.pxmv;el('line',{x1:x,y1:44,x2:x,y2:y-6,class:'qpin'},svg);pill(svg,x,30);}
+  if(it.bracket){const r=it.bracket(b),xa=r.a*S.pxs,xb=r.b*S.pxs;el('path',{d:`M${xa} 134V140H${xb}V134`,class:'gb hid'},svg);pill(svg,(xa+xb)/2,160);}}
+function showGap(){const it=GAP[gdeck[gi]],host=document.getElementById('gStrip');
+  host.classList.toggle('big',it.kind==='c');
+  if(it.kind==='c'){drawGapComplex(host,it.key);document.getElementById('gStem').textContent='Every part is labeled except one. Name the coral ?.';}
+  else{drawGapStrip(host,it);document.getElementById('gStem').textContent=it.q;}
+  document.getElementById('gLegend').hidden=it.kind!=='c';
+  const choices=it.kind==='c'?LABELS.map(l=>l.k):it.choices;
+  gChoice.innerHTML='<option value="">Choose…</option>'+choices.map(c=>`<option>${c}</option>`).join('');
+  gText.value='';gChoice.value='';
+  const typing=gMode.value==='type';gText.hidden=!typing;gChoice.hidden=typing;
+  document.getElementById('gCount').textContent=`${gi+1} / ${gdeck.length}`;
+  document.getElementById('gFeedback').hidden=true;document.getElementById('gErr').hidden=true;
+  document.getElementById('gPrev').disabled=gi===0;document.getElementById('gNext').disabled=gi===gdeck.length-1;}
+function checkGap(){const it=GAP[gdeck[gi]],typing=gMode.value==='type',raw=typing?gText.value:gChoice.value;
+  if(!raw.trim()){document.getElementById('gErr').hidden=false;return;}
+  const ans=it.kind==='c'?it.key:it.ans,acc=it.kind==='c'?ALIAS[it.key]:it.accept,n=norm(raw);
+  const right=n===norm(ans)||acc.includes(n);gRes[gdeck[gi]]=right;
+  const why=it.kind==='c'?LABELS.find(l=>l.k===it.key).why:it.why;
+  const fb=document.getElementById('gFeedback');fb.hidden=false;
+  fb.innerHTML=`<div class="verdict ${right?'ok':'bad'}">${right?'Correct':'Not quite'}: ${ans}</div><p>${why}</p>`;
+  const v=Object.values(gRes);document.getElementById('sc-gap').textContent=`${v.filter(Boolean).length}/${v.length}`;}
+document.getElementById('gCheck').onclick=checkGap;
+gText.addEventListener('keydown',e=>{if(e.key==='Enter')checkGap();});
+[gText,gChoice].forEach(x=>x.addEventListener('input',()=>{document.getElementById('gErr').hidden=true;}));
+gMode.onchange=()=>{const typing=gMode.value==='type';gText.hidden=!typing;gChoice.hidden=typing;};
+document.getElementById('gPrev').onclick=()=>{if(gi>0){gi--;showGap();}};
+document.getElementById('gNext').onclick=()=>{if(gi<gdeck.length-1){gi++;showGap();}};
+document.getElementById('gShuffle').onclick=()=>{for(let i=gdeck.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[gdeck[i],gdeck[j]]=[gdeck[j],gdeck[i]];}gi=0;showGap();};
+
+/* ---------- tabs ---------- */
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected',x===b));
+  ['label','gap','measure','identify'].forEach(n=>document.getElementById('p-'+n).hidden=n!==b.dataset.tab);});
+document.getElementById('gShuffle').click();
+
+drawCheat(document.getElementById('cheatImg'));drawLabel();buildLabelFields();showMeasure();
+// start identify shuffled so order is not a giveaway
+document.getElementById('iShuffle').click();
+})();
+</script>
+
+</body></html>

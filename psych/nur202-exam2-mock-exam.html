@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NUR202 Exam 2 Mock Exam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F6F4EF; --card:#FFFFFF; --ink:#1E2430; --muted:#6B7280; --line:#E5E1D8;
+    --navy:#1F3A5F; --green:#2E7D32; --greenbg:#E8F5E9; --red:#C62828; --redbg:#FFEBEE;
+    --c12:#6A1B9A; --c13:#E65100; --c14:#1565C0; --c15:#00796B; --c17:#AD1457; --med:#8E24AA;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:760px;margin:0 auto;padding:20px 16px 80px}
+  header.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+  .brand{font-weight:800;font-size:15px;letter-spacing:.02em;color:var(--navy)}
+  .brand small{display:block;font-weight:500;color:var(--muted);font-size:12px;letter-spacing:0}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+  h1{font-size:26px;line-height:1.2;margin:0 0 6px;color:var(--navy);font-weight:800}
+  .sub{color:var(--muted);margin:0 0 18px;font-size:14px}
+  .lbl{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:18px 0 8px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font:600 13px Inter,sans-serif;cursor:pointer;color:var(--ink);display:flex;align-items:center;gap:7px}
+  .chip .dot{width:9px;height:9px;border-radius:50%}
+  .chip.on{border-color:var(--navy);background:#EEF2F8}
+  .seg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .opt-mode{border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer;background:#fff;text-align:left;font:inherit;color:inherit}
+  .opt-mode b{display:block;font-size:14px}
+  .opt-mode span{font-size:12.5px;color:var(--muted)}
+  .opt-mode.on{border-color:var(--navy);background:#EEF2F8}
+  .toggle{display:flex;align-items:center;gap:10px;font-size:14px;margin-top:10px;cursor:pointer}
+  .toggle input{width:18px;height:18px;accent-color:var(--navy)}
+  .btn{appearance:none;border:none;border-radius:12px;padding:13px 18px;font:700 15px Inter,sans-serif;cursor:pointer;background:var(--navy);color:#fff}
+  .btn:disabled{opacity:.4;cursor:default}
+  .btn.ghost{background:#fff;color:var(--navy);border:1.5px solid var(--line)}
+  .btn.block{width:100%}
+  .count{font-size:13px;color:var(--muted);margin-top:10px;text-align:center}
+  .progress{height:6px;background:var(--line);border-radius:99px;overflow:hidden;margin:4px 0 14px}
+  .progress i{display:block;height:100%;background:var(--navy);width:0;transition:width .25s}
+  .qmeta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px;font-size:12.5px;color:var(--muted)}
+  .tag{color:#fff;font-weight:700;font-size:11px;letter-spacing:.04em;padding:3px 9px;border-radius:999px}
+  .tag.med{background:var(--med)}
+  .flag{margin-left:auto;background:none;border:1.5px solid var(--line);border-radius:999px;padding:4px 10px;font:600 12px Inter,sans-serif;cursor:pointer;color:var(--muted)}
+  .flag.on{border-color:#F9A825;color:#8a5a00;background:#FFF8E1}
+  .qtext{font-size:17px;font-weight:600;margin:0 0 16px;line-height:1.45}
+  .answers{display:flex;flex-direction:column;gap:10px}
+  .ans{display:flex;gap:12px;align-items:flex-start;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:13px 14px;font:inherit;font-size:15px;color:inherit;cursor:pointer;transition:border-color .12s,background .12s}
+  .ans:hover:not(:disabled){border-color:#9AA6B8}
+  .ans .L{flex:0 0 26px;height:26px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font-weight:700;font-size:13px;color:var(--muted)}
+  .ans.sel{border-color:var(--navy);background:#EEF2F8}
+  .ans.sel .L{background:var(--navy);border-color:var(--navy);color:#fff}
+  .ans.right{border-color:var(--green);background:var(--greenbg)}
+  .ans.right .L{background:var(--green);border-color:var(--green);color:#fff}
+  .ans.wrong{border-color:var(--red);background:var(--redbg)}
+  .ans.wrong .L{background:var(--red);border-color:var(--red);color:#fff}
+  .ans:disabled{cursor:default}
+  .rat{margin-top:14px;border-radius:12px;padding:13px 15px;font-size:14px;border-left:5px solid}
+  .rat.ok{background:var(--greenbg);border-color:var(--green)}
+  .rat.no{background:var(--redbg);border-color:var(--red)}
+  .rat b{display:block;margin-bottom:4px}
+  .nav{display:flex;gap:10px;margin-top:16px}
+  .nav .btn{flex:1}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(38px,1fr));gap:6px;margin-top:16px}
+  .gq{height:36px;border-radius:9px;border:1.5px solid var(--line);background:#fff;font:600 12.5px Inter,sans-serif;cursor:pointer;color:var(--muted);position:relative}
+  .gq.ans-d{background:#EEF2F8;border-color:#B9C4D6;color:var(--navy)}
+  .gq.ok{background:var(--greenbg);border-color:var(--green);color:var(--green)}
+  .gq.no{background:var(--redbg);border-color:var(--red);color:var(--red)}
+  .gq.cur{outline:2.5px solid var(--navy);outline-offset:1px}
+  .gq.fl::after{content:"";position:absolute;top:3px;right:3px;width:7px;height:7px;border-radius:50%;background:#F9A825}
+  .score-big{font-size:54px;font-weight:800;color:var(--navy);line-height:1;margin:6px 0}
+  .bar-row{display:grid;grid-template-columns:150px 1fr 64px;align-items:center;gap:10px;font-size:13.5px;margin:9px 0}
+  .bar{height:12px;background:var(--line);border-radius:99px;overflow:hidden}
+  .bar i{display:block;height:100%}
+  .review-item{border-top:1px solid var(--line);padding:16px 0}
+  .review-item:first-child{border-top:none}
+  .ra{font-size:14px;margin:4px 0}
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 4px}
+  .modal-bg{position:fixed;inset:0;background:rgba(20,25,35,.45);display:none;align-items:center;justify-content:center;padding:20px;z-index:10}
+  .modal-bg.show{display:flex}
+  .modal{background:#fff;border-radius:16px;padding:22px;max-width:380px;width:100%}
+  .modal h3{margin:0 0 8px}
+  .modal p{margin:0 0 16px;color:var(--muted);font-size:14px}
+  .hidden{display:none!important}
+  @media (max-width:520px){ .bar-row{grid-template-columns:105px 1fr 54px;font-size:12.5px} .qtext{font-size:16px} h1{font-size:22px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">NUR202 · Exam 2 Mock Exam<small>Ch 12 · 13 · 14 · 15 · 17 — multiple choice only</small></div>
+    <button class="btn ghost hidden" id="homeBtn" style="padding:8px 12px;font-size:13px">Exit</button>
+  </header>
+
+  <!-- START -->
+  <section id="start" class="card">
+    <h1>Psych Exam 2 Mock Exam</h1>
+    <p class="sub">60 single-answer questions on schizophrenia, bipolar disorder, depression, anxiety/OCD, and somatic symptom disorders. Each topic includes medication questions. Every question has a full rationale.</p>
+
+    <div class="lbl">Chapters</div>
+    <div class="chips" id="chapterChips"></div>
+
+    <div class="lbl">Mode</div>
+    <div class="seg">
+      <button class="opt-mode on" data-mode="practice"><b>Practice</b><span>See the answer and rationale after each question</span></button>
+      <button class="opt-mode" data-mode="exam"><b>Exam</b><span>No feedback until you submit</span></button>
+    </div>
+
+    <div class="lbl">Options</div>
+    <label class="toggle"><input type="checkbox" id="optShuffle" checked> Shuffle question order</label>
+    <label class="toggle"><input type="checkbox" id="optMed"> Medication questions only</label>
+
+    <div style="margin-top:20px"><button class="btn block" id="startBtn">Start</button></div>
+    <div class="count" id="countNote"></div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz" class="hidden">
+    <div class="qmeta" style="margin-bottom:4px"><span id="qCounter"></span><span style="margin-left:auto" id="answeredNote"></span></div>
+    <div class="progress"><i id="prog"></i></div>
+    <div class="card">
+      <div class="qmeta">
+        <span class="tag" id="qTag"></span>
+        <span class="tag med hidden" id="qMed">MED</span>
+        <button class="flag" id="flagBtn">⚑ Flag</button>
+      </div>
+      <p class="qtext" id="qText"></p>
+      <div class="answers" id="answers"></div>
+      <div id="rationale"></div>
+      <div class="nav">
+        <button class="btn ghost" id="prevBtn">← Back</button>
+        <button class="btn" id="nextBtn">Next →</button>
+      </div>
+    </div>
+    <div class="grid" id="grid"></div>
+    <div style="margin-top:16px"><button class="btn ghost block" id="submitBtn">Submit exam</button></div>
+  </section>
+
+  <!-- RESULTS -->
+  <section id="results" class="hidden">
+    <div class="card">
+      <div class="lbl" style="margin-top:0">Your score</div>
+      <div class="score-big" id="scorePct"></div>
+      <div class="sub" id="scoreLine" style="margin-bottom:6px"></div>
+      <div id="passNote" style="font-size:14px;font-weight:600"></div>
+      <div class="lbl">By chapter</div>
+      <div id="byChapter"></div>
+      <div class="lbl">Medication questions</div>
+      <div id="byMed"></div>
+      <div class="nav" style="flex-wrap:wrap">
+        <button class="btn" id="retryMissed">Retake missed</button>
+        <button class="btn ghost" id="newExam">New exam</button>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <div class="lbl" style="margin-top:0">Review</div>
+      <div class="filters" id="reviewFilters">
+        <button class="chip on" data-f="missed">Missed</button>
+        <button class="chip" data-f="flagged">Flagged</button>
+        <button class="chip" data-f="all">All</button>
+      </div>
+      <div id="reviewList"></div>
+    </div>
+  </section>
+</div>
+
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <h3 id="mTitle">Submit exam?</h3>
+    <p id="mText"></p>
+    <div class="nav" style="margin-top:0">
+      <button class="btn ghost" id="mCancel">Keep going</button>
+      <button class="btn" id="mOk">Submit</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Each question: ch, med (bool), q, o: [CORRECT, distractor, distractor, distractor], r: rationale
+// Options are shuffled at runtime.
+const QUESTIONS = [
+// ---------------- CH 12 ----------------
+{ch:12,med:false,q:"A patient with schizophrenia tells the nurse, \"The voices keep saying I don't deserve to live.\" What is the nurse's priority action?",
+ o:["Ask whether the voices are telling the patient to hurt themself and initiate safety measures","Ask the patient to describe what the voices sound like","Explain to the patient that the voices are not real","Encourage the patient to listen to music to drown out the voices"],
+ r:"These are possible command hallucinations with suicidal content, so safety comes first: ask directly if the voices are telling the patient to self-harm, then initiate 1:1 observation and notify the provider. Describing the voices, reality presentation, and coping strategies like music are all useful later, but none addresses immediate risk."},
+{ch:12,med:false,q:"A patient refuses lunch, stating, \"The kitchen staff is putting poison in my food.\" Which response by the nurse is most therapeutic?",
+ o:["\"It must be frightening to feel your food isn't safe. Would you like a sealed, prepackaged meal?\"","\"No one here would ever poison you.\"","\"Why do you think the staff wants to poison you?\"","\"Let me taste your food in front of you to prove it's safe.\""],
+ r:"Validate the feeling (fear) without agreeing with or arguing about the delusion, and meet the need safely with sealed/prepackaged food. Flat denial and \"proving\" it is arguing with a fixed belief. \"Why\" questions increase anxiety and invite the patient to elaborate on the delusion."},
+{ch:12,med:false,q:"When asked how she slept, a patient answers, \"Bed, red, fed, dead, said it in my head.\" The nurse documents this as:",
+ o:["Clang association","Neologism","Echolalia","Perseveration"],
+ r:"Clang association is choosing words by their sound (often rhyme) rather than meaning. A neologism is a made-up word; echolalia is repeating another person's words; perseveration is getting stuck on the same idea."},
+{ch:12,med:false,q:"A patient says, \"I have to fix my glorbinator before the brain-hum gets louder.\" Which disturbance does the made-up word reflect?",
+ o:["Neologism","Word salad","Looseness of association","Clang association"],
+ r:"A neologism is a new word that has meaning only to the patient. Word salad is a jumble of real words with no meaning together; looseness of association is jumping between loosely connected topics."},
+{ch:12,med:false,q:"Which assessment finding is a NEGATIVE symptom of schizophrenia?",
+ o:["Stays in bed most of the day, has not showered in a week, and answers in one or two words","Hears a man's voice commenting on everything they do","Believes they are a secret agent for the government","Speaks in a jumble of unrelated words"],
+ r:"Negative symptoms are normal functions that are SUBTRACTED: avolition (no motivation for hygiene) and alogia (poverty of speech). Hallucinations, delusions, and word salad are positive symptoms — things ADDED that shouldn't be there."},
+{ch:12,med:false,q:"During assessment, the nurse lifts a patient's arm and it remains suspended in that position for several minutes. This finding is called:",
+ o:["Waxy flexibility","Echopraxia","Negativism","Akathisia"],
+ r:"Waxy flexibility (seen in catatonia) means a limb stays in whatever position it's placed. Echopraxia is mimicking others' movements; negativism is resisting being moved; akathisia is a restless medication side effect."},
+{ch:12,med:false,q:"The nurse says, \"Don't put all your eggs in one basket.\" The patient replies, \"I keep my eggs in the refrigerator.\" This response demonstrates:",
+ o:["Concrete thinking","Abstract thinking","Flight of ideas","Ideas of reference"],
+ r:"Concrete thinking is literal interpretation and an inability to understand metaphors or proverbs. This is why nurses use simple, concrete language with these patients. Abstract thinking is the normal ability to interpret metaphors."},
+{ch:12,med:false,q:"Which question is most appropriate when assessing a patient who appears to be hallucinating?",
+ o:["\"What are you hearing right now?\"","\"What are the voices saying to you?\"","\"Are the voices louder today than yesterday?\"","\"Who is talking to you?\""],
+ r:"Asking \"What are you hearing?\" gathers the content without treating the voices as real. Phrasing like \"What are the VOICES saying\" or \"WHO is talking\" implies the nurse accepts the hallucination as real."},
+{ch:12,med:true,q:"Two days after starting haloperidol, a patient's neck is twisted to one side, and the eyes are rolled upward. The patient is frightened. What should the nurse do first?",
+ o:["Administer IM benztropine (Cogentin) as ordered and stay with the patient","Give the PRN dose of haloperidol for agitation","Hold the next dose and reassess in the morning","Apply a cold compress and encourage neck stretches"],
+ r:"This is an acute dystonic reaction (torticollis + oculogyric crisis), which appears in hours to days. Treat promptly with IM/IV benztropine or diphenhydramine and stay with the patient — watch the airway. More haloperidol would worsen it, and waiting until morning is unsafe."},
+{ch:12,med:true,q:"A patient taking fluphenazine has a temperature of 104.8°F (40.4°C), severe muscle rigidity, diaphoresis, fluctuating blood pressure, and new confusion. The nurse's priority is to:",
+ o:["Withhold the fluphenazine and notify the provider immediately","Give acetaminophen and recheck the temperature in 1 hour","Administer benztropine for the rigidity","Encourage oral fluids and continue to monitor"],
+ r:"Fever + rigidity + autonomic instability + altered mental status = neuroleptic malignant syndrome, a medical emergency. Stop the antipsychotic and notify the provider (cooling, IV fluids, dantrolene/bromocriptine may follow). Treating the fever or the rigidity alone misses the emergency."},
+{ch:12,med:true,q:"One week after starting haloperidol, a patient paces the hallway, rocks while seated, and says, \"I can't sit still.\" What is the most appropriate nursing action?",
+ o:["Report the findings to the provider as a possible medication side effect","Administer the PRN dose of haloperidol for agitation","Teach deep-breathing exercises for anxiety","Request an order for seclusion"],
+ r:"This is akathisia — a drug-induced motor restlessness that is often mistaken for anxiety or agitation. Giving more of the antipsychotic that caused it makes it worse. Report it; treatment may include lowering the dose, propranolol, or a benzodiazepine."},
+{ch:12,med:true,q:"Which teaching point is the highest priority for a patient starting clozapine (Clozaril)?",
+ o:["\"Report a sore throat, fever, or flu-like symptoms right away.\"","\"Take this medication on an empty stomach.\"","\"Avoid foods containing tyramine, like aged cheese.\"","\"Expect your weight to decrease while on this drug.\""],
+ r:"Clozapine can cause severe neutropenia/agranulocytosis, so signs of infection must be reported immediately and the ANC is monitored on a strict schedule. Tyramine restrictions apply to MAOIs, and clozapine causes weight GAIN, not loss."},
+{ch:12,med:true,q:"A patient receives haloperidol decanoate (Haldol Decanoate) because of repeated relapses from not taking pills. Which statement about this medication is correct?",
+ o:["It is usually given every 4 weeks by deep IM Z-track injection","It is given every 2 weeks as a subcutaneous injection in the abdomen","It must be given daily by mouth with food","It is given every 12 weeks in the deltoid only"],
+ r:"Haloperidol decanoate is viscous and given by IM Z-track (deltoid or gluteal) about every 4 weeks. LAIs solve nonadherence — the #1 cause of relapse. The SubQ abdominal injection is Perseris (risperidone), every 4 weeks; Invega Trinza is every 12 weeks."},
+{ch:12,med:true,q:"A patient has taken olanzapine (Zyprexa) for 3 months. Which assessment data is most important for the nurse to monitor?",
+ o:["Weight, fasting blood glucose, and lipid levels","Serum sodium and urine output","Liver enzymes and ammonia level","Serum drug level every week"],
+ r:"Atypical antipsychotics — olanzapine especially — carry a high risk of metabolic syndrome: weight gain, diabetes, and high cholesterol. Monitor weight/BMI, waist, glucose/A1C, and lipids. Sodium/output is a lithium concern; ammonia is a valproate concern."},
+
+// ---------------- CH 13 ----------------
+{ch:13,med:false,q:"A patient in acute mania has not eaten a full meal in 2 days and cannot sit for more than a minute. Which intervention best meets the nutritional need?",
+ o:["Provide high-calorie finger foods and fluids the patient can carry, like sandwiches and juice boxes","Require the patient to sit at the table until the meal is finished","Offer a hot bowl of soup and coffee in the dining room","Wait until the patient is hungry enough to request a meal"],
+ r:"Manic patients burn huge amounts of energy and are too distracted to sit, so give portable, high-calorie \"on-the-go\" foods and fluids. Forcing them to sit creates a power struggle, hot food/drinks are a burn risk, and waiting risks dehydration and exhaustion."},
+{ch:13,med:false,q:"Which activity is most appropriate for a patient experiencing acute mania?",
+ o:["Walking laps around the unit with a staff member","Playing in a competitive volleyball tournament","Joining a large group discussion","Playing a fast-paced card game with other patients"],
+ r:"Choose physical, solitary, NON-competitive activities that burn energy in a low-stimulation way. Competition and large groups overstimulate the patient and can escalate to aggression."},
+{ch:13,med:false,q:"A patient says, \"I'm flying to Paris — Paris Hilton, hilltop, top of the world, world peace, peace out, I'm out of here!\" The nurse identifies this as:",
+ o:["Flight of ideas","Word salad","Neologism","Thought blocking"],
+ r:"Flight of ideas is rapid, continuous speech with abrupt topic changes that are linked by understandable associations or plays on words. Word salad has no understandable connection; a neologism is a made-up word; thought blocking is a sudden stop in speech."},
+{ch:13,med:false,q:"A manic patient waves a catalog and demands to call the credit card company to buy a new car \"right now.\" Which response is best?",
+ o:["\"Let's sit down and look through this car magazine together.\"","\"You can't afford a car right now.\"","\"Go ahead and call — it's your money.\"","\"If you keep asking, you'll lose phone privileges.\""],
+ r:"Use the patient's distractibility to redirect without a power struggle. Telling them they can't afford it is likely to trigger anger, allowing the call ignores poor judgment, and threats escalate the situation."},
+{ch:13,med:false,q:"A patient with mania tells each nurse a different version of the unit rules and has the staff arguing with one another. What should the team do first?",
+ o:["Hold a staff meeting to agree on consistent limits for the patient","Place the patient in seclusion until the behavior stops","Let the patient choose which rules to follow","Confront the patient in front of the community meeting"],
+ r:"Limit setting is the main theme in treating mania, and it only works if every staff member gives the same message. Staff meetings reduce splitting. Seclusion is not indicated for manipulation, and public confrontation is humiliating and escalates behavior."},
+{ch:13,med:false,q:"A patient in acute mania undresses and begins dancing in the dayroom. The nurse should first:",
+ o:["Wrap the patient in a blanket and calmly escort them to a quiet room","Tell the patient firmly to put their clothes back on","Ask the patient why they took their clothes off","Move the other patients out of the dayroom"],
+ r:"Protect the patient's dignity from the consequences of poor judgment: matter-of-factly cover them and remove them to a low-stimulation area, with enough staff to avoid an argument. The patient can't follow verbal instructions in this state, and \"why\" questions don't help."},
+{ch:13,med:true,q:"A patient on lithium has had vomiting and diarrhea for 2 days. Today's lithium level is 1.8 mEq/L, and the patient has a coarse hand tremor. What should the nurse do?",
+ o:["Hold the next dose and notify the provider","Give the dose with food to reduce nausea","Give the dose and recheck the level in 1 week","Encourage the patient to reduce salt intake"],
+ r:"A level of 1.5–2.0 mEq/L with a coarse tremor and GI upset is early lithium toxicity. Vomiting and diarrhea cause sodium and fluid loss, so the kidneys hold onto lithium. Hold the drug and notify the provider. Reducing salt would make toxicity WORSE."},
+{ch:13,med:true,q:"Which statement shows that a patient understands lithium teaching?",
+ o:["\"I'll keep eating a normal amount of salt and drink plenty of fluids.\"","\"I'll cut out salt to protect my heart.\"","\"I'll take ibuprofen whenever I get a headache.\"","\"If I have diarrhea, I'll take an extra dose to make up for it.\""],
+ r:"Lithium competes with sodium in the kidney. Low sodium or dehydration raises the lithium level, so the patient should keep normal salt and plenty of fluids. NSAIDs raise lithium levels, and fluid loss from diarrhea is a reason to hold the drug and call — never to double the dose."},
+{ch:13,med:true,q:"Before a patient starts lithium, which baseline assessment is most important?",
+ o:["Kidney function and thyroid function","Liver enzymes and ammonia level","Absolute neutrophil count","Serum potassium and magnesium"],
+ r:"Lithium is excreted by the kidneys and can cause renal toxicity and hypothyroidism/goiter with long-term use. Get baseline renal and thyroid (T4, TSH) tests, plus an ECG as needed. Liver/ammonia monitoring is for valproate; ANC is for clozapine."},
+{ch:13,med:true,q:"A patient who started lamotrigine (Lamictal) 3 weeks ago reports a new rash on the chest. What should the nurse tell the patient?",
+ o:["\"Don't take your next dose. I'll report this to the provider right now.\"","\"A rash is common — it will go away on its own.\"","\"Apply hydrocortisone cream and keep taking it.\"","\"Take an antihistamine and recheck it next week.\""],
+ r:"Any rash on lamotrigine must be reported and the drug held, because it's impossible to tell a benign rash from early Stevens-Johnson syndrome or toxic epidermal necrolysis. Risk rises with rapid titration and with valproate co-administration."},
+{ch:13,med:true,q:"A patient taking divalproex (Depakote) reports severe abdominal pain that radiates to the back, plus nausea and vomiting. The nurse suspects:",
+ o:["Pancreatitis","Lithium toxicity","Serotonin syndrome","Tardive dyskinesia"],
+ r:"Valproate can cause pancreatitis, hepatotoxicity, thrombocytopenia, and hyperammonemia. Monitor LFTs, CBC/platelets, and drug levels, and do a pregnancy test before starting because it is teratogenic. Severe abdominal pain radiating to the back is a classic sign of pancreatitis."},
+{ch:13,med:true,q:"A patient with a history of a manic episode is prescribed sertraline alone for a new depressive episode. What is the nurse's main concern?",
+ o:["An antidepressant without a mood stabilizer can trigger a manic episode","Sertraline will cause tardive dyskinesia","Sertraline must be given with a tyramine-free diet","The patient will need weekly sertraline blood levels"],
+ r:"In bipolar disorder, an antidepressant given alone can flip the patient into mania. The risk largely disappears when it's combined with a mood stabilizer. This is why a misdiagnosis of bipolar disorder as major depression is dangerous."},
+
+// ---------------- CH 14 ----------------
+{ch:14,med:false,q:"Which statement by a patient with major depressive disorder is the most concerning for suicide risk?",
+ o:["\"Nothing is ever going to get better, so what's the point?\"","\"I wake up at 4 a.m. and can't get back to sleep.\"","\"I don't enjoy cooking anymore.\"","\"I've lost about 10 pounds this month.\""],
+ r:"Hopelessness is the symptom most strongly linked to suicide. Early waking, anhedonia, and weight loss are depressive symptoms, but the hopeless statement requires a direct suicide assessment."},
+{ch:14,med:false,q:"A patient started an antidepressant 2 weeks ago. Today she is unusually calm and cheerful and has given her favorite necklace to her roommate. What should the nurse do first?",
+ o:["Ask her directly whether she is thinking about killing herself","Document that her mood is improving","Praise her for her generosity","Encourage her to join a group activity to keep the momentum going"],
+ r:"Giving away possessions plus a sudden calm after deep depression can mean a decision to die has been made. Antidepressants also restore energy before mood, which raises risk early in treatment. Ask directly and increase observation."},
+{ch:14,med:false,q:"A severely depressed patient sits silently and does not respond to greetings. Which nursing approach is most therapeutic?",
+ o:["\"I notice you're wearing the sweater your daughter brought. I'll sit with you for a while.\"","\"Why won't you talk to me today?\"","\"Cheer up — everyone gets down sometimes.\"","\"I'll come back later when you feel like talking.\""],
+ r:"With withdrawn patients, make observations about the environment and offer your presence. Direct questions raise anxiety, platitudes minimize feelings and increase guilt, and leaving reinforces the patient's sense of worthlessness."},
+{ch:14,med:false,q:"Which question is best for assessing suicide risk in a depressed patient?",
+ o:["\"Are you thinking about killing yourself?\"","\"You aren't thinking of doing anything silly, are you?\"","\"Do you ever think about hurting yourself or someone else?\"","\"How do you feel about the future?\""],
+ r:"Ask directly and clearly, using the word suicide or killing yourself. Asking does not plant the idea and often brings relief. A leading question (\"you aren't…, are you?\") discourages honesty, a double-barreled question muddies the answer, and a vague question may miss the risk."},
+{ch:14,med:false,q:"Three weeks after delivery, a woman with depression says she hears a voice saying her baby is \"evil.\" What is the nurse's priority?",
+ o:["Ensure the safety of the mother and infant and notify the provider immediately","Teach her relaxation techniques for postpartum stress","Reassure her that many new mothers have strange thoughts","Schedule a follow-up visit in 1 week"],
+ r:"Major depression can include psychotic features, especially postpartum. Command-type or harmful content toward the infant is an emergency: protect the mother and baby, don't leave them alone together, and get immediate treatment (an antipsychotic is often given until the antidepressant takes effect)."},
+{ch:14,med:true,q:"Why are SSRIs the treatment of choice for most patients with major depressive disorder?",
+ o:["They have fewer side effects and are much safer in overdose than TCAs and MAOIs","They relieve depression within 24 to 48 hours","They require no tapering when stopped","They have no drug or food interactions"],
+ r:"SSRIs are better tolerated and much less lethal in overdose than TCAs and MAOIs. Like all antidepressants, they take weeks to work, should be tapered (discontinuation syndrome), and can interact with other drugs (serotonin syndrome)."},
+{ch:14,med:true,q:"Five days after starting fluoxetine (Prozac), a patient says, \"This isn't working. I'm going to stop it.\" The nurse's best response is:",
+ o:["\"Antidepressants usually take a few weeks to work. Please don't stop without talking to your provider.\"","\"You're right — if it hasn't worked by now, it won't.\"","\"Double the dose for a few days and see if that helps.\"","\"It's fine to stop it whenever you want.\""],
+ r:"Antidepressants, like mood stabilizers, need time to reach a therapeutic effect — often several weeks. They shouldn't be stopped abruptly because of discontinuation syndrome. The patient should never adjust the dose on their own."},
+{ch:14,med:true,q:"Before starting amitriptyline (a tricyclic antidepressant), which assessment is most important?",
+ o:["Baseline ECG and cardiac history","Serum lithium level","Tyramine intake history","Absolute neutrophil count"],
+ r:"TCAs are cardiotoxic (they block cardiac sodium channels) and lethal in overdose. Get a baseline ECG and cardiac history, avoid them after a recent MI, and dispense only small amounts to suicidal patients."},
+{ch:14,med:true,q:"A patient taking imipramine (a TCA) feels dizzy when getting out of bed and complains of a very dry mouth. Which instructions are appropriate?",
+ o:["Change positions slowly, stay hydrated, and use sugarless gum or candy","Stop the medication until the dizziness resolves","Eat a high-sodium diet and limit fluids","Take the medication with grapefruit juice"],
+ r:"Orthostatic hypotension and anticholinergic effects (dry mouth, urinary retention, constipation) are common with TCAs. Teach slow position changes, fluids, and sugarless gum or candy. Don't stop the drug without the provider."},
+{ch:14,med:true,q:"A patient taking phenelzine (Nardil) is choosing lunch. Which meal is safest?",
+ o:["Fresh grilled chicken, rice, and steamed vegetables","Pepperoni pizza","Aged cheddar cheese and crackers","A salami sandwich with sauerkraut"],
+ r:"MAOIs prevent the breakdown of tyramine, so tyramine-rich foods (aged cheese, cured or fermented meats, sauerkraut, tap beer, red wine) can cause a hypertensive crisis. Fresh meats and vegetables are safe."},
+{ch:14,med:true,q:"About an hour after eating, a patient taking tranylcypromine (Parnate) reports a severe pounding headache at the back of the head and a stiff neck. BP is 210/118. The nurse recognizes:",
+ o:["Hypertensive crisis","Serotonin syndrome","Neuroleptic malignant syndrome","Lithium toxicity"],
+ r:"An MAOI plus tyramine (or a sympathomimetic drug) can cause a hypertensive crisis within 15–90 minutes: severe occipital headache, stiff neck, flushing, sweating, and very high BP with stroke risk. Hold the MAOI and notify the provider immediately."},
+{ch:14,med:true,q:"A patient taking sertraline was recently prescribed tramadol for pain. The patient is now agitated and confused, with a temperature of 102.6°F (39.2°C), tachycardia, diarrhea, and muscle twitching. These findings suggest:",
+ o:["Serotonin syndrome","Hypertensive crisis","Tardive dyskinesia","Benzodiazepine withdrawal"],
+ r:"Serotonin syndrome comes from too much serotonin: an SSRI plus another serotonergic drug (tramadol, an MAOI, St. John's wort, triptans, dextromethorphan). Look for altered mental status, hyperthermia, autonomic instability, GI symptoms, and myoclonus. Stop the drugs and give supportive care."},
+
+// ---------------- CH 15 ----------------
+{ch:15,med:false,q:"A patient is hyperventilating, trembling, and screaming, \"I'm dying!\" Which intervention should the nurse implement first?",
+ o:["Stay with the patient and give calm, short, simple directions","Teach the patient a deep-breathing technique","Administer a PRN anxiolytic","Prepare to apply restraints"],
+ r:"At panic level the patient cannot learn or problem-solve. First stay and use calm, brief, directive communication (KISS). Medication comes next if that fails, and restraints only if the patient is unsafe. Teach breathing techniques later, when anxiety is mild to moderate."},
+{ch:15,med:false,q:"A patient's heart rate and respirations are increased and their voice trembles. They can focus on a task when the nurse gives clear direction. This patient's anxiety level is:",
+ o:["Moderate","Mild","Severe","Panic"],
+ r:"In moderate anxiety the perceptual field narrows (selective inattention), but the person can still learn and solve problems with direction. In severe anxiety the person cannot problem-solve even with help; in panic they lose touch with reality."},
+{ch:15,med:false,q:"When is the best time to teach a patient with generalized anxiety disorder progressive muscle relaxation?",
+ o:["When the patient's anxiety is at a mild to moderate level","During a panic attack, so the patient can use it right away","Only after discharge, at an outpatient visit","Immediately after a PRN benzodiazepine causes sedation"],
+ r:"Learning requires a wide enough perceptual field. At mild to moderate anxiety the patient can learn and practice new skills; during severe or panic anxiety they can't. Teaching right after a sedating dose also hurts retention."},
+{ch:15,med:false,q:"A newly admitted patient with OCD spends 45 minutes washing their hands before breakfast and keeps arriving late. What is the best initial intervention?",
+ o:["Wake the patient early enough to complete the ritual before breakfast","Lock the bathroom until after breakfast","Tell the patient that washing more than twice is not allowed","Ignore the lateness and serve breakfast cold"],
+ r:"Early in treatment, allow time for rituals and build them into the schedule. Interrupting or forbidding a ritual sends anxiety toward panic. Later, the patient and nurse agree to limit ritual time gradually (exposure and response prevention)."},
+{ch:15,med:false,q:"A patient says, \"I know it's ridiculous, but I have to check that the stove is off 20 times before I can leave.\" Which feature of this statement helps distinguish OCD from a psychotic disorder?",
+ o:["The patient recognizes the behavior is excessive (insight is present)","The patient is experiencing a fixed false belief","The patient is responding to a command hallucination","The patient enjoys performing the ritual"],
+ r:"In OCD, reality testing and insight are usually intact — the patient knows the thoughts and rituals are unreasonable (ego-dystonic) but feels driven to do them to reduce anxiety, not for pleasure. In psychosis, the patient believes the false belief is real."},
+{ch:15,med:false,q:"When assessing a patient with generalized anxiety disorder, which additional risk should the nurse screen for?",
+ o:["Self-medicating with alcohol or other substances","Lithium toxicity","Tardive dyskinesia","La belle indifférence"],
+ r:"People with GAD are at high risk of self-medicating with alcohol or drugs to quiet their persistent worry. This also matters for medication choices — benzodiazepines are risky in substance use disorders."},
+{ch:15,med:true,q:"Which instruction is most important for a patient newly prescribed alprazolam (Xanax)?",
+ o:["\"Do not drink alcohol while taking this medication.\"","\"Take it with aged cheese to improve absorption.\"","\"You can stop it suddenly once you feel better.\"","\"It will take 2 to 4 weeks to start working.\""],
+ r:"Benzodiazepines plus alcohol (or opioids) can cause dangerous CNS and respiratory depression. Benzodiazepines must be tapered to avoid withdrawal and seizures. They work quickly — it's buspirone that takes weeks."},
+{ch:15,med:true,q:"A patient started buspirone (BuSpar) this morning and says at lunch, \"I'm still anxious. This pill doesn't work.\" The nurse explains:",
+ o:["\"Buspirone takes a couple of weeks to build up. Keep taking it regularly as prescribed.\"","\"Take a second dose now — it works best as needed.\"","\"Buspirone works within 30 minutes, so you may need a different drug.\"","\"Stop it and ask for a benzodiazepine instead.\""],
+ r:"Buspirone has a lag time (roughly 1–2 weeks to start and 2–4 weeks for full effect). It is taken regularly for long-term anxiety, not PRN, and it is often started alongside a PRN benzodiazepine while it builds up. It does not cause dependence."},
+{ch:15,med:true,q:"An 82-year-old patient is prescribed lorazepam (Ativan) for anxiety. Which nursing concern has the highest priority?",
+ o:["Risk for falls related to sedation and ataxia","Risk for hypertensive crisis","Risk for agranulocytosis","Risk for lithium toxicity"],
+ r:"Benzodiazepines cause sedation, ataxia, and slowed reflexes. In older adults they are linked to falls, fractures, and delirium, so implement fall precautions. The other options belong to MAOIs, clozapine, and lithium."},
+{ch:15,med:true,q:"Which medication class is first-line for LONG-TERM treatment of panic disorder?",
+ o:["SSRIs, such as sertraline (Zoloft)","Benzodiazepines, such as alprazolam (Xanax)","Typical antipsychotics, such as haloperidol","MAOIs, such as phenelzine"],
+ r:"SSRIs (and SNRIs) are first-line long-term therapy for panic disorder, GAD, social anxiety, and OCD. Benzodiazepines act fast but are for short-term or PRN use because of dependence and tolerance."},
+{ch:15,med:true,q:"A patient with GAD is in recovery from alcohol use disorder. Which medication is the most appropriate choice for ongoing anxiety management?",
+ o:["Buspirone (BuSpar)","Alprazolam (Xanax)","Lorazepam (Ativan)","Diazepam (Valium)"],
+ r:"Buspirone has no abuse potential and causes no dependence or sedation, so it suits patients with a history of substance use. The other three options are benzodiazepines — controlled substances with cross-tolerance to alcohol and potential for misuse."},
+{ch:15,med:true,q:"An older adult brings in a bag of medications that includes one bottle labeled \"Ativan 1 mg BID\" and another labeled \"lorazepam 1 mg BID.\" The nurse recognizes that:",
+ o:["These are the same drug (brand and generic), so the patient is taking a double dose","Ativan and lorazepam are different benzodiazepines that work well together","Lorazepam blocks the effects of Ativan","The patient should alternate the two bottles daily"],
+ r:"Ativan is the brand name of lorazepam. Taking both means a double dose, with serious sedation, fall, and respiratory-depression risk. The patient needs medication teaching and clear labeling."},
+
+// ---------------- CH 17 ----------------
+{ch:17,med:false,q:"After witnessing a car accident, a patient suddenly cannot see. The eye exam and neurological workup are normal. The patient calmly says, \"I guess I'll just have to adjust.\" The nurse recognizes this calm attitude as:",
+ o:["La belle indifférence","Malingering","Flat affect from schizophrenia","Denial of a medical emergency"],
+ r:"La belle indifférence is an odd lack of concern about dramatic symptoms and is classic in conversion disorder (functional neurological disorder). These neurological symptoms follow a stressor and have no medical cause. The patient is not consciously faking."},
+{ch:17,med:false,q:"A patient arrives with sudden paralysis of the right arm after a heated argument with their spouse. What is the nurse's first priority?",
+ o:["Make sure a full medical and neurological workup is completed","Tell the patient the paralysis is caused by stress","Encourage the patient to try moving the arm","Refer the patient to a psychiatrist before any testing"],
+ r:"Assume an organic cause until physical pathology has been ruled out. A stroke can look exactly like this. Conversion disorder is only diagnosed after a medical cause is excluded, and telling the patient it's \"just stress\" damages trust."},
+{ch:17,med:false,q:"According to the textbook, a patient with a somatic symptom disorder often clings to their symptoms because the symptoms provide:",
+ o:["Unconscious relief from anxiety (primary gain)","Financial compensation (malingering)","A way to get attention that is consciously planned","Proof of a physical disease"],
+ r:"Per Varcarolis, primary gain is the internal, unconscious relief of anxiety the symptom provides — it keeps the conflict out of awareness. Attention, sympathy, and avoiding responsibilities are secondary gains. Conscious faking for money is malingering."},
+{ch:17,med:false,q:"Which question best helps the nurse identify secondary gains in a patient with a somatic symptom disorder?",
+ o:["\"What are you unable to do now that you were able to do before?\"","\"How many doctors have you seen this year?\"","\"Did you have a difficult childhood?\"","\"Do you think your pain is real?\""],
+ r:"Secondary gains (attention, dependency, being excused from responsibilities) show up as things the patient no longer has to do. Doctor shopping and childhood history may be relevant, but they don't assess the benefit the symptom provides."},
+{ch:17,med:false,q:"A patient repeatedly injects saliva into her IV line to cause infections. She has no lawsuit or disability claim and seems to enjoy being hospitalized. This behavior is most consistent with:",
+ o:["Factitious disorder","Malingering","Conversion disorder","Illness anxiety disorder"],
+ r:"In factitious disorder the patient consciously fakes or induces illness to occupy the SICK ROLE, with no external reward. Malingering is also conscious but is driven by an external REWARD (money, drugs, avoiding work or jail). Conversion and illness anxiety are unconscious."},
+{ch:17,med:false,q:"A man reports severe back pain that seems to get worse only in the weeks before his disability evaluation. Imaging is normal. This is most consistent with:",
+ o:["Malingering","Factitious disorder","Conversion disorder","Somatic symptom disorder"],
+ r:"Malingering is consciously faking or exaggerating symptoms for an external reward — here, disability compensation. It is not classified as a mental disorder. Factitious disorder has no external reward; somatic and conversion disorders are unconscious."},
+{ch:17,med:false,q:"A patient with somatic symptom disorder calls the nurse every 30 minutes to have her vital signs taken for \"palpitations.\" A cardiac workup was negative. Which approach is best?",
+ o:["Spend scheduled time with the patient when she is not complaining and shift talk to feelings or neutral topics","Take vital signs every time she calls to reassure her","Tell her the palpitations are all in her head","Avoid her room so the behavior isn't reinforced"],
+ r:"Once a complaint has been fully investigated, avoid reinforcing it (no vital signs at every call), but reward non-illness behavior with attention at other times, and shift the focus to feelings. Never imply the symptoms aren't real, and don't abandon the patient. Do assess any NEW complaint."},
+{ch:17,med:false,q:"A patient with illness anxiety disorder wants to spend every conversation discussing whether a headache means she has a brain tumor. Which nursing approach is most appropriate?",
+ o:["Allow a limited amount of time for illness concerns, then move to other topics","Discuss the headache in detail for the entire session","Refuse to discuss any health concerns","Tell her she definitely doesn't have a tumor"],
+ r:"Guidelines for illness anxiety: build a therapeutic relationship, allow some time for illness concerns but limit it in favor of other topics, encourage socialization (loneliness is linked to illness anxiety), and reassure her that psychiatric care supplements medical care rather than replacing it."},
+{ch:17,med:true,q:"Which medication class is most often used to treat the underlying anxiety and depression in somatic symptom disorders?",
+ o:["SSRIs","Benzodiazepines for long-term daily use","Typical antipsychotics","MAOIs"],
+ r:"SSRIs target the anxiety and depression that commonly accompany somatic symptom disorders (major depression is a frequent comorbidity). Avoid long-term benzodiazepines because these patients are at risk of dependence. CBT and relaxation are also key."},
+{ch:17,med:true,q:"A patient with somatic symptom disorder requests PRN lorazepam and opioid analgesics many times each shift and reports pain levels that don't match observed behavior. What is the nurse's best action?",
+ o:["Assess for drug-seeking behavior and dependence while still evaluating each new complaint","Give every PRN as soon as it's requested","Refuse all pain medication because the pain is psychological","Tell the patient she is addicted"],
+ r:"Patients with somatic symptom disorders are at risk of dependence on analgesics and benzodiazepines, so the nurse watches for drug-seeking. But every new physical complaint still needs follow-up — real illness can coexist. Refusing all treatment or labeling the patient is nontherapeutic."},
+];
+
+(function(){
+  const CH = {12:{n:"Ch 12 Schizophrenia",c:"var(--c12)"},13:{n:"Ch 13 Bipolar",c:"var(--c13)"},14:{n:"Ch 14 Depression",c:"var(--c14)"},15:{n:"Ch 15 Anxiety & OCD",c:"var(--c15)"},17:{n:"Ch 17 Somatic",c:"var(--c17)"}};
+  const $ = id => document.getElementById(id);
+  const shuffle = a => { a = a.slice(); for (let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; };
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
+  QUESTIONS.forEach((q,i)=>q.id=i);
+
+  let chapters = new Set([12,13,14,15,17]), mode = "practice";
+  let S = null; // {items:[{q, order:[idx...], pick:null, flag:false}], i, mode, done}
+
+  // ----- start screen -----
+  const chipsEl = $("chapterChips");
+  Object.keys(CH).forEach(k=>{
+    const b=document.createElement("button"); b.className="chip on"; b.dataset.ch=k;
+    b.innerHTML=`<span class="dot" style="background:${CH[k].c}"></span>${CH[k].n}`;
+    b.onclick=()=>{ const n=+k; chapters.has(n)?chapters.delete(n):chapters.add(n); b.classList.toggle("on"); updateCount(); };
+    chipsEl.appendChild(b);
+  });
+  document.querySelectorAll(".opt-mode").forEach(b=>b.onclick=()=>{
+    document.querySelectorAll(".opt-mode").forEach(x=>x.classList.remove("on")); b.classList.add("on"); mode=b.dataset.mode;
+  });
+  $("optMed").onchange=updateCount;
+  function pool(){ return QUESTIONS.filter(q=>chapters.has(q.ch) && (!$("optMed").checked || q.med)); }
+  function updateCount(){ const n=pool().length; $("countNote").textContent = n+" question"+(n===1?"":"s")+" selected"; $("startBtn").disabled = n===0; }
+  updateCount();
+
+  $("startBtn").onclick=()=>begin(pool());
+  function begin(list){
+    if($("optShuffle").checked) list = shuffle(list);
+    S = { items:list.map(q=>({q, order:shuffle([0,1,2,3]), pick:null, flag:false})), i:0, mode, done:false };
+    show("quiz"); render(); window.scrollTo(0,0);
+  }
+  function show(id){ ["start","quiz","results"].forEach(x=>$(x).classList.toggle("hidden",x!==id)); $("homeBtn").classList.toggle("hidden", id==="start"); }
+  $("homeBtn").onclick=()=>{ if(S && !S.done && S.items.some(it=>it.pick!==null)){ ask("Leave this exam?","Your answers on this attempt will be lost.","Leave",()=>show("start")); } else show("start"); };
+
+  // ----- quiz -----
+  function render(){
+    const it=S.items[S.i], q=it.q, n=S.items.length;
+    $("qCounter").textContent=`Question ${S.i+1} of ${n}`;
+    const answered=S.items.filter(x=>x.pick!==null).length;
+    $("answeredNote").textContent=`${answered} answered`;
+    $("prog").style.width=(answered/n*100)+"%";
+    const tag=$("qTag"); tag.textContent=CH[q.ch].n; tag.style.background=CH[q.ch].c;
+    $("qMed").classList.toggle("hidden",!q.med);
+    $("flagBtn").classList.toggle("on",it.flag); $("flagBtn").textContent= it.flag?"⚑ Flagged":"⚑ Flag";
+    $("qText").textContent=q.q;
+    const reveal = S.mode==="practice" && it.pick!==null;
+    const box=$("answers"); box.innerHTML="";
+    it.order.forEach((oi,pos)=>{
+      const b=document.createElement("button"); b.className="ans";
+      b.innerHTML=`<span class="L">${"ABCD"[pos]}</span><span>${esc(q.o[oi])}</span>`;
+      if(reveal){ b.disabled=true; if(oi===0) b.classList.add("right"); else if(oi===it.pick) b.classList.add("wrong"); }
+      else if(it.pick===oi) b.classList.add("sel");
+      b.onclick=()=>{ it.pick=oi; render(); };
+      box.appendChild(b);
+    });
+    const r=$("rationale");
+    if(reveal){ const ok=it.pick===0; r.innerHTML=`<div class="rat ${ok?"ok":"no"}"><b>${ok?"Correct.":"Not quite — the answer is "+"ABCD"[it.order.indexOf(0)]+"."}</b>${esc(q.r)}</div>`; }
+    else r.innerHTML="";
+    $("prevBtn").disabled=S.i===0;
+    $("nextBtn").textContent= S.i===n-1 ? "Finish" : "Next →";
+    $("submitBtn").textContent = S.mode==="practice" ? "Finish & see results" : "Submit exam";
+    drawGrid();
+  }
+  function drawGrid(){
+    const g=$("grid"); g.innerHTML="";
+    S.items.forEach((it,k)=>{
+      const b=document.createElement("button"); b.className="gq"; b.textContent=k+1;
+      if(it.pick!==null){ if(S.mode==="practice") b.classList.add(it.pick===0?"ok":"no"); else b.classList.add("ans-d"); }
+      if(it.flag) b.classList.add("fl"); if(k===S.i) b.classList.add("cur");
+      b.onclick=()=>{ S.i=k; render(); };
+      g.appendChild(b);
+    });
+  }
+  $("prevBtn").onclick=()=>{ if(S.i>0){S.i--;render();} };
+  $("nextBtn").onclick=()=>{ if(S.i<S.items.length-1){S.i++;render();window.scrollTo({top:0,behavior:"smooth"});} else trySubmit(); };
+  $("flagBtn").onclick=()=>{ const it=S.items[S.i]; it.flag=!it.flag; render(); };
+  $("submitBtn").onclick=trySubmit;
+  document.addEventListener("keydown",e=>{
+    if($("quiz").classList.contains("hidden")||$("modal").classList.contains("show")) return;
+    const k=e.key.toUpperCase();
+    if("ABCD".includes(k)&&k.length===1){ const it=S.items[S.i]; if(S.mode==="practice"&&it.pick!==null) return; it.pick=it.order["ABCD".indexOf(k)]; render(); }
+    else if(e.key==="ArrowRight") $("nextBtn").click(); else if(e.key==="ArrowLeft") $("prevBtn").click();
+  });
+  function trySubmit(){
+    const un=S.items.filter(x=>x.pick===null).length;
+    const msg = un ? `You have ${un} unanswered question${un>1?"s":""}. Unanswered questions count as wrong.` : "You've answered every question.";
+    ask(S.mode==="practice"?"Finish practice?":"Submit exam?", msg, "Submit", finish);
+  }
+  function ask(t,m,ok,fn){ $("mTitle").textContent=t; $("mText").textContent=m; $("mOk").textContent=ok; $("modal").classList.add("show");
+    $("mOk").onclick=()=>{ $("modal").classList.remove("show"); fn(); }; }
+  $("mCancel").onclick=()=>$("modal").classList.remove("show");
+
+  // ----- results -----
+  let reviewFilter="missed";
+  function finish(){
+    S.done=true;
+    const n=S.items.length, right=S.items.filter(x=>x.pick===0).length, pct=Math.round(right/n*100);
+    $("scorePct").textContent=pct+"%";
+    $("scoreLine").textContent=`${right} of ${n} correct`;
+    $("passNote").textContent = pct>=80 ? "Solid. Review the misses below so they stick." : pct>=70 ? "Close. Focus on the chapters with the lowest bars." : "Go back to the study guide for the weakest chapter, then retake the misses.";
+    $("passNote").style.color = pct>=80 ? "var(--green)" : pct>=70 ? "#8a5a00" : "var(--red)";
+    const byC=$("byChapter"); byC.innerHTML="";
+    Object.keys(CH).forEach(k=>{
+      const its=S.items.filter(x=>x.q.ch==k); if(!its.length) return;
+      const r=its.filter(x=>x.pick===0).length, p=Math.round(r/its.length*100);
+      byC.insertAdjacentHTML("beforeend",`<div class="bar-row"><span>${CH[k].n}</span><div class="bar"><i style="width:${p}%;background:${CH[k].c}"></i></div><span style="text-align:right">${r}/${its.length}</span></div>`);
+    });
+    const meds=S.items.filter(x=>x.q.med), mr=meds.filter(x=>x.pick===0).length;
+    $("byMed").innerHTML = meds.length ? `<div class="bar-row"><span>Medications</span><div class="bar"><i style="width:${Math.round(mr/meds.length*100)}%;background:var(--med)"></i></div><span style="text-align:right">${mr}/${meds.length}</span></div>` : `<div class="sub">No medication questions in this set.</div>`;
+    $("retryMissed").disabled = right===n;
+    reviewFilter = right===n ? "all" : "missed";
+    document.querySelectorAll("#reviewFilters .chip").forEach(c=>c.classList.toggle("on",c.dataset.f===reviewFilter));
+    drawReview(); show("results"); window.scrollTo(0,0);
+  }
+  document.querySelectorAll("#reviewFilters .chip").forEach(c=>c.onclick=()=>{
+    reviewFilter=c.dataset.f; document.querySelectorAll("#reviewFilters .chip").forEach(x=>x.classList.toggle("on",x===c)); drawReview(); });
+  function drawReview(){
+    const list=$("reviewList"); list.innerHTML="";
+    const its=S.items.map((it,k)=>({it,k})).filter(({it})=> reviewFilter==="all" || (reviewFilter==="missed"&&it.pick!==0) || (reviewFilter==="flagged"&&it.flag));
+    if(!its.length){ list.innerHTML=`<div class="sub" style="margin:10px 0 0">Nothing here.</div>`; return; }
+    its.forEach(({it,k})=>{
+      const q=it.q, ok=it.pick===0;
+      const yours = it.pick===null ? "<i>No answer</i>" : esc(q.o[it.pick]);
+      list.insertAdjacentHTML("beforeend",`<div class="review-item">
+        <div class="qmeta"><span class="tag" style="background:${CH[q.ch].c}">${CH[q.ch].n}</span>${q.med?'<span class="tag med">MED</span>':''}<span>Q${k+1}</span>${it.flag?'<span style="color:#8a5a00">⚑ flagged</span>':''}</div>
+        <div style="font-weight:600;margin-bottom:8px">${esc(q.q)}</div>
+        ${ok?"":`<div class="ra" style="color:var(--red)">✗ Your answer: ${yours}</div>`}
+        <div class="ra" style="color:var(--green)">✓ Correct: ${esc(q.o[0])}</div>
+        <div class="rat ${ok?"ok":"no"}" style="margin-top:8px">${esc(q.r)}</div></div>`);
+    });
+  }
+  $("retryMissed").onclick=()=>{ const missed=S.items.filter(x=>x.pick!==0).map(x=>x.q); mode=S.mode; begin(missed); };
+  $("newExam").onclick=()=>show("start");
+})();
+</script>
+</body>
+</html>

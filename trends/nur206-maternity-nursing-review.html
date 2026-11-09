@@ -1,0 +1,703 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Maternity Nursing Review</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: single reading column (~760px) with a sticky chip nav; six sections follow the six course objectives, each with a kid-version box, tables, and an NCLEX trap list. */
+:root{
+  --bg:#faf8f9; --surface:#ffffff; --ink:#1c1a24; --muted:#5d5866; --line:#e6e0e6;
+  --berry:#9b1f4f; --berry-soft:#f7e6ed; --teal:#0f6e6a; --teal-soft:#e2f2f0;
+  --warn:#9a5a00; --warn-soft:#fdf1dc;
+  --display:"Fraunces", Georgia, "Times New Roman", serif;
+  --body:"Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#15131a; --surface:#1e1b24; --ink:#efeaf0; --muted:#a8a1ad; --line:#332e3a;
+  --berry:#ef7aa6; --berry-soft:#3a1d2a; --teal:#5fc9c1; --teal-soft:#16302f;
+  --warn:#f0b65a; --warn-soft:#352812; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#15131a; --surface:#1e1b24; --ink:#efeaf0; --muted:#a8a1ad; --line:#332e3a;
+  --berry:#ef7aa6; --berry-soft:#3a1d2a; --teal:#5fc9c1; --teal-soft:#16302f;
+  --warn:#f0b65a; --warn-soft:#352812; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:780px;margin:0 auto;padding-block:8px 64px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.15;margin:0}
+h1{font-size:clamp(2rem,6vw,2.9rem);font-weight:700;letter-spacing:-.01em}
+h2{font-size:1.75rem;font-weight:700}
+h3{font-size:1.2rem;font-weight:500;margin-top:8px}
+p{margin:0}
+a{color:var(--berry)}
+:focus-visible{outline:2px solid var(--teal);outline-offset:2px;border-radius:4px}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);
+  border-bottom:1px solid var(--line);margin:0 calc(-1 * max(16px,env(safe-area-inset-left,0px)));
+  padding:10px max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px))}
+.nav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;max-width:780px;margin:0 auto}
+.nav::-webkit-scrollbar{display:none}
+.nav a{flex:0 0 auto;text-decoration:none;font:600 .78rem/1 var(--body);letter-spacing:.02em;
+  color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:8px 12px}
+.nav a:hover{border-color:var(--berry);color:var(--berry)}
+
+.hero{display:grid;gap:14px;padding-block:28px 20px}
+.eyebrow{font:600 .75rem/1 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}
+.lede{color:var(--muted);max-width:62ch}
+.how{display:flex;flex-wrap:wrap;gap:8px}
+.key{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;color:var(--muted)}
+.dot{width:10px;height:10px;border-radius:3px;display:inline-block}
+
+section{display:grid;gap:16px;padding-block:36px 8px;border-top:1px solid var(--line);scroll-margin-top:70px}
+.sec-head{display:grid;gap:8px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:600 .7rem/1 var(--body);letter-spacing:.06em;text-transform:uppercase;padding:6px 9px;border-radius:6px;
+  background:var(--berry-soft);color:var(--berry)}
+.chip.t{background:var(--teal-soft);color:var(--teal)}
+
+.kid{background:var(--teal-soft);border-radius:12px;padding:14px 16px;display:grid;gap:6px}
+.kid b.lbl{font:700 .72rem/1 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--teal)}
+.trap{background:var(--warn-soft);border-radius:12px;padding:14px 16px;display:grid;gap:8px}
+.trap b.lbl{font:700 .72rem/1 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--warn)}
+.trap ul,.kid ul{margin:0;padding-left:1.1em;display:grid;gap:4px}
+.alert{border-left:4px solid var(--berry);padding:4px 0 4px 14px;font-weight:500}
+
+ul.plain{margin:0;padding-left:1.15em;display:grid;gap:5px}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:520px}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font:600 .74rem/1.3 var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td.num,.num{font-family:var(--mono);font-size:.86rem;font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--berry)}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two>div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;gap:6px;align-content:start;min-width:0}
+@media (max-width:600px){.two{grid-template-columns:1fr}}
+.mnem{font-family:var(--mono);font-size:.85rem;color:var(--teal);font-weight:500}
+
+/* quiz */
+.qtools{display:flex;gap:8px;flex-wrap:wrap}
+button{font:600 .85rem/1 var(--body);border:1px solid var(--line);background:var(--surface);color:var(--ink);
+  padding:10px 14px;border-radius:999px;cursor:pointer}
+button:hover{border-color:var(--berry);color:var(--berry)}
+details.q{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+details.q summary{cursor:pointer;font-weight:500;list-style:none;display:grid;grid-template-columns:auto 1fr;gap:10px}
+details.q summary::-webkit-details-marker{display:none}
+details.q summary .n{font-family:var(--mono);color:var(--berry);font-size:.85rem;padding-top:2px}
+details.q .ans{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);display:grid;gap:6px}
+details.q .ans b{color:var(--teal)}
+.hint{font-size:.8rem;color:var(--muted)}
+footer{margin-top:40px;color:var(--muted);font-size:.82rem}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+
+<div class="top"><nav class="nav" aria-label="Sections">
+  <a href="#numbers">Must-know #s</a>
+  <a href="#o1">1 · Health &amp; risk</a>
+  <a href="#o2">2 · Pregnancy</a>
+  <a href="#o3">3 · Labor &amp; PP</a>
+  <a href="#o4">4 · Newborn</a>
+  <a href="#o5">5 · Complications</a>
+  <a href="#o6">6 · Care plans</a>
+  <a href="#check">Self-check</a>
+</nav></div>
+
+<div class="wrap">
+<header class="hero">
+  <span class="eyebrow">Trends · Maternity / OB-Neonatal</span>
+  <h1>Maternity Nursing Review</h1>
+  <p class="lede">Built from your OB slide decks (primary) and the 8th-edition Foundations of Maternal-Newborn text. Organized by the six course objectives. Each section has a plain-language version, the tables you need, and the traps HESI uses to get you.</p>
+  <div class="how">
+    <span class="key"><span class="dot" style="background:var(--teal)"></span>Kid version / analogy</span>
+    <span class="key"><span class="dot" style="background:var(--warn)"></span>NCLEX traps</span>
+    <span class="key"><span class="dot" style="background:var(--berry)"></span>Priority / safety</span>
+  </div>
+</header>
+
+<!-- NUMBERS -->
+<section id="numbers">
+  <div class="sec-head"><div class="chips"><span class="chip">Memorize cold</span></div><h2>Must-know numbers</h2></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Item</th><th>Value</th><th>Why it matters</th></tr></thead>
+    <tbody>
+      <tr><td>GTPAL boundaries</td><td class="num">T ≥37 · P 20–36⁶⁄₇ · A &lt;20 wk</td><td>Loss before 20 wk = abortion, never preterm</td></tr>
+      <tr><td>Fundal height</td><td class="num">12 wk symphysis · 20 wk umbilicus · 36 wk xiphoid</td><td>20–36 wk: cm ≈ weeks</td></tr>
+      <tr><td>Folic acid</td><td class="num">400–600 mcg/day</td><td>Neural tube closes in month 1, so start before conception</td></tr>
+      <tr><td>FHR baseline</td><td class="num">110–160 bpm</td><td>Moderate variability 6–25 bpm = oxygenated fetus</td></tr>
+      <tr><td>Acceleration (≥32 wk)</td><td class="num">↑15 bpm × 15 sec</td><td>Reactive NST = 2 accels in 20 min</td></tr>
+      <tr><td>BPP</td><td class="num">5 items × 2 = 10 · 8–10 normal</td><td>NST, breathing, movement, tone, fluid</td></tr>
+      <tr><td>AFI</td><td class="num">&lt;5 cm oligo · SDP ≤2 cm oligo</td><td>Oligo → kidney / ROM problems</td></tr>
+      <tr><td>Preeclampsia BP</td><td class="num">≥140/90 · severe ≥160/110</td><td>After 20 wk, 2 readings ≥4 hr apart</td></tr>
+      <tr><td>Proteinuria</td><td class="num">≥300 mg/24h · P/C ≥0.3 · dip ≥2+</td><td></td></tr>
+      <tr><td>MgSO₄</td><td class="num">Load 4–6 g / 15–30 min → 1–2 g/hr</td><td>Therapeutic 5–8 mg/dL (slides)</td></tr>
+      <tr><td>Mg safety floor</td><td class="num">RR ≥12 · UO ≥30 mL/hr · DTRs present</td><td>Antidote: calcium gluconate</td></tr>
+      <tr><td>Terbutaline / nifedipine</td><td class="num">Hold / report maternal HR &gt;120</td><td>Beta-agonist tachycardia</td></tr>
+      <tr><td>HELLP platelets</td><td class="num">&lt;100,000/mm³</td><td>Don't palpate the liver</td></tr>
+      <tr><td>Tachysystole</td><td class="num">&gt;5 ctx / 10 min · ctx &gt;120 s · rest &lt;60 s</td><td>Stop Pitocin first</td></tr>
+      <tr><td>Epidural preload</td><td class="num">500–1000 mL LR</td><td>BP q5min × 15 min after dose</td></tr>
+      <tr><td>GBS screen</td><td class="num">35–37 wk</td><td>IV PCN/ampicillin q4h, ≥4 hr before birth</td></tr>
+      <tr><td>RhoGAM</td><td class="num">28 wk + within 72 hr of birth</td><td>Only if baby Rh+ and indirect Coombs (–)</td></tr>
+      <tr><td>PPH (slides)</td><td class="num">&gt;500 mL vaginal · &gt;1000 mL C/S</td><td>ACOG: cumulative ≥1000 mL or s/s hypovolemia</td></tr>
+      <tr><td>Heavy vs excessive lochia</td><td class="num">1 pad/hr · 1 pad/15 min</td><td>Weigh pads: 1 g = 1 mL</td></tr>
+      <tr><td>Fundus postpartum</td><td class="num">At umbilicus by 12 hr · ↓1 cm/day</td><td>Not palpable by day 14</td></tr>
+      <tr><td>Lochia (slides)</td><td class="num">Rubra 1–3 · Serosa 4–10 · Alba 11–14 (to 6 wk)</td><td>Back to red = bleeding problem</td></tr>
+      <tr><td>Methergine</td><td class="num">0.2 mg IM</td><td>Hold if hypertensive</td></tr>
+      <tr><td>Hemabate</td><td class="num">250 mcg IM, max 2 mg</td><td>Caution asthma; refrigerate</td></tr>
+      <tr><td>Postpartum blues</td><td class="num">Starts wk 1 · peaks ~day 5 · gone by 2 wk</td><td>&gt;2 wk = think PPD</td></tr>
+      <tr><td>Newborn HR / RR</td><td class="num">120–160 · 30–60</td><td>HR 100 asleep, 180 crying is OK</td></tr>
+      <tr><td>Newborn temp (axillary)</td><td class="num">36.5–37.5 °C (97.7–99.5 °F)</td><td></td></tr>
+      <tr><td>Newborn glucose</td><td class="num">40–60 first 24h · 50–90 after</td><td>≤40–45 & no symptoms → feed, recheck 30–60 min</td></tr>
+      <tr><td>Newborn weight</td><td class="num">2500–4000 g · lose ≤10%</td><td>Back to birth weight by 14 days</td></tr>
+      <tr><td>Jaundice visible</td><td class="num">Bili &gt;5 mg/dL</td><td>&lt;24 hr = pathologic</td></tr>
+      <tr><td>APGAR</td><td class="num">1 & 5 min · 7–10 / 4–6 / 0–3</td><td>Repeat q5min if &lt;7</td></tr>
+      <tr><td>Diapers (breastfed)</td><td class="num">3 wet + 3 stools by day 3 · 6 wet by day 4</td><td>Best sign of adequate intake</td></tr>
+      <tr><td>LATCH</td><td class="num">≤7 needs help</td><td>Each item 0–2</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- OBJECTIVE 1 -->
+<section id="o1">
+  <div class="sec-head"><div class="chips"><span class="chip">Objective 1</span><span class="chip t">SLO 1–4</span></div>
+  <h2>Health care and health risks in the childbearing years</h2></div>
+
+  <div class="kid"><b class="lbl">Kid version</b>
+    <p>Before and early in pregnancy, the baby is being built from scratch. Prenatal care is the building inspection: we check the "materials" (nutrition, vitamins), keep out things that wreck construction (alcohol, smoking, live vaccines, certain meds), and count how many builds mom has done before (GTPAL).</p>
+  </div>
+
+  <h3>GTPAL and Naegele's rule</h3>
+  <div class="two">
+    <div><b>GTPAL</b>
+      <ul class="plain">
+        <li><b>G</b>ravida: every pregnancy, including the current one, twins count as 1</li>
+        <li><b>T</b>erm: births ≥37 wk</li>
+        <li><b>P</b>reterm: births 20 to 36⁶⁄₇ wk</li>
+        <li><b>A</b>bortions: losses &lt;20 wk (spontaneous or induced)</li>
+        <li><b>L</b>iving children right now (twins = 2)</li>
+      </ul>
+    </div>
+    <div><b>Naegele's rule (EDD)</b>
+      <p class="mnem">LMP − 3 months + 7 days + 1 year</p>
+      <p>LMP June 10 → March 17 next year.</p>
+      <p class="hint">Always confirm whether the scenario says she is pregnant now. That changes G.</p>
+    </div>
+  </div>
+
+  <h3>Signs of pregnancy</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Presumptive (she reports)</th><th>Probable (examiner finds)</th><th>Positive (only the fetus)</th></tr></thead>
+    <tbody><tr>
+      <td>Amenorrhea, N/V, breast tenderness, fatigue, urinary frequency, quickening</td>
+      <td>Chadwick's (bluish cervix), Goodell's (soft cervix), Hegar's (soft lower uterus), + hCG test, ballottement, Braxton Hicks</td>
+      <td>Fetal heart tones, fetal movement felt by examiner, fetus seen on ultrasound</td>
+    </tr></tbody>
+  </table></div>
+  <p class="hint">Memory hook: Presumptive = Patient says. Probable = Practitioner finds. Positive = Proof of baby. A pregnancy test is only probable, because tumors like a molar pregnancy also make hCG.</p>
+
+  <h3>Nutrition and teratogens</h3>
+  <ul class="plain">
+    <li><b>Folic acid 400–600 mcg</b>: green leafy veg, fortified cereal, beans, citrus. Prevents spina bifida and anencephaly.</li>
+    <li><b>Iron</b>: take with vitamin C (orange juice), not with milk, tea, or coffee. Expect black stools and constipation.</li>
+    <li><b>Vitamin A (retinol) in high doses is teratogenic</b>; fat-soluble vitamins (A, D, E, K) build up.</li>
+    <li><b>Food safety</b>: no raw fish/meat, unpasteurized dairy or soft cheese (Listeria), deli meat unless heated; limit high-mercury fish (shark, swordfish, king mackerel, tilefish).</li>
+    <li><b>Weight gain</b> (normal BMI): about 25–35 lb. Inadequate gain → risk of IUGR.</li>
+    <li><b>Vaccines</b>: inactivated flu and Tdap are given in pregnancy. Live vaccines (MMR, varicella) are not; give them postpartum.</li>
+    <li>HIV testing is offered to <b>every</b> pregnant woman regardless of risk.</li>
+  </ul>
+
+  <div class="trap"><b class="lbl">NCLEX traps</b>
+    <ul>
+      <li>Miscarriage at 18 wk goes under <b>A</b>, not P.</li>
+      <li>A positive pregnancy test is <b>probable</b>, not positive.</li>
+      <li>Temp 100.2 °F at a prenatal visit is not normal pregnancy. Notify the provider.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- OBJECTIVE 2 -->
+<section id="o2">
+  <div class="sec-head"><div class="chips"><span class="chip">Objective 2</span><span class="chip t">SLO 1,2,3,6</span></div>
+  <h2>Physiologic changes of pregnancy and family care</h2></div>
+
+  <div class="kid"><b class="lbl">Kid version</b>
+    <p>Mom's body becomes a bigger delivery truck. She makes more blood (but the water goes up faster than the red cells, so labs look "anemic"), her heart pumps harder, and the heavy uterus can sit on the big vein in her back like a bowling ball on a garden hose. That's why we turn her on her <b>left side</b>.</p>
+  </div>
+
+  <h3>Fetal circulation: three shortcuts</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Shunt</th><th>Bypasses</th><th>Closes when</th></tr></thead>
+    <tbody>
+      <tr><td><b>Ductus venosus</b></td><td>Liver (umbilical vein → IVC)</td><td>Cord is clamped</td></tr>
+      <tr><td><b>Foramen ovale</b></td><td>Lungs (right atrium → left atrium)</td><td>Left atrial pressure rises above right after first breaths</td></tr>
+      <tr><td><b>Ductus arteriosus</b></td><td>Lungs (pulmonary artery → aorta)</td><td>Gradually as oxygen rises, about 1–8 days; may stay open (PDA) after asphyxia</td></tr>
+    </tbody>
+  </table></div>
+  <div class="kid"><b class="lbl">Analogy</b>
+    <p>Before birth the lungs and liver are closed stores, so blood takes detours (the shunts). At birth the stores open, the detour signs come down, and traffic goes the normal way. Venosus = liver, the two "arteriosus/ovale" ones = lungs.</p>
+  </div>
+
+  <h3>Body system changes to know</h3>
+  <ul class="plain">
+    <li><b>Cardiovascular</b>: blood volume up ~40–50%, HR up 10–15 bpm, cardiac output up. Physiologic anemia (dilution). Clotting factors rise, so DVT risk rises.</li>
+    <li><b>Supine hypotension</b>: uterus compresses the vena cava → dizzy, pale, low BP, fetal distress. Fix: left lateral or a wedge under the right hip.</li>
+    <li><b>Respiratory</b>: diaphragm pushed up, shortness of breath late in pregnancy is normal.</li>
+    <li><b>GI</b>: progesterone relaxes smooth muscle → heartburn and constipation. Heartburn: small frequent meals, stay upright after eating.</li>
+    <li><b>Renal</b>: frequency in 1st and 3rd trimesters; higher UTI risk.</li>
+    <li><b>Skin</b>: linea nigra, chloasma, striae are normal.</li>
+  </ul>
+
+  <h3>Antepartum testing</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Test</th><th>Good result</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>NST</td><td><b>Reactive</b>: 2 accels (15×15) in 20 min</td><td>Reactive is the good one. Nonreactive → BPP or CST.</td></tr>
+      <tr><td>CST</td><td><b>Negative</b>: no late decels with 3 ctx in 10 min</td><td>Positive = late decels with ≥50% of contractions = bad</td></tr>
+      <tr><td>BPP</td><td>8–10</td><td>NST, breathing, movement, tone, fluid. Each 0 or 2, never 1.</td></tr>
+      <tr><td>Modified BPP</td><td>Reactive NST + no oligo</td><td>NST + AFI</td></tr>
+      <tr><td>Kick counts</td><td>Per provider instructions</td><td>Decreased movement → call</td></tr>
+      <tr><td>Amniocentesis / CVS</td><td>—</td><td>RhoGAM afterward if mom Rh−. L/S ratio ≥2:1 = mature lungs.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Family care</h3>
+  <ul class="plain">
+    <li><b>Lamaze</b>: patterned breathing and focal point, distraction. <b>Bradley</b>: partner-coached, deep relaxation, natural birth, abdominal breathing.</li>
+    <li>Expect ambivalence in the 1st trimester; it is normal.</li>
+    <li>Fathers/partners: engrossment (intense interest in the baby). Siblings: prepare them, expect regression.</li>
+  </ul>
+
+  <div class="trap"><b class="lbl">NCLEX traps</b>
+    <ul>
+      <li>"Reactive" NST is reassuring. Don't read it as a positive/bad test.</li>
+      <li>Low hemoglobin in pregnancy can be dilutional; true iron deficiency still gets treated.</li>
+      <li>Dizziness lying flat → reposition left side before anything else.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- OBJECTIVE 3 -->
+<section id="o3">
+  <div class="sec-head"><div class="chips"><span class="chip">Objective 3</span><span class="chip t">SLO 2,3,4,6</span></div>
+  <h2>Labor, birth and postpartum assessment and interventions</h2></div>
+
+  <div class="kid"><b class="lbl">Kid version</b>
+    <p>Labor is moving a passenger (baby) through a tunnel (pelvis) with an engine (contractions), and the person's mind matters too. After birth the uterus has to squeeze shut like a fist around open blood vessels. A soft uterus is a leaking faucet.</p>
+  </div>
+
+  <h3>The Four P's</h3>
+  <div class="two">
+    <div><b>Powers</b><p>Contractions (frequency, duration, intensity) plus pushing.</p></div>
+    <div><b>Passage</b><p>Pelvis and soft tissue.</p></div>
+    <div><b>Passenger</b><p>Fetus (lie, presentation, position, station) and placenta.</p></div>
+    <div><b>Psyche</b><p>Anxiety and fear raise catecholamines and slow labor.</p></div>
+  </div>
+
+  <h3>True vs false labor and the stages</h3>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>True labor</th><th>False labor</th></tr></thead>
+    <tbody>
+      <tr><td>Contractions</td><td>Regular, closer, stronger</td><td>Irregular, no pattern</td></tr>
+      <tr><td>Walking</td><td>Makes them stronger</td><td>May stop them</td></tr>
+      <tr><td>Pain</td><td>Starts in back, wraps to front</td><td>Mostly front/abdomen</td></tr>
+      <tr><td><b>Cervix</b></td><td><b>Changes (dilates/effaces)</b></td><td>No change. This is the deciding sign.</td></tr>
+    </tbody>
+  </table></div>
+  <ul class="plain">
+    <li><b>Stage 1</b>: onset to full dilation (10 cm). Latent → active → transition (~8–10 cm, most intense). Longest stage, longer for nullipara.</li>
+    <li><b>Stage 2</b>: full dilation to birth of baby.</li>
+    <li><b>Stage 3</b>: baby to placenta. Shortest (~6 min). Separation signs: uterus becomes round, fundus rises, cord lengthens, gush of blood.</li>
+    <li><b>Stage 4</b>: first 1–2 hours after placenta. VS, fundus, lochia q15min for the first hour. Highest hemorrhage risk.</li>
+  </ul>
+
+  <h3>Fetal heart rate: VEAL CHOP</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Pattern</th><th>Cause</th><th>Action</th></tr></thead>
+    <tbody>
+      <tr><td><b>V</b>ariable (abrupt, V/U shape)</td><td><b>C</b>ord compression</td><td>Reposition, LION PIT, vaginal exam for prolapse</td></tr>
+      <tr><td><b>E</b>arly (mirrors ctx)</td><td><b>H</b>ead compression</td><td>None. Benign.</td></tr>
+      <tr><td><b>A</b>ccelerations</td><td><b>O</b>K / oxygenated</td><td>None. Reassuring.</td></tr>
+      <tr><td><b>L</b>ate (starts after ctx peak)</td><td><b>P</b>lacental insufficiency</td><td>LION PIT</td></tr>
+    </tbody>
+  </table></div>
+  <div class="two">
+    <div><b>LION PIT</b> (lates, variables, prolonged)
+      <p class="mnem">Left side · Increase IV · O₂ · Notify · Pitocin off · Internal exam · Tocolytic</p>
+      <p class="hint">O₂ via non-rebreather 8–10 L. Tocolytic example: terbutaline 0.25 mg SQ.</p>
+    </div>
+    <div><b>Tachysystole on Pitocin</b>
+      <p>&gt;5 contractions in 10 min, ctx &gt;120 s, or &lt;60 s rest.</p>
+      <p>Stop Pitocin, side-lying, bolus ≥500 mL, O₂, notify, anticipate terbutaline. Restart at ½ the previous rate when resolved.</p>
+    </div>
+  </div>
+  <p class="hint">Scalp stimulation is used to elicit an acceleration, but never during a deceleration. Wait for the decel to resolve.</p>
+
+  <h3>Pain management: epidural</h3>
+  <ul class="plain">
+    <li><b>Before</b>: baseline VS, IV access, preload 500–1000 mL LR, position sitting or side-lying.</li>
+    <li><b>Test dose</b>: watch for intravascular or spinal injection (metallic taste, mouth numbness, tinnitus, sudden dense block, hypotension).</li>
+    <li><b>After</b>: BP q5min × 15 min; RN stays in room 30 min. Check FHR, block level, <b>bladder</b> (she can't feel it).</li>
+    <li><b>Hypotension</b> (usually first 15 min): reposition, fluid bolus, O₂, ephedrine.</li>
+    <li><b>Spinal headache</b>: worse upright. Bed rest, fluids, blood patch.</li>
+    <li><b>Contraindications</b>: coagulopathy, uncorrected hypovolemia, infection at site or severe systemic infection, allergy, fetal condition needing immediate birth.</li>
+  </ul>
+
+  <h3>Postpartum assessment (BUBBLE-HE)</h3>
+  <p class="mnem">Breasts · Uterus · Bladder · Bowel · Lochia · Episiotomy/incision · Homans/legs · Emotions</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Finding</th><th>Means</th><th>First action</th></tr></thead>
+    <tbody>
+      <tr><td>Boggy fundus</td><td>Uterine atony</td><td><b>Massage</b> while supporting lower segment, express clots only once firm</td></tr>
+      <tr><td>Fundus high and off to the right</td><td>Full bladder</td><td><b>Void</b> (or cath), then reassess</td></tr>
+      <tr><td>Firm fundus + bright red trickle</td><td>Laceration</td><td>Notify provider</td></tr>
+      <tr><td>Severe perineal/rectal pressure, VS changing, little visible blood</td><td>Hematoma</td><td>Inspect vulva, notify</td></tr>
+      <tr><td>Rising pulse</td><td>Early hypovolemia</td><td>BP drop is a late sign</td></tr>
+      <tr><td>Temp up to 100.4 °F first 24 hr</td><td>Dehydration / normal</td><td>Fluids; ≥100.4 °F after 24 hr = infection</td></tr>
+      <tr><td>HR 50–70</td><td>Normal postpartum bradycardia</td><td>Document</td></tr>
+      <tr><td>Foul lochia</td><td>Endometritis</td><td>Report</td></tr>
+    </tbody>
+  </table></div>
+  <ul class="plain">
+    <li>Afterpains are worse in multiparas and during breastfeeding (oxytocin). Decrease by day 3.</li>
+    <li>Diuresis and diaphoresis remove the extra fluid. Early ambulation prevents DVT.</li>
+    <li>Breastfeeding delays ovulation but is not reliable contraception.</li>
+  </ul>
+
+  <div class="trap"><b class="lbl">NCLEX traps</b>
+    <ul>
+      <li>Early decels need nothing. Don't pick "turn off Pitocin" for earlies.</li>
+      <li>Boggy uterus: <b>massage first</b>, meds second. Displaced uterus: <b>empty the bladder first</b>.</li>
+      <li>Never push on a soft uterus to express clots; risk of inversion.</li>
+      <li>Methergine is held for hypertension, so check BP first.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- OBJECTIVE 4 -->
+<section id="o4">
+  <div class="sec-head"><div class="chips"><span class="chip">Objective 4</span><span class="chip t">SLO 1–4</span></div>
+  <h2>Newborn needs: physiology, behavior, nutrition</h2></div>
+
+  <div class="kid"><b class="lbl">Kid version</b>
+    <p>A newborn is a tiny wet phone with a small battery. It loses heat fast, burns sugar to stay warm (brown fat), and if it gets cold its battery (glucose) drains and it starts breathing hard. Keep it dry, warm, and fed, and the rest usually takes care of itself.</p>
+  </div>
+
+  <h3>APGAR (0, 1, or 2 each)</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Sign</th><th>0</th><th>1</th><th>2</th></tr></thead>
+    <tbody>
+      <tr><td>Heart rate</td><td>Absent</td><td>&lt;100</td><td>≥100</td></tr>
+      <tr><td>Respiratory effort</td><td>Absent</td><td>Slow, weak, irregular</td><td>Good cry</td></tr>
+      <tr><td>Muscle tone</td><td>Limp</td><td>Some flexion</td><td>Active motion</td></tr>
+      <tr><td>Reflex irritability</td><td>None</td><td>Grimace</td><td>Cry, cough, sneeze</td></tr>
+      <tr><td>Color</td><td>Blue/pale all over</td><td>Pink body, blue hands/feet</td><td>All pink</td></tr>
+    </tbody>
+  </table></div>
+  <p class="hint">Blue hands and feet (acrocyanosis) = 1, not 2. That's why most healthy newborns get 9, not 10. Scoring does not predict long-term outcome.</p>
+
+  <h3>Thermoregulation</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Heat loss</th><th>Example</th><th>Prevent</th></tr></thead>
+    <tbody>
+      <tr><td><b>Evaporation</b> (biggest at birth)</td><td>Wet skin, bath</td><td>Dry immediately, remove wet blanket, hat</td></tr>
+      <tr><td>Conduction</td><td>Cold scale, cold hands</td><td>Warm surfaces, skin-to-skin</td></tr>
+      <tr><td>Convection</td><td>Air drafts</td><td>Away from vents/doors</td></tr>
+      <tr><td>Radiation</td><td>Cold window/wall nearby (no contact)</td><td>Crib away from outer walls</td></tr>
+    </tbody>
+  </table></div>
+  <p><b>Cold stress chain</b>: cold → brown fat burned (nonshivering thermogenesis) → more O₂ and glucose used → hypoglycemia, respiratory distress, metabolic acidosis. Newborns cannot shiver effectively.</p>
+
+  <h3>Glucose and bilirubin</h3>
+  <div class="two">
+    <div><b>Hypoglycemia</b>
+      <p>At risk: IDM, preterm, post-term, SGA/LGA, cold stress, maternal terbutaline.</p>
+      <p>Signs: <b>jitteriness/tremors</b>, poor feeding, sweating, temp drop, resp distress, high-pitched cry.</p>
+      <p>≤40–45 and no symptoms → feed now, recheck 30–60 min. Symptomatic or very low → notify, anticipate IV dextrose.</p>
+    </div>
+    <div><b>Jaundice</b>
+      <p><b>Physiologic</b>: appears day 2–3, falls by day 5–7. Treat with frequent feeding (bilirubin leaves in stool).</p>
+      <p><b>Pathologic</b>: in the <b>first 24 hr</b>. Common cause Rh/ABO incompatibility. Phototherapy. Risk: kernicterus.</p>
+      <p>Moves head → toes. Check by blanching nose or sternum in natural light.</p>
+    </div>
+  </div>
+
+  <h3>Routine care and meds</h3>
+  <ul class="plain">
+    <li><b>Vitamin K IM</b> (vastus lateralis): newborn gut is sterile, so it can't make vitamin K yet. Prevents hemorrhagic disease.</li>
+    <li><b>Erythromycin eye ointment</b>: prevents gonorrheal/chlamydial eye infection.</li>
+    <li><b>Hep B vaccine</b> before discharge, parental consent required. Mom HBsAg+ → vaccine + <b>HBIG within 12 hr</b>, separate sites.</li>
+    <li>First void within 24 hr, meconium within 24–48 hr. Cord: keep dry and clean, falls off in 1–2 weeks.</li>
+    <li>Back to sleep. Car seat rear-facing.</li>
+    <li><b>Caput succedaneum</b> crosses suture lines, present at birth. <b>Cephalohematoma</b> does not cross sutures, appears in 1–2 days, raises jaundice risk.</li>
+  </ul>
+
+  <h3>Feeding</h3>
+  <ul class="plain">
+    <li>Breastfeed in the first hour, then 8–12 times a day. No water or glucose water.</li>
+    <li>Good latch: lips flanged, much of the areola in, audible swallowing, no nipple pain.</li>
+    <li>Adequate intake: 6 wet diapers by day 4, regains birth weight by 2 weeks.</li>
+    <li>Engorgement: feed more often (every 1.5–2 hr), warm shower/massage before feeding, supportive bra.</li>
+    <li>Sore nipples: fix the latch, start on the less sore side, no soap on nipples.</li>
+    <li>Mom drinks to thirst. Forcing fluids does not raise supply; frequent emptying does.</li>
+  </ul>
+
+  <div class="trap"><b class="lbl">NCLEX traps</b>
+    <ul>
+      <li>Jaundice at 18 hours is never "normal."</li>
+      <li>Tremors with a <b>normal</b> glucose → think NAS or hypocalcemia, not hypoglycemia.</li>
+      <li>Periodic breathing (pauses &lt;20 s, no color/HR change) is normal. Apnea ≥20 s or with color/HR change is not.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- OBJECTIVE 5 -->
+<section id="o5">
+  <div class="sec-head"><div class="chips"><span class="chip">Objective 5</span><span class="chip t">SLO 2,4,5,6,7</span></div>
+  <h2>Complications of childbearing</h2></div>
+
+  <h3>Bleeding in early pregnancy</h3>
+  <div class="two">
+    <div><b>Ectopic pregnancy</b>
+      <p>Implants outside uterus, usually tube. Risks: prior ectopic, PID, tubal surgery/scarring.</p>
+      <p>Signs: one-sided pelvic pain, spotting, <b>shoulder pain</b> (blood irritating diaphragm), shock if ruptured.</p>
+      <p>Intact tube: methotrexate. Ruptured: salpingectomy. Priority: bleeding and shock.</p>
+    </div>
+    <div><b>Hydatidiform mole</b>
+      <p>Grape-like trophoblastic tissue, no fetus. Premalignant (choriocarcinoma).</p>
+      <p>Uterus too big for dates, very high hCG, severe N/V, preeclampsia before 24 wk, hyperthyroid.</p>
+      <p>D&amp;C, then serial hCG for 6–12 months. <b>No pregnancy</b> during follow-up.</p>
+    </div>
+  </div>
+
+  <h3>Bleeding in late pregnancy</h3>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Placenta previa</th><th>Abruptio placentae</th></tr></thead>
+    <tbody>
+      <tr><td>What</td><td>Placenta over or near the cervix</td><td>Placenta peels off early</td></tr>
+      <tr><td>Bleeding</td><td><b>Painless, bright red</b>, visible</td><td>Dark red, may be concealed</td></tr>
+      <tr><td>Uterus</td><td>Soft, non-tender</td><td><b>Rigid, board-like, painful</b>; fundal height may rise</td></tr>
+      <tr><td>Fetus</td><td>Often abnormal position</td><td>FHR abnormalities (lates, bradycardia)</td></tr>
+      <tr><td>Risks</td><td>Prior C/S or uterine surgery, age &gt;35, multiples, smoking</td><td>HTN/preeclampsia, cocaine, trauma, smoking</td></tr>
+      <tr><td>Key nursing</td><td><b>No vaginal exams</b> until ruled out by ultrasound</td><td>2 large-bore IVs, type &amp; cross, watch for DIC and shock, prepare for delivery</td></tr>
+    </tbody>
+  </table></div>
+  <div class="kid"><b class="lbl">Analogy</b>
+    <p>Previa is a rug laid over the doorway: as the door opens, the rug tears and bleeds, but nothing is pulling on it, so no pain. Abruption is wallpaper ripped off the wall from behind: it hurts, blood gets trapped behind it, and the wall goes rock hard.</p>
+  </div>
+
+  <h3>Hypertensive disorders</h3>
+  <ul class="plain">
+    <li><b>Preeclampsia</b>: new HTN ≥140/90 after 20 wk + proteinuria or end-organ signs. Watch for headache, visual changes, epigastric/RUQ pain, hyperreflexia, edema, rapid weight gain.</li>
+    <li><b>Severe features</b>: ≥160/110, persistent headache, scotomata, RUQ pain, pulmonary edema, UO &lt;30 mL/hr, low platelets, high liver enzymes.</li>
+    <li><b>Treatment</b>: magnesium sulfate (prevents seizures; <b>not</b> an antihypertensive), labetalol or hydralazine for BP, delivery is the cure.</li>
+    <li><b>HELLP</b>: Hemolysis, Elevated Liver enzymes, Low Platelets (&lt;100,000). RUQ pain, N/V, "flu-like." Don't palpate the liver (rupture risk).</li>
+    <li><b>Eclampsia</b>: seizure. Side-lying, protect airway, don't restrain, O₂, Mg.</li>
+    <li>Preeclampsia can appear <b>postpartum</b> (up to weeks later): headache not relieved by meds, flashing lights → come in.</li>
+  </ul>
+  <div class="kid"><b class="lbl">Magnesium, kid version</b>
+    <p>Mag is a dimmer switch for the nerves. It turns the brain down so it can't seize. Turn it too far and the reflexes go out first, then breathing, then the heart. So you check the knee reflex, count breaths, and measure urine (kidneys clear it). Calcium gluconate turns the lights back up.</p>
+    <p class="mnem">Toxicity order: DTRs lost → RR &lt;12 → cardiac arrest</p>
+  </div>
+
+  <h3>Diabetes, Rh, infection</h3>
+  <ul class="plain">
+    <li><b>GDM</b>: insulin needs drop fast after the placenta delivers (it made the insulin-resistance hormones). Lifelong higher type 2 risk; needs follow-up screening.</li>
+    <li><b>Infant of diabetic mother</b>: macrosomia (fetal insulin acts like growth hormone) → shoulder dystocia, birth injury. Hypoglycemia lowest at 1–3 hr. Also RDS (insulin delays surfactant), polycythemia → jaundice, hypocalcemia. Long-standing maternal vascular disease can instead cause IUGR.</li>
+    <li><b>Rh</b>: mom Rh−, baby Rh+. First baby usually fine; antibodies hit later pregnancies. RhoGAM at 28 wk, within 72 hr after birth, and after any bleeding event, trauma, amnio/CVS, miscarriage, ectopic. It protects <b>future</b> pregnancies. Indirect Coombs = mom's blood; direct Coombs = baby's.</li>
+    <li><b>GBS</b>: swab 35–37 wk; IV penicillin or ampicillin in labor q4h, at least 4 hr before birth. Treated in labor, not during pregnancy.</li>
+    <li><b>HIV in labor</b>: avoid anything that breaks fetal skin (scalp electrode, forceps, vacuum, episiotomy). Epidural is fine. Bathe baby before injections. No breastfeeding (US guidance).</li>
+  </ul>
+
+  <h3>Preterm labor</h3>
+  <ul class="plain">
+    <li><b>Magnesium</b>: short-term; main goal is neonatal neuroprotection (less CP, brain bleeds).</li>
+    <li><b>Nifedipine</b>: calcium channel blocker. Headache, flushing, hypotension; report pulse &gt;120.</li>
+    <li><b>Terbutaline</b>: hold if maternal HR &gt;120.</li>
+    <li>Corticosteroids (betamethasone) to mature fetal lungs.</li>
+  </ul>
+
+  <h3>Intrapartum emergencies</h3>
+  <div class="two">
+    <div><b>Cord prolapse</b>
+      <p>Call for help. Hips higher than head (knee-chest or Trendelenburg). Gloved hand holds the presenting part off the cord until the OR. Emergency C/S.</p>
+    </div>
+    <div><b>Shoulder dystocia</b>
+      <p>"Turtle sign." Call for help, stop pushing, <b>McRoberts</b> (thighs to abdomen), <b>suprapubic</b> pressure. <b>Never fundal pressure</b>. Check baby's clavicles after.</p>
+    </div>
+  </div>
+
+  <h3>Postpartum complications</h3>
+  <ul class="plain">
+    <li><b>PPH causes, the 4 T's</b>: Tone (atony, #1), Trauma (lacerations, hematoma), Tissue (retained placenta), Thrombin (clotting problems, DIC).</li>
+    <li><b>Risk factors</b>: overdistended uterus (twins, macrosomia, polyhydramnios), grand multiparity (5+), prolonged or precipitous labor, forceps/vacuum, C/S, oxytocin or MgSO₄ use, general anesthesia, chorioamnionitis, previa/abruption/accreta, previous PPH.</li>
+    <li><b>Atony steps</b>: massage → empty bladder → oxytocin → Methergine (not if HTN) / misoprostol / Hemabate (caution asthma; diarrhea common) → bimanual compression, balloon tamponade → surgery, hysterectomy last.</li>
+    <li>Fluids: large-bore IV, type &amp; cross, keep UO ≥30 mL/hr.</li>
+    <li><b>DVT</b>: unilateral calf pain, warmth, swelling. Don't massage the leg. <b>PE</b>: sudden dyspnea, chest pain, tachycardia → emergency.</li>
+    <li><b>Endometritis / infection</b>: fever ≥100.4 °F after 24 hr, foul lochia, uterine tenderness. <b>Mastitis</b>: keep breastfeeding or pumping, antibiotics, rest.</li>
+  </ul>
+
+  <h3>Perinatal mood disorders</h3>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Blues</th><th>Depression</th><th>Psychosis</th></tr></thead>
+    <tbody>
+      <tr><td>Timing</td><td>Week 1, peaks ~day 5, ends by 2 wk</td><td>Lasts &gt;2 wk, anytime in first year</td><td>Usually first few weeks</td></tr>
+      <tr><td>Signs</td><td>Tearful, irritable, mood swings</td><td>Hopeless, can't function, guilt, anhedonia</td><td>Hallucinations, delusions, confusion</td></tr>
+      <tr><td>Cares for baby?</td><td>Yes</td><td>Impaired</td><td>Danger to self/infant</td></tr>
+      <tr><td>Action</td><td>Support, rest, monitor</td><td>Screen (EPDS), refer, therapy/meds</td><td><b>Emergency</b>, don't leave alone with infant</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="trap"><b class="lbl">NCLEX traps</b>
+    <ul>
+      <li>Painless bright red bleeding at 32 wk: the wrong answer is "perform a vaginal exam."</li>
+      <li>Absent DTRs on magnesium → stop the infusion and notify, even if RR is still OK.</li>
+      <li>RhoGAM is not given if indirect Coombs is positive (already sensitized).</li>
+      <li>Shoulder pain + missed period + spotting = ectopic until proven otherwise.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- OBJECTIVE 6 -->
+<section id="o6">
+  <div class="sec-head"><div class="chips"><span class="chip">Objective 6</span><span class="chip t">SLO 4</span></div>
+  <h2>Nursing care plans</h2></div>
+
+  <div class="kid"><b class="lbl">Kid version</b>
+    <p>A care plan is a recipe card: what's wrong (assessment and problem), what dish you're aiming for (outcome), the steps (interventions, each with a reason), and the taste test (evaluation). If it doesn't taste right, you change the recipe.</p>
+  </div>
+
+  <div class="tbl"><table>
+    <thead><tr><th>Step</th><th>What you write</th><th>Rule</th></tr></thead>
+    <tbody>
+      <tr><td><b>A</b>ssess</td><td>Subjective + objective data</td><td>Real numbers: "fundus boggy, 2 cm above umbilicus, deviated right"</td></tr>
+      <tr><td><b>D</b>iagnose</td><td>Patient problem + related to + as evidenced by</td><td>Nursing problem, not a medical diagnosis</td></tr>
+      <tr><td><b>P</b>lan</td><td>Expected outcome</td><td>Patient-centered, measurable, time-limited</td></tr>
+      <tr><td><b>I</b>mplement</td><td>Interventions with rationales</td><td>Assess → act → teach; independent and collaborative</td></tr>
+      <tr><td><b>E</b>valuate</td><td>Was the outcome met?</td><td>Met / partly met / not met → revise</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Worked example: postpartum hemorrhage from atony</h3>
+  <ul class="plain">
+    <li><b>Assessment</b>: G3P3, 1 hr after vaginal birth of 4200 g baby. Fundus boggy, 2 cm above umbilicus. Saturating 1 pad in 15 min with clots. HR 112, BP 104/60.</li>
+    <li><b>Problem</b>: Excessive blood loss related to uterine atony as evidenced by boggy fundus, saturating a pad in 15 minutes, and tachycardia.</li>
+    <li><b>Outcome</b>: Fundus firm and midline, lochia ≤1 pad/hr, HR &lt;100 within 1 hour.</li>
+    <li><b>Interventions</b>:
+      <ul class="plain">
+        <li>Massage fundus while supporting lower uterine segment (stimulates contraction; support prevents inversion).</li>
+        <li>Empty bladder (full bladder pushes the uterus up and stops it from contracting).</li>
+        <li>Give uterotonics as ordered; check BP before Methergine.</li>
+        <li>Weigh pads (accurate quantitative blood loss).</li>
+        <li>Maintain large-bore IV, VS q15min, UO ≥30 mL/hr.</li>
+        <li>Call for help early; stay with the patient.</li>
+      </ul></li>
+    <li><b>Evaluation</b>: Fundus firm at U/U, 1 pad/hr, HR 92. Outcome met; continue q15min checks for the first hour.</li>
+  </ul>
+
+  <h3>Common maternity patient problems</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Situation</th><th>Priority problem</th></tr></thead>
+    <tbody>
+      <tr><td>Severe preeclampsia on Mg</td><td>Risk for injury (seizures, Mg toxicity)</td></tr>
+      <tr><td>Previa / abruption / PPH</td><td>Excessive blood loss, reduced tissue perfusion</td></tr>
+      <tr><td>Late decels</td><td>Impaired fetal oxygenation</td></tr>
+      <tr><td>Epidural</td><td>Risk for hypotension; urinary retention</td></tr>
+      <tr><td>Newborn cold stress</td><td>Ineffective thermoregulation → hypoglycemia risk</td></tr>
+      <tr><td>Breastfeeding trouble</td><td>Ineffective breastfeeding related to poor latch</td></tr>
+      <tr><td>Postpartum depression</td><td>Risk for impaired parenting; risk for harm</td></tr>
+    </tbody>
+  </table></div>
+  <p class="hint">Priority order still applies: airway, breathing, circulation, then safety, then teaching. Physical before psychosocial unless the psychosocial problem is a safety risk.</p>
+</section>
+
+<!-- SELF CHECK -->
+<section id="check">
+  <div class="sec-head"><div class="chips"><span class="chip">Active recall</span></div><h2>Self-check</h2>
+  <p class="lede">Answer in your head before you open each one. If you miss it, go back to the section and find the line yourself.</p></div>
+  <div class="qtools"><button type="button" id="openAll">Show all answers</button><button type="button" id="closeAll">Hide all</button></div>
+
+  <div id="qs" style="display:grid;gap:10px">
+  <details class="q"><summary><span class="n">01</span><span>Pregnant now. History: twins born at 35 wk (both living), one term birth, one miscarriage at 12 wk. GTPAL?</span></summary>
+    <div class="ans"><p><b>G4 T1 P1 A1 L3.</b> Current pregnancy counts in G. Twins = one preterm birth but two living children.</p></div></details>
+
+  <details class="q"><summary><span class="n">02</span><span>LMP was September 25. What is the EDD?</span></summary>
+    <div class="ans"><p><b>July 2</b> of next year. Sept − 3 = June; 25 + 7 = 32 → July 2.</p></div></details>
+
+  <details class="q"><summary><span class="n">03</span><span>A client at 34 wk becomes pale and dizzy lying flat for her ultrasound. First action?</span></summary>
+    <div class="ans"><p><b>Turn her to her left side</b> (or wedge the right hip). Supine hypotension from vena cava compression.</p></div></details>
+
+  <details class="q"><summary><span class="n">04</span><span>NST: two accelerations of 15 bpm lasting 15 sec within 20 min. Interpret.</span></summary>
+    <div class="ans"><p><b>Reactive</b>, which is reassuring. No further testing needed right now.</p></div></details>
+
+  <details class="q"><summary><span class="n">05</span><span>On Pitocin, the strip shows decelerations that begin after the peak of each contraction. List actions in order.</span></summary>
+    <div class="ans"><p><b>Late decels → LION PIT.</b> Stop Pitocin, left side, IV bolus, O₂ by non-rebreather, notify provider, anticipate tocolytic.</p></div></details>
+
+  <details class="q"><summary><span class="n">06</span><span>Five minutes after an epidural dose, BP drops from 124/76 to 88/50. What do you do?</span></summary>
+    <div class="ans"><p>Reposition (side-lying/left uterine displacement), <b>increase IV fluids</b>, O₂, notify anesthesia, anticipate ephedrine. Check FHR.</p></div></details>
+
+  <details class="q"><summary><span class="n">07</span><span>Two hours postpartum, the fundus is firm, 2 cm above the umbilicus, deviated to the right. Action?</span></summary>
+    <div class="ans"><p><b>Have her void</b> (or catheterize), then reassess. Full bladder. Massage is for a <i>boggy</i> uterus.</p></div></details>
+
+  <details class="q"><summary><span class="n">08</span><span>Fundus firm and midline, but a steady trickle of bright red blood continues. Most likely cause?</span></summary>
+    <div class="ans"><p><b>Laceration</b> (cervix or vagina). Notify the provider. Massaging a firm uterus won't help.</p></div></details>
+
+  <details class="q"><summary><span class="n">09</span><span>BP 150/100 postpartum with boggy uterus. Which uterotonic do you question?</span></summary>
+    <div class="ans"><p><b>Methylergonovine (Methergine)</b>. It vasoconstricts and raises BP. Hemabate is questioned in asthma.</p></div></details>
+
+  <details class="q"><summary><span class="n">10</span><span>Client on magnesium: RR 14, UO 35 mL/hr, patellar reflex absent. Action?</span></summary>
+    <div class="ans"><p><b>Stop the infusion and notify.</b> Loss of DTRs is the first sign of toxicity. Have calcium gluconate ready.</p></div></details>
+
+  <details class="q"><summary><span class="n">11</span><span>36 wk, painless bright red bleeding, soft uterus. What must you not do?</span></summary>
+    <div class="ans"><p><b>Do not perform a vaginal exam.</b> Suspected previa until ultrasound rules it out.</p></div></details>
+
+  <details class="q"><summary><span class="n">12</span><span>Board-like abdomen, severe pain, dark bleeding, late decels. Priorities?</span></summary>
+    <div class="ans"><p><b>Abruption.</b> Two large-bore IVs, type &amp; cross, continuous FHR monitoring, watch for shock and DIC, prepare for emergency delivery.</p></div></details>
+
+  <details class="q"><summary><span class="n">13</span><span>Mom is Rh−, baby is Rh+, indirect Coombs negative. When is RhoGAM due?</span></summary>
+    <div class="ans"><p><b>Within 72 hours</b> of birth. It protects future pregnancies.</p></div></details>
+
+  <details class="q"><summary><span class="n">14</span><span>Cord is felt in the vagina after ROM. First action?</span></summary>
+    <div class="ans"><p><b>Call for help and lift the presenting part off the cord</b> with a gloved hand; hips above head (knee-chest/Trendelenburg). Prepare for C/S. Don't push the cord back.</p></div></details>
+
+  <details class="q"><summary><span class="n">15</span><span>Head delivers then retracts against the perineum. Which two nursing actions first?</span></summary>
+    <div class="ans"><p><b>McRoberts maneuver and suprapubic pressure</b> (after calling for help). Never fundal pressure.</p></div></details>
+
+  <details class="q"><summary><span class="n">16</span><span>Newborn at 1 min: HR 90, weak irregular breathing, cries when stimulated, moves all extremities, pink with blue hands/feet. APGAR?</span></summary>
+    <div class="ans"><p><b>7.</b> HR 1, resp 1, reflex 2, tone 2, color 1. A 7 still gets reassessed at 5 minutes like every baby.</p></div></details>
+
+  <details class="q"><summary><span class="n">17</span><span>Newborn of a diabetic mother is jittery at 2 hr. Glucose 38, no other symptoms. Action?</span></summary>
+    <div class="ans"><p><b>Feed now</b> (breast or formula) and recheck in 30–60 min. Notify if symptomatic or not improving.</p></div></details>
+
+  <details class="q"><summary><span class="n">18</span><span>Jaundice noted at 16 hours of life. Physiologic or pathologic?</span></summary>
+    <div class="ans"><p><b>Pathologic</b> (first 24 hr). Get a bilirubin level, notify, think Rh/ABO incompatibility.</p></div></details>
+
+  <details class="q"><summary><span class="n">19</span><span>Why does a newborn get vitamin K?</span></summary>
+    <div class="ans"><p>The newborn gut is <b>sterile</b>, so it has no bacteria to make vitamin K yet. Prevents hemorrhagic disease of the newborn.</p></div></details>
+
+  <details class="q"><summary><span class="n">20</span><span>Day 4 postpartum: tearful, irritable, but caring for baby. Day 21: same symptoms plus can't sleep when baby sleeps, feels worthless. Difference?</span></summary>
+    <div class="ans"><p>Day 4 = <b>blues</b> (normal, support). Day 21 = <b>possible postpartum depression</b> (&gt;2 wk) → screen with EPDS and refer.</p></div></details>
+
+  <details class="q"><summary><span class="n">21</span><span>HIV-positive client in labor. Which is acceptable: fetal scalp electrode, epidural, vacuum, episiotomy?</span></summary>
+    <div class="ans"><p><b>Epidural.</b> The other three break the fetal skin or increase exposure to maternal blood.</p></div></details>
+
+  <details class="q"><summary><span class="n">22</span><span>Client with GDM delivered 2 hr ago. What happens to her insulin needs?</span></summary>
+    <div class="ans"><p><b>They drop rapidly.</b> The placenta made the insulin-resistance hormones. Monitor glucose; teach type 2 screening.</p></div></details>
+  </div>
+</section>
+
+<footer>Sources: course slide decks Ch 5–25 and Foundations of Maternal-Newborn Nursing Care (8th ed.). Where slides and textbook differ (e.g., Mg therapeutic range, lochia days), the slide value is listed because slides drive the exam.</footer>
+</div>
+
+<script>
+(function(){
+  var all=function(){return document.querySelectorAll('#qs details');};
+  document.getElementById('openAll').addEventListener('click',function(){all().forEach(function(d){d.open=true;});});
+  document.getElementById('closeAll').addEventListener('click',function(){all().forEach(function(d){d.open=false;});});
+})();
+</script>
+
+</body></html>

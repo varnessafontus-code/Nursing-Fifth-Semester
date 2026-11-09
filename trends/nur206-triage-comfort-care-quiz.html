@@ -1,0 +1,315 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Triage &amp; Comfort Care Quiz</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: one reading column of question cards; emergency cards carry a red triage stripe, palliative cards a violet one */
+:root{
+  --bg:#F2F4F8; --surface:#FFFFFF; --ink:#18202E; --muted:#5A6478; --line:#D9DEE8;
+  --er:#D23F36; --er-soft:#FCE9E7; --pal:#6B4BB8; --pal-soft:#EFEAFB;
+  --ok:#1E8455; --ok-soft:#E3F4EB; --bad:#B8560E; --bad-soft:#FDF0E2;
+  --simple:#0E7490; --simple-soft:#E0F3F7; --focus:#2563EB;
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Atkinson Hyperlegible",ui-sans-serif,system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#11151E; --surface:#1A2030; --ink:#E7EAF2; --muted:#A3ACBF; --line:#2E3648;
+  --er:#FF7A6E; --er-soft:#3A1F22; --pal:#B79BFF; --pal-soft:#2A2342;
+  --ok:#4ED19A; --ok-soft:#143326; --bad:#FFB36B; --bad-soft:#3A2A16;
+  --simple:#5CCFE6; --simple-soft:#123139; --focus:#7AA7FF; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#11151E; --surface:#1A2030; --ink:#E7EAF2; --muted:#A3ACBF; --line:#2E3648;
+  --er:#FF7A6E; --er-soft:#3A1F22; --pal:#B79BFF; --pal-soft:#2A2342;
+  --ok:#4ED19A; --ok-soft:#143326; --bad:#FFB36B; --bad-soft:#3A2A16;
+  --simple:#5CCFE6; --simple-soft:#123139; --focus:#7AA7FF; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+.wrap{max-width:760px;margin:0 auto;padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:20px}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(28px,6vw,40px);line-height:1.1;margin:0;text-wrap:balance}
+h1 .a{color:var(--er)} h1 .b{color:var(--pal)}
+.lede{color:var(--muted);margin:6px 0 0;max-width:62ch}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);padding-block:10px;z-index:5;border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tab{font:600 14px var(--body);border:1.5px solid var(--line);background:var(--surface);color:var(--ink);padding:7px 13px;border-radius:999px;cursor:pointer}
+.tab[aria-pressed="true"].all{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tab[aria-pressed="true"].er{background:var(--er);color:#fff;border-color:var(--er)}
+.tab[aria-pressed="true"].pal{background:var(--pal);color:#fff;border-color:var(--pal)}
+.score{font-family:var(--mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;display:flex;gap:10px;align-items:center}
+.score b{color:var(--ok)}
+.reset{font:500 12px var(--mono);background:none;border:1px solid var(--line);color:var(--muted);border-radius:6px;padding:5px 9px;cursor:pointer}
+.card{background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--er);border-radius:10px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:12px}
+.card.pal{border-left-color:var(--pal)}
+.meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-family:var(--mono);font-size:12px}
+.num{font-family:var(--display);font-weight:800;font-size:15px}
+.chip{padding:2px 8px;border-radius:999px;background:var(--er-soft);color:var(--er)}
+.card.pal .chip{background:var(--pal-soft);color:var(--pal)}
+.bloom{padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.src{color:var(--muted);margin-left:auto}
+.stem{margin:0;font-size:16.5px}
+.inst{margin:0;font-size:13px;color:var(--muted);font-style:italic}
+.opts{display:flex;flex-direction:column;gap:8px;margin:0;padding:0;list-style:none}
+.opt{display:flex;gap:10px;align-items:flex-start;text-align:left;width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:8px;padding:10px 12px;cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--muted)}
+.opt .k{font-family:var(--mono);font-size:13px;min-width:22px;height:22px;border-radius:5px;display:grid;place-items:center;border:1.5px solid var(--line);flex:none;margin-top:1px}
+.opt.sel{border-color:var(--focus)} .opt.sel .k{background:var(--focus);color:#fff;border-color:var(--focus)}
+.opt.right{border-color:var(--ok);background:var(--ok-soft)} .opt.right .k{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.miss{border-color:var(--bad);background:var(--bad-soft);text-decoration:line-through;text-decoration-color:var(--bad)}
+.opt:disabled{cursor:default}
+.ord{display:flex;gap:8px;align-items:center;background:var(--bg);border:1.5px solid var(--line);border-radius:8px;padding:8px 10px}
+.ord .p{font-family:var(--mono);font-weight:500;min-width:22px;color:var(--muted)}
+.ord .t{flex:1;min-width:0}
+.ord .mv{display:flex;flex-direction:column;gap:3px}
+.ord .mv button{font:600 12px var(--mono);width:30px;height:24px;border-radius:5px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.ord .mv button:disabled{opacity:.35;cursor:default}
+.ord.right{border-color:var(--ok);background:var(--ok-soft)}
+.actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.check{font:700 14px var(--body);background:var(--ink);color:var(--bg);border:0;border-radius:8px;padding:9px 18px;cursor:pointer}
+.check:disabled{opacity:.4;cursor:default}
+.tries{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.fb{border-radius:8px;padding:12px 14px;font-size:15px}
+.fb.bad{background:var(--bad-soft);border:1px solid var(--bad)}
+.fb.bad strong{color:var(--bad)}
+.fb.ok{background:var(--ok-soft);border:1px solid var(--ok)}
+.fb.ok strong{color:var(--ok)}
+.fb p{margin:6px 0 0}
+.simple{background:var(--simple-soft);border:1px dashed var(--simple);border-radius:8px;padding:10px 14px;font-size:15px}
+.simple strong{color:var(--simple);font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.simple p{margin:4px 0 0}
+.note{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+button:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.sec-h{font-family:var(--display);font-weight:600;font-size:20px;margin:10px 0 -4px;display:flex;gap:10px;align-items:center}
+.sec-h .dot{width:12px;height:12px;border-radius:3px;background:var(--er)}
+.sec-h.pal .dot{background:var(--pal)}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1><span class="a">Triage</span> &amp; <span class="b">Comfort Care</span></h1>
+    <p class="lede">Emergency preparedness and palliative care questions drawn from LaCharity, <em>Prioritization, Delegation, and Assignment</em> (5th edition). The questions are reworded. Choose an answer and press Check. If it's wrong, you'll get a hint about where your reasoning went off, and you can try again. The full rationale opens once you get it right.</p>
+  </header>
+
+  <div class="bar">
+    <div class="tabs" role="group" aria-label="Filter questions">
+      <button class="tab all" data-f="all" aria-pressed="true">All 15</button>
+      <button class="tab er" data-f="er" aria-pressed="false">Emergency preparedness</button>
+      <button class="tab pal" data-f="pal" aria-pressed="false">Palliative care</button>
+    </div>
+    <div class="score"><span>Correct first try: <b id="first">0</b> · Solved: <b id="solved">0</b>/15</span><button class="reset" id="reset">Reset</button></div>
+  </div>
+
+  <main id="quiz" style="display:flex;flex-direction:column;gap:18px"></main>
+
+  <p class="note">Question numbers refer to the 5th edition in your project files. Check them against your 6th edition copy before you cite them. Bloom's level on each card shows the thinking the question asks for.</p>
+</div>
+
+<script>
+const Q = [
+/* ---------- EMERGENCY PREPAREDNESS (Chapter 21) ---------- */
+{sec:"er",src:"Ch 21 · #35",bloom:"Apply",type:"mc",
+ stem:"Several people drive themselves to the emergency department (ED). All have severe swelling around the eyes, coughing, and a tight throat, and their clothes give off a strong chemical smell. They say a \"gas bomb\" went off in their house. What is the priority action?",
+ opts:["Take vital signs and listen to lung sounds.","Send the patients to the decontamination area.","Alert security about possible terrorist activity.","Send the patients to the clean (cold) zone for immediate treatment."],
+ ans:[1],
+ hints:{0:"Assessment is usually step one, but the chemical is still on their clothes. While you assess, who else is being exposed?",2:"Reporting matters, but it doesn't stop anyone from being harmed in the next few minutes. It happens later, through the charge nurse.",3:"The clean zone exists to stay clean. What must happen to a contaminated person before they can enter it?"},
+ why:"Decontamination in a designated area comes first. It ends the patients' ongoing exposure and protects staff, other patients and the department. Staff put on personal protective equipment (PPE) before helping. Assessment happens after decontamination, and security is notified through the charge nurse or nurse manager.",
+ simple:"If kids come in covered in spilled paint, you wash them off at the door before they walk on the carpet. If you don't, the paint ends up everywhere and on everyone."},
+
+{sec:"er",src:"Ch 21 · #36",bloom:"Understand",type:"mc",
+ stem:"At work, what is the nurse's primary responsibility in preparing for disasters, including natural disasters and bioterrorism?",
+ opts:["Knowing the facility's emergency response plan","Recognizing the signs and symptoms of possible bioterrorism agents","Knowing how and what to report to the Centers for Disease Control and Prevention (CDC)","Deciding ethically whether to expose yourself to potentially lethal substances"],
+ ans:[0],
+ hints:{1:"Useful, but many agents first look like the flu. Knowing symptoms doesn't tell you your role, where to go, or who to report to. What document does?",2:"Reporting follows a chain your facility has already set up. Where is that chain written down?",3:"This is a real dilemma, but you work through it by talking with colleagues and supervisors. It isn't the preparation that keeps the unit running."},
+ why:"The emergency response plan sets out each team member's role, responsibilities and how to report. Recognizing agents and reporting to outside agencies both follow from knowing the plan.",
+ simple:"Before a fire, you need to know your exit and your job. The emergency response plan is that map."},
+
+{sec:"er",src:"Ch 21 · #37",bloom:"Analyze",type:"order",
+ stem:"A biochemical incident is happening. Put the emergency department (ED) staff actions in priority order, first at the top.",
+ items:["Protect the environment for the safety of staff and unaffected patients","Put on personal protective equipment (PPE)","Decontaminate affected people in a separate area","Triage according to protocol","Report to the public health department or Centers for Disease Control and Prevention (CDC) per protocol"],
+ orderHints:["Start with the action that protects the most people who are not yet sick: staff, bystanders, other patients, the building.","Could staff safely touch or wash a contaminated patient without their own protection?","Triage means hands-on assessment. Should anyone assess patients who still have the agent on them?","You can sort patients by how sick they are once they are safe to touch.","Reporting is required, but you report as the numbers and symptoms become clear. It doesn't protect anyone in the next five minutes."],
+ why:"Protect the environment, then put on PPE, then decontaminate, then triage and treat, then report. Protecting staff, unaffected patients and the facility comes first. Reporting follows as information about numbers, history and symptoms comes in.",
+ simple:"Close off the spill, put on gloves, clean everyone, decide who's hurt worst, then make the phone call."},
+
+{sec:"er",src:"Ch 21 · #38",bloom:"Analyze",type:"sata",
+ stem:"The Joint Commission requires hospitals to have an emergency management committee that regularly practices the disaster plan. Health care providers (HCPs) have been chosen. Which other departments should be represented?",
+ inst:"Select all that apply.",
+ opts:["Security and communications","Nursing and assistive personnel (AP)","Laboratory and diagnostic services","Medical records and information technology (IT)","Maintenance and engineering","Quality improvement and occupational therapy"],
+ ans:[0,1,2,3,4],
+ sataExtra:"Every employee helps in a disaster, but some departments stop doing their usual work during the surge. Which one focuses on long-term improvement and rehab instead of the next 24 hours?",
+ sataMissing:"You left out a department the hospital can't run a surge without. Think about the flow of people, hands-on care, tests, tracking patients, and keeping the building standing.",
+ why:"Security and communications control the flow of people and information. Nurses and APs give care. The lab supports ongoing treatment. Records and IT track patients. Maintenance and engineering keep the building working. Quality improvement, occupational therapy, physical therapy and volunteer services are less likely to be doing their usual jobs right after a disaster.",
+ simple:"Pick the people who keep the doors guarded, patients cared for, tests running, names tracked, and the lights on."},
+
+{sec:"er",src:"Ch 21 · #39",bloom:"Evaluate",type:"mc",
+ stem:"A newly hired emergency department (ED) clinical nurse specialist (CNS) finds that the hospital's disaster plan hasn't been reviewed or revised in 3 years. Which issue matters most for the CNS to address?",
+ opts:["Stockpiles of antibiotics and resuscitation equipment may be depleted.","Current staff probably haven't been trained on the plan or practiced it.","Resources inside and outside the hospital have probably changed.","Nearby communities are at higher risk for technologic disasters."],
+ ans:[1],
+ hints:{0:"A real concern, but inventory belongs to administration. Which problem falls directly within a CNS's role?",2:"Probably true, and a resource analysis is needed, but that is administration's job. What does a CNS do every day?",3:"Nothing in the question points to higher risk, and community risk belongs to public health officials."},
+ why:"Staff education is the CNS's direct responsibility. The Joint Commission expects drills to be practiced regularly, and drills also produce the data used to update the plan. The CNS also tells administration about the inventory, the resource analysis and community risk.",
+ simple:"A playbook nobody has practiced is just paper. The coach's job is to run practice."},
+
+{sec:"er",src:"Ch 21 · #40",bloom:"Analyze",type:"mc",
+ stem:"After an industrial explosion that killed and injured many people, the nurse speaks with a group. Who is at greatest risk for psychiatric problems such as post-traumatic stress disorder (PTSD)?",
+ opts:["A person who watched the TV coverage over and over","A woman who just learned her son died in the explosion","A person who saw a co-worker die in the explosion","A person who was injured and trapped for several hours before rescue"],
+ ans:[3],
+ hints:{0:"Watching it repeatedly can be upsetting, but this person was never in danger.",1:"Her grief will be intense and she may need support. But grief and trauma are not the same thing. Whose own life was threatened?",2:"Close. Seeing someone die is traumatic. But was this person's own life in danger for hours?"},
+ why:"Anyone on this list could benefit from counseling. The highest risk belongs to the person who faced a direct threat to their own life.",
+ simple:"The person who was stuck, hurt and scared for their own life for hours is left with the loudest alarm in their brain."},
+
+{sec:"er",src:"Ch 21 · #41",bloom:"Apply",type:"sata",
+ stem:"Which five elements are most critical when performing disaster triage on multiple victims?",
+ inst:"Select five.",
+ opts:["Get past medical and surgical history","Check airway, breathing and circulation (ABC)","Assess level of consciousness (LOC)","Look for gross deformities, bleeding and obvious injuries","Note skin color, moisture and temperature","Check vital signs, including pulse and respirations"],
+ ans:[1,2,3,4,5],
+ sataExtra:"In disaster triage you have seconds per victim. Which item could wait until there is more time and staff?",
+ sataMissing:"You left out a fast, hands-on check. Every one you need can be done by looking and touching, without asking a single question.",
+ why:"Respiratory effort, level of consciousness, obvious injuries, skin (a sign of peripheral perfusion) and vital signs can all be checked quickly. History, medications, support systems and tetanus status are collected later, when time and resources allow.",
+ simple:"Quick look: breathing? awake? bleeding or broken? skin color? pulse? The stories can wait."},
+
+{sec:"er",src:"Ch 21 · #42",bloom:"Evaluate",type:"order",
+ stem:"A small rural hospital receives the first 6 victims of a church fire. About 250 people were inside, more victims are on the way, and the next hospital is 5 hours away. Using disaster triage principles, put the patients in the order they will receive care, first at the top.",
+ items:["12-year-old with wheezing and very labored breathing, not relieved by an asthma inhaler","35-year-old firefighter who is confused and combative, with respiratory stridor","16-year-old with a crushed, very swollen leg; anxious; pulse 130 beats/min","60-year-old woman with full-thickness burns to the hands and forearms","3-year-old who is lethargic with slow, shallow breathing and burns over more than 70% of the front of the body","52-year-old in cardiac arrest, receiving continuous cardiopulmonary resuscitation (CPR) for 90 minutes"],
+ orderHints:["Who can you help with a quick action that takes almost no time? Once it is started, the patient or a parent can hold it while you move on.","His airway is in serious trouble (stridor), but a combative patient takes a lot of time. Who could you help in seconds before him?","Swelling plus a pulse of 130 means bleeding, not just pain. Where does circulation fall after the airway problems?","These burns hurt and need dressings, but is this patient's life in immediate danger?","Greatest good for the greatest number. With burns over 70% of the body, what is this child's chance of survival? Comfort care still matters.","Ninety minutes of CPR. What is the realistic outcome here when resources are limited?"],
+ why:"The goal is the greatest good for the greatest number. The 12-year-old goes first because an albuterol treatment is quick to start and someone else can hold it. The firefighter is in worse distress but takes time to manage, so he comes second. The adolescent's swelling and tachycardia suggest bleeding. The forearm burns need cleaning, dressings and pain relief. The child with burns over more than 70% gets comfort measures because the prognosis is very poor. The patient after 90 minutes of CPR has the poorest prognosis.",
+ simple:"In a disaster you don't help the sickest person first. You help in the order that saves the most people, starting with quick fixes."},
+
+/* ---------- PALLIATIVE / END-OF-LIFE ---------- */
+{sec:"pal",src:"Ch 2 · #32",bloom:"Analyze",type:"mc",
+ stem:"A patient with terminal liver cancer is receiving end-of-life care. She is weak and restless, and her skin is mottled and cool. She becomes short of breath (dyspnea) and looks anxious and frightened. What does the nurse do first?",
+ opts:["Give an as-needed (PRN) dose of morphine elixir.","Call the rapid response team (RRT) and the health care provider (HCP).","Give breaths at 20/min with a bag-valve mask and prepare for intubation.","Sit quietly with her and offer emotional support and comfort."],
+ ans:[0],
+ hints:{1:"What are this patient's goals of care? A rapid response team is a rescue team.",2:"That is an aggressive, life-prolonging intervention. Does it fit end-of-life care?",3:"Support is always welcome. Is there an option that actually relieves the air hunger she is feeling?"},
+ why:"Morphine relieves both the anxiety and the feeling of air hunger. Mottled, cool skin is part of the dying process, so the goal is comfort. Aggressive measures like intubation or resuscitation are not part of end-of-life care. Presence and support help, but they don't give physical relief.",
+ simple:"When the goal is comfort, you choose the thing that makes the scary can't-breathe feeling go away."},
+
+{sec:"pal",src:"Ch 2 · #25",bloom:"Analyze",type:"sata",
+ stem:"The nursing supervisor needs a private room for a new admission. The charge nurse must move two current cancer patients into one room. Which two patients can share a room?",
+ inst:"Select two. Normal neutrophil count: 2500–8000/mm³ (2.5–8 × 10⁹/L).",
+ opts:["Patient A: neutrophil count 1000/mm³ (1 × 10⁹/L)","Patient B: had a tumor debulked to relieve pressure","Patient C: just had a bone marrow transplant (BMT)","Patient D: had a laminectomy for spinal cord compression","Patient E: receiving brachytherapy for prostate cancer","Patient F: terminal cancer, receiving end-of-life care","Patient G: approaching the nadir after chemotherapy"],
+ ans:[1,3],
+ optHints:{0:"Compare that count to the normal range. What kind of protection does a patient with such low neutrophils need?",2:"A new transplant means almost no immune defense. Can that patient have a roommate?",4:"A brachytherapy implant gives off radiation while it is in place. Is that safe for a roommate?",5:"Think about what this patient and family need right now: privacy, family at the bedside. Also, how would watching someone die affect another patient with cancer?",6:"The nadir is when the white blood cell count is at its lowest. What does that mean for infection risk?"},
+ sataMissing:"You need exactly two. Look for the patients whose needs are the same kind: post-op pain management and recovery from a palliative procedure.",
+ why:"Patients B and D both had palliative surgery and need routine post-op care and pain management, so they can share a room. Patients A and C (and G as the nadir approaches) need protective isolation. Patient E emits radiation. Patient F needs privacy and family at the bedside, and watching end-of-life symptoms would be very stressful for another patient with cancer.",
+ simple:"Pair the two people who need the same thing: rest and pain medicine after surgery. Everyone else needs their own room to stay safe or to have privacy."},
+
+{sec:"pal",src:"CS 10 · #27",bloom:"Apply",type:"mc",
+ stem:"Ms. J has end-stage multiple myeloma and has been taking opioids for a long time to control her pain. Which side effect is the major concern?",
+ opts:["Constipation","Respiratory depression","Nausea and vomiting","Sedation"],
+ ans:[0],
+ hints:{1:"That is the classic danger when opioids are first started. What happens to that risk after months of use?",2:"The body gets used to this side effect over time. Which one never goes away?",3:"The body builds tolerance to this one too. Which side effect never fades?"},
+ why:"Constipation is the only opioid side effect the body never develops tolerance to. Respiratory depression, nausea, vomiting and sedation are concerns early on and fade with long-term use.",
+ simple:"Your body gets used to most opioid side effects. It never gets used to the slowed-down gut."},
+
+{sec:"pal",src:"CS 10 · #28",bloom:"Apply",type:"mc",
+ stem:"While reviewing Ms. J's medication list (end-stage multiple myeloma), which scheduled medication would the nurse most likely question?",
+ opts:["Naltrexone","Fentanyl","Morphine","Acetaminophen"],
+ ans:[0],
+ hints:{1:"Scheduled opioids are standard for chronic cancer pain. Look for a drug that works against her pain plan.",2:"Scheduled opioids are standard for chronic cancer pain. Look for a drug that works against her pain plan.",3:"Acetaminophen is a common non-opioid partner to opioids. Which drug on this list blocks opioids?"},
+ why:"Naltrexone is an opioid antagonist. Giving it on a schedule would block her opioids, cause withdrawal, and leave her in significant pain. One correction to the book: its rationale says naltrexone is given for opioid-induced respiratory depression. In practice, naloxone is the reversal drug. Naltrexone is used for maintenance in opioid and alcohol use disorder. Either way, a scheduled antagonist is the one to question.",
+ simple:"Naltrexone is like a key broken off in the lock. The pain medicine can't get in to do its job."},
+
+{sec:"pal",src:"CS 10 · #29",bloom:"Analyze",type:"mc",
+ stem:"Ms. J (end-stage multiple myeloma) admits she is in severe pain, but she becomes very anxious when certain family members come and go, and then refuses her pain medication. Which adjunct medication would help her most during these episodes?",
+ opts:["Naproxen","Doxepin","Lorazepam","Dicyclomine"],
+ ans:[2],
+ hints:{0:"Naproxen is a nonsteroidal anti-inflammatory drug (NSAID). It treats pain, but what is actually making her refuse?",1:"Doxepin treats depression and neuropathic pain, and it works slowly. Is that what drives these sudden episodes?",3:"Dicyclomine relaxes smooth muscle spasms in the gut. Does anything in the question point to spasms?"},
+ why:"Lorazepam is an anti-anxiety drug (anxiolytic). The anxiety is what drives her to refuse pain medication, so treating it helps her accept pain control.",
+ simple:"She isn't just hurting, she's scared. Calm the worry first and she'll take the pain medicine."},
+
+{sec:"pal",src:"CS 10 · #30",bloom:"Evaluate",type:"mc",
+ stem:"Ms. J's son tells the nurse, \"My mom is having trouble breathing, and she's in a lot of pain!\" Ms. J has rapid, shallow breathing and pain over her right lateral ribs that gets worse with movement and breathing. What is the priority action?",
+ opts:["Take vital signs with a pulse oximeter reading and inform the health care provider (HCP).","Apply oxygen and raise the head of the bed if she is not hypotensive.","Get an order to start an IV and give a bolus of morphine.","Stay calm, stay with her, and encourage pursed-lip breathing."],
+ ans:[1],
+ hints:{0:"Gathering data and calling are reasonable, but she is struggling to breathe right now. Is there something you can do immediately on your own?",2:"Pain relief matters, but getting an order and starting an IV takes time. What can you do in seconds?",3:"Pursed-lip breathing is a technique for chronic obstructive pulmonary disease (COPD). Calm support alone won't relieve her dyspnea."},
+ why:"She needs immediate relief from dyspnea. Oxygen and raising the head of the bed are quick actions the nurse can take right away. Check blood pressure first, because a hypotensive patient could faint when sat upright, although dyspnea usually raises blood pressure. As-needed (PRN) oral morphine is typically prescribed for hospice and end-of-life patients and helps with the feeling of air hunger.",
+ simple:"Give her air and sit her up first. Those take seconds. Calls and orders come after."},
+
+{sec:"pal",src:"CS 10 · #31",bloom:"Evaluate",type:"mc",
+ stem:"Ms. J's son keeps insisting she isn't getting enough pain medication and threatens to sue. The team leader has used therapeutic communication with the son and advocated for Ms. J with the health care provider (HCP). The HCP says, \"I'll be in tomorrow. Just tell the son not to worry.\" What is the best action?",
+ opts:["Call another health care provider (HCP).","Continue using the current orders.","Tell the son to call the health care provider (HCP) himself.","Notify the unit manager."],
+ ans:[3],
+ hints:{0:"Another provider is unlikely to step in on someone else's patient unless they supervise that provider. What is the formal next step?",1:"You do have to follow the current orders, and add non-drug comfort measures, until this is resolved. But is that enough when advocacy with the provider has failed?",2:"That puts the nurse's advocacy job onto the family. Whose job is it to resolve this?"},
+ why:"The team leader has already used communication and advocacy. When that fails, the next step is to move up the chain of command. Meanwhile the nurse follows current orders, adds non-drug comfort measures, and keeps working with the team rather than shifting responsibility to the son.",
+ simple:"If you asked the teacher and nothing happened, you go to the principal. You don't make the other kid go."}
+];
+
+const LET="ABCDEFG";
+const state=Q.map(q=>({sel:new Set(),order:q.type==="order"?shuffle(q.items.map((_,i)=>i)):null,tries:0,done:false,fb:null}));
+let filter="all";
+
+function shuffle(a){a=a.slice();do{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}}while(a.every((v,i)=>v===i));return a}
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+
+function render(){
+  const root=document.getElementById("quiz");root.innerHTML="";
+  let lastSec=null;
+  Q.forEach((q,qi)=>{
+    if(filter!=="all"&&q.sec!==filter)return;
+    if(q.sec!==lastSec){lastSec=q.sec;const h=document.createElement("h2");h.className="sec-h"+(q.sec==="pal"?" pal":"");h.innerHTML='<span class="dot"></span>'+(q.sec==="er"?"Emergency preparedness":"Palliative and end-of-life care");root.appendChild(h)}
+    const s=state[qi];
+    const c=document.createElement("section");c.className="card"+(q.sec==="pal"?" pal":"");
+    let h=`<div class="meta"><span class="num">Q${qi+1}</span><span class="chip">${q.sec==="er"?"Emergency":"Palliative"}</span><span class="bloom">Bloom's: ${q.bloom}</span><span class="src">${q.src}</span></div>
+      <p class="stem">${esc(q.stem)}</p>`;
+    if(q.inst)h+=`<p class="inst">${esc(q.inst)}</p>`;
+    if(q.type==="order"){
+      h+='<ol class="opts">';
+      s.order.forEach((it,pos)=>{h+=`<li class="ord${s.done?" right":""}"><span class="p">${pos+1}</span><span class="t">${esc(q.items[it])}</span>${s.done?"":`<span class="mv"><button data-q="${qi}" data-up="${pos}" ${pos===0?"disabled":""} aria-label="Move up">▲</button><button data-q="${qi}" data-dn="${pos}" ${pos===s.order.length-1?"disabled":""} aria-label="Move down">▼</button></span>`}</li>`});
+      h+="</ol>";
+    }else{
+      h+='<ul class="opts">';
+      q.opts.forEach((o,i)=>{
+        let cls="opt";
+        if(s.done){if(q.ans.includes(i))cls+=" right"}
+        else if(s.sel.has(i))cls+=" sel";
+        h+=`<li><button class="${cls}" data-q="${qi}" data-o="${i}" ${s.done?"disabled":""} aria-pressed="${s.sel.has(i)}"><span class="k">${LET[i]}</span><span>${esc(o)}</span></button></li>`});
+      h+="</ul>";
+    }
+    if(!s.done){
+      const need=q.type!=="order"&&s.sel.size===0;
+      h+=`<div class="actions"><button class="check" data-check="${qi}" ${need?"disabled":""}>Check</button>${s.tries?`<span class="tries">Attempt ${s.tries+1}</span>`:""}</div>`;
+    }
+    if(s.fb&&!s.done)h+=`<div class="fb bad" role="status"><strong>Not quite.</strong><p>${esc(s.fb)}</p></div>`;
+    if(s.done){
+      h+=`<div class="fb ok" role="status"><strong>${s.tries===1?"Correct on the first try.":"Correct after "+s.tries+" tries."}</strong><p>${esc(q.why)}</p></div>
+          <div class="simple"><strong>Simple version</strong><p>${esc(q.simple)}</p></div>`;
+    }
+    c.innerHTML=h;root.appendChild(c);
+  });
+  document.getElementById("first").textContent=state.filter(s=>s.done&&s.tries===1).length;
+  document.getElementById("solved").textContent=state.filter(s=>s.done).length;
+}
+
+function check(qi){
+  const q=Q[qi],s=state[qi];s.tries++;
+  if(q.type==="order"){
+    const wrong=s.order.findIndex((v,i)=>v!==i);
+    if(wrong<0){s.done=true;s.fb=null}else s.fb=`Position ${wrong+1} isn't right yet. `+q.orderHints[wrong];
+  }else if(q.type==="mc"){
+    const pick=[...s.sel][0];
+    if(pick===q.ans[0]){s.done=true;s.fb=null}else s.fb=q.hints[pick];
+  }else{
+    const extra=[...s.sel].find(i=>!q.ans.includes(i));
+    const missing=q.ans.some(i=>!s.sel.has(i));
+    if(extra===undefined&&!missing){s.done=true;s.fb=null}
+    else if(extra!==undefined)s.fb=(q.optHints&&q.optHints[extra])?`About choice ${LET[extra]}: `+q.optHints[extra]:q.sataExtra;
+    else s.fb=q.sataMissing;
+  }
+  render();
+}
+
+document.addEventListener("click",e=>{
+  const b=e.target.closest("button");if(!b)return;
+  if(b.dataset.f){filter=b.dataset.f;document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-pressed",t===b));render();return}
+  if(b.id==="reset"){state.forEach((s,i)=>{s.sel.clear();s.tries=0;s.done=false;s.fb=null;if(Q[i].type==="order")s.order=shuffle(Q[i].items.map((_,k)=>k))});render();return}
+  const qi=+b.dataset.q;
+  if(b.dataset.check!==undefined){check(+b.dataset.check);return}
+  if(b.dataset.o!==undefined){const q=Q[qi],s=state[qi],o=+b.dataset.o;
+    if(q.type==="mc"){s.sel.clear();s.sel.add(o)}else{s.sel.has(o)?s.sel.delete(o):s.sel.add(o)}
+    render();return}
+  if(b.dataset.up!==undefined){const a=state[qi].order,p=+b.dataset.up;[a[p-1],a[p]]=[a[p],a[p-1]];render();return}
+  if(b.dataset.dn!==undefined){const a=state[qi].order,p=+b.dataset.dn;[a[p+1],a[p]]=[a[p],a[p+1]];render();return}
+});
+render();
+</script>
+
+</body></html>

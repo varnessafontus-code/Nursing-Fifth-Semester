@@ -1,0 +1,2317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NUR202 Exam 2 Chapter Review Questions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F6F4EF; --card:#FFFFFF; --ink:#1E2430; --muted:#6B7280; --line:#E5E1D8;
+    --navy:#1F3A5F; --green:#2E7D32; --greenbg:#E8F5E9; --red:#C62828; --redbg:#FFEBEE;
+    --c12:#6A1B9A; --c13:#E65100; --c14:#1565C0; --c15:#00796B; --c17:#AD1457; --med:#8E24AA;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:760px;margin:0 auto;padding:20px 16px 80px}
+  header.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+  .brand{font-weight:800;font-size:15px;letter-spacing:.02em;color:var(--navy)}
+  .brand small{display:block;font-weight:500;color:var(--muted);font-size:12px;letter-spacing:0}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+  h1{font-size:26px;line-height:1.2;margin:0 0 6px;color:var(--navy);font-weight:800}
+  .sub{color:var(--muted);margin:0 0 18px;font-size:14px}
+  .lbl{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:18px 0 8px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font:600 13px Inter,sans-serif;cursor:pointer;color:var(--ink);display:flex;align-items:center;gap:7px}
+  .chip .dot{width:9px;height:9px;border-radius:50%}
+  .chip.on{border-color:var(--navy);background:#EEF2F8}
+  .seg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .opt-mode{border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer;background:#fff;text-align:left;font:inherit;color:inherit}
+  .opt-mode b{display:block;font-size:14px}
+  .opt-mode span{font-size:12.5px;color:var(--muted)}
+  .opt-mode.on{border-color:var(--navy);background:#EEF2F8}
+  .toggle{display:flex;align-items:center;gap:10px;font-size:14px;margin-top:10px;cursor:pointer}
+  .toggle input{width:18px;height:18px;accent-color:var(--navy)}
+  .btn{appearance:none;border:none;border-radius:12px;padding:13px 18px;font:700 15px Inter,sans-serif;cursor:pointer;background:var(--navy);color:#fff}
+  .btn:disabled{opacity:.4;cursor:default}
+  .btn.ghost{background:#fff;color:var(--navy);border:1.5px solid var(--line)}
+  .btn.block{width:100%}
+  .count{font-size:13px;color:var(--muted);margin-top:10px;text-align:center}
+  .progress{height:6px;background:var(--line);border-radius:99px;overflow:hidden;margin:4px 0 14px}
+  .progress i{display:block;height:100%;background:var(--navy);width:0;transition:width .25s}
+  .qmeta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px;font-size:12.5px;color:var(--muted)}
+  .tag{color:#fff;font-weight:700;font-size:11px;letter-spacing:.04em;padding:3px 9px;border-radius:999px}
+  .tag.med{background:var(--med)}
+  .flag{margin-left:auto;background:none;border:1.5px solid var(--line);border-radius:999px;padding:4px 10px;font:600 12px Inter,sans-serif;cursor:pointer;color:var(--muted)}
+  .flag.on{border-color:#F9A825;color:#8a5a00;background:#FFF8E1}
+  .qtext{font-size:17px;font-weight:600;margin:0 0 16px;line-height:1.45}
+  .answers{display:flex;flex-direction:column;gap:10px}
+  .ans{display:flex;gap:12px;align-items:flex-start;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:13px 14px;font:inherit;font-size:15px;color:inherit;cursor:pointer;transition:border-color .12s,background .12s}
+  .ans:hover:not(:disabled){border-color:#9AA6B8}
+  .ans .L{flex:0 0 26px;height:26px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font-weight:700;font-size:13px;color:var(--muted)}
+  .ans.sel{border-color:var(--navy);background:#EEF2F8}
+  .ans.sel .L{background:var(--navy);border-color:var(--navy);color:#fff}
+  .ans.right{border-color:var(--green);background:var(--greenbg)}
+  .ans.right .L{background:var(--green);border-color:var(--green);color:#fff}
+  .ans.wrong{border-color:var(--red);background:var(--redbg)}
+  .ans.wrong .L{background:var(--red);border-color:var(--red);color:#fff}
+  .ans:disabled{cursor:default}
+  .rat{margin-top:14px;border-radius:12px;padding:13px 15px;font-size:14px;border-left:5px solid}
+  .rat.ok{background:var(--greenbg);border-color:var(--green)}
+  .rat.no{background:var(--redbg);border-color:var(--red)}
+  .rat b{display:block;margin-bottom:4px}
+  .nav{display:flex;gap:10px;margin-top:16px}
+  .nav .btn{flex:1}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(38px,1fr));gap:6px;margin-top:16px}
+  .gq{height:36px;border-radius:9px;border:1.5px solid var(--line);background:#fff;font:600 12.5px Inter,sans-serif;cursor:pointer;color:var(--muted);position:relative}
+  .gq.ans-d{background:#EEF2F8;border-color:#B9C4D6;color:var(--navy)}
+  .gq.ok{background:var(--greenbg);border-color:var(--green);color:var(--green)}
+  .gq.no{background:var(--redbg);border-color:var(--red);color:var(--red)}
+  .gq.cur{outline:2.5px solid var(--navy);outline-offset:1px}
+  .gq.fl::after{content:"";position:absolute;top:3px;right:3px;width:7px;height:7px;border-radius:50%;background:#F9A825}
+  .score-big{font-size:54px;font-weight:800;color:var(--navy);line-height:1;margin:6px 0}
+  .bar-row{display:grid;grid-template-columns:150px 1fr 64px;align-items:center;gap:10px;font-size:13.5px;margin:9px 0}
+  .bar{height:12px;background:var(--line);border-radius:99px;overflow:hidden}
+  .bar i{display:block;height:100%}
+  .review-item{border-top:1px solid var(--line);padding:16px 0}
+  .review-item:first-child{border-top:none}
+  .ra{font-size:14px;margin:4px 0}
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 4px}
+  .modal-bg{position:fixed;inset:0;background:rgba(20,25,35,.45);display:none;align-items:center;justify-content:center;padding:20px;z-index:10}
+  .modal-bg.show{display:flex}
+  .modal{background:#fff;border-radius:16px;padding:22px;max-width:380px;width:100%}
+  .modal h3{margin:0 0 8px}
+  .modal p{margin:0 0 16px;color:var(--muted);font-size:14px}
+  .hidden{display:none!important}
+  @media (max-width:520px){ .bar-row{grid-template-columns:105px 1fr 54px;font-size:12.5px} .qtext{font-size:16px} h1{font-size:22px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">NUR202 · Chapter Review Questions<small>Varcarolis Ch 12 · 13 · 14 · 15 · 17 — multiple choice only</small></div>
+    <button class="btn ghost hidden" id="homeBtn" style="padding:8px 12px;font-size:13px">Exit</button>
+  </header>
+
+  <!-- START -->
+  <section id="start" class="card">
+    <h1>Chapter Review Questions</h1>
+    <p class="sub">Every single-answer question for Varcarolis Ch 12, 13, 14, 15 and 17 from your course question PDF (<span id="totalN"></span> total), with the original answer keys and rationales. Select-all-that-apply questions are left out. Where a rationale conflicts with your course slides, a course note explains.</p>
+
+    <div class="lbl">Chapters</div>
+    <div class="chips" id="chapterChips"></div>
+
+    <div class="lbl">Mode</div>
+    <div class="seg">
+      <button class="opt-mode on" data-mode="practice"><b>Practice</b><span>See the answer and rationale after each question</span></button>
+      <button class="opt-mode" data-mode="exam"><b>Exam</b><span>No feedback until you submit</span></button>
+    </div>
+
+    <div class="lbl">Options</div>
+    <label class="toggle"><input type="checkbox" id="optShuffle" checked> Shuffle question order</label>
+    <label class="toggle"><input type="checkbox" id="optMed"> Medication questions only</label>
+
+    <div style="margin-top:20px"><button class="btn block" id="startBtn">Start</button></div>
+    <div class="count" id="countNote"></div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz" class="hidden">
+    <div class="qmeta" style="margin-bottom:4px"><span id="qCounter"></span><span style="margin-left:auto" id="answeredNote"></span></div>
+    <div class="progress"><i id="prog"></i></div>
+    <div class="card">
+      <div class="qmeta">
+        <span class="tag" id="qTag"></span>
+        <span class="tag med hidden" id="qMed">MED</span>
+        <span id="qSrc" style="font-size:12px"></span>
+        <button class="flag" id="flagBtn">⚑ Flag</button>
+      </div>
+      <p class="qtext" id="qText"></p>
+      <div class="answers" id="answers"></div>
+      <div id="rationale"></div>
+      <div class="nav">
+        <button class="btn ghost" id="prevBtn">← Back</button>
+        <button class="btn" id="nextBtn">Next →</button>
+      </div>
+    </div>
+    <div class="grid" id="grid"></div>
+    <div style="margin-top:16px"><button class="btn ghost block" id="submitBtn">Submit exam</button></div>
+  </section>
+
+  <!-- RESULTS -->
+  <section id="results" class="hidden">
+    <div class="card">
+      <div class="lbl" style="margin-top:0">Your score</div>
+      <div class="score-big" id="scorePct"></div>
+      <div class="sub" id="scoreLine" style="margin-bottom:6px"></div>
+      <div id="passNote" style="font-size:14px;font-weight:600"></div>
+      <div class="lbl">By chapter</div>
+      <div id="byChapter"></div>
+      <div class="lbl">Medication questions</div>
+      <div id="byMed"></div>
+      <div class="nav" style="flex-wrap:wrap">
+        <button class="btn" id="retryMissed">Retake missed</button>
+        <button class="btn ghost" id="newExam">New exam</button>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <div class="lbl" style="margin-top:0">Review</div>
+      <div class="filters" id="reviewFilters">
+        <button class="chip on" data-f="missed">Missed</button>
+        <button class="chip" data-f="flagged">Flagged</button>
+        <button class="chip" data-f="all">All</button>
+      </div>
+      <div id="reviewList"></div>
+    </div>
+  </section>
+</div>
+
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <h3 id="mTitle">Submit exam?</h3>
+    <p id="mText"></p>
+    <div class="nav" style="margin-top:0">
+      <button class="btn ghost" id="mCancel">Keep going</button>
+      <button class="btn" id="mOk">Submit</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const QUESTIONS = [
+{
+"ch": 12,
+"n": 1,
+"med": false,
+"q": "A person has had difficulty keeping a job because of arguing with co-workers and accusing them of conspiracy. Today the person shouts, They're all plotting to destroy me. Isn't that true? Select the nurses most therapeutic response.",
+"o": [
+"Feeling that people want to destroy you must be very frightening.",
+"Everyone here is trying to help you. No one wants to harm you.",
+"That is not true. People here are trying to help you if you will let them.",
+"Staff members are health care professionals who are qualified to help you."
+],
+"r": "Resist focusing on content; instead, focus on the feelings the patient is expressing. This strategy prevents arguing about the reality of delusional beliefs. Such arguments increase patient anxiety and the tenacity with which the patient holds to the delusion. The other options focus on content and provide opportunity for argument."
+},
+{
+"ch": 12,
+"n": 2,
+"med": false,
+"q": "A newly admitted patient diagnosed with schizophrenia is hypervigilant and constantly scans the environment. The patient states, I saw two doctors talking in the hall. They were plotting to kill me. The nurse may correctly assess this behavior as:",
+"o": [
+"an idea of reference.",
+"echolalia.",
+"a delusion of infidelity.",
+"an auditory hallucination."
+],
+"r": "Ideas of reference are misinterpretations of the verbalizations or actions of others that give special personal meanings to these behaviors; for example, when seeing two people talking, the individual assumes they are talking about him or her. The other terms do not correspond with the scenario."
+},
+{
+"ch": 12,
+"n": 3,
+"med": false,
+"q": "A patient diagnosed with schizophrenia says, My co-workers are out to get me. I also saw two doctors plotting to kill me. How does this patient perceive the environment?",
+"o": [
+"Dangerous",
+"Disorganized",
+"Supportive",
+"Bizarre"
+],
+"r": "The patient sees the world as hostile and dangerous. This assessment is important because the nurse can be more effective by using empathy to respond to the patient. Data are not present to support any of the other options."
+},
+{
+"ch": 12,
+"n": 4,
+"med": true,
+"q": "When a patient diagnosed with schizophrenia was discharged 6 months ago, haloperidol (Haldol) was prescribed. The patient now says, I stopped taking those pills. They made me feel like a robot. What are common side effects the nurse should validate with the patient?",
+"o": [
+"Sedation and muscle stiffness",
+"Sweating, nausea, and diarrhea",
+"Mild fever, sore throat, and skin rash",
+"Headache, watery eyes, and runny nose"
+],
+"r": "Typical antipsychotic drugs often produce sedation and extrapyramidal side effects such as stiffness and gait disturbance, effects the patient might describe as making him or her feel like a robot. The side effects mentioned in the other options are usually not associated with typical antipsychotic therapy or would not have the effect described by the patient."
+},
+{
+"ch": 12,
+"n": 5,
+"med": false,
+"q": "Which hallucination necessitates the nurse to implement safety measures? The patient says,",
+"o": [
+"The voices say everyone is trying to kill me.",
+"I hear angels playing harps.",
+"My dead father tells me I am a good person.",
+"The voices talk only at night when I'm trying to sleep."
+],
+"r": "The correct response indicates the patient is experiencing paranoia. Paranoia often leads to fearfulness, and the patient may attempt to strike out at others to protect self. The distracters are comforting hallucinations or do not indicate paranoia."
+},
+{
+"ch": 12,
+"n": 6,
+"med": false,
+"q": "A patients care plan includes monitoring for auditory hallucinations. Which assessment findings suggest the patient may be hallucinating?",
+"o": [
+"Darting eyes, tilted head, mumbling to self",
+"Detachment and overconfidence",
+"Euphoric mood, hyperactivity, distractibility",
+"Foot tapping and repeatedly writing the same phrase"
+],
+"r": "Clues to hallucinations include eyes looking around the room as though to find the speaker, tilting the head to one side as though listening intently, and grimacing, mumbling, or talking aloud as though responding conversationally to someone."
+},
+{
+"ch": 12,
+"n": 7,
+"med": true,
+"q": "A health care provider considers which antipsychotic medication to prescribe for a patient diagnosed with schizophrenia who has auditory hallucinations and poor social function. The patient is also overweight and hypertensive. Which drug should the nurse advocate?",
+"o": [
+"Aripiprazole (Abilify)",
+"Clozapine (Clozaril)",
+"Ziprasidone (Geodon)",
+"Olanzapine (Zyprexa)"
+],
+"r": "Aripiprazole is a third-generation atypical antipsychotic effective against both positive and negative symptoms of schizophrenia. It causes little or no weight gain and no increase in glucose, high- or low-density lipoprotein cholesterol, or triglycerides, making it a reasonable choice for a patient with obesity or heart disease. Clozapine may produce agranulocytosis, making it a poor choice as a first-line agent. Ziprasidone may prolong the QT interval, making it a poor choice for a patient with cardiac disease. Olanzapine fosters weight gain."
+},
+{
+"ch": 12,
+"n": 8,
+"med": false,
+"q": "A patient diagnosed with schizophrenia tells the nurse, I eat skiller. Tend to end. Easter. It blows away. Get it? Select the nurses best response.",
+"o": [
+"I am having difficulty understanding what you are saying.",
+"Nothing you are saying is clear.",
+"Your thoughts are very disconnected.",
+"Try to organize your thoughts and then tell me again."
+],
+"r": "When a patients speech is loosely associated, confused, and disorganized, pretending to understand is useless. The nurse should tell the patient that he or she is having difficulty understanding what the patient is saying. If a theme is discernible, ask the patient to talk about the theme. The incorrect options tend to place blame for the poor communication with the patient. The correct response places the difficulty with the nurse rather than being accusatory."
+},
+{
+"ch": 12,
+"n": 9,
+"med": false,
+"q": "A patient diagnosed with schizophrenia exhibits little spontaneous movement and demonstrates waxy flexibility. Which patient needs are of priority importance?",
+"o": [
+"Physiological",
+"Self-esteem",
+"Psychosocial",
+"Self-actualization"
+],
+"r": "Physiological needs must be met to preserve life. A patient with waxy flexibility must be fed by hand or tube, toileted, given range-of-motion exercises, and so forth to preserve physiological integrity. Higher level needs are of lesser concern."
+},
+{
+"ch": 12,
+"n": 10,
+"med": false,
+"q": "A patient diagnosed with schizophrenia demonstrates little spontaneous movement and has waxy flexibility. The patients activities of daily living are severely compromised. An appropriate outcome would be that the patient will:",
+"o": [
+"perform self-care activities with coaching by the end of day 3.",
+"demonstrate increased interest in the environment by the end of week 1.",
+"gradually take the initiative for self-care by the end of week 2.",
+"accept tube feeding without objection by day 2."
+],
+"r": "Outcomes related to self-care deficit nursing diagnoses should deal with increasing ability to perform self-care tasks independently, such as feeding, bathing, dressing, and toileting. Performing the tasks with coaching by nursing staff denotes improvement over the complete inability to perform the tasks. The incorrect options are not directly related to self-care activities, difficult to measure, and unrelated to maintenance of nutrition."
+},
+{
+"ch": 12,
+"n": 11,
+"med": false,
+"q": "A nurse observes a catatonic patient standing immobile, facing the wall with one arm extended in a salute. The patient remains immobile in this position for 15 minutes, moving only when the nurse gently lowers the arm. What is the name of this phenomenon?",
+"o": [
+"Waxy flexibility",
+"Echolalia",
+"Depersonalization",
+"Thought withdrawal"
+],
+"r": "Waxy flexibility is the ability to hold distorted postures for extended periods of time, as though the patient were molded in wax. Echolalia is a speech pattern. Depersonalization refers to a feeling state. Thought withdrawal refers to an alteration in thinking."
+},
+{
+"ch": 12,
+"n": 12,
+"med": false,
+"q": "A patient is experiencing delusions of persecution about being poisoned. The patient has refused all hospital meals for 3 days. Which intervention is most likely to be acceptable to the patient?",
+"o": [
+"Allowing the patient supervised access to food vending machines",
+"Allowing the patient to phone a local restaurant to deliver meals",
+"Offering to taste each portion on the tray for the patient",
+"Providing tube feedings or total parenteral nutrition"
+],
+"r": "The patient who is delusional about food being poisoned is likely to believe restaurant food might still be poisoned and to say that the staff member tasting the food has taken an antidote to the poison before tasting. Attempts to tube feed or give nutrition intravenously are seen as aggressive and usually promote violence. Patients perceive foods in sealed containers, packages, or natural shells as being safer."
+},
+{
+"ch": 12,
+"n": 13,
+"med": false,
+"q": "A community mental health nurse wants to establish a relationship with a very withdrawn patient diagnosed with schizophrenia. The patient lives at home with a supportive family. Select the nurses best plan.",
+"o": [
+"Visit daily for 4 days, then every other day for 1 week; stay with patient for 20 minutes, accept silence; state when the nurse will return.",
+"Arrange to spend 1 hour each day with the patient; focus on asking questions about what the patient is thinking or experiencing; avoid silences.",
+"Visit twice daily; sit beside the patient with a hand on the patients arm; leave if the patient does not respond within 10 minutes.",
+"Visit every other day; remind the patient of the nurses identity; encourage the patient to talk while the nurse works on reports."
+],
+"r": "Severe constraints on the community mental health nurses time will probably not allow more time than what is mentioned in the correct option; yet, important principles can be used. A severely withdrawn patient should be met at the patients own level, with silence accepted. Short periods of contact are helpful to minimize both the patients and the nurses anxiety. Predictability in returning as stated will help build trust. An hour may be too long to sustain a home visit with a withdrawn patient, especially if the nurse persists in leveling a barrage of questions at the patient. Twice-daily visits are probably not possible, and leaving after 10 minutes would be premature. Touch may be threatening. Working on reports suggests the nurse is not interested in the patient."
+},
+{
+"ch": 12,
+"n": 14,
+"med": false,
+"q": "Withdrawn patients diagnosed with schizophrenia:",
+"o": [
+"avoid relationships because they become anxious with emotional closeness.",
+"are usually violent toward caregivers.",
+"universally fear sexual involvement with therapists.",
+"exhibit a high degree of hostility as evidenced by rejecting behavior."
+],
+"r": "When an individual is suspicious and distrustful and perceives the world and the people in it as potentially dangerous, withdrawal into an inner world can be a defense against uncomfortable levels of anxiety. When someone attempts to establish a relationship with such a patient, the patients anxiety rises until trust is established. There is no evidence that withdrawn patients with schizophrenia universally fear sexual involvement with therapists. In most cases, it is untrue that withdrawn patients with schizophrenia are commonly violent or exhibit a high degree of hostility by demonstrating rejecting behavior."
+},
+{
+"ch": 12,
+"n": 15,
+"med": false,
+"q": "A newly admitted patient diagnosed with schizophrenia says, The voices are bothering me. They yell and tell me I am bad. I have got to get away from them. Select the nurses most helpful reply.",
+"o": [
+"I'll stay with you. Focus on what we are talking about, not the voices.",
+"Do you hear the voices often?",
+"Do you have a plan for getting away from the voices?",
+"Forget the voices and ask some other patients to play cards with you."
+],
+"r": "Staying with a distraught patient who is hearing voices serves several purposes: ongoing observation, the opportunity to provide reality orientation, a means of helping dismiss the voices, the opportunity of forestalling an action that would result in self-injury, and general support to reduce anxiety. Asking if the patient hears voices is not particularly relevant at this point. Asking if the patient plans to get away from the voices is relevant for assessment purposes but is less helpful than offering to stay with the patient while encouraging a focus on their discussion. Suggesting playing cards with other patients shifts responsibility for intervention from the nurse to the patient and other patients."
+},
+{
+"ch": 12,
+"n": 16,
+"med": true,
+"q": "A patient diagnosed with schizophrenia has taken fluphenazine (Prolixin) 5 mg po bid for 3 weeks. The nurse now observes a shuffling propulsive gait, a mask-like face, and drooling. Which term applies to these symptoms?",
+"o": [
+"Pseudoparkinsonism",
+"Neuroleptic malignant syndrome",
+"Hepatocellular effects",
+"Akathisia"
+],
+"r": "Pseudoparkinsonism induced by antipsychotic medication mimics the symptoms of Parkinson's disease. It frequently appears within the first month of treatment and is more common with first-generation antipsychotic drugs. Hepatocellular effects would produce abnormal liver test results. Neuroleptic malignant syndrome is characterized by autonomic instability. Akathisia produces motor restlessness."
+},
+{
+"ch": 12,
+"n": 17,
+"med": true,
+"q": "A patient diagnosed with schizophrenia is very disturbed and violent. After several doses of haloperidol (Haldol), the patient is calm. Two hours later the nurse sees the patients head rotated to one side in a stiff position, the lower jaw thrust forward, and drooling. Which problem is most likely?",
+"o": [
+"An acute dystonic reaction",
+"Tardive dyskinesia",
+"Waxy flexibility",
+"Akathisia"
+],
+"r": "Acute dystonic reactions involve painful contractions of the tongue, face, neck, and back. Opisthotonos and oculogyric crisis may be observed. Dystonic reactions are considered emergencies requiring immediate intervention. Tardive dyskinesia involves involuntary spasmodic muscular contractions that involve the tongue, fingers, toes, neck, trunk, or pelvis. It appears after prolonged treatment. Waxy flexibility is a symptom seen in catatonic schizophrenia. Internal and external restlessness, pacing, and fidgeting are characteristics of akathisia."
+},
+{
+"ch": 12,
+"n": 18,
+"med": true,
+"q": "An acutely violent patient diagnosed with schizophrenia receives several doses of haloperidol (Haldol). Two hours later the nurse notices the patients head rotated to one side in a stiffly fixed position, the lower jaw thrust forward, and drooling. Which intervention by the nurse is indicated?",
+"o": [
+"Administer diphenhydramine (Benadryl) 50 mg IM from the PRN medication administration record.",
+"Reassure the patient that the symptoms will subside. Practice relaxation exercises with the patient.",
+"Give trihexyphenidyl (Artane) 5 mg orally at the next regularly scheduled medication administration time.",
+"Administer atropine sulfate 2 mg subcut from the PRN medication administration record."
+],
+"r": "Diphenhydramine, trihexyphenidyl, benztropine, and other anticholinergic medications may be used to treat dystonias. Swallowing will be difficult or impossible; therefore, oral medication is not an option. Medication should be administered immediately, so the intramuscular route is best. In this case, the best option given is diphenhydramine."
+},
+{
+"ch": 12,
+"n": 19,
+"med": true,
+"q": "A patient took trifluoperazine 30 mg po daily for 3 years. The clinic nurse notes that the patient grimaces and constantly smacks both lips. The patients neck and shoulders twist in a slow, snakelike motion. Which problem would the nurse suspect?",
+"o": [
+"Tardive dyskinesia",
+"Agranulocytosis",
+"Tourette's syndrome",
+"Anticholinergic effects"
+],
+"r": "Tardive dyskinesia is a neuroleptic-induced condition involving the face, trunk, and limbs. Involuntary movements, such as tongue thrusting; licking; blowing; irregular movements of the arms, neck, and shoulders; rocking; hip jerks; and pelvic thrusts, are seen. These symptoms are frequently not reversible even when the drug is discontinued. The scenario does not present evidence consistent with the other disorders mentioned. Agranulocytosis is a blood disorder. Tourette's syndrome is a condition in which tics are present. Anticholinergic effects include dry mouth, blurred vision, flushing, constipation, and dry eyes."
+},
+{
+"ch": 12,
+"n": 20,
+"med": false,
+"q": "A nurse sits with a patient diagnosed with schizophrenia. The patient starts to laugh uncontrollably, although the nurse has not said anything funny. Select the nurses best response.",
+"o": [
+"You're laughing. Tell me what's happening.",
+"Why are you laughing?",
+"Please share the joke with me.",
+"I don't think I said anything funny."
+],
+"r": "The patient is likely laughing in response to inner stimuli, such as hallucinations or fantasy. Focus on the hallucinatory clue (the patients laughter) and then elicit the patients observation. The incorrect options are less useful in eliciting a response: no joke may be involved, why questions are difficult to answer, and the patient is probably not focusing on what the nurse said in the first place."
+},
+{
+"ch": 12,
+"n": 21,
+"med": false,
+"q": "The nurse assesses a patient diagnosed with schizophrenia. Which assessment finding would the nurse regard as a negative symptom of schizophrenia?",
+"o": [
+"Poor personal hygiene",
+"Auditory hallucinations",
+"Delusions of grandeur",
+"Psychomotor agitation"
+],
+"r": "Negative symptoms include apathy, anhedonia, poor social functioning, and poverty of thought. Poor personal hygiene is an example of poor social functioning. The distracters are positive symptoms of schizophrenia."
+},
+{
+"ch": 12,
+"n": 22,
+"med": false,
+"q": "What assessment findings mark the prodromal stage of schizophrenia?",
+"o": [
+"Withdrawal, misinterpreting, poor concentration, and preoccupation with religion",
+"Auditory hallucinations, ideas of reference, thought insertion, and broadcasting",
+"Stereotyped behavior, echopraxia, echolalia, and waxy flexibility",
+"Loose associations, concrete thinking, and echolalia neologisms"
+],
+"r": "Withdrawal, misinterpreting, poor concentration, and preoccupation with religion are prodromal symptoms, the symptoms that are present before the development of florid symptoms. The incorrect options each list the positive symptoms of schizophrenia that might be apparent during the acute stage of the illness."
+},
+{
+"ch": 12,
+"n": 23,
+"med": false,
+"q": "A patient diagnosed with schizophrenia says, Contagious bacteria are everywhere. When they get in your body, you will be locked up with other infected people. Which problem is evident?",
+"o": [
+"Paranoia",
+"Poverty of content",
+"Concrete thinking",
+"Neologisms"
+],
+"r": "The patients unrealistic fear of harm indicates paranoia. Neologisms are invented words. Concrete thinking involves literal interpretation. Poverty of content refers to an inadequate fund of information."
+},
+{
+"ch": 12,
+"n": 24,
+"med": true,
+"q": "A patient diagnosed with schizophrenia begins a new prescription for lurasidone HCL (Latuda). The patient is 56 and currently weighs 204 lbs. Which topic is most important for the nurse to include in the teaching plan related to this medication?",
+"o": [
+"Weight management strategies",
+"How to recognize tardive dyskinesia",
+"Ways to manage constipation",
+"Sleep hygiene measures"
+],
+"r": "Lurasidone HCL (Latuda) is a second-generation antipsychotic medication. The incidence of weight gain, diabetes, and high cholesterol is high with this medication. The patient is overweight now, so weight management will be especially important. The incidence of tardive dyskinesia is low with second-generation antipsychotic medications. Constipation may occur, but it is less important than weight management. This drug usually produces drowsiness.",
+"note": "Course note: your Ch 3 text says lurasidone has a LOW risk of metabolic problems and must be taken with food. Weight management is still the best answer here because this patient is already overweight and second-generation antipsychotics as a class carry metabolic risk."
+},
+{
+"ch": 12,
+"n": 25,
+"med": false,
+"q": "A patient diagnosed with schizophrenia says, Its beat. Time to eat. No room for the cat. What type of verbalization is evident?",
+"o": [
+"Associative looseness",
+"Neologism",
+"Idea of reference",
+"Thought broadcasting"
+],
+"r": "Looseness of association refers to jumbled thoughts incoherently expressed to the listener. Neologisms are newly coined words. Ideas of reference are a type of delusion. Thought broadcasting is the belief that others can hear ones thoughts."
+},
+{
+"ch": 12,
+"n": 26,
+"med": true,
+"q": "A patient diagnosed with schizophrenia has taken a conventional antipsychotic medication for a year. Hallucinations are less intrusive, but the patient continues to have apathy, poverty of thought, and social isolation. The nurse would expect a change to which medication?",
+"o": [
+"Olanzapine (Zyprexa)",
+"Haloperidol (Haldol)",
+"Chlorpromazine (Thorazine)",
+"Diphenhydramine (Benadryl)"
+],
+"r": "Olanzapine is a second-generation atypical antipsychotic that targets both positive and negative symptoms of schizophrenia. Haloperidol and chlorpromazine are conventional antipsychotics that target only positive symptoms. Diphenhydramine is an antihistamine."
+},
+{
+"ch": 12,
+"n": 27,
+"med": false,
+"q": "The family of a patient diagnosed with schizophrenia is unfamiliar with the illness and familys role in recovery. Which type of therapy should the nurse recommend?",
+"o": [
+"Psychoeducational",
+"Psychoanalytic",
+"Transactional",
+"Family"
+],
+"r": "A psychoeducational group explores the causes of schizophrenia, the role of medication, the importance of medication compliance, support for the ill member, and hints for living with a person with schizophrenia. Such a group can be of immeasurable practical assistance to the family. The other types of therapy do not focus on psychoeducation."
+},
+{
+"ch": 12,
+"n": 28,
+"med": false,
+"q": "A patient diagnosed with schizophrenia has been stable for a year; however, the family now reports the patient is tense, sleeps 3 to 4 hours per night, and has difficulty concentrating. The patient says, My computer is sending out infected radiation beams. The nurse can correctly assess this information as an indication of:",
+"o": [
+"relapse.",
+"the need for psychoeducation.",
+"medication noncompliance.",
+"chronic deterioration."
+],
+"r": "Signs of potential relapse include feeling tense, difficulty concentrating, trouble sleeping, increased withdrawal, and increased bizarre or magical thinking. Medication noncompliance may not be implicated. Relapse can occur even when the patient is taking medication regularly. Psychoeducation is more effective when the patients symptoms are stable. Chronic deterioration is not the best explanation."
+},
+{
+"ch": 12,
+"n": 29,
+"med": false,
+"q": "A patient diagnosed with schizophrenia begins to talk about macnabs hiding in the warehouse at work. The term macnabs should be documented as:",
+"o": [
+"a neologism.",
+"concrete thinking.",
+"thought insertion.",
+"an idea of reference."
+],
+"r": "A neologism is a newly coined word having special meaning to the patient. Macnabs is not a known common word. Concrete thinking refers to the inability to think abstractly. Thought insertion refers to thoughts of others are implanted in ones mind. Ideas of reference are a type of delusion in which trivial events are given personal significance."
+},
+{
+"ch": 12,
+"n": 30,
+"med": false,
+"q": "A patient diagnosed with schizophrenia anxiously says, I can see the left side of my body merging with the wall, then my face appears and disappears in the mirror. While listening, the nurse should:",
+"o": [
+"maintain a normal social interaction distance from the patient.",
+"sit close to the patient.",
+"place an arm protectively around the patients shoulders.",
+"place a hand on the patients arm and exert light pressure."
+],
+"r": "The patient is describing phenomena that indicate personal boundary difficulties and depersonalization. The nurse should maintain appropriate social distance and not touch the patient because the patient is anxious about the inability to maintain ego boundaries and merging or being swallowed by the environment. Physical closeness or touch could precipitate panic."
+},
+{
+"ch": 12,
+"n": 31,
+"med": false,
+"q": "A patient diagnosed with schizophrenia and auditory hallucinations anxiously tells the nurse, The voice is telling me to do things. Select the nurses priority assessment question.",
+"o": [
+"What is the voice telling you to do?",
+"How long has the voice been directing your behavior?",
+"Does what the voice tell you to do frighten you?",
+"Do you recognize the voice speaking to you?"
+],
+"r": "Learning what a command hallucination is telling the patient to do is important because the command often places the patient or others at risk for harm. Command hallucinations can be terrifying and may pose a psychiatric emergency. The incorrect questions are of lesser importance than identifying the command."
+},
+{
+"ch": 12,
+"n": 32,
+"med": true,
+"q": "A patient receiving risperidone (Risperdal) reports severe muscle stiffness at 1030. By 1200, the patient has difficulty swallowing and is drooling. By 1600, vital signs are 102.8 F; pulse 110; respirations 26; 150/90. The patient is diaphoretic. Select the nurses best analysis and action.",
+"o": [
+"Neuroleptic malignant syndrome; notify health care provider stat.",
+"Agranulocytosis; institute reverse isolation.",
+"Tardive dyskinesia; withhold the next dose of medication.",
+"Cholestatic jaundice; begin a high-protein, high-cholesterol diet."
+],
+"r": "Taking an antipsychotic medication coupled with the presence of extrapyramidal symptoms, such as severe muscle stiffness and difficulty swallowing, hyperpyrexia, and autonomic symptoms (pulse elevation), suggest neuroleptic malignant syndrome, a medical emergency. The symptoms given in the scenario are not consistent with the medical problems listed in the incorrect options."
+},
+{
+"ch": 12,
+"n": 33,
+"med": false,
+"q": "A nurse asks a patient diagnosed with schizophrenia, What is meant by the old saying You can't judge a book by looking at the cover.? Which response by the patient indicates concrete thinking?",
+"o": [
+"The table of contents tells what a book is about.",
+"You can't judge a book by looking at the cover.",
+"Things are not always as they first appear.",
+"Why are you asking me about books?"
+],
+"r": "Concrete thinking refers to an impaired ability to think abstractly. Concreteness is often assessed through the patients interpretation of proverbs. Concreteness reduces ones ability to understand and address abstract concepts such as love or the passage of time. The incorrect options illustrate echolalia, an unrelated question, and abstract thinking."
+},
+{
+"ch": 12,
+"n": 34,
+"med": false,
+"q": "The nurse is developing a plan for psychoeducational sessions for several adults diagnosed with schizophrenia. Which goal is best for this group? Members will:",
+"o": [
+"demonstrate improved social skills.",
+"gain insight into unconscious factors that contribute to their illness.",
+"explore situations that trigger hostility and anger.",
+"learn to manage delusional thinking."
+],
+"r": "Improved social skills help patients maintain relationships with others. These relationships are important to management of the disorder. Most patients with schizophrenia think concretely, so insight development is unlikely. Not all patients with schizophrenia experience delusions."
+},
+{
+"ch": 12,
+"n": 35,
+"med": false,
+"q": "A client says, Facebook has a new tracking capacity. If I use the Internet, Homeland Security will detain me as a terrorist. Select the nurses best initial action.",
+"o": [
+"Tell the client, You are in a safe place where you will be helped.",
+"Tell the client, Facebook is a safe website. You don't need to worry about Homeland Security.",
+"Administer a prn dose of an antipsychotic medication.",
+"Tell the client, You don't need to worry about that."
+],
+"r": "The patient is experiencing paranoia and delusional thinking, which leads to fear. Explaining that the patient is in a safe place will help relieve the fear. It is not therapeutic to disagree or give advice. Medication will not relieve the immediate concern."
+},
+{
+"ch": 12,
+"n": 36,
+"med": false,
+"q": "Which finding constitutes a negative symptom associated with schizophrenia?",
+"o": [
+"Poverty of thought",
+"Hostility",
+"Bizarre behavior",
+"Auditory hallucinations"
+],
+"r": "Negative symptoms include apathy, anhedonia, poor social functioning, and poverty of thought. Poor personal hygiene is an example of poor social functioning. The distracters are positive symptoms of schizophrenia."
+},
+{
+"ch": 12,
+"n": 37,
+"med": false,
+"q": "A patient insistently states, I can decipher codes of DNA just by looking at someone. Which problem is evident?",
+"o": [
+"Magical thinking",
+"Visual hallucinations",
+"Idea of reference",
+"Thought insertion"
+],
+"r": "Magical thinking is evident in the patients appraisal of his own abilities. There is no evidence of the distracters."
+},
+{
+"ch": 12,
+"n": 38,
+"med": false,
+"q": "A newly hospitalized patient experiencing psychosis says, Red chair out town board. Which term should the nurse use to document this finding?",
+"o": [
+"Word salad",
+"Neologism",
+"Anhedonia",
+"Echolalia"
+],
+"r": "Word salad (schizophasia) is a jumble of words that is meaningless to the listener and perhaps to the speaker as well, because of an extreme level of disorganization."
+},
+{
+"ch": 13,
+"n": 1,
+"med": false,
+"q": "A person was online continuously for over 24 hours, posting rhymes on official government websites and inviting politicians to join social networks. The person has not slept or eaten for 3 days. What features of mania are evident?",
+"o": [
+"Poor judgment and hyperactivity",
+"Increased muscle tension and anxiety",
+"Vegetative signs and poor grooming",
+"Cognitive deficits and paranoia"
+],
+"r": "Hyperactivity (activity without sleep) and poor judgment (posting rhymes on government websites) are characteristic of manic episodes. The distracters do not specifically apply to mania."
+},
+{
+"ch": 13,
+"n": 2,
+"med": false,
+"q": "A patient diagnosed with bipolar disorder is dressed in a red leotard and bright scarves. The patient twirls and shadow boxes. The patient says gaily, Do you like my scarves? Here; they are my gift to you. How should the nurse document the patients mood?",
+"o": [
+"Euphoric",
+"Irritable",
+"Suspicious",
+"Confident"
+],
+"r": "The patient has demonstrated clang associations and pleasant, happy behavior. Excessive happiness indicates euphoria. Irritability, belligerence, excessive happiness, and confidence are not the best terms for the patients mood. Suspiciousness is not evident."
+},
+{
+"ch": 13,
+"n": 3,
+"med": false,
+"q": "A person was directing traffic on a busy street, rapidly shouting, To work, you jerk, for perks and making obscene gestures at cars. The person has not slept or eaten for 3 days. Which assessment findings will have priority concern for this patients plan of care?",
+"o": [
+"Hyperactivity; not eating and sleeping",
+"Insulting, aggressive behavior",
+"Pressured speech and grandiosity",
+"Poor concentration and decision making"
+],
+"r": "Hyperactivity, poor nutrition, hydration, and not sleeping take priority in terms of the needs listed above because they threaten the physical integrity of the patient. The other behaviors are less threatening to the patients life."
+},
+{
+"ch": 13,
+"n": 4,
+"med": false,
+"q": "A patient diagnosed with acute mania has distributed pamphlets about a new business venture on a street corner for 2 days. Which nursing diagnosis has priority?",
+"o": [
+"Risk for injury",
+"Ineffective coping",
+"Impaired social interaction",
+"Ineffective therapeutic regimen management"
+],
+"r": "Although each of the nursing diagnoses listed is appropriate for a patient having a manic episode, the priority lies with the patients physiological safety. Hyperactivity and poor judgment put the patient at risk for injury."
+},
+{
+"ch": 13,
+"n": 5,
+"med": false,
+"q": "A patient diagnosed with bipolar disorder becomes hyperactive after discontinuing lithium. The patient threatens to hit another patient. Which comment by the nurse is appropriate?",
+"o": [
+"Do not hit anyone. If you are unable to control yourself, we will help you.",
+"Stop that! No one did anything to provoke an attack by you.",
+"If you do that one more time, you will be secluded immediately.",
+"You know we will not let you hit anyone. Why do you continue this behavior?"
+],
+"r": "When the patient is unable to control his or her behavior and violates or threatens to violate the rights of others limits must be set in an effort to de-escalate the situation. Limits should be set in simple, concrete terms. The incorrect responses do not offer appropriate assistance to the patient, threaten the patient with seclusion as punishment, and ask a rhetorical question."
+},
+{
+"ch": 13,
+"n": 6,
+"med": false,
+"q": "This nursing diagnosis applies to a patient with acute mania: Imbalanced nutrition: less than body requirements related to insufficient caloric intake and hyperactivity as evidenced by 5-pound weight loss in 4 days.Select an appropriate outcome. The patient will:",
+"o": [
+"drink six servings of a high-calorie, high-protein drink each day.",
+"ask staff for assistance with feeding within 4 days.",
+"consistently sit with others for at least 30 minutes at meal time within 1 week.",
+"consistently wear appropriate attire for age and sex within 1 week while on the psychiatric unit."
+],
+"r": "High-calorie, high-protein food supplements will provide the additional calories needed to offset the patients extreme hyperactivity. Sitting with others or asking for assistance does not mean the patient ate or drank. The other indicator is unrelated to the nursing diagnosis."
+},
+{
+"ch": 13,
+"n": 7,
+"med": true,
+"q": "A patient demonstrating characteristics of acute mania relapsed after discontinuing lithium. New orders are written to resume lithium twice daily and begin olanzapine (Zyprexa). What is the rationale for the addition of olanzapine to the medication regimen? It will:",
+"o": [
+"bring hyperactivity under rapid control.",
+"minimize the side effects of lithium.",
+"enhance the antimanic actions of lithium.",
+"be used for long-term control of hyperactivity."
+],
+"r": "Manic symptoms are controlled by lithium only after a therapeutic serum level is attained. Because this takes several days to accomplish, a drug with rapid onset is necessary to reduce the hyperactivity initially. Antipsychotic drugs neither enhance lithiums antimanic activity nor minimize the side effects. Lithium will be used for long-term control."
+},
+{
+"ch": 13,
+"n": 8,
+"med": true,
+"q": "A patient diagnosed with bipolar disorder has rapidly changing mood cycles. The health care provider prescribes an anticonvulsant medication. To prepare teaching materials, which drug should the nurse anticipate will be prescribed?",
+"o": [
+"carbamazepine (Tegretol)",
+"phenytoin (Dilantin)",
+"clonidine (Catapres)",
+"risperidone (Risperdal)"
+],
+"r": "Some patients with bipolar disorder, especially those who have only short periods between episodes, have a favorable response to the anticonvulsants carbamazepine and valproate. Carbamazepine seems to work better in patients with rapid cycling and in severely paranoid, angry manic patients. Phenytoin is also an anticonvulsant but not used for mood stabilization. Risperidone is not an anticonvulsant.",
+"note": "Course note: valproate (Depakote) is also strongly associated with rapid cycling, but it isn't an option here; carbamazepine is the only mood-stabilizing anticonvulsant listed."
+},
+{
+"ch": 13,
+"n": 9,
+"med": false,
+"q": "The exact cause of bipolar disorder has not been determined; however, for most patients:",
+"o": [
+"several factors, including genetics, are implicated.",
+"brain structures were altered by stress early in life.",
+"excess sensitivity in dopamine receptors may trigger episodes.",
+"inadequate norepinephrine reuptake disturbs circadian rhythms."
+],
+"r": "The best explanation at this time is that bipolar disorder is most likely caused by interplay of complex independent variables. Various theories implicate genetics, endocrine imbalance, environmental stressors, and neurotransmitter imbalances."
+},
+{
+"ch": 13,
+"n": 10,
+"med": false,
+"q": "The spouse of a patient diagnosed with bipolar disorder asks what evidence supports the possibility of genetic transmission of bipolar disorders. Which response should the nurse provide?",
+"o": [
+"A higher rate of relatives with bipolar disorder is found among patients with bipolar disorder.",
+"A high proportion of patients with bipolar disorders are found among creative writers.",
+"Patients with bipolar disorder have higher rates of relatives who respond in an exaggerated way to daily stress.",
+"More individuals with bipolar disorder come from high socioeconomic and educational backgrounds."
+],
+"r": "Evidence of genetic transmission is supported when twins or relatives of patients with a particular disorder also show an incidence of the disorder that is higher than the incidence in the general public. The incorrect options do not support the theory of genetic transmission and other factors involved in the etiology of bipolar disorder."
+},
+{
+"ch": 13,
+"n": 11,
+"med": false,
+"q": "A patient diagnosed with bipolar disorder commands other patients, Get me a book. Take this stuff out of here, and other similar demands. The nurse wants to interrupt this behavior without entering into a power struggle. Which initial approach should the nurse select?",
+"o": [
+"Distraction: Let's go to the dining room for a snack.",
+"Humor: How much are you paying servants these days?",
+"Limit setting: You must stop ordering other patients around.",
+"Honest feedback: Your controlling behavior is annoying others."
+],
+"r": "The distractibility characteristic of manic episodes can assist the nurse to direct the patient toward more appropriate, constructive activities without entering into power struggles. Humor usually backfires by either encouraging the patient or inciting anger. Limit setting and honest feedback may seem heavy-handed and may incite anger."
+},
+{
+"ch": 13,
+"n": 12,
+"med": true,
+"q": "The nurse receives a laboratory report indicating a patients serum level is 1 mEq/L. The patients last dose of lithium was 8 hours ago. This result is:",
+"o": [
+"within therapeutic limits.",
+"below therapeutic limits.",
+"above therapeutic limits.",
+"invalid because of the time lapse since the last dose."
+],
+"r": "Normal range for a blood sample taken 8 to 12 hours after the last dose of lithium is 0.4 to 1 mEq/L.",
+"note": "Course note: this rationale uses 0.4–1.0 mEq/L. Your Ch 3 slides use 0.6–1.2 for maintenance (Ch 13 text: 0.8–1.2 trough target). Either way, 1.0 is therapeutic."
+},
+{
+"ch": 13,
+"n": 13,
+"med": true,
+"q": "Consider these three anticonvulsant medications: divalproex (Depakote), carbamazepine (Tegretol), and gabapentin (Neurontin). Which medication also belongs to this classification?",
+"o": [
+"lamotrigine (Lamictal)",
+"clonazepam (Klonopin)",
+"risperidone (Risperdal)",
+"aripiprazole (Abilify)"
+],
+"r": "The three drugs in the stem of the question are all anticonvulsants. Lamotrigine is also an anticonvulsant. Clonazepam is an anxiolytic; aripiprazole and risperidone are antipsychotic drugs."
+},
+{
+"ch": 13,
+"n": 14,
+"med": false,
+"q": "When a hyperactive patient diagnosed with acute mania is hospitalized, what is the initial nursing intervention?",
+"o": [
+"Set limits on patient behavior as necessary.",
+"Allow the patient to act out feelings.",
+"Provide verbal instructions to the patient to remain calm.",
+"Restrain the patient to reduce hyperactivity and aggression."
+],
+"r": "This intervention provides support through the nurses presence and provides structure as necessary while the patients control is tenuous. Acting out may lead to loss of behavioral control. The patient will probably be unable to focus on instructions and comply. Restraint is used only after other interventions have proved ineffective."
+},
+{
+"ch": 13,
+"n": 15,
+"med": false,
+"q": "At a unit meeting, the staff discusses decor for a special room for patients with acute mania. Which suggestion is appropriate?",
+"o": [
+"Neutral walls with pale, simple accessories",
+"An extra-large window with a view of the street",
+"Brightly colored walls and print drapes",
+"Deep colors for walls and upholstery"
+],
+"r": "The environment for a manic patient should be as simple and non-stimulating as possible. Manic patients are highly sensitive to environmental distractions and stimulation."
+},
+{
+"ch": 13,
+"n": 16,
+"med": false,
+"q": "A patient demonstrating behaviors associated with acute mania has exhausted the staff by noon. Staff members are feeling defensive and fatigued. Which action will the staff take initially?",
+"o": [
+"Hold a staff meeting to discuss consistency and limit-setting approaches.",
+"Confer with the health care provider to consider use of seclusion for this patient.",
+"Conduct a meeting with all staff and patients to discuss the behavior.",
+"Explain to the patient that the behavior is unacceptable."
+],
+"r": "When staff members are at their wits end, the patient has succeeded in keeping the environment unsettled and avoided outside controls on behavior. Staff meetings can help minimize staff splitting and feelings of anger, helplessness, confusion, and frustration."
+},
+{
+"ch": 13,
+"n": 17,
+"med": false,
+"q": "A patient experiencing acute mania undresses in the group room and dances. The nurse intervenes initially by:",
+"o": [
+"putting a blanket around the patient and walking with the patient to a quiet room.",
+"quietly asking the patient, Why don't you put your clothes on?",
+"firmly telling the patient, Stop dancing and put on your clothing.",
+"letting the patient stay in the group room and moving the other patients to a different area."
+],
+"r": "Patients must be protected from the embarrassing consequences of their poor judgment whenever possible. Protecting the patient from public exposure by matter-of-factly covering the patient and removing him or her from the area with a sufficient number of staff to avoid argument and provide control is an effective approach."
+},
+{
+"ch": 13,
+"n": 18,
+"med": false,
+"q": "A patient waves a newspaper and says, I must have my credit card and use the computer right now. A store is having a big sale, and I need to order 10 dresses and four pairs of shoes. Select the nurses appropriate intervention. The nurse:",
+"o": [
+"invites the patient to sit together and look at new fashion magazines.",
+"suggests the patient have a friend do the shopping and bring purchases to the unit.",
+"tells the patient computer use is not allowed until self-control improves.",
+"asks whether the patient has enough money to pay for the purchases."
+],
+"r": "Situations such as this offer an opportunity to use the patients distractibility to staffs advantage. Patients become frustrated when staff deny requests that the patient sees as entirely reasonable. Distracting the patient can avoid power struggles. Suggesting that a friend do the shopping would not satisfy the patients need for immediacy and would ultimately result in the extravagant expenditure. Asking whether the patient has enough money would likely precipitate an angry response."
+},
+{
+"ch": 13,
+"n": 19,
+"med": true,
+"q": "An outpatient diagnosed with bipolar disorder takes lithium carbonate 300 mg three times daily. The patient reports nausea. To reduce the nausea most effectively, the nurse suggests that the lithium be taken with:",
+"o": [
+"meals.",
+"an antacid.",
+"an antiemetic.",
+"a large glass of juice."
+],
+"r": "Some patients find that taking lithium with meals diminishes nausea. The incorrect options are less helpful."
+},
+{
+"ch": 13,
+"n": 20,
+"med": true,
+"q": "A health teaching plan for a patient taking lithium should include instructions to:",
+"o": [
+"maintain normal salt and fluids in the diet.",
+"drink twice the usual daily amount of fluid.",
+"double the lithium dose if diarrhea or vomiting occurs.",
+"avoid eating aged cheese, processed meats, and red wine."
+],
+"r": "Sodium depletion and dehydration increase the chance for development of lithium toxicity. The other options offer inappropriate information."
+},
+{
+"ch": 13,
+"n": 21,
+"med": false,
+"q": "Which nursing diagnosis would most likely apply to both a patient diagnosed with major depression as well as one experiencing acute mania?",
+"o": [
+"Disturbed sleep pattern",
+"Deficient diversional activity",
+"Fluid volume excess",
+"Defensive coping"
+],
+"r": "Patients with mood disorders, both depression and mania, experience sleep pattern disturbances. Assessment data should be routinely gathered about this possible problem. Deficient diversional activity is more relevant for patients with depression. Defensive coping is more relevant for patients with mania. Fluid volume excess is less relevant for patients with mood disorders than is deficient fluid volume."
+},
+{
+"ch": 13,
+"n": 22,
+"med": false,
+"q": "Which dinner menu is best suited for a patient with acute mania?",
+"o": [
+"Broiled chicken breast on a roll, an ear of corn, and an apple",
+"Spaghetti and meatballs, salad, and a banana",
+"Beef and vegetable stew, a roll, and chocolate pudding",
+"Chicken casserole, green beans, and flavored gelatin with whipped cream"
+],
+"r": "These foods provide adequate nutrition, but more important they are finger foods that the hyperactive patient could eat on the run. The foods in the incorrect options cannot be eaten without utensils."
+},
+{
+"ch": 13,
+"n": 23,
+"med": false,
+"q": "Outcome identification for the treatment plan of a patient experiencing grandiose thinking associated with acute mania will focus on:",
+"o": [
+"distorted thought self-control.",
+"developing an optimistic outlook.",
+"interest in the environment.",
+"sleep pattern stabilization."
+],
+"r": "The desired outcome is that the patient will be able to control the grandiose thinking associated with acute mania as evidenced by making realistic comments about self, abilities, and plans. Patients with acute mania are already unduly optimistic as a result of their use of denial, and they are overly interested in their environment. Sleep stability is a desired outcome but is not related to distorted thought processes."
+},
+{
+"ch": 13,
+"n": 24,
+"med": false,
+"q": "Which documentation indicates that the treatment plan for a patient diagnosed with acute mania has been effective?",
+"o": [
+"Converses with few interruptions; clothing matches; participates in activities.",
+"Irritable, suggestible, distractible; napped for 10 minutes in afternoon.",
+"Attention span short; writing copious notes; intrudes in conversations.",
+"Heavy makeup; seductive toward staff; pressured speech."
+],
+"r": "The descriptors given indicate the patient is functioning at an optimal level, using appropriate behavior, and thinking without becoming overstimulated by unit activities. The incorrect options reflect manic behavior."
+},
+{
+"ch": 13,
+"n": 25,
+"med": false,
+"q": "A patient experiencing acute mania dances around the unit, seldom sits, monopolizes conversations, interrupts, and intrudes. Which nursing intervention will best assist the patient with energy conservation?",
+"o": [
+"Provide a subdued environment.",
+"Monitor physiological functioning.",
+"Supervise personal hygiene.",
+"Observe for mood changes."
+],
+"r": "All the options are reasonable interventions with a patient with acute mania, but providing a subdued environment directly relates to the outcome of energy conservation by decreasing stimulation and helping to balance activity and rest."
+},
+{
+"ch": 13,
+"n": 26,
+"med": true,
+"q": "A patient with diagnosed bipolar disorder was hospitalized 7 days ago and has been taking lithium 600 mg tid. Staff observes increased agitation, pressured speech, poor personal hygiene, and hyperactivity. Which action demonstrates that the nurse understands the most likely cause of the patients behavior?",
+"o": [
+"Consider the need to check the lithium level. The patient may not be swallowing medications.",
+"Educate the patient about the proper ways to perform personal hygiene and coordinate clothing.",
+"Continue to monitor and document the patients speech patterns and motor activity.",
+"Ask the health care provider to prescribe an increased dose and frequency of lithium."
+],
+"r": "The patient is continuing to exhibit manic symptoms. The lithium level may be low from cheeking (not swallowing) the medication. The prescribed dose is high, so one would not expect a need for the dose to be increased. Monitoring the patient does not address the problem."
+},
+{
+"ch": 13,
+"n": 27,
+"med": false,
+"q": "A patient with acute mania has disrobed in the hall three times in 2 hours. The nurse should:",
+"o": [
+"arrange for one-on-one supervision.",
+"direct the patient to wear clothes at all times.",
+"ask if the patient finds clothes bothersome.",
+"tell the patient that others feel embarrassed."
+],
+"r": "A patient who repeatedly disrobes despite verbal limit setting needs more structure. One-on-one supervision may provide the necessary structure. Directing the patient to wear clothes at all times has not proven successful, considering the behavior has continued. Asking if the patient is bothered by clothing serves no purpose. Telling the patient that others are embarrassed will not make a difference to the patient whose grasp of social behaviors is impaired by the illness."
+},
+{
+"ch": 13,
+"n": 28,
+"med": false,
+"q": "A patient experiencing acute mania is dancing atop a pool table in the recreation room. The patient waves a cue in one hand and says, I'll throw the pool balls if anyone comes near me. To best assure safety, the nurses first intervention is to:",
+"o": [
+"clear the room of all other patients.",
+"tell the patient, You need to be secluded.",
+"help the patient down from the table.",
+"assemble a show of force."
+],
+"r": "Safety is of primary importance. Once other patients are out of the room, a plan for managing this patient can be implemented."
+},
+{
+"ch": 13,
+"n": 29,
+"med": true,
+"q": "A patient diagnosed with bipolar disorder will be discharged tomorrow. The patient is taking a mood stabilizing medication. What is the priority nursing intervention for the patient as well as the patients family during this phase of treatment?",
+"o": [
+"Attending psychoeducation sessions",
+"Decreasing physical activity",
+"Increasing food and fluids",
+"Meeting self-care needs"
+],
+"r": "During the continuation phase of treatment for bipolar disorder, the physical needs of the patient are not as important an issue as they were during the acute episode. After hospital discharge, treatment focuses on maintaining medication compliance and preventing relapse, both of which are fostered by ongoing psychoeducation."
+},
+{
+"ch": 13,
+"n": 30,
+"med": true,
+"q": "A nurse assesses a patient who takes lithium. Which findings demonstrate evidence of complications?",
+"o": [
+"Diaphoresis, weakness, and nausea",
+"Pharyngitis, mydriasis, and dystonia",
+"Alopecia, purpura, and drowsiness",
+"Ascites, dyspnea, and edema"
+],
+"r": "Diaphoresis, weakness, and nausea are early signs of lithium toxicity. Problems mentioned in the incorrect options are unrelated to lithium therapy."
+},
+{
+"ch": 13,
+"n": 31,
+"med": true,
+"q": "A patient diagnosed with bipolar disorder is in the maintenance phase of treatment. The patient asks, Do I have to keep taking this lithium even though my mood is stable now? Select the nurses appropriate response.",
+"o": [
+"Taking the medication every day helps reduce the risk of a relapse.",
+"You will be able to stop the medication in about 1 month.",
+"Usually patients take medication for approximately 6 months after discharge.",
+"Its unusual that the health care provider hasn't already stopped your medication."
+],
+"r": "Patients diagnosed with bipolar disorder may be maintained on lithium indefinitely to prevent recurrences. Helping the patient understand this need will promote medication compliance."
+},
+{
+"ch": 13,
+"n": 32,
+"med": true,
+"q": "An outpatient diagnosed with bipolar disorder is prescribed lithium. The patient telephones the nurse to say, I've had severe diarrhea for 4 days. I feel very weak and unsteady when I walk. My usual hand tremor has gotten worse. What should I do? The nurse will advise the patient to:",
+"o": [
+"have someone bring the patient to the clinic immediately.",
+"restrict food and fluids for 24 hours and stay in bed.",
+"drink a large glass of water with 1 teaspoon of salt added.",
+"take one dose of an over-the-counter antidiarrheal medication now."
+],
+"r": "The symptoms described suggest lithium toxicity. The patient should have a lithium level drawn and may require further treatment. Because neurological symptoms are present, the patient should not drive and should be accompanied by another person. The incorrect options will not ameliorate the patients symptoms."
+},
+{
+"ch": 13,
+"n": 33,
+"med": true,
+"q": "A newly diagnosed patient is prescribed lithium. Which information from the patients history indicates that monitoring of serum concentrations of the drug will be challenging and critical?",
+"o": [
+"Heart failure",
+"Arthritis",
+"Epilepsy",
+"Psoriasis"
+],
+"r": "The patient with congestive heart failure will likely need diuretic drugs, which will complicate the maintenance of the fluid balance necessary to avoid lithium toxicity."
+},
+{
+"ch": 13,
+"n": 34,
+"med": false,
+"q": "Four new patients were admitted to the behavioral health unit in the past 12 hours. The nurse directs a psychiatric technician to monitor these patients for safety. Which patient will need the most watchful supervision? A patient diagnosed with:",
+"o": [
+"bipolar I disorder.",
+"bipolar II disorder.",
+"dysthymic disorder",
+"cyclothymic disorder."
+],
+"r": "Bipolar I is a mood disorder characterized by excessive activity and energy. Psychosis (hallucinations, delusions, and dramatically disturbed thoughts) may occur during manic episodes. A patient with bipolar I disorder is more unstable than a patient diagnosed with bipolar II, cyclothymic disorder, or dysthymic disorder."
+},
+{
+"ch": 14,
+"n": 1,
+"med": false,
+"q": "A patient became severely depressed when the last of the familys six children moved out of the home 4 months ago. The patient repeatedly says, No one cares about me. I'm not worth anything. Which response by the nurse would be the most helpful?",
+"o": [
+"I'll sit with you for 10 minutes now and 10 minutes after lunch to help you feel that I care about you.",
+"Things will look brighter soon. Everyone feels down once in a while.",
+"Our staff members care about you and want to try to help you get better.",
+"It is difficult for others to care about you when you repeatedly say the same negative things."
+],
+"r": "Spending time with the patient at intervals throughout the day shows acceptance by the nurse and will help the patient establish a relationship with the nurse. The therapeutic technique is offering self. Setting definite times for the therapeutic contacts and keeping the appointments show predictability on the part of the nurse, an element that fosters trust building. The incorrect responses would be difficult for a person with profound depression to believe, provide false reassurance, and are counterproductive. The patient is unable to say positive things at this point."
+},
+{
+"ch": 14,
+"n": 2,
+"med": false,
+"q": "A patient became depressed after the last of the familys six children moved out of the home 4 months ago. Select the best initial outcome for the nursing diagnosis Situational low self-esteem related to feelings of abandonment. The patient will:",
+"o": [
+"verbalize realistic positive characteristics about self by (date).",
+"agree to take an antidepressant medication regularly by (date).",
+"initiate social interaction with another person daily by (date).",
+"identify two personal behaviors that alienate others by (date)."
+],
+"r": "Low self-esteem is reflected by making consistently negative statements about self and self-worth. Replacing negative cognitions with more realistic appraisals of self is an appropriate intermediate outcome. The incorrect options are not as clearly related to the nursing diagnosis. Outcomes are best when framed positively; identifying two personal behaviors that might alienate others is a negative concept."
+},
+{
+"ch": 14,
+"n": 3,
+"med": false,
+"q": "A patient diagnosed with major depression says, No one cares about me anymore. I'm not worth anything. Today the patient is wearing a new shirt and has neat, clean hair. Which remark by the nurse supports building a positive self-esteem for this patient?",
+"o": [
+"You're wearing a new shirt.",
+"You look nice this morning.",
+"I like the shirt you are wearing.",
+"You must be feeling better today."
+],
+"r": "Patients with depression usually see the negative side of things. The meaning of compliments may be altered to I didn't look nice yesterday or They didn't like my other shirt. Neutral comments such as making an observation avoid negative interpretations. Saying, You look nice or I like your shirt gives approval (non-therapeutic techniques). Saying You must be feeling better today is an assumption, which is non-therapeutic."
+},
+{
+"ch": 14,
+"n": 4,
+"med": false,
+"q": "An adult diagnosed with major depression was treated with medication and cognitive behavioral therapy. The patient now recognizes how passivity contributed to the depression. Which intervention should the nurse suggest?",
+"o": [
+"Social skills training",
+"Relaxation training classes",
+"Desensitization techniques",
+"Use of complementary therapy"
+],
+"r": "Social skill training is helpful in treating and preventing the recurrence of depression. Training focuses on assertiveness and coping skills that lead to positive reinforcement from others and development of a patients support system. Use of complementary therapy refers to adjunctive therapies such as herbals, which would be less helpful than social skill training. Assertiveness would be of greater value than relaxation training because passivity was a concern. Desensitization is used in treatment of phobias."
+},
+{
+"ch": 14,
+"n": 5,
+"med": false,
+"q": "Priority interventions for a patient diagnosed with major depression and feelings of worthlessness should include:",
+"o": [
+"careful unobtrusive observation around the clock.",
+"distracting the patient from self-absorption.",
+"allowing the patient to spend long periods alone in meditation.",
+"opportunities to assume a leadership role in the therapeutic milieu."
+],
+"r": "Approximately two-thirds of people with depression contemplate suicide. Patients with depression who exhibit feelings of worthlessness are at higher risk. Regular planned observations of the patient diagnosed with depression may prevent a suicide attempt on the unit."
+},
+{
+"ch": 14,
+"n": 6,
+"med": false,
+"q": "When counseling patients diagnosed with major depression, an advanced practice nurse will address the negative thought patterns by using:",
+"o": [
+"cognitive behavioral therapy.",
+"psychoanalytic therapy.",
+"desensitization therapy.",
+"alternative and complementary therapies."
+],
+"r": "Cognitive behavioral therapy attempts to alter the patient's dysfunctional beliefs by focusing on positive outcomes rather than negative attributions. The patient is also taught the connection between thoughts and resultant feelings. Research shows that cognitive behavioral therapy involves the formation of new connections between nerve cells in the brain and that it is at least as effective as medication. Evidence is not present to support superior outcomes for the other psychotherapeutic modalities mentioned."
+},
+{
+"ch": 14,
+"n": 7,
+"med": false,
+"q": "A patient says to the nurse, \"My life doesn't have any happiness in it anymore. I once enjoyed holidays, but now they're just another day.\" The nurse documents this report as an example of:",
+"o": [
+"anhedonia.",
+"dysthymia.",
+"euphoria.",
+"anergia."
+],
+"r": "Anhedonia is a common finding in many types of depression. It refers to feelings of a loss of pleasure in formerly pleasurable activities. Dysthymia is a diagnosis. Euphoria refers to an elated mood. Anergia means without energy."
+},
+{
+"ch": 14,
+"n": 8,
+"med": true,
+"q": "A patient diagnosed with major depression began taking a tricyclic antidepressant 1 week ago. Today the patient says, I don't think I can keep taking these pills. They make me so dizzy, especially when I stand up. The nurse will:",
+"o": [
+"teach the patient strategies to manage postural hypotension.",
+"limit the patients activities to those that can be performed in a sitting position.",
+"withhold the drug, force oral fluids, and notify the health care provider.",
+"update the patients mental status examination."
+],
+"r": "Drowsiness, dizziness, and postural hypotension usually subside after the first few weeks of therapy with tricyclic antidepressants. Postural hypotension can be managed by teaching the patient to stay well hydrated and rise slowly. Knowing this information may convince the patient to continue the medication. Activity is an important aspect of the patients treatment plan and should not be limited to activities that can be done in a sitting position. Withholding the drug, forcing oral fluids, and notifying the health care provider are unnecessary actions. Independent nursing action is called for. Updating a mental status examination is unnecessary."
+},
+{
+"ch": 14,
+"n": 9,
+"med": true,
+"q": "A patient diagnosed with depression is receiving imipramine (Tofranil) 200 mg qhs. Which assessment finding would prompt the nurse to collaborate with the health care provider regarding potentially hazardous side effects of this drug?",
+"o": [
+"Urinary retention",
+"Dry mouth",
+"Blurred vision",
+"Nasal congestion"
+],
+"r": "All the side effects mentioned are the result of the anticholinergic effects of the drug. Only urinary retention and severe constipation warrant immediate medical attention. Dry mouth, blurred vision, and nasal congestion may be less troublesome as therapy continues."
+},
+{
+"ch": 14,
+"n": 10,
+"med": false,
+"q": "A patient diagnosed with major depression tells the nurse, Bad things that happen are always my fault. Which response by the nurse will best assist the patient to reframe this overgeneralization?",
+"o": [
+"Let's look at one bad thing that happened to see if another explanation exists.",
+"I really doubt that one person can be blamed for all the bad things that happen.",
+"You are being extremely hard on yourself. Try to have a positive focus.",
+"Are you saying that you don't have any good things happen?"
+],
+"r": "By questioning a faulty assumption, the nurse can help the patient look at the premise more objectively and reframe it as a more accurate representation of fact. The incorrect responses cast doubt but do not require the patient to evaluate the statement."
+},
+{
+"ch": 14,
+"n": 11,
+"med": false,
+"q": "A nurse worked with a patient diagnosed with major depression, severe withdrawal, and psychomotor retardation. After 3 weeks, the patient did not improve. The nurse is most at risk for feelings of:",
+"o": [
+"ineffectiveness and frustration.",
+"guilt and despair.",
+"over-involvement.",
+"interest and pleasure."
+],
+"r": "Nurses may have expectations for self and patients that are not wholly realistic, especially regarding the patients progress toward health. Unmet expectations result in feelings of ineffectiveness, anger, or frustration. Nurses rarely become over-involved with patients with depression because of the patients resistance. Guilt and despair might be seen when the nurse experiences the patients feelings because of empathy. Interest is possible but not the most likely result."
+},
+{
+"ch": 14,
+"n": 12,
+"med": true,
+"q": "A patient diagnosed with depression begins selective serotonin reuptake inhibitor (SSRI) antidepressant therapy. The nurse should provide information to the patient and family about:",
+"o": [
+"reporting increased suicidal thoughts.",
+"restricting sodium intake to 1 gram daily.",
+"minimizing exposure to bright sunlight.",
+"maintaining a tyramine-free diet."
+],
+"r": "Some evidence indicates that suicidal ideation may worsen at the beginning of antidepressant therapy; thus, close monitoring is necessary. Avoiding exposure to bright sunlight and restricting sodium intake are unnecessary. Tyramine restriction is associated with monoamine oxidase inhibitor (MAOI) therapy."
+},
+{
+"ch": 14,
+"n": 13,
+"med": true,
+"q": "A nurse taught a patient about a tyramine-restricted diet. Which menu selection would the nurse approve?",
+"o": [
+"Mashed potatoes, ground beef patty, corn, green beans, apple pie",
+"Macaroni and cheese, hot dogs, banana bread, caffeinated coffee",
+"Avocado salad, ham, creamed potatoes, asparagus, chocolate cake",
+"Noodles with cheddar cheese sauce, smoked sausage, lettuce salad, yeast rolls"
+],
+"r": "The correct answer describes a meal that contains little tyramine. Vegetables and fruits contain little or no tyramine. Fresh ground beef and apple pie are safe. The other meals contain various amounts of tyramine-rich foods or foods that contain vasopressors: avocados, ripe bananas (banana bread), sausages/hot dogs, smoked meat (ham), cheddar cheese, yeast, caffeine drinks, and chocolate."
+},
+{
+"ch": 14,
+"n": 14,
+"med": false,
+"q": "What is the focus of priority nursing interventions for the period immediately after electroconvulsive therapy treatment?",
+"o": [
+"Supporting physiological stability",
+"Nutrition and hydration",
+"Reducing disorientation and confusion",
+"Assisting the patient to identify and test negative thoughts"
+],
+"r": "During the immediate post-treatment period, the patient is recovering from general anesthesia; hence, the priority need is to establish and support physiological stability. Reducing disorientation and confusion is an acceptable intervention but not the priority. Assisting the patient in identifying and testing negative thoughts is inappropriate in the immediate post-treatment period because the patient may be confused."
+},
+{
+"ch": 14,
+"n": 15,
+"med": true,
+"q": "A nurse provided medication education for a patient diagnosed with major depression who began a new prescription for phenelzine (Nardil). Which behavior indicates effective learning? The patient:",
+"o": [
+"confers with a pharmacist when selecting over-the-counter medications.",
+"monitors sodium intake and weight daily.",
+"wears support stockings and elevates the legs when sitting.",
+"can identify foods with high selenium content that should be avoided."
+],
+"r": "Over-the-counter medicines may contain vasopressor agents or tyramine, a substance that must be avoided when the patient takes MAOI antidepressants. Medications for colds, allergies, or congestion or any preparation that contains ephedrine or phenylpropanolamine may precipitate a hypertensive crisis. MAOI antidepressant therapy is unrelated to the need for sodium limitation, support stockings, or leg elevation. MAOIs interact with tyramine-containing foods, not selenium, to produce dangerously high blood pressure."
+},
+{
+"ch": 14,
+"n": 16,
+"med": false,
+"q": "Major depression resulted after a patients employment was terminated. The patient now says to the nurse, I'm not worth the time you spend with me. I am the most useless person in the world. Which nursing diagnosis applies?",
+"o": [
+"Situational low self-esteem",
+"Powerlessness",
+"Defensive coping",
+"Disturbed personal identity"
+],
+"r": "The patients statements express feelings of worthlessness and most clearly relate to the nursing diagnosis of situational low self-esteem. Insufficient information exists to lead to other diagnoses."
+},
+{
+"ch": 14,
+"n": 17,
+"med": false,
+"q": "A patient diagnosed with major depression does not interact with others except when addressed, and then only in monosyllables. The nurse wants to show nonjudgmental acceptance and support for the patient. Which communication technique will be effective?",
+"o": [
+"Make observations.",
+"Ask the patient direct questions.",
+"Phrase questions to require yes or no answers.",
+"Frequently reassure the patient to reduce guilt feelings."
+],
+"r": "Making observations about neutral topics such as the environment draws the patient into the reality around him or her but places no burdensome expectations for answers on the patient. Acceptance and support are shown by the nurses presence. Direct questions may make the patient feel that the encounter is an interrogation. Open\u0002ended questions are preferable if the patient is able to participate in dialogue. Platitudes are never acceptable. They minimize patient feelings and can increase feelings of worthlessness."
+},
+{
+"ch": 14,
+"n": 18,
+"med": true,
+"q": "A patient being treated for depression has taken 300 mg amitriptyline (Elavil) daily for a year. The patient calls the case manager at the clinic and says, I stopped taking my antidepressant 2 days ago. Now I am having cold sweats, nausea, a rapid heartbeat, and nightmares. The nurse will advise the patient to:",
+"o": [
+"Take a dose of your antidepressant now and come to the clinic to see the health care provider.",
+"Go to the nearest emergency department immediately.",
+"Do not to be alarmed. Take two aspirin and drink plenty of fluids.",
+"Resume taking your antidepressants for 2 more weeks and then discontinue them again."
+],
+"r": "The patient has symptoms associated with abrupt withdrawal of the tricyclic antidepressant. Taking a dose of the drug will ameliorate the symptoms. Seeing the health care provider will allow the patient to discuss the advisability of going off the medication and to be given a gradual withdrawal schedule if discontinuation is the decision. This situation is not a medical emergency, although it calls for medical advice. Resuming taking the antidepressant for 2 more weeks and then discontinuing again would produce the same symptoms the patient is experiencing."
+},
+{
+"ch": 14,
+"n": 19,
+"med": false,
+"q": "Which documentation for a patient diagnosed with major depression indicates the treatment plan was effective?",
+"o": [
+"Slept 6 hours uninterrupted. Sang with activity group. Anticipates seeing grandchild.",
+"Slept 10 hours uninterrupted. Attended craft group; stated project was a failure, just like me.",
+"Slept 5 hours with brief interruptions. Personal hygiene adequate with assistance. Weight loss of 1 pound.",
+"Slept 7 hours uninterrupted. Preoccupied with perceived inadequacies. States, I feel tired all the time."
+],
+"r": "Sleeping 6 hours, participating with a group, and anticipating an event are all positive events. All the other options show at least one negative finding."
+},
+{
+"ch": 14,
+"n": 20,
+"med": false,
+"q": "A patient was diagnosed with seasonal affective disorder (SAD). During which month would this patients symptoms be most acute?",
+"o": [
+"January",
+"April",
+"June",
+"September"
+],
+"r": "The days are short in January, so the patient would have the least exposure to sunlight. Seasonal affective disorder is associated with disturbances in circadian rhythm. Days are longer in spring, summer, and fall."
+},
+{
+"ch": 14,
+"n": 21,
+"med": false,
+"q": "A patient diagnosed with depression repeatedly tells staff, I have cancer. Its my punishment for being a bad person. Diagnostic tests reveal no cancer. Select the priority nursing diagnosis.",
+"o": [
+"Risk for suicide",
+"Powerlessness",
+"Stress overload",
+"Spiritual distress"
+],
+"r": "A patient diagnosed with depression who feels so worthless as to believe cancer is deserved is at risk for suicide. Safety concerns take priority over the other diagnoses listed."
+},
+{
+"ch": 14,
+"n": 22,
+"med": false,
+"q": "A patient diagnosed with major depression refuses solid foods. In order to meet nutritional needs, which beverage will the nurse offer to this patient?",
+"o": [
+"Milk",
+"Tomato juice",
+"Orange juice",
+"Hot tea"
+],
+"r": "Milk is the only beverage listed that provides protein, fat, and carbohydrates. In addition, milk is fortified with vitamins."
+},
+{
+"ch": 14,
+"n": 23,
+"med": false,
+"q": "During a psychiatric assessment, the nurse observes a patients facial expression is without emotion. The patient says, Life feels so hopeless to me. I've been feeling sad for several months. How will the nurse document the patients affect and mood?",
+"o": [
+"Affect flat; mood depressed",
+"Affect depressed; mood flat",
+"Affect labile; mood euphoric",
+"Affect and mood are incongruent."
+],
+"r": "Mood refers to a persons self-reported emotional feeling state. Affect is the emotional feeling state that is outwardly observable by others. When there is no evidence of emotion in a persons expression, the affect is flat."
+},
+{
+"ch": 14,
+"n": 24,
+"med": false,
+"q": "A disheveled patient with severe depression and psychomotor retardation has not showered for several days. The nurse will:",
+"o": [
+"firmly and neutrally assist the patient with showering.",
+"bring up the issue at the community meeting.",
+"calmly tell the patient, You must bathe daily.",
+"avoid forcing the issue in order to minimize stress."
+],
+"r": "When patients are unable to perform self-care activities, staff must assist them rather than ignore the issue. Better grooming increases self-esteem. Calmly telling the patient to bathe daily and bringing up the issue at a community meeting are punitive."
+},
+{
+"ch": 14,
+"n": 25,
+"med": true,
+"q": "A patient diagnosed with major depression began taking escitalopram (Lexapro) 5 days ago. The patient now says, This medicine isn't working. The nurses best intervention would be to:",
+"o": [
+"explain the time lag before antidepressants relieve symptoms.",
+"discuss with the health care provider the need to increase the dose.",
+"reassure the patient that the medication will be effective soon.",
+"critically assess the patient for symptoms of improvement."
+],
+"r": "Escitalopram is an SSRI antidepressant. One to three weeks of treatment is usually necessary before symptom relief occurs. This information is important to share with patients."
+},
+{
+"ch": 14,
+"n": 26,
+"med": false,
+"q": "A nurse is caring for a patient with low self-esteem. Which nonverbal communication should the nurse anticipate from this patient?",
+"o": [
+"Eyes pointed downward",
+"Arms crossed",
+"Staring at the nurse",
+"Smiling inappropriately"
+],
+"r": "Nonverbal communication is usually considered more powerful than verbal communication. Downward casted eyes suggest feelings of worthlessness or hopelessness."
+},
+{
+"ch": 14,
+"n": 27,
+"med": false,
+"q": "A patient diagnosed with major depression received six electroconvulsive therapy sessions and aggressive doses of antidepressant medication. The patient owns a small business and was counseled not to make major decisions for a month. Select the correct rationale for this counseling.",
+"o": [
+"Temporary memory impairments and confusion may occur with electroconvulsive therapy.",
+"Antidepressant medications alter catecholamine levels, which impairs decision-making abilities.",
+"Antidepressant medications may cause confusion related to limitation of tyramine in the diet.",
+"The patient needs time to readjust to a pressured work schedule."
+],
+"r": "Recent memory impairment and/or confusion is often present during and for a short time after electroconvulsive therapy. An inappropriate business decision might be made because of forgotten important details. The rationales are untrue statements in the incorrect responses. The patient needing time to reorient to a pressured work schedule is less relevant than the correct rationale."
+},
+{
+"ch": 14,
+"n": 28,
+"med": true,
+"q": "A nurse instructs a patient taking a medication that inhibits the action of monoamine oxidase (MAO) to avoid certain foods and drugs because of the risk of:",
+"o": [
+"hypertensive crisis.",
+"hypotensive shock.",
+"cardiac dysrhythmia.",
+"cardiogenic shock."
+],
+"r": "Patients taking MAO-inhibiting drugs must be on a tyramine-free diet to prevent hypertensive crisis. In the presence of MAOIs, tyramine is not destroyed by the liver and in high levels produces intense vasoconstriction, resulting in elevated blood pressure."
+},
+{
+"ch": 14,
+"n": 29,
+"med": false,
+"q": "Transcranial Magnetic Stimulation (TCM) is scheduled for a patient diagnosed with major depression. Which comment by the patient indicates teaching about the procedure was effective?",
+"o": [
+"I might be a little dizzy or have a mild headache after each procedure.",
+"They will put me to sleep during the procedure so I won't know what is happening.",
+"I will be unable to care for my children for about 2 months.",
+"I will avoid eating foods that contain tyramine."
+],
+"r": "Transcranial Magnetic Stimulation (TCM) treatments take about 30 minutes. Treatments are usually 5 days a week. Patients are awake and alert during the procedure. After the procedure, patients may experience a headache and lightheadedness. No neurological deficits or memory problems have been noted. The patient will be able to care for children."
+},
+{
+"ch": 15,
+"n": 1,
+"med": false,
+"q": "A nurse wants to teach alternative coping strategies to a patient experiencing severe anxiety. Which action should the nurse perform first?",
+"o": [
+"Lower the patients current anxiety.",
+"Verify the patients learning style.",
+"Create outcomes and a teaching plan.",
+"Assess how the patient uses defense mechanisms."
+],
+"r": "A patient experiencing severe anxiety has a markedly narrowed perceptual field and difficulty attending to events in the environment. A patient experiencing severe anxiety will not learn readily. Determining preferred modes of learning, devising outcomes, and constructing teaching plans are relevant to the task but are not the priority measure. The nurse has already assessed the patients anxiety level. Use of defense mechanisms does not apply."
+},
+{
+"ch": 15,
+"n": 2,
+"med": false,
+"q": "A woman is 57, 160 lbs, and wears a size 8 shoe. She says, My feet are huge. I've asked three orthopedists to surgically reduce my feet. This person tries to buy shoes to make her feet look smaller and, in social settings, conceals both feet under a table or chair. Which health problem is likely?",
+"o": [
+"Body dysmorphic disorder",
+"Social anxiety disorder",
+"Separation anxiety disorder",
+"Obsessive-compulsive disorder due to a medical condition"
+],
+"r": "Body dysmorphic disorder refers to a preoccupation with an imagined defect in appearance in a normal\u0002appearing person. The patients feet are proportional to the rest of the body. In obsessive-compulsive or related disorder due to a medical condition, the individuals symptoms of obsessions and compulsions are a direct physiological result of a medical condition. Social anxiety disorder, also called social phobia, is characterized by severe anxiety or fear provoked by exposure to a social or a performance situation that will be evaluated negatively by others. People with separation anxiety disorder exhibit developmentally inappropriate levels of concern over being away from a significant other."
+},
+{
+"ch": 15,
+"n": 3,
+"med": false,
+"q": "A patient experiencing moderate anxiety says, I feel undone. An appropriate response for the nurse would be:",
+"o": [
+"I'm not sure I understand. Give me an example.",
+"What would you like me to do to help you?",
+"Why do you suppose you are feeling anxious?",
+"You must get your feelings under control before we can continue."
+],
+"r": "Increased anxiety results in scattered thoughts and an inability to articulate clearly. Clarifying helps the patient identify thoughts and feelings. Asking the patient why he or she feels anxious is non-therapeutic; the patient likely does not have an answer. The patient may be unable to determine what he or she would like the nurse to do in order to help. Telling the patient to get his or her feelings under control is a directive the patient is probably unable to accomplish."
+},
+{
+"ch": 15,
+"n": 4,
+"med": false,
+"q": "A patient fearfully runs from chair to chair crying, They're coming! They're coming! The patient does not follow the staffs directions or respond to verbal interventions. The initial nursing intervention of highest priority is to:",
+"o": [
+"provide for the patients safety.",
+"encourage clarification of feelings.",
+"respect the patients personal space.",
+"offer an outlet for the patients energy."
+],
+"r": "Safety is of highest priority because the patient experiencing panic is at high risk for self-injury related to increased non-goal-directed motor activity, distorted perceptions, and disordered thoughts. Offering an outlet for the patients energy can occur when the current panic level subsides. Respecting the patients personal space is a lower priority than safety. Clarification of feelings cannot take place until the level of anxiety is lowered."
+},
+{
+"ch": 15,
+"n": 5,
+"med": false,
+"q": "A patient fearfully runs from chair to chair crying, They're coming! They're coming! The patient does not follow the staffs directions or respond to verbal interventions. Which nursing diagnosis has the highest priority?",
+"o": [
+"Risk for injury",
+"Fear",
+"Self-care deficit",
+"Disturbed thought processes"
+],
+"r": "A patient experiencing panic-level anxiety is at high risk for injury related to increased non-goal-directed motor activity, distorted perceptions, and disordered thoughts. Data are not present to support a nursing diagnosis of self-care deficit or disturbed thought processes. The patient may have fear, but the risk for injury has a higher priority."
+},
+{
+"ch": 15,
+"n": 6,
+"med": false,
+"q": "A patient checks and rechecks electrical cords related to an obsessive thought that the house may burn down. The nurse and patient explore the likelihood of an actual fire. The patient states this event is not likely. This counseling demonstrates principles of:",
+"o": [
+"cognitive restructuring.",
+"flooding.",
+"desensitization.",
+"relaxation technique."
+],
+"r": "Cognitive restructuring involves the patient in testing automatic thoughts and drawing new conclusions. Desensitization involves graduated exposure to a feared object. Relaxation training teaches the patient to produce the opposite of the stress response. Flooding exposes the patient to a large amount of an undesirable stimulus in an effort to extinguish the anxiety response."
+},
+{
+"ch": 15,
+"n": 7,
+"med": false,
+"q": "A patient undergoing diagnostic tests says, Nothing is wrong with me except a stubborn chest cold. The spouse reports the patient smokes, coughs daily, lost 15 pounds, and is easily fatigued. Which defense mechanism is the patient using?",
+"o": [
+"Denial",
+"Displacement",
+"Regression",
+"Projection"
+],
+"r": "Denial is an unconscious blocking of threatening or painful information or feelings. Regression involves using behaviors appropriate at an earlier stage of psychosexual development. Displacement shifts feelings to a more neutral person or object. Projection attributes ones own unacceptable thoughts or feelings to another."
+},
+{
+"ch": 15,
+"n": 8,
+"med": false,
+"q": "A patient with an abdominal mass is scheduled for a biopsy. The patient has difficulty understanding the nurses comments and asks, What do you mean? What are they going to do? Assessment findings include tremulous voice, respirations 28, and pulse 110. What is the patients level of anxiety?",
+"o": [
+"Moderate",
+"Mild",
+"Severe",
+"Panic"
+],
+"r": "Moderate anxiety causes the individual to grasp less information and reduces problem-solving ability to a less\u0002than-optimal level. Mild anxiety heightens attention and enhances problem solving. Severe anxiety causes great reduction in the perceptual field. Panic-level anxiety results in disorganized behavior."
+},
+{
+"ch": 15,
+"n": 9,
+"med": false,
+"q": "A patient preparing for surgery has moderate anxiety and is unable to understand preoperative information. Which nursing intervention is most appropriate?",
+"o": [
+"Present the information again in a calm manner using simple language.",
+"Reassure the patient that all nurses are skilled in providing postoperative care.",
+"Tell the patient that staff is prepared to promote recovery.",
+"Encourage the patient to express feelings to family."
+],
+"r": "Giving information in a calm, simple manner will help the patient grasp the important facts. Introducing extraneous topics as described in the distracters will further scatter the patients attention."
+},
+{
+"ch": 15,
+"n": 10,
+"med": false,
+"q": "A patient is experiencing moderate anxiety. The nurse encourages the patient to talk about feelings and concerns. What is the rationale for this intervention?",
+"o": [
+"Concerns stated aloud become less overwhelming and help problem solving begin.",
+"Offering hope allays and defuses the patients anxiety.",
+"Anxiety is reduced by focusing on and validating what is occurring in the environment.",
+"Encouraging patients to explore alternatives increases the sense of control and lessens anxiety."
+],
+"r": "All principles listed are valid, but the only rationale directly related to the intervention of assisting the patient to talk about feelings and concerns is the one that states that concerns spoken aloud become less overwhelming and help problem solving begin."
+},
+{
+"ch": 15,
+"n": 11,
+"med": false,
+"q": "A nurse assesses a patient with a tentative diagnosis of generalized anxiety disorder. Which question would be most appropriate for the nurse to ask?",
+"o": [
+"Do you find it difficult to control your worrying?",
+"Have you been a victim of a crime or seen someone badly injured or killed?",
+"Do you feel especially uncomfortable in social situations involving people?",
+"Do you repeatedly do certain things over and over again?"
+],
+"r": "Patients with generalized anxiety disorder frequently engage in excessive worrying. They are less likely to engage in ritualistic behavior, fear social situations, or have been involved in a highly traumatic event."
+},
+{
+"ch": 15,
+"n": 12,
+"med": false,
+"q": "A patient in the emergency department shows disorganized behavior and incoherence after a friend suggested a homosexual encounter. In which room should the nurse place the patient?",
+"o": [
+"An interview room furnished with a desk and two chairs",
+"A small, empty storage room with no windows or furniture",
+"A room with an examining table, instrument cabinets, desk, and chair",
+"The nurses office, furnished with chairs, files, magazines, and bookcases"
+],
+"r": "Individuals experiencing severe to panic-level anxiety require a safe environment that is quiet, non-stimulating, structured, and simple. A room with a desk and two chairs provides simplicity, few objects with which the patient could cause self-harm, and a small floor space in which the patient can move about. A small, empty storage room without windows or furniture would feel like a jail cell. The nurses office or a room with an examining table and instrument cabinets may be over-stimulating and unsafe."
+},
+{
+"ch": 15,
+"n": 13,
+"med": false,
+"q": "A person has minor physical injuries after an auto accident. The person is unable to focus and says, I feel like something awful is going to happen. This person has nausea, dizziness, tachycardia, and hyperventilation. What is the persons level of anxiety?",
+"o": [
+"Severe",
+"Mild",
+"Moderate",
+"Panic"
+],
+"r": "The person whose anxiety is severe is unable to solve problems and may have a poor grasp of what is happening in the environment. Somatic symptoms such as those described are usually present. The individual with mild anxiety is only mildly uncomfortable and may even find his or her performance enhanced. The individual with moderate anxiety grasps less information about a situation and has some difficulty with problem solving. The individual in panic will demonstrate markedly disturbed behavior and may lose touch with reality."
+},
+{
+"ch": 15,
+"n": 14,
+"med": false,
+"q": "Two staff nurses applied for a charge nurse position. After the promotion was announced, the nurse who was not promoted said, The nurse manager had a headache the day I was interviewed. Which defense mechanism is evident?",
+"o": [
+"Projection",
+"Introjection",
+"Conversion",
+"Splitting"
+],
+"r": "Projection is the hallmark of blaming, scapegoating, prejudicial thinking, and stigmatizing others. Conversion involves the unconscious transformation of anxiety into a physical symptom. Introjection involves intense, unconscious identification with another person. Splitting is the inability to integrate the positive and negative qualities of oneself or others into a cohesive image."
+},
+{
+"ch": 15,
+"n": 15,
+"med": false,
+"q": "A patient tells a nurse, My new friend is the most perfect person one could imagine: kind, considerate, and good-looking. I can't find a single flaw. This patient is demonstrating:",
+"o": [
+"idealization.",
+"denial.",
+"projection.",
+"compensation."
+],
+"r": "Idealization is an unconscious process that occurs when the individual attributes exaggerated positive qualities to another. Denial is an unconscious process that would call for the nurse to ignore the existence of the situation. Projection operates unconsciously and would result in blaming behavior. Compensation would result in the nurse unconsciously attempting to make up for a perceived weakness by emphasizing a strong point."
+},
+{
+"ch": 15,
+"n": 16,
+"med": true,
+"q": "A patient experiences a sudden episode of severe anxiety. Of these medications in the patients medical record, which is most appropriate to give as a prn anxiolytic?",
+"o": [
+"lorazepam (Ativan)",
+"buspirone (BuSpar)",
+"amitriptyline (Elavil)",
+"desipramine (Norpramin)"
+],
+"r": "Lorazepam is a benzodiazepine used to treat anxiety. It may be given as a prn medication. Buspirone is long acting and is not useful as a prn drug. Amitriptyline and desipramine are tricyclic antidepressants and considered second- or third-line agents."
+},
+{
+"ch": 15,
+"n": 17,
+"med": false,
+"q": "Two staff nurses applied for promotion to nurse manager. The nurse not promoted initially had feelings of loss but then became supportive of the new manager by helping make the transition smooth and encouraging others. Which term best describes the nurses response?",
+"o": [
+"Altruism",
+"Suppression",
+"Intellectualization",
+"Reaction formation"
+],
+"r": "Altruism is the mechanism by which an individual deals with emotional conflict by meeting the needs of others and receiving gratification vicariously or from the responses of others. The nurses reaction is conscious rather than unconscious. There is no evidence of suppression. Intellectualization is a process in which events are analyzed based on remote, cold facts and without passion, rather than incorporating feeling and emotion into the processing. Reaction formation is when unacceptable feelings or behaviors are controlled and kept out of awareness by developing the opposite behavior or emotion."
+},
+{
+"ch": 15,
+"n": 18,
+"med": false,
+"q": "A person who feels unattractive repeatedly says, Although I'm not beautiful, I am smart. This is an example of:",
+"o": [
+"compensation.",
+"repression.",
+"devaluation.",
+"identification."
+],
+"r": "Compensation is an unconscious process that allows us to make up for deficits in one area by excelling in another area to raise self-esteem. Repression unconsciously puts an idea, event, or feeling out of awareness. Identification is an unconscious mechanism calling for imitation of mannerisms or behaviors of another. Devaluation occurs when the individual attributes negative qualities to self or others."
+},
+{
+"ch": 15,
+"n": 19,
+"med": false,
+"q": "A person speaking about a rival for a significant others affection says in an emotional, syrupy voice, What a lovely person. That's someone I simply adore. The individual is demonstrating:",
+"o": [
+"reaction formation.",
+"repression.",
+"projection.",
+"denial."
+],
+"r": "Reaction formation is an unconscious mechanism that keeps unacceptable feelings out of awareness by using the opposite behavior. Instead of expressing hatred for the other person, the individual gives praise. Denial operates unconsciously to allow an anxiety-producing idea, feeling, or situation to be ignored. Projection involves unconsciously disowning an unacceptable idea, feeling, or behavior by attributing it to another. Repression involves unconsciously placing an idea, feeling, or event out of awareness."
+},
+{
+"ch": 15,
+"n": 20,
+"med": false,
+"q": "An individual experiences sexual dysfunction and blames it on a partner by calling the person unattractive and unromantic. Which defense mechanism is evident?",
+"o": [
+"Rationalization",
+"Compensation",
+"Introjection",
+"Regression"
+],
+"r": "Rationalization involves unconsciously making excuses for ones behavior, inadequacies, or feelings. Regression involves the unconscious use of a behavior from an earlier stage of emotional development. Compensation involves making up for deficits in one area by excelling in another area. Introjection is an unconscious, intense identification with another person."
+},
+{
+"ch": 15,
+"n": 21,
+"med": false,
+"q": "A student says, Before taking a test, I feel very alert and a little restless. The nurse can correctly assess the students experience as:",
+"o": [
+"mild anxiety.",
+"culturally influenced.",
+"displacement.",
+"trait anxiety."
+],
+"r": "Mild anxiety is rarely obstructive to the task at hand. It may be helpful to the patient because it promotes study and increases awareness of the nuances of questions. The incorrect responses have different symptoms."
+},
+{
+"ch": 15,
+"n": 22,
+"med": false,
+"q": "A student says, Before taking a test, I feel very alert and a little restless. Which nursing intervention is most appropriate to assist the student?",
+"o": [
+"Explain that the symptoms result from mild anxiety and discuss the helpful aspects.",
+"Advise the student to discuss this experience with a health care provider.",
+"Encourage the student to begin antioxidant vitamin supplements.",
+"Listen attentively, using silence in a therapeutic way."
+],
+"r": "Teaching about symptoms of anxiety, their relation to precipitating stressors, and, in this case, the positive effects of anxiety will serve to reassure the patient. Advising the patient to discuss the experience with a health care provider implies that the patient has a serious problem. Listening without comment will do no harm but deprives the patient of health teaching. Antioxidant vitamin supplements are not useful in this scenario."
+},
+{
+"ch": 15,
+"n": 23,
+"med": false,
+"q": "A cruel and abusive person often uses rationalization to explain the behavior. Which comment demonstrates use of this defense mechanism?",
+"o": [
+"That person should not have provoked me.",
+"I don't know why I do mean things.",
+"I have always had poor impulse control.",
+"I'm really a coward who is afraid of being hurt."
+],
+"r": "Rationalization consists of justifying ones unacceptable behavior by developing explanations that satisfy the teller and attempt to satisfy the listener. The abuser is suggesting that the abuse is not his or her fault; it would not have occurred except for the provocation by the other person. The distracters indicate some measure of acceptance of responsibility for the behavior."
+},
+{
+"ch": 15,
+"n": 24,
+"med": false,
+"q": "A patient experiencing panic suddenly began running and shouting, I'm going to explode! Select the nurses best action.",
+"o": [
+"Tell the patient, Stop running and take a deep breath. I will help you.",
+"Ask, I'm not sure what you mean. Give me an example.",
+"Capture the patient in a basket-hold to increase feelings of control.",
+"Assemble several staff members and say, We will take you to seclusion to help you regain control."
+],
+"r": "Safety needs of the patient and other patients are a priority. Comments to the patient should be simple, neutral, and give direction to help the patient regain control. Running after the patient will increase the patients anxiety. More than one staff member may be needed to provide physical limits, but using seclusion or physically restraining the patient prematurely is unjustified. Asking the patient to give an example would be futile; a patient in panic processes information poorly."
+},
+{
+"ch": 15,
+"n": 25,
+"med": false,
+"q": "A person who has been unable to leave home for more than a week because of severe anxiety says, I know it does not make sense, but I just can't bring myself to leave my apartment alone. Which nursing intervention is appropriate?",
+"o": [
+"Teach the person to use positive self-talk techniques.",
+"Help the person use online video calls to provide interaction with others.",
+"Advise the person to accept the situation and use a companion.",
+"Ask the person to explain why the fear is so disabling."
+],
+"r": "Positive self-talk, a form of cognitive restructuring, replaces negative thoughts such as I can't leave my apartment with positive thoughts such as I can control my anxiety. This technique helps the patient gain mastery over the symptoms. The other options reinforce the sick role."
+},
+{
+"ch": 15,
+"n": 26,
+"med": false,
+"q": "A nurse assesses an individual who commonly experiences anxiety. Which comment by this person indicates the possibility of obsessive-compulsive disorder?",
+"o": [
+"I check where my car keys are eight times.",
+"My legs often feel weak and spastic.",
+"I'm embarrassed to go out in public.",
+"I keep reliving a car accident."
+],
+"r": "Recurring doubt (obsessive thinking) and the need to check (compulsive behavior) suggest obsessive\u0002compulsive disorder. The repetitive behavior is designed to decrease anxiety but fails and must be repeated. Stating My legs feel weak most of the time is more in keeping with a somatic disorder. Being embarrassed to go out in public is associated with an avoidant personality disorder. Reliving a traumatic event is associated with posttraumatic stress disorder."
+},
+{
+"ch": 15,
+"n": 27,
+"med": true,
+"q": "When alprazolam (Xanax) is prescribed for a patient who experiences acute anxiety, health teaching should include instructions to:",
+"o": [
+"avoid alcoholic beverages.",
+"report drowsiness.",
+"eat a tyramine-free diet.",
+"adjust dose and frequency based on anxiety level."
+],
+"r": "Drinking alcohol or taking other anxiolytics along with the prescribed benzodiazepine should be avoided because depressant effects of both drugs will be potentiated. Tyramine-free diets are necessary only with monoamine oxidase inhibitors (MAOIs). Drowsiness is an expected effect and needs to be reported only if it is excessive. Patients should be taught not to deviate from the prescribed dose and schedule for administration."
+},
+{
+"ch": 15,
+"n": 28,
+"med": false,
+"q": "The nurse assesses a patient who complains of loneliness and episodes of anxiety. Which statement by the patient is mostly likely if this patient also has agoraphobia?",
+"o": [
+"Being afraid to go out seems ridiculous, but I can't go out the door.",
+"I'm sure I will get over not wanting to leave home soon. It takes time.",
+"My family says they like it now that I stay home most of the time.",
+"When I have a good incentive to go out, I can do it."
+],
+"r": "Individuals who are agoraphobic generally acknowledge that the behavior is not constructive and that they do not really like it. The symptom is ego dystonic. However, patients will state they are unable to change the behavior. Agoraphobics are not optimistic about change. Most families are dissatisfied when family members refuse to leave the house."
+},
+{
+"ch": 15,
+"n": 29,
+"med": false,
+"q": "A patient diagnosed with obsessive-compulsive disorder has this nursing diagnosis: Anxiety related to as evidenced by inability to control compulsive cleaning. Which phrase correctly completes the etiological portion of the diagnosis?",
+"o": [
+"persistent thoughts about bacteria, germs, and dirt",
+"feelings of responsibility for the health of family members",
+"approval-seeking behavior from friends and family",
+"needs to avoid interactions with others"
+],
+"r": "Many compulsive rituals accompany obsessive thoughts. The patient uses these rituals for anxiety relief. Unfortunately, the anxiety relief is short lived, and the patient must frequently repeat the ritual. The other options are unrelated to the dynamics of compulsive behavior."
+},
+{
+"ch": 15,
+"n": 30,
+"med": false,
+"q": "A patient performs ritualistic hand washing. Which action should the nurse implement to help the patient develop more effective coping?",
+"o": [
+"Encourage the patient to participate in social activities.",
+"Allow the patient to set a hand-washing schedule.",
+"Encourage the patient to discuss hand-washing routines.",
+"Focus on the patients symptoms rather than on the patient."
+],
+"r": "Because obsessive-compulsive patients become overly involved in the rituals, promotion of involvement with other people and activities is necessary to improve coping. Daily activities prevent constant focus on anxiety and symptoms. The other interventions focus on the compulsive symptom."
+},
+{
+"ch": 15,
+"n": 31,
+"med": false,
+"q": "For a patient experiencing panic, which nursing intervention should be implemented first?",
+"o": [
+"Provide calm, brief, directive communication.",
+"Teach relaxation techniques.",
+"Administer an anxiolytic medication.",
+"Prepare to implement physical controls."
+],
+"r": "Calm, brief, directive verbal interaction can help the patient gain control of overwhelming feelings and impulses related to anxiety. Patients experiencing panic-level anxiety are unable to focus on reality; thus, learning relaxation techniques is virtually impossible. Administering anxiolytic medication should be considered if providing calm, brief, directive communication is ineffective. Although the patient is disorganized, violence may not be imminent, ruling out the intervention of preparing for physical control until other less-restrictive measures are proven ineffective."
+},
+{
+"ch": 17,
+"n": 1,
+"med": false,
+"q": "Which assessment data would help the health care team distinguish symptoms of conversion (functional neurological) disorder from symptoms of illness anxiety disorder (hypochondriasis)?",
+"o": [
+"Patients style of presentation",
+"Voluntary control of symptoms",
+"Results of diagnostic testing",
+"The role of secondary gains"
+],
+"r": "Patients with illness anxiety disorder (hypochondriasis) tend to be more anxious about their concerns and display more obsessive attention to detail, whereas the patient with conversion (functional neurological) disorder often exhibits less concern with the symptom they are presenting than would be expected. Neither disorder involves voluntary control of the symptoms. Results of diagnostic testing for both would be negative (i.e., no physiological basis would be found for the symptoms). Secondary gains can occur in both disorders but are not necessary to either."
+},
+{
+"ch": 17,
+"n": 2,
+"med": true,
+"q": "Which prescription medication would the nurse expect to be prescribed for a patient diagnosed with a somatic symptom disorder?",
+"o": [
+"Antidepressant medications to treat underlying depression",
+"Narcotic analgesics for use as needed for acute pain",
+"Long-term use of benzodiazepines to support coping with anxiety",
+"Conventional antipsychotic medications to correct cognitive distortions"
+],
+"r": "Various types of antidepressants may be helpful in somatic disorders directly by reducing depressive symptoms and hence somatic responses, but also indirectly by affecting nerve circuits that affect not only mood, but fatigue, pain perception, GI distress, and other somatic symptoms. Patients may benefit from short\u0002term use of anti-anxiety medication (benzodiazepines) but require careful monitoring because of risks of dependence. Conventional antipsychotic medications would not be used, although selected atypical antipsychotics may be useful. Narcotic analgesics are not indicated."
+},
+{
+"ch": 17,
+"n": 3,
+"med": false,
+"q": "A medical-surgical nurse works with a patient diagnosed with a somatic symptom disorder. Care planning is facilitated by understanding that the patient will probably:",
+"o": [
+"be resistant to accepting psychiatric help.",
+"readily seek psychiatric counseling.",
+"attend psychotherapy sessions without encouragement.",
+"be eager to discover the true reasons for physical symptoms."
+],
+"r": "Patients with somatic symptom disorders go from one health care provider to another trying to establish a physical cause for their symptoms. When a psychological basis is suggested and a referral for counseling offered, these patients reject both."
+},
+{
+"ch": 17,
+"n": 4,
+"med": false,
+"q": "A patient has blindness related to conversion (functional neurological) disorder but is unconcerned about this problem. Which understanding should guide the nurses planning for this patient?",
+"o": [
+"The patients anxiety is relieved through the physical symptom.",
+"The patient is suppressing accurate feelings regarding the problem.",
+"The patients optic nerve transmission has been impaired.",
+"The patient will not disclose genuine fears."
+],
+"r": "Psychoanalytical theory suggests conversion reduces anxiety through production of a physical symptom symbolically linked to an underlying conflict. Conversion, not suppression, is the operative defense mechanism in this disorder. While some MRI studies suggest that patients with conversion disorder have an abnormal pattern of cerebral activation, there is no actual alternation of nerve transmission. The other distracters oversimplify the dynamics, suggesting that only dependency needs are of concern, or suggest conscious motivation (conversion operates unconsciously)."
+},
+{
+"ch": 17,
+"n": 5,
+"med": false,
+"q": "A patient has blindness related to conversion (functional neurological) disorder. To help the patient eat, the nurse should:",
+"o": [
+"expect the patient to feed self after explaining arrangement of the food on the tray.",
+"establish a buddy system with other patients who can feed the patient at each meal.",
+"direct the patient to locate items on the tray independently and feed self.",
+"address needs of other patients in the dining room, then feed this patient."
+],
+"r": "The patient is expected to maintain some level of independence by feeding self, while the nurse is supportive in a matter-of-fact way. The distracters support dependency or offer little support."
+},
+{
+"ch": 17,
+"n": 6,
+"med": false,
+"q": "A patient with blindness related to conversion (functional neurological) disorder says, All the doctors and nurses in the hospital stop by often to check on me. Too bad people outside the hospital don't find me as interesting. Which nursing diagnosis is most relevant?",
+"o": [
+"Chronic low self-esteem",
+"Social isolation",
+"Interrupted family processes",
+"Ineffective health maintenance"
+],
+"r": "The patient mentions that the symptoms make people more interested. This indicates that the patient feels uninteresting and unpopular without the symptoms, thus supporting the nursing diagnosis of chronic low self\u0002esteem. Defining characteristics for the other nursing diagnoses are not present in the scenario."
+},
+{
+"ch": 17,
+"n": 7,
+"med": false,
+"q": "To assist patients diagnosed with somatic symptom disorders, nursing interventions of high priority:",
+"o": [
+"shift focus from somatic symptoms to feelings.",
+"explain the pathophysiology of symptoms.",
+"help these patients suppress feelings of anger.",
+"investigate each physical symptom as it is reported."
+],
+"r": "Shifting the focus from somatic symptoms to feelings or to neutral topics conveys interest in the patient as a person rather than as a condition. The need to gain attention with the use of symptoms is reduced over the long term. A desired outcome would be that the patient would express feelings, including anger if it is present. Once physical symptoms are investigated, they do not need to be reinvestigated each time the patient reports them."
+},
+{
+"ch": 17,
+"n": 8,
+"med": false,
+"q": "A patient with fears of serious heart disease was referred to the mental health center by a cardiologist. Extensive diagnostic evaluation showed no physical illness. The patient says, My chest is tight, and my heart misses beats. I'm often absent from work. I don't go out much because I need to rest. Which health problem is most likely?",
+"o": [
+"Illness anxiety disorder (hypochondriasis)",
+"Dysthymic disorder",
+"Somatic symptom disorder",
+"Antisocial personality disorder"
+],
+"r": "Illness anxiety disorder (hypochondriasis) involves preoccupation with fears of having a serious disease even when evidence to the contrary is available. The preoccupation causes impairment in social or occupational functioning. Somatic symptom disorder involves fewer symptoms. Dysthymic disorder is a disorder of lowered mood. Antisocial disorder applies to a personality disorder in which the individual has little regard for the rights of others."
+},
+{
+"ch": 17,
+"n": 9,
+"med": false,
+"q": "A nurse assessing a patient diagnosed with a somatic symptom disorder is most likely to note that the patient:",
+"o": [
+"has altered comfort and activity needs.",
+"sees a relationship between symptoms and interpersonal conflicts.",
+"has little difficulty communicating emotional needs to others.",
+"rarely derives personal benefit from the symptoms."
+],
+"r": "The patient frequently has altered comfort and activity needs associated with the symptoms displayed (fatigue, insomnia, weakness, tension, pain, etc.). In addition, hygiene, safety, and security needs may also be compromised. The patient is rarely able to see a relation between symptoms and events in his or her life, which is readily discernible to health professionals. Patients with somatic symptom disorders often derive secondary gain from their symptoms and/or have considerable difficulty identifying feelings and conveying emotional needs to others."
+},
+{
+"ch": 17,
+"n": 10,
+"med": false,
+"q": "To plan effective care for patients diagnosed with somatic symptom disorders, the nurse should understand that patients have difficulty giving up the symptoms because the symptoms:",
+"o": [
+"provide relief from health anxiety.",
+"are generally chronic.",
+"have a physiological basis.",
+"can be voluntarily controlled."
+],
+"r": "At the unconscious level, the patients primary gain from the symptoms is anxiety relief. Considering that the symptoms actually make the patient more psychologically comfortable and may also provide secondary gain, patients frequently fiercely cling to the symptoms. The symptoms tend to be chronic, but that does not explain why they are difficult to give up. The symptoms are not under voluntary control or physiologically based."
+},
+{
+"ch": 17,
+"n": 11,
+"med": false,
+"q": "A patient with a somatic symptom disorder has the nursing diagnosis Interrupted family processes related to patients disabling symptoms as evidenced by spouse and children assuming roles and tasks that previously belonged to patient. An appropriate outcome is that the patient will:",
+"o": [
+"demonstrate performance of former roles and tasks.",
+"assume roles and functions of other family members.",
+"focus energy on problems occurring in the family.",
+"rely on family members to meet personal needs."
+],
+"r": "The patient with a somatic symptom disorder has typically adopted a sick role in the family, characterized by dependence. Increasing independence and resumption of former roles are necessary to change this pattern. The distracters are inappropriate outcomes."
+},
+{
+"ch": 17,
+"n": 12,
+"med": false,
+"q": "Which comment by a patient who recently experienced a myocardial infarction indicates use of maladaptive, ineffective coping strategies?",
+"o": [
+"My employer should have paid for a health club membership for me.",
+"My family will see me through this. It won't be easy, but I will never be alone.",
+"My heart attack was no fun, but it showed me up the importance of a good diet and more exercise.",
+"I accept that I have heart disease. Now I need to decide if I will be able to continue my work daily."
+],
+"r": "Blaming someone else and rationalizing ones failure to exercise are not adaptive coping strategies. Seeing the glass as half full, using social and religious supports, and confronting ones situation are seen as more effective strategies. The distracters demonstrate effective coping associated with a serious medical condition."
+},
+{
+"ch": 17,
+"n": 13,
+"med": false,
+"q": "A nurse assesses a patient diagnosed with conversion (functional neurological) disorder. Which comment is most likely from this patient?",
+"o": [
+"Since my father died, I've been short of breath and had sharp pains that go down my left arm, but I think its just indigestion.",
+"I have daily problems with nausea, vomiting, and diarrhea. My skin is very dry, and I think I'm getting seriously dehydrated.",
+"Sexual intercourse is painful. I pretend as if I'm asleep so I can avoid it. I think its starting to cause problems with my marriage.",
+"I get choked very easily and have trouble swallowing when I eat. I think I might have cancer of the esophagus."
+],
+"r": "Patients with conversion (functional neurological) disorder demonstrate a lack of concern regarding the seriousness of symptoms. This lack of concern is termed la belle indifférence. There is also a specific, identifiable cause for the development of the symptoms; in this instance, the death of a parent would precipitate stress. The distracters relate to sexual dysfunction and illness anxiety disorder.",
+"note": "Course note: the keyed answer shows la belle indifférence (minimizing serious symptoms after a stressor). In real practice, chest pain radiating down the left arm always gets a cardiac workup first."
+},
+{
+"ch": 17,
+"n": 14,
+"med": false,
+"q": "A patient who experienced a myocardial infarction was transferred from critical care to a step-down unit. The patient then used the call bell every 15 minutes for minor requests and complaints. Staff nurses reported feeling inadequate and unable to satisfy the patients needs. When the nurse manager intervenes directly with this patient, which comment is most therapeutic?",
+"o": [
+"I'm wondering if you are feeling anxious about your illness and being left alone.",
+"The staff are concerned that you are not satisfied with the care you are receiving.",
+"Let's talk about why you use your call light so frequently. It is a problem.",
+"You frustrate the staff by calling them so often. Why are you doing that?"
+],
+"r": "This patient is experiencing anxiety associated with a serious medical condition. Verbalization is an effective outlet for anxiety. I'm wondering if you are anxious focuses on the emotions underlying the behavior rather than the behavior itself. This opening conveys the nurses willingness to listen to the patients feelings and an understanding of the commonly seen concern about not having a nurse always nearby as in the intensive care unit. The other options focus on the behavior or its impact on nursing and do not help the patient with her emotional needs."
+},
+{
+"ch": 17,
+"n": 15,
+"med": false,
+"q": "A patient reports fears of having cervical cancer and says to the nurse, I've had Pap smears by six different doctors. The results were normal, but I'm sure that's because of errors in the laboratory. Which disorder would the nurse suspect?",
+"o": [
+"Illness anxiety disorder (hypochondriasis)",
+"Conversion (functional neurological) disorder",
+"Somatic symptom disorder",
+"Factitious disorder"
+],
+"r": "Patients with illness anxiety disorder have fears of serious medical problems, such as cancer or heart disease. These fears persist despite medical evaluations and interfere with daily functioning. There are no complaints of pain. There is no evidence of factitious or conversion disorder."
+},
+{
+"ch": 17,
+"n": 16,
+"med": false,
+"q": "A patient diagnosed with a somatic symptom disorder says, My pain is from an undiagnosed injury. I can't take care of myself. I need pain medicine six or seven times a day. I feel like a baby because my family has to help me so much. It is important for the nurse to assess:",
+"o": [
+"secondary gains.",
+"mood.",
+"cognitive style.",
+"identity and memory."
+],
+"r": "Secondary gains should be assessed. The patients dependency needs may be met through care from the family. When secondary gains are prominent, the patient is more resistant to giving up the symptom. The scenario does not allude to a problem of mood. Cognitive style and identity and memory assessment are of lesser concern because the patients diagnosis has been established."
+},
+{
+"ch": 17,
+"n": 17,
+"med": false,
+"q": "What is an essential difference between somatic symptom disorders and factitious disorders?",
+"o": [
+"Factitious disorders are under voluntary control, whereas somatic symptom disorders involve expression of psychological stress through somatization.",
+"Somatic symptom disorders are under voluntary control, whereas factitious disorders are unconscious and automatic.",
+"Factitious disorders are precipitated by psychological factors, whereas somatic symptom disorders are related to stress.",
+"Factitious disorders are individually determined and related to childhood sexual abuse, whereas somatic symptom disorders are culture bound."
+],
+"r": "The key is the only fully accurate statement. Somatic symptom disorders involve expression of stress through bodily symptoms and are not under voluntary control or culture bound. Factitious disorders are under voluntary control."
+},
+{
+"ch": 17,
+"n": 18,
+"med": false,
+"q": "A patient says, I know I have a brain tumor despite the results of the MRI. The radiologist is wrong. People who have brain tumors vomit, and yesterday I vomited all day. Which response by the nurse fosters cognitive reframing?",
+"o": [
+"Let's see if there are any other possible explanations for your vomiting.",
+"You do not have a brain tumor. The more you talk about it, the more it reinforces your belief.",
+"You seem so worried. Let's talk about how you're feeling.",
+"We need to talk about something else."
+],
+"r": "Questioning the evidence is a cognitive reframing technique. Identifying causes other than the feared disease can be helpful in changing distorted perceptions. Distraction by changing the subject will not be effective."
+},
+{
+"ch": 17,
+"n": 19,
+"med": false,
+"q": "Which treatment modality should a nurse recommend to help a patient diagnosed with a somatic symptom disorder to cope more effectively?",
+"o": [
+"Relaxation techniques",
+"Flooding",
+"Response prevention",
+"Systematic desensitization"
+],
+"r": "Somatic symptom disorders are commonly associated with complicated reactions to stress. These reactions are accompanied by muscle tension and pain. Relaxation can diminish the patients perceptions of pain and reduce muscle tension. The distracters are modalities useful in treating selected anxiety disorders."
+},
+{
+"ch": 17,
+"n": 20,
+"med": false,
+"q": "Which assessment question could a nurse ask to help identify secondary gains associated with a somatic symptom disorder?",
+"o": [
+"What are you unable to do now but were previously able to do?",
+"How many doctors have you seen in the last year?",
+"Who do you talk to when you're upset?",
+"Did you experience abuse as a child?"
+],
+"r": "Secondary gains should be assessed. Secondary gains reinforce maladaptive behavior. The patients dependency needs may be evident through losses of abilities. When secondary gains are prominent, the patient is more resistant to giving up the symptom. There may be a history of abuse or doctor shopping, but the question does not assess the associated gains."
+},
+{
+"ch": 17,
+"n": 21,
+"med": false,
+"q": "A patient diagnosed with a somatic symptom disorder has been in treatment for 4 weeks. The patient says, Although I'm still having pain, I notice it less and am able to perform more activities. The nurse should evaluate the treatment plan as:",
+"o": [
+"partially successful.",
+"marginally successful.",
+"minimally successful.",
+"totally achieved."
+],
+"r": "Decreased preoccupation with symptoms and increased ability to perform activities of daily living suggest partial success of the treatment plan. Total success is rare because of patient resistance."
+}
+];
+
+(function(){
+  const CH = {12:{n:"Ch 12 Schizophrenia",c:"var(--c12)"},13:{n:"Ch 13 Bipolar",c:"var(--c13)"},14:{n:"Ch 14 Depression",c:"var(--c14)"},15:{n:"Ch 15 Anxiety & OCD",c:"var(--c15)"},17:{n:"Ch 17 Somatic",c:"var(--c17)"}};
+  const $ = id => document.getElementById(id);
+  const shuffle = a => { a = a.slice(); for (let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; };
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
+  QUESTIONS.forEach((q,i)=>q.id=i);
+  const noteHTML = q => q.note ? `<div class="rat" style="background:#FFF8E1;border-color:#F9A825;margin-top:8px">${esc(q.note)}</div>` : "";
+  $("totalN").textContent = QUESTIONS.length;
+
+  let chapters = new Set([12,13,14,15,17]), mode = "practice";
+  let S = null; // {items:[{q, order:[idx...], pick:null, flag:false}], i, mode, done}
+
+  // ----- start screen -----
+  const chipsEl = $("chapterChips");
+  Object.keys(CH).forEach(k=>{
+    const b=document.createElement("button"); b.className="chip on"; b.dataset.ch=k;
+    b.innerHTML=`<span class="dot" style="background:${CH[k].c}"></span>${CH[k].n}`;
+    b.onclick=()=>{ const n=+k; chapters.has(n)?chapters.delete(n):chapters.add(n); b.classList.toggle("on"); updateCount(); };
+    chipsEl.appendChild(b);
+  });
+  document.querySelectorAll(".opt-mode").forEach(b=>b.onclick=()=>{
+    document.querySelectorAll(".opt-mode").forEach(x=>x.classList.remove("on")); b.classList.add("on"); mode=b.dataset.mode;
+  });
+  $("optMed").onchange=updateCount;
+  function pool(){ return QUESTIONS.filter(q=>chapters.has(q.ch) && (!$("optMed").checked || q.med)); }
+  function updateCount(){ const n=pool().length; $("countNote").textContent = n+" question"+(n===1?"":"s")+" selected"; $("startBtn").disabled = n===0; }
+  updateCount();
+
+  $("startBtn").onclick=()=>begin(pool());
+  function begin(list){
+    if($("optShuffle").checked) list = shuffle(list);
+    S = { items:list.map(q=>({q, order:shuffle([0,1,2,3]), pick:null, flag:false})), i:0, mode, done:false };
+    show("quiz"); render(); window.scrollTo(0,0);
+  }
+  function show(id){ ["start","quiz","results"].forEach(x=>$(x).classList.toggle("hidden",x!==id)); $("homeBtn").classList.toggle("hidden", id==="start"); }
+  $("homeBtn").onclick=()=>{ if(S && !S.done && S.items.some(it=>it.pick!==null)){ ask("Leave this exam?","Your answers on this attempt will be lost.","Leave",()=>show("start")); } else show("start"); };
+
+  // ----- quiz -----
+  function render(){
+    const it=S.items[S.i], q=it.q, n=S.items.length;
+    $("qCounter").textContent=`Question ${S.i+1} of ${n}`;
+    const answered=S.items.filter(x=>x.pick!==null).length;
+    $("answeredNote").textContent=`${answered} answered`;
+    $("prog").style.width=(answered/n*100)+"%";
+    const tag=$("qTag"); tag.textContent=CH[q.ch].n; tag.style.background=CH[q.ch].c;
+    $("qMed").classList.toggle("hidden",!q.med); $("qSrc").textContent="#"+q.ch+"."+q.n;
+    $("flagBtn").classList.toggle("on",it.flag); $("flagBtn").textContent= it.flag?"⚑ Flagged":"⚑ Flag";
+    $("qText").textContent=q.q;
+    const reveal = S.mode==="practice" && it.pick!==null;
+    const box=$("answers"); box.innerHTML="";
+    it.order.forEach((oi,pos)=>{
+      const b=document.createElement("button"); b.className="ans";
+      b.innerHTML=`<span class="L">${"ABCD"[pos]}</span><span>${esc(q.o[oi])}</span>`;
+      if(reveal){ b.disabled=true; if(oi===0) b.classList.add("right"); else if(oi===it.pick) b.classList.add("wrong"); }
+      else if(it.pick===oi) b.classList.add("sel");
+      b.onclick=()=>{ it.pick=oi; render(); };
+      box.appendChild(b);
+    });
+    const r=$("rationale");
+    if(reveal){ const ok=it.pick===0; r.innerHTML=`<div class="rat ${ok?"ok":"no"}"><b>${ok?"Correct.":"Not quite — the answer is "+"ABCD"[it.order.indexOf(0)]+"."}</b>${esc(q.r)}</div>`+noteHTML(q); }
+    else r.innerHTML="";
+    $("prevBtn").disabled=S.i===0;
+    $("nextBtn").textContent= S.i===n-1 ? "Finish" : "Next →";
+    $("submitBtn").textContent = S.mode==="practice" ? "Finish & see results" : "Submit exam";
+    drawGrid();
+  }
+  function drawGrid(){
+    const g=$("grid"); g.innerHTML="";
+    S.items.forEach((it,k)=>{
+      const b=document.createElement("button"); b.className="gq"; b.textContent=k+1;
+      if(it.pick!==null){ if(S.mode==="practice") b.classList.add(it.pick===0?"ok":"no"); else b.classList.add("ans-d"); }
+      if(it.flag) b.classList.add("fl"); if(k===S.i) b.classList.add("cur");
+      b.onclick=()=>{ S.i=k; render(); };
+      g.appendChild(b);
+    });
+  }
+  $("prevBtn").onclick=()=>{ if(S.i>0){S.i--;render();} };
+  $("nextBtn").onclick=()=>{ if(S.i<S.items.length-1){S.i++;render();window.scrollTo({top:0,behavior:"smooth"});} else trySubmit(); };
+  $("flagBtn").onclick=()=>{ const it=S.items[S.i]; it.flag=!it.flag; render(); };
+  $("submitBtn").onclick=trySubmit;
+  document.addEventListener("keydown",e=>{
+    if($("quiz").classList.contains("hidden")||$("modal").classList.contains("show")) return;
+    const k=e.key.toUpperCase();
+    if("ABCD".includes(k)&&k.length===1){ const it=S.items[S.i]; if(S.mode==="practice"&&it.pick!==null) return; it.pick=it.order["ABCD".indexOf(k)]; render(); }
+    else if(e.key==="ArrowRight") $("nextBtn").click(); else if(e.key==="ArrowLeft") $("prevBtn").click();
+  });
+  function trySubmit(){
+    const un=S.items.filter(x=>x.pick===null).length;
+    const msg = un ? `You have ${un} unanswered question${un>1?"s":""}. Unanswered questions count as wrong.` : "You've answered every question.";
+    ask(S.mode==="practice"?"Finish practice?":"Submit exam?", msg, "Submit", finish);
+  }
+  function ask(t,m,ok,fn){ $("mTitle").textContent=t; $("mText").textContent=m; $("mOk").textContent=ok; $("modal").classList.add("show");
+    $("mOk").onclick=()=>{ $("modal").classList.remove("show"); fn(); }; }
+  $("mCancel").onclick=()=>$("modal").classList.remove("show");
+
+  // ----- results -----
+  let reviewFilter="missed";
+  function finish(){
+    S.done=true;
+    const n=S.items.length, right=S.items.filter(x=>x.pick===0).length, pct=Math.round(right/n*100);
+    $("scorePct").textContent=pct+"%";
+    $("scoreLine").textContent=`${right} of ${n} correct`;
+    $("passNote").textContent = pct>=80 ? "Solid. Review the misses below so they stick." : pct>=70 ? "Close. Focus on the chapters with the lowest bars." : "Go back to the study guide for the weakest chapter, then retake the misses.";
+    $("passNote").style.color = pct>=80 ? "var(--green)" : pct>=70 ? "#8a5a00" : "var(--red)";
+    const byC=$("byChapter"); byC.innerHTML="";
+    Object.keys(CH).forEach(k=>{
+      const its=S.items.filter(x=>x.q.ch==k); if(!its.length) return;
+      const r=its.filter(x=>x.pick===0).length, p=Math.round(r/its.length*100);
+      byC.insertAdjacentHTML("beforeend",`<div class="bar-row"><span>${CH[k].n}</span><div class="bar"><i style="width:${p}%;background:${CH[k].c}"></i></div><span style="text-align:right">${r}/${its.length}</span></div>`);
+    });
+    const meds=S.items.filter(x=>x.q.med), mr=meds.filter(x=>x.pick===0).length;
+    $("byMed").innerHTML = meds.length ? `<div class="bar-row"><span>Medications</span><div class="bar"><i style="width:${Math.round(mr/meds.length*100)}%;background:var(--med)"></i></div><span style="text-align:right">${mr}/${meds.length}</span></div>` : `<div class="sub">No medication questions in this set.</div>`;
+    $("retryMissed").disabled = right===n;
+    reviewFilter = right===n ? "all" : "missed";
+    document.querySelectorAll("#reviewFilters .chip").forEach(c=>c.classList.toggle("on",c.dataset.f===reviewFilter));
+    drawReview(); show("results"); window.scrollTo(0,0);
+  }
+  document.querySelectorAll("#reviewFilters .chip").forEach(c=>c.onclick=()=>{
+    reviewFilter=c.dataset.f; document.querySelectorAll("#reviewFilters .chip").forEach(x=>x.classList.toggle("on",x===c)); drawReview(); });
+  function drawReview(){
+    const list=$("reviewList"); list.innerHTML="";
+    const its=S.items.map((it,k)=>({it,k})).filter(({it})=> reviewFilter==="all" || (reviewFilter==="missed"&&it.pick!==0) || (reviewFilter==="flagged"&&it.flag));
+    if(!its.length){ list.innerHTML=`<div class="sub" style="margin:10px 0 0">Nothing here.</div>`; return; }
+    its.forEach(({it,k})=>{
+      const q=it.q, ok=it.pick===0;
+      const yours = it.pick===null ? "<i>No answer</i>" : esc(q.o[it.pick]);
+      list.insertAdjacentHTML("beforeend",`<div class="review-item">
+        <div class="qmeta"><span class="tag" style="background:${CH[q.ch].c}">${CH[q.ch].n}</span>${q.med?'<span class="tag med">MED</span>':''}<span>Q${k+1} · #${q.ch}.${q.n}</span>${it.flag?'<span style="color:#8a5a00">⚑ flagged</span>':''}</div>
+        <div style="font-weight:600;margin-bottom:8px">${esc(q.q)}</div>
+        ${ok?"":`<div class="ra" style="color:var(--red)">✗ Your answer: ${yours}</div>`}
+        <div class="ra" style="color:var(--green)">✓ Correct: ${esc(q.o[0])}</div>
+        <div class="rat ${ok?"ok":"no"}" style="margin-top:8px">${esc(q.r)}</div>${noteHTML(q)}</div>`);
+    });
+  }
+  $("retryMissed").onclick=()=>{ const missed=S.items.filter(x=>x.pick!==0).map(x=>x.q); mode=S.mode; begin(missed); };
+  $("newExam").onclick=()=>show("start");
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Four-Rhythm Drill</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: arcade-style drill console — one big strip, four answer pads, live scoreboard rail */
+:root{
+  --bg:#f6f4f5; --surface:#ffffff; --fg:#1d191b; --muted:#665c60; --line:#e2d9db;
+  --paper:#fff6f5; --grid-minor:#f3c9c9; --grid-major:#e48f92; --trace:#1b1416;
+  --accent:#9e2236; --accent-ink:#fff; --ok:#1d7349; --ok-bg:#e3f3e9; --bad:#b02a20; --bad-bg:#fbe6e4; --hint:#2a56b8;
+  --f-display:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --f-body:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0e1211; --surface:#161c1a; --fg:#e6eeeb; --muted:#94a49d; --line:#27312d;
+  --paper:#050807; --grid-minor:#0f2a20; --grid-major:#1d4d3a; --trace:#4dff9a;
+  --accent:#ff7085; --accent-ink:#22040a; --ok:#62dfa1; --ok-bg:#11291e; --bad:#ff8b80; --bad-bg:#2f1513; --hint:#86b2ff; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1211; --surface:#161c1a; --fg:#e6eeeb; --muted:#94a49d; --line:#27312d;
+  --paper:#050807; --grid-minor:#0f2a20; --grid-major:#1d4d3a; --trace:#4dff9a;
+  --accent:#ff7085; --accent-ink:#22040a; --ok:#62dfa1; --ok-bg:#11291e; --bad:#ff8b80; --bad-bg:#2f1513; --hint:#86b2ff; color-scheme:dark}
+[hidden]{display:none!important}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--fg);font:16px/1.5 var(--f-body)}
+.wrap{max-width:860px;margin:0 auto;padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:16px}
+h1{font:600 1.9rem/1.15 var(--f-display);margin:0}
+h2{font:600 1.15rem/1.3 var(--f-display);margin:0}
+.eyebrow{font:600 .74rem/1.2 var(--f-body);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+p{margin:0;max-width:68ch}
+.muted{color:var(--muted)}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+.tab{font:600 .95rem var(--f-body);background:none;border:0;border-bottom:3px solid transparent;color:var(--muted);padding:10px 12px;cursor:pointer}
+.tab[aria-selected="true"]{color:var(--fg);border-color:var(--accent)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;gap:14px;min-width:0}
+.board{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.stat{display:grid;gap:2px}
+.stat b{font:600 1.5rem/1 var(--f-mono);font-variant-numeric:tabular-nums}
+.stat span{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.stat.hot b{color:var(--accent)}
+.strip{overflow-x:auto;border:1px solid var(--grid-major);border-radius:4px;background:var(--paper)}
+.strip svg{display:block;width:100%;height:auto}
+.trace{fill:none;stroke:var(--trace);stroke-width:1.8;stroke-linejoin:round}
+.tick{stroke:var(--fg);stroke-width:1.5}
+.cap{font:500 .78rem var(--f-mono);color:var(--muted)}
+.scen{font-size:1.02rem;border-left:3px solid var(--hint);padding-left:12px}
+.pads{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.pads.five{grid-template-columns:1fr}
+.pad{font:600 1rem/1.25 var(--f-body);text-align:left;padding:14px 16px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);cursor:pointer;display:flex;gap:10px;align-items:center;min-height:56px}
+.pad kbd{font:700 .78rem var(--f-mono);color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:1px 6px;background:var(--surface)}
+.pad:hover{border-color:var(--hint)}
+.pad:focus-visible,.tab:focus-visible,.btn:focus-visible{outline:2px solid var(--hint);outline-offset:2px}
+.pad.ok{background:var(--ok-bg);border-color:var(--ok)}
+.pad.bad{background:var(--bad-bg);border-color:var(--bad)}
+.pad:disabled{cursor:default}
+.fb{display:grid;gap:8px;border-top:1px solid var(--line);padding-top:12px}
+.verdict{font:700 1.05rem var(--f-body)} .verdict.ok{color:var(--ok)} .verdict.bad{color:var(--bad)}
+.cue{font:600 .95rem var(--f-body)}
+.src{font:500 .78rem var(--f-mono);color:var(--muted)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.btn{font:600 .95rem var(--f-body);border-radius:8px;padding:10px 16px;cursor:pointer;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:var(--surface);color:var(--fg);border-color:var(--line)}
+table.acc{border-collapse:collapse;width:100%;font-size:.88rem}
+table.acc td{padding:5px 6px;border-bottom:1px solid var(--line)}
+table.acc td:nth-child(n+2){font-family:var(--f-mono);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.cards{display:grid;gap:14px}
+.rcard{display:grid;gap:8px}
+.rcard h3{margin:0;font:600 1.05rem var(--f-display)}
+.rcard ul{margin:0;padding-left:1.2em;display:grid;gap:3px;font-size:.94rem}
+.klim{font:600 .95rem var(--f-body);color:var(--accent)}
+.conflict{border:1px solid var(--line);border-radius:10px;padding:14px;display:grid;gap:8px;background:var(--bg)}
+.conflict ol{margin:0;padding-left:1.2em;display:grid;gap:6px;font-size:.93rem}
+@media (max-width:520px){.pads{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <pattern id="gs" width="6" height="6" patternUnits="userSpaceOnUse"><path d="M6 0H0V6" style="fill:none;stroke:var(--grid-minor);stroke-width:.6"/></pattern>
+  <pattern id="gl" width="30" height="30" patternUnits="userSpaceOnUse"><rect width="30" height="30" fill="url(#gs)"/><path d="M30 0H0V30" style="fill:none;stroke:var(--grid-major);stroke-width:1.1"/></pattern>
+</defs></svg>
+
+<div class="wrap">
+  <header style="display:grid;gap:6px">
+    <span class="eyebrow">Klimek Lecture 3 · "Must know the following 4 cardiac rhythms by sight"</span>
+    <h1>Four-Rhythm Drill</h1>
+    <p class="muted">Normal sinus rhythm, ventricular fibrillation, ventricular tachycardia, asystole. Every strip is newly generated, so you can't memorize the picture. You have to read it.</p>
+  </header>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-t="name">1 · Name it</button>
+    <button class="tab" role="tab" aria-selected="false" data-t="act">2 · Act on it</button>
+    <button class="tab" role="tab" aria-selected="false" data-t="card">Cheat card</button>
+  </div>
+
+  <section class="card" id="drill">
+    <div class="board">
+      <div class="stat"><b id="sScore">0/0</b><span>Correct</span></div>
+      <div class="stat hot"><b id="sStreak">0</b><span>Streak</span></div>
+      <div class="stat"><b id="sBest">0</b><span>Best streak</span></div>
+    </div>
+    <p class="muted" id="goal" style="font-size:.9rem"></p>
+    <div class="strip" id="strip"></div>
+    <div class="cap">6-second strip · tick marks every 3 seconds · small box 0.04 s · large box 0.20 s</div>
+    <p class="scen" id="scen" hidden></p>
+    <div class="pads" id="pads"></div>
+    <div class="fb" id="fb" hidden></div>
+    <details><summary class="muted" style="cursor:pointer">Accuracy by rhythm</summary><table class="acc" id="acc"></table></details>
+  </section>
+
+  <section class="card" id="cheat" hidden>
+    <div class="cards" id="cards"></div>
+    <div class="conflict">
+      <span class="eyebrow">Where Klimek and Iggy differ</span>
+      <ol>
+        <li><b>Asystole drugs.</b> Klimek says "epinephrine and atropine." Atropine is no longer used for asystole in current advanced cardiac life support; Iggy lists cardiopulmonary resuscitation and epinephrine and says <b>do not defibrillate</b>. Atropine belongs with symptomatic bradycardia.</li>
+        <li><b>Ventricular fibrillation first step.</b> Klimek's sample question picks chest compressions. Iggy says defibrillate immediately when a defibrillator is ready, and start compressions if it is not readily available. Read the stem: no defibrillator in the room yet means compressions.</li>
+        <li><b>Premature ventricular complexes after a myocardial infarction.</b> Klimek calls them low priority unless there are 6 or more a minute, runs, or R-on-T. Iggy calls them a possible warning of ventricular tachycardia or fibrillation and says to check potassium, magnesium, and perfusion. For your NUR 205 exam, go with Iggy.</li>
+      </ol>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+/* ---------- randomized waveform generators ---------- */
+const NS='http://www.w3.org/2000/svg',TAU=Math.PI*2,R=Math.random;
+const g=(t,c,w,a)=>a*Math.exp(-((t-c)*(t-c))/(2*w*w));
+const between=(a,b)=>a+R()*(b-a);
+function sinusBeat(t0,pr,q,pA,tA){return t=>g(t,t0-pr+0.05,0.022,pA)+g(t,t0+0.012,0.007,-0.12)+g(t,t0+q*0.45,q/7,1.1)+g(t,t0+q-0.012,0.008,-0.25)+g(t,t0+q+0.2,0.05,tA);}
+const sum=ps=>t=>{let y=0;for(const p of ps)y+=p(t);return y;};
+const GEN={
+  nsr(){const rate=Math.round(between(62,98)),rr=60/rate,pr=between(0.13,0.19),pA=between(0.11,0.18),tA=between(0.22,0.34),st=between(0.1,0.5),ps=[];
+    for(let t=st;t<6.4;t+=rr*between(0.985,1.015))ps.push(sinusBeat(t,pr,0.08,pA,tA));
+    return{fn:sum(ps),note:`Rate about ${rate}. P, QRS, T on every beat; PR ${pr.toFixed(2)} s.`};},
+  vt(){const rate=Math.round(between(150,215)),rr=60/rate,a=between(1.1,1.5),w=between(0.035,0.048),st=between(0,0.25),ps=[];
+    for(let t=st;t<6.4;t+=rr)ps.push(x=>g(x,t+0.06,w,a)+g(x,t+0.19,w*1.25,-a*0.7));
+    return{fn:sum(ps),note:`Rate about ${rate}. Wide, identical complexes repeating: a pattern. No P waves.`};},
+  vf(){const coarse=R()<0.6,amp=coarse?between(0.32,0.5):between(0.13,0.2),f1=between(3.8,5.6),f2=between(6,7.6),ph=between(0,6);
+    return{fn:t=>(amp+amp*0.55*Math.sin(TAU*0.4*t+ph))*Math.sin(TAU*f1*t+1.4*Math.sin(TAU*0.7*t+ph))+amp*0.45*Math.sin(TAU*f2*t+ph),
+      note:coarse?'Coarse ventricular fibrillation: chaotic waves, no repeating pattern, no QRS.':'Fine ventricular fibrillation: small but chaotic waves. Still no pattern and no QRS. Not a flat line.'};},
+  asys(){const v=R(),base=t=>0.02*Math.sin(TAU*0.3*t)+0.01*Math.sin(TAU*8*t);
+    if(v<0.35){const rate=between(60,85),ps=[base];for(let t=0.3;t<6.4;t+=60/rate)ps.push(x=>g(x,t,0.022,0.15));return{fn:sum(ps),note:'P waves only, no QRS complexes. No QRS = no ventricular activity = asystole (ventricular standstill).'};}
+    if(v<0.6){const c=between(2,4.2);return{fn:t=>base(t)+g(t,c,0.045,-0.4)+g(t,c+0.16,0.06,0.5),note:'Flat line with one stray idioventricular complex, like the figure in Iggy and your slides. Still asystole.'};}
+    return{fn:base,note:'Flat line. No P, no QRS, no T.'};}
+};
+const NAMES={nsr:'Normal sinus rhythm',vf:'Ventricular fibrillation',vt:'Ventricular tachycardia',asys:'Asystole'};
+const CUE={nsr:'"P wave, then QRS, then T wave for every complex, PR within 5 small boxes."',vf:'"No pattern." Chaotic QRS complexes.',vt:'"Sharp peaks with a pattern." Bizarre QRS complexes.',asys:'"A flat line." Lack of QRS complexes.'};
+function draw(fn){const W=900,H=180,PXS=150,PXMV=60,BASE=105,svg=document.createElementNS(NS,'svg');svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.setAttribute('role','img');svg.setAttribute('aria-label','Six-second rhythm strip');
+  const mk=(t,a)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);svg.appendChild(e);return e;};
+  mk('rect',{width:W,height:H,fill:'url(#gl)'});[0,3,6].forEach(s=>{const x=Math.min(Math.max(s*PXS,1),W-1);mk('line',{x1:x,y1:2,x2:x,y2:14,class:'tick'});});
+  let d='';for(let t=0;t<=6.0001;t+=0.003)d+=(d?'L':'M')+(t*PXS).toFixed(1)+' '+(BASE-fn(t)*PXMV).toFixed(1);mk('path',{d,class:'trace'});return svg;}
+
+/* ---------- "act on it" scenarios (Iggy Ch 28 + Klimek) ---------- */
+const ACTIONS=['Defibrillate','Start chest compressions','Oxygen, 12-lead, then amiodarone or lidocaine','Assess the client and check the leads','No treatment; document'];
+const SCEN=[
+ {r:'nsr',s:'The client is alert, talking, and has no complaints. Blood pressure 122/76 mm Hg.',a:4,why:'Normal sinus rhythm in a stable client needs no treatment. Document it as the baseline.',src:'Iggy Ch 28'},
+ {r:'vf',s:'The client is unresponsive with no carotid pulse. Defibrillator pads are already on and the machine is ready.',a:0,why:'Ventricular fibrillation is lethal within minutes. Iggy: the priority is to defibrillate immediately; do not delay once equipment is present.',src:'Iggy Ch 28 Critical Rescue'},
+ {r:'vf',s:'You find the client unresponsive with no carotid pulse. The crash cart is still on its way down the hall.',a:1,why:'No defibrillator yet, so start high-quality compressions until it arrives. This matches Klimek\'s sample question and Iggy.',src:'Iggy Ch 28; Klimek Lecture 3 question'},
+ {r:'vf',s:'The alarm shows this rhythm. In the room, the client is sitting up, talking, and brushing their teeth.',a:3,why:'A talking client cannot be in ventricular fibrillation. Iggy: toothbrushing or tapping electrodes creates artifact that mimics lethal rhythms. Assess the client, not the monitor.',src:'Iggy Ch 28 (artifact)'},
+ {r:'vt',s:'The client is unresponsive with no pulse. The defibrillator is at the bedside and ready.',a:0,why:'Pulseless ventricular tachycardia is treated the same as ventricular fibrillation: defibrillate.',src:'Iggy Ch 28'},
+ {r:'vt',s:'The client is alert with palpitations. Strong carotid pulse, blood pressure 118/72 mm Hg.',a:2,why:'Ventricular tachycardia WITH a pulse, stable. Iggy: oxygen, confirm with a 12-lead, then amiodarone or lidocaine. Klimek: ventricular rhythms get lidocaine; amiodarone is the answer the NCLEX wants.',src:'Iggy Ch 28 Critical Rescue; Klimek Lecture 3'},
+ {r:'asys',s:'The client is unresponsive with no carotid pulse. You confirm the leads are attached.',a:1,why:'Asystole: start cardiopulmonary resuscitation immediately. Iggy: do NOT defibrillate asystole; there is no electrical activity to reset.',src:'Iggy Ch 28 Critical Rescue'},
+ {r:'asys',s:'The monitor technician calls: flat line. You walk in and the client is awake, talking, and asking for water.',a:3,why:'A talking client is perfusing. A flat line here means a loose or disconnected lead. Assess the client and check lead placement first.',src:'Iggy Ch 28 Mastery Question 2'}
+];
+
+/* ---------- state ---------- */
+const $=id=>document.getElementById(id);let mode='name',cur=null,t0=0,locked=false,timer=null;
+const st={n:0,c:0,streak:0,best:0,times:[],by:{nsr:[0,0],vf:[0,0],vt:[0,0],asys:[0,0]}};
+try{st.best=+localStorage.getItem('fourRhythmBest')||0;}catch(e){}
+function board(){$('sScore').textContent=`${st.c}/${st.n}`;$('sStreak').textContent=st.streak;$('sBest').textContent=st.best;
+  $('goal').textContent=st.streak>=20?'Cold. 20 in a row. Keep going or switch to Act on it.':`Goal: 20 in a row. Take your time; the next strip loads only when you click Next. Keys 1–${mode==='name'?4:5} work on a keyboard.`;
+  $('acc').innerHTML=Object.keys(NAMES).map(k=>{const[a,b]=st.by[k];return`<tr><td>${NAMES[k]}</td><td>${a}/${b}</td><td>${b?Math.round(a/b*100)+'%':'–'}</td></tr>`;}).join('');}
+let last=null;
+function next(){clearTimeout(timer);locked=false;$('fb').hidden=true;
+  if(mode==='name'){let k;do{k=['nsr','vf','vt','asys'][Math.floor(R()*4)];}while(k===last&&R()<0.6);last=k;const w=GEN[k]();cur={k,note:w.note};
+    $('strip').innerHTML='';$('strip').appendChild(draw(w.fn));$('scen').hidden=true;
+    $('pads').className='pads';$('pads').innerHTML='';['nsr','vf','vt','asys'].forEach((key,i)=>$('pads').appendChild(pad(i,NAMES[key],()=>answer(key))));}
+  else{let s;do{s=SCEN[Math.floor(R()*SCEN.length)];}while(s===last&&SCEN.length>1);last=s;const w=GEN[s.r]();cur={k:s.r,s,note:w.note};
+    $('strip').innerHTML='';$('strip').appendChild(draw(w.fn));$('scen').hidden=false;$('scen').textContent=s.s;
+    $('pads').className='pads five';$('pads').innerHTML='';ACTIONS.forEach((a,i)=>$('pads').appendChild(pad(i,a,()=>answer(i))));}
+  t0=performance.now();}
+function pad(i,label,fn){const b=document.createElement('button');b.className='pad';b.innerHTML=`<kbd>${i+1}</kbd><span></span>`;b.lastChild.textContent=label;b.onclick=fn;return b;}
+function answer(x){if(locked)return;locked=true;const secs=(performance.now()-t0)/1000;
+  const right=mode==='name'?x===cur.k:x===cur.s.a,correctIdx=mode==='name'?['nsr','vf','vt','asys'].indexOf(cur.k):cur.s.a,pickIdx=mode==='name'?['nsr','vf','vt','asys'].indexOf(x):x;
+  const pads=[...$('pads').children];pads.forEach(p=>p.disabled=true);pads[correctIdx].classList.add('ok');if(!right)pads[pickIdx].classList.add('bad');
+  st.n++;st.by[cur.k][1]++;if(right){st.c++;st.by[cur.k][0]++;st.streak++;st.times.push(secs);if(st.streak>st.best){st.best=st.streak;try{localStorage.setItem('fourRhythmBest',st.best);}catch(e){}}}else st.streak=0;
+  const fb=$('fb');fb.hidden=false;fb.innerHTML='';
+  const v=document.createElement('div');v.className='verdict '+(right?'ok':'bad');
+  v.textContent=right?'Correct':'Not quite';fb.appendChild(v);
+  const c=document.createElement('p');c.className='cue';c.textContent=`${NAMES[cur.k]}. Klimek: ${CUE[cur.k]}`;fb.appendChild(c);
+  const n=document.createElement('p');n.textContent=cur.note;fb.appendChild(n);
+  if(mode==='act'){const a=document.createElement('p');a.innerHTML='<strong>Action.</strong> ';a.append(cur.s.why);fb.appendChild(a);const s=document.createElement('p');s.className='src';s.textContent='Source: '+cur.s.src;fb.appendChild(s);}
+  const row=document.createElement('div');row.className='row';const nb=document.createElement('button');nb.className='btn';nb.textContent='Next strip';nb.onclick=next;row.appendChild(nb);
+  fb.appendChild(row);board();nb.focus({preventScroll:true});}
+document.addEventListener('keydown',e=>{if($('drill').hidden)return;const n=parseInt(e.key,10);const max=mode==='name'?4:5;
+  if(n>=1&&n<=max&&!locked){const p=$('pads').children[n-1];p&&p.click();}else if((e.key==='Enter'||e.key===' ')&&locked&&document.activeElement.tagName!=='BUTTON'){e.preventDefault();next();}});
+
+/* ---------- cheat card ---------- */
+const CARD=[
+ {k:'nsr',f:GEN.nsr,lines:['Rate 60 to 100, regular','One P before every QRS, then a T wave','PR 0.12 to 0.20 s (within 5 small boxes)','Action: none; this is your baseline']},
+ {k:'vt',f:GEN.vt,lines:['Wide, bizarre QRS complexes that repeat (a pattern)','Rate about 140 to 180 or more; no P waves','Potentially lethal: CHECK THE PULSE','No pulse: defibrillate. Pulse and stable: oxygen, 12-lead, amiodarone or lidocaine']},
+ {k:'vf',f:GEN.vf,lines:['Chaos: no pattern, no P, no QRS, no T','No pulse, no cardiac output; lethal in minutes','Fine ventricular fibrillation is small but still wavy. It is not a flat line','Action: defibrillate; compressions until the defibrillator is ready']},
+ {k:'asys',f:GEN.asys,lines:['Flat line: no QRS complexes','May show P waves only, or one stray complex','Check the client and a second lead first','Action: compressions and epinephrine. Never shock it']}];
+function cards(){$('cards').innerHTML='';CARD.forEach(c=>{const d=document.createElement('div');d.className='rcard';
+  d.innerHTML=`<h3>${NAMES[c.k]}</h3><p class="klim">Klimek: ${CUE[c.k]}</p>`;const s=document.createElement('div');s.className='strip';s.appendChild(draw(c.f().fn));d.appendChild(s);
+  const ul=document.createElement('ul');c.lines.forEach(l=>{const li=document.createElement('li');li.textContent=l;ul.appendChild(li);});d.appendChild(ul);$('cards').appendChild(d);});}
+
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected',x===b));
+  const t=b.dataset.t;$('cheat').hidden=t!=='card';$('drill').hidden=t==='card';if(t==='card'){clearTimeout(timer);cards();return;}
+  if(t!==mode){mode=t;last=null;st.streak=0;}board();next();});
+board();next();
+})();
+</script>
+
+</body></html>

@@ -1,0 +1,723 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Cardiac Practice Exam</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: single-column exam sheet — one question card at a time, progress rail on top, review list at the end */
+:root{
+  --bg:#f7f5f6; --surface:#ffffff; --fg:#1f1a1c; --muted:#675d61; --line:#e3dadc;
+  --paper:#fff6f5; --grid-minor:#f3c9c9; --grid-major:#e48f92; --trace:#1d1517;
+  --accent:#9e2236; --accent-ink:#ffffff; --ok:#1d7349; --ok-bg:#e4f3ea; --bad:#b02a20; --bad-bg:#fbe7e5; --sel:#2a56b8; --sel-bg:#e8eefb;
+  --f-display:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --f-body:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f1312; --surface:#171d1b; --fg:#e7eeeb; --muted:#97a69f; --line:#27312e;
+  --paper:#050807; --grid-minor:#0f2a20; --grid-major:#1d4d3a; --trace:#4dff9a;
+  --accent:#ff7085; --accent-ink:#22040a; --ok:#62dfa1; --ok-bg:#11291e; --bad:#ff8b80; --bad-bg:#2f1513; --sel:#86b2ff; --sel-bg:#16233d; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1312; --surface:#171d1b; --fg:#e7eeeb; --muted:#97a69f; --line:#27312e;
+  --paper:#050807; --grid-minor:#0f2a20; --grid-major:#1d4d3a; --trace:#4dff9a;
+  --accent:#ff7085; --accent-ink:#22040a; --ok:#62dfa1; --ok-bg:#11291e; --bad:#ff8b80; --bad-bg:#2f1513; --sel:#86b2ff; --sel-bg:#16233d; color-scheme:dark}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 var(--f-body)}
+.wrap{max-width:820px;margin:0 auto;padding-block:20px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:18px}
+h1{font:600 2rem/1.15 var(--f-display);margin:0;text-wrap:balance}
+h2{font:600 1.25rem/1.3 var(--f-display);margin:0;text-wrap:balance}
+.eyebrow{font:600 .75rem/1.2 var(--f-body);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+p{margin:0;max-width:68ch}
+.muted{color:var(--muted)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;display:grid;gap:16px;min-width:0}
+.btn{font:600 .95rem var(--f-body);border-radius:8px;padding:10px 16px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn:disabled{opacity:.4;cursor:default}
+.btn:focus-visible,.opt:focus-within,.dot:focus-visible{outline:2px solid var(--sel);outline-offset:2px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.mode{border:1px solid var(--line);border-radius:10px;padding:14px;display:grid;gap:4px;cursor:pointer;background:var(--bg)}
+.mode input{accent-color:var(--accent)}
+.mode:has(input:checked){border-color:var(--sel);background:var(--sel-bg)}
+.mode b{display:flex;gap:8px;align-items:center}
+.facts{display:flex;flex-wrap:wrap;gap:6px 18px;font:500 .85rem var(--f-mono);color:var(--muted)}
+.rail{display:flex;flex-wrap:wrap;gap:5px}
+.dot{width:28px;height:28px;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--muted);font:600 .75rem var(--f-mono);cursor:pointer;display:grid;place-items:center;padding:0}
+.dot.ans{background:var(--sel-bg);border-color:var(--sel);color:var(--sel)}
+.dot.ok{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
+.dot.bad{background:var(--bad-bg);border-color:var(--bad);color:var(--bad)}
+.dot.cur{box-shadow:0 0 0 2px var(--fg)}
+.qhead{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline}
+.tag{font:600 .72rem var(--f-body);letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.tag.sata{color:var(--accent);border-color:var(--accent)}
+.stem{font-size:1.05rem;max-width:70ch}
+.strip{overflow-x:auto;border:1px solid var(--grid-major);border-radius:4px;background:var(--paper)}
+.strip svg{display:block;min-width:640px;width:100%;height:auto}
+.trace{fill:none;stroke:var(--trace);stroke-width:1.7;stroke-linejoin:round}
+.tick{stroke:var(--fg);stroke-width:1.5}
+.ticklbl{font:600 11px var(--f-mono);fill:var(--muted)}
+.cap{font:500 .78rem var(--f-mono);color:var(--muted)}
+.opts{display:grid;gap:8px}
+.opt{display:grid;grid-template-columns:auto auto 1fr;gap:10px;align-items:start;border:1px solid var(--line);border-radius:10px;padding:12px 14px;cursor:pointer;background:var(--bg)}
+.opt input{margin-top:4px;accent-color:var(--sel)}
+.opt .k{font:700 .85rem var(--f-mono);color:var(--muted);margin-top:2px}
+.opt:has(input:checked){border-color:var(--sel);background:var(--sel-bg)}
+.opt.ok,.opt.ok:has(input:checked){border-color:var(--ok);background:var(--ok-bg)}
+.opt.bad,.opt.bad:has(input:checked){border-color:var(--bad);background:var(--bad-bg)}
+[hidden]{display:none!important}
+.opt.missed{border-style:dashed;border-color:var(--ok)}
+.opt .why{grid-column:3;font-size:.9rem;color:var(--muted)}
+.locked .opt{cursor:default}
+.verdict{font:700 1.02rem var(--f-body)} .verdict.ok{color:var(--ok)} .verdict.bad{color:var(--bad)} .verdict.part{color:var(--sel)}
+.take{border-left:3px solid var(--accent);padding-left:12px}
+.err{color:var(--bad);font-size:.88rem}
+.nav{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.score{font:600 3rem/1 var(--f-display)}
+.bars{display:grid;gap:10px}
+.bar{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;font-size:.92rem}
+.bar .track{grid-column:1/-1;height:8px;border-radius:4px;background:var(--line);overflow:hidden}
+.bar .fill{height:100%;background:var(--accent)}
+.review{display:grid;gap:8px}
+.rv{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:var(--bg);cursor:pointer;text-align:left;color:var(--fg);font:inherit}
+.rv .n{font:700 .85rem var(--f-mono);color:var(--muted)}
+.rv .s{font:600 .82rem var(--f-mono)} .rv .s.ok{color:var(--ok)} .rv .s.bad{color:var(--bad)} .rv .s.part{color:var(--sel)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.src{font:500 .8rem var(--f-mono);color:var(--muted)}
+.srclist{margin:0;padding-left:1.2em;font-size:.9rem;color:var(--muted);display:grid;gap:2px}
+select.len{max-width:100%;min-width:0;flex:1 1 220px;font:500 .95rem var(--f-body);padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--fg)}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <pattern id="gs" width="6" height="6" patternUnits="userSpaceOnUse"><path d="M6 0H0V6" style="fill:none;stroke:var(--grid-minor);stroke-width:.6"/></pattern>
+  <pattern id="gl" width="30" height="30" patternUnits="userSpaceOnUse"><rect width="30" height="30" fill="url(#gs)"/><path d="M30 0H0V30" style="fill:none;stroke:var(--grid-major);stroke-width:1.1"/></pattern>
+</defs></svg>
+
+<div class="wrap">
+  <header style="display:grid;gap:6px">
+    <span class="eyebrow">NUR 205 · Chapters 28 and 32</span>
+    <h1>Cardiac Practice Exam</h1>
+    <p class="muted">Dysrhythmias and acute coronary syndrome. Multiple choice and select all that apply, with rhythm strip questions mixed in. Every rationale names its source.</p>
+  </header>
+
+  <section class="card" id="start">
+    <div class="facts"><span id="fBank"></span><span id="fStrip"></span><span id="fSata"></span><span>Strips: 25 mm/sec, 6 seconds</span></div>
+    <div style="display:grid;gap:6px"><span class="eyebrow">Built from</span>
+      <ul class="srclist"><li>Iggy 11e Chapter 28, Dysrhythmias (full chapter)</li><li>Iggy 11e Chapter 32, Acute Coronary Syndromes (full chapter)</li><li>Chapter 28 PowerPoint, including the case study and review questions</li><li>Acute coronary syndrome PowerPoint (Nursing 205 graduate review)</li><li>Your two acute coronary syndrome lecture notes</li></ul></div>
+    <h2>How do you want feedback?</h2>
+    <div class="modes">
+      <label class="mode" for="mExam"><b><input type="radio" name="mode" id="mExam" value="exam" checked> Exam mode</b><span class="muted">Answer everything, then see your score and every rationale at the end. Closest to Monday.</span></label>
+      <label class="mode" for="mPrac"><b><input type="radio" name="mode" id="mPrac" value="practice"> Practice mode</b><span class="muted">See the answer, rationale, and source right after each question.</span></label>
+    </div>
+    <div class="row"><label for="mLen" class="muted">Length</label><select class="len" id="mLen"><option value="50">50 questions, random from the bank (like your exam)</option><option value="all">Every question in the bank</option></select></div>
+    <p class="muted" style="font-size:.9rem">Select all that apply questions use plus-minus scoring: each correct pick earns a point, each wrong pick takes one away, floor zero. Each new exam draws a different mix.</p>
+    <div class="row"><button class="btn primary" id="begin">Start exam</button></div>
+  </section>
+
+  <section id="exam" hidden style="display:grid;gap:14px">
+    <div class="rail" id="rail" aria-label="Question navigator"></div>
+    <article class="card" id="qcard"></article>
+  </section>
+
+  <section class="card" id="results" hidden></section>
+</div>
+
+<script>
+(function(){
+/* ---------- waveform engine (25 mm/s; 1 small box = 6 px = 0.04 s) ---------- */
+const NS='http://www.w3.org/2000/svg',TAU=Math.PI*2;
+const g=(t,c,w,a)=>a*Math.exp(-((t-c)*(t-c))/(2*w*w));
+function sinus(t0,o){o=o||{};const pr=o.pr??0.16,q=o.qrs??0.08,off=o.tOff??0.2;
+  return t=>{let y=0;if(o.p!==false)y+=g(t,t0-pr+0.05,o.pw??0.022,o.pAmp??0.15);
+    y+=g(t,t0+0.012,0.007,-0.12);y+=g(t,t0+q*0.45,q/7,1.1);y+=g(t,t0+q-0.012,0.008,-0.25);
+    if(o.st)y+=g(t,t0+q+0.09,0.065,o.st);y+=g(t,t0+q+off,0.05,o.tAmp??0.3);return y;};}
+const pvc=(t0,pol)=>{pol=pol??1;return t=>g(t,t0+0.06,0.032,1.3*pol)+g(t,t0+0.13,0.025,-0.45*pol)+g(t,t0+0.34,0.07,-0.42*pol);};
+const vtB=t0=>t=>g(t,t0+0.06,0.04,1.35)+g(t,t0+0.19,0.05,-0.95);
+const sum=(ps,ex)=>t=>{let y=ex?ex(t):0;for(const p of ps)y+=p(t);return y;};
+const seq=(s,rr)=>{const a=[];for(let t=s;t<6.4;t+=rr)a.push(t);return a;};
+function rng(seed){let s=seed>>>0;return()=>{s=(s+0x6D2B79F5)>>>0;let t=s;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296;};}
+const fib=t=>0.05*Math.sin(TAU*5.3*t+1)+0.04*Math.sin(TAU*7.1*t+2)+0.03*Math.sin(TAU*3.7*t);
+const afBuild=(seed,min,span)=>{const r=rng(seed),b=[];for(let t=0.2;t<6.4;t+=min+r()*span)b.push(t);return sum(b.map(t=>sinus(t,{p:false})),fib);};
+const STRIPS={
+  brady:()=>sum(seq(0.25,1.2).map(t=>sinus(t,{pr:0.18}))),
+  tach:()=>sum(seq(0.25,0.5).map(t=>sinus(t,{pr:0.13,tOff:0.16}))),
+  nsr:()=>sum(seq(0.25,0.75).map(t=>sinus(t,{pr:0.16}))),
+  svt:()=>sum(seq(0.25,0.33).map(t=>sinus(t,{p:false,tOff:0.12,tAmp:0.22}))),
+  af:()=>afBuild(11,0.42,0.55),
+  afFast:()=>afBuild(29,0.3,0.32),
+  pvc:()=>{const ps=[];for(let k=0;;k++){const tk=0.25+k*0.75;if(tk>6.4)break;if(k===3||k===6)ps.push(pvc(0.25+(k-1)*0.75+0.45));else ps.push(sinus(tk));}return sum(ps);},
+  pvcMulti:()=>{const ps=[];for(let k=0;;k++){const tk=0.25+k*0.75;if(tk>6.4)break;if(k===3)ps.push(pvc(0.25+(k-1)*0.75+0.45,-1));else if(k===6)ps.push(pvc(0.25+(k-1)*0.75+0.45,1));else ps.push(sinus(tk));}return sum(ps);},
+  bigeminy:()=>{const ps=[];for(let t=0.25;t<6.4;t+=1.5){ps.push(sinus(t));ps.push(pvc(t+0.5));}return sum(ps);},
+  sarr:()=>{const ps=[];let t=0.25,k=0;while(t<6.4){ps.push(sinus(t));t+=0.82+0.2*Math.sin(k*1.15);k++;}return sum(ps);},
+  pac:()=>{const ps=[],b=[];let t=0.25;for(let k=0;t<6.4;k++){if(k===4){t=b[3]+0.52;ps.push(sinus(t,{pr:0.13,pAmp:0.09,pw:0.013}));}else ps.push(sinus(t));b.push(t);t+=0.8;}return sum(ps);},
+  vt:()=>sum(seq(0.08,0.36).map(vtB)),
+  vf:()=>t=>(0.35+0.22*Math.sin(TAU*0.4*t))*Math.sin(TAU*4.6*t+1.5*Math.sin(TAU*0.7*t))+0.15*Math.sin(TAU*6.9*t+1),
+  asys:()=>t=>0.02*Math.sin(TAU*0.3*t)+0.012*Math.sin(TAU*9*t),
+  ste:()=>sum(seq(0.25,0.75).map(t=>sinus(t,{st:0.3,tAmp:0.38})))
+};
+function drawStrip(key){const fn=STRIPS[key](),W=900,H=180,PXS=150,PXMV=60,BASE=110;
+  const svg=document.createElementNS(NS,'svg');svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.setAttribute('role','img');svg.setAttribute('aria-label','Six-second rhythm strip');
+  const mk=(t,a)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);svg.appendChild(e);return e;};
+  mk('rect',{width:W,height:H,fill:'url(#gl)'});
+  [0,3,6].forEach(s=>{const x=Math.min(Math.max(s*PXS,1),W-1);mk('line',{x1:x,y1:2,x2:x,y2:14,class:'tick'});});
+  let d='';for(let t=0;t<=6.0001;t+=0.003)d+=(d?'L':'M')+(t*PXS).toFixed(1)+' '+(BASE-fn(t)*PXMV).toFixed(1);
+  mk('path',{d,class:'trace'});return svg;}
+/* ---------- question bank: Iggy 11e Ch 28 + Ch 32, Ch 28 PowerPoint, ACS PowerPoint, NUR 205 lecture notes ---------- */
+const T_STRIP='Rhythm strips',T_DYS='Dysrhythmias and devices',T_ACS='Acute coronary syndrome',T_PROC='Procedures and surgery';
+const BANK=[
+/* ===== RHYTHM STRIPS ===== */
+{topic:T_STRIP,strip:'brady',src:'Iggy Ch 28 (sinus bradycardia); Ch 32 beta blocker drug alert',stem:'A client taking metoprolol reports feeling dizzy and lightheaded. Blood pressure is 84/50 mm Hg. The monitor shows this rhythm. Which action will the nurse take first?',
+ opts:[{t:'Administer intravenous atropine per protocol.',ok:1,why:'Symptomatic sinus bradycardia (rate 50, normal P waves, PR 0.18 s). Iggy: for symptoms such as hypotension or dizziness, give intravenous atropine, increase volume with intravenous fluids, and give oxygen if saturation is below 94%. Prepare for pacing if the rate does not respond.'},
+  {t:'Administer the scheduled dose of metoprolol.',why:'Beta blockers slow the rate further. Iggy: hold a beta blocker when the pulse is below 50 or systolic pressure is below 100. Drugs suspected of causing bradycardia are discontinued.'},
+  {t:'Prepare for synchronized cardioversion.',why:'Cardioversion terminates fast rhythms such as atrial fibrillation or supraventricular tachycardia, not a slow sinus rhythm.'},
+  {t:'Instruct the client to bear down as if having a bowel movement.',why:'Bearing down is a vagal maneuver. It slows the heart further and is used for supraventricular tachycardia.'}],
+ take:'Slow rate + symptoms = atropine, intravenous fluids, oxygen if below 94%, then pacing. Stop the drug causing it.'},
+
+{topic:T_STRIP,strip:'af',src:'Iggy Ch 28; Ch 28 PowerPoint (atrial fibrillation assessment)',stem:'A client on telemetry develops this new rhythm. The client denies symptoms. Which assessment is most important for the nurse to perform?',
+ opts:[{t:'Count the apical and radial pulses at the same time for a full minute.',ok:1,why:'Atrial fibrillation (no P waves, wavy baseline, irregularly irregular). Iggy: assess apical and radial pulses for a full minute. A difference is a pulse deficit, meaning the heart is not pumping adequately.'},
+  {t:'Count the radial pulse for 30 seconds and multiply by 2.',why:'An irregular rhythm cannot be counted accurately in a partial minute, and the radial pulse alone misses a pulse deficit.'},
+  {t:'Assess pupil size and reaction to light.',why:'A neurologic check matters only if signs of embolic stroke appear.'},
+  {t:'Measure blood pressure in both arms.',why:'Comparing arm pressures screens for aortic dissection, not for the perfusion effect of this rhythm.'}],
+ take:'Irregular rhythm = apical and radial pulse together for a full minute.'},
+
+{topic:T_STRIP,strip:'vt',src:'Iggy Ch 28 (ventricular tachycardia, Critical Rescue)',stem:'The nurse finds a client unresponsive with no carotid pulse. The monitor shows this rhythm, and the defibrillator is at the bedside. Which action is the priority?',
+ opts:[{t:'Defibrillate immediately.',ok:1,why:'Ventricular tachycardia (wide, bizarre complexes at about 170, no P waves). Iggy: pulseless ventricular tachycardia is treated the same as ventricular fibrillation. Early defibrillation must not be delayed once equipment and skilled staff are present.'},
+  {t:'Perform synchronized cardioversion.',why:'Synchronized cardioversion needs an organized rhythm in a client with a pulse. A pulseless client gets an unsynchronized shock (defibrillation).'},
+  {t:'Administer intravenous amiodarone.',why:'Amiodarone or lidocaine is for STABLE ventricular tachycardia with a pulse. Drugs do not replace the shock.'},
+  {t:'Obtain a 12-lead electrocardiogram.',why:'A 12-lead confirms the rhythm in a stable client. Here it delays the shock.'}],
+ take:'Same rhythm, different pulse = different treatment. No pulse: defibrillate.'},
+
+{topic:T_STRIP,strip:'vt',src:'Iggy Ch 28 Critical Rescue box',stem:'A client is alert and reports palpitations. Blood pressure is 118/72 mm Hg and a strong carotid pulse is present. The monitor shows this rhythm. Which action will the nurse take first?',
+ opts:[{t:'Administer oxygen and obtain a 12-lead electrocardiogram.',ok:1,why:'Stable ventricular tachycardia with a pulse. Iggy: give oxygen and confirm the rhythm with a 12-lead; amiodarone or lidocaine may be ordered. Elective cardioversion is recommended for stable ventricular tachycardia.'},
+  {t:'Defibrillate immediately.',why:'Defibrillation is for pulseless ventricular tachycardia or ventricular fibrillation.'},
+  {t:'Begin chest compressions.',why:'Compressions are for a client without a pulse. This client is alert with a blood pressure.'},
+  {t:'Administer adenosine rapid intravenous push.',why:'Adenosine terminates supraventricular tachycardia, a narrow-complex rhythm. This rhythm is wide.'}],
+ take:'Ventricular tachycardia with a pulse and stable: oxygen, 12-lead, amiodarone or lidocaine.'},
+
+{topic:T_STRIP,strip:'svt',src:'Iggy Ch 28; Ch 28 PowerPoint case study',stem:'A 26-year-old client reports a racing heart. The client is alert, blood pressure 112/70 mm Hg. Vagal maneuvers do not change the rhythm shown, and the provider prescribes adenosine. How will the nurse give it?',
+ opts:[{t:'Rapid intravenous push over several seconds, followed by a normal saline bolus.',ok:1,why:'Supraventricular tachycardia (narrow QRS, rate about 180, P waves hidden). Iggy and your slides: adenosine is given rapidly over several seconds, then a saline bolus. Expect brief asystole or bradycardia with pauses, flushing, and chest pain; keep emergency equipment ready.'},
+  {t:'Slow intravenous push over 5 minutes.',why:'Adenosine acts within seconds and is cleared quickly. A slow push lets it wear off before it reaches the heart.'},
+  {t:'Diluted in 100 mL and infused over 30 minutes.',why:'An infusion defeats the drug. It must reach the heart as a rapid bolus.'},
+  {t:'Intramuscular injection in the deltoid.',why:'Adenosine is given intravenously only.'}],
+ take:'Adenosine: fast push + flush, emergency equipment at the bedside, expect a short pause.'},
+
+{topic:T_STRIP,strip:'svt',src:'Ch 28 PowerPoint case study (question 1); Iggy Ch 28',stem:'A 33-year-old client with a history of tachycardia reports shortness of breath, palpitations, and weakness. Blood pressure is 88/56 mm Hg and the client appears very anxious. The monitor shows this rhythm. What is the nurse\'s initial action?',
+ opts:[{t:'Apply oxygen at 2 L per nasal cannula.',ok:1,why:'Supraventricular tachycardia. Your Chapter 28 case study answer: the initial nursing action is oxygen at 2 L per nasal cannula. Adenosine and other treatments need a provider order.'},
+  {t:'Administer adenosine slowly over 2 minutes.',why:'Adenosine needs an order and is a rapid push over seconds with a saline flush. A slow push does not work.'},
+  {t:'Prepare for radiofrequency catheter ablation now.',why:'Ablation is the preferred LONG-TERM treatment for recurrent supraventricular tachycardia, not the first action in an acute episode.'},
+  {t:'Have the client walk in the hallway to slow the heart rate.',why:'Activity raises oxygen demand in a hypotensive, short-of-breath client.'}],
+ take:'Symptomatic supraventricular tachycardia: oxygen first, then ordered vagal maneuvers or adenosine. Ablation is for recurrence.'},
+
+{topic:T_STRIP,strip:'pvc',src:'Iggy Ch 28 Action Alert (premature ventricular complexes)',stem:'A client is 1 day after a myocardial infarction. The nurse notes this new finding on the monitor. Which action is most appropriate?',
+ opts:[{t:'Check the most recent potassium and magnesium levels.',ok:1,why:'Normal sinus rhythm with unifocal premature ventricular complexes. Iggy: after a myocardial infarction they may be a warning of ventricular tachycardia or fibrillation. Potassium or magnesium is replaced when low levels are the cause.'},
+  {t:'Document the finding as normal for the client.',why:'Premature ventricular complexes after a myocardial infarction are a warning sign, not a normal finding.'},
+  {t:'Prepare for immediate defibrillation.',why:'The client has an organized, perfusing rhythm.'},
+  {t:'Administer adenosine rapid intravenous push.',why:'Adenosine treats supraventricular tachycardia.'}],
+ take:'Premature ventricular complexes after myocardial infarction: check potassium and magnesium, check that early beats perfuse, report.'},
+
+{topic:T_STRIP,strip:'bigeminy',src:'Iggy Ch 28 (premature complexes, bigeminy, Action Alert)',stem:'The monitor shows a heart rate of 80 with this rhythm, but the nurse counts a radial pulse of 40. What best explains the difference?',
+ opts:[{t:'The premature beats are not producing a pulse that reaches the wrist.',ok:1,why:'Ventricular bigeminy: every other beat is a premature ventricular complex. Iggy: the low stroke volume of premature beats can make peripheral pulses diminished or absent. Palpate a central pulse while watching the monitor to see which complexes perfuse.'},
+  {t:'The monitor is double-counting tall T waves.',why:'The extra complexes are wide QRS complexes, not T waves. They are real beats that do not perfuse well.'},
+  {t:'The client has developed atrial fibrillation.',why:'Atrial fibrillation is irregularly irregular with no P waves. This strip repeats a normal–premature pattern.'},
+  {t:'The radial artery is occluded.',why:'A local arterial problem would not produce exactly half the monitor rate.'}],
+ take:'Premature beats may not perfuse. A gap between monitor rate and pulse is a pulse deficit.'},
+
+{topic:T_STRIP,strip:'pvcMulti',src:'Iggy Ch 28 Fig. 28.12B; Ch 28 PowerPoint',stem:'A client with heart failure has this new rhythm. How will the nurse document it?',
+ opts:[{t:'Normal sinus rhythm with multifocal premature ventricular complexes',ok:1,why:'Early, wide complexes with no P wave, in two different shapes (one down, one up), so more than one irritable focus. This matches the figure in your slides and Iggy.'},
+  {t:'Normal sinus rhythm with unifocal premature ventricular complexes',why:'Unifocal premature complexes all have the same shape.'},
+  {t:'Ventricular tachycardia',why:'Three or more premature ventricular complexes in a row is ventricular tachycardia. Here single early beats interrupt a sinus rhythm.'},
+  {t:'Atrial fibrillation',why:'Atrial fibrillation has no P waves and an irregularly irregular narrow-complex rhythm.'}],
+ take:'Same shape = unifocal. Different shapes = multifocal. Two in a row = couplet. Three or more = ventricular tachycardia.'},
+
+{topic:T_STRIP,strip:'vf',src:'Iggy Ch 28; Ch 28 PowerPoint',stem:'A client suddenly loses consciousness. Which rhythm does the nurse identify on the monitor?',
+ opts:[{t:'Ventricular fibrillation',ok:1,why:'Chaotic wavy line with no identifiable P, QRS, or T. No cardiac output; fatal within 3 to 5 minutes without defibrillation.'},
+  {t:'Ventricular tachycardia',why:'Ventricular tachycardia has wide, uniform, repeating complexes.'},
+  {t:'Atrial fibrillation',why:'Atrial fibrillation has a wavy baseline but clear narrow QRS complexes.'},
+  {t:'Ventricular asystole',why:'Asystole is a nearly flat line.'}],
+ take:'No P, no QRS, no T, just chaos = ventricular fibrillation. Priority: defibrillate.'},
+
+{topic:T_STRIP,strip:'vf',src:'Iggy Ch 28 (artifact); Ch 28 Mastery Question 2',stem:'The monitor alarm sounds and shows this rhythm. The nurse enters the room and finds the client sitting up, talking, and brushing their teeth. Which action will the nurse take first?',
+ opts:[{t:'Assess the client and check the electrode connections.',ok:1,why:'Iggy: movement such as toothbrushing, or tapping on an electrode, causes artifact that can mimic ventricular tachycardia or fibrillation. Assess the patient to tell artifact from a lethal rhythm; do not rely only on the monitor.'},
+  {t:'Defibrillate immediately.',why:'A talking client has a pulse and cardiac output. Shocking a perfusing client is dangerous.'},
+  {t:'Begin chest compressions.',why:'Compressions are for an unresponsive, pulseless client.'},
+  {t:'Call a code and bring the crash cart.',why:'Nothing about this client suggests arrest. Treat the client, not the monitor.'}],
+ take:'Lethal rhythm on the monitor? Look at the client first.'},
+
+{topic:T_STRIP,strip:'asys',src:'Iggy Ch 28 Critical Rescue box',stem:'A client is unresponsive and has no carotid pulse. Leads are confirmed to be attached. The monitor shows this rhythm. Which action will the nurse take?',
+ opts:[{t:'Begin chest compressions immediately.',ok:1,why:'Ventricular asystole. Iggy: cardiopulmonary resuscitation must start immediately (compressions, airway, breathing). Do not defibrillate asystole; there is no electrical activity to disrupt.'},
+  {t:'Defibrillate the client.',why:'Defibrillation stops chaotic activity so the sinoatrial node can take over. Asystole has no activity to reset.'},
+  {t:'Perform synchronized cardioversion.',why:'Cardioversion needs a QRS to synchronize with. There is none.'},
+  {t:'Administer adenosine rapid intravenous push.',why:'Adenosine is for supraventricular tachycardia, not cardiac arrest.'}],
+ take:'Flat line: check client and leads, then cardiopulmonary resuscitation. Not shockable.'},
+
+{topic:T_STRIP,strip:'ste',src:'Iggy Ch 32; ACS PowerPoint; lecture notes',stem:'A client arrives in the emergency department reporting crushing chest pressure that started 40 minutes ago. The monitor shows this rhythm. Which action has the highest priority?',
+ opts:[{t:'Prepare the client for percutaneous coronary intervention.',ok:1,why:'ST elevation with chest pain suggests ST-elevation myocardial infarction: complete occlusion. Time is myocardium. Iggy: percutaneous coronary intervention is the treatment of choice, goal within 90 minutes.'},
+  {t:'Wait for a second troponin result before notifying the provider.',why:'ST elevation alone drives urgent reperfusion.'},
+  {t:'Schedule an exercise stress test.',why:'A stress test is never done during an active ST-elevation myocardial infarction.'},
+  {t:'Withhold aspirin until the cardiologist examines the client.',why:'Aspirin is given on arrival to the emergency department.'}],
+ take:'ST elevation + chest pain = urgent reperfusion.'},
+
+{topic:T_STRIP,strip:'tach',src:'Iggy Ch 28 (sinus tachycardia)',stem:'A client who had surgery yesterday has this rhythm on the monitor. Temperature is 39.1°C (102.4°F) and incisional pain is 7/10. Which action is most appropriate?',
+ opts:[{t:'Treat the fever and pain, then reassess the heart rate.',ok:1,why:'Sinus tachycardia (rate 120, P before every QRS). Iggy: the desired outcome is to lower the rate by treating the underlying cause such as fever, pain, anxiety, or hypovolemia.'},
+  {t:'Prepare for synchronized cardioversion.',why:'Sinus tachycardia is the sinus node responding to demand; a shock fixes nothing.'},
+  {t:'Administer adenosine rapid intravenous push.',why:'Adenosine terminates supraventricular tachycardia, a re-entry rhythm without visible P waves.'},
+  {t:'Perform carotid sinus massage.',why:'Vagal maneuvers are for supraventricular tachycardia and carry risk.'}],
+ take:'Sinus tachycardia: fix the cause.'},
+
+{topic:T_STRIP,strip:'sarr',src:'Iggy Ch 28; Ch 28 PowerPoint (sinus arrhythmia)',stem:'A healthy 24-year-old has this rhythm on a preoperative strip. The rate speeds up slightly with each breath in and slows with each breath out. Which action is appropriate?',
+ opts:[{t:'Document the rhythm; no treatment is needed.',ok:1,why:'Sinus arrhythmia: every beat has a normal P, PR, and QRS, but R-R spacing varies by 0.12 s or more with breathing. A normal variant from changes in intrathoracic pressure.'},
+  {t:'Prepare for synchronized cardioversion.',why:'Cardioversion is for atrial fibrillation or other tachydysrhythmias.'},
+  {t:'Begin anticoagulation teaching.',why:'Anticoagulation prevents clots in atrial fibrillation. These atria contract normally.'},
+  {t:'Administer intravenous atropine.',why:'The rate is 60 to 100 and the client has no symptoms.'}],
+ take:'Irregular, but every beat is a normal sinus beat varying with breathing = sinus arrhythmia.'},
+
+{topic:T_STRIP,strip:'pac',src:'Iggy Ch 28; Ch 28 PowerPoint (premature atrial complexes)',stem:'The nurse reviews this strip from a client who drinks several energy drinks a day. Which statement about the early beat is accurate?',
+ opts:[{t:'It is a premature atrial complex; teach the client to limit caffeine.',ok:1,why:'Early beat with a differently shaped P wave and a normal narrow QRS, then a pause. Caffeine, nicotine, alcohol, stress, and fatigue irritate the atria. No intervention except treating causes.'},
+  {t:'It is a premature ventricular complex; prepare to give amiodarone.',why:'A premature ventricular complex is wide with no P wave.'},
+  {t:'It means the client is in ventricular tachycardia.',why:'Ventricular tachycardia is a run of wide complexes.'},
+  {t:'It requires immediate anticoagulation.',why:'Premature atrial complexes do not cause the atrial quivering that forms clots.'}],
+ take:'Early beat + abnormal P + narrow QRS = premature atrial complex.'},
+
+{topic:T_STRIP,strip:'afFast',src:'Iggy Ch 32 (care after coronary artery bypass graft surgery)',stem:'A client is 2 days after coronary artery bypass graft surgery and reports a fluttering feeling in the chest. The monitor shows this rhythm. Which statement by the nurse is accurate?',
+ opts:[{t:'"This is atrial fibrillation, which often develops on the second or third day after this surgery."',ok:1,why:'No P waves, wavy baseline, irregularly irregular narrow QRS. Iggy: many patients develop supraventricular dysrhythmias, especially atrial fibrillation, on postoperative day 2 or 3.'},
+  {t:'"This is sinus tachycardia from incisional pain."',why:'Sinus tachycardia is regular with a P before every QRS.'},
+  {t:'"This is ventricular tachycardia, and you need a shock."',why:'The complexes are narrow and irregular, not wide and uniform.'},
+  {t:'"This is expected for the first week and does not need to be reported."',why:'New atrial fibrillation raises stroke and heart failure risk and is reported.'}],
+ take:'After coronary artery bypass graft surgery: watch for atrial fibrillation on days 2 to 3.'},
+
+{topic:T_STRIP,strip:'nsr',src:'Iggy Ch 28; Ch 28 PowerPoint (rhythm analysis)',stem:'The nurse measures this strip. Which value represents the PR interval?',
+ opts:[{t:'0.16 second',ok:1,why:'Start of P to start of QRS is 4 small boxes: 4 × 0.04 = 0.16 s. Normal is 0.12 to 0.20 s. Rate is 80 (8 QRS in 6 s × 10): normal sinus rhythm.'},
+  {t:'0.08 second',why:'0.08 s is this strip\'s QRS duration.'},
+  {t:'0.24 second',why:'That would be prolonged (over 0.20 s). Recount from P onset to QRS onset.'},
+  {t:'0.40 second',why:'About 0.40 s is closer to the QT interval.'}],
+ take:'Small box 0.04 s. PR 0.12–0.20 s. QRS 0.06–0.10 s.'},
+
+/* ===== DYSRHYTHMIAS AND DEVICES ===== */
+{topic:T_DYS,src:'Iggy Ch 28 (electrical cardioversion; ventricular tachycardia section)',stem:'A client with atrial fibrillation for 5 days is scheduled for elective synchronized cardioversion this morning. Which finding requires the nurse to contact the provider before the procedure?',
+ opts:[{t:'The client took the usual dose of digoxin 2 hours ago.',ok:1,why:'Iggy: digoxin is withheld for up to 48 hours before elective cardioversion because it increases ventricular irritability and the risk of ventricular fibrillation after the shock.'},
+  {t:'International normalized ratio of 2.6 after 4 weeks of warfarin.',why:'Expected. Atrial fibrillation over 48 hours needs anticoagulation for at least 3 weeks (or international normalized ratio 2 to 3) first.'},
+  {t:'The client has had nothing to eat since midnight.',why:'Expected; the client is sedated.'},
+  {t:'The client signed the consent form yesterday.',why:'Expected for an elective procedure.'}],
+ take:'Before elective cardioversion: anticoagulated 3 weeks (or transesophageal echocardiogram), digoxin held up to 48 hours.'},
+
+{topic:T_DYS,type:'sata',src:'Iggy Ch 28 (cardioversion, Critical Rescue)',stem:'The nurse is assisting with synchronized cardioversion for a client with atrial fibrillation. Which actions are correct? Select all that apply.',
+ opts:[{t:'Turn off the oxygen and move it away from the client.',ok:1,why:'Iggy Critical Rescue: oxygen near the shock can cause a fire.'},
+  {t:'Confirm a marker appears over each QRS complex.',ok:1,why:'The dot or line over each QRS confirms synchronized mode, which avoids shocking on the T wave.'},
+  {t:'Call "Clear" and check that no one is touching the client or bed.',ok:1,why:'Electrical safety for staff.'},
+  {t:'After the shock, check the chest for burns from the electrodes.',ok:1,why:'Part of Iggy\'s post-cardioversion care with airway, oxygen, vital signs, and level of consciousness.'},
+  {t:'Set the defibrillator to unsynchronized mode.',why:'Unsynchronized shocks can land on the T wave and trigger ventricular fibrillation.'},
+  {t:'Give the scheduled digoxin dose right before the procedure.',why:'Digoxin is held up to 48 hours before elective cardioversion.'}],
+ take:'Cardioversion: oxygen off, sync marker on each QRS, call clear, check for burns afterward.'},
+
+{topic:T_DYS,src:'Iggy Ch 28 (cardioversion)',stem:'During synchronized cardioversion, the client\'s rhythm changes to ventricular fibrillation. What will the nurse do before delivering the next shock?',
+ opts:[{t:'Turn off the synchronizer.',ok:1,why:'In synchronized mode the device waits for a QRS that ventricular fibrillation does not have, so it will not fire. Iggy: check that the synchronizer is off so immediate defibrillation can be given.'},
+  {t:'Lower the energy setting to 50 joules.',why:'A lower energy makes defibrillation less effective.'},
+  {t:'Obtain a new signed consent form.',why:'A life-threatening emergency does not need new consent.'},
+  {t:'Administer adenosine.',why:'Adenosine has no role in ventricular fibrillation.'}],
+ take:'Synchronized = cardioversion. Ventricular fibrillation = unsynchronized defibrillation.'},
+
+{topic:T_DYS,type:'sata',src:'Iggy Ch 28 (anticoagulation for atrial fibrillation)',stem:'The nurse is teaching a client newly prescribed warfarin for atrial fibrillation. Which statements show the client understands? Select all that apply.',
+ opts:[{t:'"I will report bleeding gums or nosebleeds to my provider right away."',ok:1,why:'Iggy drug alert for all anticoagulants.'},
+  {t:'"I need regular blood tests to check my international normalized ratio."',ok:1,why:'Warfarin\'s response is unpredictable and needs lab monitoring.'},
+  {t:'"I will stop taking my ginkgo biloba supplement."',ok:1,why:'Ginkgo, ginger, ginseng, goldenseal, and St. John\'s wort interfere with warfarin.'},
+  {t:'"I will start St. John\'s wort to help my mood."',why:'St. John\'s wort is on Iggy\'s list of interfering herbs.'},
+  {t:'"I will add extra spinach and kale to every meal."',why:'Foods high in vitamin K counteract warfarin.'},
+  {t:'"Once my heart rhythm feels regular, I can stop the warfarin."',why:'Many clients need long-term anticoagulation; never stop on your own.'}],
+ take:'Warfarin: bleeding precautions, international normalized ratio checks, avoid large amounts of vitamin K, avoid interfering herbs.'},
+
+{topic:T_DYS,src:'Iggy Ch 28 (direct oral anticoagulants); lecture notes (discharge teaching)',stem:'A client is discharged on apixaban for nonvalvular atrial fibrillation. Which statement indicates a need for further teaching?',
+ opts:[{t:'"I will need weekly blood tests to check my international normalized ratio."',ok:1,why:'This statement is wrong, so it needs teaching. Iggy: direct oral anticoagulants reach a steady state and need no lab monitoring; the international normalized ratio does not predict their bleeding risk.'},
+  {t:'"I will report bruising or bleeding gums to my provider."',why:'Correct. Bleeding teaching applies to every anticoagulant.'},
+  {t:'"This medicine lowers my risk of a stroke."',why:'Correct. That is the purpose in atrial fibrillation.'},
+  {t:'"I will wear a medical alert bracelet that says I take a blood thinner."',why:'Correct. Your lecture lists a medical alert bracelet for blood thinners.'}],
+ take:'Warfarin = international normalized ratio checks. Direct oral anticoagulants (apixaban, rivaroxaban, dabigatran, edoxaban) = no routine labs.'},
+
+{topic:T_DYS,src:'Iggy Ch 28 Action Alert (atrial fibrillation)',stem:'A client with atrial fibrillation suddenly reports shortness of breath and sharp chest pain. Blood pressure has dropped from 128/76 to 92/58 mm Hg. Which action will the nurse take first?',
+ opts:[{t:'Stay with the client and activate the Rapid Response Team.',ok:1,why:'Clots form in the pooled atrial blood and can travel to the lungs. Iggy: if pulmonary embolism is suspected, remain with the client, monitor, initiate the Rapid Response Team, and notify the provider.'},
+  {t:'Leave to get a dose of sublingual nitroglycerin.',why:'Do not leave an unstable client; nitroglycerin also lowers a falling blood pressure.'},
+  {t:'Help the client walk to relieve the chest discomfort.',why:'Activity raises oxygen demand in a hypotensive client.'},
+  {t:'Place the client flat with the legs elevated.',why:'Lying flat worsens shortness of breath.'}],
+ take:'Atrial fibrillation + sudden shortness of breath, chest pain, low blood pressure = suspect pulmonary embolism. Stay and call.'},
+
+{topic:T_DYS,src:'Iggy Ch 28 (Table 28.1, ibutilide)',stem:'Ibutilide is prescribed to convert a client\'s atrial fibrillation. Which laboratory values must the nurse check before starting the infusion?',
+ opts:[{t:'Potassium and magnesium',ok:1,why:'Iggy: assess potassium and magnesium before the infusion; electrolytes must be corrected before and during use because ibutilide can cause potentially fatal dysrhythmias.'},
+  {t:'Hemoglobin A1C',why:'Reflects long-term glucose control, not dysrhythmia risk.'},
+  {t:'Serum amylase',why:'Used for pancreatic problems.'},
+  {t:'Troponin',why:'Troponin identifies myocardial injury; it is not a safety check for this drug.'}],
+ take:'Low potassium and low magnesium make the ventricles irritable. Check them before rhythm-control drugs.'},
+
+{topic:T_DYS,src:'Iggy Ch 28 (atrial fibrillation drug therapy)',stem:'Which client history requires the nurse to question a prescription for dronedarone?',
+ opts:[{t:'Heart failure',ok:1,why:'Iggy: dronedarone should not be used in heart failure (it worsens cardiac symptoms) or in permanent atrial fibrillation.'},
+  {t:'Hypertension controlled with lisinopril',why:'Not a contraindication.'},
+  {t:'Type 2 diabetes mellitus',why:'Not a contraindication.'},
+  {t:'Cardioversion for atrial fibrillation last month',why:'Dronedarone is used to maintain sinus rhythm after cardioversion.'}],
+ take:'Dronedarone: not in heart failure or permanent atrial fibrillation.'},
+
+{topic:T_DYS,src:'Iggy Ch 28 (supraventricular tachycardia, vagal maneuvers)',stem:'The provider is about to perform carotid sinus massage for supraventricular tachycardia. Which action by the nurse is correct?',
+ opts:[{t:'Make sure a defibrillator and resuscitation equipment are at the bedside.',ok:1,why:'Complications include bradydysrhythmias, asystole, ventricular fibrillation, and cerebral damage. Iggy: a defibrillator must be immediately available.'},
+  {t:'Have the client turn the head toward the side being massaged.',why:'Iggy: turn the head slightly AWAY from the side being massaged.'},
+  {t:'Record a rhythm strip only after the procedure ends.',why:'Record before, during, and after.'},
+  {t:'Position the client so both carotid arteries can be massaged at once.',why:'Massage is over ONE carotid artery for a few seconds.'}],
+ take:'Carotid massage: one side, head turned away, strips before/during/after, defibrillator ready.'},
+
+{topic:T_DYS,src:'Iggy Ch 28 (U wave)',stem:'While reviewing a strip, the nurse notices a prominent wave after each T wave. Which action is most appropriate?',
+ opts:[{t:'Notify the provider and request a serum potassium level.',ok:1,why:'A prominent U wave suggests an electrolyte problem, especially hypokalemia. Iggy: if in doubt, notify the provider and request a potassium level.'},
+  {t:'Document it as an extra P wave.',why:'Mistaking a U wave for a P wave is the error Iggy warns about.'},
+  {t:'Prepare for immediate defibrillation.',why:'A U wave is not a lethal rhythm.'},
+  {t:'Hold all potassium supplements.',why:'If potassium is low, holding supplements makes it worse.'}],
+ take:'Prominent U wave = think low potassium.'},
+
+{topic:T_DYS,src:'Iggy Ch 28 (QT interval; magnesium sulfate)',stem:'A client receiving amiodarone develops a prolonged QT interval, then a type of ventricular tachycardia called torsades de pointes. Which drug does the nurse anticipate?',
+ opts:[{t:'Magnesium sulfate',ok:1,why:'Iggy: magnesium sulfate treats torsades de pointes, which can result from antidysrhythmics such as amiodarone, and refractory ventricular tachycardia or fibrillation.'},
+  {t:'Adenosine',why:'For supraventricular tachycardia.'},
+  {t:'Atropine',why:'For symptomatic bradycardia.'},
+  {t:'Digoxin',why:'Controls rate in atrial fibrillation and increases ventricular irritability.'}],
+ take:'Prolonged QT → torsades de pointes → magnesium sulfate.'},
+
+{topic:T_DYS,src:'Iggy Ch 28 (temporary pacing; NCLEX Challenge 28.2)',stem:'The nurse is told a client\'s temporary pacemaker has lost capture. Which monitor finding confirms this?',
+ opts:[{t:'Pacemaker spikes with no P wave or QRS complex after them.',ok:1,why:'Capture means each spike is followed by depolarization. A spike with nothing after it = loss of capture.'},
+  {t:'No pacemaker spikes and a heart rate of 40.',why:'No spikes means the pacemaker is not firing, a different problem.'},
+  {t:'A pacemaker spike followed by a wide QRS complex.',why:'That is successful ventricular capture.'},
+  {t:'No spikes while the client\'s own rate is above the set rate.',why:'In demand mode the pacemaker correctly inhibits itself.'}],
+ take:'Capture = spike followed by a P wave or QRS.'},
+
+{topic:T_DYS,src:'Iggy Ch 28 (transcutaneous pacing)',stem:'A conscious client with profound bradycardia does not respond to atropine, and transcutaneous pacing is started. Which nursing action is most important?',
+ opts:[{t:'Administer prescribed analgesia and sedation.',ok:1,why:'Iggy: transcutaneous pacing is painful and may require pain and sedative medication for the client to tolerate it.'},
+  {t:'Tell the client the pacing will not be felt.',why:'False reassurance; each impulse is felt.'},
+  {t:'Turn the pacer off whenever the rate drops below the set rate.',why:'Demand pacing is supposed to fire when the rate drops.'},
+  {t:'Remove the pads every hour to check the skin.',why:'Pacing must continue to maintain perfusion.'}],
+ take:'Transcutaneous pacing: temporary, painful. Medicate.'},
+
+{topic:T_DYS,type:'sata',src:'Iggy Ch 28 (Box 28.3, permanent pacemakers)',stem:'The nurse is teaching a client who just had a permanent pacemaker placed near the left shoulder. Which instructions are correct? Select all that apply.',
+ opts:[{t:'Take your pulse for 1 full minute at the same time each day.',ok:1,why:'Iggy Box 28.3: record it in a pacemaker diary.'},
+  {t:'Avoid lifting your left arm over your head or lifting more than 10 lb for 4 weeks.',ok:1,why:'Prevents lead dislodgement.'},
+  {t:'Report any pulse lower than the rate set on your pacemaker.',ok:1,why:'May mean pacemaker failure.'},
+  {t:'Avoid using a microwave oven.',why:'Iggy: current evidence includes no special precautions for household appliances such as microwaves.'},
+  {t:'Do not shower or bathe until your follow-up visit.',why:'Iggy: baths or showers are fine.'},
+  {t:'Keep the left arm completely still for 4 weeks.',why:'Usual arm movement is encouraged to prevent shoulder stiffness.'}],
+ take:'Pacemaker: daily pulse, no overhead/heavy lifting 4 weeks, report pulse below set rate, ID card.'},
+
+{topic:T_DYS,type:'sata',src:'Iggy Ch 28 (Box 28.6, NCLEX Challenge 28.3)',stem:'A client had an implantable cardioverter-defibrillator placed after sudden cardiac arrest. Which teaching is correct? Select all that apply.',
+ opts:[{t:'Notify your provider right away if you receive a shock.',ok:1,why:'Iggy Box 28.6.'},
+  {t:'Call 911 if more than one shock is delivered.',ok:1,why:'Iggy Box 28.6.'},
+  {t:'Sit or lie down right away if you feel dizzy or faint.',ok:1,why:'Prevents a fall if the device fires.'},
+  {t:'Family members who touch you during a shock may feel a slight, harmless shock.',ok:1,why:'Iggy Box 28.6.'},
+  {t:'You may resume driving in 1 week.',why:'After cardiac arrest, driving is usually restricted for 6 months.'},
+  {t:'If you feel dizzy, drive yourself to the emergency department.',why:'Driving while symptomatic is unsafe.'}],
+ take:'Defibrillator: one shock → call provider, more than one → 911, sit down if dizzy, no driving about 6 months.'},
+
+{topic:T_DYS,src:'Iggy Ch 28 (cardiopulmonary resuscitation and defibrillation)',stem:'During a code, a client in ventricular fibrillation receives a shock. What is the next action?',
+ opts:[{t:'Immediately resume chest compressions.',ok:1,why:'Iggy: deliver the shock and immediately resume cardiopulmonary resuscitation; reassess the rhythm every 2 minutes. Compressions continue at all times except during the shock.'},
+  {t:'Check the carotid pulse for 30 seconds.',why:'Interruptions in compressions must be under 10 seconds.'},
+  {t:'Deliver a second shock right away.',why:'The rhythm is reassessed after 2 minutes of compressions.'},
+  {t:'Stand back until the code team analyzes the rhythm.',why:'No compressions means no perfusion.'}],
+ take:'Shock, then straight back to compressions. Reassess every 2 minutes.'},
+
+{topic:T_DYS,type:'sata',src:'Iggy Ch 28 (cardiopulmonary resuscitation)',stem:'Which actions reflect high-quality cardiopulmonary resuscitation for an adult without an advanced airway? Select all that apply.',
+ opts:[{t:'Compress at 100 to 120 per minute.',ok:1,why:'Iggy.'},
+  {t:'Compress at least 2 inches but no more than 2.4 inches deep.',ok:1,why:'Iggy; allow full chest recoil.'},
+  {t:'Give 30 compressions to 2 breaths.',ok:1,why:'Ratio without an advanced airway.'},
+  {t:'Keep pauses in compressions under 10 seconds.',ok:1,why:'Iggy.'},
+  {t:'Switch compressors about every 2 minutes.',ok:1,why:'Keeps compressions effective.'},
+  {t:'Open the airway and give 2 breaths before starting compressions.',why:'The order is compressions, airway, breathing (C-A-B).'}],
+ take:'C-A-B: 100–120/min, 2–2.4 in, 30:2, pauses under 10 s, switch every 2 min.'},
+
+{topic:T_DYS,type:'sata',src:'Iggy Ch 28 NGN Challenge 28.1.4; Iggy Ch 28 (continuous monitoring)',stem:'A client was just diagnosed with atrial fibrillation. Which tasks can the nurse delegate to assistive personnel? Select all that apply.',
+ opts:[{t:'Apply the electrodes for continuous cardiac monitoring.',ok:1,why:'Iggy: assistive personnel may apply electrodes; the nurse selects the lead and checks placement.'},
+  {t:'Measure and record urine output.',ok:1,why:'Routine measurement within assistive personnel scope.'},
+  {t:'Help the client reposition in bed.',ok:1,why:'Within assistive personnel scope.'},
+  {t:'Take a STAT coagulation sample to the laboratory.',ok:1,why:'Transport is within assistive personnel scope.'},
+  {t:'Reassess lung sounds.',why:'Assessment requires nursing judgment.'},
+  {t:'Teach breathing exercises to reduce anxiety.',why:'Teaching is a nursing responsibility.'}],
+ take:'Assistive personnel: apply electrodes, measure, reposition, transport. The nurse assesses and teaches.'},
+
+/* ===== ACUTE CORONARY SYNDROME ===== */
+{topic:T_ACS,src:'Lecture notes (flagged as recently tested on NCLEX); Iggy Ch 32',stem:'A client asks the difference between ischemia and infarction. Which response is accurate?',
+ opts:[{t:'"Ischemia is not enough oxygen reaching the heart muscle. Infarction is heart muscle death that cannot be reversed."',ok:1,why:'Lecture: ischemia = inadequate oxygen delivery; infarction = irreversible cell death that cannot be reversed with stents or other interventions.'},
+  {t:'"Ischemia is permanent damage, and infarction is temporary."',why:'Reversed.'},
+  {t:'"Infarction can be reversed if a stent is placed within 24 hours."',why:'Reperfusion limits how much MORE muscle dies; dead muscle does not come back.'},
+  {t:'"Ischemia only happens when an artery is completely blocked."',why:'Iggy: once an artery reaches 50% occlusion, blood flow is impaired and ischemia occurs when demand rises.'}],
+ take:'Ischemia = not enough oxygen (reversible). Infarction = death (irreversible).'},
+
+{topic:T_ACS,src:'Iggy Ch 32; ACS PowerPoint; lecture notes',stem:'A client has chest pain. The 12-lead electrocardiogram shows ST depression and T-wave inversion, and troponin is elevated 6 hours after admission. Which condition does the nurse suspect?',
+ opts:[{t:'Non-ST-elevation myocardial infarction',ok:1,why:'Iggy: ST depression and T-wave inversion with troponin rising over 3 to 12 hours = cell death without ST elevation.'},
+  {t:'Unstable angina',why:'Can have ST changes, but troponin does not change.'},
+  {t:'ST-elevation myocardial infarction',why:'Requires ST elevation in two contiguous leads.'},
+  {t:'Stable angina',why:'Predictable exertional pain; no troponin rise.'}],
+ take:'Troponin up + no ST elevation = non-ST-elevation myocardial infarction. Troponin normal = unstable angina.'},
+
+{topic:T_ACS,src:'Iggy Ch 32 (Box 32.2); ACS PowerPoint',stem:'Which client statement suggests unstable angina rather than stable angina?',
+ opts:[{t:'"The chest pressure woke me from sleep and lasted about 20 minutes."',ok:1,why:'Pain at rest, longer than 15 minutes, or poorly relieved by rest or nitroglycerin = unstable angina, a medical emergency.'},
+  {t:'"I get chest tightness when I climb stairs, and it goes away when I sit down."',why:'Predictable, relieved by rest: stable.'},
+  {t:'"One nitroglycerin tablet takes my chest pain away within a few minutes."',why:'Prompt relief: stable.'},
+  {t:'"My chest only hurts when I shovel snow."',why:'Predictable trigger: stable.'}],
+ take:'Unstable angina = new, at rest, worsening, or over 15 minutes.'},
+
+{topic:T_ACS,type:'sata',src:'Iggy Ch 32 (Signs of Cardiac Ischemia in Females); lecture notes',stem:'A 58-year-old woman is being assessed for acute coronary syndrome. Which findings may be her presenting manifestations? Select all that apply.',
+ opts:[{t:'Unusual fatigue',ok:1,why:'Iggy and lecture.'},
+  {t:'Indigestion',ok:1,why:'Iggy and lecture.'},
+  {t:'Aching jaw',ok:1,why:'Iggy and lecture.'},
+  {t:'Sweating',ok:1,why:'Your lecture notes list sweating in women\'s presentation.'},
+  {t:'Increased urine output',why:'Poor cardiac output lowers urine output.'},
+  {t:'Fever as the first symptom',why:'Not a presenting sign; a low fever can follow a myocardial infarction for several days.'}],
+ take:'Women: fatigue, indigestion, jaw pain, shortness of breath, sweating. Do not wait for crushing chest pain.'},
+
+{topic:T_ACS,src:'Iggy Ch 32 (Older Adult Health boxes)',stem:'Which statement about myocardial infarction in clients older than 80 is accurate?',
+ opts:[{t:'Acute confusion may be the main manifestation.',ok:1,why:'Iggy: in people older than 80, the major manifestation may be disorientation or acute confusion from poor cardiac output.'},
+  {t:'Crushing chest pain is more common than in younger adults.',why:'Older adults often present with associated symptoms instead of chest pain.'},
+  {t:'Older adults seek care faster than younger adults.',why:'Iggy: because symptoms are vague, older adults are more likely to wait.'},
+  {t:'Silent ischemia does not need treatment.',why:'Iggy: silent ischemia raises new coronary events and should be treated aggressively.'}],
+ take:'Older adult + new confusion or shortness of breath may be a myocardial infarction.'},
+
+{topic:T_ACS,type:'sata',src:'Iggy Ch 32 (Box 32.3, oxygen therapy); lecture notes',stem:'A client arrives in the emergency department with chest pain. Oxygen saturation is 89% on room air. Which actions does the nurse anticipate? Select all that apply.',
+ opts:[{t:'Obtain a 12-lead electrocardiogram.',ok:1,why:'Within 10 minutes of arrival.'},
+  {t:'Administer aspirin.',ok:1,why:'Non-enteric-coated, given on arrival.'},
+  {t:'Apply oxygen.',ok:1,why:'Iggy: oxygen to keep saturation at 90% or higher when hypoxemic. Oxygen without hypoxemia increases coronary resistance and mortality.'},
+  {t:'Start continuous cardiac monitoring.',ok:1,why:'Dysrhythmias are the leading cause of early death.'},
+  {t:'Ensure intravenous access.',ok:1,why:'Iggy Box 32.3.'},
+  {t:'Complete a detailed health history before the electrocardiogram.',why:'Iggy and lecture: delay detailed history until symptoms are being treated.'}],
+ take:'Chest pain: electrocardiogram in 10 minutes, aspirin, oxygen if below 90%, monitor, intravenous access. History later.'},
+
+{topic:T_ACS,type:'sata',src:'Iggy Ch 32 (Table 32.2, nitrates)',stem:'The nurse is teaching a client about sublingual nitroglycerin tablets. Which instructions are correct? Select all that apply.',
+ opts:[{t:'Sit or lie down before taking a tablet.',ok:1,why:'The blood pressure drop can be dramatic.'},
+  {t:'A tablet may be taken every 5 minutes, up to 3 tablets.',ok:1,why:'Iggy Table 32.2.'},
+  {t:'Let the tablet dissolve under the tongue.',ok:1,why:'Absorbed through mucous membranes.'},
+  {t:'Do not take it within 24 to 48 hours of sildenafil or tadalafil.',ok:1,why:'Profound hypotension can result.'},
+  {t:'Check the expiration date and replace the tablets every 3 to 5 months.',ok:1,why:'Potency fades; keep in a glass, light-resistant container.'},
+  {t:'Swallow the tablet whole with a full glass of water.',why:'Swallowing bypasses absorption under the tongue.'}],
+ take:'Nitroglycerin: sit, under the tongue, every 5 minutes up to 3, no erectile dysfunction drugs, replace every 3–5 months.'},
+
+{topic:T_ACS,src:'Iggy Ch 32 (nitroglycerin monitoring)',stem:'Five minutes after a sublingual nitroglycerin tablet, a client\'s blood pressure is 96/58 mm Hg (it was 134/80) and chest pain is 3/10. What will the nurse do?',
+ opts:[{t:'Lower the head of the bed and notify the provider.',ok:1,why:'Iggy: if systolic pressure is below 100 or 25 below the previous reading, lower the head of the bed and notify the provider.'},
+  {t:'Give a second tablet now.',why:'Repeat doses only if vital signs remain stable.'},
+  {t:'Raise the client to high Fowler\'s position.',why:'Sitting upright worsens hypotension.'},
+  {t:'Document the pain score and recheck in 1 hour.',why:'A drop this large needs action now.'}],
+ take:'After nitroglycerin: systolic below 100 or a 25-point drop = lower head of bed, call provider.'},
+
+{topic:T_ACS,src:'Iggy Ch 32; lecture notes (tested on the ECG exam)',stem:'A nursing student is applying a transdermal nitroglycerin patch. Which action requires the nurse to intervene?',
+ opts:[{t:'Applies the patch over an area of chest hair.',ok:1,why:'Iggy: clean, dry, hairless skin for absorption.'},
+  {t:'Puts on gloves before handling the patch.',why:'Correct; lecture.'},
+  {t:'Chooses a different site from yesterday\'s patch.',why:'Correct; rotating prevents irritation.'},
+  {t:'Plans to remove the patch after 12 to 14 hours.',why:'Correct; prevents tolerance.'}],
+ take:'Patch: gloves, hairless skin, rotate, off after 12–14 hours, off before defibrillation.'},
+
+{topic:T_ACS,src:'Iggy Ch 32 drug alert (beta blockers); lecture notes',stem:'Metoprolol is due for four clients with acute coronary syndrome. For which client will the nurse hold the dose and contact the provider?',
+ opts:[{t:'Heart rate 48, blood pressure 112/74 mm Hg',ok:1,why:'Iggy: do not give a beta blocker if the pulse is below 50 or systolic pressure is below 100 without checking with the provider.'},
+  {t:'Heart rate 64, blood pressure 118/72 mm Hg',why:'Both within limits.'},
+  {t:'Heart rate 72, blood pressure 104/66 mm Hg',why:'Systolic is above 100.'},
+  {t:'Heart rate 88, blood pressure 126/80 mm Hg',why:'Within limits.'}],
+ take:'Beta blocker: hold for pulse below 50 or systolic below 100.'},
+
+{topic:T_ACS,src:'Iggy Ch 32 (aspirin); Box 32.9',stem:'A client says, "If I ever have chest pain at home, I\'ll just lie down and see if it passes." Which teaching is most appropriate?',
+ opts:[{t:'"Chew 325 mg of aspirin, which is four 81-mg tablets, and call 911."',ok:1,why:'Iggy: for new chest pain at home, chew aspirin 325 mg immediately and call 911.'},
+  {t:'"Swallow one 81-mg aspirin and call your provider\'s office in the morning."',why:'Too low a dose, swallowed, and a dangerous delay.'},
+  {t:'"Have a family member drive you to the emergency department."',why:'911 allows monitoring and treatment on the way.'},
+  {t:'"Rest for 30 minutes, then take a nitroglycerin if it continues."',why:'Time is myocardium.'}],
+ take:'Chest pain at home: chew aspirin 325 mg + call 911.'},
+
+{topic:T_ACS,type:'sata',src:'Iggy Ch 32 (Box 32.9, Drug Alerts, activity); lecture notes',stem:'The nurse is teaching a client being discharged after a myocardial infarction. Which instructions are correct? Select all that apply.',
+ opts:[{t:'If chest pain is not better 5 minutes after one nitroglycerin, call 911.',ok:1,why:'Iggy Box 32.9: then repeat nitroglycerin while waiting for emergency services.'},
+  {t:'Use acetaminophen instead of ibuprofen for aches.',ok:1,why:'Iggy: nonsteroidal anti-inflammatory drugs raise the risk of heart attack, heart failure, and stroke.'},
+  {t:'Report a weight gain of 3 lb in 1 week.',ok:1,why:'Iggy Box 32.9: sign of heart failure.'},
+  {t:'Keep nitroglycerin in its glass, light-resistant container.',ok:1,why:'Iggy drug alert.'},
+  {t:'Carry nitroglycerin with you at all times.',ok:1,why:'Iggy drug alert.'},
+  {t:'Take all 3 nitroglycerin doses before deciding whether to call 911.',why:'Iggy Box 32.9: call 911 after the FIRST dose if there is no relief in 5 minutes.'}],
+ take:'Home chest pain: 1 nitroglycerin, wait 5 minutes, no relief = 911. No ibuprofen. Weigh daily.'},
+
+{topic:T_ACS,src:'Iggy Ch 32 (glycoprotein IIb/IIIa inhibitors)',stem:'Eptifibatide is started for a client with a non-ST-elevation myocardial infarction. Which value will the nurse check 4 hours after the infusion begins?',
+ opts:[{t:'Platelet count',ok:1,why:'Iggy drug alert: check platelets 4 hours after starting, then daily; watch for bleeding and hypersensitivity.'},
+  {t:'International normalized ratio',why:'Monitors warfarin.'},
+  {t:'Serum potassium',why:'Not the specific check for this drug.'},
+  {t:'Hemoglobin A1C',why:'Reflects long-term glucose control.'}],
+ take:'Glycoprotein IIb/IIIa inhibitor (eptifibatide, tirofiban): platelets at 4 hours, bleeding.'},
+
+{topic:T_ACS,src:'Iggy Ch 32 (Identifying and Managing Dysrhythmias)',stem:'A client is admitted with an inferior wall myocardial infarction. For which dysrhythmia will the nurse monitor most closely?',
+ opts:[{t:'Bradycardia',ok:1,why:'The right coronary artery supplies most of the sinoatrial and atrioventricular nodes. Iggy: inferior acute coronary syndrome typically causes bradycardias and second-degree atrioventricular blocks.'},
+  {t:'Supraventricular tachycardia',why:'Not the typical inferior pattern.'},
+  {t:'Sinus arrhythmia',why:'A normal variant with breathing.'},
+  {t:'Sinus tachycardia from fever',why:'Not the conduction problem expected from an inferior infarction.'}],
+ take:'Inferior = right coronary artery = bradycardia and blocks. Anterior = left anterior descending = premature ventricular complexes, heart failure.'},
+
+{topic:T_ACS,src:'Iggy Ch 32 (Managing Right Ventricular Failure)',stem:'A client with an inferior wall myocardial infarction has hypotension, clear lung sounds, and jugular venous distention in semi-Fowler\'s position. Right ventricular infarction is confirmed. Which order does the nurse anticipate?',
+ opts:[{t:'Intravenous fluid bolus',ok:1,why:'Iggy: improve right ventricular stroke volume by increasing preload; optimize fluid volume.'},
+  {t:'Intravenous furosemide',why:'Diuretics drop preload and blood pressure further.'},
+  {t:'Intravenous nitroglycerin infusion',why:'Venodilation drops preload.'},
+  {t:'Fluid restriction of 1 L per day',why:'The opposite of what the right ventricle needs.'}],
+ take:'Right ventricular infarction: clear lungs + distended neck veins + hypotension = give fluid.'},
+
+{topic:T_ACS,src:'Lecture case study (74-year-old male); ACS PowerPoint NGN highlights',stem:'A client with acute coronary syndrome now has crackles in both lung bases, oxygen saturation 88%, blood pressure 96/50 mm Hg, heart rate 116, and troponin 0.6 ng/mL. Which complication does the nurse suspect?',
+ opts:[{t:'Heart failure',ok:1,why:'Elevated troponin + crackles + hypoxemia + tachycardia + low blood pressure = myocardial infarction with left ventricular failure. This is your lecture case study.'},
+  {t:'Cardiac tamponade',why:'Tamponade has CLEAR lungs with distended neck veins and muffled heart sounds.'},
+  {t:'Pulmonary embolism',why:'Usually clear lungs; crackles point to fluid.'},
+  {t:'Stable angina',why:'No troponin rise.'}],
+ take:'Troponin up + crackles + low oxygen = heart failure after myocardial infarction.'},
+
+{topic:T_ACS,type:'sata',src:'Iggy Ch 32 (cardiogenic shock Critical Rescue)',stem:'A 70-kg client is 1 day after an anterior wall myocardial infarction. Baseline blood pressure was 128/78 mm Hg. Which findings suggest cardiogenic shock? Select all that apply.',
+ opts:[{t:'Heart rate 124',ok:1,why:'Tachycardia.'},
+  {t:'Blood pressure 94/58 mm Hg',ok:1,why:'Iggy: systolic below 90 OR 30 below baseline. This is 34 below.'},
+  {t:'Urine output 20 mL in the past hour',ok:1,why:'About 0.3 mL/kg/hr, below 0.5.'},
+  {t:'Cold, clammy skin with weak pedal pulses',ok:1,why:'Poor perfusion.'},
+  {t:'New restlessness and confusion',ok:1,why:'Poor cerebral perfusion.'},
+  {t:'Warm, flushed, dry skin',why:'Shock from pump failure makes skin cold and clammy.'}],
+ take:'Cardiogenic shock: fast, low pressure (below 90 or 30 under baseline), low urine, cold clammy, confused.'},
+
+{topic:T_ACS,src:'Iggy Ch 32; Iggy Ch 28',stem:'The nurse receives report on four clients. Which client will the nurse see first?',
+ opts:[{t:'Two hours after percutaneous coronary intervention: new swelling at the groin site and blood pressure 88/50 mm Hg.',ok:1,why:'Bleeding at the sheath site with hypotension is an actual, acute complication Iggy says to report immediately.'},
+  {t:'Day 2 after myocardial infarction: temperature 38.3°C (101°F).',why:'Iggy: temperatures up to 38.9°C (102°F) for several days are an expected inflammatory response to necrosis.'},
+  {t:'Atrial fibrillation on warfarin: international normalized ratio 2.6.',why:'Therapeutic range is 2 to 3.'},
+  {t:'Day 1 after coronary artery bypass graft surgery: incision pain 6/10 that worsens with coughing.',why:'Expected sternotomy pain; medicate, but not first.'}],
+ take:'See the client with the actual, unstable complication first. The rest are expected or therapeutic.'},
+
+/* ===== PROCEDURES AND SURGERY ===== */
+{topic:T_PROC,type:'sata',src:'Iggy Ch 32 (thrombolytic therapy)',stem:'A client received a thrombolytic for an ST-elevation myocardial infarction. Which findings indicate the clot has dissolved and the artery is reperfused? Select all that apply.',
+ opts:[{t:'Abrupt stop of chest pain',ok:1,why:'Iggy.'},
+  {t:'Sudden onset of ventricular dysrhythmias',ok:1,why:'Reperfusion dysrhythmias.'},
+  {t:'Resolution of ST-segment elevation',ok:1,why:'Iggy.'},
+  {t:'Markers of myocardial damage peaking at 12 hours',ok:1,why:'Iggy.'},
+  {t:'New ST elevation in additional leads',why:'More injury or reocclusion.'},
+  {t:'Chest pain that increases',why:'Ongoing ischemia.'}],
+ take:'Reperfusion: pain stops, ST resolves, ventricular dysrhythmias, early marker peak.'},
+
+{topic:T_PROC,src:'Iggy Ch 32 (Box 32.4)',stem:'Which client finding is an absolute contraindication to thrombolytic therapy?',
+ opts:[{t:'History of an intracranial hemorrhage',ok:1,why:'Iggy Box 32.4: any prior intracranial hemorrhage, active bleeding, significant head trauma within 3 months.'},
+  {t:'Chest pain that began 2 hours ago',why:'Early is when thrombolytics work best.'},
+  {t:'Daily atorvastatin',why:'Not a bleeding risk.'},
+  {t:'Type 2 diabetes mellitus',why:'A risk factor, not a contraindication.'}],
+ take:'Thrombolytics: no prior brain bleed, no active bleeding, no recent major head trauma.'},
+
+{topic:T_PROC,src:'Iggy Ch 32 Critical Rescue; lecture notes (post-cath care)',stem:'Four hours after percutaneous coronary intervention through the femoral artery, which finding requires immediate action?',
+ opts:[{t:'Crushing chest pain with new ST elevation on the monitor',ok:1,why:'Iggy: acute closure of the vessel causes chest pain and ST elevation. Report immediately.'},
+  {t:'Mild aching where the artery was stretched',why:'Lecture: stretching pain after the procedure is expected and is not crushing.'},
+  {t:'Potassium of 3.9 mEq/L',why:'Normal; potassium is watched because hypokalemia can occur.'},
+  {t:'The client asks for a urinal because of having to lie flat',why:'Expected: lie flat with the limb extended.'}],
+ take:'After percutaneous coronary intervention: new chest pain + ST elevation = vessel closure.'},
+
+{topic:T_PROC,src:'Iggy Ch 32 (dual antiplatelet therapy; Mastery Question 1)',stem:'A client discharged on aspirin and clopidogrel after stent placement asks why both are needed. Which statement shows the teaching was effective?',
+ opts:[{t:'"I will watch for nosebleeds or blood in my stool and report them."',ok:1,why:'Bleeding is the major side effect of dual antiplatelet therapy.'},
+  {t:'"I can stop the clopidogrel after a week if I feel fine."',why:'Usually continued up to 12 months.'},
+  {t:'"My atorvastatin counts as one of the two blood thinners."',why:'Atorvastatin is a statin.'},
+  {t:'"I will take extra over-the-counter aspirin for headaches."',why:'Avoid products with extra aspirin.'}],
+ take:'Dual antiplatelet therapy: aspirin + clopidogrel or ticagrelor. Bleeding risk. Do not stop early.'},
+
+{topic:T_PROC,src:'Iggy Ch 32 Action Alert',stem:'Two hours after coronary artery bypass graft surgery, which finding will the nurse report to the surgeon right away?',
+ opts:[{t:'Chest tube drainage of 200 mL in the past hour',ok:1,why:'Iggy: report drainage over 150 mL/hr.'},
+  {t:'Sternotomy pain that worsens with coughing',why:'Expected.'},
+  {t:'Heart rate of 88',why:'Normal.'},
+  {t:'Chest tube drainage of 40 mL in the past hour',why:'Below 150 mL/hr.'}],
+ take:'Chest tube over 150 mL/hr = call the surgeon.'},
+
+{topic:T_PROC,type:'sata',src:'Iggy Ch 32 Critical Rescue (cardiac tamponade)',stem:'The day after coronary artery bypass graft surgery, which findings would make the nurse suspect cardiac tamponade? Select all that apply.',
+ opts:[{t:'Previously heavy chest tube drainage suddenly stops',ok:1,why:'Blood is collecting around the heart instead.'},
+  {t:'Distended neck veins with clear lung sounds',ok:1,why:'Beck triad.'},
+  {t:'Muffled, distant heart sounds',ok:1,why:'Beck triad.'},
+  {t:'Hypotension',ok:1,why:'Beck triad.'},
+  {t:'Crackles in both lung bases',why:'Points to heart failure; tamponade lungs are clear.'},
+  {t:'Rising blood pressure',why:'Tamponade lowers pressure.'}],
+ take:'Tamponade: drainage stops + Beck triad.'},
+
+{topic:T_PROC,src:'Iggy Ch 32 (hypothermia after surgery)',stem:'One hour after coronary artery bypass graft surgery, the client\'s temperature is 35.5°C (95.9°F). Which plan is correct?',
+ opts:[{t:'Rewarm gradually, no faster than 1°C (1.8°F) per hour.',ok:1,why:'Iggy: rewarm below 36°C, slowly, to prevent shivering, which causes metabolic acidosis, increased oxygen consumption, and hypoxia.'},
+  {t:'Rewarm as fast as possible with a warming blanket on high.',why:'Fast rewarming causes shivering.'},
+  {t:'Take no action; hypothermia is expected for 24 hours.',why:'Hypothermia causes vasoconstriction and hypertension; rewarm below 36°C.'},
+  {t:'Wait until the client starts shivering, then rewarm.',why:'Shivering is what you are trying to prevent.'}],
+ take:'After coronary artery bypass graft: rewarm below 36°C, no faster than 1°C per hour.'},
+
+{topic:T_PROC,type:'sata',src:'Iggy Ch 32 (sternal wound infection, mediastinitis)',stem:'Six days after coronary artery bypass graft surgery, which findings would the nurse report as possible mediastinitis? Select all that apply.',
+ opts:[{t:'Fever that has continued since surgery',ok:1,why:'Iggy: fever beyond the first 4 days.'},
+  {t:'The sternum feels unstable (boggy) when the client coughs',ok:1,why:'Iggy.'},
+  {t:'Redness and drainage at the sternal incision',ok:1,why:'Iggy.'},
+  {t:'Sternal incision pain that worsens with deep breathing',why:'Expected sternotomy pain.'},
+  {t:'Swelling of the leg where the saphenous vein was taken',why:'Iggy: the donor leg is often edematous; elevate it and avoid crossing legs.'},
+  {t:'Temperature of 37.9°C on the first postoperative day',why:'An early, low-grade temperature is not the pattern; worry when fever continues past day 4.'}],
+ take:'Mediastinitis: fever past day 4, boggy sternum, red draining incision, rising white blood cells.'},
+
+{topic:T_PROC,src:'Iggy Ch 32 Action Alert (radial artery graft)',stem:'A client\'s radial artery was used as a graft during coronary artery bypass graft surgery. Which assessment of the donor arm is the priority?',
+ opts:[{t:'Hand color, temperature, radial and ulnar pulses, and capillary refill every hour',ok:1,why:'Iggy: hourly neurovascular checks at first; sensation and movement at least every 4 hours.'},
+  {t:'Shoulder range of motion every 8 hours',why:'Does not detect loss of circulation to the hand.'},
+  {t:'Daily arm circumference',why:'Too infrequent and does not assess perfusion.'},
+  {t:'Blood glucose before meals',why:'Unrelated to donor arm perfusion.'}],
+ take:'Radial artery donor arm: hourly circulation checks.'},
+
+{topic:T_PROC,src:'Lecture notes (rapid response communication)',stem:'A client 1 day after coronary artery bypass graft surgery becomes short of breath. Which statement is best when the nurse calls the Rapid Response Team?',
+ opts:[{t:'"Oxygen saturation dropped from 95% to 84% on 2 L, and the graft site is actively bleeding."',ok:1,why:'Lecture: use objective data, and have vital signs, finger stick, and medication status ready.'},
+  {t:'"The client just doesn\'t look right to me."',why:'Subjective.'},
+  {t:'"I think the client might be having some kind of reaction."',why:'Vague, no data.'},
+  {t:'"Can someone come when they get a chance? The client seems uncomfortable."',why:'No data and no urgency.'}],
+ take:'Call with numbers, not impressions.'}
+];
+/* ---------- balanced answer positions across the bank ---------- */
+(function(){const rand=rng(20261107);const mc=BANK.filter(q=>q.type!=='sata');const want=mc.map((_,i)=>i%4);
+  for(let i=want.length-1;i>0;i--){const j=Math.floor(rand()*(i+1));[want[i],want[j]]=[want[j],want[i]];}
+  let k=0;BANK.forEach(q=>{q.type=q.type||'mc';
+    if(q.type==='mc'){const c=q.opts.find(o=>o.ok),rest=q.opts.filter(o=>!o.ok);for(let i=rest.length-1;i>0;i--){const j=Math.floor(rand()*(i+1));[rest[i],rest[j]]=[rest[j],rest[i]];}rest.splice(want[k++],0,c);q.opts=rest;}
+    else{for(let i=q.opts.length-1;i>0;i--){const j=Math.floor(rand()*(i+1));[q.opts[i],q.opts[j]]=[q.opts[j],q.opts[i]];}}});})();
+
+/* ---------- attempt state ---------- */
+const PER=50,L='ABCDEF';let Q=[],ans=[],locked=[],mode='exam',cur=0;
+const $=id=>document.getElementById(id);
+const nStrip=BANK.filter(q=>q.strip).length,nSata=BANK.filter(q=>q.type==='sata').length;
+$('fBank').textContent=`Bank of ${BANK.length}`;$('fStrip').textContent=`${nStrip} rhythm strips`;$('fSata').textContent=`${nSata} select all that apply`;
+function newAttempt(){const idx=BANK.map((_,i)=>i);for(let i=idx.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[idx[i],idx[j]]=[idx[j],idx[i]];}
+  const n=$('mLen').value==='all'?BANK.length:PER;Q=idx.slice(0,n).map(i=>BANK[i]);ans=Q.map(()=>new Set());locked=Q.map(()=>false);cur=0;}
+
+function scoreOf(i){const q=Q[i],s=ans[i];
+  if(q.type==='mc'){const c=q.opts.findIndex(o=>o.ok);return{pts:s.has(c)?1:0,max:1};}
+  let p=0,max=0;q.opts.forEach((o,j)=>{if(o.ok)max++;if(s.has(j))p+=o.ok?1:-1;});return{pts:Math.max(0,p),max};}
+function status(i){const r=scoreOf(i);return r.pts===r.max?'ok':r.pts===0?'bad':'part';}
+function btn(t,f,primary){const b=document.createElement('button');b.className='btn'+(primary?' primary':'');b.textContent=t;b.onclick=f;return b;}
+
+function rail(){const el=$('rail');el.innerHTML='';Q.forEach((q,i)=>{const b=document.createElement('button');b.className='dot';b.textContent=i+1;b.setAttribute('aria-label',`Question ${i+1}`);
+  if(locked[i]&&mode!=='exam'){const s=status(i);b.classList.add(s==='ok'?'ok':s==='bad'?'bad':'ans');}else if(ans[i].size)b.classList.add('ans');
+  if(i===cur)b.classList.add('cur');b.onclick=()=>{cur=i;render();};el.appendChild(b);});}
+
+function render(){rail();const q=Q[cur],card=$('qcard'),show=locked[cur]&&(mode==='practice'||mode==='review');
+  card.className='card'+(show?' locked':'');card.innerHTML='';
+  const h=document.createElement('div');h.className='qhead';
+  h.innerHTML=`<span class="eyebrow">Question ${cur+1} of ${Q.length} · ${q.topic}</span><span class="tag ${q.type==='sata'?'sata':''}">${q.type==='sata'?'Select all that apply':'Choose one'}</span>`;card.appendChild(h);
+  if(q.strip){const s=document.createElement('div');s.className='strip';s.appendChild(drawStrip(q.strip));card.appendChild(s);
+    const c=document.createElement('div');c.className='cap';c.textContent='6-second strip · tick marks every 3 seconds · small box 0.04 s · large box 0.20 s';card.appendChild(c);}
+  const st=document.createElement('p');st.className='stem';st.textContent=q.stem;card.appendChild(st);
+  const box=document.createElement('div');box.className='opts';
+  q.opts.forEach((o,j)=>{const lab=document.createElement('label');lab.className='opt';const id=`q${cur}o${j}`;lab.htmlFor=id;
+    const inp=document.createElement('input');inp.type=q.type==='sata'?'checkbox':'radio';inp.name='q'+cur;inp.id=id;inp.checked=ans[cur].has(j);inp.disabled=show;
+    inp.onchange=()=>{if(q.type==='mc')ans[cur].clear();inp.checked?ans[cur].add(j):ans[cur].delete(j);const e=$('qerr');if(e)e.hidden=true;rail();};
+    const k=document.createElement('span');k.className='k';k.textContent=L[j]+'.';const t=document.createElement('span');t.textContent=o.t;lab.append(inp,k,t);
+    if(show){const picked=ans[cur].has(j);if(o.ok&&picked)lab.classList.add('ok');else if(!o.ok&&picked)lab.classList.add('bad');else if(o.ok)lab.classList.add('missed');
+      const w=document.createElement('span');w.className='why';w.textContent=(o.ok?'Correct. ':'Incorrect. ')+o.why;lab.appendChild(w);}
+    box.appendChild(lab);});
+  card.appendChild(box);
+  if(show){const r=scoreOf(cur),s=status(cur),v=document.createElement('div');v.className='verdict '+s;
+    v.textContent=q.type==='sata'?`${r.pts} of ${r.max} points`+(s==='ok'?' · Full credit':''):(s==='ok'?'Correct':'Incorrect');
+    const tk=document.createElement('p');tk.className='take';tk.innerHTML='<strong>Take-away.</strong> ';tk.append(q.take);
+    const sr=document.createElement('p');sr.className='src';sr.textContent='Source: '+q.src;card.append(v,tk,sr);}
+  const err=document.createElement('p');err.className='err';err.id='qerr';err.hidden=true;err.textContent='Select an answer first.';card.appendChild(err);
+  const nav=document.createElement('div');nav.className='nav';const prev=btn('Previous',()=>{cur--;render();});prev.disabled=cur===0;
+  const right=document.createElement('div');right.className='row';
+  if(mode==='practice'&&!locked[cur])right.appendChild(btn('Check answer',()=>{if(!ans[cur].size){$('qerr').hidden=false;return;}locked[cur]=true;render();},true));
+  else if(cur<Q.length-1)right.appendChild(btn('Next',()=>{cur++;render();},mode!=='review'));
+  if(mode==='review')right.appendChild(btn('Back to results',showResults,true));
+  else if(cur===Q.length-1||Q.every((_,i)=>ans[i].size))right.appendChild(btn('Finish exam',finish,cur===Q.length-1));
+  nav.append(prev,right);card.appendChild(nav);card.scrollIntoView({block:'nearest'});}
+
+function finish(){const un=Q.filter((_,i)=>!ans[i].size).length;
+  if(un&&!$('confirmFinish')){const p=document.createElement('div');p.className='row';p.id='confirmFinish';
+    p.innerHTML=`<span class="err">${un} question${un>1?'s are':' is'} unanswered.</span>`;
+    p.appendChild(btn('Finish anyway',()=>{p.remove();doFinish();},true));p.appendChild(btn('Keep going',()=>p.remove()));$('qcard').appendChild(p);return;}
+  doFinish();}
+function doFinish(){Q.forEach((_,i)=>locked[i]=true);mode='review';showResults();}
+function showResults(){$('exam').hidden=true;const R=$('results');R.hidden=false;
+  let pts=0,max=0;const topics={};Q.forEach((q,i)=>{const r=scoreOf(i);pts+=r.pts;max+=r.max;const t=topics[q.topic]||(topics[q.topic]={p:0,m:0});t.p+=r.pts;t.m+=r.max;});
+  const pct=Math.round(pts/max*100);
+  R.innerHTML=`<span class="eyebrow">Results</span><div class="row" style="align-items:baseline;gap:14px"><span class="score">${pct}%</span><span class="muted">${pts} of ${max} points · goal 85%</span></div>
+   <p>${pct>=85?'At or above your 85% goal. Review the misses anyway; the same concepts come back reworded.':'Below your 85% goal. Work through every red item, then retake. Each retake draws a new mix from the bank.'}</p>
+   <div class="bars">${Object.entries(topics).map(([k,v])=>`<div class="bar"><span>${k}</span><span class="muted" style="font-family:var(--f-mono);font-size:.85rem">${v.p}/${v.m}</span><div class="track"><div class="fill" style="width:${v.p/v.m*100}%"></div></div></div>`).join('')}</div>
+   <h2>Review every question</h2><div class="review" id="rvList"></div>
+   <div class="row"><button class="btn primary" id="retake">Take a new exam</button></div>`;
+  const list=$('rvList');Q.forEach((q,i)=>{const s=status(i),r=scoreOf(i),b=document.createElement('button');b.className='rv';
+    b.innerHTML=`<span class="n">${i+1}</span><span></span><span class="s ${s}">${q.type==='sata'?r.pts+'/'+r.max:(s==='ok'?'Correct':'Missed')}</span>`;
+    b.children[1].textContent=(q.strip?'[Strip] ':'')+q.stem;b.onclick=()=>{cur=i;R.hidden=true;$('exam').hidden=false;render();};list.appendChild(b);});
+  $('retake').onclick=()=>{R.hidden=true;$('start').hidden=false;window.scrollTo(0,0);};R.scrollIntoView({block:'start'});}
+
+$('begin').onclick=()=>{mode=document.querySelector('input[name=mode]:checked').value;newAttempt();$('start').hidden=true;$('results').hidden=true;$('exam').hidden=false;render();};
+window.__BANK=BANK;window.__state=()=>({Q,ans,locked,mode});
+})();
+</script>
+
+</body></html>
